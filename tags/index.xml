@@ -6,8 +6,36 @@
     <description>Recent content in tags on home</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 19 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://elecbrandy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker</title>
+      <link>https://elecbrandy.github.io/tags/docker/</link>
+      <pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mariadb</title>
+      <link>https://elecbrandy.github.io/tags/mariadb/</link>
+      <pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/mariadb/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>React</title>
+      <link>https://elecbrandy.github.io/tags/react/</link>
+      <pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/react/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spring</title>
+      <link>https://elecbrandy.github.io/tags/spring/</link>
+      <pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/spring/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cs</title>
       <link>https://elecbrandy.github.io/tags/cs/</link>
@@ -98,6 +126,13 @@
       <pubDate>Tue, 01 Feb 2022 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/ui.ux/</guid>
       <description>&lt;h4 id=&#34;-tagsuiux&#34;&gt;🏷️ /tags/ui.ux&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>ebook</title>
+      <link>https://elecbrandy.github.io/tags/ebook/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/ebook/</guid>
+      <description>&lt;h4 id=&#34;-tagsebook&#34;&gt;🏷️ /tags/ebook&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
       <title>stat</title>
