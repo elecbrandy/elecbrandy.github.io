@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
 <head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
@@ -13,11 +14,11 @@
         });"></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href="/css/reset.css">
-<title>2023 데이터 청년 캠퍼스 | home</title>
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/reset.css">
+<title>2023 데이터 청년 캠퍼스 | freshpink</title>
 
-      <link rel="stylesheet" href="/css/main.min.0ce01787cd4bc0759f98b56377f962e02878ce8fb515cc49af5cb83db6a3edfc.css" integrity="sha256-DOAXh81LwHWfmLVjd/li4Ch4zo&#43;1FcxJr1y4Pbaj7fw=" crossorigin="anonymous">
-      <link rel="stylesheet" href="/css/min700.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.7890e51e83f9836401d278297629f6e8246e3d07d16c4fdd03f5aea0023f2800.css" integrity="sha256-eJDlHoP5g2QB0ngpdin26CRuPQfRbE/dA/WuoAI/KAA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
 
 
 
@@ -29,12 +30,12 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-000000000"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
+  gtag('hugo', 'G-000000000');
 </script>
 
 
@@ -42,13 +43,13 @@
 <body>
     <header class="main-header">
 	<nav>
-	  <li><a href="/">/home</a></li>
-	  <li><a href="/tags">/tags</a></li>
-	  <li><a href="/about">/about</a></li>
+	  <li><a href="https://elecbrandy.github.io/">/home</a></li>
+	  <li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+	  <li><a href="https://elecbrandy.github.io/about/">/about</a></li>
 	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
 	</nav>
   </header>
-  
+
   <script>
 	document.addEventListener('DOMContentLoaded', function() {
 	  const themeToggle = document.getElementById('theme-toggle');
@@ -150,51 +151,51 @@
 <br>
 <h2 id="3-연구방법">3. 연구방법</h2>
 <hr>
-<p><img src="/images/Data_on_air/01.png" alt="연구 방법">
+<p><img src="https://elecbrandy.github.io/images/Data_on_air/01.png" alt="연구 방법">
 우리가 개발한 모델은 기준으로 서울대학교 언론정보연구소의 팩트체크 정보를 활용한다.
 가짜뉴스의 정의와 판별 기준은 여전히 논의 중이며, 놀랍게도 이는 각 개인 또는 그들이 속한 집단의 입장에 따라 달라질 수 있다&hellip;! 어른들의 사정이란&hellip; 따라서 우리는 서울대학교 팩트체크 사이트에서 주제별로 라벨링 된 기준을 채택하여 모델을 훈련하기로 했다. 우리의 모델은 이러한 팩트체크 기준을 활용하여 Naver 기사와 YouTube 영상 스크립트에 대한 준 지도 학습&hellip; factcheck에서는 이미 라벨이 붙어 있지만 Naver와 YouTube에는 라벨이 붙어 있지 않다는 점과 그 비율이 균일하지 않다는 점을 고려해 준 지도 학습을 진행했다. 우리의 목표는 한국언론진흥재단의 자료를 기반으로 한 온라인 뉴스 중에서 매주 가장 많이 이용되는 Naver 뉴스 YouTube를 활용하여 모델을 향상하는 것이다. 이를 통해 모델의 실제 성능과 범용성을 향상할 것이다.</p>
 <br>
 <h2 id="4-프레임워크">4. 프레임워크</h2>
 <hr>
-<p><img src="/images/Data_on_air/frame.png" alt="프레임워크"></p>
+<p><img src="https://elecbrandy.github.io/images/Data_on_air/frame.png" alt="프레임워크"></p>
 <br>
 <h3 id="4-1-모델링_01--snu-언론정보연구소-데이터-활용">4-1. 모델링_01 : SNU 언론정보연구소 데이터 활용</h3>
 <h4 id="데이터-수집-및-확인">데이터 수집 및 확인</h4>
-<p><img src="/images/Data_on_air/02.png" alt="데이터 수집 및 확인"></p>
+<p><img src="https://elecbrandy.github.io/images/Data_on_air/02.png" alt="데이터 수집 및 확인"></p>
 <p>우리는 팩트체크에서 총 790개의 데이터를 수집했다. 이때 row_id에 인덱스를 / 내용에 기사, 영상제목을 / 상세내용에 기사내용, 영상 스크립트를 / 주장검증매체에 언론사, 채널 명을 / label에 SNU 언론정보연구소 라벨링 정보를 가져왔다. 선행연구를 참조해 판단유보를 제외하고 False와 True를 구분했다.</p>
 <br>
 <h4 id="라벨링-인덱스">라벨링 인덱스</h4>
-<p><img src="/images/Data_on_air/03.png" alt="라벨링 인덱스">
+<p><img src="https://elecbrandy.github.io/images/Data_on_air/03.png" alt="라벨링 인덱스">
 선행연구를 참조해 판단유보를 제외하고 False와 True를 구분했다.</p>
 <br>
 <h4 id="워드클라우드">워드클라우드</h4>
-<p><img src="/images/Data_on_air/04.png" alt="워드클라우드">
+<p><img src="https://elecbrandy.github.io/images/Data_on_air/04.png" alt="워드클라우드">
 위 그래픽은 수집한 로우데이터의 상세 내용을 시각화한 것으로 왼쪽 붉은색이 False, 오른쪽 푸른색이 True로 라벨링된 텍스트의 워드클라우드이다. 보면 생각보다 비슷한 단어들이 많고 의미없이 반복되는 단어들이 많은 것을 알 수 있는데, 이를 통해서 데이터 전처리 진행에 대한 틀을 잡고 더 나아가 불용어 사전 구축에도 아이디어를 얻을 수 있었다!</p>
 <br>
 <h4 id="데이터-전처리">데이터 전처리</h4>
-<p><img src="/images/Data_on_air/05.png" alt="데이터 전처리">
+<p><img src="https://elecbrandy.github.io/images/Data_on_air/05.png" alt="데이터 전처리">
 판단유보를 제외한 총 760개 데이터를 대상으로 맞춤법 검사 / 불용어 제거(사전 수동 구축) / 토픽모델링(중복 주제 그룹화) / 오버샘플링(T/F 비율 1:1) 순서로 전처리를 진행했다. 최종적으로 760개의 데이터를 전처리 후 모델 훈련용 544개, 검증용 데이터 136개로 구분 지었다.</p>
 <br>
 <h4 id="모델링">모델링</h4>
-<p><img src="/images/Data_on_air/06.png" alt="모델링">
+<p><img src="https://elecbrandy.github.io/images/Data_on_air/06.png" alt="모델링">
 Word2Vec 벡터화된 데이터를 양방향 LSTM (BiLSTM) 모델에 적용하여 실험을 진행했다. 초기에는 일반 LSTM을 사용하여 모델을 구성했으나, 검증 결과의 성능이 예상보다 낮아서 모델을 변경해야 할지에 대한 고민을 했다. 그런데, 더 다양한 연구와 논문 서칭을 통해 LSTM보다 성능이 우수한 BiLSTM 모델을 발견했다. 이 모델은 문맥을 양방향으로 고려하는 데에 있어서 우수한 성과를 보이며, 특히 문맥 기반의 연관성 분석에 유리한 모델이다. 따라서 BiLSTM 모델을 채택하고 적용한 결과, 성능에서 유의미한 개선이 이루어졌다.</p>
 <br>
 <h3 id="4-2-모델링_02--naver--youtube-데이터-활용">4-2. 모델링_02 : Naver / Youtube 데이터 활용</h3>
 <h4 id="데이터-수집-및-확인-1">데이터 수집 및 확인</h4>
-<p><img src="/images/Data_on_air/07.png" alt="데이터 수집 및 확인"></p>
+<p><img src="https://elecbrandy.github.io/images/Data_on_air/07.png" alt="데이터 수집 및 확인"></p>
 <p>모델링_01 과정을 통해 훈련시킨 모델에 네이버 뉴스 기사와 유튜브 스크립트 데이터를 넣고 준지도 학습을 시행했다. SNU 펙트체크에서 스크래핑한 760개의 데이터(판단유보 제외)에서 각각 키워드를 3개씩 선정했다. 그리고 해당 키워드를 네이버와 유튜브에 입력해 각각 관련도 / 조회수 순으로 스크래핑했다.</p>
 <br>
 <h4 id="데이터-전처리-1">데이터 전처리</h4>
-<p><img src="/images/Data_on_air/08.png" alt="데이터 전처리"></p>
+<p><img src="https://elecbrandy.github.io/images/Data_on_air/08.png" alt="데이터 전처리"></p>
 <br>
 <h4 id="모델링-1">모델링</h4>
-<p><img src="/images/Data_on_air/09.png" alt="데이터 수집 및 확인">
+<p><img src="https://elecbrandy.github.io/images/Data_on_air/09.png" alt="데이터 수집 및 확인">
 기존 SNU 데이터 뿐만이 아니라  Naver, Youtube 데이터까지 함께 입력되었을 때 모델 평가지표의 변화를 염두하여 이를 최대한 방지하고자 다양한 파라미터를 조절해가며 최적의 결과를 얻기 위해 노력했다. 최소 100번이 넘는 수동&hellip; 조정 과정을 통해 F-1 스코어와 정확도가 함께 60% 이상인 경향을 보이는 파라미터를 찾을 수 있었다.</p>
 <br>
 <h2 id="5-개선방안">5. 개선방안</h2>
 <hr>
 <h3 id="chrome-확장-프로그램">Chrome 확장 프로그램</h3>
-<p><img src="/images/Data_on_air/11.png" alt="Chrome 확장 프로그램">
+<p><img src="https://elecbrandy.github.io/images/Data_on_air/11.png" alt="Chrome 확장 프로그램">
 모 사이트에 직접 접속하지 않아도 크롬 브라우저에서 우리 모델을 사용해 현재 읽고 있는 기사를 검증하는 확장 프로그램으로 사용할 수 있지 않을까? 하는 의견에서 나온 아이디어이다. 사용자는 기사를 읽다가 상위 툴 팁이 뜨면 지금 읽고 있는 기사의 대략적인 검증이 가능하며, 더 알아보고 싶은 경우 아래 버튼을 눌러 체코노미 사이트로 이동해 상세 내용을 볼 수 있다.</p>
 <br>
 <h2 id="6-결론">6. 결론</h2>
@@ -217,7 +218,7 @@ Word2Vec 벡터화된 데이터를 양방향 LSTM (BiLSTM) 모델에 적용하�
 <script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
 <script>addBackToTop({
   diameter: 40,
-  backgroundColor: 'rgb(255, 83, 176)',
+  backgroundColor: '#ec42ff',
   textColor: '#fff'
 })</script>
 

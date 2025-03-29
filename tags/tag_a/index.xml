@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tag_a on freshpink</title>
+    <link>https://elecbrandy.github.io/tags/tag_a/</link>
+    <description>Recent content in tag_a on freshpink</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 29 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://elecbrandy.github.io/tags/tag_a/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>01. freshPink</title>
+      <link>https://elecbrandy.github.io/posts/post-1/</link>
+      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/posts/post-1/</guid>
+      <description>&lt;br&gt;&#xA;&lt;h2 id=&#34;freshpink&#34;&gt;freshPink&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/elecbrandy/freshpink/main/images/tn.png&#34; alt=&#34;Thumbnail&#34;&gt;&lt;br&gt;&#xA;&lt;img src=&#34;https://raw.githubusercontent.com/elecbrandy/freshpink/main/images/screenshot.png&#34; alt=&#34;Screenshot&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Hello! Let me introduce the &lt;strong&gt;freshPink&lt;/strong&gt; theme!&lt;/p&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;demo-site&#34;&gt;Demo Site&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Check out the &lt;a href=&#34;https://elecbrandy.github.io/freshpink/&#34;&gt;&lt;em&gt;Demo Site&lt;/em&gt;&lt;/a&gt; for a simple example and detailed tutorial.&lt;/p&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;getting-started-with-freshpink&#34;&gt;Getting Started with freshPink&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;This guide explains how to install and apply the theme using &lt;strong&gt;Hugo Modules&lt;/strong&gt; (recommended). Follow these steps to get your blog up and running:&lt;/p&gt;&#xA;&lt;h3 id=&#34;1-create-a-new-hugo-site&#34;&gt;1. Create a New Hugo Site&lt;/h3&gt;&#xA;&lt;p&gt;Open your terminal and run:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new site my-blog&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd my-blog&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-initialize-hugo-modules&#34;&gt;2. Initialize Hugo Modules&lt;/h3&gt;&#xA;&lt;p&gt;Initialize your Hugo site as a module by running:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>02. Features</title>
+      <link>https://elecbrandy.github.io/posts/post-2/</link>
+      <pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/posts/post-2/</guid>
+      <description>&lt;br&gt;&#xA;&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;image-area&#34;&gt;Image Area&lt;/h3&gt;&#xA;&lt;p&gt;This theme provides an image area feature. You can insert a wide image area of your choice at the top of your &lt;code&gt;.md&lt;/code&gt; file according to the tomel format: FEATURED_IMAGE = “ ”`.Insert a nice image that represents your post.&lt;/p&gt;&#xA;&lt;br&gt;&#xA;&lt;h3 id=&#34;toc&#34;&gt;TOC&lt;/h3&gt;&#xA;&lt;p&gt;This theme has a TOC. It&amp;rsquo;s on the left side of the body, and by default, it&amp;rsquo;s transparent so it doesn&amp;rsquo;t get in the way of reading the post. When you hover over it, it actually turns into an actionable text. As for the &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; tag, it&amp;rsquo;s considered a heading tag and can be hard to recognize to prevent abuse! Similar to hugo&amp;rsquo;s tendency.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
