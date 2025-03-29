@@ -1,36 +1,29 @@
-baseURL = 'https://elecbrandy.github.io/'
-languageCode = 'en-us'
-title = 'home'
-theme = 'freshpink'
-contentDir = "content"
-
+baseURL = "https://elecbrandy.github.io/"
+languageCode = "en-us"
+title = "freshpink"
+canonifyURLs = true
 
 [[menus.main]]
 name = 'Home'
-pageRef = '/'
+url = '/'
 weight = 10
 
 [[menus.main]]
 name = 'TAGS'
-pageRef = '/tags'
+url = '/tags/'
 weight = 20
 
 [[menus.main]]
 name = 'ABOUT'
-pageRef = '/about'
+url = '/about/'
 weight = 30
 
 [module]
   [module.hugoVersion]
     extended = true
     min = "0.116.0"
-
-[params]
-  googleAnalytics = "G-ZL1NP5K5CJ"
-  githubUsername = "elecbrandy"
-  copyright = "Copyright © 2024 elecbrandy"
-  katex = "true"
-  math = "true"
+  [[module.imports]]
+    path = "github.com/elecbrandy/freshpink"
 
 [taxonomies]
   tag = "tags"
@@ -39,9 +32,3 @@ weight = 30
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
-
-[sitemap]
-  changefreq = "daily"
-  priority = 0.5
-
-
