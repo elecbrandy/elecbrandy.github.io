@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/reset.css">
+<title>[42seoul] fdf | elecbrandy</title>
+
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.7890e51e83f9836401d278297629f6e8246e3d07d16c4fdd03f5aea0023f2800.css" integrity="sha256-eJDlHoP5g2QB0ngpdin26CRuPQfRbE/dA/WuoAI/KAA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-000000000"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('hugo', 'G-000000000');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+	  <li><a href="https://elecbrandy.github.io/">/home</a></li>
+	  <li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+	  <li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+  
+    
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-소개">1. 소개</a></li>
+    <li><a href="#2-fdf-명세서">2. fdf 명세서</a></li>
+    <li><a href="#3-개념-정리">3. 개념 정리</a>
+      <ul>
+        <li><a href="#isometric-projection">Isometric projection</a></li>
+        <li><a href="#dot">dot</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-mandatory">4. Mandatory</a>
+      <ul>
+        <li><a href="#41-struct">4.1 struct</a></li>
+        <li><a href="#4-2-main">4-2. main</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-reference">5. Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://i.imgur.com/VmsQmlo.png" alt="Featured Image for [42seoul] fdf">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2024.04.04</small>
+      <div class="singleTitle">[42seoul] fdf</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>📚 /42seoul</summary>
+    <ul>
+      
+      
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-소개">1. 소개</h2>
+<hr>
+<blockquote>
+<p>Wireframe model</p></blockquote>
+<p>42서울 본과정 입과 후 여섯번째로 수행한 과제로, minilibx라는 간단한 그래픽 라이브러리를 통해 2차원 평면에 3차원 구조를 띄우는 것이 핵심이다.</p>
+<p>즉, 아래와 같이 map이 주어지면</p>
+<img src="https://i.imgur.com/RsJuA4d.png" width="700">
+<p>이렇게 3차원에 투영한다. 주어진 맵은 하나의 2차원 배열이고, 배열 하나당 값은 z좌표를 의미한다.</p>
+<img src="https://i.imgur.com/bN92eir.png" width="700">
+<br>
+<br>
+<h2 id="2-fdf-명세서">2. fdf 명세서</h2>
+<hr>
+<ul>
+<li><strong>Program name</strong>
+<ul>
+<li><code>fdf</code></li>
+</ul>
+</li>
+<li><strong>Arguments</strong>
+<ul>
+<li><code>A file in format *.fdf</code> : 지정된 서식자 형태의 파일 (<code>.fdf</code>)</li>
+</ul>
+</li>
+<li><strong>DESCRIPTION</strong>
+<ul>
+<li><strong>Mandatory part</strong>
+<ul>
+<li>인풋으로 들어온 맵을 3차원에 와이어 프레임 형식으로 투영한다.</li>
+</ul>
+</li>
+<li><strong>External functs</strong>
+<ul>
+<li>open, close, read, write, malloc, free, perror, strerror, exit</li>
+<li>All functions of the math library (-lm compiler option, man man 3 math)</li>
+<li>All functions of the MiniLibX</li>
+<li>ft_printf and any equivalent YOU coded</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="3-개념-정리">3. 개념 정리</h2>
+<hr>
+<h3 id="isometric-projection">Isometric projection</h3>
+<p>우리는 어떻게 2차원의 정보를 가공해 3차원처럼 보이게 할 수 있을까? 이때 사용하는 것이 <strong>Isometric projection</strong> 이다. 3D 물체를 2D 평면(종이, 화면)에 그릴 때, 길이와 각도를 최대한 왜곡 없이 보여주려고 하는 방법이다. 쉽게 말하면, &ldquo;3D처럼 보이게 그리는 특별한 방법&rdquo; 인 것이다!</p>
+<p>이 Isometric projection으로 표현된 시점은 우리에게 아주 익숙하다. 마치 탑뷰 시점에서 살짝 기울어진, 리그오브레전드나 리니지, 스타크래프트 등등 어디선가 많이 봤던 각도 임에 분명하다.
+그리는 비법은, 3D의 세 축 x, y, x가 서로 120도씩 벌어져 보이게 그리는 것이다. 평면에서의 한 바퀴는 360, 이것을 공평하게 3등분 한것이다.</p>
+<p>자세하고 쉬운 정리는 놀랍게도 아래 위키백과에 잘 나와있다.</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Isometric_projection">https://en.wikipedia.org/wiki/Isometric_projection</a></li>
+</ul>
+<br>
+<h3 id="dot">dot</h3>
+<p>컴퓨터 화면은 결국 작은 점들의 집합이 모여 각각의 색으로 빛나고 있는 모양새이다. 그렇다면, 우리가 저 평면에 그림을 그리기 위해서는 어떤 정보가 필요할까? 우선 모든 점들은 모니터 어딘가를 중심 (0, 0)으로 두고, 중심으로부터 얼마나 떨어져있는지 xy 좌표를 가지고 있을 것 이다. 그리고 map 데이터에 따른 각각의 z좌표를 가지고 있을 것이다. 또한 해당 점이 어떤 색인지 RGB 값도 가지고 있을 것이다.</p>
+<p>이러한 점들이 1자로 모이면 선, 선이 모이면 면이 그려지는 것이다. 그렇다면 어느 정도 함수를 어떻게 구성해야할지 느낌이 오는 것 같다. 우선 점을 찍고, 그 다음 점들을 모아 선을 만들고&hellip;</p>
+<br>
+<br>
+<h2 id="4-mandatory">4. Mandatory</h2>
+<hr>
+<h3 id="41-struct">4.1 struct</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> s_dot
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>				x;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>				y;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>				z;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>	color;
+</span></span><span style="display:flex;"><span>}	t_dot;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> s_line
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		dx;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		dy;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		sx;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		sy;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		err;
+</span></span><span style="display:flex;"><span>}	t_line;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> s_map
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span>	<span style="color:#f92672">*</span>file;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		max_x;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		min_x;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		max_y;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		min_y;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		max_z;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		min_z;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		col_len;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		row_len;
+</span></span><span style="display:flex;"><span>	t_dot	<span style="color:#f92672">**</span>coord;
+</span></span><span style="display:flex;"><span>}	t_map;
+</span></span></code></pre></div><p>위와 같은 구조체 등을 사용했다. 각각의 점, 선 그리고 맵 데이터가 가지고 있는 정보를 담을 구조체이다. 이제 여러 함수들은 이 구조체를 인자로 받아서 특정 지점에 뭔가 표시할 것이다.</p>
+<h3 id="4-2-main">4-2. main</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span>	<span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> ac, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>av)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	t_map	map;
+</span></span><span style="display:flex;"><span>	t_img	img;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (ac <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">ft_print_error</span>(<span style="color:#e6db74">&#34;no arguments&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (ac <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">ft_print_error</span>(<span style="color:#e6db74">&#34;too many arguments&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">init_struct</span>(<span style="color:#f92672">&amp;</span>map, <span style="color:#f92672">&amp;</span>img, av);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">check_map_size</span>(<span style="color:#f92672">&amp;</span>map) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">check_map_form</span>(<span style="color:#f92672">&amp;</span>map) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">ft_print_error</span>(<span style="color:#e6db74">&#34;invalid map file.&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">alloc_map</span>(<span style="color:#f92672">&amp;</span>map) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">parse_map</span>(<span style="color:#f92672">&amp;</span>map) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">ft_print_error</span>(<span style="color:#e6db74">&#34;failed to parse map file&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">set_img_size</span>(<span style="color:#f92672">&amp;</span>img, <span style="color:#f92672">&amp;</span>map);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">init_mlx</span>(<span style="color:#f92672">&amp;</span>img, <span style="color:#f92672">&amp;</span>map);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">draw_img</span>(<span style="color:#f92672">&amp;</span>map, <span style="color:#f92672">&amp;</span>img);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ft_map_free</span>(map.coord, map.row_len);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">exe_mlx_event</span>(<span style="color:#f92672">&amp;</span>img);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>맵을 파싱받으며 맵 크기, 맵의 형태 등에서 이상이 없는지 확인한다. 이상이 없다면 맵의 크기만큼 동적할당을 받고 정보를 채워넣는다. 이후 위 정보들을 토대로 minilibx 라이브러리의 기능을 사용해 창을 띄우고 창에 그림을 그린다. 그림을 한번 그렸다면 free를 통해 자원을 정리한다.</p>
+<p>minilibx 사용법은 42 슬랙이나 구글에 검색하면 각각의 함수 사용법이 상세히 나와있으므로 참고하면 좋을 듯 하다. 누군가 한번 정리한 것을 또 다시 정리할 필요는 없어보인다.</p>
+<ul>
+<li><a href="https://harm-smits.github.io/42docs/libs/minilibx">https://harm-smits.github.io/42docs/libs/minilibx</a></li>
+</ul>
+<p><code>test_map</code>들을 보면 크기가 엄청 큰 것들이 있는데, 그 크기를 어떻게 조절할 것인지 고민이 필요해보인다. 그냥 창을 넘어가는 그래픽은 짤리게 둘 것인가? 또는 창 크기, 모니터 크기에 따라 어느 정도 상한선 하한선을 두고 그래픽 크기를 조절할 것인가?</p>
+<br>
+<br>
+<h2 id="5-reference">5. Reference</h2>
+<hr>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Isometric_projection">https://en.wikipedia.org/wiki/Isometric_projection</a></li>
+<li><a href="https://harm-smits.github.io/42docs/libs/minilibx">https://harm-smits.github.io/42docs/libs/minilibx</a></li>
+<li><a href="https://love-every-moment.tistory.com/62">https://love-every-moment.tistory.com/62</a></li>
+</ul>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

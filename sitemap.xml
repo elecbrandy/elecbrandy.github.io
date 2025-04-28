@@ -2,40 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://elecbrandy.github.io/posts/ebook/dev01/</loc>
-    <lastmod>2025-02-19T00:00:00+00:00</lastmod>
+    <loc>https://elecbrandy.github.io/posts/cs101/os/mlfq/</loc>
+    <lastmod>2025-04-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/tags/docker/</loc>
-    <lastmod>2025-02-19T00:00:00+00:00</lastmod>
+    <loc>https://elecbrandy.github.io/tags/cs/</loc>
+    <lastmod>2025-04-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/</loc>
-    <lastmod>2025-02-19T00:00:00+00:00</lastmod>
+    <lastmod>2025-04-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/tags/mariadb/</loc>
-    <lastmod>2025-02-19T00:00:00+00:00</lastmod>
+    <loc>https://elecbrandy.github.io/tags/os/</loc>
+    <lastmod>2025-04-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/</loc>
-    <lastmod>2025-02-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/react/</loc>
-    <lastmod>2025-02-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/spring/</loc>
-    <lastmod>2025-02-19T00:00:00+00:00</lastmod>
+    <lastmod>2025-04-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/</loc>
-    <lastmod>2025-02-19T00:00:00+00:00</lastmod>
+    <lastmod>2025-04-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/cs101/cs/cmd/</loc>
     <lastmod>2025-01-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/cs101/cs/binary/</loc>
-    <lastmod>2025-01-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/cs/</loc>
-    <lastmod>2025-01-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/os/</loc>
     <lastmod>2025-01-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/cs101/etc/radixpoint/</loc>
@@ -53,22 +41,25 @@
     <loc>https://elecbrandy.github.io/tags/c&#43;&#43;/</loc>
     <lastmod>2024-09-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/42cursus/circle_4/netpractice/</loc>
+    <loc>https://elecbrandy.github.io/posts/42seoul/circle_4/netpractice/</loc>
     <lastmod>2024-08-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/tags/42cursus/</loc>
+    <loc>https://elecbrandy.github.io/tags/42seoul/</loc>
     <lastmod>2024-08-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/42cursus/circle_3/minishell/</loc>
+    <loc>https://elecbrandy.github.io/posts/42seoul/circle_3/minishell/</loc>
     <lastmod>2024-06-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/42cursus/circle_2/pipex/</loc>
+    <loc>https://elecbrandy.github.io/posts/42seoul/circle_2/fdf/</loc>
+    <lastmod>2024-04-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/42seoul/circle_2/pipex/</loc>
     <lastmod>2024-02-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/42cursus/circle_2/push_swap/</loc>
+    <loc>https://elecbrandy.github.io/posts/42seoul/circle_2/push_swap/</loc>
     <lastmod>2024-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/42cursus/circle_1/born2beroot/</loc>
+    <loc>https://elecbrandy.github.io/posts/42seoul/circle_1/born2beroot/</loc>
     <lastmod>2024-01-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/linux/</loc>
@@ -80,17 +71,20 @@
     <loc>https://elecbrandy.github.io/posts/cs101/etc/lvm/</loc>
     <lastmod>2023-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/42cursus/circle_1/get_next_line/</loc>
+    <loc>https://elecbrandy.github.io/posts/42seoul/circle_1/get_next_line/</loc>
     <lastmod>2023-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/42cursus/circle_1/ft_printf/</loc>
+    <loc>https://elecbrandy.github.io/posts/42seoul/circle_1/ft_printf/</loc>
     <lastmod>2023-11-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/42cursus/circle_0/libft/</loc>
+    <loc>https://elecbrandy.github.io/posts/42seoul/circle_0/libft/</loc>
     <lastmod>2023-11-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/cs101/etc/compile_0/</loc>
     <lastmod>2023-11-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/42seoul/circle_0/42/</loc>
+    <lastmod>2023-10-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/ai/dataonair/</loc>
     <lastmod>2023-09-07T00:00:00+00:00</lastmod>
@@ -109,6 +103,8 @@
   </url><url>
     <loc>https://elecbrandy.github.io/posts/uiux/ux101/</loc>
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/42cursus/</loc>
   </url><url>
     <loc>https://elecbrandy.github.io/about/</loc>
   </url><url>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>cs101 on freshpink</title>
+    <title>cs101 on elecbrandy</title>
     <link>https://elecbrandy.github.io/tags/cs101/</link>
-    <description>Recent content in cs101 on freshpink</description>
+    <description>Recent content in cs101 on elecbrandy</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 16 Sep 2024 00:00:00 +0000</lastBuildDate>
@@ -13,7 +13,7 @@
       <link>https://elecbrandy.github.io/posts/cs101/etc/radixpoint/</link>
       <pubDate>Mon, 16 Sep 2024 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/posts/cs101/etc/radixpoint/</guid>
-      <description>&lt;!-- &lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;📚 /42cursus&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42cursus/circle_0/libft/&#34;&gt;libft&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42cursus/circle_1/ft_printf/&#34;&gt;ft_printf&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42cursus/circle_1/get_next_line/&#34;&gt;get_next_line&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42cursus/circle_1/born2beroot/&#34;&gt;born2beroot&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42cursus/circle_2/pipex/&#34;&gt;pipex&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42cursus/circle_2/fdf/&#34;&gt;fdf&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42cursus/circle_2/push_swap/&#34;&gt;push_swap&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42cursus/circle_3/minishell/&#34;&gt;minishell&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42cursus/circle_3/philosopher/&#34;&gt;philosopher&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42cursus/circle_4/netpractice/&#34;&gt;netpractice&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA; --&gt;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;strong&gt;정수(Integer)&lt;/strong&gt; 는 우리가 흔히 알고 있는 0, 1, 2, 3과 같은 숫자이다. 컴퓨터에서 정수는 정확하게 표현된다. 예를 들어, 숫자 &amp;lsquo;2&amp;rsquo;는 항상 2로 저장되며, 더하거나 빼도 그 값이 정확하게 맞는다. 즉, 정수는 &lt;strong&gt;정확성(Accuracy)&lt;/strong&gt; 이 매우 뛰어나다. 예를 들어, 2 + 1 = 3이 정확하게 나온다.&lt;/p&gt;&#xA;&lt;p&gt;하지만 정수는 소수점 값을 표현할 수 없기 때문에 &lt;strong&gt;정밀도(Precision)&lt;/strong&gt; 가 떨어진다. 예를 들어, 5 ÷ 2는 2.5이지만, 정수는 소수점을 버리고 2만 저장한다. 이처럼 정수는 소수점 이하의 값들을 무시하기 때문에 작은 차이들을 정확하게 표현하기 어렵다.&lt;/p&gt;</description>
+      <description>&lt;!-- &lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;📚 /42seoul&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA; --&gt;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;strong&gt;정수(Integer)&lt;/strong&gt; 는 우리가 흔히 알고 있는 0, 1, 2, 3과 같은 숫자이다. 컴퓨터에서 정수는 정확하게 표현된다. 예를 들어, 숫자 &amp;lsquo;2&amp;rsquo;는 항상 2로 저장되며, 더하거나 빼도 그 값이 정확하게 맞는다. 즉, 정수는 &lt;strong&gt;정확성(Accuracy)&lt;/strong&gt; 이 매우 뛰어나다. 예를 들어, 2 + 1 = 3이 정확하게 나온다.&lt;/p&gt;&#xA;&lt;p&gt;하지만 정수는 소수점 값을 표현할 수 없기 때문에 &lt;strong&gt;정밀도(Precision)&lt;/strong&gt; 가 떨어진다. 예를 들어, 5 ÷ 2는 2.5이지만, 정수는 소수점을 버리고 2만 저장한다. 이처럼 정수는 소수점 이하의 값들을 무시하기 때문에 작은 차이들을 정확하게 표현하기 어렵다.&lt;/p&gt;</description>
     </item>
     <item>
       <title>[OOP] 캡슐화</title>

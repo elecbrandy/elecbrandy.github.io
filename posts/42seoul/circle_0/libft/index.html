@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/reset.css">
+<title>[42seoul] libft | elecbrandy</title>
+
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.7890e51e83f9836401d278297629f6e8246e3d07d16c4fdd03f5aea0023f2800.css" integrity="sha256-eJDlHoP5g2QB0ngpdin26CRuPQfRbE/dA/WuoAI/KAA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-000000000"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('hugo', 'G-000000000');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+	  <li><a href="https://elecbrandy.github.io/">/home</a></li>
+	  <li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+	  <li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+  
+    
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-소개">1. 소개</a></li>
+    <li><a href="#2-libft-명세서">2. libft 명세서</a></li>
+    <li><a href="#3-개념-정리">3. 개념 정리</a>
+      <ul>
+        <li><a href="#3-1-size_t">3-1. size_t</a></li>
+        <li><a href="#3-2-atoi의-한계">3-2. atoi의 한계</a></li>
+        <li><a href="#3-3-parity-bit">3-3. Parity bit</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="http://t1.daumcdn.net/cfile/116C5A10B09188A10A" alt="Featured Image for [42seoul] libft">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2023.11.11</small>
+      <div class="singleTitle">[42seoul] libft</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>📚 /42seoul</summary>
+    <ul>
+      
+      
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-소개">1. 소개</h2>
+<hr>
+<blockquote>
+<p>Your very first own library</p></blockquote>
+<p>42서울 본과정 입과 후 첫번째로 만나는 과제로 앞으로 본과정에서 사용할 라이브러리를 만드는 것이 목표이다.
+이후 과제를 수행하며 자주 사용할 함수들이 몇가지 있기 때문에 최대한 범용성 높게 - 커스텀하기 쉽게 만드는 것을 목표로 했다.
+항상 느끼는 것이지만 <code>norm</code> 규칙의 첫번째 목표는 카뎃이 다른 카뎃의 코드를 보았을 때 최소한의 일관성을 유지하여 쉽게 읽을 수 있게 하는 것&hellip; 이고
+두번째는 코드 길이를 적당히 조절함으로써 자연스럽게 모듈화를 하게 하는 것. 그 이상의 의미는 두지 않기로 했다.</p>
+<br>
+<br>
+<h2 id="2-libft-명세서">2. libft 명세서</h2>
+<hr>
+<ul>
+<li>
+<p><strong>Part 1 - Libs functions</strong></p>
+<ul>
+<li>ft_isalpha, ft_isdigit, ft_isalnum, ft_isascii, ft_isprint</li>
+<li>ft_strlen , ft_memset, ft_bzero, ft_memcpy, ft_memmove, ft_strlcpy, ft_strlcat, ft_strncmp</li>
+<li>ft_strchr, ft_strrchr, ft_toupper, ft_tolower</li>
+<li>ft_memchr, ft_memcmp, ft_strnstr, ft_atoi</li>
+<li>ft_calloc, ft_strdup</li>
+</ul>
+</li>
+<li>
+<p><strong>Part 2 - Addtional functions</strong></p>
+<ul>
+<li>ft_substr, ft_strjoin, ft_split, ft_itoa, ft_strmapi, ft_striteri</li>
+<li>ft_putchar_fd, ft_putstr_fd, ft_putendl_fd, ft_putnbr_fd</li>
+</ul>
+</li>
+<li>
+<p><strong>Part 3 - Bonus functions</strong></p>
+<ul>
+<li>ft_lstnew, ft_lstadd_front, ft_lstsize, ft_lstlast, ft_lstadd_back, ft_lstdelone, ft_lstclear, ft_lstiter, ft_lstmap</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="3-개념-정리">3. 개념 정리</h2>
+<hr>
+<h3 id="3-1-size_t">3-1. size_t</h3>
+<p>해당 운영체제에서 포함할 수 있는 최대 크기의 데이터 타입으로, 32비트 운영체제에서 4바이트, 64비트 운영체제에서 8바이트로 정의되어있다. 객체의 크리를 나타내는 부호 없는 정수 유형! <code>sizeof</code> 연산자의 결과값이기도 하며, 결국 &lsquo;크기&rsquo;를 다룰 때 선호한다. 과거 레지스터 별로 달랐던 자료의 범위 값으로 인한 메모리의 낭비나 부족을 막기 위해 사용했다.</p>
+<br>
+<h3 id="3-2-atoi의-한계">3-2. atoi의 한계</h3>
+<p>사실 <code>atoi</code> 함수는 <strong>LONG_MAX</strong>와 <strong>LONG_MIN</strong>을 초과하는 범위에서 결과값이 고정되어있다. 이는 현재 <code>atoi</code> 함수 내부를 들여다보면 궁금증을 풀 수 있으니 여러 버전의 오픈소스를 통해 <code>atoi</code>의 구현을 살펴보자. 추가적으로 <code>strol</code> 함수에 대해서 공부해보자.</p>
+<br>
+<h3 id="3-3-parity-bit">3-3. Parity bit</h3>
+<p>패리티 비트는 정보 전달 과정에서 오류가 생겼는지 검사하기 위한 비트이다. 오류 검출을 위해 전송하는 데이터의 끝에 1비트를 더하여 전송하는 방법이다. 1바이트(8비트) 구조에서 피리티 비트는 7비트 크기의 ASCII 코드를 제외한 나머지 1비트를 의미한다.</p>
+<br>
+<br>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

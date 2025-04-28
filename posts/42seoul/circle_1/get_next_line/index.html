@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/reset.css">
+<title>[42seoul] get_next_line | elecbrandy</title>
+
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.7890e51e83f9836401d278297629f6e8246e3d07d16c4fdd03f5aea0023f2800.css" integrity="sha256-eJDlHoP5g2QB0ngpdin26CRuPQfRbE/dA/WuoAI/KAA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-000000000"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('hugo', 'G-000000000');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+	  <li><a href="https://elecbrandy.github.io/">/home</a></li>
+	  <li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+	  <li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+  
+    
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-소개">1. 소개</a></li>
+    <li><a href="#2-get_next_line-명세서">2. get_next_line 명세서</a></li>
+    <li><a href="#3-개념-정리">3. 개념 정리</a>
+      <ul>
+        <li><a href="#3-1-연결리스트와-open_max">3-1. 연결리스트와 OPEN_MAX</a></li>
+        <li><a href="#3-2-open_max">3-2. OPEN_MAX</a></li>
+        <li><a href="#3-3-동적할당과-해제">3-3. 동적할당과 해제</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-mandatory">4. Mandatory</a>
+      <ul>
+        <li></li>
+        <li><a href="#4-1-구현">4-1. 구현</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-bonus">5. BONUS</a>
+      <ul>
+        <li><a href="#5-1-구현">5-1. 구현</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-reference">6. Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="http://t1.daumcdn.net/cfile/15110210A8445BF80D" alt="Featured Image for [42seoul] get_next_line">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2023.12.12</small>
+      <div class="singleTitle">[42seoul] get_next_line</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>📚 /42seoul</summary>
+    <ul>
+      
+      
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-소개">1. 소개</h2>
+<hr>
+<blockquote>
+<p>Reading a line on a fd is way too tedious</p></blockquote>
+<p>42서울 본과정 입과 후 세번째로 수행한 과제로, 파일 디스크립터로부터 읽혀진 - 개행으로 끝나는 한 줄을 반환하는 함수를 만드는 과제이다. 즉 파일 하나를 연 다음, 파일 내용에서 개행으로 끝나는 줄 하나를 반환해야한다. 파일을 열고, 지정된 <strong>BUFFER_SIZE</strong> 만큼 <code>read</code>함수를 통해 파일을 읽다가 개행문자 <code>\n</code>이 나타나면 개행문자 전까지만 반환한다.</p>
+<br>
+<br>
+<h2 id="2-get_next_line-명세서">2. get_next_line 명세서</h2>
+<hr>
+<ul>
+<li><strong>PROTOTYPE</strong>
+<ul>
+<li><code>char *get_next_line(int fd);</code></li>
+</ul>
+</li>
+<li><strong>PARAMETER</strong>
+<ul>
+<li><code>int fd</code> : 읽어들일 파일의 디스크립터</li>
+</ul>
+</li>
+<li><strong>DESCRIPTION</strong>
+<ul>
+<li><strong>Mandatory part</strong>
+<ul>
+<li>호출마다 한 번에 한 줄씩 파일 디스크립터가 가리키는 파일을 읽어온다.</li>
+<li>더 이상 읽어올 것이 없거나 에러가 발생하면 <code>NULL</code>을 반환한다.</li>
+<li>파일 끝에 도달하였고, 개행문자 <code>\n</code>이 존재하지 않을 때를 제외하고 반환하는 문자열에는 <code>\n</code>이 포함되어야 한다.</li>
+</ul>
+</li>
+<li><strong>Bonus part</strong>
+<ul>
+<li>정적 변수를 하나만 사용하여 개발해야한다.</li>
+<li><code>get_next_line()</code> 이 여러 개의 파일 디스크립터를 한번에 관리해야 한다.</li>
+<li>한번 호출하여 3, 4, 5 그 이후 다시 4, 5 등등을 읽을 수 있어야 한다.</li>
+</ul>
+</li>
+<li><strong>External functs</strong>
+<ul>
+<li>read, malloc, free</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>RETURN VALUES</strong>
+<ul>
+<li>한 줄을 제대로 읽은 정상작동의 경우 읽은 라인을 반환한다.</li>
+<li>비정상작동의 경우 <code>NULL</code>을 반환한다.</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="3-개념-정리">3. 개념 정리</h2>
+<hr>
+<h3 id="3-1-연결리스트와-open_max">3-1. 연결리스트와 OPEN_MAX</h3>
+<p>본 과제를 <strong>BONUS</strong>까지 수행한다면, 즉 동시에 여러 파일 디스크립터를 감안하는 프로그램을 만들고 싶다면 크게 두가지 방법이 존재한다.</p>
+<ul>
+<li>
+<p><strong>연결리스트로 구현</strong></p>
+<ul>
+<li>연결리스트 구조를 통해 생성되는 파일 디스크립터를 담은 노드를 계속 뒤에 이어 붙이며 관리</li>
+</ul>
+</li>
+<li>
+<p><strong>OPEN_MAX로 구현</strong></p>
+<ul>
+<li>해당 시스템에서 용인하는 최대 파일 디스크립터 수를 정의한 <code>OPEN_MAX</code>를 통해 정적 배열로 관리</li>
+</ul>
+</li>
+</ul>
+<p>평가 기준에 다른 카뎃들의 여러가지 논의가 있는 것은 맞으나, 평가자를 납득시킬 수 있는 설명(또는 노력)을 통해 원하는 방법으로 보너스까지 노려보자.</p>
+<br>
+<h3 id="3-2-open_max">3-2. OPEN_MAX</h3>
+<p>나는 <code>OPEN_MAX</code>를 통해 보너스를 구현했다.</p>
+<p>그 이유는 본 과제에서 중요하게 배워야하는 것은 파일 디스크립터라는 생소한 개념과 파일을 열고 read하고 닫고, 동적할당한 메모리를 적절하게 해제하는 것이라고 생각하기 때문이다. 연결리스트로 분명히 구현은 가능하지만, 굳이 공수를 더 들일 필요 또한 없다고 생각했다.</p>
+<p><code>OPEN_MAX</code>의 경우 한계점이 존재하는 것은 사실이다. <code>limits.h</code>에 정의된 <code>OPEN_MAX</code>는 단순 정의일 뿐이고, 리눅스 버전에 따라 다르기도 하다. 또한 컴퓨터 환경에 따라 달라지는 실질적인 파일 디스크립터 수를 반영하지 못하며 bash 환경과 vscode의 터미널 상에서 파일 디스크립터 값을 확인했을 때 차이가 존재하는 것을 알 수 있다.</p>
+<p>그렇지만 최종적으로 이 과제에서 더 중점으로 다뤄야 하는 것은 따로 있다고 생각하기 때문에 <code>OPEN_MAX</code>로 구현하더라도 그 한계지점과 그 한계지점을 찾기 위한 본인의 노력을 평가 시에 함께 어필한다면 충분히 통과할 수 있다고 생각한다.(개인적인 기준)</p>
+<br>
+<h3 id="3-3-동적할당과-해제">3-3. 동적할당과 해제</h3>
+<p>메모리 누수를 막기위해서 동적으로 할당한 힙 영역의 메모리는 사용이 끝난 경우 해제해야 하는 것이 당연하다. 이때 아래 함수를 통해서 free를 조금 더 안전하고 유용하게 사용할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">void</span>	<span style="color:#a6e22e">ft_free</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">**</span>target)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (target <span style="color:#f92672">!=</span> NULL <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#f92672">*</span>target) <span style="color:#f92672">!=</span> NULL)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">free</span>(<span style="color:#f92672">*</span>target);
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">*</span>target <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>메모리 해제 후 포인터를 NULL로 설정함으로써, 포인터의 <code>Dangling Pointer</code> 상태(해제된 메모리를 가르키는 상태)를 방지한다. 또한 이 과정을 통해 이미 할당 해제된 메모리 주소에 다시 접근하는 것을 방지할 수 있다.</p>
+<br>
+<h2 id="4-mandatory">4. Mandatory</h2>
+<hr>
+<img src="https://imgur.com/w1qsdXS.png" width="700">
+<br>
+<h4 id="step-01">step 01</h4>
+<p>개행문자 <code>\n</code>을 만날 때까지 또는 <code>EOF</code>에 도달할 때까지 <strong>BUFFER_SIZE</strong> 만큼 읽어나간다.</p>
+<h4 id="step-02">step 02</h4>
+<p>개행문자 전까지만 따로 분리해서 return을 준비한다.</p>
+<h4 id="step-03">step 03</h4>
+<p>추후 <strong>BUFFER_SIZE</strong> 실행을 위해서 <code>main_buf</code>에 나머지 남은 문자열을 저장한다.</p>
+<br>
+<h3 id="4-1-구현">4-1. 구현</h3>
+<h4 id="get_next_line">get_next_line</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span>	<span style="color:#f92672">*</span><span style="color:#a6e22e">get_next_line</span>(<span style="color:#66d9ef">int</span> fd)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span>	<span style="color:#f92672">*</span>main_buf;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span>		<span style="color:#f92672">*</span>line;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	line <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (fd <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> BUFFER_SIZE <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> (NULL);
+</span></span><span style="display:flex;"><span>	main_buf <span style="color:#f92672">=</span> <span style="color:#a6e22e">read_line_fd</span>(fd, main_buf); <span style="color:#75715e">// step 01
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>main_buf)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> (NULL);
+</span></span><span style="display:flex;"><span>	line <span style="color:#f92672">=</span> <span style="color:#a6e22e">extract_line</span>(main_buf); <span style="color:#75715e">// step 02
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>line)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">ft_free</span>(<span style="color:#f92672">&amp;</span>main_buf));
+</span></span><span style="display:flex;"><span>	main_buf <span style="color:#f92672">=</span> <span style="color:#a6e22e">ready_main_buf</span>(main_buf); <span style="color:#75715e">// step 03
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> (line);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>main_buf</code> 변수는 <strong>static</strong> 변수이기 때문에, 프로그램 실행 시 단 한 번 초기화 되며, 이후에 <code>get_next_line</code> 함수가 호출되어도 초기화되지 않고 이전에 저장된 값을 유지한다.</p>
+<p><code>read_line_fd</code>를 통해 개행 또는 EOF 전까지 <strong>BUFFER_SIZE</strong>만큼씩 파일을 읽는다.</p>
+<p>읽은 내용은 <code>main_buf</code>에 저장되며, <code>extrac_line</code> 함수를 통해 개행 전까지 잘라 <code>line</code>에 담는다.</p>
+<p><code>read_main_buf</code>를 통해 <code>main_buf</code>를 정리(잘라낸 line을 없애고 나머지만 남김)하여 다음 호출을 대비한다.</p>
+<br>
+<br>
+<h2 id="5-bonus">5. BONUS</h2>
+<hr>
+<p>본 과제를 <strong>BONUS</strong>까지 수행한다면,
+위에서 언급한 것 처럼 우리가 만든 <code>get_next_line</code>이 여러 파일 디스트립터를 관리할 수 있어야 한다. 쉽게 말하면, <strong>a.txt</strong>를 읽다가 갑자기 <strong>b.txt</strong>을 읽을 수 있어야 한다는 것! 다시 <strong>a.txt</strong>로 읽기 위해 돌아갔을 때, 그 전에 어디까지 읽었는지 당연히 기억하고 있어야 한다.</p>
+<p>아래는 <code>OPEN_MAX</code>를 통해 디스크립터 테이블만큼 배열을 만들어 정적 배열을 통해 여러 파일 디스크립터를 다루는 방법이다.</p>
+<br>
+<h3 id="5-1-구현">5-1. 구현</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">char</span>	<span style="color:#f92672">*</span><span style="color:#a6e22e">get_next_line</span>(<span style="color:#66d9ef">int</span> fd)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span>	<span style="color:#f92672">*</span>main_buf[OPEN_MAX];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span>		<span style="color:#f92672">*</span>line;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	line <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (fd <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> BUFFER_SIZE <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> (NULL);
+</span></span><span style="display:flex;"><span>	main_buf[fd] <span style="color:#f92672">=</span> <span style="color:#a6e22e">read_line_fd</span>(fd, main_buf[fd]);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>main_buf[fd])
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> (NULL);
+</span></span><span style="display:flex;"><span>	line <span style="color:#f92672">=</span> <span style="color:#a6e22e">extract_line</span>(main_buf[fd]);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>line)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">ft_free</span>(<span style="color:#f92672">&amp;</span>(main_buf[fd])));
+</span></span><span style="display:flex;"><span>	main_buf[fd] <span style="color:#f92672">=</span> <span style="color:#a6e22e">ready_main_buf</span>(main_buf[fd]);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> (line);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
+<br>
+<h2 id="6-reference">6. Reference</h2>
+<hr>
+<ul>
+<li><a href="https://man7.org/linux/man-pages/man2/read.2.html">https://man7.org/linux/man-pages/man2/read.2.html</a></li>
+<li><a href="https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html">https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html</a></li>
+<li><a href="https://code-lab1.tistory.com/65">https://code-lab1.tistory.com/65</a></li>
+</ul>
+<br>
+<br>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>
