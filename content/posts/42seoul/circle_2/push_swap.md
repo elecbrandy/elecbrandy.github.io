@@ -1,12 +1,12 @@
 +++
-title = '[42cursus] push_swap'
+title = '[42seoul] push_swap'
 date = 2024-02-12
 featured_image = "https://i.imgur.com/SdY8X4J.png"
-tags = ['c', '42cursus']
+tags = ['c', '42seoul']
 draft = false
 +++
 
-{{<series title="📚 /42cursus" series="42cursus">}}
+{{<series title="📚 /42seoul" series="42seoul">}}
 
 <br>
 

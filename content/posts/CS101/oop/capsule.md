@@ -196,6 +196,6 @@ ____
 
 <br>
 {{<alert>}}
-<a href="https://elecbrandy.github.io/tags/opp"> 42cursus </a>
+<a href="https://elecbrandy.github.io/tags/opp"> 42seoul </a>
 {{</alert>}}
 <br>

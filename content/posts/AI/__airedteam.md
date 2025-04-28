@@ -2,7 +2,7 @@
 title = '생성형 AI 레드팀 챌린지'
 date = 2024-04-11
 featured_image = "https://orgthumb.mt.co.kr/06/2024/03/2024032815132786760_1.jpg"
-tags = ['ai', '42cursus']
+tags = ['ai', '42seoul']
 draft = true
 +++
 
@@ -191,5 +191,5 @@ printf " cmd\n"
 <br>
 
 {{<alert>}}
-<a href="https://elecbrandy.github.io/tags/42cursus"> 42cursus </a>
+<a href="https://elecbrandy.github.io/tags/42seoul"> 42seoul </a>
 {{</alert>}}

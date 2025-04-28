@@ -1,6 +1,6 @@
 +++
-title = '42cursus'
+title = '42seoul'
 +++
 
-#### 🏷️ /tags/42cursus
+#### 🏷️ /tags/42seoul
 ____

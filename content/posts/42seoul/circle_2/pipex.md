@@ -1,11 +1,11 @@
 +++
-title = '[42cursus] pipex'
+title = '[42seoul] pipex'
 date = 2024-02-28
 featured_image = "https://i.imgur.com/TqbaZ79.png"
-tags = ['c', '42cursus']
+tags = ['c', '42seoul']
 +++
 
-{{<series title="📚 /42cursus" series="42cursus">}}
+{{<series title="📚 /42seoul" series="42seoul">}}
 
 <br>
 

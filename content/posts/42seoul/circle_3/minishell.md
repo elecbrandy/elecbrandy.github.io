@@ -1,11 +1,11 @@
 +++
-title = '[42cursus] minishell'
+title = '[42seoul] minishell'
 date = 2024-06-04
 featured_image = "http://t1.daumcdn.net/cfile/126C5A10B091DEEF0B"
-tags = ['C', '42cursus']
+tags = ['C', '42seoul']
 +++
 
-{{<series title="📚 /42cursus" series="42cursus">}}
+{{<series title="📚 /42seoul" series="42seoul">}}
 
 draft = true
 

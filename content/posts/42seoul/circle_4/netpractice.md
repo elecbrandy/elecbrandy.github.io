@@ -1,11 +1,11 @@
 +++
-title = '[42cursus] netpractice'
+title = '[42seoul] netpractice'
 date = 2024-08-15
 featured_image = "http://t1.daumcdn.net/cfile/146F1B10ACE3228B52"
-tags = ['C', '42cursus']
+tags = ['C', '42seoul']
 +++
 
-{{<series title="📚 /42cursus" series="42cursus">}}
+{{<series title="📚 /42seoul" series="42seoul">}}
 
 <br>
 

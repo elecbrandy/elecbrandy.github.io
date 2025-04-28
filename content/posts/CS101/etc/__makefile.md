@@ -171,7 +171,7 @@ re : fclean all
 ## Relink
 Relink란 소스파일이 수정되지 않은 상태에서 `make` 명령어를 다시 실행했을 때 `.a` 이 다시 만들어지는 것이다.
 
-- [Libft](../42cursus/libft.md) 에서 bonus 과제와 관련된 Relink 문제 발생
+- [Libft](../42seoul/libft.md) 에서 bonus 과제와 관련된 Relink 문제 발생
 	``` Makefile
 	bonus : $(OBJS) $(OBJS_BONUS)
 		ar -rsc $@ $^

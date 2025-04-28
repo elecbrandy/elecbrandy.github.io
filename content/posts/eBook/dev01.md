@@ -3,7 +3,7 @@ title = '[project] 전자책 검색 서비스 개발일지'
 date = 2025-02-19
 featured_image = "http://t1.daumcdn.net/movie/3b7d03c8bcca1e76bbd1882f188e92169883eead"
 tags = ['docker', 'spring', 'react', 'mariadb']
-draft = false
+draft = true
 +++
 
 {{<series title="📚 /ebook" series="ebook">}}

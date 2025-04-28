@@ -1,6 +1,6 @@
 baseURL = "https://elecbrandy.github.io/"
 languageCode = "en-us"
-title = "freshpink"
+title = "elecbrandy"
 canonifyURLs = true
 
 [[menus.main]]

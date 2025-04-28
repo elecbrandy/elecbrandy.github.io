@@ -1,8 +1,8 @@
 +++
-title = '[42cursus] philosopers'
+title = '[42seoul] philosopers'
 date = 2024-08-05
 featured_image = "http://t1.daumcdn.net/cfile/15110210A8445BF80D"
-tags = ['C', '42cursus']
+tags = ['C', '42seoul']
 draft = true
 +++
 
@@ -303,6 +303,6 @@ https://thebook.io/080367/0021/
 
 <br>
 {{<alert>}}
-<a href="https://elecbrandy.github.io/tags/42cursus"> 42cursus </a>
+<a href="https://elecbrandy.github.io/tags/42seoul"> 42seoul </a>
 {{</alert>}}
 <br>

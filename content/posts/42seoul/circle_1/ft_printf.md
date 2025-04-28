@@ -1,11 +1,11 @@
 +++
-title = '[42cursus] ft_printf'
+title = '[42seoul] ft_printf'
 date = 2023-11-15
 featured_image = "http://t1.daumcdn.net/cfile/146B7E10B091A05214"
-tags = ['c', '42cursus']
+tags = ['c', '42seoul']
 +++
 
-{{<series title="📚 /42cursus" series="42cursus">}}
+{{<series title="📚 /42seoul" series="42seoul">}}
 
 <br>
 
@@ -36,12 +36,12 @@ ____
 	- `%x` 16진수(베이스 16) 소문자 형식으로 숫자를 인쇄
 	- `%X` 16진수(베이스 16) 대문자 형식으로 숫자를 인쇄
 	- `%%` 백분율 기호를 인쇄
-	- `External functs`
+	- `External functions`
 		- malloc, free, write
 		- va_start, va_arg, va_copy, va_end
 - **RETURN VALUES**
 	- _Upon successful return, these functions return the number of characters printed (excluding the null byte used to end output to strings)._
-	- 성공적으로 반환되면, 이 함수들은 인쇄된 문자 수를 반환합니다.(출력을 끝내는 데 사용되는 널 바이트 제외) 문자열을 반환함
+	- 성공적으로 반환되면, 이 함수들은 인쇄된 문자 수를 (출력을 끝내는 데 사용되는 널 바이트 제외) 문자열을 반환함
 
 <br>
 <br>
