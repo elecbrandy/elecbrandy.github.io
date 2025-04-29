@@ -1,7 +1,7 @@
 +++
-title = '[42seoul] netpractice'
-date = 2024-08-25
-featured_image = "http://t1.daumcdn.net/cfile/146F1B10ACE3228B52"
+title = '[42seoul] cub3d'
+date = 2024-08-20
+featured_image = "https://upload.wikimedia.org/wikipedia/en/d/de/Doom_ingame_1.png"
 tags = ['C', '42seoul']
 +++
 
@@ -14,7 +14,7 @@ ____
 
 > This document is a System Administration related exercise.
 
-42서울 본과정 입과 후 열한번째로 수행한 과제로, 교육 인터페이스상에서 소규모 네트워크를 구성하는 과제이다. 네트워킹 문제를 해결하여 네트워크가 실행되도록 만들어야 한다. 총 10개의 문제를 완료하고, Git 저장소에 제출하는 것이 최종 목표이다.
+42서울 본과정 입과 후 열번째로 수행한 과제로, 레이케스팅을 통해 간단한 3d 게임...? 을 만드는 것이 목표이다.
 
 <br>
 <br>

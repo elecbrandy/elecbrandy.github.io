@@ -20,6 +20,9 @@ items:
     link: "https://elecbrandy.github.io/posts/42seoul/circle_3/minishell/"
   - name: "9. philosopher"
     link: "https://elecbrandy.github.io/posts/42seoul/circle_3/philosopher/"
-  - name: "10. netpractice"
+  - name: "10. cub3d"
+    link: "https://elecbrandy.github.io/posts/42seoul/circle_4/cub3d/"
+  - name: "11. netpractice"
     link: "https://elecbrandy.github.io/posts/42seoul/circle_4/netpractice/"
+    
     
