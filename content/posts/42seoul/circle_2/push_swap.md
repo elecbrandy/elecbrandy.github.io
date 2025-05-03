@@ -6,7 +6,7 @@ tags = ['c', '42seoul']
 draft = false
 +++
 
-{{<series title="📚 /42seoul" series="42seoul">}}
+{{<series title="🪐 /42seoul" series="42seoul">}}
 
 <br>
 

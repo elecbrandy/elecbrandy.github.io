@@ -5,7 +5,7 @@ featured_image = "https://i.imgur.com/QOMTZ7P.png"
 tags = ['c', '42seoul']
 +++
 
-{{<series title="📚 /42seoul" series="42seoul">}}
+{{<series title="🪐 /42seoul" series="42seoul">}}
 
 <br>
 
@@ -17,6 +17,9 @@ ____
 42서울 본과정 입과 후 아홉번째로 수행한 과제로 배고픈 철학자 문제를 통해 프로세스 스레딩의 기본, 스레드를 만드는 방법, 뮤텍스와 세마포어 등을 공부하는 과제이다.  
 
 원탁이 하나 있고, 그 주변에 몇 명의 철학자들이 둘러앉아 있다. 원탁의 가운데에는 커다란 스파게티 보울이 놓여 있다. 철학자들은 배고플 때마다 양옆의 포크 두 개를 잡아야만 스파게티를 먹을 수 있으며, 포크를 내려놓고 다시 생각하기를 반복한다. 이를 통해 어떻게 하면 철학자들이 모두 굶지 않고 잘 먹을 수 있을지를 고민하는 과제이다.
+
+‼️ **프로세스와 스레드에 대한 기본적인 이해가 있고, 바로 과제에 대한 정보를 얻고 싶다면?** ‼️   
+[_철학자를살리러너만오면GO_](#custom-id)   (<< click!!!) 
 
 <br>
 <br>
@@ -90,6 +93,9 @@ _상황이 복잡하므로, 다시 한번 정리해보자_
 - 모든 철학자는 먹어야 하며, 굶어 죽어서는 안된다.
 - 철학자들은 서로 대화하지 않으며, 다른 철학자가 죽을 것인지 알지 못한다.
 - 철학자들은 **죽는 것을 피해야** 한다!
+
+‼️ **프로세스와 스레드에 대한 기본적인 이해가 있고, 바로 과제에 대한 정보를 얻고 싶다면?** ‼️   
+[_철학자를살리러너만오면GO_](#custom-id)   (<< click!!!) 
 
 <br>
 <br>
@@ -229,10 +235,204 @@ _당신이 카페에 있습니다. 이 카페에는 3개의 테이블이 있습�
 ## 4. Mandatory
 ____
 
+### 4-1. pthread_mutex_lock과 철학자 문제의 동기화 {#custom-id}
+
+스레드 프로그래밍에서 중요한 부분 중 하나는 자원에 언제 lock을 걸고, 언제 unlock할지를 결정하는 것이다. 여기서 lock이란 특정 스레드가 특정 자원을 독점적으로 점유하고 있음을 의미하며, 다른 스레드들은 해당 자원에 접근하지 못하고 lock이 풀릴 때까지 기다리게 된다.
+
+`자원` 이라는 표현이 추상적이긴 하지만, 실제로는 단순한 메시지 출력(log 출력) 역시 동기화가 필요한 자원이 된다. 예를 들어, 여러 스레드(철학자)가 동시에 자신의 행동을 출력할 때, 만약 서로 동기화를 하지 않고 마음대로 메시지를 출력한다면, 출력 결과가 뒤섞이게 되어 시간 순서를 제대로 알 수 없게 된다. 따라서 메시지 출력에도 mutex lock을 통해 동기화를 하는 것이 중요하다.
+
+뿐만 아니라, 철학자 문제에서 철학자들이 공유하는 포크와 같은 자원도 반드시 mutex lock을 걸어야 한다. 철학자 문제에서 포크는 철학자들 사이에 하나씩 놓여 있는 공유 자원이기 때문에, 인접한 두 철학자가 동시에 같은 포크를 잡으려 할 경우 data race가 발생하게 된다.
+
+_만약 각 포크에 락 없이 접근한다면 어떤 문제가 발생할까?_
+
+- **데이터 레이스(Data Race)**: 두 스레드가 하나의 공유 자원을 동기화 없이 동시에 접근할 때 발생하는 문제로, 자원의 상태가 예측할 수 없는 방식으로 변할 수 있다.
+- **데드락(Deadlock)**: 두 개 이상의 스레드가 서로 자원을 기다리며 무한히 대기 상태에 빠지는 현상이다. 철학자 문제의 경우 모든 철학자가 동시에 왼쪽 포크를 잡고 오른쪽 포크를 기다린다면, 모든 철학자는 오른쪽 포크가 사용 가능해지기를 영원히 기다리게 되어 무한히 멈춘 상태가 된다.
+
+_이러한 문제들을 해결하기 위한 일반적인 방법은 다음과 같다_
+
+1. **포크를 mutex로 보호하기**: 각 포크를 mutex로 보호하여 한 번에 한 명의 철학자만 포크를 점유할 수 있게 한다.
+2. **포크 잡는 순서 통일하기**: 모든 철학자가 항상 같은 방향(예: 먼저 왼쪽 포크, 그다음 오른쪽 포크)으로 포크를 잡도록 강제하면 데드락의 위험을 줄일 수 있다.
+3. **홀짝 철학자 전략**: 홀수 번째 철학자와 짝수 번째 철학자의 포크 잡는 순서를 다르게 하면 데드락이 발생하는 상황을 피할 수 있다.
+
+### 4-2. 철학자의 생사 조건
+
+그렇다면 정확히 철학자의 생사 조건은 어떻게 될까? 아무리 노력해도, 어떤 철학자는 스파게티를 먹지 못해 죽을 수 있다. 죽을 수 밖에 없는 상황도 있을 것이다. 사용자가 논리적으로 철학자 시뮬레이션이 불가능한 값을 프로그램에 입력하면 철학자 시뮬레이션은 특정 시점에 종료되는 것이 정상이다. 줄글로 작성했으니 다시한번 차근 차근 **인자부터 확인해보자.**  
+
+**현재 우리는 이런 인자들을 받는다**
+<img src="https://i.imgur.com/2TUoAKS.png" width="600">
+
+**현재 시뮬레이션 상황는 이렇다**
+<img src="https://i.imgur.com/DBDRFHb.png" width="600">
 
 
+**이때, 철학자의 수가 짝수인 경우는...**  
+최소한의 조건이 이렇다. -> `lifetime >= (먹는 시간 * 2)`
 
-# Reference
+<img src="https://i.imgur.com/T5Ga9yk.png" width="700">
+
+**왜 lifetime이 (먹는 시간 * 2) 보다 커야 할까?**  
+철학자들을 짝수/홀수로 나누어 번갈아 식사하게 하면, 동시에 포크 충돌이 줄어든다. 예를 들어 짝수 철학자들이 먼저, 그다음 홀수 철학자들이 식사한다고 하자. 이렇게 되면 처음 식사한 철학자는 다음 식사까지 최소 두 번의 식사 차례를 기다려야 한다. 즉, `먹는 시간 × 2`만큼 기다려야 다시 식사 기회가 온다.  
+
+그런데 철학자는 일정 시간 안에 식사하지 않으면 죽는다. 따라서 **죽기까지의 시간(lifetime)** 은 최소한 `먹는 시간 × 2` 보다 커야 한다. 또한, 어떤 철학자가 식사하려면 자신과 포크를 공유하는 이웃 철학자가 식사를 마쳐야 하므로, 실제로는 조금 더 긴 시간 여유가 필요할 수도 있다.  
+
+결론적으로, 철학자가 굶어죽지 않으려면 `lifetime ≥ 먹는 시간 × 2 + 여유 시간` 이어야 한다.
+
+<br>
+
+**그렇다면 철학자 수가 홀수인 경우는?**  
+최소한의 조건이 이렇다. -> `lifetime >= (먹는 시간 * 3)`
+
+<img src="https://i.imgur.com/BrIiuw2.png" width="700">
+
+**왜 lifetime이 (먹는 시간 * 3) 보다 커야 할까?**  
+철학자 수가 홀수일 경우, 동시에 식사할 수 있는 철학자 수는 최대 절반(N/2)이므로, 항상 한 명 이상은 대기해야 하는 상황이 발생한다. 예를 들어 5명의 철학자가 있다면, 한 번에 최대 2명만 식사할 수 있고 1명은 반드시 대기해야 한다. 
+
+이 구조에서 어떤 철학자는 가장 늦게 식사 기회를 얻게 된다. 예를 들어, 한 철학자가 처음 식사 차례를 놓쳤다고 하면, 이웃 철학자가 식사하고, 다시 다른 철학자가 식사하고, 그제서야 자신의 차례가 돌아올 수 있다. 즉, 먹는 시간 × 3 정도의 시간을 기다려야 첫 식사를 할 수 있는 최악의 경우가 생길 수 있다.  
+
+그런데 철학자는 일정 시간 안에 식사를 하지 않으면 죽는다. 따라서 죽기까지의 시간(lifetime) 은 최소한 먹는 시간 × 3보다 커야 한다. 여기에 포크 충돌이나 시스템 지연 등의 요소까지 고려하면, 실제로는 조금 더 긴 여유 시간이 필요할 수 있다.  
+
+결론적으로, 철학자가 단 한 번이라도 식사할 기회를 얻고 생존하려면 lifetime ≥ 먹는 시간 × 3 + 여유 시간 조건이 반드시 충족되어야 한다.
+
+<img src="https://i.imgur.com/LVq7gqE.png" width="700">
+
+<br>
+<br>
+
+### 4-3. 코드
+
+#### structs
+
+```c
+
+/* 포크·로그 등 공용 뮤텍스를 한데 모아 관리 */
+typedef struct s_mutex
+{
+    pthread_mutex_t msg;            // 표준 출력 동기화 (로그가 뒤섞이지 않도록)
+    pthread_mutex_t ready;          // 스레드 동시 출발을 위한 대기
+    pthread_mutex_t system_status;  // 시뮬레이션 ON/OFF 플래그 보호
+    pthread_mutex_t *forks;         // 포크마다 하나씩 할당된 뮤텍스 배열
+    pthread_mutex_t *last_meal;     // 각 철학자의 최근 식사시각 보호
+    pthread_mutex_t *eaten_cnt;     // 각 철학자의 식사 횟수 보호
+}   t_mutex;
+
+/* 철학자 한 명에 대한 런타임 정보 */
+typedef struct s_philo
+{
+    int         id;                 // 1 ~ N
+    int         eaten_cnt;          // 현재까지 먹은 횟수
+    int         num_philo;          // 총 철학자 수(전역 복붙 대신 캐싱)
+    int         must_eat_cnt;       // 종료 조건(선택 인자)
+    int         left_fork;          // 왼쪽 포크의 인덱스
+    int         right_fork;         // 오른쪽 포크의 인덱스
+    long long   time_of_last_meal;  // 마지막 식사 시작 시각(ms)
+    long long   time_to_delay;      // 짝수/홀수 딜레이 조정용
+    pthread_t   thread;             // 자신의 POSIX thread
+    struct s_data *data;            // 전역 컨텍스트 포인터
+}   t_philo;
+```
+포크·식사시간·횟수는 *철학자 수만큼* 존재하므로, 뮤텍스 또한 배열로 만들어 `idx = id % n` 로 접근할 수 있게 했다.
+
+#### main
+
+```c
+int main(int ac, char **av)
+{
+    t_data *data = malloc(sizeof(t_data));
+    if (!data)
+        return (1);
+    memset(data, 0, sizeof(t_data));
+
+    if (init_all(ac, av, data) != TRUE)
+        return (ft_error_handler(data));
+
+    if (simulation(data) != TRUE)
+        return (ft_error_handler(data));
+
+    ft_free_all(data);
+    return (0);
+}
+```
+
+우선 인자를 파싱하고 구조체를 채운뒤, 뮤텍스와 철학자 배열, 포크 배열을 동적 할당·초기화한다. 그 이후 `start_time`을 기록해 기준 시간을 맞추고, 철학자 스레딩을 시작한다.
+
+#### simulation
+
+```c
+int simulation(t_data *data)
+{
+    data->start_time = get_current_time();       // 기준 시각 고정
+
+    if (data->arg.min_eat_cnt == 0)              // 0회 식사 조건이면 바로 성공 종료
+        return (TRUE);
+
+    if (data->arg.num_philo == 1)                // 포크 한 개 → 필연적 사망
+        one_philo(data);
+    else
+    {
+        if (run_philo(data) != TRUE)             // 철학자 스레드 생성
+            return (FALSE);
+        if (run_check(data) != TRUE)             // death 감시/식사횟수 감시 스레드
+            return (FALSE);
+        if (join_philo(data) != TRUE)            // 모든 스레드 종료 대기
+            return (FALSE);
+    }
+    return (TRUE);
+}
+```
+
+철학자가 1명일 경우 포크가 하나이므로 곧바로 죽어야 함으로 분기를 두었고, 그외에는 `run_philo`(철학자 스레드 생성) → `run_check`(감시 스레드) → `join_philo`(정리) 순으로 진행된다. 중간에 오류가 발생하면 `ft_error_handler` 함수를 통해 자원 해제 후 종료된다.
+
+#### run_philo
+
+```c
+static int run_philo(t_data *data)
+{
+    for (int i = 0; i < data->arg.num_philo; i++)
+        if (pthread_create(&data->philo[i].thread, NULL,
+                           philo_routine, &data->philo[i]) != 0)
+            return (FALSE);
+    return (TRUE);
+}
+```
+
+반복문 안에서 실패 시 곧바로 `FALSE`를 반환 → 상위에서 모든 뮤텍스·메모리 해제한다. 또한 `pthread_detach` 대신 `pthread_join`을 사용해 스레드 내부 메모리 누수를 방지하고자 했다.
+
+#### philo_routine
+
+```c
+void *philo_routine(void *arg)
+{
+    t_philo *philo = (t_philo *)arg;
+
+    update_last_meal_time(philo);   // 첫 식사 기준값 기록
+    philo_ready(philo);             // start 라인까지 대기(barrier)
+    philo_delay(philo);             // 짝수/홀수 오버랩 최소화
+
+    while (TRUE)
+    {
+        if (philo_eat(philo)   != TRUE) return (NULL); // 포크 두 개 잠금 후 식사
+        if (check_system_status(philo->data) != ON)    return (NULL);
+
+        if (philo_sleep(philo) != TRUE) return (NULL); // 포크 해제 후 수면
+        if (check_system_status(philo->data) != ON)    return (NULL);
+
+        print_status(philo, "is thinking");
+        usleep(50);                 // 짧은 think → 컨텍스트 스위치 유도
+    }
+    return (NULL);
+}
+```
+
+- **eat:** 두 포크(좌 → 우) 잠금 → 식사시간 대기
+- **sleep:** 포크 해제 후 `usleep(time_to_sleep)`
+- **think:** 상태 로그만 출력
+
+홀수 ID 철학자에게 `time_to_eat / 2`만큼 선행 딜레이를 주어 모두 동시에 포크를 집으려다 교착 상태가 일어날 확률을 낮춘다. 여러가지 방법을 사요해보자
+
+<br>
+<br>
+
+## 5. Reference
 ____
 - https://man7.org/linux/man-pages/man2/read.2.html
 - https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html

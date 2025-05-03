@@ -5,7 +5,7 @@ featured_image = "https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.na
 tags = ['C', 'cs101']
 +++
 
-<!-- {{<series title="📚 /42seoul" series="42seoul">}} -->
+<!-- {{<series title="🪐 /42seoul" series="42seoul">}} -->
 
 <br>
 
@@ -43,7 +43,7 @@ ____
 
 ## 3. 고정소수점
 ____
-<img src="https://modulabs.co.kr/wp-content/uploads/2024/03/fixed-points.png" width="700">
+<img src="https://blog-web.modulabs.co.kr/wp-content/uploads/2024/03/fixed-points.png" width="700">
 
 **고정소수점(Fixed Point)** 은 소수점을 고정된 위치에 두고 정수와 소수 부분을 구분하여 숫자를 표현하는 방식이다. 즉, 정수부와 소수부의 자릿수가 미리 정해져 있는 것이 특징입니다. 예를 들어, 소수점 이하 두 자리를 사용할 경우, 12.34와 같은 값을 정확하게 표현할 수 있다! 소수부 자릿수가 고정되어 있기 때문에, **정밀도(Precision)** 는 소수부 자릿수만큼만 유지된다. 이 방식은 컴퓨터의 연산 속도가 빠르고 구현이 간단하다는 장점이 있다.  
 
@@ -61,7 +61,7 @@ ____
 
 ## 3. 부동소수점
 ___
-<img src="https://modulabs.co.kr/wp-content/uploads/2024/03/floating-point.png" width="700">
+<img src="https://blog-web.modulabs.co.kr/wp-content/uploads/2024/03/floating-point.png" width="700">
 
 **부동소수점(Floating Point)** 은 소수점을 가변적으로 움직여 숫자를 표현하는 방식이다. 이는 숫자의 정수부와 소수부를 나누어 고정된 자리에서 소수를 표현하는 고정소수점 방식과 다르게, 소수점의 위치를 자유롭게 옮길 수 있는 방식이다. 부동소수점은 숫자를 **가수(Mantissa)** 와 **지수(Exponent)** 로 나누어 표현한다.  
 
@@ -90,6 +90,8 @@ s = sign(부호) / e = exponent(지수) / m = mantissa(가수)
 - 숫자의 실제 값을 의미하며 항상 1.의 형식으로 가정하고, 실제 저장되는 값은 소수점 이하 부분만 저장된다. 예를 들어, `m = 00000000000000000000000` 이면 가수는 1.0이 되고, `m = 10000000000000000000000`이면 가수는 1.5가 된다.
 
 결국, 123.45라는 숫자가 있다면 `1.2345 × 10^2` 처럼 표현하는 방식이 부동소수점의 원리이다. 이 방식은 지수를 이용해 소수점의 위치를 표현할 수 있기 때문에 매우 큰 숫자나 매우 작은 숫자를 다룰 때 유용하다.
+
+<br>
 
 ### 3-2. 예시 : 45.625
 예시로, 숫자 **45.625** 를 부동소수점 형식으로 변환하는 과정을 살펴보자. 여기서는 부호를 1비트, 지수를 8비트, 가수를 23비트로 사용해자!

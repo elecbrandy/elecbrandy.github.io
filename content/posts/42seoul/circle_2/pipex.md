@@ -5,7 +5,7 @@ featured_image = "https://i.imgur.com/TqbaZ79.png"
 tags = ['c', '42seoul']
 +++
 
-{{<series title="📚 /42seoul" series="42seoul">}}
+{{<series title="🪐 /42seoul" series="42seoul">}}
 
 <br>
 

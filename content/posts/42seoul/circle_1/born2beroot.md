@@ -5,7 +5,7 @@ featured_image = "http://t1.daumcdn.net/cfile/14492610B091CC6254"
 tags = ['linux', '42seoul']
 +++
 
-{{<series title="📚 /42seoul" series="42seoul">}}
+{{<series title="🪐 /42seoul" series="42seoul">}}
 
 <br>
 

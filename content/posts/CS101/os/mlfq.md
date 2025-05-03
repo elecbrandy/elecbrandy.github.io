@@ -5,7 +5,7 @@ featured_image = "https://hongong.hanbit.co.kr/wp-content/uploads/2022/09/컴퓨
 tags = ['os', 'cs']
 +++
 
-{{<series title="📚 /2025 CS STUDY" series="2025cs">}}
+{{<series title="🪐 /2025 CS STUDY" series="2025cs">}}
 
 <br>
 
