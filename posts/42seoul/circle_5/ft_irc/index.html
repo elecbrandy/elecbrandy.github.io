@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/reset.css">
+<title>[42seoul] ft_irc | elecbrandy</title>
+
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.7890e51e83f9836401d278297629f6e8246e3d07d16c4fdd03f5aea0023f2800.css" integrity="sha256-eJDlHoP5g2QB0ngpdin26CRuPQfRbE/dA/WuoAI/KAA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-000000000"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('hugo', 'G-000000000');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+	  <li><a href="https://elecbrandy.github.io/">/home</a></li>
+	  <li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+	  <li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+  
+    
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-소개">1. 소개</a></li>
+    <li><a href="#2-ft_irc-명세서">2. ft_irc 명세서</a>
+      <ul>
+        <li><a href="#2-1-overview">2-1. Overview</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-개념-정리">3. 개념 정리</a>
+      <ul>
+        <li><a href="#3-1-irc-프로토콜">3-1. IRC 프로토콜</a></li>
+        <li><a href="#3-2-소켓-프로그래밍">3-2. 소켓 프로그래밍</a></li>
+        <li><a href="#3-3-동기-비동기-블로킹-논블로킹">3-3. 동기, 비동기, 블로킹, 논블로킹</a></li>
+        <li><a href="#3-4-poll">3-4. poll()</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-mandatory">4. Mandatory</a>
+      <ul>
+        <li><a href="#custom-id">4-1. 비동기, 논블로킹 구현</a></li>
+        <li><a href="#4-2-서버-내부-자원-관리">4-2. 서버 내부 자원 관리</a></li>
+        <li><a href="#4-3-코드">4-3. 코드</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-reference">5. Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://www.shutterstock.com/ko/blog/wp-content/uploads/sites/17/2020/09/showing-text-banner.jpg" alt="Featured Image for [42seoul] ft_irc">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2024.11.11</small>
+      <div class="singleTitle">[42seoul] ft_irc</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>🪐 /42seoul</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_0/42/">0. 42서울이란?</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_0/libft/">1. libft</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/ft_printf/">2. ft_printf</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/get_next_line/">3. get_next_line</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/born2beroot/">4. born2beroot</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/pipex/">5. pipex</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/fdf/">6. fdf</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/push_swap/">7. push_swap</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_3/minishell/">8. minishell</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_3/philosopher/">9. philosopher</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_4/cub3d/">10. cub3d</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_4/netpractice/">11. netpractice</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_5/ft_irc/">13. ft_irc</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-소개">1. 소개</h2>
+<hr>
+<blockquote>
+<p>Internet Relay Chat</p></blockquote>
+<p>본과정에서 열세 번째로 진행한 과제로, C++을 활용하여 IRC(Internet Relay Chat) 서버를 구현하는 팀 과제이다.
+이번 프로젝트는 IRC 프로토콜을 기반으로 한 채팅 서버를 구현하는 것이 목적이었다.
+IRC는 오래된 프로토콜로, 기본적인 RFC 문서를 바탕으로 하되 실제 상용 클라이언트와의 호환성을 확보하기 위해서는 추가적인 분석과 적용이 필요했다.
+따라서 RFC 공식 문서를 기본으로 삼고, 실제로 사용되는 상용 서버 및 클라이언트 간의 통신 과정을 분석하여 구현하였다.</p>
+<p>과제는 3명의 팀원이 함께 진행하였다. 나는 소켓 프로그래밍, 서버 구현 및 버퍼 관리를 담당했다. 나머지 두 팀원이 각각 명령어 구현과 irc 프로토콜과 레퍼런스에 따라 기본 사항 구현을 담당했다.
+각 분야 개발이 끝나고, 디버깅을 하며 상세한 프로토콜 요구사항을 맞춰 완성했다. 이 과정에서 팀원 모두가 동일한 환경에서 테스트할 수 있도록 docker 컨테이너를 하나 만들어 사용했다.
+docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠르게 환경을 구축하고 동일한 조건에서 테스트를 수행할 수 있었다. docker의 강력함을 몸소 느낄 수 있었다&hellip;</p>
+<ul>
+<li>상용 IRC 서버와 클라이언트 간의 실제 통신 로그 분석</li>
+<li>우리 서버와 상용 클라이언트 간의 통신 테스트 및 로그 검토</li>
+</ul>
+<p>‼️ <strong>소켓 프로그래밍에 대한 이해가 있고, 바로 과제에 대한 정보를 얻고 싶다면?</strong> ‼️<br>
+<a href="#custom-id"><em>FT_IRC서버전송중너만오면고</em></a>   (&laquo; click!!!)</p>
+<br>
+<br>
+<h2 id="2-ft_irc-명세서">2. ft_irc 명세서</h2>
+<hr>
+<ul>
+<li><strong>PROGRAM NAME</strong>
+<ul>
+<li><code>ircserv</code></li>
+</ul>
+</li>
+<li><strong>Arguments</strong>
+<ul>
+<li><code>port</code>: The listening port</li>
+<li><code>password</code>: The connection password</li>
+</ul>
+</li>
+<li><strong>DESCRIPTION</strong>
+<ul>
+<li>overview 참조</li>
+</ul>
+</li>
+<li><strong>EXTERNAL FUNCTIONS</strong>
+<ul>
+<li>Everything in C++ 98.</li>
+<li>socket, close, setsockopt, getsockname, getprotobyname, gethostbyname, getaddrinfo, freeaddrinfo, bind, connect, listen, accept, htons, htonl, ntohs, ntohl, inet_addr, inet_ntoa, send, recv, signal, sigaction, lseek, fstat, fcntl, poll, (or equivalent)</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="2-1-overview">2-1. Overview</h3>
+<ul>
+<li>c++로 irc 프로토콜로 상호작용하는 서버를 만드는 과제이다. 단일서버로, 서버-서버 연결은 구현하지 않아도 된다.</li>
+<li>수신받은 패킷은 이어붙여서 처리해야한다. (예시: com^Dman^Dd -&gt; command)</li>
+<li>구현해야하는 명령어
+<ul>
+<li><code>KICK</code>: 채널에서 클라이언트 강제 퇴장</li>
+<li><code>INVITE</code>: 특정 클라이언트를 채널로 초대</li>
+<li><code>TOPIC</code>: 채널 주제 변경 또는 조회</li>
+<li><code>MODE</code>
+<ul>
+<li><code>i</code>: 초대 전용 채널 설정/해제</li>
+<li><code>t</code>: 운영자만 채널 주제 변경 가능하도록 설정/해제</li>
+<li><code>k</code>: 채널 비밀번호 설정/해제</li>
+<li><code>o</code>: 운영자 권한 부여/박탈</li>
+<li><code>l</code>: 채널 인원 제한 설정/해체</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="3-개념-정리">3. 개념 정리</h2>
+<hr>
+<ol>
+<li>irc가 뭔지 정체를 우선 알아보자.</li>
+<li>소켓 프로그래밍의 작동 방식을 공부하고</li>
+<li>작동 중 나타나는 동기, 비동기 방식을 알아보고</li>
+<li>어떤 방식으로 처리해야하는지 공부해보자.</li>
+</ol>
+<br>
+<h3 id="3-1-irc-프로토콜">3-1. IRC 프로토콜</h3>
+<p>IRC(Internet Relay Chat) 프로토콜은 RFC 1459, RFC 2810 등 여러 공식 문서에 걸쳐 정의되어 있으며, 설계 원칙부터 명령 포맷, 동작 방식까지 매우 상세하게 기술되어 있다.
+하지만 IRC는 역사가 오래된 만큼 다양한 RFC 버전이 존재하고, 현재도 서버/클라이언트마다 프로토콜 해석과 구현이 조금씩 다르기 때문에, <strong>초기에는 하나의 구현을 기준으로 삼는 것이 중요</strong> 하다.</p>
+<h4 id="3-1-1-간단한-역사">3-1-1. 간단한 역사</h4>
+<p>IRC는 1988년 핀란드 대학생 Jarkko Oikarinen 이 기존 채팅 시스템의 한계를 극복하기 위해 개발을 시작했다.
+1989년부터 유럽과 북미로 빠르게 퍼지며, 전 세계적으로 가장 널리 쓰이는 실시간 채팅 수단 중 하나가 되었다.</p>
+<p>1993년 5월, <strong>RFC 1459</strong>를 통해 IRC 프로토콜이 공식 표준으로 정의되었으며, 이후 <strong>RFC 2810~2813</strong> 등이 보완사항을 제시하면서 확장되었다.</p>
+<p>IRC는 당대 최초로 <strong>채널 개념</strong>을 도입했고, <strong>서버 간 네트워크 구성</strong>, <strong>실시간 사용자 리스트</strong>, <strong>닉네임 변경</strong>, <strong>프라이빗 메시지</strong> 기능 등 현대 채팅의 기반을 다진 시스템이다.
+오늘날에는 Slack, Discord 같은 신세대 서비스에 밀려나긴 했지만, 여전히 상용 IRC 서버와 클라이언트는 존재하며, 각자 프로토콜을 조금씩 개량해 사용 중이다.</p>
+<p><em>이번 프로젝트에서는 서버는 <strong>InspIRCd</strong>, 클라이언트는 <strong>irssi</strong>를 기준으로 테스트했다.</em></p>
+<h4 id="3-1-2-프로토콜-개요">3-1-2. 프로토콜 개요</h4>
+<p>IRC 프로토콜은 텍스트 기반이며, 클라이언트와 서버 간에 주고받는 메시지는 특정한 포맷을 따른다.
+특히 처음 접속 시 클라이언트가 전송해야 하는 메시지 순서, 그리고 서버로부터 수신하는 코드 기반 응답 메시지들이 RFC 문서에 명시되어 있다.</p>
+<p>RFC를 참고하면 누군가의 블로그를 뒤지는 것보다 훨씬 정확하게 구조와 의도를 파악할 수 있다.
+우리 팀은 RFC 내용을 바탕으로 문서 하나를 만들어 각 명령어와 응답 메시지를 정리하고, 체크리스트 형식으로 구현 여부를 관리했다. 이 방식이 협업에도 매우 유용했다.</p>
+<ul>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1459">https://datatracker.ietf.org/doc/html/rfc1459</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc2812">https://www.rfc-editor.org/rfc/rfc2812</a></li>
+</ul>
+<br>
+<h3 id="3-2-소켓-프로그래밍">3-2. 소켓 프로그래밍</h3>
+<p>소켓이란 네트워크 상에서 데이터를 주고받는 통신의 끝점이다. 마치 콘센트 플러그와 같은. 양쪽이 소켓을 연결해야만 데이터를 주고받을 수 있다. 우리는 커널을 통해 소켓을 생성하고 관리할 수 있다. 코드로 한번 알아보자!</p>
+<p>순서: <code>socket()</code> -&gt;  <code>bind()</code> -&gt; <code>listen()</code> -&gt; <code>fcntl</code> -&gt; <code>accept()</code></p>
+<h4 id="3-2-1-socket-소켓-생성">3-2-1. <code>socket()</code>: 소켓 생성</h4>
+<ul>
+<li><strong>PROTOTYPE</strong>
+<ul>
+<li><code>int socket(int domain, int type, int protocol);</code></li>
+</ul>
+</li>
+<li><strong>ARGUMENTS</strong>
+<ul>
+<li><code>int domain</code>
+<ul>
+<li>사용할 주소 체계</li>
+<li>예시: <code>AF_INET</code>(IPv4), <code>AF_INET</code>(IPv6)</li>
+</ul>
+</li>
+<li><code>int type</code>
+<ul>
+<li>소켓 종류</li>
+<li>예시: <code>SOCK_STREAM</code>(TCP), <code>SOCK_DGRAM</code>(UDP)</li>
+</ul>
+</li>
+<li><code>int protocol</code>
+<ul>
+<li>프로토콜 번호 지정, 거의 항상 <code>0</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>DESCRIPTION</strong>
+<ul>
+<li>커널 내부에 소켓 구조체를 생성하고, 프로세스의 fd 테이블에 등록한다.</li>
+</ul>
+</li>
+<li><strong>RETURN VALUE</strong>
+<ul>
+<li>생성된 소켓의 fd</li>
+<li>또는 오류 발생 시 <code>-1</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-2-bind-소켓-바인딩">3-2-2. <code>bind():</code> 소켓 바인딩</h4>
+<ul>
+<li><strong>PROTOTYPE</strong>
+<ul>
+<li><code>int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);</code></li>
+</ul>
+</li>
+<li><strong>ARGUMENTS</strong>
+<ul>
+<li><code>int sockfd</code>
+<ul>
+<li><code>socket()</code>이 반환한 소켓의 fd</li>
+</ul>
+</li>
+<li><code>int backlog</code>
+<ul>
+<li>바인딩할 주소 정보가 담긴 구조체 포인터(위에서 만든)</li>
+</ul>
+</li>
+<li><code>socklen_t addrlen</code>
+<ul>
+<li><code>addr</code> 버퍼의 크기</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>DESCRIPTION</strong>
+<ul>
+<li>지정된 소켓에 IP 주소와 포트를 실제로 연결(binding)</li>
+<li>이미 사용 중인 포트라면 실패</li>
+</ul>
+</li>
+<li><strong>RETURN VALUE</strong>
+<ul>
+<li>성공 시 <code>0</code></li>
+<li>또는 오류 발생 시 <code>-1</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-3listen-소켓을-대기-상태로-설정">3-2-3.<code>listen()</code>: 소켓을 대기 상태로 설정</h4>
+<ul>
+<li><strong>PROTOTYPE</strong>
+<ul>
+<li><code>int listen(int sockfd, int backlog);</code></li>
+</ul>
+</li>
+<li><strong>ARGUMENTS</strong>
+<ul>
+<li><code>int sockfd</code>
+<ul>
+<li><code>socket()</code>이 반환한 소켓의 fd</li>
+</ul>
+</li>
+<li><code>int backlog</code>
+<ul>
+<li>동시에 대기큐에 올릴 최대 연결 요청 수</li>
+<li>시스템 마다 최댓값 제한 다를 수도</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>DESCRIPTION</strong>
+<ul>
+<li>해당 소켓을 대기 상태로 전환하여, 클라이언트의 연결 요청을 큐에 쌓아둔다.</li>
+</ul>
+</li>
+<li><strong>RETURN VALUE</strong>
+<ul>
+<li>성공 시 <code>0</code></li>
+<li>또는 오류 발생 시 <code>-1</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-4-fcntl-논블로킹-소켓-설정">3-2-4. <code>fcntl</code>: 논블로킹 소켓 설정</h4>
+<ul>
+<li><strong>PROTOTYPE</strong>
+<ul>
+<li><code>int fcntl(int fd, int cmd, long arg);</code></li>
+</ul>
+</li>
+<li><strong>ARGUMENTS</strong>
+<ul>
+<li><code>int fd</code>
+<ul>
+<li>조작 대상 파일 디스크립터 (소켓 포함)</li>
+</ul>
+</li>
+<li><code>int cmd</code>
+<ul>
+<li>수행할 명령어</li>
+<li><code>F_GETFL</code>: 현재 파일 상태 플래그 반환</li>
+<li><code>F_SETFL</code>: 파일 상태 플래그 설정</li>
+</ul>
+</li>
+<li><code>long arg</code>
+<ul>
+<li>명령어에 따라 해석되는 추가 인자</li>
+<li><code>F_SETFL</code> 시: 설정할 플래그 비트(<code>O_NONBLOCK</code>, <code>O_APPEND</code> 등)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>DESCRIPTION</strong>
+<ul>
+<li><code>fcntl()</code>은 열린 파일 디스크립터의 동작 모드를 제어하거나 조회할 때 사용한다.</li>
+<li>논블로킹 소켓으로 전환하고 싶은 경우
+<ul>
+<li><code>fcntl(_fd, F_SETFL, O_NONBLOCK)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>RETURN VALUE</strong>
+<ul>
+<li><code>F_GETFL</code> 호출 시
+<ul>
+<li>≥ 0: 현재 플래그 비트 (예: <code>O_RDONLY</code>|<code>O_NONBLOCK</code>)</li>
+<li>−1: 오류 발생 (<code>errno</code> 설정)</li>
+</ul>
+</li>
+<li><code>F_SETFL</code> 호출 시
+<ul>
+<li>0: 성공</li>
+<li>−1: 오류 발생 (<code>errno</code> 설정)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-5-accpet-서버에서-클라이언트의-연결-요청을-수락">3-2-5. <code>accpet()</code>: 서버에서 클라이언트의 연결 요청을 수락</h4>
+<ul>
+<li><strong>PROTOTYPE</strong>
+<ul>
+<li><code>int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);</code></li>
+</ul>
+</li>
+<li><strong>ARGUMENTS</strong>
+<ul>
+<li><code>int sockfd</code>
+<ul>
+<li>listen 상태인 소켓의 fd</li>
+<li>즉, 클라이언트의 연결 요청을 기다리는 서버의 fd</li>
+</ul>
+</li>
+<li><code>struct sockaddr *addr</code>
+<ul>
+<li>새로운 클라이언트 정보를 채워 넣은 버퍼</li>
+</ul>
+</li>
+<li><code>socklen_t *addrlen</code>
+<ul>
+<li>위 버퍼 크기를 입력으로, 채워진 길이를 출력으로 사용</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>DESCRIPTION</strong>
+<ul>
+<li>연결 요청이 따로 없으면, 이 줄에서 멈춰있다가 요청이 오면 돌아간다.</li>
+<li>연결된 클라이언트와의 통신을 담당할 새 fd 발급</li>
+</ul>
+</li>
+<li><strong>RETURN VALUE</strong>
+<ul>
+<li>성공 시 <code>0</code></li>
+<li>또는 오류 발생 시 <code>-1</code></li>
+</ul>
+</li>
+</ul>
+<p>요약하면, 소켓은 IP·포트·프로토콜 정보가 담긴 커널 내부 구조체이며, 일반 파일처럼 fd로 관리한다.
+서버는 listen_fd를 통해 연결 요청을 기다리고, <code>accept()</code> 가 새로운 FD를 돌려주면 이를 내부 자료구조에 추가해 클라이언트마다 별도의 소켓으로 통신을 유지한다.</p>
+<br>
+<h3 id="3-3-동기-비동기-블로킹-논블로킹">3-3. 동기, 비동기, 블로킹, 논블로킹</h3>
+<p>이 과제에서는 비동기/논블로킹 방식을 구현해야 한다. 비슷한듯 다른듯 애매한 이 개념들을 정리해야, 실제로 구현할때 헷갈리지 않을 듯 하다. 렛츠고 🥲</p>
+<ul>
+<li><strong>동기</strong>
+<ul>
+<li>작업이 내가 요청한 흐름 안에서 처리되고, 결과는 함수가 끝날때 나옴.</li>
+<li>작업의 완료 시점 = 함수 리턴 시점</li>
+<li>즉, 내가 직접 처리하는 것임!</li>
+</ul>
+</li>
+<li><strong>비동기</strong>
+<ul>
+<li>작업을 커널 등에 맡기고, 내 코드 흐름은 즉시 다음으로 넘어감.</li>
+<li>작업이 완료되면 알림, 콜백, 이벤트 등으로 통보받음</li>
+<li>즉, 내가 아닌 누군가가 처리하는 것임!</li>
+</ul>
+</li>
+</ul>
+<p>정리하면, 동기 vs 비동기는 누가 <strong>처리하느냐?</strong> 의 문제이다.
+내가 직접 처리하면 동기, OS나 다른 시스템이 처리하면 비동기인 것이다.</p>
+<hr>
+<ul>
+<li><strong>블로킹</strong>
+<ul>
+<li>요청을 보낸 스레드가 결과가 나올 때까지 멈춘다.</li>
+<li><code>read()</code>, <code>accept()</code> 같은 함수 호출 시, 데이터가 준비될 때까지 스레드가 대기</li>
+<li>스레드는 아무 일도 못하고 함수 안에서 멈춰 있음!</li>
+</ul>
+</li>
+<li><strong>논블로킹</strong>
+<ul>
+<li>요청을 보낸 스레드가 멈추지 않고, 바로 리턴받는다.</li>
+<li>함수는 그 즉시 반환되며 그 시점에서 결과가 준비 안 됐을 경우 오류 코드를 반환한다.</li>
+<li>즉, 스레드가 계속 움직일 수 있다!</li>
+</ul>
+</li>
+</ul>
+<p>블로킹 vs 논블로킹은 <strong>기다리느냐?</strong> 의 문제이다.
+결과가 나올 때까지 멈추면 블로킹, 결과를 기다리지 않고 바로 다음 일을 하면 논블로킹인 것이다.</p>
+<p>동기와 블로킹, 비동기와 논블로킹은 그 작동 행태가 비슷하여 많이 헷갈리지만, 누가 처리하느냐-기다리느냐의 구분을 잘 기억하고 다음으로 이어나가보자.</p>
+<br>
+<ul>
+<li><strong>동기 + 블로킹</strong>
+<ul>
+<li>내가 직접 작업 + 끝날 때까지 기다림</li>
+<li>스레드는 멈춰있음!</li>
+</ul>
+</li>
+<li><strong>동기 + 논블로킹</strong>
+<ul>
+<li>내가 직접 작업 + 끝날 때까지 기다리지 않음</li>
+<li>스레드는 멈추지 않는다!</li>
+</ul>
+</li>
+<li><strong>비동기 + 블로킹</strong>
+<ul>
+<li>내가 아닌 OS 등이 작업 + 끝날 때까지 기다림</li>
+<li>스레드는 멈춰있음!</li>
+</ul>
+</li>
+<li><strong>비동기 + 논블로킹</strong>
+<ul>
+<li>내가 아닌 OS 등이 작업 + 끝날 때까지 기다리지 않음</li>
+<li>스레드는 멈추지 않는다!</li>
+</ul>
+</li>
+</ul>
+<p><em>과제 지침에 따르면 우리는 비동기+논블로킹을 구현해야한다.</em></p>
+<br>
+<h3 id="3-4-poll">3-4. poll()</h3>
+<p>그렇다면 우리 서버는 클라이언트가 뭔가 우리에게 전송했을때 그것을 어떻게 비동기적이고 논블로킹스럽게 처리할 수 있을까?
+이것을 도와주는 함수가 존재한다. <code>poll()</code>, <code>epoll()</code>, <code>kqueue</code> 등&hellip;
+우리는 클러스터 개발 환경을 고려해서 <code>poll()</code> 함수를 사용했다.</p>
+<h4 id="poll-id">3-4-1. <code>poll()</code></h4>
+<ul>
+<li><strong>PROTOTYPE</strong>
+<ul>
+<li><code>int poll(struct pollfd *fds, nfds_t nfds, int timeout);</code></li>
+</ul>
+</li>
+<li><strong>ARGUMENTS</strong>
+<ul>
+<li><code>struct pollfd *fds</code>
+<ul>
+<li>감시할 파일 디스크립터 배열</li>
+<li>배열의 각 원소는 다음 필드를 포함:
+<ul>
+<li><code>fd</code>: 감시 대상 파일 디스크립터</li>
+<li><code>events</code>: 감시할 이벤트 (예: <code>POLLIN</code>, <code>POLLOUT</code>)</li>
+<li><code>revents</code>: 실제로 발생한 이벤트 (출력 전용)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>nfds_t nfds</code>
+<ul>
+<li><code>fds</code> 배열에 들어있는 감시할 항목 수</li>
+</ul>
+</li>
+<li><code>int timeout</code>
+<ul>
+<li>대기 시간 (밀리초)</li>
+<li><code>0</code>: <strong>논블로킹 모드</strong> (즉시 리턴)</li>
+<li><code>&gt; 0</code>: 해당 시간만큼 대기</li>
+<li><code>-1</code>: 무한정 대기 (블로킹)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>DESCRIPTION</strong>
+<ul>
+<li>여러 파일 디스크립터에 대해 <strong>I/O 이벤트 발생 여부를 감시</strong></li>
+<li>예를 들어, 읽을 데이터가 있는지(<code>POLLIN</code>), 쓰기 가능한지(<code>POLLOUT</code>) 등을 확인</li>
+<li><code>timeout == 0</code>을 주면 즉시 리턴하므로 논블로킹 + 비동기 + 논블로킹 가능</li>
+<li>스레드는 멈추지 않으며 이벤트 유무만 확인하고 바로 다음 작업으로 이동</li>
+</ul>
+</li>
+<li><strong>RETURN VALUE</strong>
+<ul>
+<li><code>&gt; 0</code>: 이벤트가 발생한 디스크립터 개수</li>
+<li><code>0</code>: 감시 중인 디스크립터에 아무 이벤트도 없음</li>
+<li><code>-1</code>: 에러 발생 → <code>errno</code>로 확인 (<code>EINTR</code>, <code>EBADF</code>, 등)</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-4-2-epoll-kqueue">3-4-2. <code>epoll()</code>, <code>kqueue()</code></h4>
+<p><code>poll()</code> 과 비슷한 역할을 하는 함수가 몇가지 더 있다. <code>epoll()</code>, <code>kqueue()</code> 을 간단히 알아보자.</p>
+<ul>
+<li><strong>poll()</strong>
+<ul>
+<li>매 호출마다 fd 배열 전체를 커널에 전달해 n개의 fd를 순회 → <code>O(n)</code></li>
+<li><em>얘 지금 준비됐어?</em> 라고 하나씩 묻는 방식 → 많은 fd일수록 느림</li>
+<li>명단 전체를 보며 하나씩 상태를 묻는 것과 같음</li>
+</ul>
+</li>
+<li><strong>epoll()</strong>
+<ul>
+<li><code>epoll_ctl()</code>로 감시할 fd를 미리 등록 → 커널이 이벤트 발생 fd만 ready 큐에 저장</li>
+<li><code>epoll_wait()</code>는 ready 큐에서 이벤트가 발생한 fd만 꺼내므로, 발생한 이벤트 수 k에 비례 → <code>O(k)</code></li>
+<li>매번 전체 fd를 순회하지 않고, 실제 이벤트가 발생한 소수의 fd만 빠르게 처리</li>
+<li>목록을 한 번만 등록해두고, 준비된 일만 꺼내 처리하는 것과 같음</li>
+</ul>
+</li>
+<li><strong>kqueue()</strong>
+<ul>
+<li><code>kevent()</code> 호출 전 다양한 이벤트(읽기·쓰기·시그널 등)를 미리 등록</li>
+<li>커널이 이벤트 발생 시 자동으로 이벤트 리스트에 저장 → <code>kevent()</code>로 꺼내기만! → <code>O(k)</code></li>
+<li>네트워크 I/O뿐 아니라 파일 변경, 시그널, 타이머 등 다양한 필터 지원</li>
+<li>모든 상태변화를 감시해두고, 발생 시 바로 대기 리스트에 추가하는 것과 같음</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="4-mandatory">4. Mandatory</h2>
+<hr>
+<h3 id="custom-id">4-1. 비동기, 논블로킹 구현</h3>
+<p>우리는 비동기 + 논블로킹 방식의 서버를 구현해야한다.</p>
+<ul>
+<li>우선 <strong>비동기 방식</strong> 이기 때문에 특정 작업을 내가 아니라 OS 등에 맡기는 것이다.</li>
+<li>작업을 맡긴 이후 결과가 나올때까지 기다릴수도, 요청 시점에서의 결과를 바로 받을수도있다.</li>
+<li>이때 <strong>논블로킹 방식</strong> 이기 때문에 요청 시점의 결과를 기다리지 않고, 바로 확인한 후 다음으로 넘어간다.</li>
+<li>즉, 특정 작업을 OS 등에 일임하고, 그 결과가 나올때까지 기다리지 않고 바로 확인하고 넘어간다.</li>
+</ul>
+<h3 id="4-2-서버-내부-자원-관리">4-2. 서버 내부 자원 관리</h3>
+<p>서버 구현 시 기본적인 통신 처리뿐만 아니라 RFC에 정의된 다양한 데이터와 기능을 구현해야 한다. 클라이언트는 닉네임, 상태 메시지 등 고유한 속성을 가지며 하나의 클라이언트가 여러 채팅방에 동시에 참여할 수 있는 모델이다.</p>
+<p>개발 초기에는 채팅방이 생성될 때마다 해당 방에 속한 클라이언트 정보를 복사하여 방 내부에 저장하는 방식을 사용하였다. 그러나 이 방식은 한 채팅방에서 닉네임이 변경되었을 때 다른 방에는 반영되지 않아 데이터 불일치 문제가 발생하는 단점이 있었다.</p>
+<p>이를 해결하기 위해 클라이언트 데이터를 중앙에서 관리하는 싱글톤 패턴을 도입하였다. 모든 채팅방이 하나의 객체를 참조하도록 구성함으로써 클라이언트 정보가 변경되면 즉시 모든 방에 반영되도록 하였다. 이러한 구조는 채팅방과 클라이언트 수가 늘어날 때 발생하는 메모리 복사 부담을 크게 줄여주며 정보 동기화 문제를 효과적으로 해소해준다.</p>
+<h3 id="4-3-코드">4-3. 코드</h3>
+<p>세부 명령어와 프로토콜은 과제를 수행하며 RFC 문서를 질리도록 읽게될 것이므로&hellip;<br>
+서버 기본 작동 구현을 소개하겠다.</p>
+<h4 id="main">main</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> ac, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> av) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (ac <span style="color:#f92672">!=</span> <span style="color:#ae81ff">3</span>) {
+</span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cerr <span style="color:#f92672">&lt;&lt;</span> C_ERR <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Error: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> ERR_ARG_COUNT <span style="color:#f92672">&lt;&lt;</span> C_RESET <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>		IrcServer server(av[<span style="color:#ae81ff">1</span>], av[<span style="color:#ae81ff">2</span>]);
+</span></span><span style="display:flex;"><span>		signal(SIGINT, signalHandler);
+</span></span><span style="display:flex;"><span>		signal(SIGQUIT, signalHandler);
+</span></span><span style="display:flex;"><span>		server.init();  <span style="color:#75715e">// 서버 자원 초기화
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		server.run();   <span style="color:#75715e">// 서버 실제 작동
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	} <span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> IrcServer<span style="color:#f92672">::</span>ServerException <span style="color:#f92672">&amp;</span>e) {
+</span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cerr <span style="color:#f92672">&lt;&lt;</span> C_ERR <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Error: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> e.what() <span style="color:#f92672">&lt;&lt;</span> C_RESET <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="run">run</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> IrcServer<span style="color:#f92672">::</span>run() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">bool</span> exitFlag <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (true) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>			checkPingTimeOut();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (poll(<span style="color:#f92672">&amp;</span>_fds[<span style="color:#ae81ff">0</span>], _fds.size(), <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (errno <span style="color:#f92672">!=</span> EINTR) {
+</span></span><span style="display:flex;"><span>					exitFlag <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">throw</span> <span style="color:#a6e22e">ServerException</span>(ERR_POLL);
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> _fds.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; <span style="color:#f92672">--</span>i) {
+</span></span><span style="display:flex;"><span>				<span style="color:#75715e">// POLLIN event
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLIN) {
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> (_fds[i].fd <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>_fd) {
+</span></span><span style="display:flex;"><span>						<span style="color:#75715e">// Another(client) fd
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>						acceptClient();
+</span></span><span style="display:flex;"><span>					} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>						<span style="color:#75715e">// Another(client) fd
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>						handleSocketRead(_fds[i].fd); 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>						<span style="color:#75715e">// Add to remove list if Client Shutdown
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>						<span style="color:#66d9ef">if</span> (getClient(_fds[i].fd) <span style="color:#f92672">==</span> NULL) { 
+</span></span><span style="display:flex;"><span>							_fdsToRemove.push_back(_fds[i].fd);
+</span></span><span style="display:flex;"><span>						}
+</span></span><span style="display:flex;"><span>					}
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>				<span style="color:#75715e">// POLLOUT event
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLOUT) {
+</span></span><span style="display:flex;"><span>					handleSocketWrite(_fds[i].fd);
+</span></span><span style="display:flex;"><span>					
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e">// Add to remove list if Client Shutdown
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#66d9ef">if</span> (getClient(_fds[i].fd) <span style="color:#f92672">==</span> NULL) { 
+</span></span><span style="display:flex;"><span>						_fdsToRemove.push_back(_fds[i].fd);
+</span></span><span style="display:flex;"><span>					}
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// Remove Client fds
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">for</span> (size_t j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> _fdsToRemove.size(); <span style="color:#f92672">++</span>j) {
+</span></span><span style="display:flex;"><span>				removeClientFd(_fdsToRemove[j]);
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			_fdsToRemove.clear();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		} <span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> ServerException<span style="color:#f92672">&amp;</span> e) {
+</span></span><span style="display:flex;"><span>			serverLog(<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>_fd, LOG_ERR, C_ERR, e.what());
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (exitFlag) {
+</span></span><span style="display:flex;"><span>				exit(EXIT_FAILURE);
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol>
+<li><code>poll</code>을 통해 여러 소켓을 감시하며, 새 데이터가 올 때마다 처리</li>
+<li>데이터가 들어오는 소켓은 <code>handleSocketRead</code>로 처리하고, 데이터를 보낼 준비가 된 소켓은 <code>handleSocketWrite</code>로 처리</li>
+<li>클라이언트 연결을 종료하면 해당 소켓을 제거</li>
+<li>예외가 발생하면 이를 처리하고, 필요시 서버를 종료</li>
+</ol>
+<br>
+<p><strong>무한 루프 (while true)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (true) { ...
+</span></span></code></pre></div><ul>
+<li>서버가 계속 동작하도록, 내부에서 오류 발생 시에도 잡아서 로깅한 뒤 재시도 하고 있다.</li>
+<li>특별한 일이 아니면 서버는 절대 꺼지면 안된다고 명시되어있다.</li>
+</ul>
+<br>
+<p><strong>ping 타임아웃 검사</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>checkPingTimeOut();
+</span></span></code></pre></div><ul>
+<li>일정 시간(ping interval)을 넘긴 연결을 찾아 강제 종료한다.</li>
+<li>내부적으로 <code>removeClientFd()</code> 등을 호출해 <code>_fds</code>에서 fd를 제거하고 자원을 정리한다.</li>
+</ul>
+<br>
+<p><strong>논블로킹 poll()</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (poll(<span style="color:#f92672">&amp;</span>_fds[<span style="color:#ae81ff">0</span>], _fds.size(), <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (errno <span style="color:#f92672">!=</span> EINTR) {
+</span></span><span style="display:flex;"><span>        exitFlag <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">throw</span> <span style="color:#a6e22e">ServerException</span>(ERR_POLL);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>‼️ <strong>poll 함수 다시 확인하기</strong>‼️ <a href="#poll-id"><em>poll()</em></a> (&laquo; click!!!)</li>
+<li>반환값이 음수인 경우
+<ul>
+<li><code>errno == EINTR</code>, 즉 시그널 인터럽트인 경우 재시도한다. (<code>exitFlag</code> = <code>false</code>)</li>
+<li>그 외에는 심각 오류로 간주하며, 예외를  발생시킨다. (<code>exitFlag = true</code>)</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>이벤트 루프 (역순 순회)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> _fds.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; <span style="color:#f92672">--</span>i) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// POLLIN
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLIN) { <span style="color:#960050;background-color:#1e0010">…</span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// POLLOUT
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLOUT) { <span style="color:#960050;background-color:#1e0010">…</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>각 fd를 순회하며 이벤트가 있는지 확인하는데, <strong>역순</strong> 으로 접근한다.</li>
+<li>만약 어떤 fd를 삭제해야할때, 바로 삭제하면 내부 로직에서 문제가 생길 수 있으므로, <code>_fdsToRemove</code>에 기록만 한다.</li>
+</ul>
+<br>
+<p><strong>POLLIN 처리</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLIN) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (_fds[i].fd <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>_fd) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 서버 소켓 → 새로운 클라이언트 수락
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        acceptClient();
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 클라이언트 데이터 수신
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        handleSocketRead(_fds[i].fd);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 클라이언트 정상 종료 시 리스트에 추가
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (getClient(_fds[i].fd) <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>            _fdsToRemove.push_back(_fds[i].fd);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>리스닝 소켓 (<code>_fd</code>)
+<ul>
+<li><code>acceptClient()</code> → <code>accept()</code> 호출</li>
+<li>새 fd를 <code>_fds</code>에 추가하고 내부 클라이언트 맵 생성</li>
+</ul>
+</li>
+<li>클라이언트 소켓
+<ul>
+<li><code>handleSocketRead(fd)</code> → 버퍼에서 읽고 IRC 메시지 파싱/처리</li>
+<li>읽기 도중 연결 종료(클라이언트 측 해제) 시 <code>getClient(fd)</code>가 <code>NULL</code> → <code>_fdsToRemove</code>에 <code>fd</code> 기록</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>POLLOUT 처리</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLOUT) {
+</span></span><span style="display:flex;"><span>    handleSocketWrite(_fds[i].fd);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (getClient(_fds[i].fd) <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>        _fdsToRemove.push_back(_fds[i].fd);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>쓰기 가능** 신호가 왔을 때(<code>POLLOUT</code>)
+<ul>
+<li><code>handleSocketWrite(fd)</code> → 대기 중인 송신 버퍼를 전송.</li>
+<li>송신 후 연결 닫힘 감지 시 동일하게 제거 대기 리스트에 추가.</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>연결 종료된 FD 정리</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (size_t j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> _fdsToRemove.size(); <span style="color:#f92672">++</span>j) {
+</span></span><span style="display:flex;"><span>    removeClientFd(_fdsToRemove[j]);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>_fdsToRemove.clear();
+</span></span></code></pre></div><ul>
+<li><code>removeClientFd(fd)</code>
+<ul>
+<li>내부 클라이언트 맵에서 제거</li>
+<li><code>_fds</code> 벡터에서 해당 <code>pollfd</code> 엔트리 삭제</li>
+<li>소켓 <code>close(fd)</code> 및 자원 해제</li>
+<li>분리된 정리 단계 덕분에 이벤트 순회 중 컨테이너 변형으로 인한 iterator/인덱스 붕괴를 방지</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>예외 처리 및 종료</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> ServerException<span style="color:#f92672">&amp;</span> e) {
+</span></span><span style="display:flex;"><span>    serverLog(<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>_fd, LOG_ERR, C_ERR, e.what());
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (exitFlag) {
+</span></span><span style="display:flex;"><span>        exit(EXIT_FAILURE);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>로그 기록은 <code>serverLog()</code>로</li>
+<li>심각 오류 시 <code>exitFlag == true</code> → 프로세스 종료</li>
+<li>단순 인터럽트 혹은 클라이언트 오류 (<code>exitFlag == false</code>) → 루프 재진입</li>
+</ul>
+<br>
+<br>
+<h2 id="5-reference">5. Reference</h2>
+<hr>
+<ul>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc1459">https://datatracker.ietf.org/doc/html/rfc1459</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc2812">https://www.rfc-editor.org/rfc/rfc2812</a></li>
+<li><a href="https://80000coding.oopy.io/1ac75b59-6930-4297-9c9d-7dec31eff19d">https://80000coding.oopy.io/1ac75b59-6930-4297-9c9d-7dec31eff19d</a></li>
+</ul>
+<br>
+<br>
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

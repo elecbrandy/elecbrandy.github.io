@@ -15,7 +15,7 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="https://elecbrandy.github.io/css/reset.css">
-<title>[42seoul] libft | elecbrandy</title>
+<title>[42seoul] cub3d | elecbrandy</title>
 
       <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.7890e51e83f9836401d278297629f6e8246e3d07d16c4fdd03f5aea0023f2800.css" integrity="sha256-eJDlHoP5g2QB0ngpdin26CRuPQfRbE/dA/WuoAI/KAA=" crossorigin="anonymous">
       <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
@@ -86,27 +86,26 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-libft-명세서">2. libft 명세서</a></li>
+    <li><a href="#2-cub3d-명세서">2. cub3D 명세서</a></li>
     <li><a href="#3-개념-정리">3. 개념 정리</a>
       <ul>
-        <li><a href="#3-1-size_t">3-1. size_t</a></li>
-        <li><a href="#3-2-atoi의-한계">3-2. atoi의 한계</a></li>
-        <li><a href="#3-3-parity-bit">3-3. Parity bit</a></li>
+        <li></li>
       </ul>
     </li>
-    <li><a href="#4-무엇을-배웠는가">4. 무엇을 배웠는가?</a></li>
+    <li><a href="#4-mandatory">4. Mandatory</a></li>
+    <li><a href="#5-reference">5. Reference</a></li>
   </ul>
 </nav>
   </aside>
   <div class="featured-container">
     
       <div class="featured-image">
-        <img src="http://t1.daumcdn.net/cfile/116C5A10B09188A10A" alt="Featured Image for [42seoul] libft">
+        <img src="https://upload.wikimedia.org/wikipedia/en/d/de/Doom_ingame_1.png" alt="Featured Image for [42seoul] cub3d">
       </div>
     
     <div class="overlay-text">
-      <small>2023.11.11</small>
-      <div class="singleTitle">[42seoul] libft</div>
+      <small>2024.08.08</small>
+      <div class="singleTitle">[42seoul] cub3d</div>
     </div>
   </div>
   <div class="series">
@@ -150,38 +149,36 @@
 <h2 id="1-소개">1. 소개</h2>
 <hr>
 <blockquote>
-<p>Your very first own library</p></blockquote>
-<p>42서울 본과정 입과 후 첫번째로 만나는 과제로 앞으로 본과정에서 사용할 라이브러리를 만드는 것이 목표이다.
-이후 과제를 수행하며 자주 사용할 함수들이 몇가지 있기 때문에 최대한 범용성 높게 - 커스텀하기 쉽게 만드는 것을 목표로 했다.</p>
-<p>본과정에서는 과제에서 허용하지 않은 라이브러리-<strong>그것이 기본 라이브러리라 할지라도</strong>-는 절대 사용할 수 없다. 그 말은 곧 strcpy, strlen, atoi, strjoin 등 앞으로 기본적인 함수들을 사용하지 못한다는 것을 의미한다. 따라서, 기존 라이브러리를 대체해서 우리가 필요한 여러 함수들을 실제로 구현해야한다.
-항상 느끼는 것이지만 <code>norm</code> 규칙의 첫번째 목표는 카뎃이 다른 카뎃의 코드를 보았을 때 최소한의 일관성을 유지하여 쉽게 읽을 수 있게 하는 것&hellip; 이고
-두번째는 코드 길이를 적당히 조절함으로써 자연스럽게 모듈화를 하게 하는 것. 그 이상의 의미는 두지 않기로 했다.</p>
+<p>My first RayCaster with miniLibX</p></blockquote>
+<p>42서울 본과정 입과 후 열번째로 수행한 과제로, 레이케스팅을 통해 간단한 3d 게임&hellip;? 을 만드는 것이 목표이다.
+이전 fdf 과제와 비슷하게 2차원 맵을 파싱 받아와서 3차원처럼 보이게 구현해보자. 해당 과제 또한 팀원과 함께하는 팀 과제이다.</p>
 <br>
 <br>
-<h2 id="2-libft-명세서">2. libft 명세서</h2>
+<h2 id="2-cub3d-명세서">2. cub3D 명세서</h2>
 <hr>
 <ul>
-<li>
-<p><strong>Part 1 - Libs functions</strong></p>
+<li><strong>PROGRAMNAME</strong>
 <ul>
-<li>ft_isalpha, ft_isdigit, ft_isalnum, ft_isascii, ft_isprint</li>
-<li>ft_strlen , ft_memset, ft_bzero, ft_memcpy, ft_memmove, ft_strlcpy, ft_strlcat, ft_strncmp</li>
-<li>ft_strchr, ft_strrchr, ft_toupper, ft_tolower</li>
-<li>ft_memchr, ft_memcmp, ft_strnstr, ft_atoi</li>
-<li>ft_calloc, ft_strdup</li>
+<li><code>cub3D</code></li>
 </ul>
 </li>
-<li>
-<p><strong>Part 2 - Addtional functions</strong></p>
+<li><strong>DESCRIPTION</strong>
 <ul>
-<li>ft_substr, ft_strjoin, ft_split, ft_itoa, ft_strmapi, ft_striteri</li>
-<li>ft_putchar_fd, ft_putstr_fd, ft_putendl_fd, ft_putnbr_fd</li>
+<li><strong>Mandatory part</strong>
+<ul>
+<li>1인칭 시점으로 미로 내부를 사실적인 3D 그래픽으로 표현</li>
+<li>앞서 언급한 레이 캐스팅 원리를 사용해야함</li>
 </ul>
 </li>
-<li>
-<p><strong>Part 3 - Bonus functions</strong></p>
+<li><strong>Bonus part</strong>
 <ul>
-<li>ft_lstnew, ft_lstadd_front, ft_lstsize, ft_lstlast, ft_lstadd_back, ft_lstdelone, ft_lstclear, ft_lstiter, ft_lstmap</li>
+<li>벽 충돌</li>
+<li>미니맵 시스템</li>
+<li>열고 닫히는 문</li>
+<li>동적 스프라이트</li>
+<li>마우스를 통한 뷰 이동</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -189,17 +186,34 @@
 <br>
 <h2 id="3-개념-정리">3. 개념 정리</h2>
 <hr>
-<h3 id="3-1-size_t">3-1. size_t</h3>
-<p>해당 운영체제에서 포함할 수 있는 최대 크기의 데이터 타입으로, 32비트 운영체제에서 4바이트, 64비트 운영체제에서 8바이트로 정의되어있다. 객체의 크리를 나타내는 부호 없는 정수 유형! <code>sizeof</code> 연산자의 결과값이기도 하며, 결국 &lsquo;크기&rsquo;를 다룰 때 선호한다. 과거 레지스터 별로 달랐던 자료의 범위 값으로 인한 메모리의 낭비나 부족을 막기 위해 사용했다.</p>
+<p>사실 그래픽에 크게 관심이 없던 카뎃이라면 매번 그래픽 과제를 만났을 때 처음 c언어를 접했을 때로 돌아가는 기분을 느꼈을 것이다. 그것은 나 또한 마찬가지로, 기존에 3d 공간에 단 하나의 관심도 없었다. 도대체 레이케스팅이 무엇이길래&hellip;?</p>
+<p>다행히도 방랑자들을 위한 튜토리얼이 준비 되어있다. 영어 원문과 능력자 356kim님의 번역본까지 함께 링크를 남겨보겠다.</p>
+<ul>
+<li>영어 원문: <a href="https://lodev.org/cgtutor/raycasting.html">https://lodev.org/cgtutor/raycasting.html</a></li>
+<li>번역본: <a href="https://github.com/365kim/raycasting_tutorial?tab=readme-ov-file">https://github.com/365kim/raycasting_tutorial?tab=readme-ov-file</a></li>
+</ul>
+<p>튜토리얼을 자세히 읽고, 일단 예제를 따라해보자. 그리고 3층 화이트 보드 벽면에 팀원과 함께 좌표평면을 직접 그려보며 이해하면 좋다. 레이케스팅 구현은 내가, 맵 파싱은 팀원분이 해주셨다. 담당한 부분은 달랐지만, 어처피 평가도 받아야하고 설명도 해야하기 때문에 우리는 과제하는 동안 3층 한켠에서 좌표를 그리며 레이케스팅을 이해하고자 노력했다&hellip;</p>
+<h4 id="레이케스팅">레이케스팅?</h4>
+<p>레이캐스팅은 2차원 맵을 기반으로 플레이어가 바라보는 시야를 3차원처럼 렌더링하는 기술이다. 원리를 간단히 설명하면 다음과 같다. 플레이어의 위치와 바라보는 방향을 기준으로 일정한 시야각(Field of View, FOV)을 설정한 뒤, 그 시야각 내에서 여러 개의 광선(ray)을 펼쳐 발사한다. 각각의 광선은 플레이어의 위치에서 출발하여 장애물(벽 등)에 부딪힐 때까지 직선으로 진행한다.</p>
+<p>각 광선이 벽에 부딪힌 지점을 통해 플레이어가 보는 시야가 결정되며, 이 정보는 매 프레임마다 모니터에 렌더링된다. 즉, 멀리 있는 벽은 화면에 작게 나타나고, 가까이 있는 벽은 화면에 크게 나타난다. 이는 화면에 세로선을 얼마나 길게 그려내야 하는지 결정하는 문제로 귀결된다.</p>
+<p>레이캐스팅을 통한 3차원 시각 효과 구현에 필요한 정확한 수식과 친절한 튜토리얼은 위에 이미 존재한다. 따라서 이 글에서는 기본 개념을 다시 반복하지는 않으려 한다&hellip;</p>
 <br>
-<h3 id="3-2-atoi의-한계">3-2. atoi의 한계</h3>
-<p>사실 <code>atoi</code> 함수는 <strong>LONG_MAX</strong>와 <strong>LONG_MIN</strong>을 초과하는 범위에서 결과값이 고정되어있다. 이는 현재 <code>atoi</code> 함수 내부를 들여다보면 궁금증을 풀 수 있으니 여러 버전의 오픈소스를 통해 <code>atoi</code>의 구현을 살펴보자. 추가적으로 <code>strol</code> 함수에 대해서 공부해보자.</p>
 <br>
-<h3 id="3-3-parity-bit">3-3. Parity bit</h3>
-<p>패리티 비트는 정보 전달 과정에서 오류가 생겼는지 검사하기 위한 비트이다. 오류 검출을 위해 전송하는 데이터의 끝에 1비트를 더하여 전송하는 방법이다. 1바이트(8비트) 구조에서 피리티 비트는 7비트 크기의 ASCII 코드를 제외한 나머지 1비트를 의미한다.</p>
+<h2 id="4-mandatory">4. Mandatory</h2>
+<hr>
+<ul>
+<li><em>추후 추가</em></li>
+</ul>
 <br>
 <br>
-<h2 id="4-무엇을-배웠는가">4. 무엇을 배웠는가?</h2>
+<h2 id="5-reference">5. Reference</h2>
+<hr>
+<ul>
+<li>[영어원문] <a href="https://lodev.org/cgtutor/raycasting.html">https://lodev.org/cgtutor/raycasting.html</a></li>
+<li>[번역본] <a href="https://github.com/365kim/raycasting_tutorial?tab=readme-ov-file">https://github.com/365kim/raycasting_tutorial?tab=readme-ov-file</a></li>
+</ul>
+<br>
+<br>
 
 
     

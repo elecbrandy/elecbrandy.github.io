@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/reset.css">
+<title>[42seoul] philosopers | elecbrandy</title>
+
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.7890e51e83f9836401d278297629f6e8246e3d07d16c4fdd03f5aea0023f2800.css" integrity="sha256-eJDlHoP5g2QB0ngpdin26CRuPQfRbE/dA/WuoAI/KAA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-000000000"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('hugo', 'G-000000000');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+	  <li><a href="https://elecbrandy.github.io/">/home</a></li>
+	  <li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+	  <li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+  
+    
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-소개">1. 소개</a></li>
+    <li><a href="#2-philosopher-명세서">2. philosopher 명세서</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#3-개념-정리">3. 개념 정리</a>
+      <ul>
+        <li><a href="#3-1-프로세스와-스레드">3-1. 프로세스와 스레드</a></li>
+        <li><a href="#3-2-자원-공유">3-2. 자원 공유</a></li>
+        <li><a href="#3-3-발생할-수-있는-문제들">3-3. 발생할 수 있는 문제들</a></li>
+        <li><a href="#3-4-mutex와-semaphore">3-4. Mutex와 Semaphore</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-mandatory">4. Mandatory</a>
+      <ul>
+        <li><a href="#custom-id">4-1. pthread_mutex_lock과 철학자 문제의 동기화</a></li>
+        <li><a href="#4-2-철학자의-생사-조건">4-2. 철학자의 생사 조건</a></li>
+        <li><a href="#4-3-코드">4-3. 코드</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-reference">5. Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://i.imgur.com/QOMTZ7P.png" alt="Featured Image for [42seoul] philosopers">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2024.08.08</small>
+      <div class="singleTitle">[42seoul] philosopers</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>🪐 /42seoul</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_0/42/">0. 42서울이란?</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_0/libft/">1. libft</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/ft_printf/">2. ft_printf</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/get_next_line/">3. get_next_line</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/born2beroot/">4. born2beroot</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/pipex/">5. pipex</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/fdf/">6. fdf</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/push_swap/">7. push_swap</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_3/minishell/">8. minishell</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_3/philosopher/">9. philosopher</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_4/cub3d/">10. cub3d</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_4/netpractice/">11. netpractice</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_5/ft_irc/">13. ft_irc</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-소개">1. 소개</h2>
+<hr>
+<blockquote>
+<p>I never thought philosophy would be so deadly</p></blockquote>
+<p>42서울 본과정 입과 후 아홉번째로 수행한 과제로 배고픈 철학자 문제를 통해 프로세스 스레딩의 기본, 스레드를 만드는 방법, 뮤텍스와 세마포어 등을 공부하는 과제이다.</p>
+<p>원탁이 하나 있고, 그 주변에 몇 명의 철학자들이 둘러앉아 있다. 원탁의 가운데에는 커다란 스파게티 보울이 놓여 있다. 철학자들은 배고플 때마다 양옆의 포크 두 개를 잡아야만 스파게티를 먹을 수 있으며, 포크를 내려놓고 다시 생각하기를 반복한다. 이를 통해 어떻게 하면 철학자들이 모두 굶지 않고 잘 먹을 수 있을지를 고민하는 과제이다.</p>
+<p>‼️ <strong>프로세스와 스레드에 대한 기본적인 이해가 있고, 바로 과제에 대한 정보를 얻고 싶다면?</strong> ‼️<br>
+<a href="#custom-id"><em>철학자를살리러너만오면GO</em></a>   (&laquo; click!!!)</p>
+<br>
+<br>
+<h2 id="2-philosopher-명세서">2. philosopher 명세서</h2>
+<hr>
+<details>
+<summary>philosopher 명세서</summary>
+<div markdown="1">
+<ul>
+<li><strong>PROGRAM NAME</strong>
+<ul>
+<li><code>philo</code></li>
+</ul>
+</li>
+<li><strong>Arguments</strong>
+<ul>
+<li><code>number_of_philosophers</code>
+<ul>
+<li>철학자의 수 (곧 포크의 수)</li>
+</ul>
+</li>
+<li><code>time_to_die</code>
+<ul>
+<li>철학자의 수명 (밀리초 단위)</li>
+<li><strong>철학자는 죽는다!</strong>
+<ul>
+<li>철학자가 마지막으로 밥을 먹기 시작한 시점으로부터 <code>time_to_die</code> 시간만큼 지나거나</li>
+<li>프로그램 시작 후 <code>time_to_die</code> 시간만큼이 지나도록 식사를 시작하지 않는다면</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>time_to_eat</code>
+<ul>
+<li>철학자가 밥을 먹는데 걸리는 시간</li>
+<li>이 시간 동안 철학자는 양손에 포크를 하나씩 잡고 있어야 함</li>
+</ul>
+</li>
+<li><code>time_to_sleep</code>
+<ul>
+<li>철학자가 잠자는데 걸리는 시간 (밀리초 단위)</li>
+</ul>
+</li>
+<li><code>number_of_times_each_philosopher_must_eat</code>
+<ul>
+<li>각 철학자가 최소한 밥을 먹어야 하는 횟수</li>
+<li>모든 철학자가 이 횟수 만큼 밥을 먹으면 시뮬레이션 종료</li>
+<li>선택적 인자이며, 지정되지 않은 경우 철학자가 죽을 때 시뮬레이션 종료</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>DESCRIPTION</strong>
+<ul>
+<li>각 철학자는 스레드로 구현되어 있어야 함</li>
+<li>각 철학자 왼쪽과 오른쪽에 포크가 하나씩 존재해야 함</li>
+<li>철학자가 한 명일 경우 테이블 위에 포크가 하나만 존재해야 함</li>
+<li>철학자가 포크를 복제하는 것을 막기 위해서, 각 포크의 현재 상태를 뮤텍스를 이용하여 보호해주어야 함</li>
+</ul>
+</li>
+<li><strong>PROGRAM_LOG</strong>
+<ul>
+<li>시뮬레이션은 철학자의 상태를 출력해야함</li>
+<li>철학자의 상태는 다른 철학자들의 상태와 뒤엉키거나 섞인 상태로 출력되면 안됨</li>
+<li>철학자의 사망 시점과 이를 출력하기 까지의 틈이 10ms 이상이 되면 안됨</li>
+<li>로그 출력 예시
+<ul>
+<li><code>timestamp_in_ms X has taken a fork</code></li>
+<li><code>timestamp_in_ms X is eating</code></li>
+<li><code>timestamp_in_ms X is sleeping</code></li>
+<li><code>timestamp_in_ms X is thinking</code></li>
+<li><code>timestamp_in_ms X died</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>EXTERNAL FUNCTIONS</strong>
+<ul>
+<li>memset, printf, malloc, free, write, usleep, gettimeofday, pthread_create, pthread_detach, pthread_join, pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+<p><em>상황이 복잡하므로, 다시 한번 정리해보자</em></p>
+<h4 id="철학자-원탁-포크-스파게티">철학자, 원탁, 포크, 스파게티</h4>
+<ul>
+<li><code>n</code> 명의 철학자들이 테이블에 둘러앉아 있다.</li>
+<li>철학자 번호 <code>n</code>은 철학자 <code>n-1</code>과 <code>n+1</code>번 사이에 앉는다.</li>
+<li>테이블 중앙에 커다란 스파게티 한 그릇이 놓여져 있다.</li>
+<li>철학자들은 <code>먹기</code>, <code>생각하기</code>, <code>잠자기</code> 를 반복하며, 한번에 한가지 동작만 취할 수 있다.</li>
+<li>테이블 위에는 철학자의 수와 같은 수의 포크가 있으며, 각 철학자 사이에 놓여있다.</li>
+</ul>
+<h4 id="프로그램-인자">프로그램 인자</h4>
+<ul>
+<li><code>philo</code> 는 인자로 총 4-5개의 요소를 입력받는다.</li>
+</ul>
+<h4 id="스파게티를-먹는-규칙">스파게티를 먹는 규칙</h4>
+<ul>
+<li>철학자는 스파게티를 먹기 위해 오른손에 오른쪽 포크, 왼손에 왼쪽 포크를 들어야한다. (반드시 양손에 포크)</li>
+<li>철학자가 스파게티 <code>먹기</code>를 마치면 포크를 테이블에 내려놓고 <code>잠자기</code> 상태가 되고, 잠에서 꺠어나면 <code>생각하기</code> 시작한다.</li>
+<li>이 과정은 철학자가 굶어 죽을 때까지 계속된다.</li>
+</ul>
+<h4 id="철학자의-규칙">철학자의 규칙</h4>
+<ul>
+<li>모든 철학자는 먹어야 하며, 굶어 죽어서는 안된다.</li>
+<li>철학자들은 서로 대화하지 않으며, 다른 철학자가 죽을 것인지 알지 못한다.</li>
+<li>철학자들은 <strong>죽는 것을 피해야</strong> 한다!</li>
+</ul>
+<p>‼️ <strong>프로세스와 스레드에 대한 기본적인 이해가 있고, 바로 과제에 대한 정보를 얻고 싶다면?</strong> ‼️<br>
+<a href="#custom-id"><em>철학자를살리러너만오면GO</em></a>   (&laquo; click!!!)</p>
+<br>
+<br>
+<h2 id="3-개념-정리">3. 개념 정리</h2>
+<hr>
+<ol>
+<li>프로세스와 스레드의 개념을 공부하고,</li>
+<li>그 이후 그것들이 작동하면서 일어날 수 있는 문제들을 살펴보고,</li>
+<li>문제를 막기위해 사용하는 도구를 알아보자.</li>
+</ol>
+<br>
+<h3 id="3-1-프로세스와-스레드">3-1. 프로세스와 스레드</h3>
+<h4 id="프로세스란">프로세스란?</h4>
+<p>프로세스는 현재 실행 중인 프로그램으로, OS 관리의 단위이자 메모리에 로드되어 CPU에 실행되는 프로그램의 독립적인 실행 단위이다 즉, 우리가 프로그램 A를 실행하면 A는 메인 메모리에 적재되어 하나의 프로세스로서 cpu 자원의 점유를 기다리게 된다. 각 프로세스는 자체의 주소 공간, 레지스터의 상태, file descriptor table, PCB 등 고유한 정보를 가진다.</p>
+<p><strong>프로세스의 상태</strong>
+<img src="https://thebook.io/img/080367/028.jpg" width="500"></p>
+<ol>
+<li>프로세스 생성: 새로운 프로세스가 생성되면 우선순위가 설정됨</li>
+<li>큐 배치: 프로세스는 준비 큐 또는 대기 큐에 배치됨</li>
+<li>스케줄링: 스케줄링 알고리즘이 준비 큐에서 프로세스를 선택하여 CPU를 할당함</li>
+<li>실행: 선택된 프로세스가 CPU를 사용하여 작업을 수행함</li>
+<li>상태 전이: 프로세스가 완료되거나 대기 상태로 전환되면, 다른 프로세스가 CPU를 할당받음</li>
+</ol>
+<p><strong>스케줄링</strong>
+OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 해줘야한다. 짧은 것을 먼저 실행할 수도 있고, 오는 순서대로 실행할 수도 있다. 또는 모든 프로세스를 잘게 썰어 교체해가며 실행할 수도 있다. 또한 이러한 프로세스를 큐에 보관하며 관리할 수도 있다. 그만큼 스케줄링의 종류는 다양하다.</p>
+<br>
+<h4 id="스레드란">스레드란?</h4>
+<p>스레드는, 실행 흐름의 단위이다! 스레드를 설명할 때 가장 많이 듣는 말이지만 처음부터 마음 속으로 와닿지는 않는 표현이다&hellip; 프로세스와 달리 스레드는 같은 주소 공간을 공유하고, 또한 각 스레드만의 스택과 레지스터, TCB를 가지고 있다. 스레드를 통해 병렬처리, 자원공유가 가능하며 이를 통해 메모리 사용을 효율화할 수 있다! (스레드 또한 프로세스와 같이 cpu 자원 점유를 위해 노력한다.생성-준비-실행-대기-종료 등)</p>
+<br>
+<h3 id="3-2-자원-공유">3-2. 자원 공유</h3>
+<p>그렇다면 스레드 간의 자원 공유는 어떻게 일어날까? 철학자 과제에서 가장 중요한 것은 각각의 독립된 스레드로 이루어진 철학자들이 공유자원에 속한 포크를 적절하게 순서에 맞추어 나눠 사용하는 것이다. 즉 스레드가 자원공유 하는 과정에서 데이터 레이스가 일어나지 않도록 해야하고, 특정 스레드가 자원을 계속해서 점유하거나 무한 경쟁하는 등의 상황을 피해야 한다.</p>
+<h4 id="스레드의-공유-자원">스레드의 공유 자원</h4>
+<ol>
+<li><strong>주소 공간 (Address Space)</strong>
+<ul>
+<li>모든 스레드는 동일한 프로세스의 주소 공간을 공유</li>
+<li>같은 코드, 데이터, 힙을 접근할 수 있음</li>
+<li>예를 들어, 하나의 스레드가 힙에 동적 메모리를 할당하면 다른 스레드도 이 메모리에 접근할 수 있음</li>
+</ul>
+</li>
+<li><strong>전역 변수 및 정적 변수 (Global and Static Variables)</strong>
+<ul>
+<li>스레드는 전역 변수와 정적 변수를 공유</li>
+<li>이는 여러 스레드가 동일한 변수를 읽고 쓸 수 있음을 의미</li>
+<li>이로 인해 여러 스레드가 동시에 변수에 접근할 경우 동기화 문제가 발생 가능</li>
+</ul>
+</li>
+<li><strong>파일 디스크립터 테이블 (File Descriptor Table)</strong>
+<ul>
+<li>파일 입출력을 위한 파일 디스크립터를 공유</li>
+<li>한 스레드가 파일을 열면 다른 스레드도 이 fd를 사용하여 파일에 접근 가능</li>
+</ul>
+</li>
+<li><strong>프로세스 환경 (프로세스 Environment)</strong>
+<ul>
+<li>프로세스 ID, 사용자 ID, 그룹 ID와 같은 프로세스 관련 정보는 모든 스레드가 공유</li>
+</ul>
+</li>
+</ol>
+<h4 id="스레드간-비공유자원">스레드간 비공유자원</h4>
+<ol>
+<li><strong>스택 (Stack)</strong>
+<ul>
+<li>각 스레드는 고유한 스택을 가짐</li>
+<li>스택은 함수 호출, 로컬 변수, 함수 매개변수 등을 저장하는 데 사용</li>
+<li>스레드마다 독립적인 스택을 가지기 때문에, 하나의 스레드에서 발생한 스택 오버플로우는 다른 스레드에 영향을 미치지 않음</li>
+</ul>
+</li>
+<li><strong>레지스터 (Registers)</strong>
+<ul>
+<li>CPU 레지스터는 스레드마다 고유함</li>
+<li>레지스터에는 프로그램 카운터, 스택 포인터, 일반 목적 레지스터 등이 포함</li>
+<li>context switch 시, 각 스레드의 레지스터 상태를 저장하고 복원</li>
+</ul>
+</li>
+<li><strong>스레드 로컬 저장소</strong>
+<ul>
+<li>각 스레드는 스레드 로컬 변수를 가질 수 있음</li>
+<li>이는 스레드 간에 공유되지 않는 변수로, 스레드마다 독립적인 값을 가잠</li>
+<li>예를 들어, TLS를 사용하여 각 스레드가 자신의 고유한 데이터를 저장할 수 있음</li>
+</ul>
+</li>
+</ol>
+<h4 id="tls란">TLS란?</h4>
+<p>스레드 Local Storage를 의미한다. 즉, 각 스레드가 독립적으로 값을 저장하고 접근할 수 있는 메모리 영역이다. TLS는 스레드 간에 공유되지 않아야 할 데이터, 즉 스레드별로 독립적인 상태 정보를 유지해야 할 때 사용한다. 이 영역는 스레드가 시작될 때 생성되고, 스레드가 종료될 때 해제된다. 멀티스레드 환경에서 데이터의 독립성을 유지하면서도 스레드별 상태 관리를 용이하게 해주며, 이를 통해 스레드는 자신만의 데이터를 안전하게 관리 가능하다.</p>
+<ul>
+<li><strong>TLS</strong>
+<ul>
+<li>위치: TLS는 스택과는 별도의 메모리 영역에 위치</li>
+<li>역할: 각 스레드마다 독립적인 변수를 저장하기 위한 용도로 사용</li>
+<li>관리: 운영체제와 스레드 라이브러리가 관리</li>
+<li>생성과 소멸: 스레드가 생성될 때 할당되고, 스레드가 종료될 때 해제</li>
+</ul>
+</li>
+<li><strong>스택</strong>
+<ul>
+<li>위치: 각 스레드는 자신의 독립적인 스택 영역을 가짐</li>
+<li>역할: 함수 호출, 지역 변수, 함수 매개변수 등을 저장하는 데 사용</li>
+<li>관리: 스레드 자체에 의해 관리되며, 함수 호출 시 스택 프레임이 생성되고, 함수가 반환될 때 스택 프레임이 해제</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="3-3-발생할-수-있는-문제들">3-3. 발생할 수 있는 문제들</h3>
+<h4 id="data-race">Data race</h4>
+<p>두 개 이상의 스레드가 동시에 동일한 메모리 위치를 읽거나 쓸 때 발생하는 문제이며, 우리는 이번 과제에서 이를 방지해야만 한다. 최소 하나의 스레드가 쓰기 작업을 수행하고 있으며, 스레드 간의 실행 순서가 정의되지 않은 경우 발생할 수 있고 Data race는 결국 프로그램의 예측 불가능한 동작을 초래할 수 있다. 따라서 뮤텍스, 세마포어 등의 동기화 메커니즘을 사용하여 스레드 간의 자원 접근을 방지해야한다.</p>
+<h4 id="deadlock">Deadlock</h4>
+<p>두 개 이상의 스레드(또는 프로세스)가 서로 상대방이 점유하고 있는 자원을 기다리며 무한정 대기하는 상태로, 이로 인해 시스템이 멈추게 되고, 어떤 작업도 진행되지 않는 상황이 발생한다. <strong>Deadlock</strong>이 발생하기 위해서는 아래 네 가지 조건이 모두 만족되어야 하는데&hellip; 우리는 이 여러가지 조건 중 n개(아마 과제 조건 상 최대 2개가 가능하지 않을까?)을 파훼하여 <strong>Deadlock</strong> 발생을 피해야한다.</p>
+<ul>
+<li><strong>Deadlock의 조건</strong>
+<ul>
+<li>상호 배제 (Mutual Exclusion)
+<ul>
+<li>자원은 한번에 한 스레드만 사용할 수 있음</li>
+</ul>
+</li>
+<li>점유 대기 (Hold and Wait)
+<ul>
+<li>자원을 점유한 상태에서 다른 자원을 기다림</li>
+</ul>
+</li>
+<li>비선점 (No Preemption)
+<ul>
+<li>스레드가 자원을 강제로 빼앗기지 않으며, 스레드가 자원을 자발적으로 해제할 때까지 기다려야 함</li>
+</ul>
+</li>
+<li>순환 대기 (Circular Wait)
+<ul>
+<li>스레드들이 순환 형태로 자원을 기다림</li>
+<li>예를 들어, 스레드 A가 자원 1을 점유하고 자원 2를 기다리며, 스레드 B는 자원 2를 점유하고 자원 1을 기다리는 상황</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="3-4-mutex와-semaphore">3-4. Mutex와 Semaphore</h3>
+<p>위의 문제들을 방지하기 위해서 우리는 한번에 한놈씩, 접근을 제한해야한다.</p>
+<h4 id="mutex">Mutex</h4>
+<p>상호 배제를 위한 도구로, 오직 하나의 스레드만 특정 코드 섹션이나 자원에 접근할 수 있도록 보장한다. <code>Mutex</code>는 <strong>잠금</strong>과 <strong>해제</strong> 동작을 통해 이를 구현한다.</p>
+<p><em>화장실 문에는 자물쇠(뮤텍스)가 달려 있습니다. 어떤 사람이 화장실을 사용하려고 하면 자물쇠를 잠급니다. 다른 사람은 화장실이 잠겨있으므로 기다려야 합니다. 화장실을 사용한 사람이 나가면 자물쇠를 풀고 다음 사람이 들어갈 수 있습니다. 여기서 뮤텍스는 단 하나의 스레드(사람)만이 화장실(자원)에 접근하도록 보장합니다.</em></p>
+<h4 id="semaphore">Semaphore</h4>
+<p>여러 스레드(또는 프로세스)가 공유 자원에 접근하는 것을 조절하기 위한 동기화 도구이다. 내부적으로 카운터를 사용하며, 이 카운터 값에 따라 스레드들의 자원 접근 여부가 결정된다.</p>
+<p><em>당신이 카페에 있습니다. 이 카페에는 3개의 테이블이 있습니다. 카페의 문지기(세마포어)는 테이블이 다 차지 않는 한 사람들을 들여보냅니다. 만약 테이블이 다 차면 문지기는 더 이상 사람들을 들여보내지 않고 기다리게 합니다. 손님 중 한 명이 나가면 문지기는 대기 중인 손님 중 한 명을 들여보냅니다. 여기서 카운터 값은 현재 비어있는 테이블의 수입니다.</em></p>
+<h4 id="mutex-vs-semaphore">Mutex vs Semaphore</h4>
+<p><code>Mutex</code>는 결국 단일 스레드의 영역을 전개함으로, 크기가 1인 <code>Semaphore</code>와 같지 않을까?</p>
+<ul>
+<li><strong>목적</strong>
+<ul>
+<li><code>Mutex</code>: 오로지 하나의 스레드만이 자원에 접근해야 할 때 사용</li>
+<li><code>Semaphore</code>: 여러 스레드가 접근할 수 있지만 최대 한도를 정하고 싶을 때 사용하며, 제한된 수의 자원을 관리할 때 사용</li>
+</ul>
+</li>
+<li><strong>동작 방식</strong>
+<ul>
+<li><code>Mutex</code>: 잠금과 해제를 사용해 오직 하나의  스레드만 자원에 접근할 수 있도록 동작</li>
+<li><code>Semaphore</code>: 카운터를 사용하여 스레드의 접근을 조절하며, 카운터 값이 0이 되면 스레드들은 대기</li>
+</ul>
+</li>
+<li><strong>잠금과 해제</strong>
+<ul>
+<li><code>Mutex</code>: 단 하나의 잠금과 해제가 가능</li>
+<li><code>Semaphore</code>: 여러 개의 잠금과 해제가 가능</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="4-mandatory">4. Mandatory</h2>
+<hr>
+<h3 id="custom-id">4-1. pthread_mutex_lock과 철학자 문제의 동기화</h3>
+<p>스레드 프로그래밍에서 중요한 부분 중 하나는 자원에 언제 lock을 걸고, 언제 unlock할지를 결정하는 것이다. 여기서 lock이란 특정 스레드가 특정 자원을 독점적으로 점유하고 있음을 의미하며, 다른 스레드들은 해당 자원에 접근하지 못하고 lock이 풀릴 때까지 기다리게 된다.</p>
+<p><code>자원</code> 이라는 표현이 추상적이긴 하지만, 실제로는 단순한 메시지 출력(log 출력) 역시 동기화가 필요한 자원이 된다. 예를 들어, 여러 스레드(철학자)가 동시에 자신의 행동을 출력할 때, 만약 서로 동기화를 하지 않고 마음대로 메시지를 출력한다면, 출력 결과가 뒤섞이게 되어 시간 순서를 제대로 알 수 없게 된다. 따라서 메시지 출력에도 mutex lock을 통해 동기화를 하는 것이 중요하다.</p>
+<p>뿐만 아니라, 철학자 문제에서 철학자들이 공유하는 포크와 같은 자원도 반드시 mutex lock을 걸어야 한다. 철학자 문제에서 포크는 철학자들 사이에 하나씩 놓여 있는 공유 자원이기 때문에, 인접한 두 철학자가 동시에 같은 포크를 잡으려 할 경우 data race가 발생하게 된다.</p>
+<p><em>만약 각 포크에 락 없이 접근한다면 어떤 문제가 발생할까?</em></p>
+<ul>
+<li><strong>데이터 레이스(Data Race)</strong>: 두 스레드가 하나의 공유 자원을 동기화 없이 동시에 접근할 때 발생하는 문제로, 자원의 상태가 예측할 수 없는 방식으로 변할 수 있다.</li>
+<li><strong>데드락(Deadlock)</strong>: 두 개 이상의 스레드가 서로 자원을 기다리며 무한히 대기 상태에 빠지는 현상이다. 철학자 문제의 경우 모든 철학자가 동시에 왼쪽 포크를 잡고 오른쪽 포크를 기다린다면, 모든 철학자는 오른쪽 포크가 사용 가능해지기를 영원히 기다리게 되어 무한히 멈춘 상태가 된다.</li>
+</ul>
+<p><em>이러한 문제들을 해결하기 위한 일반적인 방법은 다음과 같다</em></p>
+<ol>
+<li><strong>포크를 mutex로 보호하기</strong>: 각 포크를 mutex로 보호하여 한 번에 한 명의 철학자만 포크를 점유할 수 있게 한다.</li>
+<li><strong>포크 잡는 순서 통일하기</strong>: 모든 철학자가 항상 같은 방향(예: 먼저 왼쪽 포크, 그다음 오른쪽 포크)으로 포크를 잡도록 강제하면 데드락의 위험을 줄일 수 있다.</li>
+<li><strong>홀짝 철학자 전략</strong>: 홀수 번째 철학자와 짝수 번째 철학자의 포크 잡는 순서를 다르게 하면 데드락이 발생하는 상황을 피할 수 있다.</li>
+</ol>
+<h3 id="4-2-철학자의-생사-조건">4-2. 철학자의 생사 조건</h3>
+<p>그렇다면 정확히 철학자의 생사 조건은 어떻게 될까? 아무리 노력해도, 어떤 철학자는 스파게티를 먹지 못해 죽을 수 있다. 죽을 수 밖에 없는 상황도 있을 것이다. 사용자가 논리적으로 철학자 시뮬레이션이 불가능한 값을 프로그램에 입력하면 철학자 시뮬레이션은 특정 시점에 종료되는 것이 정상이다. 줄글로 작성했으니 다시한번 차근 차근 <strong>인자부터 확인해보자.</strong></p>
+<p><strong>현재 우리는 이런 인자들을 받는다</strong>
+<img src="https://i.imgur.com/2TUoAKS.png" width="600"></p>
+<p><strong>현재 시뮬레이션 상황는 이렇다</strong>
+<img src="https://i.imgur.com/DBDRFHb.png" width="600"></p>
+<p><strong>이때, 철학자의 수가 짝수인 경우는&hellip;</strong><br>
+최소한의 조건이 이렇다. -&gt; <code>lifetime &gt;= (먹는 시간 * 2)</code></p>
+<img src="https://i.imgur.com/T5Ga9yk.png" width="700">
+<p><strong>왜 lifetime이 (먹는 시간 * 2) 보다 커야 할까?</strong><br>
+철학자들을 짝수/홀수로 나누어 번갈아 식사하게 하면, 동시에 포크 충돌이 줄어든다. 예를 들어 짝수 철학자들이 먼저, 그다음 홀수 철학자들이 식사한다고 하자. 이렇게 되면 처음 식사한 철학자는 다음 식사까지 최소 두 번의 식사 차례를 기다려야 한다. 즉, <code>먹는 시간 × 2</code>만큼 기다려야 다시 식사 기회가 온다.</p>
+<p>그런데 철학자는 일정 시간 안에 식사하지 않으면 죽는다. 따라서 <strong>죽기까지의 시간(lifetime)</strong> 은 최소한 <code>먹는 시간 × 2</code> 보다 커야 한다. 또한, 어떤 철학자가 식사하려면 자신과 포크를 공유하는 이웃 철학자가 식사를 마쳐야 하므로, 실제로는 조금 더 긴 시간 여유가 필요할 수도 있다.</p>
+<p>결론적으로, 철학자가 굶어죽지 않으려면 <code>lifetime ≥ 먹는 시간 × 2 + 여유 시간</code> 이어야 한다.</p>
+<br>
+<p><strong>그렇다면 철학자 수가 홀수인 경우는?</strong><br>
+최소한의 조건이 이렇다. -&gt; <code>lifetime &gt;= (먹는 시간 * 3)</code></p>
+<img src="https://i.imgur.com/BrIiuw2.png" width="700">
+<p><strong>왜 lifetime이 (먹는 시간 * 3) 보다 커야 할까?</strong><br>
+철학자 수가 홀수일 경우, 동시에 식사할 수 있는 철학자 수는 최대 절반(N/2)이므로, 항상 한 명 이상은 대기해야 하는 상황이 발생한다. 예를 들어 5명의 철학자가 있다면, 한 번에 최대 2명만 식사할 수 있고 1명은 반드시 대기해야 한다.</p>
+<p>이 구조에서 어떤 철학자는 가장 늦게 식사 기회를 얻게 된다. 예를 들어, 한 철학자가 처음 식사 차례를 놓쳤다고 하면, 이웃 철학자가 식사하고, 다시 다른 철학자가 식사하고, 그제서야 자신의 차례가 돌아올 수 있다. 즉, 먹는 시간 × 3 정도의 시간을 기다려야 첫 식사를 할 수 있는 최악의 경우가 생길 수 있다.</p>
+<p>그런데 철학자는 일정 시간 안에 식사를 하지 않으면 죽는다. 따라서 죽기까지의 시간(lifetime) 은 최소한 먹는 시간 × 3보다 커야 한다. 여기에 포크 충돌이나 시스템 지연 등의 요소까지 고려하면, 실제로는 조금 더 긴 여유 시간이 필요할 수 있다.</p>
+<p>결론적으로, 철학자가 단 한 번이라도 식사할 기회를 얻고 생존하려면 lifetime ≥ 먹는 시간 × 3 + 여유 시간 조건이 반드시 충족되어야 한다.</p>
+<img src="https://i.imgur.com/LVq7gqE.png" width="700">
+<br>
+<br>
+<h3 id="4-3-코드">4-3. 코드</h3>
+<h4 id="structs">structs</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* 포크·로그 등 공용 뮤텍스를 한데 모아 관리 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> s_mutex
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pthread_mutex_t</span> msg;            <span style="color:#75715e">// 표준 출력 동기화 (로그가 뒤섞이지 않도록)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">pthread_mutex_t</span> ready;          <span style="color:#75715e">// 스레드 동시 출발을 위한 대기
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">pthread_mutex_t</span> system_status;  <span style="color:#75715e">// 시뮬레이션 ON/OFF 플래그 보호
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">pthread_mutex_t</span> <span style="color:#f92672">*</span>forks;         <span style="color:#75715e">// 포크마다 하나씩 할당된 뮤텍스 배열
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">pthread_mutex_t</span> <span style="color:#f92672">*</span>last_meal;     <span style="color:#75715e">// 각 철학자의 최근 식사시각 보호
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">pthread_mutex_t</span> <span style="color:#f92672">*</span>eaten_cnt;     <span style="color:#75715e">// 각 철학자의 식사 횟수 보호
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}   t_mutex;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* 철학자 한 명에 대한 런타임 정보 */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> s_philo
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span>         id;                 <span style="color:#75715e">// 1 ~ N
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span>         eaten_cnt;          <span style="color:#75715e">// 현재까지 먹은 횟수
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span>         num_philo;          <span style="color:#75715e">// 총 철학자 수(전역 복붙 대신 캐싱)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span>         must_eat_cnt;       <span style="color:#75715e">// 종료 조건(선택 인자)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span>         left_fork;          <span style="color:#75715e">// 왼쪽 포크의 인덱스
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span>         right_fork;         <span style="color:#75715e">// 오른쪽 포크의 인덱스
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>   time_of_last_meal;  <span style="color:#75715e">// 마지막 식사 시작 시각(ms)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>   time_to_delay;      <span style="color:#75715e">// 짝수/홀수 딜레이 조정용
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">pthread_t</span>   <span style="color:#66d9ef">thread</span>;             <span style="color:#75715e">// 자신의 POSIX thread
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">struct</span> s_data <span style="color:#f92672">*</span>data;            <span style="color:#75715e">// 전역 컨텍스트 포인터
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}   t_philo;
+</span></span></code></pre></div><p>포크·식사시간·횟수는 <em>철학자 수만큼</em> 존재하므로, 뮤텍스 또한 배열로 만들어 <code>idx = id % n</code> 로 접근할 수 있게 했다.</p>
+<h4 id="main">main</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> ac, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>av)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    t_data <span style="color:#f92672">*</span>data <span style="color:#f92672">=</span> <span style="color:#a6e22e">malloc</span>(<span style="color:#66d9ef">sizeof</span>(t_data));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>data)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">memset</span>(data, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(t_data));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">init_all</span>(ac, av, data) <span style="color:#f92672">!=</span> TRUE)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">ft_error_handler</span>(data));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">simulation</span>(data) <span style="color:#f92672">!=</span> TRUE)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">ft_error_handler</span>(data));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ft_free_all</span>(data);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>우선 인자를 파싱하고 구조체를 채운뒤, 뮤텍스와 철학자 배열, 포크 배열을 동적 할당·초기화한다. 그 이후 <code>start_time</code>을 기록해 기준 시간을 맞추고, 철학자 스레딩을 시작한다.</p>
+<h4 id="simulation">simulation</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">simulation</span>(t_data <span style="color:#f92672">*</span>data)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    data<span style="color:#f92672">-&gt;</span>start_time <span style="color:#f92672">=</span> <span style="color:#a6e22e">get_current_time</span>();       <span style="color:#75715e">// 기준 시각 고정
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (data<span style="color:#f92672">-&gt;</span>arg.min_eat_cnt <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)              <span style="color:#75715e">// 0회 식사 조건이면 바로 성공 종료
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> (TRUE);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (data<span style="color:#f92672">-&gt;</span>arg.num_philo <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)                <span style="color:#75715e">// 포크 한 개 → 필연적 사망
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">one_philo</span>(data);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">run_philo</span>(data) <span style="color:#f92672">!=</span> TRUE)             <span style="color:#75715e">// 철학자 스레드 생성
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> (FALSE);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">run_check</span>(data) <span style="color:#f92672">!=</span> TRUE)             <span style="color:#75715e">// death 감시/식사횟수 감시 스레드
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> (FALSE);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">join_philo</span>(data) <span style="color:#f92672">!=</span> TRUE)            <span style="color:#75715e">// 모든 스레드 종료 대기
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> (FALSE);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (TRUE);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>철학자가 1명일 경우 포크가 하나이므로 곧바로 죽어야 함으로 분기를 두었고, 그외에는 <code>run_philo</code>(철학자 스레드 생성) → <code>run_check</code>(감시 스레드) → <code>join_philo</code>(정리) 순으로 진행된다. 중간에 오류가 발생하면 <code>ft_error_handler</code> 함수를 통해 자원 해제 후 종료된다.</p>
+<h4 id="run_philo">run_philo</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">run_philo</span>(t_data <span style="color:#f92672">*</span>data)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> data<span style="color:#f92672">-&gt;</span>arg.num_philo; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">pthread_create</span>(<span style="color:#f92672">&amp;</span>data<span style="color:#f92672">-&gt;</span>philo[i].<span style="color:#66d9ef">thread</span>, NULL,
+</span></span><span style="display:flex;"><span>                           philo_routine, <span style="color:#f92672">&amp;</span>data<span style="color:#f92672">-&gt;</span>philo[i]) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> (FALSE);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (TRUE);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>반복문 안에서 실패 시 곧바로 <code>FALSE</code>를 반환 → 상위에서 모든 뮤텍스·메모리 해제한다. 또한 <code>pthread_detach</code> 대신 <code>pthread_join</code>을 사용해 스레드 내부 메모리 누수를 방지하고자 했다.</p>
+<h4 id="philo_routine">philo_routine</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">philo_routine</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>arg)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    t_philo <span style="color:#f92672">*</span>philo <span style="color:#f92672">=</span> (t_philo <span style="color:#f92672">*</span>)arg;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">update_last_meal_time</span>(philo);   <span style="color:#75715e">// 첫 식사 기준값 기록
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">philo_ready</span>(philo);             <span style="color:#75715e">// start 라인까지 대기(barrier)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">philo_delay</span>(philo);             <span style="color:#75715e">// 짝수/홀수 오버랩 최소화
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (TRUE)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">philo_eat</span>(philo)   <span style="color:#f92672">!=</span> TRUE) <span style="color:#66d9ef">return</span> (NULL); <span style="color:#75715e">// 포크 두 개 잠금 후 식사
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">check_system_status</span>(philo<span style="color:#f92672">-&gt;</span>data) <span style="color:#f92672">!=</span> ON)    <span style="color:#66d9ef">return</span> (NULL);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">philo_sleep</span>(philo) <span style="color:#f92672">!=</span> TRUE) <span style="color:#66d9ef">return</span> (NULL); <span style="color:#75715e">// 포크 해제 후 수면
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">check_system_status</span>(philo<span style="color:#f92672">-&gt;</span>data) <span style="color:#f92672">!=</span> ON)    <span style="color:#66d9ef">return</span> (NULL);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">print_status</span>(philo, <span style="color:#e6db74">&#34;is thinking&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">usleep</span>(<span style="color:#ae81ff">50</span>);                 <span style="color:#75715e">// 짧은 think → 컨텍스트 스위치 유도
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (NULL);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>eat:</strong> 두 포크(좌 → 우) 잠금 → 식사시간 대기</li>
+<li><strong>sleep:</strong> 포크 해제 후 <code>usleep(time_to_sleep)</code></li>
+<li><strong>think:</strong> 상태 로그만 출력</li>
+</ul>
+<p>홀수 ID 철학자에게 <code>time_to_eat / 2</code>만큼 선행 딜레이를 주어 모두 동시에 포크를 집으려다 교착 상태가 일어날 확률을 낮춘다. 여러가지 방법을 사요해보자</p>
+<br>
+<br>
+<h2 id="5-reference">5. Reference</h2>
+<hr>
+<ul>
+<li><a href="https://man7.org/linux/man-pages/man2/read.2.html">https://man7.org/linux/man-pages/man2/read.2.html</a></li>
+<li><a href="https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html">https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html</a></li>
+<li><a href="https://code-lab1.tistory.com/65">https://code-lab1.tistory.com/65</a></li>
+<li><a href="https://thebook.io/080367/0021/">https://thebook.io/080367/0021/</a></li>
+</ul>
+<br>
+<br>
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

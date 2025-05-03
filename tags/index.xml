@@ -23,9 +23,16 @@
       <description>&lt;h4 id=&#34;-tagsos&#34;&gt;🏷️ /tags/os&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
+      <title>42seoul</title>
+      <link>https://elecbrandy.github.io/tags/42seoul/</link>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/42seoul/</guid>
+      <description>&lt;h4 id=&#34;-tags42seoul&#34;&gt;🏷️ /tags/42seoul&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
       <title>c</title>
       <link>https://elecbrandy.github.io/tags/c/</link>
-      <pubDate>Mon, 16 Sep 2024 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/c/</guid>
       <description>&lt;h4 id=&#34;-tagsc&#34;&gt;🏷️ /tags/c&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
     </item>
@@ -35,13 +42,6 @@
       <pubDate>Mon, 16 Sep 2024 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/cs101/</guid>
       <description>&lt;h4 id=&#34;-tagscs101&#34;&gt;🏷️ /tags/cs101&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-    <item>
-      <title>42seoul</title>
-      <link>https://elecbrandy.github.io/tags/42seoul/</link>
-      <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/42seoul/</guid>
-      <description></description>
     </item>
     <item>
       <title>linux</title>
@@ -72,46 +72,11 @@
       <description>&lt;h4 id=&#34;-tagsuiux&#34;&gt;🏷️ /tags/ui.ux&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
-      <title>42seoul</title>
-      <link>https://elecbrandy.github.io/tags/42cursus/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/42cursus/</guid>
-      <description>&lt;h4 id=&#34;-tags42seoul&#34;&gt;🏷️ /tags/42seoul&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-    <item>
-      <title>algorithm</title>
-      <link>https://elecbrandy.github.io/tags/algorithm/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/algorithm/</guid>
-      <description>&lt;h4 id=&#34;-tagsalgorithm&#34;&gt;🏷️ /tags/algorithm&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-    <item>
-      <title>c&#43;&#43;</title>
-      <link>https://elecbrandy.github.io/tags/c&#43;&#43;/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/c&#43;&#43;/</guid>
-      <description>&lt;h4 id=&#34;-tagsc&#34;&gt;🏷️ /tags/c++&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-    <item>
-      <title>dataStructure</title>
-      <link>https://elecbrandy.github.io/tags/datastructure/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/datastructure/</guid>
-      <description>&lt;h4 id=&#34;-tagsdatastructure&#34;&gt;🏷️ /tags/dataStructure&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-    <item>
       <title>ebook</title>
       <link>https://elecbrandy.github.io/tags/ebook/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/ebook/</guid>
       <description>&lt;h4 id=&#34;-tagsebook&#34;&gt;🏷️ /tags/ebook&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-    <item>
-      <title>stat</title>
-      <link>https://elecbrandy.github.io/tags/stat/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/stat/</guid>
-      <description>&lt;h4 id=&#34;-tagsstat&#34;&gt;🏷️ /tags/stat&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
     </item>
   </channel>
 </rss>
