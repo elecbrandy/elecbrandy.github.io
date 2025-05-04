@@ -5,7 +5,7 @@ featured_image = "https://i.imgur.com/SdY8X4J.png"
 tags = ['c', '42seoul']
 +++
 
-{{<series title="🪐 /42seoul" series="42seoul">}}
+{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
 
 <br>
 
@@ -202,7 +202,31 @@ int	main(int ac, char **av)
 <br>
 <br>
 
-## 5. Reference
+## 5. Evaluation
+____
+
+_2025.05 코드 리뷰 추가 삽입_
+
+**try1 - review 1**  
+<img src="https://i.imgur.com/AkffVv9.png" width="300">  
+
+**try2 - review 1**  
+<img src="https://i.imgur.com/O50kTFn.png" width="300">  
+
+**try2 - reivew 2**  
+<img src="https://i.imgur.com/hUdBBaF.png" width="300">
+
+**try2 - review 3**  
+<img src="https://i.imgur.com/bjozagR.png" width="300">
+
+스택 아닌 스택을 활용해 정렬을 하는 과제. 첫번째 try에서 INT_MIN 값이 들어왔을 때 실수가 있어 fail을 받았다. 참 이 42에서 평가를 받다보면 평가자 분들이 평가하러 와서는 다양한 값들을 넣어보시는 듯 했다. 물론 끝나고 돌이켜보니 정말 좋은 방어기제를 형성하게 된 것 같다. 엣지케이스를, 사용자를, 항상 의심하자.  
+
+풀이 방법이 많은 과제다 보니 평가자 분들은 어떻게 했는지도 구경할 수 있었다. 그 자리에서 클론받아서 소스를 보여주시며 설명해주시기도 했다. 
+
+<br>
+<br>
+
+## 6. Reference
 ____
 - [wiki] https://buly.kr/6tZknhQ
 - [tistory] https://buly.kr/CshW9Qu

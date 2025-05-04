@@ -5,7 +5,7 @@ featured_image = "http://t1.daumcdn.net/cfile/126C5A10B091DEEF0B"
 tags = ['C', '42seoul']
 +++
 
-{{<series title="🪐 /42seoul" series="42seoul">}}
+{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
 
 <br>
 
@@ -240,8 +240,33 @@ ____
   - `"unset: 'key': not a valid identifier"` 에러 출력
 
 <br>
+<br>
 
-## 5. Reference
+## 5. Evaluation
+____
+
+_2025.05 코드 리뷰 추가 삽입_
+
+**try1 - review 1**  
+<img src="https://i.imgur.com/zYkvrkx.png" width="300">  
+
+**try1 - reivew 2**  
+<img src="https://i.imgur.com/RY1253k.png" width="300">
+
+**try1 - review 3**  
+<img src="https://i.imgur.com/rGTPwoh.png" width="300">
+
+과제 크기가 크다 보니 평가 한번 받는데 기본 1시간 이상 걸렸던 것 같다. 해당 과제에서도 수많은 leak과 세그먼트 오류들을 마주했다. 특히 파싱 담당하신 팀원분이 상당히 고생이 많으셨다.  
+
+평가 중 특정 상황에서 abort 가 발생하는 문제가 발생했다. 아마 그 시점부터 1시간 동안 gdb를 켜서 평가자분과 함께 한줄 한줄 따라갔던 것으로 기억한다. 다만 평가지에 readline 내부의 문제점이 있을 수도 있다고 적혀있었고, 유일하게 의심스러운 부분이 readline 쪽에서 발생했기 때문에 평가를 마쳤다.  
+
+팀 과제이기도 했고, 함수와 파일이 정말 많아지기도 해서 이름들이 좀 헷갈리는 경우가 많았다. 그래서 중간 지점에 제미나이로 함수 이름을 추천 받아 반영했다. 가독성이 나쁘지 않았다.  
+
+<br>
+<br>
+
+
+## 6. Reference
 ____
 - https://www.freebsd.org
 - https://man7.org/linux/man-pages/man2/pipe.2.html

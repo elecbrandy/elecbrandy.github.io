@@ -5,7 +5,7 @@ featured_image = "https://i.imgur.com/VmsQmlo.png"
 tags = ['C', '42seoul']
 +++
 
-{{<series title="🪐 /42seoul" series="42seoul">}}
+{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
 
 <br>
 
@@ -147,7 +147,31 @@ minilibx 사용법은 42 슬랙이나 구글에 검색하면 각각의 함수 �
 <br>
 <br>
 
-## 5. Reference
+## 5. Evaluation
+____
+
+_2025.05 코드 리뷰 추가 삽입_
+
+**try1 - review 1**  
+<img src="https://i.imgur.com/iht1o8c.png" width="300">  
+
+**try2 - review 1**  
+<img src="https://i.imgur.com/miAmnXD.png" width="300">  
+
+**try2 - reivew 2**  
+<img src="https://i.imgur.com/CjtS9K2.png" width="300">
+
+**try2 - review 3**  
+<img src="https://i.imgur.com/CCriByT.png" width="300">
+
+첫번째 그래픽 과제였던 만큼, 라이브러리 사용법부터 실제 투영까지 많이 힘들었던 기억이 있다. 첫번째 try에서 1 * 1 맵에서 화면이 나오지 않는 버그, 빈 파일 투입시 세그먼트 오류 등등 을 확인하고 fail을 받았다. 다행히 평가자분이 코드 한줄 한줄을 따라가면서 어디서 문제가 발생한 것 같은지 확률이 높은 지점을 알려주셨다.  
+
+가장 고민했던 부분은 역시나 화면의 크기에 따라 알맞은 사이즈로 출력되도록 하는 것이었다. m1 노트북과 intel 클러스터 맥에서 동작이 다르게 나오기도 했으나... 두번째 try에서 다행히 오류를 고치고 통과할 수 있었다.  
+
+<br>
+<br>
+
+## 6. Reference
 _____
 - https://en.wikipedia.org/wiki/Isometric_projection
 - https://harm-smits.github.io/42docs/libs/minilibx

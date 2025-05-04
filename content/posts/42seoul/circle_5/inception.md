@@ -5,7 +5,7 @@ featured_image = "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/07
 tags = ['docker', '42seoul']
 +++
 
-{{<series title="🪐 /42seoul" series="42seoul">}}
+{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
 
 <br>
 
@@ -485,8 +485,30 @@ ENTRYPOINT ["/usr/bin/dumb-init", "--", "/usr/local/bin/entrypoint.sh"]
 ```
 
 <br>
+<br>
 
-## 5. Reference
+## 5. Evaluation
+____
+
+_2025.05 코드 리뷰 추가 삽입_
+
+**try1 - review 1**  
+<img src="https://i.imgur.com/uTokXfz.png" width="300">  
+
+**try1 - reivew 2**  
+<img src="https://i.imgur.com/7W1TaZP.png" width="300">
+
+**try1 - review 3**  
+<img src="https://i.imgur.com/oPy7Nq8.png" width="300">
+
+가장 아쉬웠던 과제로 Dockerfile 관리이 특히 아쉬웠다. 다시 열어보니 구성이 지나치게 복잡하고 난잡했다. 평가에서도 “정말 필요한 기능인가?”, “굳이 이렇게까지 해야 하나?”라는 지적을 받았지만, 명확한 답을 내놓지 못했다. 예를 들어, 컨테이너를 `restart: always`로 돌리면서도 별도로 `HEALTHCHECK`를 넣은 부분은 “어차피 재시작할 텐데 필요할까?”라는 의문을 남겼다.  
+
+이 경험을 바탕으로 다음 프로젝트에서는 Dockerfile을 최대한 간결하게 유지하려 한다. 불필요한 기능은 과감히 제거하고, 베이스 이미지는 가벼운 Alpine으로 통일해 깔끔한 구성을 목표로 하고 있다.
+
+<br>
+<br>
+
+## 6. Reference
 ____
 - https://docs.docker.com
 - https://hub.docker.com/_/nginx

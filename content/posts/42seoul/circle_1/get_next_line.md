@@ -5,7 +5,7 @@ featured_image = "http://t1.daumcdn.net/cfile/15110210A8445BF80D"
 tags = ['c', '42seoul']
 +++
 
-{{<series title="🪐 /42seoul" series="42seoul">}}
+{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
 
 <br>
 
@@ -173,7 +173,28 @@ char	*get_next_line(int fd)
 <br>
 <br>
 
-## 6. Reference
+## 6. Evaluation
+____
+
+_2025.05 코드 리뷰 추가 삽입_
+
+**try1 - review 1**  
+<img src="https://i.imgur.com/nKkgF95.png" width="300">  
+
+**try1 - reivew 2**  
+<img src="https://i.imgur.com/eDc5qup.png" width="300">
+
+**try1 - review 3**  
+<img src="https://i.imgur.com/IKD62Kw.png" width="300">
+
+나는 파일 하나 열어서 개행 기준으로 한줄 잘라오는 프로그램을 만드는 것이 이렇게 어려운 줄 몰랐다. 수많은 leak과 세그먼트 오류를 지나고 비로소 겨우 완성할 수 있었다.  
+
+설명의 용이를 위해 figma로 도식을 그려서 설명을 했고, 나름 효과적이었다. 다만 로직 중 무조건 작동하는 분기가 있었던 것 같은데.. 그것과 관련해 이야기를 나누었던 것이 기억난다.
+
+<br>
+<br>
+
+## 7. Reference
 ____
 - https://man7.org/linux/man-pages/man2/read.2.html
 - https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html

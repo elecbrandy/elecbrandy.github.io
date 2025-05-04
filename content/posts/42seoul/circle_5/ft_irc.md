@@ -2,10 +2,10 @@
 title = '[42seoul] ft_irc'
 date = '2024-11-20'
 featured_image = "https://www.shutterstock.com/ko/blog/wp-content/uploads/sites/17/2020/09/showing-text-banner.jpg"
-tags = ['c', 'c++', '42seoul']
+tags = ['c', '42seoul']
 +++
 
-{{<series title="🪐 /42seoul" series="42seoul">}}
+{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
 
 <br>
 
@@ -559,7 +559,28 @@ _fdsToRemove.clear();
 <br>
 <br>
 
-## 5. Reference
+## 5. Evaluation
+____
+
+_2025.05 코드 리뷰 추가 삽입_
+
+**try1 - review 1**  
+<img src="https://i.imgur.com/3d8URFb.png" width="300">  
+
+**try1 - reivew 2**  
+<img src="https://i.imgur.com/CBmqyFf.png" width="300">
+
+**try1 - review 3**  
+<img src="https://i.imgur.com/UkmytcD.png" width="300">
+
+우선 전체적으로 어떤 과제인지 설명을 하고, 각자 맡은 부분에 대해서 따로 설명했다. 서버 구현 방법이 사람들 마다 조금씩 달랐고, 특히 서버에서 로그를 출력하는 것이 과제 지침 상 맞는 것인지 토의했던 기억이 난다. 또한 비동기-논블로킹 방식에 대해서 설명하고 어떻게 구현했는지 코드 리뷰 했다.  
+
+아쉽게 quit 명령어 동작에서 약간의 실수가 있어 점수가 조금 깎였다. 채팅방 이탈 시 문제였는데, 나중에 확인해보니 간단하게 고칠 수 있는 부분이라 좀 아쉬웠다.  
+
+<br>
+<br>
+
+## 6. Reference
 ____
 - https://datatracker.ietf.org/doc/html/rfc1459
 - https://www.rfc-editor.org/rfc/rfc2812

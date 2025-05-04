@@ -2,10 +2,10 @@
 title = '[42seoul] born2beroot'
 date = 2024-01-18
 featured_image = "http://t1.daumcdn.net/cfile/14492610B091CC6254"
-tags = ['linux', '42seoul']
+tags = ['docker', '42seoul']
 +++
 
-{{<series title="🪐 /42seoul" series="42seoul">}}
+{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
 
 <br>
 
@@ -346,3 +346,33 @@ printf " cmd\n"
 
 <br>
 <br>
+
+## 3. Evaluation
+____
+
+_2025.05 코드 리뷰 추가 삽입_
+
+**try1 - review 1**  
+<img src="https://i.imgur.com/3eVQVwt.png" width="300">  
+
+**try2 - review 1**  
+<img src="https://i.imgur.com/O6hFrz9.png" width="300">  
+
+**try2 - reivew 2**  
+<img src="https://i.imgur.com/6R0r7t0.png" width="300">
+
+**try2 - review 3**  
+<img src="https://i.imgur.com/bvaCct2.png" width="300">
+
+태어나서 처음으로 가상머신, 그리고 그 위에 도커를 올려봤던 과제. 첫번째 try에서는 그 작동법도 미숙했고, 마지막 평가 항목에서 스크립트를 잘못짜서 fail을 받았다.  
+
+해당 부분을 수정하고, 명령어나 figma 도식 등을 좀 더 깔끔하게 정리했다. 다행히 2차 try에서는 통과할 수 있었다. 평가 중 부트로더의 작동에 대해서 이야기를 좀 나누었는데, 아쉽게 둘다 해당 부분은 지식이 깊지 않기도 했고 마침 주변에 더 물어볼만한 사람이 없어서 마무리 했다.
+
+<br>
+<br>
+
+## 4. Reference
+____
+- https://www.debian.org
+- https://greencloud33.tistory.com/41
+- http://forensic-proof.com/archives/439

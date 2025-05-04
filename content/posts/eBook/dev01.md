@@ -6,7 +6,7 @@ tags = ['docker', 'spring', 'react', 'mariadb']
 draft = true
 +++
 
-{{<series title="🪐 /ebook" series="ebook">}}
+{{<series title="📚 /ebook" series="ebook">}}
 
 <br>
 

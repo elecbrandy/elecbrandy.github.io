@@ -5,7 +5,7 @@ featured_image = "https://i.imgur.com/TqbaZ79.png"
 tags = ['c', '42seoul']
 +++
 
-{{<series title="🪐 /42seoul" series="42seoul">}}
+{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
 
 <br>
 
@@ -281,6 +281,25 @@ Bonus 부분에서는 다중 파이프를 구현해야한다. 두가지 선택�
 <img src="https://i.imgur.com/c1jOzry.png" width="600">
 
 최종적으로 자식 프로세스는 자신이 읽어야할 파이프의 위치, 써야할 파이프의 위치를 모두 알고 있는 상태에서 작동하며, 각각의 자식 프로세스는 **병렬**로 작동한다는 점!
+
+<br>
+<br>
+
+## 5. Evaluation
+____
+
+_2025.05 코드 리뷰 추가 삽입_
+
+**try1 - review 1**  
+<img src="https://i.imgur.com/n5ixBE5.png" width="300">  
+
+**try1 - reivew 2**  
+<img src="https://i.imgur.com/HJlag6V.png" width="300">
+
+**try1 - review 3**  
+<img src="https://i.imgur.com/GchDQfy.png" width="300">
+
+처음에는 내 구조도 파이프 갯수만큼 동적할당으로 많이 만들었는데, 너무 그렇게 하고 싶지 않았다... 게다가 이후 과제에 이 pipex의 로직을 발전시켜 사용하는 과제도 존재했다. 따라서 최대한 깔끔하게 만들고 넘어가고 싶어서 주변 사람들을 붙잡고 fd를 재활용하는 방법을 물어봤던 기억이 난다.  
 
 <br>
 <br>

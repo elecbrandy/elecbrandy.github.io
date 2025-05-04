@@ -6,7 +6,7 @@ tags = ['os', 'cs']
 draft = true
 +++
 
-{{<series title="🪐 /2025 CS STUDY" series="2025cs">}}
+{{<series title="📚 /2025 CS STUDY" series="2025cs">}}
 
 <br>
 

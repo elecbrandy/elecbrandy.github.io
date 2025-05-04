@@ -3,6 +3,7 @@ title = 'LVM'
 date = 2023-12-20
 featured_image = "https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20160126_34%2F1453775723247oLSqM_JPEG%2Fmovie_image.jpg"
 tags = ['os', 'linux']
+draft = true
 +++
 
 <br>

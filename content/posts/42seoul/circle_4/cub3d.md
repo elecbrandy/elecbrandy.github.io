@@ -5,7 +5,7 @@ featured_image = "https://upload.wikimedia.org/wikipedia/en/d/de/Doom_ingame_1.p
 tags = ['C', '42seoul']
 +++
 
-{{<series title="🪐 /42seoul" series="42seoul">}}
+{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
 
 <br>
 
@@ -68,7 +68,26 @@ ____
 <br>
 <br>
 
-## 5. Reference
+## 5. Evaluation
+____
+
+_2025.05 코드 리뷰 추가 삽입_
+
+**try1 - review 1**  
+<img src="https://i.imgur.com/szahqDi.png" width="300">  
+
+**try1 - reivew 2**  
+<img src="https://i.imgur.com/hO7TD44.png" width="300">
+
+**try1 - review 3**  
+<img src="https://i.imgur.com/m5qB8Ch.png" width="300">
+
+간단한 3d 게임? 과제였지만 레이케스팅 등 튜토리얼이 잘 되어있어서 무리없이 할 수 있었다. 팀플하는 동안 사방이 화이트보드로 덮힌 공간에 자리를 잡고, 각자 레이케스팅을 공부한 뒤 서로에게 설명하는 시간을 가졌다. 그리고 실제로 평가자에게도 화이트보드에 그린 그림으로 설명을 했다.  
+
+<br>
+<br>
+
+## 6. Reference
 ____
 - [영어원문] https://lodev.org/cgtutor/raycasting.html
 - [번역본] https://github.com/365kim/raycasting_tutorial?tab=readme-ov-file

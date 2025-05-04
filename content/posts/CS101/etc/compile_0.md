@@ -1,5 +1,5 @@
 +++
-title = '[cs] 컴파일 언어의 빌드'
+title = '[cs101] 컴파일 언어의 빌드'
 date = 2023-11-03
 featured_image = "http://t1.daumcdn.net/cfile/180D9C41504A57C90D"
 tags = ['c', 'cs101']

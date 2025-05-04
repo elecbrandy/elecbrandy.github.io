@@ -5,7 +5,7 @@ featured_image = "https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.na
 tags = ['C', 'cs101']
 +++
 
-<!-- {{<series title="🪐 /42seoul" series="42seoul">}} -->
+<!-- {{<series title="📚 /42seoul 시리즈" series="42seoul">}} -->
 
 <br>
 

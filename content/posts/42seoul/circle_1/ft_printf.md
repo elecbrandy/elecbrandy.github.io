@@ -5,7 +5,7 @@ featured_image = "http://t1.daumcdn.net/cfile/146B7E10B091A05214"
 tags = ['c', '42seoul']
 +++
 
-{{<series title="🪐 /42seoul" series="42seoul">}}
+{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
 
 <br>
 
@@ -147,7 +147,28 @@ void ft_putbase(unsigned int n, char *base, unsigned int number, int *cnt)
 <br>
 <br>
 
-## 5. Reference
+## 5. Evaluation
+____
+
+_2025.05 코드 리뷰 추가 삽입_
+
+**try1 - review 1**  
+<img src="https://i.imgur.com/C2zu5O2.png" width="300">  
+
+**try1 - reivew 2**  
+<img src="https://i.imgur.com/ywcMvSz.png" width="300">
+
+**try1 - review 3**  
+<img src="https://i.imgur.com/faSANvo.png" width="300">
+
+ft_printf 과제는 정말 심혈을 기울여서 작업했고, 깔끔해보이고자 노력했던 과제이다. 또한 평가자들에게 figma로 도식을 그려가며 설명했다.  
+
+첫번째 평가자 분에게 밤 늦은 시간 평가를 받았던 기억이 떠오른다. 아주 상세한 질문부터 날카로운 질문을 계속 해주셔서 매우 당황했었다. 그냥 당연하다고 짰던 분기문 등에 대하여 왜 그렇게 작성했는지 워드 하나하나를 톺아보며 질문해주셨다. 이런 분들이 많아져야 42 커뮤니티가 건강해지는게 아닐까? 아직도 기억에 남는 평가였고, 정말 좋은 경험이었다.
+
+<br>
+<br>
+
+## 6. Reference
 ____
 - https://jangsalt.tistory.com/entry/%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%88%98-vastart-vaend-vaarg-valist
 - https://jhnyang.tistory.com/293

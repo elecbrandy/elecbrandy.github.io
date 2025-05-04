@@ -5,7 +5,7 @@ featured_image = "https://i.imgur.com/QOMTZ7P.png"
 tags = ['c', '42seoul']
 +++
 
-{{<series title="🪐 /42seoul" series="42seoul">}}
+{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
 
 <br>
 
@@ -427,12 +427,35 @@ void *philo_routine(void *arg)
 - **sleep:** 포크 해제 후 `usleep(time_to_sleep)`
 - **think:** 상태 로그만 출력
 
-홀수 ID 철학자에게 `time_to_eat / 2`만큼 선행 딜레이를 주어 모두 동시에 포크를 집으려다 교착 상태가 일어날 확률을 낮춘다. 여러가지 방법을 사요해보자
+홀수 ID 철학자에게 `time_to_eat / 2`만큼 선행 딜레이를 주어 모두 동시에 포크를 집으려다 교착 상태가 일어날 확률을 낮춘다. 여러가지 방법을 사용해보자
 
 <br>
 <br>
 
-## 5. Reference
+## 5. Evaluation
+____
+
+_2025.05 코드 리뷰 추가 삽입_
+
+**try1 - review 1**  
+<img src="https://i.imgur.com/B0QkMyn.png" width="300">  
+
+**try1 - reivew 2**  
+<img src="https://i.imgur.com/dlFPvgH.png" width="300">
+
+**try1 - review 3**  
+<img src="https://i.imgur.com/sgdDnCh.png" width="300">
+
+평가를 받으며 내가 구현한 동기화 방식의 성능이 기대에 못 미친다는 사실을 깨달았다. 두 번째 평가자께서는 매번 sleep 을 거는 방식 대신, 뮤텍스를 이용한 배리어(Barrier) 기반 동기화 기법을 소개해 주셨고, 관련 유튜브 영상도 공유해 주셨다.  
+
+세 번째 평가에서는 3인 철학자 시뮬레이션에서 작은 문제가 발생했다. ‘일단 고쳐서 다음 시도에 통과해야지’라고 생각하고 있었지만, 평가자께서 “지금 라이브로 함께 해결해 보자”고 제안하셨다. 덕분에 현장에서 바로 문제를 수정하며 많은 것을 배웠다.  
+
+이번 경험을 통해 ‘42 과정을 제대로 활용하려면 어떻게 해야 할까?’라는 고민이 깊어졌다. 마음만 먹으면 형식적인 코드로 빠르게 통과할 수도 있겠지만, 그렇게 얻는 것은 없고 실력 향상에도 도움이 되지 않는다. 평가자와 나눈 여러 이야기까지 포함해, 의미있는 시간이었다.
+
+<br>
+<br>
+
+## 6. Reference
 ____
 - https://man7.org/linux/man-pages/man2/read.2.html
 - https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html
