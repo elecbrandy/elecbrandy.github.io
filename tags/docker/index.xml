@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on elecbrandy</title>
+    <link>https://elecbrandy.github.io/tags/docker/</link>
+    <description>Recent content in Docker on elecbrandy</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://elecbrandy.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[42seoul] inception</title>
+      <link>https://elecbrandy.github.io/posts/42seoul/circle_5/inception/</link>
+      <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/posts/42seoul/circle_5/inception/</guid>
+      <description>&lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;🪐 /42seoul&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_0/42/&#34;&gt;0. 42서울이란?&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_0/libft/&#34;&gt;1. libft&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_1/ft_printf/&#34;&gt;2. ft_printf&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_1/get_next_line/&#34;&gt;3. get_next_line&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_1/born2beroot/&#34;&gt;4. born2beroot&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_2/pipex/&#34;&gt;5. pipex&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_2/fdf/&#34;&gt;6. fdf&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_2/push_swap/&#34;&gt;7. push_swap&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_3/minishell/&#34;&gt;8. minishell&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_3/philosopher/&#34;&gt;9. philosopher&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_4/cub3d/&#34;&gt;10. cub3d&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_4/netpractice/&#34;&gt;11. netpractice&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_5/ft_irc/&#34;&gt;13. ft_irc&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_5/inception/&#34;&gt;15. inception&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/circle_6/ft_transcendence/&#34;&gt;16. ft_transcendence&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;One container is not enough, WE NEED TO GO DEEPER&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;본과정에서 열다섯번째로 진행한 과제로, 가상 머신에서 Docker Compose를 사용해 여러 서비스로 구성된 소규모 인프라를 구축하는 과제이다. 실습도 실습이지만, 평가자에게 설명하기 위해서라도 많은 내용을 공부해야 했다.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

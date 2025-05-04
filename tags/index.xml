@@ -6,35 +6,42 @@
     <description>Recent content in tags on elecbrandy</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 18 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://elecbrandy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Cs</title>
-      <link>https://elecbrandy.github.io/tags/cs/</link>
-      <pubDate>Fri, 18 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/cs/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>os</title>
-      <link>https://elecbrandy.github.io/tags/os/</link>
-      <pubDate>Fri, 18 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/os/</guid>
-      <description>&lt;h4 id=&#34;-tagsos&#34;&gt;🏷️ /tags/os&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
-    </item>
     <item>
       <title>42seoul</title>
       <link>https://elecbrandy.github.io/tags/42seoul/</link>
-      <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/42seoul/</guid>
       <description>&lt;h4 id=&#34;-tags42seoul&#34;&gt;🏷️ /tags/42seoul&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
+      <title>Javascript</title>
+      <link>https://elecbrandy.github.io/tags/javascript/</link>
+      <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/javascript/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>https://elecbrandy.github.io/tags/docker/</link>
+      <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>c</title>
       <link>https://elecbrandy.github.io/tags/c/</link>
-      <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/c/</guid>
       <description>&lt;h4 id=&#34;-tagsc&#34;&gt;🏷️ /tags/c&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://elecbrandy.github.io/tags/c&#43;&#43;/</link>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/c&#43;&#43;/</guid>
+      <description></description>
     </item>
     <item>
       <title>cs101</title>
@@ -49,6 +56,13 @@
       <pubDate>Thu, 18 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/linux/</guid>
       <description>&lt;h4 id=&#34;-tagslinux&#34;&gt;🏷️ /tags/linux&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>os</title>
+      <link>https://elecbrandy.github.io/tags/os/</link>
+      <pubDate>Wed, 20 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/os/</guid>
+      <description>&lt;h4 id=&#34;-tagsos&#34;&gt;🏷️ /tags/os&lt;/h4&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
       <title>ai</title>

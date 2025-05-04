@@ -6,15 +6,8 @@
     <description>Recent content in os on elecbrandy</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 18 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://elecbrandy.github.io/tags/os/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[OS] Mutil Level Queue</title>
-      <link>https://elecbrandy.github.io/posts/cs101/os/mlfq/</link>
-      <pubDate>Fri, 18 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/posts/cs101/os/mlfq/</guid>
-      <description>&lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;🪐 /2025 CS STUDY&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;컴퓨터는 프로그램에게 가상화된 환경을 제공한다. 실행중인 프로그램 입장에서 실제로 내가 cpu 또는 메모리를 오롯이 혼자 쓰는 것 같은 환경을 제공해주는 것. 이것을 가상화라고한다. 결국은 물리적으로 한정된 자원을 시간, 공간적으로 쪼개써야하지만&amp;hellip; 그 지점에서 cpu 가상화는 바로 시간으로 자원을 쪼개서 제공하는 것이다. 즉, cpu의 자원을 시간단위로 쪼개어서 주는것.&lt;/p&gt;&#xA;&lt;p&gt;그렇다면 그 규칙은 무엇이 있을까..? 그 규칙은 공정해야할 것이다! 왜냐하면  모든 실행중인 프로그램 즉 프로세스 모두가 공평하게 자원을 나누어써야 하니까! 누구도 굶어죽지않고&#xA;최대한 공평하게 써야한다. 그래야 사용자에게 누락없고 깔끔하게 사용성 좋은 추상화된 환경을 제공할 수 있으니까.&lt;/p&gt;</description>
-    </item>
     <item>
       <title>LVM</title>
       <link>https://elecbrandy.github.io/posts/cs101/etc/lvm/</link>

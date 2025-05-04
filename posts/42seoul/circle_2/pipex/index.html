@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://elecbrandy.github.io/css/reset.css">
 <title>[42seoul] pipex | elecbrandy</title>
 
-      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.7890e51e83f9836401d278297629f6e8246e3d07d16c4fdd03f5aea0023f2800.css" integrity="sha256-eJDlHoP5g2QB0ngpdin26CRuPQfRbE/dA/WuoAI/KAA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.b98e08a74856bd317e875fcf0a6783c49f609101a48fe1314a4b028185ff721b.css" integrity="sha256-uY4Ip0hWvTF&#43;h1/PCmeDxJ9gkQGkj&#43;ExSksCgYX/chs=" crossorigin="anonymous">
       <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
 
 
@@ -124,7 +124,7 @@
       </div>
     
     <div class="overlay-text">
-      <small>2024.02.02</small>
+      <small>2024.02.28</small>
       <div class="singleTitle">[42seoul] pipex</div>
     </div>
   </div>
@@ -162,6 +162,8 @@
       <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_5/ft_irc/">13. ft_irc</a></li>
       
       <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_5/inception/">15. inception</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_6/ft_transcendence/">16. ft_transcendence</a></li>
       
     </ul>
   </details>
@@ -293,7 +295,7 @@
 <br>
 <h2 id="4-mandatory">4. Mandatory</h2>
 <hr>
-<img src="https://i.imgur.com/s1coAtk.png" width="700">
+<img src="https://i.imgur.com/s1coAtk.png" width="600">
 <br>
 <h4 id="step-01--redirection-조절">step 01 : Redirection 조절</h4>
 <p>기본적으로 infile과 outfile이 존재해야하므로, 각각의 파일을 <code>open</code> 한다.
@@ -381,14 +383,14 @@
 <p>다음 자식이 어느 파이프에 읽어야하는지를 부모에서 잠시 기억해준다고 생각하자.
 이해 과정에서 너무 헷갈려서 최대한 상세히 정리했다.</p>
 <h4 id="step-01">step 01</h4>
-<img src="https://i.imgur.com/FpX35wF.png" width="700">
+<img src="https://i.imgur.com/FpX35wF.png" width="600">
 <ol>
 <li>부모 프로세스인 상태에서, pipe를 하나 연다.</li>
 <li>부모 프로세스는 이제 pipe1의 읽기와 쓰기 끝 주소를 모두 알고 있는 상태이다.</li>
 </ol>
 <br>
 <h4 id="step-02">step 02</h4>
-<img src="https://i.imgur.com/8I9BFHE.png" width="700">
+<img src="https://i.imgur.com/8I9BFHE.png" width="600">
 <ol>
 <li>pipe1의 읽기와 쓰기 끝을 아는 상태에서 <code>fork()</code>하고, <code>dup2</code>를 통해 자식 프로세스가 pipe1의 쓰기 끝에 쓰게한다.</li>
 <li>이때 부모 프로세스는 <code>dup2</code>를 통해 pipe1의 읽기 끝 주소를 fd table 0번에 잠시 기억하게 한다. 이는 다음 자식 프로세스가 데이터를 읽어와야할지 알려주기 위함이다.</li>
@@ -396,7 +398,7 @@
 </ol>
 <br>
 <h4 id="step-03">step 03</h4>
-<img src="https://i.imgur.com/6HHkOA9.png" width="700">
+<img src="https://i.imgur.com/6HHkOA9.png" width="600">
 <ol>
 <li>pipe1의 읽기 끝을 아는 상태에서 <code>fork()</code>하고, <code>dup2</code>를 통해 자식 프로세스가 pipe2의 쓰기 끝에 쓰게한다.</li>
 <li>이때 부모 프로세스는 <code>dup2</code>를 통해 pipe2의 읽기 끝 주소를 fd table 0번에 잠시 기억하게 한다. 이는 다음 자식 프로세스가 데이터를 읽어와야할지 알려주기 위함이다.</li>
@@ -404,7 +406,7 @@
 </ol>
 <br>
 <h4 id="step-04">step 04</h4>
-<img src="https://i.imgur.com/c1jOzry.png" width="700">
+<img src="https://i.imgur.com/c1jOzry.png" width="600">
 <p>최종적으로 자식 프로세스는 자신이 읽어야할 파이프의 위치, 써야할 파이프의 위치를 모두 알고 있는 상태에서 작동하며, 각각의 자식 프로세스는 <strong>병렬</strong>로 작동한다는 점!</p>
 <br>
 <br>
