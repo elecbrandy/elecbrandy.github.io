@@ -9,7 +9,7 @@ draft = true
 <br>
 
 ## 1. 소개
-<img src="https://user-images.githubusercontent.com/87311268/221544778-c85cb3d8-32f4-4919-aa1c-0db54b33b38a.jpg" width="700">
+<img src="https://user-images.githubusercontent.com/87311268/221544778-c85cb3d8-32f4-4919-aa1c-0db54b33b38a.jpg" width="600">
 
 과학기술정보통신부 주최로 개최한 '생성형 AI 레드팀 챌린지'는 국내 생성형 AI 모델을 대상으로 사용자의 프롬프트 공격을 방어하기 위해 잠재적 위험 요소를 식별하기 위한 프로그램이다. 생성형 AI가 사용자의 프롬프트의 내용에 따라 부적절한 내용(인종차별, 혐오, 잘못된 정보 등)을 생성할 수 있다. 때문에 기업에서는 이를 방어하고자 레드팀을 꾸려 시스템의 취약점과 결함을 찾고자 노력하고 있으며, 정부 차원에서 받아들여
 

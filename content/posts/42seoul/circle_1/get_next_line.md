@@ -89,7 +89,7 @@ void	ft_free(void **target)
 ## 4. Mandatory
 ____
 
-<img src="https://imgur.com/w1qsdXS.png" width="700">
+<img src="https://imgur.com/w1qsdXS.png" width="600">
 
 <br>
 

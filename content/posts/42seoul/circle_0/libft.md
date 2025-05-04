@@ -62,5 +62,26 @@ ____
 <br>
 <br>
 
-## 4. 무엇을 배웠는가?
+## 4. Evaluation
+____
+
+_2025.05 코드 리뷰 추가 삽입_
+
+**review 0**  
+<img src="https://i.imgur.com/zM3kpYn.png" width="300">  
+
+**reivew 1**  
+<img src="https://i.imgur.com/x6k1ggU.png" width="300">
+
+**review 2**  
+<img src="https://i.imgur.com/VWCVqnm.png" width="300">
+
+과정을 끝내고 평가자들의 코드리뷰를 다시 보내 감회가 새롭다. 정말 저때는 캐스팅이라는 단어를 처음 접하며 과제를 풀었던 기억이 난다. 또한 변수의 남용에 대해서도 처음으로 다시 생각해볼 수 있었던, 아주 의미있는 첫번째 과제였다.  
+
+<br>
+<br>
+
+## 5. Rerference
+____
+- https://man.freebsd.org/cgi/man.cgi
 

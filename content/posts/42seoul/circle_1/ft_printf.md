@@ -71,7 +71,7 @@ ____
 ## 4. Mandatory
 ____
 
-<img src="https://imgur.com/Ghuekwt.png" width="700">
+<img src="https://imgur.com/Ghuekwt.png" width="600">
 
 <br>
 

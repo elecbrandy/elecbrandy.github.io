@@ -2,7 +2,7 @@
 title = '[42seoul] inception'
 date = 2025-01-27
 featured_image = "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/07/cobb-s-totem-in-inception.jpg?q=49&fit=crop&w=750&h=422&dpr=2"
-tags = ['c', '42seoul']
+tags = ['docker', '42seoul']
 +++
 
 {{<series title="🪐 /42seoul" series="42seoul">}}
@@ -197,7 +197,7 @@ TLS(Transport Layer Security)는 애플리케이션 계층과 전송 계층 
 ## 4. Mandatory 
 ____
 
-<img src="https://i.imgur.com/2nOev5a.png" width="700">
+<img src="https://i.imgur.com/2nOev5a.png" width="600">
 
 우리는 총 3개의 컨테이너를 구성해야 한다. (**nginx**, **wordpress**,**mariadb**)  
 
