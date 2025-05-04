@@ -104,7 +104,8 @@
         <li><a href="#4-3-dockerfile">4-3. Dockerfile</a></li>
       </ul>
     </li>
-    <li><a href="#5-reference">5. Reference</a></li>
+    <li><a href="#5-evaluation">5. Evaluation</a></li>
+    <li><a href="#6-reference">6. Reference</a></li>
   </ul>
 </nav>
   </aside>
@@ -121,7 +122,7 @@
   </div>
   <div class="series">
   <details>
-    <summary>🪐 /42seoul</summary>
+    <summary>📚 /42seoul 시리즈</summary>
     <ul>
       
       
@@ -650,7 +651,21 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># dumb-init을 EntryPoint로 설정 + 커스텀 엔트리포인트 스크립트 실행</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;/usr/bin/dumb-init&#34;</span>, <span style="color:#e6db74">&#34;--&#34;</span>, <span style="color:#e6db74">&#34;/usr/local/bin/entrypoint.sh&#34;</span>]<span style="color:#960050;background-color:#1e0010">
 </span></span></span></code></pre></div><br>
-<h2 id="5-reference">5. Reference</h2>
+<br>
+<h2 id="5-evaluation">5. Evaluation</h2>
+<hr>
+<p><em>2025.05 코드 리뷰 추가 삽입</em></p>
+<p><strong>try1 - review 1</strong><br>
+<img src="https://i.imgur.com/uTokXfz.png" width="300"></p>
+<p><strong>try1 - reivew 2</strong><br>
+<img src="https://i.imgur.com/7W1TaZP.png" width="300"></p>
+<p><strong>try1 - review 3</strong><br>
+<img src="https://i.imgur.com/oPy7Nq8.png" width="300"></p>
+<p>가장 아쉬웠던 과제로 Dockerfile 관리이 특히 아쉬웠다. 다시 열어보니 구성이 지나치게 복잡하고 난잡했다. 평가에서도 “정말 필요한 기능인가?”, “굳이 이렇게까지 해야 하나?”라는 지적을 받았지만, 명확한 답을 내놓지 못했다. 예를 들어, 컨테이너를 <code>restart: always</code>로 돌리면서도 별도로 <code>HEALTHCHECK</code>를 넣은 부분은 “어차피 재시작할 텐데 필요할까?”라는 의문을 남겼다.</p>
+<p>이 경험을 바탕으로 다음 프로젝트에서는 Dockerfile을 최대한 간결하게 유지하려 한다. 불필요한 기능은 과감히 제거하고, 베이스 이미지는 가벼운 Alpine으로 통일해 깔끔한 구성을 목표로 하고 있다.</p>
+<br>
+<br>
+<h2 id="6-reference">6. Reference</h2>
 <hr>
 <ul>
 <li><a href="https://docs.docker.com">https://docs.docker.com</a></li>

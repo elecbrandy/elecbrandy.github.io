@@ -14,6 +14,9 @@
     <loc>https://elecbrandy.github.io/tags/42seoul/</loc>
     <lastmod>2025-03-22T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://elecbrandy.github.io/tags/docker/</loc>
+    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://elecbrandy.github.io/tags/javascript/</loc>
     <lastmod>2025-03-22T00:00:00+00:00</lastmod>
   </url><url>
@@ -23,16 +26,10 @@
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_5/inception/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/tags/docker/</loc>
-    <lastmod>2025-01-27T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_5/ft_irc/</loc>
     <lastmod>2024-11-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/c/</loc>
-    <lastmod>2024-11-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/c&#43;&#43;/</loc>
     <lastmod>2024-11-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/cs101/etc/radixpoint/</loc>
@@ -65,17 +62,11 @@
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_1/born2beroot/</loc>
     <lastmod>2024-01-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/tags/linux/</loc>
-    <lastmod>2024-01-18T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://elecbrandy.github.io/posts/cs101/etc/filedescriptor/</loc>
     <lastmod>2023-12-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/cs101/etc/lvm/</loc>
-    <lastmod>2023-12-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/os/</loc>
-    <lastmod>2023-12-20T00:00:00+00:00</lastmod>
+    <loc>https://elecbrandy.github.io/tags/linux/</loc>
+    <lastmod>2023-12-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_1/get_next_line/</loc>
     <lastmod>2023-12-18T00:00:00+00:00</lastmod>
@@ -113,5 +104,7 @@
     <loc>https://elecbrandy.github.io/about/</loc>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/ebook/</loc>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/os/</loc>
   </url>
 </urlset>
