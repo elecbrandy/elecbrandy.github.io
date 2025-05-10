@@ -1,12 +1,4 @@
-github.com/elecBrandy/freshpink v0.0.0-20250504093520-a5996bd58b3f h1:V/Oy6FdaXf6oB4kHmCpZB4NCrxhN4jcIT7cCeFgGToU=
-github.com/elecBrandy/freshpink v0.0.0-20250504093520-a5996bd58b3f/go.mod h1:YX8aUs2pLSookknUeQmbIlkxdtZpMr6cFoJz16PmeJo=
-github.com/elecBrandy/freshpink v0.0.0-20250504094427-82b225c70c1c h1:hdY8QYI2EIrGn/b4CfeNamciHBf8G8x0L+PXFhxHtTI=
-github.com/elecBrandy/freshpink v0.0.0-20250504094427-82b225c70c1c/go.mod h1:YX8aUs2pLSookknUeQmbIlkxdtZpMr6cFoJz16PmeJo=
-github.com/elecBrandy/freshpink v0.0.0-20250504101639-aa5d1527a6e9 h1:is37qQoXdnTa+zg0Bqi3o3vZsAr2iMy0rDhHALtBYNQ=
-github.com/elecBrandy/freshpink v0.0.0-20250504101639-aa5d1527a6e9/go.mod h1:YX8aUs2pLSookknUeQmbIlkxdtZpMr6cFoJz16PmeJo=
-github.com/elecBrandy/freshpink v0.0.0-20250504124400-24e9ea59d50a h1:fE8bEMVGHqb4kpfswCkKA0bgVz6OCRPCjoJbbCpTlxI=
-github.com/elecBrandy/freshpink v0.0.0-20250504124400-24e9ea59d50a/go.mod h1:YX8aUs2pLSookknUeQmbIlkxdtZpMr6cFoJz16PmeJo=
-github.com/elecBrandy/freshpink v0.0.0-20250504124651-eed3b0a8bcc8 h1:ApGopCp9/GldxnHrKofvjPfyzFxkIF9E2Lr4iEuVWAQ=
-github.com/elecBrandy/freshpink v0.0.0-20250504124651-eed3b0a8bcc8/go.mod h1:YX8aUs2pLSookknUeQmbIlkxdtZpMr6cFoJz16PmeJo=
-github.com/elecBrandy/freshpink v0.0.0-20250504125117-b78315216866 h1:3gtuoqa/XiiKAU+Usfaf2uqa0EPs0zik+aGZvLVbja4=
-github.com/elecBrandy/freshpink v0.0.0-20250504125117-b78315216866/go.mod h1:YX8aUs2pLSookknUeQmbIlkxdtZpMr6cFoJz16PmeJo=
+github.com/elecbrandy/freshpink v0.0.0-20250504125117-b78315216866 h1:ND2iEjXHMSD8BpJ3Qdz4rTB1867pjmFizZenCcYvwTI=
+github.com/elecbrandy/freshpink v0.0.0-20250504125117-b78315216866/go.mod h1:jkoBxHXTnjjhA1OrRm2amkGKGc6oL1pjbPup787Pqvs=
+github.com/elecbrandy/freshpink v0.0.0-20250509135410-04d310c145c2 h1:AUeXU7deILEd4C0E4MSMYQCMl+uTyHNXi9pgFxa4mNU=
+github.com/elecbrandy/freshpink v0.0.0-20250509135410-04d310c145c2/go.mod h1:YjiCl2fIXdl/NJR+0YRTWVyKdDl0LYMycYzmhApzhFs=

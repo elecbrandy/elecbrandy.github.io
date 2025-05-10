@@ -25,6 +25,12 @@ weight = 30
   [[module.imports]]
     path = "github.com/elecbrandy/freshpink"
 
+[params]
+  googleAnalytics = 'G-000000000' # your GoogleAnalytics code
+  githubUsername = 'elecbrandy' # your githubUsername
+  copyright = 'Copyright © 2024 elecbrandy'
+  math = true
+
 [taxonomies]
   tag = "tags"
 

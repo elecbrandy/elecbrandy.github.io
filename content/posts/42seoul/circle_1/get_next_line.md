@@ -85,6 +85,7 @@ void	ft_free(void **target)
 메모리 해제 후 포인터를 NULL로 설정함으로써, 포인터의 `Dangling Pointer` 상태(해제된 메모리를 가르키는 상태)를 방지한다. 또한 이 과정을 통해 이미 할당 해제된 메모리 주소에 다시 접근하는 것을 방지할 수 있다.
 
 <br>
+<br>
 
 ## 4. Mandatory
 ____
