@@ -2,11 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://elecbrandy.github.io/posts/hugo/setup/</loc>
+    <lastmod>2025-05-09T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://elecbrandy.github.io/</loc>
-    <lastmod>2025-04-18T00:00:00+00:00</lastmod>
+    <lastmod>2025-05-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/hugo/</loc>
+    <lastmod>2025-05-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/</loc>
-    <lastmod>2025-04-18T00:00:00+00:00</lastmod>
+    <lastmod>2025-05-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/</loc>
+    <lastmod>2025-05-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_6/ft_transcendence/</loc>
     <lastmod>2025-03-22T00:00:00+00:00</lastmod>
@@ -18,9 +27,6 @@
     <lastmod>2025-03-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/javascript/</loc>
-    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/</loc>
     <lastmod>2025-03-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_5/inception/</loc>
@@ -104,7 +110,5 @@
     <loc>https://elecbrandy.github.io/about/</loc>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/ebook/</loc>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/os/</loc>
   </url>
 </urlset>
