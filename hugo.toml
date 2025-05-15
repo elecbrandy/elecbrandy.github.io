@@ -26,7 +26,7 @@ weight = 30
     path = "github.com/elecbrandy/freshpink"
 
 [params]
-  googleAnalytics = 'G-000000000' # your GoogleAnalytics code
+  googleAnalytics = 'G-ZL1NP5K5CJ' # your GoogleAnalytics code
   githubUsername = 'elecbrandy' # your githubUsername
   copyright = 'Copyright © 2024 elecbrandy'
   math = true
