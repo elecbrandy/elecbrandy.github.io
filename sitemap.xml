@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://elecbrandy.github.io/posts/cs101/etc/eip/</loc>
+    <loc>https://elecbrandy.github.io/posts/cs101/eip/</loc>
     <lastmod>2025-08-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/cs101/</loc>
@@ -17,7 +17,7 @@
     <loc>https://elecbrandy.github.io/tags/</loc>
     <lastmod>2025-08-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/hugo/setup/</loc>
+    <loc>https://elecbrandy.github.io/posts/project/hugo/</loc>
     <lastmod>2025-05-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/hugo/</loc>
@@ -44,7 +44,7 @@
     <loc>https://elecbrandy.github.io/tags/c/</loc>
     <lastmod>2024-11-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/cs101/etc/radixpoint/</loc>
+    <loc>https://elecbrandy.github.io/posts/cs101/radixpoint/</loc>
     <lastmod>2024-09-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_4/netpractice/</loc>
@@ -71,7 +71,7 @@
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_1/born2beroot/</loc>
     <lastmod>2024-01-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/cs101/etc/filedescriptor/</loc>
+    <loc>https://elecbrandy.github.io/posts/cs101/filedescriptor/</loc>
     <lastmod>2023-12-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/linux/</loc>
@@ -86,13 +86,13 @@
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_0/libft/</loc>
     <lastmod>2023-11-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/cs101/etc/compile_0/</loc>
+    <loc>https://elecbrandy.github.io/posts/cs101/compile_0/</loc>
     <lastmod>2023-11-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_0/42/</loc>
     <lastmod>2023-10-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/ai/dataonair/</loc>
+    <loc>https://elecbrandy.github.io/posts/project/dataonair/</loc>
     <lastmod>2023-09-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/ai/</loc>
@@ -111,7 +111,5 @@
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/about/</loc>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/ebook/</loc>
   </url>
 </urlset>

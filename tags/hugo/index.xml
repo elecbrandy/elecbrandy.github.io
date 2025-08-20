@@ -10,9 +10,9 @@
     <atom:link href="https://elecbrandy.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[hugo] hugo &#43; github 호스팅으로 개인 블로그 구축하기</title>
-      <link>https://elecbrandy.github.io/posts/hugo/setup/</link>
+      <link>https://elecbrandy.github.io/posts/project/hugo/</link>
       <pubDate>Fri, 09 May 2025 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/posts/hugo/setup/</guid>
+      <guid>https://elecbrandy.github.io/posts/project/hugo/</guid>
       <description>&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Hugo + GitHub Pages 조합으로 30 분 만에 개인 개발 블로그를 구축하기&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;컴퓨터 공부를 하다 보면 학습 내용을 정리할 공간이 필요하다. 개인 메모용으로, 혹은 지식을 공유하기 위해 개발 블로그를 운영하는 경우가 많다. 플랫폼은 네이버 블로그, 티스토리, Medium 등 다양하지만, 나는 마크다운(&lt;code&gt;.md&lt;/code&gt;) 기반으로 필기하는 습관이 있어 &lt;strong&gt;Hugo + GitHub Pages&lt;/strong&gt; 조합을 선택하였다. 이 방식은 다음과 같은 이점을 제공한다.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;마크다운 그대로 작성&lt;/strong&gt;할 수 있다!&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;정적 사이트&lt;/strong&gt;이므로 속도가 빠르고 보안 부담이 적다.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;GitHub Pages&lt;/strong&gt;를 이용해 &lt;strong&gt;무료&lt;/strong&gt;로 호스팅할 수 있다.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;그러나 한국어 자료가 적어 시행착오가 있었다. 같은 고민을 겪을 초보자를 위해 이 가이드를 작성한다. 예시 테마는 내가 제작한 &lt;a href=&#34;https://elecbrandy.github.io/freshpink/&#34;&gt;freshPink&lt;/a&gt;이다.&lt;/p&gt;</description>
     </item>
   </channel>
