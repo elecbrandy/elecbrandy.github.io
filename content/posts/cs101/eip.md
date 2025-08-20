@@ -1,7 +1,7 @@
 +++
 title = '[cs101] 정보처리기사 개념정리'
 date = 2025-08-13
-featured_image = "http://t1.daumcdn.net/cfile/180D9C41504A57C90D"
+featured_image = "https://zrr.kr/MbTY2v"
 tags = ['cs101']
 +++
 
