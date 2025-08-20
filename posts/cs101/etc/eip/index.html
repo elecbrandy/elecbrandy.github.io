@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>[cs101] 정보처리기사 개념정리 | elecbrandy</title>
+
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.d44c672ab09ff4e7a40192b4c273b29b705ce87d7f4df5223640e4c24f28f310.css" integrity="sha256-1ExnKrCf9OekAZK0wnOym3Bc6H1/TfUiNkDkwk8o8xA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+	  <li><a href="https://elecbrandy.github.io/">/home</a></li>
+	  <li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+	  <li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="http://t1.daumcdn.net/cfile/180D9C41504A57C90D" alt="Featured Image for [cs101] 정보처리기사 개념정리">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2025.08.13</small>
+      <div class="singleTitle">[cs101] 정보처리기사 개념정리</div>
+    </div>
+  </div>
+  <br>
+<blockquote>
+<p><strong>정보처리기기사 소프트웨어 구축</strong> 자주 나오는 개념</p></blockquote>
+<br>
+<h4 id="sdlc-소프트웨어-개발-생명주기">SDLC 소프트웨어 개발 생명주기</h4>
+<ul>
+<li><code>프로젝트 계획</code> → <code>요구분석</code> → <code>설계</code> → <code>구현</code> → <code>테스트</code> → <code>유지보수</code></li>
+</ul>
+<br>
+<h4 id="계획-방법론">계획 방법론</h4>
+<ul>
+<li><strong>폭포수 방법론</strong>
+<ul>
+<li>선형 순차적 개발</li>
+<li>고전적, 전통적 개발 모형</li>
+</ul>
+</li>
+<li><strong>나선형 방법론</strong>
+<ul>
+<li><code>계획 수립</code> → <code>위험 분석</code> → <code>개발 및 검증</code> → <code>고객 평가</code></li>
+<li>점진적 개발 과정 반복</li>
+</ul>
+</li>
+<li><strong>에자일 방법론</strong>
+<ul>
+<li>기능 중심 개발</li>
+<li>스크럼 SCRUM</li>
+<li>익스트림 프로그래밍</li>
+<li>❌ <strong>오답</strong> : <code>모듈 중심 개발</code></li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="scrum-방법론">SCRUM 방법론</h4>
+<ul>
+<li>에자일 방법론의 일종</li>
+<li><strong>주요 역할</strong>
+<ul>
+<li><code>제품 책임자</code>
+<ul>
+<li>제품 백로그를 관리하고 우선순위 결정</li>
+</ul>
+</li>
+<li><code>스크럼 마스터</code>
+<ul>
+<li>팀이 스크럼 규칙을 잘 따르도록 도움</li>
+</ul>
+</li>
+<li><code>개발 팀</code>
+<ul>
+<li>스프린트 목표 달성을 위해 실제 개발 작업하는 팀</li>
+<li>3~9명으로 구성되며 자율적인 팀</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>주요 개념 및 산출물</strong>
+<ul>
+<li><code>제품 백로그</code>
+<ul>
+<li>제품 개발에 필요한 모든 요구사항, 기능, 버그 수정 등을 나열하고 우선 순위를 매긴 목록</li>
+</ul>
+</li>
+<li><code>스프린트</code>
+<ul>
+<li>1~4주의 짧은 기간 동안 반복적으로 진행되는 고정된 개발 주기</li>
+</ul>
+</li>
+<li><code>스프린트 백로그</code>
+<ul>
+<li>특정 스프린트 동안 완료할 제품 백로그 항목들의 부분집합</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>⚠️ <strong>주의</strong> : <code>스크럼(Scrum) 방법론에서 SRS(Software Requirement Specification)나 TRS(Technical Requirement Specification)에 해당하는 목록은 제품 백로그 이다.</code> ✅</li>
+</ul>
+<br>
+<br>
+<h4 id="srs-소프트웨어-요구-분석-명세서">SRS 소프트웨어 요구 분석 명세서</h4>
+<ul>
+<li>사용자 요구사항을 문서화</li>
+<li>무엇을 할지 정의하는 단계</li>
+<li><strong>구성</strong>
+<ul>
+<li>개발 목적 및 범위</li>
+<li>기능적 요구사항</li>
+<li>비기능적 요구사항</li>
+<li>데이터 요구사항</li>
+<li>제약조건</li>
+<li>❌ <strong>오답</strong> : <code>아키텍처 및 인터페이스 명세</code></li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="case">CASE</h4>
+<ul>
+<li>소프트웨어 개발 시 사용되는 분석 자동화 도구</li>
+<li>SW 도구와 방법론의 결합</li>
+<li>❌ <strong>오답</strong> : <code>프토로타입 모델에 위험 분석 기능을 추가한 생명주기 모형이다.</code></li>
+<li><strong>구성</strong>
+<ul>
+<li><code>상위 CASE</code>
+<ul>
+<li>요구 분석 및 설계 단계 지원</li>
+<li>모델 간 모순검사, 모델 오류 검증, 자료 흐름도 작성 기능</li>
+</ul>
+</li>
+<li><code>하위 CASE</code>
+<ul>
+<li>소스코드 작성, 테스트 문서화 과정 지원</li>
+</ul>
+</li>
+<li><code>통합 CASE</code>
+<ul>
+<li>소프트웨어 개발 주기 전체 과정 지원</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>원천 기술</strong>
+<ul>
+<li>구조적 기법</li>
+<li>프로토타이핑 기술</li>
+<li>정보 저장소 기술</li>
+<li>❌ <strong>오답</strong> : <code>일괄 처리 기술</code></li>
+</ul>
+</li>
+<li><strong>주요 기능</strong>
+<ul>
+<li>S/W 라이프사이클 전 단계의 연결</li>
+<li>그래픽 지원</li>
+<li>다양한 소프트웨어 개발 모형 지원</li>
+<li>작업 과정 / 데이터 공유</li>
+<li>❌ <strong>오답</strong> : <code>언어 번역</code></li>
+</ul>
+</li>
+<li><strong>종류</strong>
+<ul>
+<li>SADT, SREM, PSL/PSA, TAGS</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="hipo">HIPO</h4>
+<ul>
+<li>하향식 소프트웨어 개발 기법</li>
+<li>시스템의 기능을 여러 개의 고유 모듈들로 <strong>분할</strong> 하여 이들 간의 <strong>인터페이스를 계층 구조</strong> 로 표현한 <strong>도형 또는 도면</strong></li>
+<li>입력 -&gt; 처리 -&gt; 출력를 기본 구조로 함</li>
+<li>문서화의 도구 및 설계 도구 방법을 제공, 유지보수 용이</li>
+<li>너무 큰 시스템에서는 한계점</li>
+<li><strong>특징</strong>
+<ul>
+<li><code>가시적 도표</code> : 시스템의 전체적인 기능과 흐름을 보여줌</li>
+<li><code>총체적 다이어그램</code> : 프로그램을 구성하는 기능(입력, 처리, 출력)을 기술</li>
+<li><code>세부적 도다이어그램</code> : 총체적 다이어그램에 표시된 기능을 구성하는 기본 요소들을 상세히 기술</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="구조적-분석-모델">구조적 분석 모델</h4>
+<ul>
+<li><strong>자료흐름도 DFD</strong>
+<ul>
+<li>구조적 언어, 의사결정표</li>
+<li>시간의 흐름 표현 ❌</li>
+<li><code>Process</code>: 원</li>
+<li><code>Data Flow</code> : 화살표</li>
+<li><code>Data Store</code> : 평행선</li>
+<li><code>Terminator</code> : 사각형</li>
+</ul>
+</li>
+<li><strong>자료사전 DD</strong>
+<ul>
+<li>소단위 명세서, ERD, 상태전이도</li>
+<li><code>=</code> : 정의</li>
+<li><code>+</code> : 연결 (AND)</li>
+<li><code>[ ]</code> : 선택 (OR)</li>
+<li><code>{ }</code> : 반복</li>
+<li><code>( )</code> : 옵션</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="객체지향-분석-모델">객체지향 분석 모델</h4>
+<ul>
+<li><strong>단계</strong> <em>문요객객객</em>
+<ul>
+<li>문제정의-요구명세화-객체연산자정의-객체인터페이스결정-객체구현</li>
+</ul>
+</li>
+<li><strong>SOLID 원칙</strong>
+<ul>
+<li><code>SRP</code>
+<ul>
+<li>단일 책임 원칙</li>
+<li>클래스는 한 가지 책임만</li>
+</ul>
+</li>
+<li><code>OCP</code>
+<ul>
+<li>개방-폐쇄 원칙</li>
+<li>수정 없이 확장 가능</li>
+</ul>
+</li>
+<li><code>LSP</code>
+<ul>
+<li>리코스프 교체의 원칙</li>
+<li>부모 대신 자식 사용 가능</li>
+</ul>
+</li>
+<li><code>ISP</code>
+<ul>
+<li>인터페이스 분리 원칙</li>
+<li>작은 인터페이스 다수 → 클라이언트 최적화</li>
+<li>클라이언트가 사용하지 않는 인터페이스 때문에 영향을 받아서는 ❌</li>
+<li>클라이언트는 자신이 사용하지 않는 메서드와 의존관계를 맺어서는 ❌</li>
+</ul>
+</li>
+<li><code>DIP</code>
+<ul>
+<li>의존성 역전 원칙</li>
+<li>구체가 아니라 추상에 의존</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>분석 모델</strong>
+<ul>
+<li><code>Booch</code>
+<ul>
+<li><strong>미시적, 거시적</strong> 개발 프로세스를 모두 사용</li>
+</ul>
+</li>
+<li><code>Jacobson</code>
+<ul>
+<li><strong>유스케이스</strong> 사용</li>
+</ul>
+</li>
+<li><code>Coad와 Yourdon</code>
+<ul>
+<li>E-R 다이어그램</li>
+</ul>
+</li>
+<li><code>Wirfs-Brock</code>
+<ul>
+<li>분석과 설계 구분 없이 명세서 평가후 작업까지 연속 수행</li>
+</ul>
+</li>
+<li><code>Rumbaugh</code>
+<ul>
+<li>객체 모델링 → 객체 다이어그램</li>
+<li>동적 모델링 → 상태 다이어그램</li>
+<li>기능 모델링 → 자료흐름도(DFD)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h4 id="소프트웨어-아키텍쳐">소프트웨어 아키텍쳐</h4>
+<ul>
+<li><strong>설계 구분</strong>
+<ul>
+<li><code>상위</code> : 아키텍처, 데이터, 인터페이스, 사용자 인터페이스</li>
+<li><code>하위</code> : 모듈, 자료구조, 알고리즘</li>
+</ul>
+</li>
+<li><strong>설계 과정</strong>
+<ul>
+<li>설계 목표 설정</li>
+<li>시스템 타입 결정</li>
+<li>스타일 적용 및 커스터마이즈</li>
+<li>서브 시스템의 기능, 인터페이스 동작 작성</li>
+<li>아키텍처 설계 검토</li>
+</ul>
+</li>
+<li><strong>품질속성</strong>
+<ul>
+<li><code>시스템 측면</code>
+<ul>
+<li>성능, 사용 운용성, 보안성, 시험 용이성, 변경 용이성, 사용성</li>
+</ul>
+</li>
+<li><code>비즈니스 측면</code>
+<ul>
+<li>시장 적시성, 비용, 일정</li>
+</ul>
+</li>
+<li><code>아키텍처 측면</code>
+<ul>
+<li>이해 용이성, 재사용성, 분석 용이성, 구현 가능성</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="소프트웨어-아키텍처-41-view-model">소프트웨어 아키텍처 4+1 View Model</h4>
+<ul>
+<li>4개의 뷰와 1개의 시나리오(UseCase)</li>
+<li><strong>View 구성</strong>
+<ul>
+<li><code>논리</code>
+<ul>
+<li>시스템의 기능적 요소와 그들의 상호작용</li>
+<li>클래스 다이어그램, 상태 다이어그램</li>
+</ul>
+</li>
+<li><code>프로세스</code>
+<ul>
+<li>독자적인 제어 스레드를 가질 수 있는 액티브 클래스에 초점</li>
+<li>활동 다이어그램, 시퀸스 다이어그램</li>
+</ul>
+</li>
+<li><code>개발</code>
+<ul>
+<li>소프트웨어의 구현 구조 (모듈, 컴포넌트, 패키지)</li>
+<li>컴포넌트 다이어그램, 패키지 다이어그램</li>
+<li>계층 구조, 코드 재사용 등 구현 요건</li>
+</ul>
+</li>
+<li><code>물리</code>
+<ul>
+<li>시스템 엔지니어, 운영자 대상</li>
+<li>하드웨어 배치 (서버, 노드, 네트워크)</li>
+<li>배치 다이어그램,</li>
+</ul>
+</li>
+<li><code>유스케이스</code>
+<ul>
+<li>모든 이해관계자 대상 시스템이 수행하는 기능과 시나리오</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="소프트웨어-정의-데이터-센터">소프트웨어 정의 데이터 센터</h4>
+<ul>
+<li>컴퓨팅, 네트워킹, 스토리지, 관리 등을 모두 소프트웨어로 정의</li>
+<li>인력 개입 없이 소프트웨어 조작만으로 자동 제어 관리</li>
+<li>데이터 센터 내 모든 자원을 가상화 하여 서비스</li>
+<li>❌ <strong>오답</strong> : 특정 하드웨어에 종속되어 특화된 업무를 서비스하기 적합하다.</li>
+</ul>
+<br>
+<h4 id="dbc">DBC</h4>
+<ul>
+<li>계약(<strong>Contract</strong>)에 의한 설계</li>
+<li><strong>구성</strong>
+<ul>
+<li><code>선행조건</code> : 메서드 호출 전 만족해야 할 조건</li>
+<li><code>결과조건</code> : 메서드 실행 후 보장해야 하는 결과 조건</li>
+<li><code>불변조건</code> : 전후로 항상 만족해야 할 조건</li>
+</ul>
+</li>
+<li><strong>👀 시험 관련</strong>
+<ul>
+<li>계약에 의한 설계에서 선행조건, 결과조건, 불변조건을 포함한다.</li>
+<li>Eiffel 언어에서 제안된 방법론이다.</li>
+<li>프로그램 컴포넌트의 신뢰성을 보장하는 방법론이다.</li>
+<li>품질 속성 중 <strong>신뢰성</strong> 과 연관되어있다.</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="uml">UML</h4>
+<ul>
+<li><strong>구성요소</strong> : 사물, 관계, 다이어그램으로 구성</li>
+<li><strong>사물</strong> : 구조, 행동, 그룹, 주해</li>
+<li><strong>관계</strong>
+<ul>
+<li><code>연관</code>
+<ul>
+<li>Association</li>
+<li>2개 이상의 사물이 서로 관련</li>
+</ul>
+</li>
+<li><code>집합</code>
+<ul>
+<li>하나의 사물이 다른 사물에 포함</li>
+</ul>
+</li>
+<li><code>포함</code>
+<ul>
+<li>집합 관계 내 한 사물의 변화가 다른 사물에 영향</li>
+</ul>
+</li>
+<li><code>일반화</code>
+<ul>
+<li>한 클래스가 다른 클래스를 포함하는 상위 개념일 때를 지칭</li>
+</ul>
+</li>
+<li><code>의존</code>
+<ul>
+<li>Dependency</li>
+<li>사물 간 서로에게 <strong>영향</strong>을 주는 관계</li>
+</ul>
+</li>
+<li><code>실체화</code>
+<ul>
+<li>Realizztion</li>
+<li>한 객체가 타 객체에게 오퍼레이션을 수행할 수 있도록 지정/그룹화</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>다이어그램</strong>
+<ul>
+<li><code>구조/정적 다이어그램</code> <em>클객컴배복패</em>
+<ul>
+<li>클래스</li>
+<li>객체</li>
+<li>컴포넌트</li>
+<li>배치(<strong>배포</strong>)
+<ul>
+<li>물리적 요소의 위치/구조 표현</li>
+<li>노드(3D 박스모양), 아티팩트(노드 위 배치), 연결로 구성</li>
+</ul>
+</li>
+<li>복합체</li>
+<li>패키지</li>
+</ul>
+</li>
+<li><code>행위/동적 다이어그램</code> <em>유활상</em> - <em>시커타상</em>
+<ul>
+<li>유스케이스</li>
+<li>활동
+<ul>
+<li>처리 흐름을 순서에 따라 표현</li>
+</ul>
+</li>
+<li>상태
+<ul>
+<li>상태 변화</li>
+</ul>
+</li>
+<li>상호작용
+<ul>
+<li>시퀀스(<strong>순차</strong>)
+<ul>
+<li>시스템/객체들이 주고받는 메세지 표현</li>
+<li>생명선, 실행, 메세지</li>
+</ul>
+</li>
+<li>커뮤니케이션(<strong>교류</strong>): 메세지와 객체 간의 연관관계까지 표현</li>
+<li>타이밍: 상태 변화와 시간 제약 명시적으로 표현</li>
+<li>상호작용 개요: 상호작용 다이어그램 간 제어</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>객체 표현</strong>
+<ul>
+<li>스테레오 타입 : <code>《 》</code> 로 표기, 의미 <strong>확장</strong></li>
+<li>제약: <code>{ }</code> 안에 제약식, 조건 표현</li>
+<li>태그: <code>{속성명=값}</code> 형태로 부가 정보 표현</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="유스케이스">유스케이스</h4>
+<ul>
+<li>시스템을 블랙박스로 보고, &ldquo;밖에서 누가 무엇을 요청하느냐?&ldquo;에 초점</li>
+<li><strong>구성 요소</strong>
+<ul>
+<li>Actor, SystemBoundary, UseCase, 관계</li>
+</ul>
+</li>
+<li><strong>관계</strong>
+<ul>
+<li><code>연관</code>
+<ul>
+<li>Actor &lt;-&gt; UsecAse 참여 관계</li>
+<li>실선, 다중성(1, 1,..<em>,</em>) 표기 가능</li>
+<li>⚠️ 연관은 행위 흐름이 아닌 <strong>참여만 나타냄</strong></li>
+</ul>
+</li>
+<li><code>포함</code>
+<ul>
+<li>항상 호출되는 공통 하위 시나리오 분리</li>
+<li>점선 화살표 + <code>&lt;&lt;include&gt;&gt;</code> 표기</li>
+<li>A 수행 전 B가 무조건 <strong>선행</strong> 수행 되어야하는 경우</li>
+<li>⚠️ 조건부, 선택 실행은 포함이 아닌 <strong>확장</strong></li>
+</ul>
+</li>
+<li><code>확장</code>
+<ul>
+<li>조건부/선택적으로 기본 UseCase에 끼어드는 부가 흐름</li>
+<li>점선 화살표 + <code>&lt;&lt;extend&gt;&gt;</code> 표기</li>
+<li>⚠️ 자꾸 쓰는 공통 절차면 확장이 아닌 <strong>포함</strong></li>
+</ul>
+</li>
+<li><code>일반화</code>
+<ul>
+<li>상/하위의 특화나 공통 관계 (UseCase, Actor 모두 가능)</li>
+<li>실선 + 속 빈 삼각형 표기</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="ns-chart">NS chart</h4>
+<ul>
+<li>논리의 기술에 중점을 둔 도형식 표현 방법이다.</li>
+<li>연속, 선택 및 다중 선택, 반복 등의 제어 논리 구조로 표현한다.</li>
+<li>조건이 복합되어 있는 곳의 처리를 시각적으로 명확히 식별하는 데 적합하다.</li>
+<li>❌ <strong>오답</strong> : 주로 화살표를 사용하여 논리적인 제어 구조로 흐름을 표현한다.</li>
+</ul>
+<br>
+<h4 id="cbd">CBD</h4>
+<ul>
+<li>생산성과 품질을 높이고, 유지보수 비용을 최소화</li>
+<li>재사용이 가능한 컴포넌트의 개발 또는 사용 컴포넌트들을 조합하여 애플리케이션 개발</li>
+<li>독립적인 컴포넌트 단위의 관리로 복잡성을 최소화</li>
+<li>❌ <strong>오답</strong> : 모듈의 분할과 정복에 의한 하향식 설계 방식이다.</li>
+</ul>
+<br>
+<br>
+<h4 id="결합도-모듈-간">결합도 (모듈 간)</h4>
+<ul>
+<li>모듈 상호 간 결합도</li>
+<li>낮을 수록 좋음</li>
+<li><strong>오름차순 정리</strong> <em>CCECSD</em>
+<ul>
+<li><code>내용</code>: 한 모듈이 다른 모듈의 내부 기능 및 자료를 직접 참조/수정</li>
+<li><code>공통</code>: 공유되는 <strong>공통 데이터</strong>를 여러 모듈이 사용(전역 변수)</li>
+<li><code>외부</code>: 한 모듈에서 선언한 데이터를 외부 다른 모듈에서 참조</li>
+<li><code>제어</code>: 한 모듈이 다른 모듈의 상세한 처리 절차를 알고 있어 이를 통제하는 경우나 처리 기능이 두 모듈에 분리되어 설계</li>
+<li><code>스탬프</code>: 두 모듈이 동일한 자료구조를 조회</li>
+<li><code>데이터</code>: 모듈 간의 인터페이스가 자료요소로만 구성.</li>
+</ul>
+</li>
+<li>❌ <strong>오답</strong> : <code>데이터 결합도는 두 모듈이 매개변수로 자료를 전달할 때, 자료구조 형태로 전달되어 이용될 때 데이터가 결합되어있다고 한다. (이것은 스탬프 결합도의 설명)</code></li>
+</ul>
+<br>
+<h4 id="응집도">응집도</h4>
+<ul>
+<li>각 모듈 내부 간 응집도</li>
+<li>높을 수록 좋음</li>
+<li><strong>오름차순 정리</strong> <em>기순통절시논우</em>
+<ul>
+<li><code>기능적</code>: 단일 문제 해결, 한가지 명확한 기능</li>
+<li><code>순차적</code>: 모듈 내 출력 Data를 다음 활동의 Data로 순차 전달</li>
+<li><code>통신적</code>: 동일한 입출력으로 서로 다른 기능 수행</li>
+<li><code>절차적</code>: 여러 기능을 순차적으로 진행 - Data 공유 약함</li>
+<li><code>시간적</code>: 같은 시점에 실행되는 것들 모음</li>
+<li><code>논리적</code>: 유사한 성격의 처리 요소</li>
+<li><code>우연적</code>: 서로 관련없는 것들 모음</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="디자인-패턴">디자인 패턴</h4>
+<ul>
+<li>생성, 구조, 행위 패턴으로 구분</li>
+<li><code>서브 시스템</code> 에 속하는 컴포넌트들과 그 관계 설계를 위한 참조 모델</li>
+<li>⚠️ 전체 시스템 구조 설계는 디자인 패턴이 아닌 <strong>아키텍처 패턴</strong></li>
+<li><strong>생성패턴</strong> <em>ABFPS</em>
+<ul>
+<li><code>Abstract Factory</code>
+<ul>
+<li>구체적 클래스에 의존 ❌</li>
+<li>서로 연관/의존적 객체들이 조합된 인터페이스 제공</li>
+</ul>
+</li>
+<li><code>Builder</code>
+<ul>
+<li>객체 생성 단계를 캡슐화/분리 -&gt; <strong>객체를 조립</strong></li>
+<li>동일 생성 절차에서 서로 다른 표현 결과 제공</li>
+</ul>
+</li>
+<li><code>Factory Method</code>
+<ul>
+<li>상위 클래스에서 객체 생성 인터페이스 정의</li>
+<li>서브 클래스에서 인스턴스 만드는 클래스 결정 (즉, <strong>분리</strong>)</li>
+</ul>
+</li>
+<li><code>Prototype</code>
+<ul>
+<li>원본/원형 객체를 <strong>복제</strong> 하는 방식</li>
+</ul>
+</li>
+<li><code>Singleton</code>
+<ul>
+<li><strong>하나의 객체만 생성</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>구조패턴</strong> <em>ABCDFFP</em>
+<ul>
+<li><code>Adapter</code>
+<ul>
+<li>비호환 인터페이스에 <strong>호환성 부여</strong></li>
+<li>기존 클래스를 <strong>감싸서</strong> 변환</li>
+</ul>
+</li>
+<li><code>Bridge</code>
+<ul>
+<li>구현부에서 추상층을 분리 후 각각 <strong>독립적</strong> 으로 확장</li>
+</ul>
+</li>
+<li><code>Composite</code>
+<ul>
+<li><strong>트리</strong> 구조로 부분/전체 계층 표현</li>
+<li>복합/단일 객체를 구분없이 사용</li>
+</ul>
+</li>
+<li><code>Decorator</code>
+<ul>
+<li><strong>상속 사용 없이</strong> 객체간 결합을 통해 기능 동적 추가/확장</li>
+</ul>
+</li>
+<li><code>Fecade</code>
+<ul>
+<li>서브 클래스 없이 구현</li>
+<li>개발자가 사용해야하는 서브 시스템 가장 앞쪽에 위치</li>
+<li><strong>복잡한 서브시스템</strong> 을 감싸서, 단순화된 통합 인터페이스를 제공</li>
+</ul>
+</li>
+<li><code>Flyweight</code>
+<ul>
+<li>인스턴스 공유로 메모리 절약</li>
+<li>클래스 경량화</li>
+</ul>
+</li>
+<li><code>Proxy</code>
+<ul>
+<li>접근이 힘든 객체를 연결하는 인터페이스 역할</li>
+<li><strong>대리 객체 수행</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>행위패턴</strong> <em>어떻게 객체와 상호작용하고 책임을 분산할것인가?</em>
+<ul>
+<li><code>Mediator</code>
+<ul>
+<li>객체간 복잡 상호작용을 캡슐화하여 객체로 정의 후 <strong>중재</strong></li>
+</ul>
+</li>
+<li><code>Memento</code>
+<ul>
+<li>객체를 이전 특정 시점의 상태로 저장하고 <strong>복원</strong></li>
+</ul>
+</li>
+<li><code>Observer</code>
+<ul>
+<li>한 객체 상태 변화 시 상속 되어있는 객체들에 <strong>변화 전달</strong> (<code>1대 다</code>)</li>
+</ul>
+</li>
+<li><code>Strategy</code>
+<ul>
+<li>동일 계열 <strong>알고리즘</strong> 을 개별 캡슐화하여 상호 교환</li>
+</ul>
+</li>
+<li><code>State</code>
+<ul>
+<li>객체의 상태에 따라 동일 동작 다르게 처리</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="mvc">MVC</h4>
+<ul>
+<li>응집도 ↑, 결합도 ↓, 변경 용이성 ↑</li>
+<li>사용자 인터페이스를 시스템의 비즈니스 로직과 분리하는 구조</li>
+<li>디자인 패턴 중 <code>Observer</code>에 해당하는 구조</li>
+<li><strong>구성</strong>
+<ul>
+<li><code>Model</code>
+<ul>
+<li>핵심 데이터와 비즈니스 로직 담당</li>
+<li>뷰나 컨트롤러에 직접 의존하지 않음</li>
+</ul>
+</li>
+<li><code>View</code>
+<ul>
+<li>사용자에게 보여지는 UI 담당</li>
+<li>Model이 바뀌면 View는 자동 갱신 가능 (Observer)</li>
+</ul>
+</li>
+<li><code>Controller</code>
+<ul>
+<li>사용자 입력을 해석하고, 동작을 모델에 전달하거나 뷰를 갱신</li>
+<li>뷰와 모델 사이 <strong>중재자/전달자</strong> 역할</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="미들웨어">미들웨어</h4>
+<ul>
+<li>운영체제와 응용 프로그램 사이의 소프트웨어</li>
+<li><strong>종류</strong>
+<ul>
+<li><code>RPC</code>: 네트워크로 다른 시스템의 함수를 호출</li>
+<li><code>MOM</code>: 메세지 큐 기반 비동기 전송, <strong>느슨, 비동기</strong></li>
+<li><code>ORB</code>: 객체 요청 브로커로 객체 지향 분산 환경 지원</li>
+<li><code>WAS</code>: 웹 기반 서비스 실행 환경 제공</li>
+<li><code>TP</code>: 트렌잭션이 온전하게 처리되고 있는지 감시/제어</li>
+<li><code>SQL/CLI</code>: C와 같은 언어에서 SQL 호출 간으하게 하는 인터페이스</li>
+</ul>
+</li>
+<li>❌ <strong>오답</strong> : <code>Webserver는 미들웨어가 아님</code></li>
+<li>❌ <strong>오답</strong> : <code>SQL/MM은 미들웨어가 아닌 SQL 표준의 확장</code></li>
+</ul>
+<br>
+<br>
+<h4 id="화이트박스">화이트박스</h4>
+<ul>
+<li>모듈 내부 작동을 직접 볼 수 있음</li>
+<li>기초 경로, 조건, 루프, 구문, 결정기반 검사</li>
+<li><strong>목표</strong>
+<ul>
+<li>논리적 경로 점검 / 모든 소스코드 문장 한번 이상 수행</li>
+</ul>
+</li>
+<li><strong>종류</strong>
+<ul>
+<li>기초 경로 검사</li>
+<li>제어 구조 검사: 조건, 루프, 자료흐름검사</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="블랙박스">블랙박스</h4>
+<ul>
+<li>모듈 내부 내용 알 수 없음</li>
+<li>소프트웨어 인터페이스에서 실행</li>
+<li>SW 각 기능 완전 작동 입증 테스트로 <strong>기능테스트</strong> 라고 함</li>
+<li><strong>목표</strong>
+<ul>
+<li>인터페이스 오류 / 행위와 성능 오류 / 초기화와 종료 오류 잡기</li>
+</ul>
+</li>
+<li><strong>종류</strong>
+<ul>
+<li>동치 분할 검사</li>
+<li>경계값 분석</li>
+<li>원인-효과 그래프 건사</li>
+<li>오류 예측 검사</li>
+<li>비교 검사</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="워크스루-vs-인스팩션">워크스루 vs 인스팩션</h4>
+<ul>
+<li><strong>워크스루</strong>
+<ul>
+<li>비공식적 검토 기법</li>
+<li>작성자가 <code>직접 설명</code> 하면서 동료/전문가들과 함께 문서 검토</li>
+<li>검토 회의 전 요구사항 명세서를 미리 배포 후 사전 검토</li>
+<li>오류 조기 검출에 목표</li>
+</ul>
+</li>
+<li><strong>인스팩션</strong>
+<ul>
+<li>공식적 검토 기법</li>
+<li>작성자가 아닌 전문가가 문서를 체계적으로 검토</li>
+<li>오류 검출이 최우선</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h4 id="iso-12207-소프트웨어-생명주기">ISO 12207 소프트웨어 생명주기</h4>
+<ul>
+<li>기본: 획득, 공급, 개발, 운영, 유지보수</li>
+<li>지원: 문서화, 형상관리, 품질보증, 검증, 확인, 합동검토, 감사</li>
+<li>조직: 관리, 기반구조, 개선, 교육훈련</li>
+</ul>
+<br>
+<h4 id="spice">SPICE</h4>
+<ul>
+<li>SW 개발조직의 프로세스 능력 평가</li>
+<li><strong>능력 수준</strong>
+<ul>
+<li><code>0</code> : 불완전 - 프로세스 정의/수행 ❌</li>
+<li><code>1</code> : 수행 - 프로세스가 목표를 달성</li>
+<li><code>2</code> : 관리 - 프로세스가 계획/모니터링/조절됨</li>
+<li><code>3</code> : 확입 - 표준 프로세스가 조직 내에 확립</li>
+<li><code>4</code> : 예측 - 정량적 관리로 성과 예측 가능</li>
+<li><code>5</code> : 최적화 - 지속적 개선활동 수행</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="소프트웨어-형상-관리-항목">소프트웨어 형상 관리 항목</h4>
+<ul>
+<li>프로젝트 요구 분석서</li>
+<li>소스코드</li>
+<li>운영 및 설치 지침서</li>
+<li>❌ <strong>오답</strong> : <code>프로젝트 개발 비용</code></li>
+</ul>
+<br>
+<h4 id="소프트웨어-사용자-인터페이스-개발-시스템의-기능">소프트웨어 사용자 인터페이스 개발 시스템의 기능</h4>
+<ul>
+<li>사용자 입력의 검증</li>
+<li>에러처리와 에러 메세지 처리</li>
+<li>도움과 프롬프트 제공</li>
+<li>❌ <strong>오답</strong> : <code>소스코드 분석 및 오류 복구</code></li>
+</ul>
+<br>
+<h4 id="eai">EAI</h4>
+<ul>
+<li>EAI (Enterprise Application Integration)</li>
+<li>기업 내 운영되는 플랫폼 및 애플리케이션 간의 정보전달, 연계, 통합 수행</li>
+<li>Point to Point, Hub&amp;Spoke, Message Bus, Hybrid 형태로 구성</li>
+<li>⚠️ <code>Point-ti-Point</code> 만 미들웨어 방식이 아니다.</li>
+</ul>
+<br>
+<h4 id="인터페이스-구현-검증-도구">인터페이스 구현 검증 도구</h4>
+<ul>
+<li>Watir: 루비기반 웹 애플리케이션 테스트 프레임워크</li>
+<li>xUnit: 다양한 언어를 지원하는 프레임워크</li>
+<li>FitNesse: 웹기반으로 테스트 케이스 테이블 작성으로 빠르고 쉬움</li>
+<li>STAF: <strong>데몬</strong>을 사용하여 테스트 대상 분산 환경에서 진행</li>
+<li>NTAF Naver: STAF + FitNesse</li>
+<li>Selenium: 다양한 브라우저 지원</li>
+<li>❌ <strong>오답</strong> : <code>ESB</code>, <code>FoxBase</code></li>
+</ul>
+<br>
+<h4 id="빌드-자동화-도구">빌드 자동화 도구</h4>
+<ul>
+<li>Ant: Java</li>
+<li>Maven: XML 기반, 의존성 관리 장점</li>
+<li>Gradle: Groovy 기반, Andorid 개발 표준</li>
+<li>Make: Makefile 기반</li>
+</ul>
+<br>
+<h4 id="감성공학">감성공학</h4>
+<ul>
+<li><strong>접근방법</strong> <em>감통수</em>
+<ul>
+<li><code>1류</code> : 감각적 접근</li>
+<li><code>2류</code> : 통계적 접근</li>
+<li><code>3류</code> : 수학적 접근</li>
+<li><code>4류</code> : 졸합적 접근</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h4 id="db-설계-순서">DB 설계 순서</h4>
+<ul>
+<li><em>요개논물구</em></li>
+<li><strong>요구조건분석</strong>
+<ul>
+<li>DB 사용 용도, 요구사항, 명세서 작성</li>
+</ul>
+</li>
+<li><strong>개념적 모델</strong>
+<ul>
+<li>스키마 모델링, 트랜젝션 모델링, E-R 모델</li>
+</ul>
+</li>
+<li><strong>논리적 모델</strong>
+<ul>
+<li>개념적 모델을 컴퓨터가 처리 가능한 구조로 표현</li>
+<li>종속적인 <strong>논리 스키마 설계</strong></li>
+<li>트랜잭션 인터페이스 설계</li>
+<li>정규화</li>
+</ul>
+</li>
+<li><strong>물리적 모델</strong>
+<ul>
+<li>데이터 실제 저장 방법 및 접근 경로 표현</li>
+<li><strong>저장 레코드</strong> 의 형식/순서/접근경로 설계</li>
+<li>트랜잭션 작성</li>
+<li>반정규화</li>
+</ul>
+</li>
+<li><strong>구현</strong>
+<ul>
+<li>DBMS에서 SQL로 작성한 명령문 실행 후 DB 생성</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="릴레이션">릴레이션</h4>
+<img src="https://i.imgur.com/M47hzfA.png" width="600">
+<ul>
+<li><strong>구성</strong>
+<ul>
+<li><code>속성(Attribute)</code>
+<ul>
+<li>속성 = 열 = 필드</li>
+<li>속성의 갯수: <strong>Degree(차수)</strong></li>
+</ul>
+</li>
+<li><code>튜플(Tuple)</code>
+<ul>
+<li>튜플 = 행 = 레코드</li>
+<li>튜플의 갯수: <strong>Cardianlity(기수)</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>특징</strong>
+<ul>
+<li>튜플과 속성은 유일하며 순서는 무의미함</li>
+<li>튜플은 삽입/삭제 등에 의해 계속 변하고, 서로 상이한 값을 가짐</li>
+<li>속성의 값은 분해 불가(원자성)하고, 동일할 수 있음</li>
+<li>속성은 Null값을 가질 수 있으나, 기본키는 Null ❌</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="코드">코드</h4>
+<ul>
+<li><strong>설계순서</strong>
+<ul>
+<li>코드 대상 항목 결정 - 사용 범위와 기간 결정 - 코드화 방식 결정 - 코드의 문서화</li>
+</ul>
+</li>
+<li><strong>종류</strong>
+<ul>
+<li><code>순차코드</code>
+<ul>
+<li>자료를 <strong>일정한 순서</strong> 대로 일련번호 단순 부여</li>
+<li>회원번호 001, 002&hellip;</li>
+<li>단순하고 쉬우나, 중간에 새로운 자료 삽입 어려움 (<strong>유연성 부족</strong>)</li>
+</ul>
+</li>
+<li><code>블록코드</code>
+<ul>
+<li>자료를 블록(그룹)별로 나누고, 블록 내에서 순차적으로 번호 부여</li>
+<li>10-19 가전, 20-29 가구 &hellip;</li>
+<li>⚠️ <strong>예비코드, 구분 순차 코드</strong> 이며 확장성이 좋음</li>
+</ul>
+</li>
+<li><code>표의숫자코드</code>
+<ul>
+<li>각 자리 숫자에 의미 부여</li>
+<li>번호 311 (3: 전자), (1: TV), (1: 소형)</li>
+<li>의미 파악 용이하나 자릿수 늘어나면 복잡</li>
+<li>⚠️ <strong>기계 처리 적합하지 않음!</strong></li>
+</ul>
+</li>
+<li><code>연상코드</code>
+<ul>
+<li><strong>사람이 이해하기 쉬운</strong> 문자, 기호로 표현</li>
+<li>KR: 한국, JP: 일본</li>
+<li>직관적이고 암기 용이 하나 부여 기준 일관성 필요</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="ado-객체">ADO 객체</h4>
+<ul>
+<li><strong>Connection 개체</strong>
+<ul>
+<li>DB와 연결 관리, 세션 관리, 트랜잭션 처리</li>
+<li><code>Open</code>, <code>Close</code>, <code>Execute</code></li>
+</ul>
+</li>
+<li><strong>Command 개체</strong>
+<ul>
+<li>SQL 실행, 파라미터 포함 쿼리 실행</li>
+<li><code>CommandText</code>, <code>Execute</code></li>
+</ul>
+</li>
+<li><strong>Recordset 개체</strong>
+<ul>
+<li>결과 집합 관리, 데이터 조작 가능</li>
+<li><code>AddNew</code>, <code>Update</code>, <code>Delete</code>, <code>MoveNext</code></li>
+</ul>
+</li>
+<li><strong>Field 개체</strong>
+<ul>
+<li>Recordset의 한 열, 컬럼(속성) 관리</li>
+<li><code>Name</code>, <code>Value</code></li>
+</ul>
+</li>
+<li>👀 <strong>시험</strong>
+<ul>
+<li>Connection 개체와 관련 없는 것?
+<ul>
+<li>→ AddNew (Recordset 전용) 같은 문제</li>
+</ul>
+</li>
+<li>Recordset 개체의 기능으로 옳지 않은 것?
+<ul>
+<li>→ Open, Execute (Connection 전용) 같은 문제</li>
+</ul>
+</li>
+<li>ADO 개체 모델에서 각 개체의 역할을 연결하는 문제
+<ul>
+<li>Connection ↔ DB 연결</li>
+<li>Command ↔ SQL 실행</li>
+<li>Recordset ↔ 결과 집합</li>
+<li>Field ↔ 컬럼</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="저작권-관리-구성요소">저작권 관리 구성요소</h4>
+<ul>
+<li><strong>콘텐츠 제공자(Content Provider)</strong>
+<ul>
+<li>콘텐츠를 제공하는 저작권자</li>
+</ul>
+</li>
+<li><strong>콘텐츠 분배자(Content Distributor)</strong>
+제공자가 만든 콘텐츠를 유통·전달하는 주체</li>
+<li><strong>클리어링 하우스(Clearing House)</strong>
+<ul>
+<li>권리 허가/요금정산/이용기록 관리</li>
+</ul>
+</li>
+<li><strong>패키저(Packager)</strong>
+<ul>
+<li>콘텐츠를 메타 데이터와 함께 배포 가능한 단위로 묶는 기능</li>
+</ul>
+</li>
+<li><strong>DRM 제어(관리) 서버(DRM Controller)</strong>
+<ul>
+<li>라이선스 발급, 키 관리, 사용 정책(기간, 복제 금지 등) 적용</li>
+<li>배포된 콘텐츠의 이용권한을 통제</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="drm-기술">DRM 기술</h4>
+<ul>
+<li>암호화, 키 관리, 암호화 파일 생성, 식별 기술, 저작권 표현, 정책 관리, 인증, 크랙방지, 인터페이스, 이벤트 보고, 사용 권한</li>
+<li>❌ <strong>오답</strong> : 콘텐츠 오류 감지 및 복구</li>
+</ul>
+<br>
+<h4 id="데이터-모델-구성요소">데이터 모델 구성요소</h4>
+<ul>
+<li>데이터 구조</li>
+<li>연산</li>
+<li>제약조건</li>
+<li>❌ <strong>오답</strong> : 출력 구조</li>
+</ul>
+<br>
+<h4 id="트렌젝션">트렌젝션</h4>
+<ul>
+<li><strong>특징</strong>
+<ul>
+<li>원자성(Atomicity): 완전하게 수행 완료되지 않으면, 전혀 수행되지 않아야 함</li>
+<li>일관성(Consistency): 시스템 고정요소는 트랜젝션 수행 전후로 같아야 함</li>
+<li>격리성(Isolation): 트랜젝션 실행 시 타 트랜젝션 간섭 X</li>
+<li>영속성(Durability): 트랜젠셕의 완료 결과가 DB에 영구히 기억됨</li>
+</ul>
+</li>
+<li><strong>상태</strong>
+<ul>
+<li>활동: 트랜젝션의 수행 중인 상태</li>
+<li>부분완료: 모든 연산 끝내고 <strong>Commit 직전</strong></li>
+<li>완료: Commit 까지 수행 완료</li>
+<li>실패: 트렌잭션 실행 중 오류</li>
+<li>철회: 실해 후 Rollback까지 수행</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="데이터-언어">데이터 언어</h4>
+<ul>
+<li><strong>DDL</strong>: DB구조/객체 정의 및 변경
+<ul>
+<li><code>CREAT</code> 테이블, 뷰, 인텍스 등 DB 객체 생성</li>
+<li><code>ALTER</code> 기존 DB객체 구조 변경</li>
+<li><code>DROP</code> 테이블, 뷰 등 DB객체 삭제</li>
+<li><code>RENAME</code> 객체 이름 변경</li>
+<li><code>TRUNCATE</code> 모든 데이터 삭제</li>
+</ul>
+</li>
+<li><strong>DML</strong>: DB 데이터 조작
+<ul>
+<li><code>SELECT</code> 조회</li>
+<li><code>INSERT</code> 추가</li>
+<li><code>UPDATE</code> 수정</li>
+<li><code>DELETE</code> 삭제</li>
+</ul>
+</li>
+<li><strong>DCL</strong>: 데이터 제어어
+<ul>
+<li><code>GRANT</code> 권한 부여</li>
+<li><code>REVOKE</code> 권한 회수</li>
+<li><code>COMMIT</code> 작업 저장</li>
+<li><code>ROLLBACK</code> 되돌리기</li>
+<li><code>SAVEPOINT</code> 세이브포인트지정</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="교착상태">교착상태</h4>
+<ul>
+<li>Mutual Exculsion</li>
+<li>Hold and wait</li>
+<li>Non-preemption</li>
+<li>Circular Wait</li>
+<li>❌ <strong>오답</strong> : Linear Wait</li>
+</ul>
+<br>
+<h4 id="csmaca-csmacd">CSMA/CA, CSMA/CD</h4>
+<ul>
+<li>CSMA/CD (유선 이더넷)
+<ul>
+<li>채널이 비면 전송 시작</li>
+<li>전송 중 신호 변화 감지</li>
+<li>충돌 발견 시 전송 중단 + 재전송 대기</li>
+<li><strong>나가다가 부딪히면 멈춘다</strong></li>
+</ul>
+</li>
+<li>CSMA/CA (무선 Wi-Fi)
+<ul>
+<li>채널이 비면 전송 전 랜덤 대기(백오프)</li>
+<li>필요 시 RTS/CTS 절차로 송신 예약</li>
+<li>전송 후 ACK 수신으로 성공 확인</li>
+<li>즉, <strong>나가기전에 미리 피한다</strong></li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="암호화">암호화</h4>
+<ul>
+<li><strong>양방향 암호화</strong>
+<ul>
+<li><code>대칭키</code> : <em>비밀키 암호화 방식</em>
+<ul>
+<li>DES</li>
+<li>AES</li>
+<li>SEED (한국 표준)</li>
+<li>ARIA (한국 표준)</li>
+<li>IDEA</li>
+<li>LEA (한국 경량 암호)</li>
+<li>Skipjack</li>
+</ul>
+</li>
+<li><code>비대칭키</code>: <em>공개키 암호화 방식</em>
+<ul>
+<li>RSA</li>
+<li>Rabin</li>
+<li>Diffie-Hellman (키 교환 방식)</li>
+<li>DSA (전자서명 알고리즘)</li>
+<li>ECC (Elliptic Curve Cryptography, 타원곡선 암호)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>단방향 암호화</strong> <em>해시함수 암호화 방식</em>
+<ul>
+<li>SHA, HAVAL, MD4, MD5, N-NASH, SNEFRU</li>
+<li>폴딩법(중첩): 레코드 키를 여러 부분으로 나누고, 나눈 부분의 각 숫자를 더하거나 XOR한 값을 홈주소로 사용</li>
+<li>제곱법</li>
+<li>숫자 분석법</li>
+<li>제산법</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="cmm">CMM</h4>
+<ul>
+<li>❌ <strong>오답</strong> : 모듈의 분할과 정복에 의한 하향식 설계 방식이다.</li>
+</ul>
+<br>
+<h4 id="기타-개념">기타 개념</h4>
+<ul>
+<li><strong>오픈 그래프</strong>
+<ul>
+<li>기존의 웹 사이트를 소셜 네트워크 서비스와 연동하여 마케팅 플랫폼으로 활용하는 기법</li>
+</ul>
+</li>
+<li><strong>CPND</strong>
+<ul>
+<li><code>C</code>: Contents</li>
+<li><code>P</code>: Platform</li>
+<li><code>N</code>: Network</li>
+<li><code>D</code>: Digital</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>추가 중</p></blockquote>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

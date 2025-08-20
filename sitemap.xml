@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://elecbrandy.github.io/posts/cs101/etc/eip/</loc>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/cs101/</loc>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://elecbrandy.github.io/</loc>
-    <lastmod>2025-06-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/</loc>
-    <lastmod>2025-06-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/</loc>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/hugo/setup/</loc>
     <lastmod>2025-05-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/hugo/</loc>
-    <lastmod>2025-05-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/</loc>
     <lastmod>2025-05-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_6/ft_transcendence/</loc>
@@ -39,9 +45,6 @@
     <lastmod>2024-11-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/cs101/etc/radixpoint/</loc>
-    <lastmod>2024-09-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/cs101/</loc>
     <lastmod>2024-09-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_4/netpractice/</loc>
