@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>[Algorithm] 정렬(1) | elecbrandy</title>
+
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.d44c672ab09ff4e7a40192b4c273b29b705ce87d7f4df5223640e4c24f28f310.css" integrity="sha256-1ExnKrCf9OekAZK0wnOym3Bc6H1/TfUiNkDkwk8o8xA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
+<style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+	  <li><a href="https://elecbrandy.github.io/">/home</a></li>
+	  <li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+	  <li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-소개">1. 소개</a></li>
+    <li><a href="#2-빌드-과정">2. 빌드 과정</a>
+      <ul>
+        <li><a href="#2-1-preprocessing-전처리">2-1. Preprocessing (전처리)</a></li>
+        <li><a href="#2-2-compilation-컴파일">2-2. Compilation (컴파일)</a></li>
+        <li><a href="#2-3-assembly-어셈블리">2-3. Assembly (어셈블리)</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-4-linking-링킹">2-4. Linking (링킹)</a></li>
+    <li><a href="#2-5-runtime-런타임">2-5. Runtime (런타임)</a></li>
+  </ul>
+</nav>
+  </aside>
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://zrr.kr/0F7swm" alt="Featured Image for [Algorithm] 정렬(1)">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2025.09.29</small>
+      <div class="singleTitle">[Algorithm] 정렬(1)</div>
+    </div>
+  </div>
+  <br>
+<h2 id="1-소개">1. 소개</h2>
+<hr>
+<p>알고리즘</p>
+<br>
+<br>
+<h2 id="2-빌드-과정">2. 빌드 과정</h2>
+<hr>
+<h3 id="2-1-preprocessing-전처리">2-1. Preprocessing (전처리)</h3>
+<p>전처리는 **전처리기(<code>cpp</code>)**에 의해 수행된다. 이 단계에서는 소스 코드가 컴파일되기 전에 미리 준비해야 하는 작업들이 처리된다. 주요 작업은 다음과 같다:</p>
+<ul>
+<li>
+<p><strong>Header Inclusion (헤더 파일 포함)</strong><br>
+소스 코드에 포함된 <code>#include</code> 지시문을 처리하여 필요한 헤더 파일의 내용을 소스 코드에 포함시킨다. 이 과정을 통해 함수 선언, 상수, 구조체, 그리고 매크로 등이 소스 파일에 통합된다.</p>
+</li>
+<li>
+<p><strong>Macro Expansion (매크로 확장)</strong><br>
+<code>#define</code>을 통해 정의된 매크로를 실제 값이나 코드로 치환하는 과정이다. 예를 들어, <code>#define PI 3.14</code>와 같은 매크로 정의가 있으면, 이후 코드에서 <code>PI</code>를 사용한 모든 부분이 <code>3.14</code>로 대체된다.</p>
+</li>
+<li>
+<p><strong>Conditional Compilation (조건부 컴파일)</strong><br>
+<code>#ifdef</code>, <code>#ifndef</code>, <code>#endif</code> 등과 같은 조건부 컴파일 지시문을 통해, 특정 조건에 맞는 코드만 포함하거나 제외할 수 있다. 이를 통해 서로 다른 플랫폼이나 환경에 맞는 코드를 관리할 수 있다.</p>
+</li>
+</ul>
+<p>이 단계의 결과물은 전처리가 완료된 소스 파일인 <strong><code>.i</code> 파일</strong>이다.</p>
+<br>
+<h3 id="2-2-compilation-컴파일">2-2. Compilation (컴파일)</h3>
+<p>컴파일 단계는 <strong>컴파일러</strong>에 의해 수행된다. 이 단계에서 전처리가 완료된 C 코드를 어셈블리어로 변환한다. 어셈블리어는 기계어와 인간이 이해할 수 있는 코드의 중간 단계에 해당하는 저수준 언어이다.</p>
+<p>전처리된 <strong><code>.i</code> 파일</strong>이 컴파일러에 의해 <strong><code>.s</code> 파일</strong>로 변환된다. <code>.s</code> 파일은 어셈블리어로 작성된 파일이다. 이 단계에서는 변수, 함수, 제어 구조 등이 어셈블리어로 변환되어 코드가 하드웨어에 더 가까운 형태로 표현된다.</p>
+<br>
+<h3 id="2-3-assembly-어셈블리">2-3. Assembly (어셈블리)</h3>
+<p>어셈블리 단계는 **어셈블러(<code>as</code>)**에 의해 수행된다. 어셈블리어 파일을 목적 파일(object file)로 변환하는 과정이다. 목적 파일은 컴퓨터가 실행할 수 있는 기계어로 작성되었지만, 아직 독립적으로 실행할 수 없다.</p>
+<p>어셈블리어로 작성된 <strong><code>.s</code> 파일</strong>이 어셈블러에 의해 <strong><code>.o</code> 파일</strong>(목적 파일)로 변환된다. 이 파일은 이진(binary) 형태로, 실제로 하드웨어에서 실행 가능한 형태에 가까워진다.</p>
+<br>
+<h2 id="2-4-linking-링킹">2-4. Linking (링킹)</h2>
+<p>링킹은 **링커(<code>ld</code>)**에 의해 수행되는 단계이다. 여러 개의 목적 파일(.o)과 라이브러리 파일을 하나의 실행 파일로 결합하는 과정이다. 이 단계에서 정적 라이브러리나 동적 라이브러리도 함께 연결된다.</p>
+<p>여러 목적 파일을 하나의 실행 가능한 프로그램으로 통합하는 과정이다. 이때 이미 컴파일된 라이브러리 파일도 링크되어 프로그램에서 사용할 수 있게 된다. 링킹을 통해 실행 가능한 단일 파일이 생성되며, 이 파일은 <code>.out</code> 또는 <code>.exe</code> 형식으로 나타난다. 이 단계가 완료되면 프로그램이 **빌드(build)**되었다고 한다.</p>
+<br>
+<h2 id="2-5-runtime-런타임">2-5. Runtime (런타임)</h2>
+<p>실행 파일이 생성되었더라도, 프로그램의 실행은 빌드와는 별도의 단계이다. 런타임은 프로그램이 실제로 실행되는 동안 일어나는 일들을 의미한다. 메모리 할당, 입출력 처리, 예외 처리 등은 프로그램이 실행 중 즉 <strong>런타임 중</strong> 일 때 일어난다.</p>
+<p>빌드 과정에서 목적 파일로 나누는 이유는 다양한 언어로 작성된 파일을 통합하거나, 큰 프로젝트를 여러 소스 파일로 분리하여 관리하는 것이 더 효율적이기 때문이다. 최종적으로 링킹 단계에서 이 파일들을 모아 하나의 실행 파일로 만든다.</p>
+<p>이러한 전체 과정을 통해 C 프로그램은 소스 코드에서 기계어로 변환되어 실제로 실행할 수 있는 상태가 된다.</p>
+<br>
+<br>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>
