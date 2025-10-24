@@ -43,7 +43,7 @@ ____
 
 ## 3. 고정소수점
 ____
-<img src="https://blog-web.modulabs.co.kr/wp-content/uploads/2024/03/fixed-points.png" width="600">
+<img src="https://resources-public-blog.modulabs.co.kr/blog/prd/content/259164/fixed-points.png" width="600">
 
 **고정소수점(Fixed Point)** 은 소수점을 고정된 위치에 두고 정수와 소수 부분을 구분하여 숫자를 표현하는 방식이다. 즉, 정수부와 소수부의 자릿수가 미리 정해져 있는 것이 특징입니다. 예를 들어, 소수점 이하 두 자리를 사용할 경우, 12.34와 같은 값을 정확하게 표현할 수 있다! 소수부 자릿수가 고정되어 있기 때문에, **정밀도(Precision)** 는 소수부 자릿수만큼만 유지된다. 이 방식은 컴퓨터의 연산 속도가 빠르고 구현이 간단하다는 장점이 있다.  
 
@@ -61,7 +61,7 @@ ____
 
 ## 3. 부동소수점
 ___
-<img src="https://blog-web.modulabs.co.kr/wp-content/uploads/2024/03/floating-point.png" width="600">
+<img src="https://resources-public-blog.modulabs.co.kr/blog/prd/content/259164/floating-point.png" width="600">
 
 **부동소수점(Floating Point)** 은 소수점을 가변적으로 움직여 숫자를 표현하는 방식이다. 이는 숫자의 정수부와 소수부를 나누어 고정된 자리에서 소수를 표현하는 고정소수점 방식과 다르게, 소수점의 위치를 자유롭게 옮길 수 있는 방식이다. 부동소수점은 숫자를 **가수(Mantissa)** 와 **지수(Exponent)** 로 나누어 표현한다.  
 
