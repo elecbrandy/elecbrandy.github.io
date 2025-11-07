@@ -30,6 +30,8 @@ weight = 30
   githubUsername = "elecbrandy"
   copyright = "Copyright © 2024 elecbrandy"
   math = true
+  mainImageUrl = "https://i.imgur.com/URQWyyY.png"
+  showMainImage = false
 
 [taxonomies]
   tag = "tags"

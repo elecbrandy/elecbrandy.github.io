@@ -3,6 +3,7 @@ title = '[Algorithm] 정렬(1)'
 date = 2025-09-29
 featured_image = "https://zrr.kr/0F7swm"
 tags = ['cs101']
+draft = true
 +++
 
 <br>
