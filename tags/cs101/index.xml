@@ -6,15 +6,8 @@
     <description>Recent content in Cs101 on elecbrandy</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://elecbrandy.github.io/tags/cs101/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[Algorithm] 정렬(1)</title>
-      <link>https://elecbrandy.github.io/posts/algorithm/sorting/</link>
-      <pubDate>Mon, 29 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/posts/algorithm/sorting/</guid>
-      <description>&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;알고리즘&lt;/p&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;2-빌드-과정&#34;&gt;2. 빌드 과정&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;2-1-preprocessing-전처리&#34;&gt;2-1. Preprocessing (전처리)&lt;/h3&gt;&#xA;&lt;p&gt;전처리는 **전처리기(&lt;code&gt;cpp&lt;/code&gt;)**에 의해 수행된다. 이 단계에서는 소스 코드가 컴파일되기 전에 미리 준비해야 하는 작업들이 처리된다. 주요 작업은 다음과 같다:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Header Inclusion (헤더 파일 포함)&lt;/strong&gt;&lt;br&gt;&#xA;소스 코드에 포함된 &lt;code&gt;#include&lt;/code&gt; 지시문을 처리하여 필요한 헤더 파일의 내용을 소스 코드에 포함시킨다. 이 과정을 통해 함수 선언, 상수, 구조체, 그리고 매크로 등이 소스 파일에 통합된다.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Macro Expansion (매크로 확장)&lt;/strong&gt;&lt;br&gt;&#xA;&lt;code&gt;#define&lt;/code&gt;을 통해 정의된 매크로를 실제 값이나 코드로 치환하는 과정이다. 예를 들어, &lt;code&gt;#define PI 3.14&lt;/code&gt;와 같은 매크로 정의가 있으면, 이후 코드에서 &lt;code&gt;PI&lt;/code&gt;를 사용한 모든 부분이 &lt;code&gt;3.14&lt;/code&gt;로 대체된다.&lt;/p&gt;</description>
-    </item>
     <item>
       <title>[cs101] 정보처리기사 개념정리</title>
       <link>https://elecbrandy.github.io/posts/cs101/eip/</link>
