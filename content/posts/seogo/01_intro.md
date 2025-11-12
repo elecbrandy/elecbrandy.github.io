@@ -2,8 +2,10 @@
 title = '[서고] 전자책 DB 구축하기' 
 date = 2025-11-07
 featured_image = "https://zrr.kr/QgOehQ"
-tags = ['python']
+tags = ['python','seogo']
 +++
+
+{{<series title="👀 전자책 검색 서비스" series="seogo">}}
 
 <br>
 
@@ -36,11 +38,19 @@ ____
 ## 2. 계획
 ____
 
+#### 📚 학습
+- [ ] 병렬처리를 위해 `Ray` 를 학습한다.
+- [ ] DB 설계와 `SQL` 을 학습한다.
+
+#### 🛠️ 개발 
 - [ ] `README` 에 기능별 요구사항을 정리하고, 기능별 커밋하기 위해 노력한다.
 - [ ] JSAgular 형식의 커밋 메세지를 사용한다.
 - [ ] Selenium이 아닌 `Playwright` 을 사용한다.
-- [ ] 병렬처리를 위해 `Ray` 를 학습한다.
-- [ ] DB 설계와 활용을 위해 `DB` 와 `SQL` 을 학습한다.
+
+<br>
+<br>
+
+{{<series title="👀 전자책 검색 서비스" series="seogo">}}
 
 <br>
 <br>
