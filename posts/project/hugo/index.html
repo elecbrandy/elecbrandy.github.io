@@ -14,7 +14,7 @@
         });"></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>[hugo] hugo &#43; github 호스팅으로 개인 블로그 구축하기 | elecbrandy</title>
+<title>[hugo] hugo &#43; github 로 개인 블로그 구축하기 | elecbrandy</title>
 
       <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.d44c672ab09ff4e7a40192b4c273b29b705ce87d7f4df5223640e4c24f28f310.css" integrity="sha256-1ExnKrCf9OekAZK0wnOym3Bc6H1/TfUiNkDkwk8o8xA=" crossorigin="anonymous">
       <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
@@ -92,139 +92,177 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-hugo란">2. Hugo란?</a>
+    <li><a href="#2-기본-정보">2. 기본 정보</a></li>
+    <li><a href="#3-github-actions">3. Github Actions</a></li>
+    <li><a href="#4-freshpink-테마-살펴보기">4. <code>freshPink</code> 테마 살펴보기</a></li>
+    <li><a href="#5-설치-방법">5. 설치 방법</a>
       <ul>
-        <li><a href="#21-hugo-동작-원리">2‑1. Hugo 동작 원리</a></li>
+        <li><a href="#5-1-로컬에-블로그-설치하기">5-1. 로컬에 블로그 설치하기</a></li>
+        <li><a href="#5-2-github-action-설정하기">5-2. <code>Github Action</code> 설정하기</a></li>
       </ul>
     </li>
-    <li><a href="#3-stepbystep-macbookm1-기준">3. Step by Step (MacBook M1 기준)</a>
-      <ul>
-        <li><a href="#31-github-리포지토리-세팅">3‑1. GitHub 리포지토리 세팅</a></li>
-        <li><a href="#32-hugo-설치-및-사이트-초기화">3‑2. Hugo 설치 및 사이트 초기화</a></li>
-        <li><a href="#33-freshpink-테마-설치-hugomodules">3‑3. freshPink 테마 설치 (Hugo Modules)</a></li>
-        <li><a href="#3-2-로컬-확인">3-2. 로컬 확인</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-cicd-파이프라인">4. CI/CD 파이프라인</a>
-      <ul>
-        <li><a href="#41-사전-준비">4‑1. 사전 준비</a></li>
-        <li><a href="#42-워크플로-파일-작성">4‑2. 워크플로 파일 작성</a></li>
-        <li><a href="#43-동작과-배포">4‑3. 동작과 배포</a></li>
-      </ul>
-    </li>
-    <li><a href="#5-마무리">5. 마무리</a></li>
+    <li><a href="#6-how-to-use">6. How to use?</a></li>
   </ul>
 </nav>
   </aside>
   <div class="featured-container">
     
       <div class="featured-image">
-        <img src="https://gohugo.io/images/hugo-logo-wide.svg" alt="Featured Image for [hugo] hugo &#43; github 호스팅으로 개인 블로그 구축하기">
+        <img src="https://gohugo.io/images/hugo-logo-wide.svg" alt="Featured Image for [hugo] hugo &#43; github 로 개인 블로그 구축하기">
       </div>
     
     <div class="overlay-text">
       <small>2025.05.09</small>
-      <div class="singleTitle">[hugo] hugo &#43; github 호스팅으로 개인 블로그 구축하기</div>
+      <div class="singleTitle">[hugo] hugo &#43; github 로 개인 블로그 구축하기</div>
     </div>
   </div>
   <br>
 <h2 id="1-소개">1. 소개</h2>
 <hr>
 <blockquote>
-<p>Hugo + GitHub Pages 조합으로 30 분 만에 개인 개발 블로그를 구축하기</p>
+<p><strong>Hugo + GitHub hosting + Github Action</strong> 조합으로 30 분 만에 개인 개발 블로그를 구축하기</p>
 </blockquote>
-<p>컴퓨터 공부를 하다 보면 학습 내용을 정리할 공간이 필요하다. 개인 메모용으로, 혹은 지식을 공유하기 위해 개발 블로그를 운영하는 경우가 많다. 플랫폼은 네이버 블로그, 티스토리, Medium 등 다양하지만, 나는 마크다운(<code>.md</code>) 기반으로 필기하는 습관이 있어 <strong>Hugo + GitHub Pages</strong> 조합을 선택하였다. 이 방식은 다음과 같은 이점을 제공한다.</p>
+<p>이런 저런 이유로 인터넷 공간 한 구석에 나만을 위한 원룸이 필요할 때가 있다. 개인 메모용, 혹은 지식을 공유하기 위한 개발 블로그 등등&hellip; 이를 위한 플랫폼으로 네이버 블로그, 티스토리, Medium 등 종류가 참 다양하지만, 나는 마크다운(<code>.md</code>) 기반으로 필기하는 습관이 있어 <strong>Hugo + GitHub Pages</strong> 조합을 선택하였다. 이 방식은 다음과 같은 이점을 제공한다.</p>
+<p>1️⃣ <strong>마크다운 그대로 작성</strong>할 수 있다!<br>
+2️⃣ <strong>정적 사이트</strong>이므로 속도가 빠르고 보안 부담이 적다.<br>
+3️⃣ <strong>GitHub Pages</strong>를 이용해 <strong>무료</strong>로 호스팅할 수 있다.</p>
+<p>Hugo 테마 사이트에 들어가면 전세계 Hugo 유저들이 제작한 블로그 테마가 등록되어 있다. 다른 테마를 원하는 경우 아래 링크에서 더 많은, 더 예쁜 테마를 확인해보자! 각 테마 내부에 데모 사이트 접속부터 실제 설치-사용방법까지 적혀있기 때문에 초보자라도 쉽게 따라할 수 있다. 물론 대부분 영어로 적혀 있기 때문에 시행착오가 존재할 수 있고, 업데이트가 종료된 테마인 경우 최신 Hugo 엔진에서 작동하지 않는 경우도 있다. 따라서 같은 고민을 겪을 초보자를 위해 이 가이드를 작성하며, 우선 내가 작성한 <code>freshPink</code> 테마를 사용하고자 한다.</p>
 <ul>
-<li><strong>마크다운 그대로 작성</strong>할 수 있다!</li>
-<li><strong>정적 사이트</strong>이므로 속도가 빠르고 보안 부담이 적다.</li>
-<li><strong>GitHub Pages</strong>를 이용해 <strong>무료</strong>로 호스팅할 수 있다.</li>
-</ul>
-<p>그러나 한국어 자료가 적어 시행착오가 있었다. 같은 고민을 겪을 초보자를 위해 이 가이드를 작성한다. 예시 테마는 내가 제작한 <a href="https://elecbrandy.github.io/freshpink/">freshPink</a>이다.</p>
-<p>아래 가이드를 따라서 30 분 안에 다음 구성을 갖춘 블로그를 완성해보자!</p>
-<ul>
-<li>마크다운 기반 게시글</li>
-<li>테마(freshPink) 적용</li>
-<li>GitHub Actions를 통한 자동 배포(CI/CD)</li>
+<li>🌏 <a href="https://themes.gohugo.io">Hugo 테마 사이트 방문하기 &raquo;</a></li>
 </ul>
 <br>
 <br>
-<h2 id="2-hugo란">2. Hugo란?</h2>
+<h2 id="2-기본-정보">2. 기본 정보</h2>
 <hr>
-<p>Hugo는 <strong>Go 언어로 작성된 정적 사이트 생성기</strong>(Static Site Generator)이다. 물론 Go 문법을 몰라도 대부분의 테마를 그대로 사용할 수 있다.</p>
-<p><strong>Hugo에 입력되는 것들&hellip;</strong><br>
-<code>content/</code>의 마크다운, <code>layouts/</code>의 레이아웃, <code>static/</code>의 이미지‧CSS‧JS, <code>config.toml</code> 설정</p>
-<p><strong>Hugo에서 출력되는 것들&hellip;</strong><br>
-HTML‧CSS‧JS로 구성된 완전한 정적 웹사이트</p>
+<ul>
+<li>
+<p><strong>Github Page</strong> <br>
+GitHub Pages는 GitHub 저장소에 있는 HTML, CSS, JS 파일 등의 정적 콘텐츠를 웹사이트로 호스팅해주는 서비스이다.
+간단히 말해, GitHub를 통해 무료로 웹사이트를 만들고 배포할 수 있게 해주는 기능이다. GitHub 계정이 있다면 누구나 추가 비용 없이 웹사이트를 호스팅할 수 있으며, 정적 웹사이트에 적절하다. <code>Jekyll</code> 이나 <code>Hugo</code> 등의 정적 사이트 생성기와 함께 사용할 수 있다.</p>
+</li>
+<li>
+<p><strong>Hugo</strong> <br>
+Hugo는 Go 언어로 작성된 정적 사이트 생성기(Static Site Generator)이다. 물론 Go 문법을 몰라도 대부분의 테마를 그대로 사용할 수 있다. 나도 Go 문법은 잘 모른다.</p>
+<ul>
+<li><strong>hugo INPUT -&gt;</strong>
+<ul>
+<li><code>content/</code>의 마크다운</li>
+<li><code>layouts/</code>의 레이아웃</li>
+<li><code>static/</code>의 이미지‧CSS‧JS</li>
+<li><code>config.toml</code> 설정 등</li>
+</ul>
+</li>
+<li><strong>hugo OUPUT &lt;-</strong>
+<ul>
+<li>HTML‧CSS‧JS로 구성된 완전한 정적 웹사이트.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Github Actions</strong> <br>
+GitHub Actions 이란 깃허브 저장소 내에서 개발 작업을 자동으로 처리해주는 도구이다. 코드를 저장소에 올렸을 때(이벤트) 자동으로 빌드하고, 테스트하고, 배포하는 등의 반복적인 작업을 자동으로 대신 처리하도록 설정하는 기능이다. 이러한 자동화된 절차를 <strong>workflow</strong> 라고 부르며, 우리는 <code>.yml</code> 설정 파일을 통해 어떤 상황(이벤트)에서 어떤 일을 수행할지 정의할 수 있다. 예를 들어, 코드를 푸시할 때마다 자동으로 오류가 없는지 테스트 하거나, 테스트를 통과하면 자동으로 GitHub Pages에 배포하게 설정할 수 있다..!</p>
+</li>
+</ul>
 <br>
-<h3 id="21-hugo-동작-원리">2‑1. Hugo 동작 원리</h3>
+<br>
+<h2 id="3-github-actions">3. Github Actions</h2>
+<p>소스코드와 결과물의 분리에서 오는 관리의 이득, 그리고 배포과정 자동화에서 오는 편리성과 휴먼에러 방지 목표로 Github Actions 을 사용하는 것이 좋다.</p>
+<ul>
+<li>
+<p><strong>소스코드와 결과물의 분리</strong> <br>
+보통 Hugo와 같은 정적 사이트 생성기는 <strong>소스(Markdown, 테마, 설정 파일)</strong> 와 <strong>빌드 결과물(HTML, CSS, JS가 담긴 public 폴더)</strong> 이 명확히 구분된다. 만약 사람이 직접 빌드해서 <code>public</code> 폴더까지 <code>main</code> 브랜치에 같이 올리면, 글자 하나만 수정해도 수많은 HTML 파일이 변경된 것으로 처리되어 커밋 내역이 매우 지저분해진다. 또한, 소스 코드와 컴파일된 코드가 뒤섞여 관리가 어렵다.</p>
+<ul>
+<li><code>main</code> 브랜치에는 순수한 소스 코드만 관리한다.</li>
+<li><code>public</code> 폴더는 <code>.gitignore</code> 에 등록해 무시한다.</li>
+<li><code>gh-pages</code> 브랜치에는 GitHub Action 이 자동으로 빌드해준 <strong>최종 결과물(HTML)</strong> 만 담아둔다.</li>
+</ul>
+</li>
+<li>
+<p><strong>배포 과정의 자동화</strong> <br>
+<code>CI/CD</code> 를 사용하지 않으면 글을 쓸 때마다 다음 과정을 수동으로 해야 한다. (<code>hugo 명령어 입력(빌드) → public 폴더로 이동 → git add/commit/push</code>). GitHub Actions를 설정해두면, <code>main</code> 브랜치에 글을 쓰고 푸시하기만 해도, GitHub 서버가 알아서 Hugo를 설치하고 빌드한 뒤 <code>gh-pages</code> 브랜치에 결과물을 업데이트해준다. 과정이 훨씬 간편해진다.</p>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="4-freshpink-테마-살펴보기">4. <code>freshPink</code> 테마 살펴보기</h2>
+<p>이번 가이드로 사용해볼 테마는 <code>freshPink</code> 테마이다. 다음 링크를 접속해서 어떻게 생긴 테마인지, 데모사이트는 어떤지 한번 살펴보자. 마음에 들지 않는다면, 일단 한번 배포까지 연습해보고 나중에 다른 테마로 갈아끼우면 그만이다. 혹은 fork를 떠서 마개조해도 좋다.</p>
+<ul>
+<li>🌏 <a href="https://github.com/elecbrandy/freshpink">freshPink github 방문</a></li>
+<li>🌏 <a href="https://elecbrandy.github.io/freshpink/">freshPink Demo site 방문</a></li>
+</ul>
+<br>
+<br>
+<h2 id="5-설치-방법">5. 설치 방법</h2>
+<hr>
+<ul>
+<li>⚠️ <strong>주의사항</strong>
+<ul>
+<li>아래 가이드는 <strong>Mac</strong> 기준입니다!</li>
+<li><code>https://github.com/username.github.io</code> 을 목표로 하는 가이드입니다!</li>
+<li>Hugo는 반드시 <code>Extended</code> 버전으로 설치하세요!</li>
+</ul>
+</li>
+<li>⚙️ <strong>파이프라인</strong>
 <ol>
-<li><strong>빌드</strong> <code>hugo</code> 명령을 실행하면 Hugo가 소스 파일을 모아 <code>public/</code> 디렉터리에 정적 파일을 생성한다.</li>
-<li><strong>배포</strong> CI/CD가 이 <code>public/</code> 내용을 <strong>배포 브랜치</strong>(<code>gh-pages</code>)에 푸시한다.</li>
+<li><strong>빌드</strong> Hugo가 소스 파일을 모아 <code>public/</code> 디렉터리에 정적 파일을 생성한다.</li>
+<li><strong>배포</strong> Github Action이 <code>public/</code> 내용을 <strong>배포 브랜치</strong>(<code>gh-pages</code>)에 푸시한다.</li>
 <li><strong>호스팅</strong> GitHub Pages가 배포 브랜치의 정적 파일을 읽어 전 세계에 서비스한다.</li>
 </ol>
-<p>정리하면 <code>Hugo → public/ → 배포 브랜치 → GitHub Pages</code> 순서로 진행된다.</p>
+</li>
+</ul>
 <br>
-<br>
-<h2 id="3-stepbystep-macbookm1-기준">3. Step by Step (MacBook M1 기준)</h2>
-<hr>
-<h3 id="31-github-리포지토리-세팅">3‑1. GitHub 리포지토리 세팅</h3>
-<p><strong>1. 새 리포지토리 생성</strong><br>
-<code>username.github.io</code> 이름으로 Public 레포를 만든다.</p>
-<p><strong>2. 클론</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/&lt;username&gt;/&lt;username&gt;.github.io.git
-</span></span><span style="display:flex;"><span>cd &lt;username&gt;.github.io
-</span></span></code></pre></div><br>
-<br>
-<h3 id="32-hugo-설치-및-사이트-초기화">3‑2. Hugo 설치 및 사이트 초기화</h3>
-<p><strong>1. Homebrew 설치</strong><br>
-없다면 <a href="https://brew.sh/">brew.sh</a> 참고</p>
-<p><strong>2. Hugo 설치 후 사이트 초기화</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># hugo 설치</span>
+<h3 id="5-1-로컬에-블로그-설치하기">5-1. 로컬에 블로그 설치하기</h3>
+<h4 id="5-1-1-go--hugo-설치하기">5-1-1. <code>Go</code> , <code>Hugo</code> 설치하기</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Go, Hugo 설치하기</span>
+</span></span><span style="display:flex;"><span>brew install go
 </span></span><span style="display:flex;"><span>brew install hugo
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># hugo 초기화</span>
-</span></span><span style="display:flex;"><span>cd &lt;username&gt;.github.io.git
-</span></span><span style="display:flex;"><span>hugo new site .
-</span></span></code></pre></div><p>초기화 후 구조는 다음과 같다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>.
-</span></span><span style="display:flex;"><span>├── archetypes/
-</span></span><span style="display:flex;"><span>├── content/
-</span></span><span style="display:flex;"><span>├── data/
-</span></span><span style="display:flex;"><span>├── layouts/
-</span></span><span style="display:flex;"><span>├── static/
-</span></span><span style="display:flex;"><span>├── config.toml
-</span></span><span style="display:flex;"><span>└── themes/
-</span></span></code></pre></div><br>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># extended 버전인지 확인하기</span>
+</span></span><span style="display:flex;"><span>hugo version
+</span></span></code></pre></div><p><code>hombrew</code> 를 통해 Hugo 를 설치할 수 있다. 아직 homebrew가 없다면 아래 링크에서 설치하자.
+또한, Hugo가 <code>extended</code> 버전으로 설치되었는지 잘 확인하자!</p>
+<ul>
+<li>🌏 <a href="https://brew.sh/">homebrew 설치하러가기 &raquo;</a></li>
+</ul>
 <br>
-<h3 id="33-freshpink-테마-설치-hugomodules">3‑3. freshPink 테마 설치 (Hugo Modules)</h3>
-<p><strong>1. 모듈 초기화 후 테마 설치</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 모듈 초기화</span>
-</span></span><span style="display:flex;"><span>hugo mod init github.com/&lt;username&gt;/&lt;username&gt;.github.io
+<h4 id="5-1-2-github-repository-만들고-hugo-세팅하기">5-1-2. <code>Github repository</code> 만들고 <code>Hugo</code> 세팅하기</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 클론 받기</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/&lt;username&gt;/&lt;username&gt;.github.io.git
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># freshpink 테마 설치</span>
-</span></span><span style="display:flex;"><span>hugo mod get github.com/elecbrandy/freshpink
-</span></span></code></pre></div><br>
-<p><strong>2. hugo.toml 세팅</strong><br>
-Hugo에서 <code>hugo.toml</code>은 사이트 전체 설정을 담는 구성 파일이다. 이 파일에 적힌 내용에 따라 Hugo가 사이트를 어떻게 생성하고 보여줄지를 결정한다.</p>
-<p>기존에 있던 <code>hugo.toml</code> 의 내용을 전부 지우고, 아래 내용으로 복붙하자. 그 이후 필요한 정보를 기입하면 된다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#34;https://elecbrandy.github.io/&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">languageCode</span> = <span style="color:#e6db74">&#34;en-us&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#34;elecbrandy&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 해당 디렉토리로 이동</span>
+</span></span><span style="display:flex;"><span>cd &lt;username&gt;.github.io
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hugo site 생성하기 (강제)</span>
+</span></span><span style="display:flex;"><span>hugo new site . --force
+</span></span></code></pre></div><p>우선 <code>username.github.io</code> 이름으로 Public 레포를 만들고, 클론 받자.
+그리고 해당 디렉토리로 이동해서 그 디렉토리 내부에 Hugo 사이트를 생성하자!</p>
+<br>
+<h4 id="5-1-3-gitignore-추가">5-1-3. <code>.gitignore</code> 추가</h4>
+<pre tabindex="0"><code class="language-.gitgignore" data-lang=".gitgignore">/public/
+</code></pre><p><code>.gitignore</code> 파일을 만들고 안에 <code>/public/</code> 을 추가하자. 어처피 우리가 나중에 호스팅할 파일은 다른 브랜치에 모여있을 예정이기 때문이다.</p>
+<br>
+<h4 id="5-1-4-hugotoml-설정하기">5-1-4. <code>hugo.toml</code> 설정하기</h4>
+<p>디렉토리에 생성된 <code>hugo.toml</code> 파일을 열고, 기존 내용은 모두 지운 뒤 아래 내용을 복사해서 붙여넣자!
+그리고 각 부분은 본인 정보에 맞게 채워넣어 보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#39;https://example.org/&#39;</span> <span style="color:#75715e"># your git repository address</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#39;freshpink&#39;</span> <span style="color:#75715e"># your own blog title</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">languageCode</span> = <span style="color:#e6db74">&#39;en-us&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">canonifyURLs</span> = <span style="color:#66d9ef">true</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>[[<span style="color:#a6e22e">menus</span>.<span style="color:#a6e22e">main</span>]]
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#39;Home&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#39;/&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">pageRef</span> = <span style="color:#e6db74">&#39;/&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">10</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>[[<span style="color:#a6e22e">menus</span>.<span style="color:#a6e22e">main</span>]]
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#39;TAGS&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#39;/tags/&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">pageRef</span> = <span style="color:#e6db74">&#39;/tags/&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">20</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>[[<span style="color:#a6e22e">menus</span>.<span style="color:#a6e22e">main</span>]]
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#39;ABOUT&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#39;/about/&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">pageRef</span> = <span style="color:#e6db74">&#39;/about/&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">30</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">module</span>]
@@ -235,91 +273,108 @@ Hugo에서 <code>hugo.toml</code>은 사이트 전체 설정을 담는 구성 �
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">path</span> = <span style="color:#e6db74">&#34;github.com/elecbrandy/freshpink&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">params</span>]
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">googleAnalytics</span> = <span style="color:#e6db74">&#39;G-000000000&#39;</span> <span style="color:#75715e"># your GoogleAnalytics code</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">githubUsername</span> = <span style="color:#e6db74">&#39;elecbrandy&#39;</span> <span style="color:#75715e"># your githubUsername</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># --- Site Metadata ---</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">googleAnalytics</span> = <span style="color:#e6db74">&#34;G-000000000&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">copyright</span> = <span style="color:#e6db74">&#39;Copyright © 2024 elecbrandy&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># --- Theme &amp; Display Settings ---</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">primaryColor</span> = <span style="color:#e6db74">&#34;#fa8b84&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">math</span> = <span style="color:#66d9ef">true</span>
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># --- GitHub Chart ---</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">githubUsername</span> = <span style="color:#e6db74">&#34;elecbrandy&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">showGithubChart</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># --- Main Image ---</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mainImageUrl</span> = <span style="color:#e6db74">&#34;https://zrr.kr/0wve8W&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">showMainImage</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">taxonomies</span>]
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tag</span> = <span style="color:#e6db74">&#34;tags&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tag</span> = <span style="color:#e6db74">&#39;tags&#39;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">markup</span>]
 </span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">markup</span>.<span style="color:#a6e22e">goldmark</span>]
 </span></span><span style="display:flex;"><span>    [<span style="color:#a6e22e">markup</span>.<span style="color:#a6e22e">goldmark</span>.<span style="color:#a6e22e">renderer</span>]
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">unsafe</span> = <span style="color:#66d9ef">true</span>
-</span></span></code></pre></div><p>우리가 기입해야하는 정보는 다음과 같다!</p>
+</span></span></code></pre></div><p>⤵️ <em>변경 가능한 부분들</em></p>
 <ul>
-<li><code>baseURL</code>: github 레포지토리의 주소 (예시: <a href="https://elecbrandy.github.io/">https://elecbrandy.github.io/</a>)</li>
-<li><code>title</code>: 블로그 이름 정해서 기입하기</li>
-<li><code>githubUsername</code>:
+<li><strong>baseUrl</strong>
 <ul>
-<li>github 유저네임 기입</li>
-<li>freshpink 테마 상 main 화면 잔디 노출 용도</li>
+<li>실제 호스팅 될 블로그의 주소를 적어주면 된다.</li>
+<li><code>https://username.github.io/</code></li>
 </ul>
 </li>
-<li><code>googleAnalytics</code>:
+<li><strong>title</strong>
 <ul>
-<li>구글 애널리틱스 사용할 경우 기입</li>
-<li>사용하지 않을 경우 그대로 두어도 무방</li>
+<li>블로그 이름을 정해주자.</li>
+</ul>
+</li>
+<li><strong>primaryColor</strong>
+<ul>
+<li>블로그의 메인 색도 변경할 수 있다.</li>
+</ul>
+</li>
+<li><strong>githubUsername</strong>
+<ul>
+<li>블로그 메인 화면의 깃허브 잔디를 표시하기 위해 깃허브 <code>username</code>이 필요하다.</li>
+<li>메인 화면에서 보고싶지 않다면, 아래 <code>showGithubChart = false</code> 로 숨길 수 있다.</li>
+</ul>
+</li>
+<li><strong>mainImageUrl</strong>
+<ul>
+<li>블로그 메인 화면의 이미지를 표시하기 위한 <code>image url</code> 이 필요하다.</li>
+<li>메인 화면에서 보고싶지 않다면, 아래 <code>showGithubChart = false</code> 로 숨길 수 있다.</li>
+</ul>
+</li>
+<li><strong>googleAnalytics</strong>
+<ul>
+<li>GA를 사용해 블로그 통계를 관리할 수도 있다!</li>
+</ul>
+</li>
+<li><strong>[[module.imports]]</strong>
+<ul>
+<li>이 path는 우리가 추후 적용할 <code>freshpink</code> 테마의 주소이다.</li>
+<li>만약 다른 테마를 원한다면 이 부분을 수정해야 한다.</li>
+<li>물론 이 부분 뿐만 아니라 각 테마마다 세팅이 다르기 때문에, 해당 테마에서 제공하는 설명을 정독하고 처음부터 다시 만드는 것이 좋을 듯 하다.</li>
 </ul>
 </li>
 </ul>
 <br>
-<br>
-<h3 id="3-2-로컬-확인">3-2. 로컬 확인</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 기본 실행</span>
-</span></span><span style="display:flex;"><span>hugo server
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 초안 글 포함</span>
-</span></span><span style="display:flex;"><span>hugo server -D
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 캐시 무시</span>
+<h4 id="5-1-5-theme-받아오기">5-1-5. <code>theme</code> 받아오기</h4>
+<p>설정을 마쳤다면 아래 명령어를 입력해 theme 파일을 받아오자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># go.mod 만들기 -&gt; 모듈로 테마를 관리하겠다는 뜻 -&gt; go.mod 가 생성됨</span>
+</span></span><span style="display:flex;"><span>hugo mod init github.com/username/username.github.io
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># hugo.toml 파일에 지정한 테마를 모듈로 다운받는다는 뜻</span>
+</span></span><span style="display:flex;"><span>hugo mod get
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 다운로드 후 모듈 정리 등</span>
+</span></span><span style="display:flex;"><span>hugo mod tidy
+</span></span></code></pre></div><br>
+<h4 id="5-1-6-로컬에서-확인하기">5-1-6. 로컬에서 확인하기</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 새로운 글 만들어보기</span>
+</span></span><span style="display:flex;"><span>hugo new posts/hello.md
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 로컬 서버 띄우기 (캐시 무시)</span>
 </span></span><span style="display:flex;"><span>hugo server --ignoreCache --noHTTPCache
-</span></span></code></pre></div><p>브라우저에서 <a href="http://localhost:1313/">http://localhost:1313/</a> 로 접속해 테마가 적용되었는지 확인한다.</p>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 확인했다면 일단 푸시해주자</span>
+</span></span><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;blog init&#34;</span>
+</span></span><span style="display:flex;"><span>git push origin main
+</span></span></code></pre></div><p>우선 테스트용 게시글을 하나 만들어본 후, 로컬 서버를 실행해 블로그가 잘 작동하는지 확인해보자.
+인터넷 브라우저를 켜고 <a href="https://www.google.com/search?q=http://localhost:1313">http://localhost:1313</a> 주소로 접속하면 적용된 테마를 볼 수 있다!</p>
+<br>
+<h4 id="5-1-7-업데이트">5-1-7. 업데이트</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo mod get -u
+</span></span><span style="display:flex;"><span>hugo mod tidy
+</span></span></code></pre></div><p>만약 사용하던 테마에 새로운 기능이 추가되었다면 -&gt; 테마를 최신 버전으로 업데이트하기 위해 위 명령어를 사용하면 된다.</p>
 <br>
 <br>
-<h2 id="4-cicd-파이프라인">4. CI/CD 파이프라인</h2>
-<h3 id="41-사전-준비">4‑1. 사전 준비</h3>
-<p>GitHub Pages와 액션용 Secret 설정은 한 번만 해두면 끝나는 작업이다. 우리는 배포용으로 <code>gh-pages</code> 브랜치를 사용할 것이다. 이때 워크플로가 <code>gh-pages</code> 브랜치에 파일을 푸시하려면 인증 토큰이 필요하다. 이를 Secret으로 저장해 두면된다. 아래 설명을 차근차근 따라 해보자!</p>
-<ul>
-<li><strong>GitHub Pages 위치 지정</strong>
-<ol>
-<li>저장소(Repo) 화면 오른쪽 위의 <strong>Settings</strong> 탭을 클릭한다.</li>
-<li>왼쪽 사이드바에서 <strong>Pages</strong> 메뉴를 선택한다.</li>
-<li>“Build and deployment” 섹션의 <strong>Source</strong> 드롭다운을 연다.</li>
-<li><strong>Branch</strong> 항목에서 <code>gh-pages</code> 브랜치를 고르고, <strong>/ (root)</strong> 또는 기본으로 제시되는 폴더를 선택한다.
-<ul>
-<li>아직 <code>gh-pages</code> 브랜치가 없더라도 괜찮다.</li>
-<li>처음 배포가 끝나면 이 브랜치가 자동으로 생성되고, 방금 지정한 위치에 파일이 올라가 사이트가 열리게 된다.</li>
-</ul>
-</li>
-<li><strong>Save</strong> 버튼을 누르면 설정이 완료된다.</li>
-</ol>
-</li>
-</ul>
-<p><em>즉, “Pages가 어느 브랜치의 어떤 폴더를 웹사이트로 쓸지” 미리 알려 주는 단계</em></p>
-<ul>
-<li><strong>인증 토큰 발급</strong>
-<ol>
-<li>다시 <strong>Settings</strong> 탭에서 왼쪽 메뉴 중 <strong>Secrets and variables → Actions</strong> 를 선택한다.</li>
-<li><strong>New repository secret</strong> 버튼을 클릭한다.</li>
-<li><strong>Name</strong> 칸에 <strong><code>BLOG</code></strong> 라고 입력한다.</li>
-<li><strong>Secret</strong> 칸에는</li>
-</ol>
-<ul>
-<li>간단히 쓸 경우: <code>${{ github.token }}</code> 대신 <strong>개인 액세스 토큰(PAT)</strong> 을 만들어 붙여 넣는다.</li>
-<li>토큰 생성은 GitHub 프로필 → Settings → <strong>Developer settings → Personal access tokens</strong>(Fine-grained or classic)에서 가능하다.</li>
-<li>권한은 <strong>repo</strong> (저장소 전체)만 체크해 두면 충분하다.</li>
-</ul>
-<ol start="5">
-<li><strong>Add secret</strong> 를 눌러 저장한다.</li>
-</ol>
-</li>
-</ul>
-<p><em>즉, 요약: 워크플로 파일에서 <code>github_token: ${{ secrets.BLOG }}</code> 로 참조할 수 있게 “BLOG”라는 안전한 비밀번호를 등록해 두는 단계다.</em></p>
-<br>
-<h3 id="42-워크플로-파일-작성">4‑2. 워크플로 파일 작성</h3>
-<p>프로젝트 루트에 <code>.github/workflows/</code> 디렉토리를 만들고 그 안에 <code>deploy.yml</code> 을 생성한다.
-<code>deploy.yml</code> 에 아래 내용을 붙여넣는다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy Hugo Site</span>
+<h3 id="5-2-github-action-설정하기">5-2. <code>Github Action</code> 설정하기</h3>
+<h4 id="5-2-1-workflow-파일-작성">5-2-1. <code>workflow</code> 파일 작성</h4>
+<p>프로젝트 루트에 <code>.github/workflows/</code> 디렉토리를 만들고 그 안에 <code>deploy.yml</code> 을 생성한다. <code>deploy.yml</code> 에 아래 내용을 붙여넣는다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy Hugo Site</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
@@ -330,7 +385,7 @@ Hugo에서 <code>hugo.toml</code>은 사이트 전체 설정을 담는 구성 �
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
 </span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Checkout repository</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">submodules</span>: <span style="color:#66d9ef">true</span>
 </span></span><span style="display:flex;"><span>
@@ -346,26 +401,57 @@ Hugo에서 <code>hugo.toml</code>은 사이트 전체 설정을 담는 구성 �
 </span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy to GitHub Pages</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">peaceiris/actions-gh-pages@v3</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">github_token</span>: <span style="color:#ae81ff">${{ secrets.BLOG }}</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">github_token</span>: <span style="color:#ae81ff">${{ secrets.GITHUB_TOKEN }}</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">publish_dir</span>: <span style="color:#ae81ff">./public</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">keep_files</span>: <span style="color:#66d9ef">false</span>
-</span></span></code></pre></div><br>
-<br>
-<h3 id="43-동작과-배포">4‑3. 동작과 배포</h3>
-<ol>
-<li><strong>Push</strong> <code>main</code> 브랜치에 푸시되면 워크플로가 실행된다.</li>
-<li><strong>Build</strong> Hugo가 <code>public/</code> 폴더에 정적 사이트를 생성한다.</li>
-<li><strong>Deploy</strong> <code>public/</code> 내용이 <code>gh-pages</code> 브랜치로 푸시된다.</li>
-<li><strong>Serve</strong> GitHub Pages가 <code>gh-pages</code> 브랜치를 호스팅한다.</li>
+</span></span></code></pre></div><ol>
+<li><code>Push</code> main 브랜치에 푸시되면 워크플로가 실행된다.</li>
+<li><code>Build</code> Hugo가 public/ 폴더에 정적 사이트를 생성한다.</li>
+<li><code>Deploy</code> public/ 내용이 gh-pages 브랜치로 푸시된다.</li>
+<li><code>Serve</code> GitHub Pages가 gh-pages 브랜치를 호스팅한다.</li>
 </ol>
 <br>
+<h4 id="5-2-2-토큰-권한-부여">5-2-2. 토큰 권한 부여</h4>
+<ul>
+<li><strong>GITHUB_TOKEN이란?</strong> <br>
+우리가 사용한 토큰은 <code>GITHUB_TOKEN</code> 이다.<br>
+이 토큰은 workflow가 시작될 때 깃허브가 자동으로 발급해준다. 또한, workflow 가 끝나면 즉시 사라진다. <code>Settings -&gt; Secrets</code> 메뉴에 가도 안 보이지만, <code>${{ secrets.GITHUB_TOKEN }}</code> 이라고 쓰면 사용할 수 있다.</li>
+</ul>
+<br> 
+<ul>
+<li><strong>권한 부여</strong>
+<ol>
+<li>블로그 레포지토리 메인 화면으로 진입</li>
+<li>왼쪽 상단 메뉴 탭에서 Settings 클릭</li>
+<li>왼쪽 사이드바 메뉴에서 Actions를 클릭하고, 하위 메뉴인 General에 진입</li>
+<li>화면을 가장 아래로 쭉 스크롤 하면 보이는 <code>Workflow permissions</code>라는 항목 찾기</li>
+<li>여기서 <code>Read and write permissions</code> 에 체크하고 Save!</li>
+</ol>
+</li>
+</ul>
+<h4 id="5-2-3-github-pages-위치-지정">5-2-3. <code>Github Pages</code> 위치 지정</h4>
+<p>이제 Github Page가 어느 브랜치의 어떤 폴더를 웹사이트로 쓸지 알려줘야 한다!</p>
+<ul>
+<li><code>Github Pages</code> <strong>위치 지정</strong>
+<ol>
+<li>저장소 화면 오른쪽 상단 Settings 탭 클릭</li>
+<li>왼쪽 사이드 바에서 Pages 메뉴 진입</li>
+<li><code>build and deployment</code> 섹션의 Source 드롭다운을 연다.</li>
+<li>Branch 항복에서 gh-pages 브랜치를 고르고, / 또는 기본으로 제시되는 폴더를 선택한다.</li>
+<li>Save를 눌러 저장하자.</li>
+</ol>
+</li>
+</ul>
 <br>
-<h2 id="5-마무리">5. 마무리</h2>
+<br>
+<h2 id="6-how-to-use">6. How to use?</h2>
 <hr>
-<p>이제 마크다운으로 글 작성 → <code>git push</code> 만으로 블로그가 자동 빌드‧배포된다. 추가로 다음을 시도해 볼 수 있다. 궁금한 점이나 오류가 있다면 GitHub Issues에 남겨 주시면 감사하겠다..!</p>
+<p>이제 블로그 디렉토리에서 한창 글을 쓰다가, 단순 <code>git push</code> 만으로 블로그가 자동 빌드‧배포된다. 본격적인 테마의 사용 방법이나, 커스텀 방법이 궁금하다면 아래 링크를 읽어보자.</p>
+<ul>
+<li>🌏 <a href="https://elecbrandy.github.io/posts/project/freshPink/">freshPink 테마 사용방법 알아보기 &raquo;</a></li>
+</ul>
 <br>
 <br>
-
 
     
 
