@@ -6,6 +6,8 @@ featured_image = "https://gohugo.io/images/hugo-logo-wide.svg"
 tags = ['hugo']
 +++
 
+{{<series title="📚 /hugo 튜토리얼" series="hugo" >}}
+
 <br>
 
 ## 1. 소개
@@ -352,6 +354,11 @@ _____
 이제 블로그 디렉토리에서 한창 글을 쓰다가, 단순 `git push` 만으로 블로그가 자동 빌드‧배포된다. 본격적인 테마의 사용 방법이나, 커스텀 방법이 궁금하다면 아래 링크를 읽어보자.
 
 - 🌏 [freshPink 테마 사용방법 알아보기 >>](https://elecbrandy.github.io/posts/project/freshPink/)
+
+<br>
+<br>
+
+{{<series title="📚 /hugo 튜토리얼" series="hugo" >}}
 
 <br>
 <br>
