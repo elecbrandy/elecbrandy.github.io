@@ -1,11 +1,9 @@
 +++
-title = '[서고] Ray' 
+title = 'Ray 아키텍쳐' 
 date = 2025-11-10
 featured_image = "https://zrr.kr/QgOehQ"
-tags = ['python','seogo']
+tags = ['python']
 +++
-
-{{<series title="👀 전자책 검색 서비스" series="seogo">}}
 
 <br>
 
@@ -154,17 +152,12 @@ Writer가 데이터 쓰기를 마치면 `다 썼음!` 을 외치며 도장을 �
 ## 4. Reference
 ____
 
-아래 블로그와 공식문서에 더 상세하고 정갈한 설명이 적혀있느니 읽어보면 이해에 더 도움이 될 듯 하다.
+아래 블로그와 공식문서에 더 상세하고 정갈한 설명이 적혀있으니 읽어보면 이해에 더 도움이 될 듯 하다.
 
 - https://zzsza.github.io/mlops/2021/01/03/python-ray/
 - https://otzslayer.github.io/python/2021/10/15/multiprocesesing-using-ray.html
 - https://docs.ray.io/en/latest/index.html
 - https://arxiv.org/pdf/1712.05889
-
-<br>
-<br>
-
-{{<series title="👀 전자책 검색 서비스" series="seogo">}}
 
 <br>
 <br>

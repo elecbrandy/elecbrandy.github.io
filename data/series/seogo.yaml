@@ -1,8 +1,4 @@
 title: "seogo"
 items:
-  - name: "1. Introduction"
-    link: "https://elecbrandy.github.io/posts/seogo/01_intro/"
-  - name: "2. ray"
-    link: "https://elecbrandy.github.io/posts/seogo/02_ray/"
-  - name: "3. scraping"
-    link: "https://elecbrandy.github.io/posts/seogo/03_scraping/"
+  - name: "1. Ray 기반 웹 스크래퍼"
+    link: "https://elecbrandy.github.io/posts/seogo/01_scraper/"
