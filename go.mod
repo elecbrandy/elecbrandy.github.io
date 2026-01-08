@@ -2,4 +2,4 @@ module github.com/elecbrandy/elecbrandy.github.io
 
 go 1.24.1
 
-require github.com/elecbrandy/freshpink v0.0.0-20251111053649-61fded1bc012 // indirect
+require github.com/elecbrandy/freshpink v0.0.0-20260107072227-00b7e9f30cc1 // indirect
