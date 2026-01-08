@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width">
 <title>[42seoul] ft_irc | elecbrandy</title>
 
-      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.d44c672ab09ff4e7a40192b4c273b29b705ce87d7f4df5223640e4c24f28f310.css" integrity="sha256-1ExnKrCf9OekAZK0wnOym3Bc6H1/TfUiNkDkwk8o8xA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.5bf411a82593d4163083354607a41e5e901f95a6a13f1f3461cba9b603f7f180.css" integrity="sha256-W/QRqCWT1BYwgzVGB6QeXpAflaahPx80YcuptgP38YA=" crossorigin="anonymous">
       <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
 <style>
   :root {
@@ -669,8 +669,8 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 </span></span><span style="display:flex;"><span>		signal(SIGINT, signalHandler);
 </span></span><span style="display:flex;"><span>		signal(SIGQUIT, signalHandler);
 </span></span><span style="display:flex;"><span>		server.init();  <span style="color:#75715e">// 서버 자원 초기화
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		server.run();   <span style="color:#75715e">// 서버 실제 작동
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	} <span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> IrcServer<span style="color:#f92672">::</span>ServerException <span style="color:#f92672">&amp;</span>e) {
+</span></span></span><span style="display:flex;"><span>		server.run();   <span style="color:#75715e">// 서버 실제 작동
+</span></span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> IrcServer<span style="color:#f92672">::</span>ServerException <span style="color:#f92672">&amp;</span>e) {
 </span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cerr <span style="color:#f92672">&lt;&lt;</span> C_ERR <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Error: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> e.what() <span style="color:#f92672">&lt;&lt;</span> C_RESET <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>	}
@@ -692,34 +692,34 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> _fds.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; <span style="color:#f92672">--</span>i) {
 </span></span><span style="display:flex;"><span>				<span style="color:#75715e">// POLLIN event
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLIN) {
+</span></span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLIN) {
 </span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> (_fds[i].fd <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>_fd) {
 </span></span><span style="display:flex;"><span>						<span style="color:#75715e">// Another(client) fd
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>						acceptClient();
+</span></span></span><span style="display:flex;"><span>						acceptClient();
 </span></span><span style="display:flex;"><span>					} <span style="color:#66d9ef">else</span> {
 </span></span><span style="display:flex;"><span>						<span style="color:#75715e">// Another(client) fd
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>						handleSocketRead(_fds[i].fd); 
+</span></span></span><span style="display:flex;"><span>						handleSocketRead(_fds[i].fd); 
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>						<span style="color:#75715e">// Add to remove list if Client Shutdown
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>						<span style="color:#66d9ef">if</span> (getClient(_fds[i].fd) <span style="color:#f92672">==</span> NULL) { 
+</span></span></span><span style="display:flex;"><span>						<span style="color:#66d9ef">if</span> (getClient(_fds[i].fd) <span style="color:#f92672">==</span> NULL) { 
 </span></span><span style="display:flex;"><span>							_fdsToRemove.push_back(_fds[i].fd);
 </span></span><span style="display:flex;"><span>						}
 </span></span><span style="display:flex;"><span>					}
 </span></span><span style="display:flex;"><span>				}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>				<span style="color:#75715e">// POLLOUT event
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLOUT) {
+</span></span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLOUT) {
 </span></span><span style="display:flex;"><span>					handleSocketWrite(_fds[i].fd);
 </span></span><span style="display:flex;"><span>					
 </span></span><span style="display:flex;"><span>					<span style="color:#75715e">// Add to remove list if Client Shutdown
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#66d9ef">if</span> (getClient(_fds[i].fd) <span style="color:#f92672">==</span> NULL) { 
+</span></span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> (getClient(_fds[i].fd) <span style="color:#f92672">==</span> NULL) { 
 </span></span><span style="display:flex;"><span>						_fdsToRemove.push_back(_fds[i].fd);
 </span></span><span style="display:flex;"><span>					}
 </span></span><span style="display:flex;"><span>				}
 </span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>			<span style="color:#75715e">// Remove Client fds
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">for</span> (size_t j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> _fdsToRemove.size(); <span style="color:#f92672">++</span>j) {
+</span></span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (size_t j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> _fdsToRemove.size(); <span style="color:#f92672">++</span>j) {
 </span></span><span style="display:flex;"><span>				removeClientFd(_fdsToRemove[j]);
 </span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>			_fdsToRemove.clear();
@@ -773,10 +773,10 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 <p><strong>이벤트 루프 (역순 순회)</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> _fds.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; <span style="color:#f92672">--</span>i) {
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// POLLIN
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLIN) { <span style="color:#960050;background-color:#1e0010">…</span> }
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLIN) { <span style="color:#960050;background-color:#1e0010">…</span> }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// POLLOUT
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLOUT) { <span style="color:#960050;background-color:#1e0010">…</span> }
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLOUT) { <span style="color:#960050;background-color:#1e0010">…</span> }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li>각 fd를 순회하며 이벤트가 있는지 확인하는데, <strong>역순</strong> 으로 접근한다.</li>
@@ -787,12 +787,12 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLIN) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (_fds[i].fd <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>_fd) {
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 서버 소켓 → 새로운 클라이언트 수락
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        acceptClient();
+</span></span></span><span style="display:flex;"><span>        acceptClient();
 </span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 클라이언트 데이터 수신
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        handleSocketRead(_fds[i].fd);
+</span></span></span><span style="display:flex;"><span>        handleSocketRead(_fds[i].fd);
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 클라이언트 정상 종료 시 리스트에 추가
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (getClient(_fds[i].fd) <span style="color:#f92672">==</span> NULL)
+</span></span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (getClient(_fds[i].fd) <span style="color:#f92672">==</span> NULL)
 </span></span><span style="display:flex;"><span>            _fdsToRemove.push_back(_fds[i].fd);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}

@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width">
 <title>[42seoul] philosopers | elecbrandy</title>
 
-      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.d44c672ab09ff4e7a40192b4c273b29b705ce87d7f4df5223640e4c24f28f310.css" integrity="sha256-1ExnKrCf9OekAZK0wnOym3Bc6H1/TfUiNkDkwk8o8xA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.5bf411a82593d4163083354607a41e5e901f95a6a13f1f3461cba9b603f7f180.css" integrity="sha256-W/QRqCWT1BYwgzVGB6QeXpAflaahPx80YcuptgP38YA=" crossorigin="anonymous">
       <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
 <style>
   :root {
@@ -505,27 +505,27 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> s_mutex
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pthread_mutex_t</span> msg;            <span style="color:#75715e">// 표준 출력 동기화 (로그가 뒤섞이지 않도록)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">pthread_mutex_t</span> ready;          <span style="color:#75715e">// 스레드 동시 출발을 위한 대기
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">pthread_mutex_t</span> system_status;  <span style="color:#75715e">// 시뮬레이션 ON/OFF 플래그 보호
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">pthread_mutex_t</span> <span style="color:#f92672">*</span>forks;         <span style="color:#75715e">// 포크마다 하나씩 할당된 뮤텍스 배열
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">pthread_mutex_t</span> <span style="color:#f92672">*</span>last_meal;     <span style="color:#75715e">// 각 철학자의 최근 식사시각 보호
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">pthread_mutex_t</span> <span style="color:#f92672">*</span>eaten_cnt;     <span style="color:#75715e">// 각 철학자의 식사 횟수 보호
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}   t_mutex;
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pthread_mutex_t</span> ready;          <span style="color:#75715e">// 스레드 동시 출발을 위한 대기
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pthread_mutex_t</span> system_status;  <span style="color:#75715e">// 시뮬레이션 ON/OFF 플래그 보호
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pthread_mutex_t</span> <span style="color:#f92672">*</span>forks;         <span style="color:#75715e">// 포크마다 하나씩 할당된 뮤텍스 배열
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pthread_mutex_t</span> <span style="color:#f92672">*</span>last_meal;     <span style="color:#75715e">// 각 철학자의 최근 식사시각 보호
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pthread_mutex_t</span> <span style="color:#f92672">*</span>eaten_cnt;     <span style="color:#75715e">// 각 철학자의 식사 횟수 보호
+</span></span></span><span style="display:flex;"><span>}   t_mutex;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/* 철학자 한 명에 대한 런타임 정보 */</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> s_philo
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span>         id;                 <span style="color:#75715e">// 1 ~ N
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span>         eaten_cnt;          <span style="color:#75715e">// 현재까지 먹은 횟수
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span>         num_philo;          <span style="color:#75715e">// 총 철학자 수(전역 복붙 대신 캐싱)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span>         must_eat_cnt;       <span style="color:#75715e">// 종료 조건(선택 인자)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span>         left_fork;          <span style="color:#75715e">// 왼쪽 포크의 인덱스
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span>         right_fork;         <span style="color:#75715e">// 오른쪽 포크의 인덱스
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>   time_of_last_meal;  <span style="color:#75715e">// 마지막 식사 시작 시각(ms)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>   time_to_delay;      <span style="color:#75715e">// 짝수/홀수 딜레이 조정용
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">pthread_t</span>   <span style="color:#66d9ef">thread</span>;             <span style="color:#75715e">// 자신의 POSIX thread
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">struct</span> s_data <span style="color:#f92672">*</span>data;            <span style="color:#75715e">// 전역 컨텍스트 포인터
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}   t_philo;
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span>         eaten_cnt;          <span style="color:#75715e">// 현재까지 먹은 횟수
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span>         num_philo;          <span style="color:#75715e">// 총 철학자 수(전역 복붙 대신 캐싱)
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span>         must_eat_cnt;       <span style="color:#75715e">// 종료 조건(선택 인자)
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span>         left_fork;          <span style="color:#75715e">// 왼쪽 포크의 인덱스
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span>         right_fork;         <span style="color:#75715e">// 오른쪽 포크의 인덱스
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>   time_of_last_meal;  <span style="color:#75715e">// 마지막 식사 시작 시각(ms)
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>   time_to_delay;      <span style="color:#75715e">// 짝수/홀수 딜레이 조정용
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pthread_t</span>   <span style="color:#66d9ef">thread</span>;             <span style="color:#75715e">// 자신의 POSIX thread
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> s_data <span style="color:#f92672">*</span>data;            <span style="color:#75715e">// 전역 컨텍스트 포인터
+</span></span></span><span style="display:flex;"><span>}   t_philo;
 </span></span></code></pre></div><p>포크·식사시간·횟수는 <em>철학자 수만큼</em> 존재하므로, 뮤텍스 또한 배열로 만들어 <code>idx = id % n</code> 로 접근할 수 있게 했다.</p>
 <h4 id="main">main</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> ac, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>av)
@@ -549,20 +549,20 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">simulation</span>(t_data <span style="color:#f92672">*</span>data)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    data<span style="color:#f92672">-&gt;</span>start_time <span style="color:#f92672">=</span> <span style="color:#a6e22e">get_current_time</span>();       <span style="color:#75715e">// 기준 시각 고정
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (data<span style="color:#f92672">-&gt;</span>arg.min_eat_cnt <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)              <span style="color:#75715e">// 0회 식사 조건이면 바로 성공 종료
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> (TRUE);
+</span></span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (TRUE);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (data<span style="color:#f92672">-&gt;</span>arg.num_philo <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)                <span style="color:#75715e">// 포크 한 개 → 필연적 사망
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">one_philo</span>(data);
+</span></span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">one_philo</span>(data);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
 </span></span><span style="display:flex;"><span>    {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">run_philo</span>(data) <span style="color:#f92672">!=</span> TRUE)             <span style="color:#75715e">// 철학자 스레드 생성
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> (FALSE);
+</span></span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> (FALSE);
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">run_check</span>(data) <span style="color:#f92672">!=</span> TRUE)             <span style="color:#75715e">// death 감시/식사횟수 감시 스레드
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> (FALSE);
+</span></span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> (FALSE);
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">join_philo</span>(data) <span style="color:#f92672">!=</span> TRUE)            <span style="color:#75715e">// 모든 스레드 종료 대기
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> (FALSE);
+</span></span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> (FALSE);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (TRUE);
 </span></span><span style="display:flex;"><span>}
@@ -583,20 +583,20 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 </span></span><span style="display:flex;"><span>    t_philo <span style="color:#f92672">*</span>philo <span style="color:#f92672">=</span> (t_philo <span style="color:#f92672">*</span>)arg;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">update_last_meal_time</span>(philo);   <span style="color:#75715e">// 첫 식사 기준값 기록
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">philo_ready</span>(philo);             <span style="color:#75715e">// start 라인까지 대기(barrier)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">philo_delay</span>(philo);             <span style="color:#75715e">// 짝수/홀수 오버랩 최소화
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">philo_ready</span>(philo);             <span style="color:#75715e">// start 라인까지 대기(barrier)
+</span></span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">philo_delay</span>(philo);             <span style="color:#75715e">// 짝수/홀수 오버랩 최소화
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (TRUE)
 </span></span><span style="display:flex;"><span>    {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">philo_eat</span>(philo)   <span style="color:#f92672">!=</span> TRUE) <span style="color:#66d9ef">return</span> (NULL); <span style="color:#75715e">// 포크 두 개 잠금 후 식사
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">check_system_status</span>(philo<span style="color:#f92672">-&gt;</span>data) <span style="color:#f92672">!=</span> ON)    <span style="color:#66d9ef">return</span> (NULL);
+</span></span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">check_system_status</span>(philo<span style="color:#f92672">-&gt;</span>data) <span style="color:#f92672">!=</span> ON)    <span style="color:#66d9ef">return</span> (NULL);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">philo_sleep</span>(philo) <span style="color:#f92672">!=</span> TRUE) <span style="color:#66d9ef">return</span> (NULL); <span style="color:#75715e">// 포크 해제 후 수면
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">check_system_status</span>(philo<span style="color:#f92672">-&gt;</span>data) <span style="color:#f92672">!=</span> ON)    <span style="color:#66d9ef">return</span> (NULL);
+</span></span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">check_system_status</span>(philo<span style="color:#f92672">-&gt;</span>data) <span style="color:#f92672">!=</span> ON)    <span style="color:#66d9ef">return</span> (NULL);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">print_status</span>(philo, <span style="color:#e6db74">&#34;is thinking&#34;</span>);
 </span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">usleep</span>(<span style="color:#ae81ff">50</span>);                 <span style="color:#75715e">// 짧은 think → 컨텍스트 스위치 유도
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (NULL);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>

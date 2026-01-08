@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width">
 <title>[42seoul] pipex | elecbrandy</title>
 
-      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.d44c672ab09ff4e7a40192b4c273b29b705ce87d7f4df5223640e4c24f28f310.css" integrity="sha256-1ExnKrCf9OekAZK0wnOym3Bc6H1/TfUiNkDkwk8o8xA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.5bf411a82593d4163083354607a41e5e901f95a6a13f1f3461cba9b603f7f180.css" integrity="sha256-W/QRqCWT1BYwgzVGB6QeXpAflaahPx80YcuptgP38YA=" crossorigin="anonymous">
       <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
 <style>
   :root {
@@ -326,7 +326,7 @@
 <p>Mandatory는 단순히 두 커맨드 사이의 상호작용, 즉 두 자식 프로세스의 통신을 구현하는 것이다.
 부모에서(main) pipe를 열고 자식 프로세스 2개를 fork 하면, 해당 자식 프로세스들은 pipe를 통해 통신이 가능하다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">// 프로세스 관리 함수
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span>	<span style="color:#a6e22e">pipex_process</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>av, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>envp, t_data <span style="color:#f92672">*</span>data)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span>	<span style="color:#a6e22e">pipex_process</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>av, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>envp, t_data <span style="color:#f92672">*</span>data)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">child_01</span>(av, envp, data);
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">child_02</span>(av, envp, data);
@@ -339,7 +339,7 @@
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 첫번째 자식 프로세스 함수
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span>	<span style="color:#a6e22e">child_01</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>av, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>envp, t_data <span style="color:#f92672">*</span>data)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span>	<span style="color:#a6e22e">child_01</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>av, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>envp, t_data <span style="color:#f92672">*</span>data)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">pid_t</span>	pid;
 </span></span><span style="display:flex;"><span>
@@ -361,7 +361,7 @@
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 마지막 자식 프로세스 함수
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span>	<span style="color:#a6e22e">child_02</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>av, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>envp, t_data <span style="color:#f92672">*</span>data)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span>	<span style="color:#a6e22e">child_02</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>av, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>envp, t_data <span style="color:#f92672">*</span>data)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">pid_t</span>	pid;
 </span></span><span style="display:flex;"><span>

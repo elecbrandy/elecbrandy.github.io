@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width">
 <title>[42seoul] get_next_line | elecbrandy</title>
 
-      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.d44c672ab09ff4e7a40192b4c273b29b705ce87d7f4df5223640e4c24f28f310.css" integrity="sha256-1ExnKrCf9OekAZK0wnOym3Bc6H1/TfUiNkDkwk8o8xA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.5bf411a82593d4163083354607a41e5e901f95a6a13f1f3461cba9b603f7f180.css" integrity="sha256-W/QRqCWT1BYwgzVGB6QeXpAflaahPx80YcuptgP38YA=" crossorigin="anonymous">
       <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
 <style>
   :root {
@@ -283,13 +283,13 @@
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (fd <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> BUFFER_SIZE <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>)
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> (NULL);
 </span></span><span style="display:flex;"><span>	main_buf <span style="color:#f92672">=</span> <span style="color:#a6e22e">read_line_fd</span>(fd, main_buf); <span style="color:#75715e">// step 01
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>main_buf)
+</span></span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>main_buf)
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> (NULL);
 </span></span><span style="display:flex;"><span>	line <span style="color:#f92672">=</span> <span style="color:#a6e22e">extract_line</span>(main_buf); <span style="color:#75715e">// step 02
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>line)
+</span></span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>line)
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">ft_free</span>(<span style="color:#f92672">&amp;</span>main_buf));
 </span></span><span style="display:flex;"><span>	main_buf <span style="color:#f92672">=</span> <span style="color:#a6e22e">ready_main_buf</span>(main_buf); <span style="color:#75715e">// step 03
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> (line);
+</span></span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> (line);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><code>main_buf</code> 변수는 <strong>static</strong> 변수이기 때문에, 프로그램 실행 시 단 한 번 초기화 되며, 이후에 <code>get_next_line</code> 함수가 호출되어도 초기화되지 않고 이전에 저장된 값을 유지한다.</p>
 <p><code>read_line_fd</code>를 통해 개행 또는 EOF 전까지 <strong>BUFFER_SIZE</strong>만큼씩 파일을 읽는다.</p>
