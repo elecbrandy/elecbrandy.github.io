@@ -9,7 +9,7 @@ tags = ['github', 'dev101']
 <br>
 
 ## 1. 소개
-____
+
 
 > Github Action, CI/CD
 
@@ -19,7 +19,7 @@ github action을 통한 자동 배포를 간헐적으로 사용해봤지만, 좀
 <br>
 
 ## 2. CI/CD
-____
+
 
 github action 옆에 주로 보이는 CI/CD 부터 알아보자. CI/CD는 지속적 제공/배포를 의미하며, 개발 사이클을 간소화/가속화에 목표를 두고 있다. 
 
@@ -42,7 +42,7 @@ github action 옆에 주로 보이는 CI/CD 부터 알아보자. CI/CD는 지속
 <br>
 
 ## 3. Github Action
-___
+
 
 ### 3-1. Github Action 이란?
 
@@ -56,7 +56,7 @@ ___
 <br>
 
 ## 7. Reference
-____
+
 
 - https://www.elancer.co.kr/blog/detail/759
 - https://en.wikipedia.org/wiki/CI/CD

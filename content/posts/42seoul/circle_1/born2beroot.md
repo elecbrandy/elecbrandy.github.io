@@ -10,7 +10,6 @@ tags = ['docker', '42seoul']
 <br>
 
 ## 1. 소개
-____
 
 > YOU CAN DO ANYTHING YOU WANT TO DO, VM, THIS IS YOUR WORLD
 
@@ -20,7 +19,7 @@ ____
 <br>
 
 ## 2. 개념 정리
-____
+
 
 ### 2-1. 운영체제
 Operating System은 응용 프로그램 또는 사용자에게 컴퓨터 자원을 사용할 수 있는 인터페이스를 제공하고, 그 결과를 돌려주는 시스템 소프트웨어이다. CPU, Memory, 저장장치 등의 하드웨어를 관리하고 Process 관리, 자원 접근 및 할당, 파일 시스템을 관리한다.
@@ -348,7 +347,7 @@ printf " cmd\n"
 <br>
 
 ## 3. Evaluation
-____
+
 
 _2025.05 코드 리뷰 추가 삽입_
 
@@ -372,7 +371,7 @@ _2025.05 코드 리뷰 추가 삽입_
 <br>
 
 ## 4. Reference
-____
+
 - https://www.debian.org
 - https://greencloud33.tistory.com/41
 - http://forensic-proof.com/archives/439

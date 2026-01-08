@@ -10,7 +10,7 @@ tags = ['c', '42seoul']
 <br>
 
 ## 1. 소개
-____
+
 
 > Reading a line on a fd is way too tedious
 
@@ -20,7 +20,7 @@ ____
 <br>
 
 ## 2. get_next_line 명세서
-____
+
 - **PROTOTYPE**
 	- `char *get_next_line(int fd);`
 - **PARAMETER**
@@ -44,7 +44,7 @@ ____
 <br>
 
 ## 3. 개념 정리
-___
+
 ### 3-1. 연결리스트와 OPEN_MAX
 본 과제를 **BONUS**까지 수행한다면, 즉 동시에 여러 파일 디스크립터를 감안하는 프로그램을 만들고 싶다면 크게 두가지 방법이 존재한다.
 
@@ -88,7 +88,7 @@ void	ft_free(void **target)
 <br>
 
 ## 4. Mandatory
-____
+
 
 <img src="https://imgur.com/w1qsdXS.png" width="600">
 
@@ -140,7 +140,7 @@ char	*get_next_line(int fd)
 <br>
 
 ## 5. BONUS
-____
+
 
 본 과제를 **BONUS**까지 수행한다면,
 위에서 언급한 것 처럼 우리가 만든 `get_next_line`이 여러 파일 디스트립터를 관리할 수 있어야 한다. 쉽게 말하면, **a.txt**를 읽다가 갑자기 **b.txt**을 읽을 수 있어야 한다는 것! 다시 **a.txt**로 읽기 위해 돌아갔을 때, 그 전에 어디까지 읽었는지 당연히 기억하고 있어야 한다.
@@ -175,7 +175,7 @@ char	*get_next_line(int fd)
 <br>
 
 ## 6. Evaluation
-____
+
 
 _2025.05 코드 리뷰 추가 삽입_
 
@@ -196,7 +196,7 @@ _2025.05 코드 리뷰 추가 삽입_
 <br>
 
 ## 7. Reference
-____
+
 - https://man7.org/linux/man-pages/man2/read.2.html
 - https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html
 - https://code-lab1.tistory.com/65

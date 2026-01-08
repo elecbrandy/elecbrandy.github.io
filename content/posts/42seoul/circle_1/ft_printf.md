@@ -10,7 +10,7 @@ tags = ['c', '42seoul']
 <br>
 
 ## 1. 소개
-____
+
 
 > putnbr and putstr aren’t enough
 
@@ -20,7 +20,7 @@ ____
 <br>
 
 ## 2. ft_printf 명세서
-____
+
 - **PROTOTYPE**
 	- `int ft_printf(const char *str, ...);`
 - **PARAMETER**
@@ -47,7 +47,7 @@ ____
 <br>
 
 ## 3. 개념 정리
-____
+
 ### 3-1. 가변인자
 가변인자 다루는 것에 중점을 둔 과제인 만큼, `va_` 함수를 통해 가변인자를 통제하는 방법을 알아야한다.
 
@@ -69,7 +69,7 @@ ____
 <br>
 
 ## 4. Mandatory
-____
+
 
 <img src="https://imgur.com/Ghuekwt.png" width="600">
 
@@ -148,7 +148,7 @@ void ft_putbase(unsigned int n, char *base, unsigned int number, int *cnt)
 <br>
 
 ## 5. Evaluation
-____
+
 
 _2025.05 코드 리뷰 추가 삽입_
 
@@ -169,7 +169,7 @@ ft_printf 과제는 정말 심혈을 기울여서 작업했고, 깔끔해보이�
 <br>
 
 ## 6. Reference
-____
+
 - https://jangsalt.tistory.com/entry/%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%88%98-vastart-vaend-vaarg-valist
 - https://jhnyang.tistory.com/293
 - https://www.gnu.org/software/libc/manual/html_node/Argument-Macros.html

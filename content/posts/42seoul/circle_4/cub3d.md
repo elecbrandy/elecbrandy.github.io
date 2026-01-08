@@ -10,7 +10,7 @@ tags = ['C', '42seoul']
 <br>
 
 ## 1. 소개
-____
+
 
 > My first RayCaster with miniLibX
 
@@ -21,7 +21,7 @@ ____
 <br>
 
 ## 2. cub3D 명세서
-____
+
 - **PROGRAMNAME**
 	- `cub3D`
 - **DESCRIPTION**
@@ -39,7 +39,7 @@ ____
 <br>
 
 ## 3. 개념 정리
-____
+
 
 사실 그래픽에 크게 관심이 없던 카뎃이라면 매번 그래픽 과제를 만났을 때 처음 c언어를 접했을 때로 돌아가는 기분을 느꼈을 것이다. 그것은 나 또한 마찬가지로, 기존에 3d 공간에 단 하나의 관심도 없었다. 도대체 레이케스팅이 무엇이길래...?  
 
@@ -61,7 +61,7 @@ ____
 <br>
 
 ## 4. Mandatory
-____
+
 
 - _추후 추가_
 
@@ -69,7 +69,7 @@ ____
 <br>
 
 ## 5. Evaluation
-____
+
 
 _2025.05 코드 리뷰 추가 삽입_
 
@@ -88,7 +88,7 @@ _2025.05 코드 리뷰 추가 삽입_
 <br>
 
 ## 6. Reference
-____
+
 - [영어원문] https://lodev.org/cgtutor/raycasting.html
 - [번역본] https://github.com/365kim/raycasting_tutorial?tab=readme-ov-file
 

@@ -8,7 +8,7 @@ tags = ['git', 'java']
 <br>
 
 ## 1. 소개
-___
+
 
 **AngularJS 커밋 컨벤션 한국어** 번역본 입니다.
 
@@ -16,7 +16,7 @@ ___
 <br>
 
 ## 2. 요약
-___
+
 
 ### 2-1. 작성 예시
 
@@ -64,7 +64,7 @@ Breaks $browser.onHashChange, which was removed (use onUrlChange instead)
 <br>
 
 ## 3. AngularJS 커밋 컨벤션 (번역)
-____
+
 
 <details>
 <summary>AngularJS 커밋 컨벤션</summary>
@@ -365,7 +365,7 @@ The removed `inject` wasn't generaly useful for directives so there should be no
 <br>
 
 ## 4. Reference
-___
+
 
 - https://gist.github.com/stephenparish/9941e89d80e2bc58a153
 - https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit?tab=t.0#heading=h.uyo6cb12dt6w

@@ -10,7 +10,7 @@ tags = ['c', '42seoul']
 <br>
 
 ## 1. 소개
-____
+
 
 > I never thought philosophy would be so deadly
 
@@ -25,7 +25,7 @@ ____
 <br>
 
 ## 2. philosopher 명세서
-____
+
 
 <details>
 <summary>philosopher 명세서</summary>
@@ -101,7 +101,7 @@ _상황이 복잡하므로, 다시 한번 정리해보자_
 <br>
 
 ## 3. 개념 정리
-___
+
 
 1. 프로세스와 스레드의 개념을 공부하고,
 2. 그 이후 그것들이 작동하면서 일어날 수 있는 문제들을 살펴보고,
@@ -233,7 +233,7 @@ _당신이 카페에 있습니다. 이 카페에는 3개의 테이블이 있습�
 <br>
 
 ## 4. Mandatory
-____
+
 
 ### 4-1. pthread_mutex_lock과 철학자 문제의 동기화 {#custom-id}
 
@@ -433,7 +433,7 @@ void *philo_routine(void *arg)
 <br>
 
 ## 5. Evaluation
-____
+
 
 _2025.05 코드 리뷰 추가 삽입_
 
@@ -456,7 +456,7 @@ _2025.05 코드 리뷰 추가 삽입_
 <br>
 
 ## 6. Reference
-____
+
 - https://man7.org/linux/man-pages/man2/read.2.html
 - https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html
 - https://code-lab1.tistory.com/65

@@ -10,7 +10,7 @@ tags = ['docker', '42seoul']
 <br>
 
 ## 1. 소개
-____
+
 
 > One container is not enough, WE NEED TO GO DEEPER
 
@@ -20,7 +20,7 @@ ____
 <br>
 
 ## 2. inception 명세서
-____
+
 
 - **General guidelines**
     - 이 프로젝트는 반드시 VM 위에서 진행해야 한다.
@@ -66,7 +66,7 @@ ____
 <br>
 
 ## 3. 개념 정리
-___
+
 
 1. vm,docker 부분은 이전 과제인 born2beroot와 유사하므로 넘어가자
 2. 컨테이너의 연결 방식은 마지막 과제인 ft_transcendence에서도 쓰일 수 있으니 공부하자
@@ -195,7 +195,7 @@ TLS(Transport Layer Security)는 애플리케이션 계층과 전송 계층 
 <br>
 
 ## 4. Mandatory 
-____
+
 
 <img src="https://i.imgur.com/2nOev5a.png" width="600">
 
@@ -488,7 +488,7 @@ ENTRYPOINT ["/usr/bin/dumb-init", "--", "/usr/local/bin/entrypoint.sh"]
 <br>
 
 ## 5. Evaluation
-____
+
 
 _2025.05 코드 리뷰 추가 삽입_
 
@@ -509,7 +509,7 @@ _2025.05 코드 리뷰 추가 삽입_
 <br>
 
 ## 6. Reference
-____
+
 - https://docs.docker.com
 - https://hub.docker.com/_/nginx
 - https://github.com/Xperaz/inception-42

@@ -10,7 +10,7 @@ tags = ['C', '42seoul']
 <br>
 
 ## 1. 소개
-____
+
 
 > This document is a System Administration related exercise.
 
@@ -20,7 +20,7 @@ ____
 <br>
 
 ## 2. 개념 정리
-___
+
 ### 2-1. 네트워크
 네트워크는 두 대 이상의 컴퓨터 시스템이 서로 연결되어 데이터를 교환할 수 있는 구조를 의미한다. 이 연결은 다양한 방법으로 이루어질 수 있으며, 물리적 케이블, 무선 신호, 또는 혼합된 방식으로 네트워크를 구성할 수 있다.
 
@@ -295,7 +295,7 @@ IPv6 주소는 총 8개의 16비트 블록으로 나뉘는데, 각 Octet은 8비
 <br>
 
 ## 3. Mandatory
-____
+
 
 <details>
 <summary>LEVEL_01</summary>
@@ -422,7 +422,7 @@ LEVEL 06 부터 인터넷이 등장한다. 라우터와 A를 연결하자. R1과
 <br>
 
 ## 4. Reference
-____
+
 - https://www.cloudflare.com/ko-kr/learning/ddos/glossary/
 - open-systems-interconnection-model-osi/
 - https://www.geeksforgeeks.org/tcp-ip-model/

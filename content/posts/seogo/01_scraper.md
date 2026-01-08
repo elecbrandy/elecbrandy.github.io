@@ -10,7 +10,7 @@ tags = ['seogo']
 <br>
 
 ## 1. 소개
-____
+
 
 - **이것은 어떤 프로젝트인가요?**
     - 오랜 숙원이었던 `교보문고 전자책 웹사이트에서 전자책 데이터를 수집하는 스크래퍼` 를 만들었다.
@@ -27,7 +27,7 @@ ____
 <br>
 
 ## 2. Seogo-Scraper
-____
+
 
 - ℹ️ 아래 내용은 `seogo-scraper` 프로젝트의 `README.md` 와 동일합니다.  
 - 🌏 [github repository 방문하기 >>](https://github.com/elecbrandy/seogo_scraper)

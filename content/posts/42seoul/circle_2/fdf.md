@@ -10,7 +10,7 @@ tags = ['C', '42seoul']
 <br>
 
 ## 1. 소개
-____
+
 
 > Wireframe model
 
@@ -29,7 +29,7 @@ ____
 <br>
 
 ## 2. fdf 명세서
-____
+
 - **Program name**
 	- `fdf`
 - **Arguments**
@@ -48,7 +48,7 @@ ____
 
 
 ## 3. 개념 정리
-____
+
 
 ### 3-1. Isometric projection
 우리는 어떻게 2차원의 정보를 가공해 3차원처럼 보이게 할 수 있을까? 이때 사용하는 것이 **Isometric projection** 이다. 3D 물체를 2D 평면(종이, 화면)에 그릴 때, 길이와 각도를 최대한 왜곡 없이 보여주려고 하는 방법이다. 쉽게 말하면, "3D처럼 보이게 그리는 특별한 방법" 인 것이다!
@@ -70,7 +70,7 @@ ____
 <br>
 
 ## 4. Mandatory
-____
+
 
 ### 4.1 struct
 
@@ -148,7 +148,7 @@ minilibx 사용법은 42 슬랙이나 구글에 검색하면 각각의 함수 �
 <br>
 
 ## 5. Evaluation
-____
+
 
 _2025.05 코드 리뷰 추가 삽입_
 
@@ -172,7 +172,7 @@ _2025.05 코드 리뷰 추가 삽입_
 <br>
 
 ## 6. Reference
-_____
+_
 - https://en.wikipedia.org/wiki/Isometric_projection
 - https://harm-smits.github.io/42docs/libs/minilibx
 - https://love-every-moment.tistory.com/62

@@ -10,7 +10,7 @@ tags = ['C', '42seoul']
 <br>
 
 # 1. 소개
-____
+
 
 > As beautiful as a shell
 
@@ -26,7 +26,7 @@ shell의 내부 구현 (`fork`와 `execv`를 활용한 명령어 처리 등) 은
 <br>
 
 ## 2. minishell 명세서
-____
+
 - **PROGRAM NAME**
 	- `minishell`
 - **PARAMETER**
@@ -75,7 +75,7 @@ ____
 <br>
 
 ## 3. 개념 정리
-___
+
 
 ### 3-1. Shell
 **Shell**은 사용자가 OS와 상호작용할 수 있도록 해주는 프로그램이다. 사용자가 명령어를 입력하면 이를 OS가 이해할 수 있도록 해석하고, 그에 따른 작업을 수행한다. Shell은 커맨드 라인 인터페이스를 제공하며, 사용자의 명령어를 **읽고-해석하고-실행하고-결과를 출력**한다.  
@@ -100,7 +100,7 @@ Shell에서 **built-in** 함수란 Shell 자체에 내장된 명령어 또는 �
 <br>
 
 ## 4. Mandatory
-____
+
 
 이번 과제는 2인이 협동해야하는 팀 과제이다. 주로 역할분배는 **명령어 파싱부**와 **실행부**로 구분하곤 한다.  
 
@@ -243,7 +243,7 @@ ____
 <br>
 
 ## 5. Evaluation
-____
+
 
 _2025.05 코드 리뷰 추가 삽입_
 
@@ -267,7 +267,7 @@ _2025.05 코드 리뷰 추가 삽입_
 
 
 ## 6. Reference
-____
+
 - https://www.freebsd.org
 - https://man7.org/linux/man-pages/man2/pipe.2.html
 - https://millar-library99.tistory.com/21

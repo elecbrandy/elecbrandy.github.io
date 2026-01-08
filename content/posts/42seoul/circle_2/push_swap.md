@@ -10,7 +10,7 @@ tags = ['c', '42seoul']
 <br>
 
 ## 1. 소개
-____
+
 > Because Swap_push isn’t as natural
 
 42서울 본과정 입과 후 네번째로 수행한 과제로, 스택에 있는 데이터를 한정된 명령어를 이용하여 최대한 적은 횟수 내에 정렬하는 것을 목표로 하는 과제이다.
@@ -25,7 +25,7 @@ ____
 <br>
 
 ## 2. push_swap 명세서
-____
+
 - **PROTOTYPE**
 	- `push_swap`
 - **DESCRIPTION**
@@ -42,7 +42,7 @@ ____
 <br>
 
 ## 3. 개념 정리
-____
+
 <img src="https://i.imgur.com/tOh91Wf.png" width="600">
 
 ### 3-1. push_swap 규칙
@@ -81,7 +81,7 @@ ____
 <br>
 
 ## 4. Mandatory
-____
+
 
 ### 4-1. 사전 최적화
 결국 숫자를 순서대로 정렬하는 것이고, 3진수로 변환해야하기 때문에 인자의 크기는 작을수록 좋다.
@@ -203,7 +203,7 @@ int	main(int ac, char **av)
 <br>
 
 ## 5. Evaluation
-____
+
 
 _2025.05 코드 리뷰 추가 삽입_
 
@@ -227,7 +227,7 @@ _2025.05 코드 리뷰 추가 삽입_
 <br>
 
 ## 6. Reference
-____
+
 - [wiki] https://buly.kr/6tZknhQ
 - [tistory] https://buly.kr/CshW9Qu
 - [velog] https://velog.io/@blank_/PushSwap-Radix-Sort
