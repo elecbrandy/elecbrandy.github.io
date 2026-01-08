@@ -178,7 +178,6 @@
 
 <br>
 <h2 id="1-소개">1. 소개</h2>
-<hr>
 <blockquote>
 <p>Cristina: &ldquo;Go dance salsa somewhere :)&rdquo;</p>
 </blockquote>
@@ -186,7 +185,6 @@
 <br>
 <br>
 <h2 id="2-pipex-명세서">2. pipex 명세서</h2>
-<hr>
 <h3 id="2-1-mandatory-part">2-1. Mandatory part</h3>
 <ul>
 <li><code>pipex</code>는 <code>./pipex file1 cmd1 cmd2 file2</code> 형태로 실행된다.</li>
@@ -214,7 +212,6 @@
 <br>
 <br>
 <h2 id="3-개념-정리">3. 개념 정리</h2>
-<hr>
 <h3 id="3-1-redirection">3-1. Redirection</h3>
 <p>redirection은 shell에서 입력과 출력의 흐름을 재지정하는 프로세스이다. 기본적으로 커맨드는 표준 입력(stdin), 표준 출력(stdout), 그리고 표준 에러(stderr)라는 세 가지 주요 통신 채널을 사용한다. 리디렉션을 사용하면 이러한 통신 채널을 파일이나 다른 프로그램으로 전환할 수 있다. 유닉스 및 리눅스 기반 시스템에서 매우 강력한 도구로 시스템 관리, 스크립팅 및 데이터 관리에 유용하다.</p>
 <ul>
@@ -302,7 +299,6 @@
 <br>
 <br>
 <h2 id="4-mandatory">4. Mandatory</h2>
-<hr>
 <img src="https://i.imgur.com/s1coAtk.png" width="600">
 <br>
 <h4 id="step-01--redirection-조절">step 01 : Redirection 조절</h4>
@@ -384,7 +380,6 @@
 </span></span></code></pre></div><br>
 <br>
 <h2 id="5-bonus">5. Bonus</h2>
-<hr>
 <p>Bonus 부분에서는 다중 파이프를 구현해야한다. 두가지 선택지가 존재한다. 첫번째 동적할당으로 필요한만큼 파이프 fd를 사용하는 것, 두번째는 fd값을 재활용하는 것.
 전자의 경우 데이터 흐름을 이해하기 쉽지만 그만큼 자원이 많이 들어가기 때문에 이후 과제인 minishell을 생각하면 피하는게 좋아보인다. 따라서 나는 후자를 선택했다.
 (기본적으로 Redirection 조절 등은 Mandatory와 유사하다.)</p>
@@ -419,7 +414,6 @@
 <br>
 <br>
 <h2 id="5-evaluation">5. Evaluation</h2>
-<hr>
 <p><em>2025.05 코드 리뷰 추가 삽입</em></p>
 <p><strong>try1 - review 1</strong><br>
 <img src="https://i.imgur.com/n5ixBE5.png" width="300"></p>
@@ -431,7 +425,6 @@
 <br>
 <br>
 <h2 id="6-reference">6. Reference</h2>
-<hr>
 <ul>
 <li><a href="https://man7.org/linux/man-pages/man2/pipe.2.html">https://man7.org/linux/man-pages/man2/pipe.2.html</a></li>
 <li><a href="https://www.gnu.org/software/libc/manual/html_node/Creating-a-Pipe.html">https://www.gnu.org/software/libc/manual/html_node/Creating-a-Pipe.html</a></li>

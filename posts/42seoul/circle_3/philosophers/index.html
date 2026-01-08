@@ -171,7 +171,6 @@
 
 <br>
 <h2 id="1-소개">1. 소개</h2>
-<hr>
 <blockquote>
 <p>I never thought philosophy would be so deadly</p>
 </blockquote>
@@ -182,7 +181,6 @@
 <br>
 <br>
 <h2 id="2-philosopher-명세서">2. philosopher 명세서</h2>
-<hr>
 <details>
 <summary>philosopher 명세서</summary>
 <div markdown="1">
@@ -292,7 +290,6 @@
 <br>
 <br>
 <h2 id="3-개념-정리">3. 개념 정리</h2>
-<hr>
 <ol>
 <li>프로세스와 스레드의 개념을 공부하고,</li>
 <li>그 이후 그것들이 작동하면서 일어날 수 있는 문제들을 살펴보고,</li>
@@ -457,7 +454,6 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 <br>
 <br>
 <h2 id="4-mandatory">4. Mandatory</h2>
-<hr>
 <h3 id="custom-id">4-1. pthread_mutex_lock과 철학자 문제의 동기화</h3>
 <p>스레드 프로그래밍에서 중요한 부분 중 하나는 자원에 언제 lock을 걸고, 언제 unlock할지를 결정하는 것이다. 여기서 lock이란 특정 스레드가 특정 자원을 독점적으로 점유하고 있음을 의미하며, 다른 스레드들은 해당 자원에 접근하지 못하고 lock이 풀릴 때까지 기다리게 된다.</p>
 <p><code>자원</code> 이라는 표현이 추상적이긴 하지만, 실제로는 단순한 메시지 출력(log 출력) 역시 동기화가 필요한 자원이 된다. 예를 들어, 여러 스레드(철학자)가 동시에 자신의 행동을 출력할 때, 만약 서로 동기화를 하지 않고 마음대로 메시지를 출력한다면, 출력 결과가 뒤섞이게 되어 시간 순서를 제대로 알 수 없게 된다. 따라서 메시지 출력에도 mutex lock을 통해 동기화를 하는 것이 중요하다.</p>
@@ -608,7 +604,6 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 <br>
 <br>
 <h2 id="5-evaluation">5. Evaluation</h2>
-<hr>
 <p><em>2025.05 코드 리뷰 추가 삽입</em></p>
 <p><strong>try1 - review 1</strong><br>
 <img src="https://i.imgur.com/B0QkMyn.png" width="300"></p>
@@ -622,7 +617,6 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 <br>
 <br>
 <h2 id="6-reference">6. Reference</h2>
-<hr>
 <ul>
 <li><a href="https://man7.org/linux/man-pages/man2/read.2.html">https://man7.org/linux/man-pages/man2/read.2.html</a></li>
 <li><a href="https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html">https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html</a></li>

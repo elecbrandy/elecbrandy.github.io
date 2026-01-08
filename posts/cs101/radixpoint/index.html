@@ -174,14 +174,12 @@
  -->
 <br>
 <h2 id="1-소개">1. 소개</h2>
-<hr>
 <p><strong>정수(Integer)</strong> 는 우리가 흔히 알고 있는 0, 1, 2, 3과 같은 숫자이다. 컴퓨터에서 정수는 정확하게 표현된다. 예를 들어, 숫자 &lsquo;2&rsquo;는 항상 2로 저장되며, 더하거나 빼도 그 값이 정확하게 맞는다. 즉, 정수는 <strong>정확성(Accuracy)</strong> 이 매우 뛰어나다. 예를 들어, 2 + 1 = 3이 정확하게 나온다.</p>
 <p>하지만 정수는 소수점 값을 표현할 수 없기 때문에 <strong>정밀도(Precision)</strong> 가 떨어진다. 예를 들어, 5 ÷ 2는 2.5이지만, 정수는 소수점을 버리고 2만 저장한다. 이처럼 정수는 소수점 이하의 값들을 무시하기 때문에 작은 차이들을 정확하게 표현하기 어렵다.</p>
 <p>그렇다면 어느 순간 소수를 사용해야하는 상황이 있을때, 컴퓨터는 소수를 어떻게 저장하고 사용할까?</p>
 <br>
 <br>
 <h2 id="2-소수---이진수">2. 소수 -&gt; 이진수</h2>
-<hr>
 <p>우선, 소수를 이진수로 변환하는 과정부터 알아보자. <code>0.n</code>으로 표현된 숫자 역시 이진수로 표현 가능하다. 소수 부분이 0이 될때까지 계속해서 2를 곱해주다가, 그 과정에서 <strong>소수</strong> 에서 <strong>정수의 1의 자리</strong> 부분으로 올림이 일어나면 1을 기록하고 - 아니면 0을 기록해나간다. 간단한 예시로 살펴보자.</p>
 <h4 id="025---이진수">0.25 -&gt; 이진수:</h4>
 <ol>
@@ -209,7 +207,6 @@
 </ol>
 <p>대충 견적이 나오는 것 같다. 컴퓨터에서 소수를 다룰 때는 표현의 한계가 있기 때문에, 소수점을 일정한 자리에서 끊어 표현해야 한다. 소수를 표현하는 방법에는 크게 두 가지가 있는데, 고정소수점과 부동소수점 방식이다. 각각의 방식을 하나씩 자세히 알아보자.</p>
 <h2 id="3-고정소수점">3. 고정소수점</h2>
-<hr>
 <img src="https://resources-public-blog.modulabs.co.kr/blog/prd/content/259164/fixed-points.png" width="600">
 <p><strong>고정소수점(Fixed Point)</strong> 은 소수점을 고정된 위치에 두고 정수와 소수 부분을 구분하여 숫자를 표현하는 방식이다. 즉, 정수부와 소수부의 자릿수가 미리 정해져 있는 것이 특징입니다. 예를 들어, 소수점 이하 두 자리를 사용할 경우, 12.34와 같은 값을 정확하게 표현할 수 있다! 소수부 자릿수가 고정되어 있기 때문에, <strong>정밀도(Precision)</strong> 는 소수부 자릿수만큼만 유지된다. 이 방식은 컴퓨터의 연산 속도가 빠르고 구현이 간단하다는 장점이 있다.</p>
 <p>정확성(Accuracy) 측면에서는 부동소수점에 비해 일정한 범위 내에서는 매우 정확한 값을 표현할 수 있다. 소수부의 자릿수가 고정되어 있기 때문에, 표현할 수 있는 값이 제한되지만 해당 범위 내에서 실수 값을 정확하게 다룰 수 있다.</p>
@@ -220,7 +217,6 @@
 <br>
 <br>
 <h2 id="3-부동소수점">3. 부동소수점</h2>
-<hr>
 <img src="https://resources-public-blog.modulabs.co.kr/blog/prd/content/259164/floating-point.png" width="600">
 <p><strong>부동소수점(Floating Point)</strong> 은 소수점을 가변적으로 움직여 숫자를 표현하는 방식이다. 이는 숫자의 정수부와 소수부를 나누어 고정된 자리에서 소수를 표현하는 고정소수점 방식과 다르게, 소수점의 위치를 자유롭게 옮길 수 있는 방식이다. 부동소수점은 숫자를 <strong>가수(Mantissa)</strong> 와 <strong>지수(Exponent)</strong> 로 나누어 표현한다.</p>
 <br>
@@ -282,7 +278,6 @@
 <br>
 <br>
 <h2 id="4-편향된-지수">4. 편향된 지수?</h2>
-<hr>
 <p>편향된 지수, 개념이 조금 어려울 수 있지만 한 번 더 살펴보자.</p>
 <p>부동소수점에서 <strong>지수(Exponent)</strong> 는 숫자의 소수점을 왼쪽이나 오른쪽으로 움직여 숫자를 정규화하는 역할을 한다. 예를 들어, <strong>0.0001</strong> 이라는 숫자를 부동소수점으로 표현하려면 <strong>1.0 × 10^(-4)</strong> 로 정규화해야 한다. 이때, <strong>지수 -4</strong> 를 나타내야 하는데, <strong>음수 지수를 어떻게 표현할까?</strong> 만약 음수를 직접 저장하려면 지수에 음수를 나타내는 <strong>비트</strong> 를 하나 더 사용해야 할 것 같다. 하지만 이렇게 되면 지수를 표현할 수 있는 비트 수가 줄어들어, 더 작은 범위만 표현할 수 있다는 문제가 생긴다.</p>
 <p>이 문제를 해결하기 위해 부동소수점에서는 <strong>편향된 지수(Biased Exponent)</strong> 방식을 사용한다. 이 방식은 <strong>음수 지수</strong> 도 <strong>양수로 변환</strong> 하여 저장하는 방법이다. 이를 위해 편향 값(Bias)을 사용하여 지수 값에 특정 값을 더해 저장하고, 저장된 값을 읽어올 때는 다시 편향 값을 빼서 원래의 지수 값을 복원한다.</p>
@@ -327,7 +322,6 @@
 <br>
 <br>
 <h2 id="5-reference">5. Reference</h2>
-<hr>
 <ul>
 <li><a href="https://modulabs.co.kr/blog/fixed-points-and-floating-points-how-computers-understand-numbers/">https://modulabs.co.kr/blog/fixed-points-and-floating-points-how-computers-understand-numbers/</a></li>
 <li><a href="https://devocean.sk.com/blog/techBoardDetail.do?ID=165276&amp;boardType=techBlog">https://devocean.sk.com/blog/techBoardDetail.do?ID=165276&amp;boardType=techBlog</a></li>
