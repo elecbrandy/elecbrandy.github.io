@@ -92,10 +92,11 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-기본-정보">2. 기본 정보</a></li>
-    <li><a href="#3-github-actions">3. Github Actions</a>
+    <li><a href="#2-기본-정보">2. 기본 정보</a>
       <ul>
-        <li></li>
+        <li><a href="#21-github-page">2.1 Github Page** <br></a></li>
+        <li><a href="#hugo">Hugo** <br></a></li>
+        <li><a href="#github-actions">Github Actions** <br></a></li>
       </ul>
     </li>
     <li><a href="#4-freshpink-테마-살펴보기">4. freshPink 테마 살펴보기</a></li>
@@ -140,38 +141,22 @@
 <blockquote>
 <p><strong>Hugo + GitHub hosting + Github Action</strong> 조합으로 30 분 만에 개인 개발 블로그를 구축하기</p>
 </blockquote>
-<p>이런 저런 이유로 인터넷 공간 한 구석에 나만을 위한 원룸이 필요할 때가 있다. 개인 메모용, 혹은 지식을 공유하기 위한 개발 블로그 등등&hellip; 나는 마크다운(<code>.md</code>) 기반으로 필기하는 습관이 있어 <strong>Hugo + GitHub Pages</strong> 조합을 선택했다.</p>
-<p>1️⃣ <strong>마크다운 그대로 작성</strong>할 수 있다!<br>
-2️⃣ <strong>정적 사이트</strong>이므로 속도가 빠르고 보안 부담이 적다.<br>
-3️⃣ <strong>GitHub Pages</strong>를 이용해 <strong>무료</strong>로 호스팅할 수 있다.</p>
-<p>아래 Hugo 테마 사이트에 들어가면 전세계 Hugo 유저들이 제작한 블로그 테마가 등록되어 있다. 다른 테마를 원하는 경우 아래 링크에서 더 많은, 더 예쁜 테마를 확인해보자!
-각 테마 내부에 데모 사이트 접속부터 실제 설치-사용방법까지 적혀있기 때문에 초보자라도 쉽게 따라할 수 있다.</p>
+<p>이런 저런 이유로 인터넷 공간 한 구석에 나만을 위한 원룸이 필요할 때가 있다. 개인 메모용, 혹은 지식을 공유하기 위한 개발 블로그 등등&hellip; 나는 마크다운(<code>.md</code>) 기반으로 필기하는 습관이 있어 <strong>Hugo + GitHub Pages</strong> 조합을 선택했다. 아래 Hugo 테마 사이트에 들어가면 전세계 Hugo 유저들이 제작한 블로그 테마가 등록되어 있다. 다른 테마를 원하는 경우 아래 링크에서 더 많은, 더 예쁜 테마를 확인해보자.
+각 테마 내부에 데모 사이트 접속부터 실제 설치-사용방법까지 적혀있기 때문에 초보자라도 쉽게 따라할 수 있다. 물론 설치 과정에서 시행착오가 존재할 수 있고, 업데이트가 종료된 테마인 경우 최신 Hugo 엔진에서 작동하지 않는 경우도 있다. 따라서 이와 같은 고민을 겪을 초보자를 위해 이 가이드를 작성하며, 우선 <code>freshPink</code> 테마를 사용해 실습해보자.</p>
 <ul>
 <li>🌏 <a href="https://themes.gohugo.io">Hugo 테마 사이트 방문하기 &raquo;</a></li>
 </ul>
-<p>물론 대부분 테마의 가이드가 영어로 적혀 있다. 때문에 따라하는 과정에서 시행착오가 존재할 수 있고, 업데이트가 종료된 테마인 경우 최신 Hugo 엔진에서 작동하지 않는 경우도 있다. 따라서 이와 같은 고민을 겪을 초보자를 위해 이 가이드를 작성하며, 우선 내가 작성한 <code>freshPink</code> 테마를 사용해 실습해보자.</p>
 <br>
 <br>
 <h2 id="2-기본-정보">2. 기본 정보</h2>
 <p>가이드에 앞서 우리가 사용할 기술에 대한 간단한 사전 지식을 읽어보자!</p>
-<ul>
-<li>
-<p><strong>Github Page</strong> <br>
-GitHub Pages는 GitHub 저장소에 있는 HTML, CSS, JS 파일 등의 정적 콘텐츠를 웹사이트로 호스팅해주는 서비스이다. GitHub 계정이 있다면 누구나 추가 비용 없이 웹사이트를 호스팅할 수 있다.</p>
-</li>
-<li>
-<p><strong>Hugo</strong> <br>
-Hugo는 Go 언어로 작성된 정적 사이트 생성기(Static Site Generator)이다. 물론 Go 문법을 몰라도 대부분의 테마를 그대로 사용할 수 있다. 나도 Go 문법은 잘 모른다.</p>
-</li>
-<li>
-<p><strong>Github Actions</strong> <br>
-GitHub Actions 이란 깃허브 저장소 내에서 개발 작업을 자동으로 처리해주는 도구이다. 코드를 저장소에 올렸을 때(이벤트) 자동으로 빌드하고, 테스트하고, 배포하는 등의 반복적인 작업을 자동으로 대신 처리하도록 설정하는 기능이다. 우리는 <code>.yml</code> 설정 파일을 통해 기능을 정의할 수 있다. 예를 들어, 코드를 푸시할 때마다 자동으로 오류가 없는지 테스트 하거나, 테스트를 통과하면 자동으로 GitHub Pages에 배포하게 설정할 수 있다.</p>
-</li>
-</ul>
-<br>
-<br>
-<h2 id="3-github-actions">3. Github Actions</h2>
-<p>소스코드와 결과물의 분리에서 오는 관리의 이득, 그리고 배포과정 자동화에서 오는 편리성과 휴먼에러 방지 목표로 Github Actions 을 사용하는 것이 좋다.</p>
+<h3 id="21-github-page">2.1 Github Page** <br></h3>
+<p>GitHub Pages는 GitHub 저장소에 있는 HTML, CSS, JS 파일 등의 정적 콘텐츠를 웹사이트로 호스팅해주는 서비스이다. GitHub 계정이 있다면 누구나 추가 비용 없이 웹사이트를 호스팅할 수 있다.</p>
+<h3 id="hugo">Hugo** <br></h3>
+<p>Hugo는 Go 언어로 작성된 정적 사이트 생성기(Static Site Generator)이다. 물론 Go 문법을 몰라도 대부분의 테마를 그대로 사용할 수 있다. 나도 Go 문법은 잘 모른다.</p>
+<h3 id="github-actions">Github Actions** <br></h3>
+<p>GitHub Actions 이란 깃허브 저장소 내에서 개발 작업을 자동으로 처리해주는 도구이다. 코드를 저장소에 올렸을 때(이벤트) 자동으로 빌드하고, 테스트하고, 배포하는 등의 반복적인 작업을 자동으로 대신 처리하도록 설정하는 기능이다. 우리는 <code>.yml</code> 설정 파일을 통해 기능을 정의할 수 있다. 예를 들어, 코드를 푸시할 때마다 자동으로 오류가 없는지 테스트 하거나, 테스트를 통과하면 자동으로 GitHub Pages에 배포하게 설정할 수 있다.</p>
+<p>소스코드와 결과물의 분리에서 오는 관리의 이득, 그리고 배포과정 자동화에서 오는 편리성과 휴먼에러 방지 목표로 Github Actions 을 사용하자.</p>
 <h4 id="소스코드와-결과물의-분리">소스코드와 결과물의 분리</h4>
 <p>보통 Hugo와 같은 정적 사이트 생성기는 아래 소스와 결과물</p>
 <ul>
@@ -195,7 +180,7 @@ GitHub Actions 이란 깃허브 저장소 내에서 개발 작업을 자동으�
 <br>
 <br>
 <h2 id="4-freshpink-테마-살펴보기">4. freshPink 테마 살펴보기</h2>
-<p>이번 가이드로 사용해볼 테마는 <code>freshPink</code> 테마이다. 다음 링크를 접속해서 어떻게 생긴 테마인지, 데모사이트는 어떤지 한번 살펴보자. 마음에 들지 않는다면, 일단 한번 배포까지 연습해보고 나중에 다른 테마로 갈아끼우면 그만이다. 혹은 fork를 떠서 마개조해도 좋다.</p>
+<p>이번 가이드로 사용해볼 테마는 <code>freshPink</code> 테마이다. 다음 링크를 접속해서 어떻게 생긴 테마인지, 데모사이트는 어떤지 한번 살펴보자. 마음에 들지 않는다면, 일단 한번 배포까지 연습해보고 나중에 다른 테마로 갈아끼우면 그만이다. 혹은 fork를 떠서 개조해도 좋다.</p>
 <ul>
 <li>
 <p>🌏 <a href="https://github.com/elecbrandy/freshpink">freshPink github 방문 &raquo;</a></p>

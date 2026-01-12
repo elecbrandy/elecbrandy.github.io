@@ -6,8 +6,15 @@
     <description>Recent content in Java on elecbrandy</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://elecbrandy.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[java] Gradle</title>
+      <link>https://elecbrandy.github.io/posts/java/gradle/</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/posts/java/gradle/</guid>
+      <description>&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Gradle의 개념과 동작 원리: Makefile 사용자의 관점에서 공부해보기&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;이전에 C++ 기반의 IRC 서버를 구현할 당시에는 &lt;code&gt;Makefile&lt;/code&gt; 과 &lt;code&gt;docker-compose&lt;/code&gt; 를 통해 서버를 관리했다. 자바 스프링 생태계로 넘어오면서 &lt;code&gt;Gradle&lt;/code&gt; 이 표준 빌드 자동화 도구로 활용되는 것을 확인하였고, 내부적으로 어떻게 동작하는지 정리해보고자 한다.&lt;/p&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;2-gradle이란-무엇인가&#34;&gt;2. Gradle이란 무엇인가&lt;/h2&gt;&#xA;&lt;p&gt;&lt;code&gt;Gradle&lt;/code&gt; 은 단순히 make의 자바 버전을 넘어, 의존성 관리와 태스크 기반 라이프사이클이 결합된 고도화된 빌드 도구이다. &lt;code&gt;Makefile&lt;/code&gt; 이 파일 간의 관계를 정의하여 빌드 명령어를 실행하는 방식이라면, &lt;code&gt;Gradle&lt;/code&gt; 은 표준화된 빌드 라이프사이클을 내장하고 있어 의존성 다운로드부터 컴파일, 테스트, 패키징까지의 과정을 자동화한다.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>[dev101] AngularJS 커밋 컨벤션</title>
       <link>https://elecbrandy.github.io/posts/dev101/angularjscommit/</link>
