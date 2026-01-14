@@ -9,10 +9,24 @@
     <lastBuildDate>Mon, 12 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://elecbrandy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Ai</title>
+      <link>https://elecbrandy.github.io/tags/ai/</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Java</title>
       <link>https://elecbrandy.github.io/tags/java/</link>
       <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Skala</title>
+      <link>https://elecbrandy.github.io/tags/skala/</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/skala/</guid>
       <description></description>
     </item>
     <item>
@@ -83,13 +97,6 @@
       <link>https://elecbrandy.github.io/tags/linux/</link>
       <pubDate>Sun, 24 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/linux/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ai</title>
-      <link>https://elecbrandy.github.io/tags/ai/</link>
-      <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/ai/</guid>
       <description></description>
     </item>
     <item>

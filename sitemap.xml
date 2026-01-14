@@ -5,6 +5,9 @@
     <loc>https://elecbrandy.github.io/posts/java/gradle/</loc>
     <lastmod>2026-01-12T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://elecbrandy.github.io/tags/ai/</loc>
+    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://elecbrandy.github.io/</loc>
     <lastmod>2026-01-12T00:00:00+00:00</lastmod>
   </url><url>
@@ -12,6 +15,12 @@
     <lastmod>2026-01-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/</loc>
+    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/ai/prompt_engineering/</loc>
+    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/skala/</loc>
     <lastmod>2026-01-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/</loc>
@@ -120,9 +129,6 @@
     <lastmod>2023-10-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/project/dataonair/</loc>
-    <lastmod>2023-09-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/ai/</loc>
     <lastmod>2023-09-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/ui.ux/</loc>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Prompt Engineering | elecbrandy</title>
+
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.5bf411a82593d4163083354607a41e5e901f95a6a13f1f3461cba9b603f7f180.css" integrity="sha256-W/QRqCWT1BYwgzVGB6QeXpAflaahPx80YcuptgP38YA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
+<style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-소개">1. 소개</a></li>
+    <li><a href="#2-sampling-parameter">2. Sampling Parameter</a></li>
+    <li><a href="#3-rice">3. RICE</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#4-shot">4. Shot</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#5-아주아주-간단한-논문-리뷰">5. 아주아주 간단한 논문 리뷰</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#6-reference">6. Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="http://t1.daumcdn.net/movie/171980d2cd9344808580f4fc0cb65e151557709136361" alt="Featured Image for Prompt Engineering">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2026.01.12</small>
+      <div class="singleTitle">Prompt Engineering</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/skala/00_data/">0. 데이터 기초</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<h2 id="1-소개">1. 소개</h2>
+<p>LLM을 사용할때 명령을 어떻게 내리느냐에 따라서 결과가 많이 달라진다. 우리는 보통 이때 프롬프트 엔지니어링을 통해 내가 원하는 바가 LLM에게 잘 전달되게 노력해보자!</p>
+<p>프롬프트 엔지니어링은 사용자의 의도를 인공지능이 이해할 수 있는 최적의 형태로 변환하는 기술이다. 단순히 질문을 던지는 것보다 모델이 사고할 수 있는 프레임워크를 제공할 때 답변의 일관성과 품질이 상승한다..! 아니 상승할 수 있는 가능성이 높아진다. RAG나 모델 튜닝 이전에 가장 적은 비용으로 효과를 볼수 있는 프롬프트 엔지니어링을 공부해보자.</p>
+<br>
+<br>
+<h2 id="2-sampling-parameter">2. Sampling Parameter</h2>
+<p>LLM을 효율적으로 활용하기 위해서는 모델의 답변 생성 방식을 결정짓는 샘플링 파라미터를 알아보자. 이 파라미터 조절을 통해 모델의 <code>창의성</code> 과 <code>논리성</code> 사이의 균형을 맞출 수 있다.</p>
+<ul>
+<li><strong>Temperature</strong>: 토큰 선택의 임의성을 제어한다. 0에 가까울수록 가장 확률이 높은 토큰을 일관되게 선택하여 사실적인 답변을 내놓고, 2에 가까울수록 확률 분포를 평평하게 만들어 창의적이고 무작위적인 선택을 유도한다.</li>
+<li><strong>Top-P</strong>: 누적 확률이 특정값 P에 도달할 때까지의 상위 토큰들만 후보로 삼는다. 현업에서 가장 범용적으로 활용되는 방식이다.</li>
+<li><strong>Top-K</strong>: 예측된 토큰 중 상위 K개의 후보군만 남기고 나머지는 배제한다.</li>
+</ul>
+<br>
+<br>
+<h2 id="3-rice">3. RICE</h2>
+<p>특히 효율적인 프롬프트 구성을 위해 <code>RICE</code> (Role, Instruction, Context, Example) 개념을 적용하면 보다 정교한 제어가 가능하다.</p>
+<ul>
+<li><strong>Role (역할)</strong>
+<ul>
+<li>AI에게 특정한 페르소나를 부여한다. 전문 개발자, 데이터 분석가 등 역할을 정의함으로써 답변의 톤과 지식의 깊이를 결정한다. 우리가 흔히 <code>너는 10년차 베테랑 인사 담당자야...(중략)</code> 하는 부분과 일맥상통하다.</li>
+</ul>
+</li>
+<li><strong>Instruction (지시)</strong>
+<ul>
+<li>수행해야 할 작업을 구체적이고 단계적으로 명시한다.</li>
+</ul>
+</li>
+<li><strong>Context (맥락)</strong>
+<ul>
+<li>답변에 필요한 배경지식, 대상 독자, 제약 사항을 전달한다. 이 맥락 제공을 통해 정보의 범위를 제한하여 모델이 엉뚱한 답변을 내놓는 환각 현상을 방지한다.</li>
+</ul>
+</li>
+<li><strong>Example (예시)</strong>
+<ul>
+<li>원하는 답변의 형식이나 스타일을 샘플로 제공한다. 모델은 이 예시를 통해 출력의 구조를 학습한다.</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="rice-개념을-적용한-구조적-프롬프트-예시">RICE 개념을 적용한 구조적 프롬프트 예시</h4>
+<p><code>RICE</code> 프레임워크를 모두 활용하여 기술적인 코드 리뷰를 요청하는 프롬프트의 예시를 한번 살펴보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Role</span>
+</span></span><span style="display:flex;"><span>너는 10년 차 이상의 시니어 백엔드 개발자이자 보안 아키텍트이다. 
+</span></span><span style="display:flex;"><span>주니어 개발자가 작성한 코드를 꼼꼼하게 검토하고 피드백을 주는 역할을 수행한다.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Instruction</span>
+</span></span><span style="display:flex;"><span>1. 제시된 코드의 로직상 오류나 비효율적인 부분을 찾아낸다.
+</span></span><span style="display:flex;"><span>2. OWASP Top 10을 기준으로 보안 취약점이 있는지 점검한다.
+</span></span><span style="display:flex;"><span>3. 개선된 코드를 제시하고, 왜 그렇게 수정해야 하는지 이유를 설명한다.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Context</span>
+</span></span><span style="display:flex;"><span>- 언어 및 환경: Node.js <span style="color:#f92672">(</span>Express<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- 상황: 사용자로부터 입력받은 ID를 통해 데이터베이스에서 회원 정보를 조회하는 API이다.
+</span></span><span style="display:flex;"><span>- 제약 사항: 설명은 기술적인 용어를 사용하되 명확해야 하며, 답변은 Markdown 형식을 유지한다.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Example</span>
+</span></span><span style="display:flex;"><span>입력: <span style="color:#66d9ef">function</span><span style="color:#f92672">(</span>data<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> console.log<span style="color:#f92672">(</span>data<span style="color:#f92672">)</span>; <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>출력: <span style="color:#f92672">[</span>로직 리뷰<span style="color:#f92672">]</span> 단순 출력 함수입니다. <span style="color:#f92672">[</span>개선<span style="color:#f92672">]</span> 화살표 함수를 사용하면 더 간결합니다.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Input Code</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> getUser<span style="color:#f92672">(</span>userId<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    const query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SELECT * FROM users WHERE id = &#39;&#34;</span> + userId + <span style="color:#e6db74">&#34;&#39;;&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> db.execute<span style="color:#f92672">(</span>query<span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><br>
+<br>
+<h2 id="4-shot">4. Shot</h2>
+<p><code>RICE</code> 를 직접 활용해보면 알겠지만, 그냥 단도직입적으로 LLM에게 질의하는 것보다 조금 더 내가 원하는 정보와 응답을 받아내기 용이하다. 이때, 모델에게 제공하는 예시의 양에 따라 성능과 효율성이 달라짐을 어느정도 느낄 수 있을 것이다. 이제 RICE의 Example 요소를 좀 더 구체화한 <code>Shot</code> 기법에 대해서 알아보자.</p>
+<h4 id="zero-shot">Zero-shot</h4>
+<ul>
+<li>추가 학습 데이터나 예시 없이 지시사항만 전달</li>
+<li>모델의 내장된 지식과 기본적인 추론 능력에만 의존</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>지시: 다음 문장의 감성을 <span style="color:#e6db74">&#39;긍정&#39;</span> 또는 <span style="color:#e6db74">&#39;부정&#39;</span>으로 분류하라.
+</span></span><span style="display:flex;"><span>문장: <span style="color:#e6db74">&#34;오늘 새로 산 키보드의 타건감이 생각보다 훨씬 부드럽다.&#34;</span>
+</span></span><span style="display:flex;"><span>결과: ~~
+</span></span></code></pre></div><h4 id="one-shot">One-shot</h4>
+<ul>
+<li>단 하나의 예시를 통해 출력의 방향성과 형식을 제시</li>
+<li>모델이 작업의 의도를 파악하는 데 매우 유용</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>지시: 기술 용어를 초등학생도 이해할 수 있게 비유로 설명하라.
+</span></span><span style="display:flex;"><span>예시: <span style="color:#e6db74">&#34;데이터베이스는 정리 정돈이 잘 된 거대한 도서관과 같다.&#34;</span>
+</span></span><span style="display:flex;"><span>작업: <span style="color:#e6db74">&#34;API를 비유로 설명하라.&#34;</span>
+</span></span><span style="display:flex;"><span>결과: ~~
+</span></span></code></pre></div><h4 id="few-shot">Few-shot</h4>
+<ul>
+<li>여러 개의 예시를 제공하여 복잡한 형식을 학습시zla</li>
+<li>특히 논문이나 연구 결과에 따르면, 모델의 크기가 클수록 Few-shot을 통한 성능 향상 폭이 크다고 함</li>
+<li>예시의 정답 여부보다 **입력과 출력의 형식(Format)**을 일정하게 유지하는 것이 모델이 규칙을 파악하는 데 더 큰 영향을 미침</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>지시: 사용자 문의 사항을 카테고리별로 분류하고 중요도를 측정하라.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>예시 1: <span style="color:#e6db74">&#34;결제가 안 돼요.&#34;</span> -&gt; <span style="color:#f92672">[</span>카테고리: 결제<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>중요도: 상<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>예시 2: <span style="color:#e6db74">&#34;아이디를 변경하고 싶어요.&#34;</span> -&gt; <span style="color:#f92672">[</span>카테고리: 계정<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>중요도: 중<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>예시 3: <span style="color:#e6db74">&#34;앱 화면에 오타가 있어요.&#34;</span> -&gt; <span style="color:#f92672">[</span>카테고리: UI/UX<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>중요도: 하<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>작업: <span style="color:#e6db74">&#34;로그인이 계속 실패하고 서버 에러 메시지가 뜹니다.&#34;</span>
+</span></span><span style="display:flex;"><span>결과: ~~
+</span></span></code></pre></div><br>
+<br>
+<h2 id="5-아주아주-간단한-논문-리뷰">5. 아주아주 간단한 논문 리뷰</h2>
+<p><em>Gemini로 요약</em></p>
+<h4 id="model-size-and-few-shot">Model Size and Few-shot</h4>
+<blockquote>
+<p><strong>Language Models are Few-Shot Learners (Brown et al. 2020)</strong></p>
+</blockquote>
+<ul>
+<li>모델의 크기를 1,750억 개(175B)의 파라미터로 확장함으로써 별도의 가중치 업데이트 없이 몇 가지 예시만으로 작업을 수행하는 <code>Few-shot</code> 학습 능력을 구현했다.</li>
+<li>모델 크기, 데이터량, 컴퓨팅 자원이 증가할수록 성능이 로그 선형적으로 향상된다는 스케일링 법칙&rsquo;을 입증했다.</li>
+<li>Fine-tuning 과정 없이 프롬프트 입력만으로도 다양한 자연어 처리 작업에서 기존의 특화 모델들과 대등한 성능을 기록했다.</li>
+</ul>
+<br>
+<h4 id="예시의-품질">예시의 품질</h4>
+<blockquote>
+<p><strong>Rethinking the Role of Demonstrations: What Makes In-Context Learning Work? (Min et al. 2022)</strong></p>
+</blockquote>
+<ul>
+<li>프롬프트 내 퓨샷 예시의 정답 레이블을 무작위로 섞거나 틀린 답을 제공하더라도 모델의 성능 저하는 미미하다는 충격적인 사실을 밝혔다.</li>
+<li>인컨텍스트 러닝의 핵심은 정답의 정확성이 아니라, 레이블의 범주(Space), 입력 데이터의 분포, 그리고 시퀀스의 형식(Format)을 파악하는 데 있다.</li>
+<li>모델은 예시를 통해 새로운 지식을 학습하는 것이 아니라, 이미 내재된 지식 중 현재 작업에 적합한 영역을 찾아내어 활성화하는 방식을 취한다.</li>
+</ul>
+<br>
+<h4 id="친절-vs-무례">친절 vs 무례</h4>
+<blockquote>
+<p><strong>Should We Respect LLMs? (2024.02)</strong></p>
+</blockquote>
+<ul>
+<li>무례한 태도의 프롬프트는 모델의 성능을 유의미하게 저하시키며, 이는 학습 데이터인 인터넷 커뮤니티의 부정적 답변 패턴을 모델이 복제한 결과이다.</li>
+<li>언어권별로 공손함의 효과가 다르게 나타나는데, 특히 일본어의 경우 경어(Keigo) 사용 여부가 모델의 전문성과 답변 품질에 결정적인 영향을 미친다.</li>
+<li>AI를 존중하는 태도로 대하는 것은 단순한 윤리적 선택이 아니라, 고품질의 결과물을 얻기 위한 가장 효율적인 확률 제어 전략이다.</li>
+</ul>
+<h4 id="감정을-담아-질의하기">감정을 담아 질의하기</h4>
+<blockquote>
+<p><strong>Large Language Models Understand and Can be Enhanced by Emotional Stimuli (2023.11)</strong></p>
+</blockquote>
+<ul>
+<li>&ldquo;이 작업은 내 커리어에 매우 중요하다&quot;와 같은 감정적 자극(EmotionPrompt)을 추가했을 때, 다양한 벤치마크에서 모델의 추론 능력이 비약적으로 향상되었다.</li>
+<li>사회인지이론 등 심리학적 원리를 적용하여 책임감이나 긴박감을 부여하면 모델의 주의(Attention) 기제가 강화되어 더 논리적인 해결책을 도출한다.</li>
+<li>감정적 문맥은 모델이 학습한 방대한 데이터 중 &lsquo;문제 해결 지향적&rsquo;이고 &lsquo;신중한&rsquo; 텍스트 영역을 활성화하는 트리거 역할을 수행한다.</li>
+</ul>
+<h4 id="temperature와-hallucination">Temperature와 Hallucination</h4>
+<blockquote>
+<p><strong>Is Temperature the Creativity Parameter of Large Language Models (2024.05)</strong></p>
+</blockquote>
+<ul>
+<li>Temperature 파라미터를 높이는 행위는 모델을 창의적으로 만드는 것이 아니라, 단순히 확률 분포를 평탄화하여 선택의 무작위성을 증가시키는 것이다.</li>
+<li>온도가 높아질수록 어휘의 다양성은 증가하지만, 글의 전체적인 논리적 일관성과 응집성은 급격히 무너지는 부작용이 발생한다.</li>
+<li>진정한 의미의 창의적 결과물은 파라미터 조절이 아닌, 구체적인 제약 조건과 맥락을 담은 정교한 프롬프트 설계를 통해 도출된다.</li>
+</ul>
+<br>
+<br>
+<h2 id="6-reference">6. Reference</h2>
+<ul>
+<li>SKALA</li>
+<li><a href="https://www.samsungsds.com/kr/insights/prompt-engineering.html">https://www.samsungsds.com/kr/insights/prompt-engineering.html</a></li>
+</ul>
+<br>
+<br>
+<div class="series">
+  <details>
+    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/skala/00_data/">0. 데이터 기초</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>
