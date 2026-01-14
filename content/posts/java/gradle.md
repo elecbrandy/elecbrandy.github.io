@@ -33,9 +33,11 @@ tags = ['java']
 <br>
 <br>
 
-## 4. Gradle Task: 객체 중심의 지능형 빌드 단위
+## 4. Gradle Task
 
 Makefile의 Target에 대응하는 개념이 Gradle의 **Task**이다. 하지만 Gradle의 Task는 단순한 셸 명령어의 나열이 아니라, 상태와 동작을 모두 가진 독립적인 객체로 동작한다.
+
+<br>
 
 ### 4-1. 객체 지향적 설계와 증분 빌드
 

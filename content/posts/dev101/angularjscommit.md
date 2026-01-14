@@ -5,12 +5,9 @@ featured_image = "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*R1mfX
 tags = ['git', 'java']
 +++
 
-<br>
-
 ## 1. 소개
 
-
-**AngularJS 커밋 컨벤션 한국어** 번역본 입니다.
+> AngularJS 커밋 컨벤션 한국어 번역본 입니다.
 
 <br>
 <br>
@@ -94,7 +91,6 @@ Breaks $browser.onHashChange, which was removed (use onUrlChange instead)
     * [Referencing issues](#referencing-issues)
   * [Examples](#examples)
 
----
 
 ## Goals
 
@@ -102,7 +98,7 @@ Breaks $browser.onHashChange, which was removed (use onUrlChange instead)
 * 포맷팅 등의 중요하지 않은 커밋을 `git bisect`에서 무시할 수 있도록 함
 * 히스토리를 탐색할 때 더 나은 정보를 제공함
 
----
+
 
 ## Generating CHANGELOG.md
 
