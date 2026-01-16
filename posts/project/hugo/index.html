@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width">
 <title>[hugo] hugo &#43; github 로 개인 블로그 구축하기 | elecbrandy</title>
 
-      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.5bf411a82593d4163083354607a41e5e901f95a6a13f1f3461cba9b603f7f180.css" integrity="sha256-W/QRqCWT1BYwgzVGB6QeXpAflaahPx80YcuptgP38YA=" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://elecbrandy.github.io/css/main.min.caeb3850596b97e5378ea551d8a723828a446c996c7e566601137879e987a00e.css" integrity="sha256-yus4UFlrl&#43;U3jqVR2KcjgopEbJlsflZmARN4eemHoA4=" crossorigin="anonymous">
       <link rel="stylesheet" href="https://elecbrandy.github.io/css/min600.min.c55885430d625813d1a6770ef6712b8534781fdd318699edd1bb9c6f62907507.css" integrity="sha256-xViFQw1iWBPRpncO9nErhTR4H90xhpnt0bucb2KQdQc=" crossorigin="anonymous">
 <style>
   :root {
@@ -88,28 +88,34 @@
   </script>
 
     
+  
   <aside class="toc">
     <nav id="TableOfContents">
   <ul>
     <li><a href="#1-소개">1. 소개</a></li>
     <li><a href="#2-기본-정보">2. 기본 정보</a>
       <ul>
-        <li><a href="#21-github-page">2.1 Github Page** <br></a></li>
-        <li><a href="#hugo">Hugo** <br></a></li>
-        <li><a href="#github-actions">Github Actions** <br></a></li>
+        <li><a href="#2-1-github-page">2-1. Github Page</a></li>
+        <li><a href="#2-2-github-actions">2-2. Github Actions</a></li>
+        <li><a href="#2-3-hugo">2-3. Hugo</a></li>
       </ul>
     </li>
     <li><a href="#4-freshpink-테마-살펴보기">4. freshPink 테마 살펴보기</a></li>
     <li><a href="#5-설치-방법">5. 설치 방법</a>
       <ul>
-        <li><a href="#5-1-로컬에-블로그-설치하기">5-1. 로컬에 블로그 설치하기</a></li>
+        <li><a href="#5-1-우선-local에-설치하기">5-1. 우선 Local에 설치하기</a></li>
         <li><a href="#5-2-github-action-설정하기">5-2. <code>Github Action</code> 설정하기</a></li>
       </ul>
     </li>
-    <li><a href="#6-how-to-use">6. How to use?</a></li>
+    <li><a href="#6-how-to-use">6. How to use?</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </aside>
+  
   <div class="featured-container">
     
       <div class="featured-image">
@@ -137,12 +143,16 @@
 </div>
 
 <br>
+<blockquote>
+<p>다시 업데이트 예정</p>
+</blockquote>
 <h2 id="1-소개">1. 소개</h2>
 <blockquote>
-<p><strong>Hugo + GitHub hosting + Github Action</strong> 조합으로 30 분 만에 개인 개발 블로그를 구축하기</p>
+<p><strong>Hugo + GitHub hosting + Github Action</strong> 조합으로 30분 만에 개인 개발 블로그를 구축하기</p>
 </blockquote>
-<p>이런 저런 이유로 인터넷 공간 한 구석에 나만을 위한 원룸이 필요할 때가 있다. 개인 메모용, 혹은 지식을 공유하기 위한 개발 블로그 등등&hellip; 나는 마크다운(<code>.md</code>) 기반으로 필기하는 습관이 있어 <strong>Hugo + GitHub Pages</strong> 조합을 선택했다. 아래 Hugo 테마 사이트에 들어가면 전세계 Hugo 유저들이 제작한 블로그 테마가 등록되어 있다. 다른 테마를 원하는 경우 아래 링크에서 더 많은, 더 예쁜 테마를 확인해보자.
-각 테마 내부에 데모 사이트 접속부터 실제 설치-사용방법까지 적혀있기 때문에 초보자라도 쉽게 따라할 수 있다. 물론 설치 과정에서 시행착오가 존재할 수 있고, 업데이트가 종료된 테마인 경우 최신 Hugo 엔진에서 작동하지 않는 경우도 있다. 따라서 이와 같은 고민을 겪을 초보자를 위해 이 가이드를 작성하며, 우선 <code>freshPink</code> 테마를 사용해 실습해보자.</p>
+<p>세상에 정말 많은 블로그 서비스가 존재한다. 개인 메모용, 혹은 지식을 공유하기 위한 개발 블로그 등등&hellip; 나는 마크다운 기반으로 필기하는 습관이 있어 <strong>Hugo + GitHub Pages</strong> 조합을 선택했다.</p>
+<p>아래 Hugo 테마 사이트에 들어가면 전세계 Hugo 유저들이 제작한 블로그 테마가 등록되어 있다. 다른 테마를 원하는 경우 아래 링크에서 더 많은, 더 예쁜 테마를 확인해보자. 각 테마 내부에 데모 사이트 접속부터 실제 설치-사용방법까지 적혀있기 때문에 초보자라도 쉽게 따라할 수 있다.</p>
+<p>물론 설치 과정에서 시행착오가 존재할 수 있고, 업데이트가 종료된 테마인 경우 최신 Hugo 엔진에서 작동하지 않는 경우도 있다. 따라서 이와 같은 고민을 겪을 초보자를 위해 이 가이드를 작성하며, 우선 <code>freshPink</code> 테마를 사용해 실습해보자.</p>
 <ul>
 <li>🌏 <a href="https://themes.gohugo.io">Hugo 테마 사이트 방문하기 &raquo;</a></li>
 </ul>
@@ -150,57 +160,62 @@
 <br>
 <h2 id="2-기본-정보">2. 기본 정보</h2>
 <p>가이드에 앞서 우리가 사용할 기술에 대한 간단한 사전 지식을 읽어보자!</p>
-<h3 id="21-github-page">2.1 Github Page** <br></h3>
-<p>GitHub Pages는 GitHub 저장소에 있는 HTML, CSS, JS 파일 등의 정적 콘텐츠를 웹사이트로 호스팅해주는 서비스이다. GitHub 계정이 있다면 누구나 추가 비용 없이 웹사이트를 호스팅할 수 있다.</p>
-<h3 id="hugo">Hugo** <br></h3>
-<p>Hugo는 Go 언어로 작성된 정적 사이트 생성기(Static Site Generator)이다. 물론 Go 문법을 몰라도 대부분의 테마를 그대로 사용할 수 있다. 나도 Go 문법은 잘 모른다.</p>
-<h3 id="github-actions">Github Actions** <br></h3>
-<p>GitHub Actions 이란 깃허브 저장소 내에서 개발 작업을 자동으로 처리해주는 도구이다. 코드를 저장소에 올렸을 때(이벤트) 자동으로 빌드하고, 테스트하고, 배포하는 등의 반복적인 작업을 자동으로 대신 처리하도록 설정하는 기능이다. 우리는 <code>.yml</code> 설정 파일을 통해 기능을 정의할 수 있다. 예를 들어, 코드를 푸시할 때마다 자동으로 오류가 없는지 테스트 하거나, 테스트를 통과하면 자동으로 GitHub Pages에 배포하게 설정할 수 있다.</p>
-<p>소스코드와 결과물의 분리에서 오는 관리의 이득, 그리고 배포과정 자동화에서 오는 편리성과 휴먼에러 방지 목표로 Github Actions 을 사용하자.</p>
-<h4 id="소스코드와-결과물의-분리">소스코드와 결과물의 분리</h4>
-<p>보통 Hugo와 같은 정적 사이트 생성기는 아래 소스와 결과물</p>
+<br>
+<h3 id="2-1-github-page">2-1. Github Page</h3>
+<p>GitHub Pages는 GitHub 저장소에 있는 HTML, CSS, JS 파일 등의 정적 콘텐츠를 웹사이트로 호스팅해주는 서비스이다. GitHub 계정이 있다면 누구나 추가 비용 없이 웹사이트를 호스팅할 수 있다. 감사합니다 Github!</p>
+<br>
+<h3 id="2-2-github-actions">2-2. Github Actions</h3>
+<p><code>GitHub Actions</code> 이란 깃허브 저장소 내에서 개발 작업을 자동으로 처리해주는 도구이다.</p>
 <ul>
-<li><strong>소스</strong> (<code>Markdown, 테마, 설정 파일</code>)</li>
-<li><strong>결과물</strong> (<code>HTML, CSS, JS가 담긴 public 폴더</code>)</li>
-</ul>
-<p>이 명확히 구분된다. 만약 사람이 직접 빌드해서 <code>public</code> 폴더까지 <code>main</code> 브랜치에 같이 올리면, 글자 하나만 수정해도 수많은 HTML 파일이 변경된 것으로 처리되어 커밋 내역이 매우 지저분해진다. 또한, 소스 코드와 컴파일된 코드가 뒤섞여 관리가 어렵다. 따라서 배포 전용 branch를 두면 깔끔하게 처리 가능하다.</p>
+<li><strong>간단한 예시!</strong>
 <ul>
-<li><strong>main</strong> 브랜치에는 순수한 소스 코드만 관리한다.</li>
-<li><strong>public</strong> 폴더는 <code>.gitignore</code> 에 등록해 무시한다.</li>
-<li><strong>gh-pages</strong> 브랜치에는 GitHub Action 이 자동으로 빌드해준 <strong>최종 결과물(HTML)</strong> 만 담아둔다.</li>
+<li>코드를 푸시할 때마다 자동으로 오류가 없는지 테스트 하거나, 테스트를 통과하면 자동으로 GitHub Pages에 배포하게 설정할 수 있다. (CI/CD)</li>
 </ul>
-<h4 id="배포-과정의-자동화">배포 과정의 자동화</h4>
-<p><code>CI/CD</code> 를 사용하지 않으면 글을 쓸 때마다 다음 과정을 수동으로 해야 한다.</p>
+</li>
+</ul>
+<br>
+<h3 id="2-3-hugo">2-3. Hugo</h3>
+<p><code>Hugo</code> 는 Go 언어로 작성된 정적 사이트 생성기(Static Site Generator)이다. (사용하기 위해 Go를 알 필요없음)</p>
 <ul>
-<li><code>1</code> hugo 명령어 입력(빌드)</li>
-<li><code>2</code> public 폴더로 이동</li>
-<li><code>3</code> git add/commit/push</li>
+<li><strong>Hugo의 작동</strong>
+<ul>
+<li>Input으로 다음을 받는다.   → <code>Markdown, 테마, 설정 파일</code></li>
+<li>Output으로 다음을 뱉는다.  → <code>HTML, CSS, JS가 담긴 public 폴더</code></li>
+<li>우리는 결국 <code>Hugo</code> 가 뱉어내는 <code>/public</code> 폴더 내부 파일을 인터넷에 공유하는 셈이다.</li>
 </ul>
-<p>GitHub Actions를 설정해두면, <code>main</code> 브랜치에 글을 쓰고 푸시하기만 해도, GitHub 서버가 알아서 Hugo를 설치하고 빌드한 뒤 <code>gh-pages</code> 브랜치에 결과물을 업데이트해준다. 과정이 훨씬 간편해진다.</p>
+</li>
+</ul>
 <br>
 <br>
 <h2 id="4-freshpink-테마-살펴보기">4. freshPink 테마 살펴보기</h2>
-<p>이번 가이드로 사용해볼 테마는 <code>freshPink</code> 테마이다. 다음 링크를 접속해서 어떻게 생긴 테마인지, 데모사이트는 어떤지 한번 살펴보자. 마음에 들지 않는다면, 일단 한번 배포까지 연습해보고 나중에 다른 테마로 갈아끼우면 그만이다. 혹은 fork를 떠서 개조해도 좋다.</p>
+<p>이번 가이드로 사용해볼 테마는 <code>freshPink</code> 테마이다. 다음 링크를 접속해서 어떻게 생긴 테마인지, 데모사이트는 어떤지 한번 살펴보자.</p>
 <ul>
-<li>
-<p>🌏 <a href="https://github.com/elecbrandy/freshpink">freshPink github 방문 &raquo;</a></p>
+<li><strong>freshPink 링크</strong>
+<ul>
+<li>🌏 <a href="https://github.com/elecbrandy/freshpink">freshPink github 방문 &raquo;</a></li>
+<li>🌏 <a href="https://elecbrandy.github.io/freshpink/">freshPink Demo site 방문 &raquo;</a></li>
+</ul>
 </li>
-<li>
-<p>🌏 <a href="https://elecbrandy.github.io/freshpink/">freshPink Demo site 방문 &raquo;</a></p>
+<li><strong>마음에 들지 않는다면</strong>
+<ul>
+<li>일단 한번 배포까지 연습해보고 나중에 다른 테마로 갈아끼우면 그만이다.</li>
+<li>혹은 fork를 떠서 마개조해도 상관없다.</li>
+<li>단, 테마마다 상세 사용법이 약간씩 다른 것에 주의할 것!</li>
+</ul>
 </li>
 </ul>
 <br>
 <br>
 <h2 id="5-설치-방법">5. 설치 방법</h2>
 <ul>
-<li>⚠️ <strong>주의사항</strong>
+<li>⚠️ <strong>주의사항</strong> ⚠️
 <ul>
-<li>아래 가이드는 <strong>Mac</strong> 기준입니다!</li>
-<li><code>https://github.com/username.github.io</code> 을 목표로 하는 가이드입니다!</li>
-<li>Hugo는 반드시 <code>Extended</code> 버전으로 설치하세요!</li>
+<li>아래 가이드는 Mac 기준.</li>
+<li>Hugo는 반드시 <code>Extended</code> 버전으로 설치.</li>
+<li>우리의 목표 → <code>https://github.com/username.github.io</code></li>
 </ul>
 </li>
-<li>⚙️ <strong>파이프라인</strong>
+<li><strong>파이프라인</strong>
 <ol>
 <li><strong>빌드</strong> Hugo가 소스 파일을 모아 <code>public/</code> 디렉터리에 정적 파일을 생성한다.</li>
 <li><strong>배포</strong> Github Action이 <code>public/</code> 내용을 <strong>배포 브랜치</strong>(<code>gh-pages</code>)에 푸시한다.</li>
@@ -209,8 +224,8 @@
 </li>
 </ul>
 <br>
-<h3 id="5-1-로컬에-블로그-설치하기">5-1. 로컬에 블로그 설치하기</h3>
-<h4 id="5-1-1-go--hugo-설치하기">5-1-1. <code>Go</code> , <code>Hugo</code> 설치하기</h4>
+<h3 id="5-1-우선-local에-설치하기">5-1. 우선 Local에 설치하기</h3>
+<h4 id="5-1-1-go--hugo-설치">5-1-1. <code>Go</code> , <code>Hugo</code> 설치</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Go, Hugo 설치하기</span>
 </span></span><span style="display:flex;"><span>brew install go
 </span></span><span style="display:flex;"><span>brew install hugo
@@ -466,6 +481,21 @@
 
 <br>
 <br>
+<h4 id="배포-과정의-자동화">배포 과정의 자동화</h4>
+<p><code>CI/CD</code> 를 사용하지 않으면 글을 쓸 때마다 다음 과정을 수동으로 해야 한다.</p>
+<ul>
+<li><code>1</code> hugo 명령어 입력(빌드)</li>
+<li><code>2</code> public 폴더로 이동</li>
+<li><code>3</code> git add/commit/push</li>
+</ul>
+<p>GitHub Actions를 설정해두면, <code>main</code> 브랜치에 글을 쓰고 푸시하기만 해도, GitHub 서버가 알아서 Hugo를 설치하고 빌드한 뒤 <code>gh-pages</code> 브랜치에 결과물을 업데이트해준다. 과정이 훨씬 간편해진다.</p>
+<p>만약 사람이 직접 빌드해서 <code>public</code> 폴더까지 <code>main</code> 브랜치에 같이 올리면, 글자 하나만 수정해도 수많은 HTML 파일이 변경된 것으로 처리되어 커밋 내역이 매우 지저분해진다. 또한, 소스 코드와 컴파일된 코드가 뒤섞여 관리가 어렵다. 따라서 배포 전용 branch를 두면 깔끔하게 처리 가능하다.</p>
+<ul>
+<li><strong>main</strong> 브랜치에는 순수한 소스 코드만 관리한다.</li>
+<li><strong>public</strong> 폴더는 <code>.gitignore</code> 에 등록해 무시한다.</li>
+<li><strong>gh-pages</strong> 브랜치에는 GitHub Action 이 자동으로 빌드해준 <strong>최종 결과물(HTML)</strong> 만 담아둔다.</li>
+</ul>
+
 
     
 
