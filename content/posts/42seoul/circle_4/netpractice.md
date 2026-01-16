@@ -11,7 +11,6 @@ tags = ['C', '42seoul']
 
 ## 1. 소개
 
-
 > This document is a System Administration related exercise.
 
 42서울 본과정 입과 후 열한번째로 수행한 과제로, 교육 인터페이스상에서 소규모 네트워크를 구성하는 과제이다. 네트워킹 문제를 해결하여 네트워크가 실행되도록 만들어야 한다. 총 10개의 문제를 완료하고, Git 저장소에 제출하는 것이 최종 목표이다.
@@ -63,7 +62,7 @@ tags = ['C', '42seoul']
 ### 2-2. OSI 7계층 모델
 <img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/6ZH2Etm3LlFHTgmkjLmkxp/59ff240fb3ebdc7794ffaa6e1d69b7c2/osi_model_7_layers.png" width="600">
 
-OSI(Open Systems Interconnextion) 모델은 네트워크 통신을 계층적으로 나누어 설명하는 표준화된 모델이다. 이는 통신 시스템의 다양한 기능을 7개의 계층으로 나누어 설명하며 네트워크 설계 및 문제 해결을 용이하게 한다. 현대 인터넷에서는 OSI 모델을 엄격하게 따르고 있지는 않지만, 이러한 유형의 구분은 네트워크 문제를 해결하는 데 유용하다. 사용자와 가장 가까운 응용 프로그램 계층부터 알아보자!
+OSI(Open Systems Interconnection) 모델은 네트워크 통신을 계층적으로 나누어 설명하는 표준화된 모델이다. 이는 통신 시스템의 다양한 기능을 7개의 계층으로 나누어 설명하며 네트워크 설계 및 문제 해결을 용이하게 한다. 현대 인터넷에서는 OSI 모델을 엄격하게 따르고 있지는 않지만, 이러한 유형의 구분은 네트워크 문제를 해결하는 데 유용하다. 사용자와 가장 가까운 응용 프로그램 계층부터 알아보자!
 
 <br>
 

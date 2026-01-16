@@ -1,5 +1,5 @@
 +++
-title = 'Prompt Engineering'
+title = 'Crew AI 기반 AI Agent 개발'
 date = 2026-01-12
 featured_image = "http://t1.daumcdn.net/movie/171980d2cd9344808580f4fc0cb65e151557709136361"
 tags = ['ai','skala']
