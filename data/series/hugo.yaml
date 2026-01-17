@@ -1,6 +1,8 @@
 title: "hugo"
 items:
-  - name: "1. hugo + github 로 개인 블로그 구축하기"
-    link: "https://elecbrandy.github.io/posts/seogo/01_intro/"
-  - name: "2. freshPink 테마 사용법"
-    link: "https://elecbrandy.github.io/posts/project/freshpink/"
+  - name: "1. Hugo 개인 블로그 구축하기"
+    link: "https://elecbrandy.github.io/posts/project/01_freshpink/"
+  - name: "2. Github Actions로 자동 배포하기"
+    link: "https://elecbrandy.github.io/posts/project/02_freshpink_/"
+  - name: "3. 테마 커스터마이징"
+    link: "https://elecbrandy.github.io/posts/project/03_freshpink/"
