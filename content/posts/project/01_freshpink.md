@@ -1,20 +1,17 @@
 +++
-title = '[hugo] hugo + github 로 개인 블로그 구축하기'
+title = '[hugo] Hugo 블로그 구축하기 (1)'
 date = 2025-05-09
-draft = false
-featured_image = "https://gohugo.io/images/hugo-logo-wide.svg"
+featured_image = "https://i.imgur.com/URQWyyY.png"
 tags = ['hugo']
 +++
 
-{{<series title="📚 /hugo 튜토리얼" series="hugo" >}}
+{{<series title="📚 /Hugo 블로그 만들기" series="hugo" >}}
 
 <br>
 
-> 다시 업데이트 예정
-
 ## 1. 소개
 
-> **Hugo + GitHub hosting + Github Action** 조합으로 30분 만에 개인 개발 블로그를 구축하기
+> **Hugo + Github** 조합으로 30분 만에 개인 개발 블로그를 구축하기 (1)
 
 세상에 정말 많은 블로그 서비스가 존재한다. 개인 메모용, 혹은 지식을 공유하기 위한 개발 블로그 등등... 나는 마크다운 기반으로 필기하는 습관이 있어 **Hugo + GitHub Pages** 조합을 선택했다.  
 
@@ -78,7 +75,7 @@ GitHub Pages는 GitHub 저장소에 있는 HTML, CSS, JS 파일 등의 정적 �
 ## 5. 설치 방법
 
 - ⚠️ **주의사항** ⚠️
-  - 아래 가이드는 Mac 기준.
+  - 이 가이드는 Mac 기준.
   - Hugo는 반드시 `Extended` 버전으로 설치.
   - 우리의 목표 → `https://github.com/username.github.io`
 - **파이프라인**
@@ -87,12 +84,13 @@ GitHub Pages는 GitHub 저장소에 있는 HTML, CSS, JS 파일 등의 정적 �
   3. **호스팅** GitHub Pages가 배포 브랜치의 정적 파일을 읽어 전 세계에 서비스한다.
 
 <br>
+<br>
 
-### 5-1. 우선 Local에 설치하기
+## 6. Local에 설치하기
 
-#### 5-1-1. `Go` , `Hugo` 설치
+### 6-1. `Go` , `Hugo` 설치
 
-```bash
+``` bash
 # Go, Hugo 설치하기
 brew install go
 brew install hugo
@@ -101,16 +99,18 @@ brew install hugo
 hugo version
 ```
 
-`hombrew` 를 통해 Hugo 를 설치할 수 있다. 아직 homebrew가 없다면 아래 링크에서 설치하자.
-또한, Hugo가 `extended` 버전으로 설치되었는지 잘 확인하자!
-
-- 🌏 [homebrew 설치하러가기 >>](https://brew.sh/)
+- **homebrew가 없다면**
+  - 🌏 [homebrew 설치하러가기 >>](https://brew.sh/)
 
 <br>
 
-#### 5-1-2. `Github repository` 만들고 `Hugo` 세팅하기
+### 6-2. Github repo 세팅하기
 
-```bash
+- 우선, Github에 가서 `username.github.io` 이름으로 Public 레포지토리를 만들어야 한다.
+- 이후, 터미널에서 아래 명령어를 실행하자.
+- 루트 디렉토리에 `.gitignore` 파일을 만들고 안에 `/public/` 을 추가하자. 어처피 우리가 나중에 호스팅할 파일은 다른 브랜치에 모여있을 예정이기 때문이다.
+
+``` bash
 # 클론 받기
 git clone https://github.com/<username>/<username>.github.io.git
 
@@ -119,27 +119,17 @@ cd <username>.github.io
 
 # Hugo site 생성하기 (강제)
 hugo new site . --force
-```
 
-우선 `username.github.io` 이름으로 Public 레포를 만들고, 클론 받자.
-그리고 해당 디렉토리로 이동해서 그 디렉토리 내부에 Hugo 사이트를 생성하자!
-
-<br>
-
-#### 5-1-3. `.gitignore` 추가
-
-``` bash
+# gitignore 추가
 echo "/public/" >> .gitignore
 ```
 
-루트 디렉토리에 `.gitignore` 파일을 만들고 안에 `/public/` 을 추가하자. 어처피 우리가 나중에 호스팅할 파일은 다른 브랜치에 모여있을 예정이기 때문이다.
-
 <br>
 
-#### 5-1-4. `hugo.toml` 설정하기
+### 6-3. `hugo.toml` 덮어씌우기
 
-디렉토리에 생성된 `hugo.toml` 파일을 열고, 기존 내용은 모두 지운 뒤 아래 내용을 복사해서 붙여넣자!
-그리고 각 부분은 본인 정보에 맞게 채워넣어 보자.
+- 디렉토리에 생성된 `hugo.toml` 파일을 열어보자.
+- 기존 내용을 모두 지운 뒤 아래 내용을 복사해서 붙여넣자!
 
 ``` toml
 baseURL = 'https://example.org/' # your git repository address
@@ -195,35 +185,38 @@ weight = 30
       unsafe = true
 ```
 
-⤵️ _변경 가능한 부분들_ 
+<br>
 
-- **baseUrl**
+### 6-4. `hugo.toml` 수정하기 
+
+- 덮어씌우기가 완료되었다면, 상세 내용을 본인 정보에 맞게 채워넣어 보자.
+
+- **`baseUrl`**
   - 실제 호스팅 될 블로그의 주소를 적어주면 된다.
   - `https://username.github.io/`
-- **title**
+- **`title`**
   - 블로그 이름을 정해주자.
-- **primaryColor**
+- **`primaryColor`**
   - 블로그의 메인 색도 변경할 수 있다.
-- **githubUsername**
+- **`githubUsername`**
   - 블로그 메인 화면의 깃허브 잔디를 표시하기 위해 깃허브 `username`이 필요하다.
   - 메인 화면에서 보고싶지 않다면, 아래 `showGithubChart = false` 로 숨길 수 있다.
-- **mainImageUrl**
+- **`mainImageUrl`**
   - 블로그 메인 화면의 이미지를 표시하기 위한 `image url` 이 필요하다.
   - 메인 화면에서 보고싶지 않다면, 아래 `showGithubChart = false` 로 숨길 수 있다.
-- **googleAnalytics**
-  - GA를 사용해 블로그 통계를 관리할 수도 있다!
-- **[[module.imports]]**
+- **`googleAnalytics`**
+  - GA를 사용해 블로그 통계를 관리할 수도 있다! 일단은 그냥 방치해도 무방.
+- **`[[module.imports]]`**
   - 이 path는 우리가 추후 적용할 `freshpink` 테마의 주소이다.
   - 만약 다른 테마를 원한다면 이 부분을 수정해야 한다.
-  - 물론 이 부분 뿐만 아니라 각 테마마다 세팅이 다르기 때문에, 해당 테마에서 제공하는 설명을 정독하고 처음부터 다시 만드는 것이 좋을 듯 하다.
 
 <br>
 
-#### 5-1-5. `theme` 받아오기
+### 6-5. `theme` 받아오기
 
-설정을 마쳤다면 아래 명령어를 입력해 theme 파일을 받아오자.
+- 설정을 마쳤다면 아래 명령어를 입력해 theme 파일을 받아오자.
 
-```bash
+``` bash
 # go.mod 만들기 -> 모듈로 테마를 관리하겠다는 뜻 -> go.mod 가 생성됨
 hugo mod init github.com/username/username.github.io
 
@@ -236,9 +229,12 @@ hugo mod tidy
 
 <br>
 
-#### 5-1-6. 로컬에서 확인하기
+### 6-5. `theme` 적용 확인하기
 
-```bash
+- 우선 테스트용 게시글을 하나 만들어본 후, 로컬 서버를 실행해 블로그가 잘 작동하는지 확인해보자.
+- 인터넷 브라우저를 켜고 `http://localhost:1313` 주소로 접속하면 확인할 수 있다.
+
+``` bash
 # 새로운 글 만들어보기
 hugo new posts/hello.md
 
@@ -251,12 +247,9 @@ git commit -m "blog init"
 git push origin main
 ```
 
-우선 테스트용 게시글을 하나 만들어본 후, 로컬 서버를 실행해 블로그가 잘 작동하는지 확인해보자.
-인터넷 브라우저를 켜고 [http://localhost:1313](https://www.google.com/search?q=http://localhost:1313) 주소로 접속하면 적용된 테마를 볼 수 있다!
-
 <br>
 
-#### 5-1-7. 업데이트
+### 6-6. `theme` 업데이트
 
 ```bash
 hugo mod get -u
@@ -268,110 +261,17 @@ hugo mod tidy
 <br>
 <br>
 
-### 5-2. `Github Action` 설정하기
+## 7. 마무리
 
-#### 5-2-1. `workflow` 파일 작성
-
-프로젝트 루트에 `.github/workflows/` 디렉토리를 만들고 그 안에 `deploy.yml` 을 생성한다. `deploy.yml` 에 아래 내용을 붙여넣는다.
-
-``` yml
-name: Deploy Hugo Site
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          submodules: true
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: 'latest'
-          extended: true
-
-      - name: Build site
-        run: hugo --destination public
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          keep_files: false
-```
-
-1. `Push` main 브랜치에 푸시되면 워크플로가 실행된다.
-2. `Build` Hugo가 public/ 폴더에 정적 사이트를 생성한다.
-3. `Deploy` public/ 내용이 gh-pages 브랜치로 푸시된다.
-4. `Serve` GitHub Pages가 gh-pages 브랜치를 호스팅한다.
-
-<br>
-
-#### 5-2-2. 토큰 권한 부여
-
-- **GITHUB_TOKEN이란?** <br>
-우리가 사용한 토큰은 `GITHUB_TOKEN` 이다.  
-이 토큰은 workflow가 시작될 때 깃허브가 자동으로 발급해준다. 또한, workflow 가 끝나면 즉시 사라진다. `Settings -> Secrets` 메뉴에 가도 안 보이지만, `${{ secrets.GITHUB_TOKEN }}` 이라고 쓰면 사용할 수 있다. 
-
-<br> 
-
-- **권한 부여**
-  1. 블로그 레포지토리 메인 화면으로 진입
-  2. 왼쪽 상단 메뉴 탭에서 Settings 클릭
-  3. 왼쪽 사이드바 메뉴에서 Actions를 클릭하고, 하위 메뉴인 General에 진입
-  4. 화면을 가장 아래로 쭉 스크롤 하면 보이는 `Workflow permissions`라는 항목 찾기
-  5. 여기서 `Read and write permissions` 에 체크하고 Save!
-
-#### 5-2-3. `Github Pages` 위치 지정
-
-이제 Github Page가 어느 브랜치의 어떤 폴더를 웹사이트로 쓸지 알려줘야 한다!
-
-- `Github Pages` **위치 지정**
-  1. 저장소 화면 오른쪽 상단 Settings 탭 클릭
-  2. 왼쪽 사이드 바에서 Pages 메뉴 진입
-  3. `build and deployment` 섹션의 Source 드롭다운을 연다.
-  4. Branch 항복에서 gh-pages 브랜치를 고르고, / 또는 기본으로 제시되는 폴더를 선택한다.
-  5. Save를 눌러 저장하자.
+- 이렇게 로컬 환경에 Hugo 블로그를 무사히 설치했다.
+- 이어서 `Github Action` 을 통해 블로그 배포 자동화를 시도해봅시다!
+- 🌏 [Github Action 적용하러가기 >>](https://themes.gohugo.io)
 
 <br>
 <br>
 
-## 6. How to use?
-
-_
-
-이제 블로그 디렉토리에서 한창 글을 쓰다가, 단순 `git push` 만으로 블로그가 자동 빌드‧배포된다. 본격적인 테마의 사용 방법이나, 커스텀 방법이 궁금하다면 아래 링크를 읽어보자.
-
-- 🌏 [freshPink 테마 사용방법 알아보기 >>](https://elecbrandy.github.io/posts/project/freshpink/)
+{{<series title="📚 /Hugo 블로그 만들기" series="hugo" >}}
 
 <br>
 <br>
-
-{{<series title="📚 /hugo 튜토리얼" series="hugo" >}}
-
-<br>
-<br>
-
-
-#### 배포 과정의 자동화
-`CI/CD` 를 사용하지 않으면 글을 쓸 때마다 다음 과정을 수동으로 해야 한다.
-
-- `1` hugo 명령어 입력(빌드)
-- `2` public 폴더로 이동
-- `3` git add/commit/push
-
-GitHub Actions를 설정해두면, `main` 브랜치에 글을 쓰고 푸시하기만 해도, GitHub 서버가 알아서 Hugo를 설치하고 빌드한 뒤 `gh-pages` 브랜치에 결과물을 업데이트해준다. 과정이 훨씬 간편해진다.  
-
-만약 사람이 직접 빌드해서 `public` 폴더까지 `main` 브랜치에 같이 올리면, 글자 하나만 수정해도 수많은 HTML 파일이 변경된 것으로 처리되어 커밋 내역이 매우 지저분해진다. 또한, 소스 코드와 컴파일된 코드가 뒤섞여 관리가 어렵다. 따라서 배포 전용 branch를 두면 깔끔하게 처리 가능하다.  
-
-- **main** 브랜치에는 순수한 소스 코드만 관리한다.
-- **public** 폴더는 `.gitignore` 에 등록해 무시한다.
-- **gh-pages** 브랜치에는 GitHub Action 이 자동으로 빌드해준 **최종 결과물(HTML)** 만 담아둔다.  
 
