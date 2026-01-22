@@ -1,8 +1,8 @@
 +++
-title = '[java] Gradle'
+title = 'Gradle'
 date = 2026-01-12
 featured_image = "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/10D74/production/_126208986_wed5.jpg.webp"
-tags = ['java']
+tags = ['dev101']
 +++
 
 ## 1. 소개

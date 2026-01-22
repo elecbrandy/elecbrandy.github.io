@@ -2,7 +2,7 @@
 title = 'File Descriptor'
 date = 2023-12-24
 featured_image = "http://db.kookje.co.kr/news2000/photo/2017/0117/L20170117.99002154311i1.jpg"
-tags = ['cs101', 'linux']
+tags = ['cs101']
 +++
 
 <br>

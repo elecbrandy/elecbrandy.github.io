@@ -1,16 +1,13 @@
 +++
-title = '[cs101] 부동소수점'
+title = '부동소수점'
 date = 2024-09-16
 featured_image = "https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F022%2F2018%2F08%2F24%2F20180824000725_0_20180824112639107.jpg&type=sc960_832"
-tags = ['C', 'cs101']
+tags = ['cs101']
 +++
-
-<!-- {{<series title="📚 /42seoul 시리즈" series="42seoul">}} -->
 
 <br>
 
 ## 1. 소개
-
 
 **정수(Integer)** 는 우리가 흔히 알고 있는 0, 1, 2, 3과 같은 숫자이다. 컴퓨터에서 정수는 정확하게 표현된다. 예를 들어, 숫자 '2'는 항상 2로 저장되며, 더하거나 빼도 그 값이 정확하게 맞는다. 즉, 정수는 **정확성(Accuracy)** 이 매우 뛰어나다. 예를 들어, 2 + 1 = 3이 정확하게 나온다.
 

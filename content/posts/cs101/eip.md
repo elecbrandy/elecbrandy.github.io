@@ -1,5 +1,5 @@
 +++
-title = '[cs101] 정보처리기사 개념정리'
+title = '정보처리기사 개념정리'
 date = 2025-08-13
 featured_image = "https://zrr.kr/MbTY2v"
 tags = ['cs101']

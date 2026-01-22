@@ -1,5 +1,5 @@
 +++
-title = '[hugo] Hugo 블로그 구축하기 (2)'
+title = 'Hugo 블로그 구축하기 (2)'
 date = 2025-05-10
 featured_image = "https://i.imgur.com/URQWyyY.png"
 tags = ['hugo']
@@ -130,3 +130,15 @@ jobs:
 <br>
 <br>
 
+
+
+``` markdown
+### 내가 여태까지 했던 방식
+- 레포지토리 1개로 `/frontend`, `/backend` 디렉토리로 관리.
+- makefile + docker-compose로 각각 front, back 컨테이너를 띄우는 방식으로 공통 환경설정 팀원들에게 줬음.
+- 브런치 설정
+    - main: 실제 버전이 올라갈때 머지
+    - dev: front+back 머지용
+    - front: 프론트끼리 작업하고 합치는용
+    - back: 백끼리 작업하고 합치는용
+```

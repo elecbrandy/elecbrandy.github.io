@@ -1,18 +1,29 @@
 +++
-title = 'AngularJS 커밋 컨벤션'
-date = 2025-10-18
-featured_image = "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*R1mfXLP9edcArZXwmGbGag.jpeg"
-tags = ['git', 'java']
+title = 'CleanCode'
+date = 2026-01-18
+featured_image = "https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788966260959.jpg"
+tags = ['dev101']
+draft = false
 +++
+
+<br>
 
 ## 1. 소개
 
-> AngularJS 커밋 컨벤션 한국어 번역본 입니다.
+> Clean Code
+
+AI Agent와 코드를 협업하는 시점에서 왜 Clean Code는 어떤 의미가 있을까?
+이 책은 바이블처럼 언급되지만 유명하지만 그것 자체로 성경의 권위가 있기도 하지만, 시간이 많이 지났고, ai기술발달과 함께 이 책이 말하는 클린코드가 항상 옳다라고 더 이상 말하기 어려울 수도 있음. 각 언어, 프로덕션, 회사에서 클린한 코드에 대한 정의가 구성원마다 다를수도있고. 논쟁도 많음. 그리고 ai 기술을 발달로 우린 코드를 한땀한땀 직접 치는 경우보다 llm을 활용하는 경우도 생각보다 많고 이 과정에서 "클린코드한" 또는 "내 프로덕션 또는 내 구성원들이 추구하는 클린코드" 스러운 코드를 달라고 요청하면 바로 해주기도 할것.
+그럼에도 불구하고 이 시점에서 이 책을 읽는 이유는 다음과 같음
+AI에게 먹히지 않는
+결국 사람이 운용. 명령은 사람이
+나중에 없는 환경에서 일할 수도 있고
+개발자적인 관점에서 더 나은 직관을 기르기 위해
 
 <br>
 <br>
 
-## 2. 요약
+## 2. Clean Code
 
 
 ### 2-1. 작성 예시

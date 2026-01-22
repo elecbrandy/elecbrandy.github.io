@@ -1,8 +1,9 @@
 +++
-title = '[서고] Ray 기반 웹 스크래퍼'
+title = 'Ray 기반 웹 스크래퍼'
 date = 2025-11-23
 featured_image = "https://zrr.kr/QgOehQ"
-tags = ['seogo']
+tags = ['python']
+draft = true
 +++
 
 {{<series title="📚 서고: 전자책 검색 서비스" series="seogo">}}

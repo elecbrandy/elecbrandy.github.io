@@ -1,5 +1,5 @@
 +++
-title = '[hugo] Hugo 블로그 구축하기 (3)'
+title = 'Hugo 블로그 구축하기 (3)'
 date = 2025-05-11
 featured_image = "https://i.imgur.com/URQWyyY.png"
 tags = ['hugo']
