@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Skala on elecbrandy</title>
+    <title>skala on elecbrandy</title>
     <link>https://elecbrandy.github.io/tags/skala/</link>
-    <description>Recent content in Skala on elecbrandy</description>
+    <description>Recent content in skala on elecbrandy</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 22 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://elecbrandy.github.io/tags/skala/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Prompt Engineering</title>
-      <link>https://elecbrandy.github.io/posts/ai/prompt_engineering/</link>
+      <title>[skala] VectorDB</title>
+      <link>https://elecbrandy.github.io/posts/skala/02_vectordb/</link>
+      <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/posts/skala/02_vectordb/</guid>
+      <description>&lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;🦋 SKALA: SK AX AI Leader Academy&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/skala/00_data/&#34;&gt;0. 데이터 기초&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;p&gt;데이터베이스(DB)는 본질적으로 정보를 체계적으로 저장하고, 필요할 때 원하는 데이터를 빠르게 추출하기 위해 정리된 창고와 같다. IT 기술이 발전함에 따라 데이터의 형태가 단순한 텍스트와 숫자에서 복잡한 비정형 데이터로 확장되었고, 이에 맞춰 DB의 패러다임도 관계형 데이터베이스(RDB)에서 도큐먼트 DB(Document DB), 그리고 최근의 벡터 DB(Vector DB)로 진화해 왔다.&lt;/p&gt;&#xA;&lt;br&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;구분&lt;/th&gt;&#xA;          &lt;th&gt;Relatioinal DB&lt;/th&gt;&#xA;          &lt;th&gt;Document DB&lt;/th&gt;&#xA;          &lt;th&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;등장 배경&lt;/td&gt;&#xA;          &lt;td&gt;정형 데이터, 트랜잭션 중심 업무&lt;/td&gt;&#xA;          &lt;td&gt;비정형/반정형 데이터 증가&lt;/td&gt;&#xA;          &lt;td&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;데이터 관리&lt;/td&gt;&#xA;          &lt;td&gt;정규화로 중복 최소화&lt;/td&gt;&#xA;          &lt;td&gt;중복 허용 (읽기 성능 우선)&lt;/td&gt;&#xA;          &lt;td&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;처리 가능한 질문&lt;/td&gt;&#xA;          &lt;td&gt;값의 존재와 value&lt;/td&gt;&#xA;          &lt;td&gt;값의 존재&lt;/td&gt;&#xA;          &lt;td&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;검색 기준&lt;/td&gt;&#xA;          &lt;td&gt;정확히 값은 값 (컬럼 값 비교)&lt;/td&gt;&#xA;          &lt;td&gt;정확히 같은 값 (필드 값 비교)&lt;/td&gt;&#xA;          &lt;td&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;스키마&lt;/td&gt;&#xA;          &lt;td&gt;정해진 구조&lt;/td&gt;&#xA;          &lt;td&gt;유연한 구조&lt;/td&gt;&#xA;          &lt;td&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;데이터 형태&lt;/td&gt;&#xA;          &lt;td&gt;테이블&lt;/td&gt;&#xA;          &lt;td&gt;문서&lt;/td&gt;&#xA;          &lt;td&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;2-db의-진화&#34;&gt;2. DB의 진화&lt;/h2&gt;&#xA;&lt;h3 id=&#34;2-1-기존-db-vs-vectordb&#34;&gt;2-1. 기존 DB vs VectorDB&lt;/h3&gt;&#xA;&lt;p&gt;기존 DB 설계가 잘못되었다라는 것이 아니라, LLM의 등장으로 데이터 비교 기준의 변화가 일어났다. 즉, 단순히 특정 값의 존재와 value에서 뛰어났던 SQL/NoSQL에서 &lt;code&gt;앞선 대화에서 그 값의 의미는 무엇인가?&lt;/code&gt; 등의 사용자 쿼리로 변화가 일어난 것이다.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>[skala] Prompt Engineering</title>
+      <link>https://elecbrandy.github.io/posts/skala/01_prompt_engineering/</link>
       <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/posts/ai/prompt_engineering/</guid>
-      <description>&lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;🦋 SKALA: SK AX AI Leader Academy&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/skala/00_data/&#34;&gt;0. 데이터 기초&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;p&gt;LLM을 사용할때 명령을 어떻게 내리느냐에 따라서 결과가 많이 달라진다. 우리는 보통 이때 프롬프트 엔지니어링을 통해 내가 원하는 바가 LLM에게 잘 전달되게 노력해보자!&lt;/p&gt;&#xA;&lt;p&gt;프롬프트 엔지니어링은 사용자의 의도를 인공지능이 이해할 수 있는 최적의 형태로 변환하는 기술이다. 단순히 질문을 던지는 것보다 모델이 사고할 수 있는 프레임워크를 제공할 때 답변의 일관성과 품질이 상승한다..! 아니 상승할 수 있는 가능성이 높아진다. RAG나 모델 튜닝 이전에 가장 적은 비용으로 효과를 볼수 있는 프롬프트 엔지니어링을 공부해보자.&lt;/p&gt;</description>
+      <guid>https://elecbrandy.github.io/posts/skala/01_prompt_engineering/</guid>
+      <description>&lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;🦋 SKALA: SK AX AI Leader Academy&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/skala/00_data/&#34;&gt;0. 데이터 기초&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;p&gt;LLM을 사용할때 명령을 어떻게 내리느냐에 따라서 결과가 많이 달라진다. 우리는 보통 이때 프롬프트 엔지니어링을 통해 내가 원하는 바가 LLM에게 잘 전달되게 노력해보자!&lt;/p&gt;&#xA;&lt;p&gt;프롬프트 엔지니어링은 사용자의 의도를 인공지능이 이해할 수 있는 최적의 형태로 변환하는 기술이다. 단순히 질문을 던지는 것보다 모델이 사고할 수 있는 프레임워크를 제공할 때 답변의 일관성과 품질이 상승한다..! 아니 상승할 수 있는 가능성이 높아진다. RAG나 모델 튜닝 이전에 가장 적은 비용으로 효과를 볼수 있는 프롬프트 엔지니어링을 공부해보자.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>[skala] 데이터 분석 개요 및 기초통계</title>
+      <link>https://elecbrandy.github.io/posts/skala/00_data/</link>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/posts/skala/00_data/</guid>
+      <description>&lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;🦋 SKALA: SK AX AI Leader Academy&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/42seoul/skala/00_data/&#34;&gt;0. 데이터 기초&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;p&gt;skala 2일차.. 전공에서 공부했던 기초통계를 다시 톺아보는 시간을 가졌다. 회귀분석이니&amp;hellip; R스퀘어니&amp;hellip; 수업이 끝난 후 복습 좀 하려고 전공과목 필기를 뒤져봤는데 그 사이 어디론가 사라진 모양이다.&lt;/p&gt;&#xA;&lt;p&gt;학교에서는 주로 이론적인 내용과 가설을 세우고 검증하는 과정하는 느낌이었다면, 아무래도 회사에서 배우는 과정이다보니 실제 비즈니스와 연관된 강의라고 느껴졌다.&#xA;현업에서 경험이 많으신 분이 이런저런 예시로 설명해주셔서 다시 복습을 열심히 할 수 있었다.&lt;/p&gt;&#xA;&lt;p&gt;해당 기초통계 내용은 추후 전공 필기를 찾게되면 이어서 작성하는 것으로 🥲&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

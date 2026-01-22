@@ -2,38 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://elecbrandy.github.io/posts/java/gradle/</loc>
-    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
+    <loc>https://elecbrandy.github.io/posts/skala/02_vectordb/</loc>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/ai/</loc>
-    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/</loc>
-    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/java/</loc>
-    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/</loc>
-    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/posts/ai/prompt_engineering/</loc>
-    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/skala/</loc>
-    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/</loc>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/dev101/cleancode/</loc>
+    <lastmod>2026-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/dev101/</loc>
+    <lastmod>2026-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/skala/01_prompt_engineering/</loc>
     <lastmod>2026-01-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/seogo/01_scraper/</loc>
-    <lastmod>2025-11-23T00:00:00+00:00</lastmod>
+    <loc>https://elecbrandy.github.io/posts/dev101/gradle/</loc>
+    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/tags/seogo/</loc>
-    <lastmod>2025-11-23T00:00:00+00:00</lastmod>
+    <loc>https://elecbrandy.github.io/posts/skala/00_data/</loc>
+    <lastmod>2026-01-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/python/</loc>
-    <lastmod>2025-11-10T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/python/ray/</loc>
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
@@ -44,22 +47,25 @@
     <loc>https://elecbrandy.github.io/tags/git/</loc>
     <lastmod>2025-10-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/cs101/eip/</loc>
-    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
+    <loc>https://elecbrandy.github.io/tags/java/</loc>
+    <lastmod>2025-10-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/cs101/</loc>
     <lastmod>2025-08-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/project/03_freshpink/</loc>
-    <lastmod>2025-05-11T00:00:00+00:00</lastmod>
+    <loc>https://elecbrandy.github.io/posts/cs101/eip/</loc>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/hugo/</loc>
     <lastmod>2025-05-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/project/02_freshpink_/</loc>
+    <loc>https://elecbrandy.github.io/posts/hugo/03_freshpink/</loc>
+    <lastmod>2025-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/hugo/02_freshpink_/</loc>
     <lastmod>2025-05-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/project/01_freshpink/</loc>
+    <loc>https://elecbrandy.github.io/posts/hugo/01_freshpink/</loc>
     <lastmod>2025-05-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_6/ft_transcendence/</loc>
@@ -113,9 +119,6 @@
     <loc>https://elecbrandy.github.io/posts/cs101/filedescriptor/</loc>
     <lastmod>2023-12-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/tags/linux/</loc>
-    <lastmod>2023-12-24T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_1/get_next_line/</loc>
     <lastmod>2023-12-18T00:00:00+00:00</lastmod>
   </url><url>
@@ -125,13 +128,13 @@
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_0/libft/</loc>
     <lastmod>2023-11-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/cs101/compile_0/</loc>
+    <loc>https://elecbrandy.github.io/posts/cs101/compile/</loc>
     <lastmod>2023-11-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_0/42/</loc>
     <lastmod>2023-10-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/project/dataonair/</loc>
+    <loc>https://elecbrandy.github.io/posts/etc/dataonair/</loc>
     <lastmod>2023-09-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/ui.ux/</loc>

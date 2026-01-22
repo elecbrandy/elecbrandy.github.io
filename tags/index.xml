@@ -6,40 +6,33 @@
     <description>Recent content in Tags on elecbrandy</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 22 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://elecbrandy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ai</title>
       <link>https://elecbrandy.github.io/tags/ai/</link>
-      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/ai/</guid>
       <description></description>
     </item>
     <item>
-      <title>Java</title>
-      <link>https://elecbrandy.github.io/tags/java/</link>
-      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/java/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Skala</title>
+      <title>skala</title>
       <link>https://elecbrandy.github.io/tags/skala/</link>
-      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/skala/</guid>
-      <description></description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://www.sk.co.kr/lib/images/desktop/footer_logo.png&#34; height=&#34;18&#34; style=&#34;vertical-align: middle;&#34;&gt; &lt;strong&gt;SKALA: SK AX AI Leader Academy 3기&lt;/strong&gt;&lt;br&gt;&#xA;SK AX 채용연계 과정으로, [실무형 교육] – [실전 프로젝트] – [취업 연계] 지원 부트캠프입니다.&lt;/p&gt;&#xA;&lt;p&gt;📚 &lt;strong&gt;커리큘럼&lt;/strong&gt; &lt;br&gt;&#xA;&lt;code&gt;머신러닝, 딥러닝, LLM&lt;/code&gt; 을 공부합니다.&lt;br&gt;&#xA;&lt;code&gt;Vue.js, Spring boot, DB&lt;/code&gt; 를 공부합니다.&lt;br&gt;&#xA;&lt;code&gt;RAG, Langchain, LangGraph&lt;/code&gt; 를 공부합니다.&lt;br&gt;&#xA;최종 프로젝트로 &lt;strong&gt;RAG 기반 LLM 서비스&lt;/strong&gt; 를 개발합니다.&lt;/p&gt;&#xA;&lt;p&gt;🗓️ &lt;strong&gt;재학기간&lt;/strong&gt; &lt;br&gt;&#xA;&lt;code&gt;2026.01.06-2026.06.24&lt;/code&gt;&lt;/p&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
-      <title>Seogo</title>
-      <link>https://elecbrandy.github.io/tags/seogo/</link>
-      <pubDate>Sun, 23 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/seogo/</guid>
+      <title>Dev101</title>
+      <link>https://elecbrandy.github.io/tags/dev101/</link>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/dev101/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
       <link>https://elecbrandy.github.io/tags/python/</link>
-      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/python/</guid>
       <description></description>
     </item>
@@ -48,6 +41,13 @@
       <link>https://elecbrandy.github.io/tags/git/</link>
       <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>https://elecbrandy.github.io/tags/java/</link>
+      <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/java/</guid>
       <description></description>
     </item>
     <item>
@@ -65,11 +65,11 @@
       <description></description>
     </item>
     <item>
-      <title>42seoul</title>
+      <title>42Seoul</title>
       <link>https://elecbrandy.github.io/tags/42seoul/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/42seoul/</guid>
-      <description></description>
+      <description>&lt;p&gt;&lt;span style=&#34;display: inline-block; background-color: #000000; padding: 3px 6px; border-radius: 4px; line-height: 0; vertical-align: middle;&#34;&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/8/8d/42_Logo.svg&#34; height=&#34;12px&#34; style=&#34;filter: invert(1);&#34;&gt;&lt;/span&gt; &lt;strong&gt;란?&lt;/strong&gt;&lt;br&gt;&#xA;프랑스 &lt;code&gt;42 école&lt;/code&gt; 과정 기반 컴퓨터 학교 (서울 캠퍼스) 입니다.&lt;/p&gt;&#xA;&lt;p&gt;📚 &lt;strong&gt;커리큘럼&lt;/strong&gt; &lt;br&gt;&#xA;C, C++, UNIX, 알고리즘, 네트워크, OS 등을 공부합니다.&lt;br&gt;&#xA;동료학습과 코드 피어리뷰를 기반으로 문제를 해결합니다.&lt;/p&gt;&#xA;&lt;p&gt;🗓️ &lt;strong&gt;재학기간&lt;/strong&gt; &lt;br&gt;&#xA;&lt;code&gt;2023.10.04-2025.05.06&lt;/code&gt;&lt;/p&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
       <title>Docker</title>
@@ -90,13 +90,6 @@
       <link>https://elecbrandy.github.io/tags/c/</link>
       <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/c/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux</title>
-      <link>https://elecbrandy.github.io/tags/linux/</link>
-      <pubDate>Sun, 24 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/linux/</guid>
       <description></description>
     </item>
     <item>

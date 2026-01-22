@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dev101 on elecbrandy</title>
+    <link>https://elecbrandy.github.io/tags/dev101/</link>
+    <description>Recent content in Dev101 on elecbrandy</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://elecbrandy.github.io/tags/dev101/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CleanCode</title>
+      <link>https://elecbrandy.github.io/posts/dev101/cleancode/</link>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/posts/dev101/cleancode/</guid>
+      <description>&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Clean Code&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;AI Agent와 코드를 협업하는 시점에서 왜 Clean Code는 어떤 의미가 있을까?&#xA;이 책은 바이블처럼 언급되지만 유명하지만 그것 자체로 성경의 권위가 있기도 하지만, 시간이 많이 지났고, ai기술발달과 함께 이 책이 말하는 클린코드가 항상 옳다라고 더 이상 말하기 어려울 수도 있음. 각 언어, 프로덕션, 회사에서 클린한 코드에 대한 정의가 구성원마다 다를수도있고. 논쟁도 많음. 그리고 ai 기술을 발달로 우린 코드를 한땀한땀 직접 치는 경우보다 llm을 활용하는 경우도 생각보다 많고 이 과정에서 &amp;ldquo;클린코드한&amp;rdquo; 또는 &amp;ldquo;내 프로덕션 또는 내 구성원들이 추구하는 클린코드&amp;rdquo; 스러운 코드를 달라고 요청하면 바로 해주기도 할것.&#xA;그럼에도 불구하고 이 시점에서 이 책을 읽는 이유는 다음과 같음&#xA;AI에게 먹히지 않는&#xA;결국 사람이 운용. 명령은 사람이&#xA;나중에 없는 환경에서 일할 수도 있고&#xA;개발자적인 관점에서 더 나은 직관을 기르기 위해&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Gradle</title>
+      <link>https://elecbrandy.github.io/posts/dev101/gradle/</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/posts/dev101/gradle/</guid>
+      <description>&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Gradle의 개념과 동작 원리: Makefile 사용자의 관점에서 공부해보기&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;이전에 C++ 기반의 IRC 서버를 구현할 당시에는 &lt;code&gt;Makefile&lt;/code&gt; 과 &lt;code&gt;docker-compose&lt;/code&gt; 를 통해 서버를 관리했다. 자바 스프링 생태계로 넘어오면서 &lt;code&gt;Gradle&lt;/code&gt; 이 표준 빌드 자동화 도구로 활용되는 것을 확인하였고, 내부적으로 어떻게 동작하는지 정리해보고자 한다.&lt;/p&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;2-gradle이란-무엇인가&#34;&gt;2. Gradle이란 무엇인가&lt;/h2&gt;&#xA;&lt;p&gt;&lt;code&gt;Gradle&lt;/code&gt; 은 단순히 make의 자바 버전을 넘어, 의존성 관리와 태스크 기반 라이프사이클이 결합된 고도화된 빌드 도구이다. &lt;code&gt;Makefile&lt;/code&gt; 이 파일 간의 관계를 정의하여 빌드 명령어를 실행하는 방식이라면, &lt;code&gt;Gradle&lt;/code&gt; 은 표준화된 빌드 라이프사이클을 내장하고 있어 의존성 다운로드부터 컴파일, 테스트, 패키징까지의 과정을 자동화한다.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
