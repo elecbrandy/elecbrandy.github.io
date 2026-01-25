@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://elecbrandy.github.io/</loc>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://elecbrandy.github.io/posts/skala/02_vectordb/</loc>
     <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/ai/</loc>
-    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/</loc>
     <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/</loc>
@@ -20,16 +20,16 @@
     <loc>https://elecbrandy.github.io/tags/</loc>
     <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/dev101/cleancode/</loc>
-    <lastmod>2026-01-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/dev101/</loc>
-    <lastmod>2026-01-18T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://elecbrandy.github.io/posts/skala/01_prompt_engineering/</loc>
     <lastmod>2026-01-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/dev101/gradle/</loc>
+    <loc>https://elecbrandy.github.io/tags/dev101/</loc>
+    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/java/gradle/</loc>
+    <lastmod>2026-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/java/</loc>
     <lastmod>2026-01-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/skala/00_data/</loc>
@@ -42,12 +42,6 @@
     <lastmod>2025-11-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/dev101/angularjscommit/</loc>
-    <lastmod>2025-10-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/git/</loc>
-    <lastmod>2025-10-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/java/</loc>
     <lastmod>2025-10-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/cs101/</loc>
@@ -134,7 +128,7 @@
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_0/42/</loc>
     <lastmod>2023-10-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/etc/dataonair/</loc>
+    <loc>https://elecbrandy.github.io/posts/_etc/dataonair/</loc>
     <lastmod>2023-09-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/ui.ux/</loc>
