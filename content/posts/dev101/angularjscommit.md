@@ -2,7 +2,7 @@
 title = 'AngularJS 커밋 컨벤션'
 date = 2025-10-18
 featured_image = "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*R1mfXLP9edcArZXwmGbGag.jpeg"
-tags = ['git', 'java']
+tags = ['dev101']
 +++
 
 ## 1. 소개

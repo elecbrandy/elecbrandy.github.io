@@ -1,4 +1,9 @@
 title: "skala"
 items:
   - name: "0. 데이터 기초"
-    link: "https://elecbrandy.github.io/posts/42seoul/skala/00_data/"
+    link: "https://elecbrandy.github.io/posts/skala/00_data/"
+  - name: "1. 프롬프트 엔지니어링"
+    link: "https://elecbrandy.github.io/posts/skala/01_prompt_engineering/"
+  - name: "2. 벡터 DB"
+    link: "https://elecbrandy.github.io/posts/skala/02_vectordb/"
+

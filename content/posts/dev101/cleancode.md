@@ -3,7 +3,7 @@ title = 'CleanCode'
 date = 2026-01-18
 featured_image = "https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788966260959.jpg"
 tags = ['dev101']
-draft = false
+draft = true
 +++
 
 <br>
