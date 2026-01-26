@@ -43,7 +43,7 @@ tags = ['c', '42seoul']
 
 ## 3. 개념 정리
 
-<img src="https://i.imgur.com/tOh91Wf.png" width="600">
+<img src="https://i.imgur.com/tOh91Wf.png" max-width=100%>
 
 ### 3-1. push_swap 규칙
 
@@ -112,7 +112,7 @@ void	ps_hardsort(t_head *head, int len)
 
 ### 4-3. 기수정렬
 
-<img src="https://i.imgur.com/yiREh79.png" width="600">
+<img src="https://i.imgur.com/yiREh79.png" max-width=100%>
 
 #### 01
 기수 0인 인자는 **스택 B**의 상위로, 기수가 1인 인자는 **스택 A**의 하위로, 기수가 2인 인자는 **스택 B**의 하위로 보내준다.  

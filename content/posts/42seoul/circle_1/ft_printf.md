@@ -71,7 +71,7 @@ tags = ['c', '42seoul']
 ## 4. Mandatory
 
 
-<img src="https://imgur.com/Ghuekwt.png" width="600">
+<img src="https://imgur.com/Ghuekwt.png" max-width=100%>
 
 <br>
 

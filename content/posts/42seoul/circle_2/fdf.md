@@ -18,12 +18,12 @@ tags = ['C', '42seoul']
 
 즉, 아래와 같이 map이 주어지면
 
-<img src="https://i.imgur.com/RsJuA4d.png" width="600">
+<img src="https://i.imgur.com/RsJuA4d.png" max-width=100%>
 
 
 이렇게 3차원에 투영한다. 주어진 맵은 하나의 2차원 배열이고, 배열 하나당 값은 z좌표를 의미한다.
 
-<img src="https://i.imgur.com/bN92eir.png" width="600">
+<img src="https://i.imgur.com/bN92eir.png" max-width=100%>
 
 <br>
 <br>

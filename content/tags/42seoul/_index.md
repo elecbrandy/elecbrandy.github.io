@@ -9,7 +9,7 @@ title: "42Seoul"
     height="20" 
     style="width: auto !important;">
 </div>
-프랑스 `42 école` 과정 기반 컴퓨터 학교 (서울 캠퍼스).  
+프랑스 42 école 과정 기반 컴퓨터 학교 (서울 캠퍼스).  
 
 📚 **커리큘럼** <br>
 C, C++, UNIX, 알고리즘, 네트워크, OS 등.  

@@ -197,7 +197,7 @@ TLS(Transport Layer Security)는 애플리케이션 계층과 전송 계층 
 ## 4. Mandatory 
 
 
-<img src="https://i.imgur.com/2nOev5a.png" width="600">
+<img src="https://i.imgur.com/2nOev5a.png" max-width=100%>
 
 우리는 총 3개의 컨테이너를 구성해야 한다. (**nginx**, **wordpress**,**mariadb**)  
 

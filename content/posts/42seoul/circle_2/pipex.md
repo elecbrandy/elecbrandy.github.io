@@ -145,7 +145,7 @@ yes | head -n 1
 
 ## 4. Mandatory
 
-<img src="https://i.imgur.com/s1coAtk.png" width="600">
+<img src="https://i.imgur.com/s1coAtk.png" max-width=100%>
 
 <br>
 
@@ -249,7 +249,7 @@ Bonus 부분에서는 다중 파이프를 구현해야한다. 두가지 선택�
 
 #### step 01
 
-<img src="https://i.imgur.com/FpX35wF.png" width="600">
+<img src="https://i.imgur.com/FpX35wF.png" max-width=100%>
 
 1. 부모 프로세스인 상태에서, pipe를 하나 연다.
 2. 부모 프로세스는 이제 pipe1의 읽기와 쓰기 끝 주소를 모두 알고 있는 상태이다.
@@ -258,7 +258,7 @@ Bonus 부분에서는 다중 파이프를 구현해야한다. 두가지 선택�
 
 #### step 02
 
-<img src="https://i.imgur.com/8I9BFHE.png" width="600">
+<img src="https://i.imgur.com/8I9BFHE.png" max-width=100%>
 
 1. pipe1의 읽기와 쓰기 끝을 아는 상태에서 `fork()`하고, `dup2`를 통해 자식 프로세스가 pipe1의 쓰기 끝에 쓰게한다.
 2. 이때 부모 프로세스는 `dup2`를 통해 pipe1의 읽기 끝 주소를 fd table 0번에 잠시 기억하게 한다. 이는 다음 자식 프로세스가 데이터를 읽어와야할지 알려주기 위함이다.
@@ -268,7 +268,7 @@ Bonus 부분에서는 다중 파이프를 구현해야한다. 두가지 선택�
 
 #### step 03
 
-<img src="https://i.imgur.com/6HHkOA9.png" width="600">
+<img src="https://i.imgur.com/6HHkOA9.png" max-width=100%>
 
 1. pipe1의 읽기 끝을 아는 상태에서 `fork()`하고, `dup2`를 통해 자식 프로세스가 pipe2의 쓰기 끝에 쓰게한다.
 2. 이때 부모 프로세스는 `dup2`를 통해 pipe2의 읽기 끝 주소를 fd table 0번에 잠시 기억하게 한다. 이는 다음 자식 프로세스가 데이터를 읽어와야할지 알려주기 위함이다.
@@ -278,7 +278,7 @@ Bonus 부분에서는 다중 파이프를 구현해야한다. 두가지 선택�
 
 #### step 04
 
-<img src="https://i.imgur.com/c1jOzry.png" width="600">
+<img src="https://i.imgur.com/c1jOzry.png" max-width=100%>
 
 최종적으로 자식 프로세스는 자신이 읽어야할 파이프의 위치, 써야할 파이프의 위치를 모두 알고 있는 상태에서 작동하며, 각각의 자식 프로세스는 **병렬**로 작동한다는 점!
 

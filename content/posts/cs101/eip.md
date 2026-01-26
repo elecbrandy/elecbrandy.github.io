@@ -566,7 +566,7 @@ tags = ['cs101']
 
 #### 릴레이션
 
-<img src="https://i.imgur.com/M47hzfA.png" width="600">
+<img src="https://i.imgur.com/M47hzfA.png" max-width=100%>
 
 - **구성**
     - `속성(Attribute)`

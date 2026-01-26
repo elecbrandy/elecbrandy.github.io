@@ -60,14 +60,14 @@ tags = ['C', '42seoul']
 <br>
 
 ### 2-2. OSI 7계층 모델
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/6ZH2Etm3LlFHTgmkjLmkxp/59ff240fb3ebdc7794ffaa6e1d69b7c2/osi_model_7_layers.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/6ZH2Etm3LlFHTgmkjLmkxp/59ff240fb3ebdc7794ffaa6e1d69b7c2/osi_model_7_layers.png" max-width=100%>
 
 OSI(Open Systems Interconnection) 모델은 네트워크 통신을 계층적으로 나누어 설명하는 표준화된 모델이다. 이는 통신 시스템의 다양한 기능을 7개의 계층으로 나누어 설명하며 네트워크 설계 및 문제 해결을 용이하게 한다. 현대 인터넷에서는 OSI 모델을 엄격하게 따르고 있지는 않지만, 이러한 유형의 구분은 네트워크 문제를 해결하는 데 유용하다. 사용자와 가장 가까운 응용 프로그램 계층부터 알아보자!
 
 <br>
 
 #### 계층 [7] : 응용 프로그램 계층 : Application Layer
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/2rcDKpr4WLqoyAZ7GDKkyJ/7cab96402de7ac5465b86e617da3da4e/osi_model_application_layer_7.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/2rcDKpr4WLqoyAZ7GDKkyJ/7cab96402de7ac5465b86e617da3da4e/osi_model_application_layer_7.png" max-width=100%>
 
 응용 프로그램 계층은 사용자와 직접 상호작용하는 유일한 계층으로, 사용자가 네트워크에 접근하고 데이터를 주고받을 수 있는 인터페이스를 제공한다. 이는 웹 브라우저, 이메일 클라이언트, 파일 전송 애플리케이션 등 다양한 형태로 구현된다.  
 
@@ -78,7 +78,7 @@ OSI(Open Systems Interconnection) 모델은 네트워크 통신을 계층적으�
 <br>
 
 #### 계층 [6] : 프레젠테이션 계층 : The Presetation Layer
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/19L86neKKT8srUkOSe4rf7/ff4c91c94a1790651df7b48433913f59/osi_model_presentation_layer_6.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/19L86neKKT8srUkOSe4rf7/ff4c91c94a1790651df7b48433913f59/osi_model_presentation_layer_6.png" max-width=100%>
 
 프레젠테이션 계층은 응용 프로그램 계층과 직접 상호작용하며, 응용 프로그램이 데이터를 올바르게 해석하고 표시할 수 있도록 데이터를 준비하는 역할을 수행한다.  
 
@@ -91,7 +91,7 @@ OSI(Open Systems Interconnection) 모델은 네트워크 통신을 계층적으�
 <br>
 
 #### 계층 [5] : 세션 계층 : The Session Layer
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/29mRrgK22AqJVlg2MMlD86/34d8f4071b6cc0d3b03c93f55e4d89b7/osi_model_session_layer_5.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/29mRrgK22AqJVlg2MMlD86/34d8f4071b6cc0d3b03c93f55e4d89b7/osi_model_session_layer_5.png" max-width=100%>
 
 세션 계층은 통신 세션의 설정, 관리 그리고 종료를 담당한다. 이때 통신이 시작될 때부터 종료될 때까지의 시간을 세션이라고 하며, 세션 계층은 교환되고 있는 모든 데이터를 전송할 수 있도록 충분히 오랫동안 세션을 개방한 다음 리소스를 낭비하지 않기 위해 세션을 즉시 닫을 수 있게 한다. 즉, 송신자와 수신자 간의 대화를 관리하고 데이터 교환이 원활하게 이루어질 수 있도록 돕는 역할을 수행한다.  
 
@@ -104,7 +104,7 @@ OSI(Open Systems Interconnection) 모델은 네트워크 통신을 계층적으�
 <br>
 
 #### 계층 [4] : 전송 계층 : Transport Layer
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3OlO75NcADGL3SmEADFDqd/723b8c7639c4e2e6b4febcbe7fd36e0e/osi_model_transport_layer_4.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3OlO75NcADGL3SmEADFDqd/723b8c7639c4e2e6b4febcbe7fd36e0e/osi_model_transport_layer_4.png" max-width=100%>
 
 전송 계층은 두 기기 간의 종단 간 통신을 담당하며, 데이터를 가져와 **세그먼트**라는 조각으로 분할하는 역할을 수행한다. 이를 통해 **신뢰성 있는 전송**을 보장하는 것에 중점을 둔다. 또한 전송 계층은 컴퓨터 내부에서 논리적으로 구축되는 통신 당사자인 프로세스 사이의 통신 문제를 다룬다. 예를 들면 통화자 사이에 통화 연결을 설정하는 역할을 하는 것! 전송 계층 하위에 있는 물리 / 데이터 링크 / 네트워크 계층은 전송계층의 연결을 설정하고 어떻게 활용할지 다루는 것  뿐이다.  
 
@@ -115,7 +115,7 @@ OSI(Open Systems Interconnection) 모델은 네트워크 통신을 계층적으�
 <br>
 
 #### 계층 [3] : 네트워크 계층 : The Network Layer
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3g2Hv0frHsql5SFauJL5EG/d8cede7b6a780e63413bd86de9eee7f9/osi_model_network_layer_3.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3g2Hv0frHsql5SFauJL5EG/d8cede7b6a780e63413bd86de9eee7f9/osi_model_network_layer_3.png" max-width=100%>
 
 네트워크 계층은 서로 다른 두 네트워크 간 데이터 전송을 용이하게 하며 라우팅, IP 주소 관리, 패킷 포워딩 등의 기능을 수행한다. 이때 서로 통신하는 두 장치가 동일한 네트워크에 있는 경우에는 네트워크 계층이 필요하지 않음!
 
@@ -128,7 +128,7 @@ OSI(Open Systems Interconnection) 모델은 네트워크 통신을 계층적으�
 <br>
 
 #### 계층 [2] : 데이터 연결 계층 : The Data Link Layer
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3TLHavXiotb9ayyZFKECf3/9456d1c431cd71ceea7f4b407f076f11/data_link_layer_osi_model.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3TLHavXiotb9ayyZFKECf3/9456d1c431cd71ceea7f4b407f076f11/data_link_layer_osi_model.png" max-width=100%>
 
 상위 계층에서 전달받은 데이터를 받아 Frame(물리 계층을 통해 전송할 수 있는 데이터 패킷)으로 나누고, 각 프레임에는 시작과 끝을 알리는 특정 비트 패턴과 제어 정보를 포함하여 데이터의 구분/무결성을 유지한다. 주로 CRC(Cyclic Redundancy Chec : 패리티 비트 또는 체크섬 방식 등)을 사용한다.
 
@@ -143,7 +143,7 @@ OSI(Open Systems Interconnection) 모델은 네트워크 통신을 계층적으�
 <br>
 
 #### 계층 [1] : 물리 계층 : The physical layer
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/1HQ1W5P4XAinIdM37DTu4U/900ccdceda346baf03ce8b9f977d2974/osi_model_physical_layer_1.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/1HQ1W5P4XAinIdM37DTu4U/900ccdceda346baf03ce8b9f977d2974/osi_model_physical_layer_1.png" max-width=100%>
 
 상위 계층에서 전달된 데이터를 물리적 매체를 통해 전송할 수 있는 형태(Bit 형태)로 변환하여 전송한다. 즉, 데이터를 비트 스트림으로 나누어 전송하고, 수신 측에서 다시 원래 데이터로 재조립하는 것!
 
@@ -201,7 +201,7 @@ IP는 Internet Protocol로 TCP/IP 모델의 인터넷 계층(3)에서 사용되�
 인터넷의 성장에 따라 IPv4에 할당할 수 있는 주소 공간이 부족해지자 더 넓은 주소 공간을 제공하는 IPv6가 도입되었다.  
 
 #### IPv4
-<img src="https://i.imgur.com/X1c2YZn.png" width="600">
+<img src="https://i.imgur.com/X1c2YZn.png" max-width=100%>
 
 IPv4 주소는 32비트 길이로 구성되며 이 비트는 이론상 2^32개의 고유한 주소를 만들 수 있다. 클래스 기반의 IP 주소체계인 클래스 풀에 따르면 IPv4 주소는 A, B, C, D, E 클래스로 나뉜다. 현재는 클래스 개념 없이 사용하긴 한다. (Classes)
 
@@ -239,7 +239,7 @@ IPv4 주소는 총 4개의 Octet으로 나뉘는데, 각 Octet은 8비트로 구
 <br>
 
 #### IPv6
-<img src="https://i.imgur.com/Fc3YAgp.png" width="600">
+<img src="https://i.imgur.com/Fc3YAgp.png" max-width=100%>
 
 IPv6 주소는 128비트 길이로 구성되며 2^128개의 고유한 주소를 만들 수 있다. IPv6는 기본적으로 더 많은 주소 공간을 제공하며, IPsec을 통해 보안을 기본적으로 통합하고 호스트가 네트워크에 연결되었을 때 자동으로 주소를 구성할 수 있도록 설계되었다.
 
@@ -300,7 +300,7 @@ IPv6 주소는 총 8개의 16비트 블록으로 나뉘는데, 각 Octet은 8비
 <summary>LEVEL_01</summary>
 <div markdown="1">
 
-<img src="https://i.imgur.com/dlxEmX1.png" width="600">
+<img src="https://i.imgur.com/dlxEmX1.png" max-width=100%>
 
 **client A** 와 **client B**를 연결해보자. 서브넷 마스크 `255.255.255.0`는 CIDR 표기법으로 `/24`와 동일하다. 즉 네트워크를 표현하기위해 왼쪽부터 24자리, 나머지 8자리는 호스트를 표현하기 위해 사용한다는 의미이다.
 
@@ -316,7 +316,7 @@ IP 주소와 서브넷 마스크를 AND 연산하여 네트워크 ID `104.94.23.
 <summary>LEVEL_02</summary>
 <div markdown="1">
 
-<img src="https://i.imgur.com/KU0QtmC.png" width="600">
+<img src="https://i.imgur.com/KU0QtmC.png" max-width=100%>
 
 **client A** 와 **client B**를 연결해보자. 우선 둘의 서브넷 마스크를 `255.255.255.224` 하나로 통일해주자. 서브넷 마스크 `255.255.255.224`는 CIDR 표기법으로 `/27`와 동일하다. 즉 네트워크를 표현하기위해 왼쪽부터 27자리, 나머지 5자리는 호스트를 표현하기 위해 사용한다는 의미이다.
 
@@ -339,7 +339,7 @@ B의 IP 주소와 서브넷 마스크를 AND 연산하여 네트워크 ID `192.1
 <summary>LEVEL_03</summary>
 <div markdown="1">
 
-<img src="https://i.imgur.com/y97WZDM.png" width="600">
+<img src="https://i.imgur.com/y97WZDM.png" max-width=100%>
 
 > Goal 1 : Host A need to communicate with Host B
 > Goal 2 : Host A need to communicate with Host C
@@ -360,7 +360,7 @@ A의 IP 주소가 고정되어 있으므로, A의 IP 주소와 서브넷 마스�
 <summary>LEVEL_04</summary>
 <div markdown="1">
 
-<img src="https://i.imgur.com/rKWwPb1.png" width="600">
+<img src="https://i.imgur.com/rKWwPb1.png" max-width=100%>
 
 > Goal 1 : A nice host need to communicate with Another host
 > Goal 2 : A nice host need to communicate with My_Gate
@@ -381,7 +381,7 @@ A의 IP 주소가 고정되어 있으므로, A의 IP 주소와 서브넷 마스�
 <summary>LEVEL_05</summary>
 <div markdown="1">
 
-<img src="https://i.imgur.com/rQ3XDDw.png" width="600">
+<img src="https://i.imgur.com/rQ3XDDw.png" max-width=100%>
 
 > Goal 1 : Machine A need to communicate with The Mighty Router
 > Goal 2 : Machine B need to communicate with The Mighty Router
@@ -402,7 +402,7 @@ A가 속한 서브넷을 벗어나는 트래픽(외부 네트워크로 가는 �
 <summary>LEVEL_06</summary>
 <div markdown="1">
 
-<img src="https://i.imgur.com/sQYZYIk.png" width="600">
+<img src="https://i.imgur.com/sQYZYIk.png" max-width=100%>
 
 > Goal 1 : Interface A1 need to communicate with interface Somewhere on the Net
 

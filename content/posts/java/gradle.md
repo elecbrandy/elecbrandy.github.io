@@ -24,7 +24,7 @@ tags = ['java','dev101']
 
 ## 3. Gradle의 빌드 라이프사이클
 
-<img src="https://docs.gradle.org/current/userguide/img/build-lifecycle-example.png" width="600">
+<img src="https://docs.gradle.org/current/userguide/img/build-lifecycle-example.png" max-width=100%>
 
 1. **Initialization** : 빌드 대상이 되는 프로젝트들을 결정한다. 멀티 모듈 설정 등이 이 단계에서 확인된다.
 2. **Configuration** :  build.gradle 파일을 실행하여 태스크들 간의 의존 관계를 나타내는 DAG를 생성한다.
