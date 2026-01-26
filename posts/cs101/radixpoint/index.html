@@ -177,7 +177,7 @@
 </ol>
 <p>대충 견적이 나오는 것 같다. 컴퓨터에서 소수를 다룰 때는 표현의 한계가 있기 때문에, 소수점을 일정한 자리에서 끊어 표현해야 한다. 소수를 표현하는 방법에는 크게 두 가지가 있는데, 고정소수점과 부동소수점 방식이다. 각각의 방식을 하나씩 자세히 알아보자.</p>
 <h2 id="3-고정소수점">3. 고정소수점</h2>
-<img src="https://resources-public-blog.modulabs.co.kr/blog/prd/content/259164/fixed-points.png" width="600">
+<img src="https://resources-public-blog.modulabs.co.kr/blog/prd/content/259164/fixed-points.png" max-width=100%>
 <p><strong>고정소수점(Fixed Point)</strong> 은 소수점을 고정된 위치에 두고 정수와 소수 부분을 구분하여 숫자를 표현하는 방식이다. 즉, 정수부와 소수부의 자릿수가 미리 정해져 있는 것이 특징입니다. 예를 들어, 소수점 이하 두 자리를 사용할 경우, 12.34와 같은 값을 정확하게 표현할 수 있다! 소수부 자릿수가 고정되어 있기 때문에, <strong>정밀도(Precision)</strong> 는 소수부 자릿수만큼만 유지된다. 이 방식은 컴퓨터의 연산 속도가 빠르고 구현이 간단하다는 장점이 있다.</p>
 <p>정확성(Accuracy) 측면에서는 부동소수점에 비해 일정한 범위 내에서는 매우 정확한 값을 표현할 수 있다. 소수부의 자릿수가 고정되어 있기 때문에, 표현할 수 있는 값이 제한되지만 해당 범위 내에서 실수 값을 정확하게 다룰 수 있다.</p>
 <p>그러나 표현 범위는 제한적이다. 고정된 소수 자릿수 때문에 매우 큰 수나 매우 작은 수를 표현하기 어렵다. 예를 들어, 소수점 이하 두 자리를 사용하는 고정소수점 방식에서 1000.01이나 0.001 같은 숫자를 정확히 표현할 수 없다. 큰 수나 작은 수는 범위를 초과하거나 정밀도가 손실되는 것이다.</p>
@@ -187,7 +187,7 @@
 <br>
 <br>
 <h2 id="3-부동소수점">3. 부동소수점</h2>
-<img src="https://resources-public-blog.modulabs.co.kr/blog/prd/content/259164/floating-point.png" width="600">
+<img src="https://resources-public-blog.modulabs.co.kr/blog/prd/content/259164/floating-point.png" max-width=100%>
 <p><strong>부동소수점(Floating Point)</strong> 은 소수점을 가변적으로 움직여 숫자를 표현하는 방식이다. 이는 숫자의 정수부와 소수부를 나누어 고정된 자리에서 소수를 표현하는 고정소수점 방식과 다르게, 소수점의 위치를 자유롭게 옮길 수 있는 방식이다. 부동소수점은 숫자를 <strong>가수(Mantissa)</strong> 와 <strong>지수(Exponent)</strong> 로 나누어 표현한다.</p>
 <br>
 <h3 id="3-1-ieee-754-표준">3-1. IEEE-754 표준</h3>

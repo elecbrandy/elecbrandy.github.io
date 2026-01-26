@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Selection Sort | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.9b52840ff847d49a3f3379e089850a370dbfdffb41226dfaeda079f69691a88c.css" 
+      integrity="sha256-m1KED/hH1Jo/M3ngiYUKNw2/3/tBIm367aB59paRqIw="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-selection-sort">1. Selection sort</a></li>
+    <li><a href="#2-구현-분석">2. 구현 분석</a>
+      <ul>
+        <li><a href="#2-1-루프-1">2-1. 루프 [1]</a></li>
+        <li><a href="#2-2-루프-2">2-2. 루프 [2]</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-정확성-분석">3. 정확성 분석</a>
+      <ul>
+        <li><a href="#3-1-명제-설정">3-1. 명제 설정</a></li>
+        <li><a href="#3-2-귀납적-증명의-구성-요소">3-2. 귀납적 증명의 구성 요소</a></li>
+        <li><a href="#3-3-귀납적-증명">3-3. 귀납적 증명</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-효율성-분석">4. 효율성 분석</a>
+      <ul>
+        <li><a href="#4-1-best-case">4-1. Best Case</a></li>
+        <li><a href="#4-2-worst-case">4-2. Worst Case</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-결론">5. 결론</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_shaker_sort_anim.gif" alt="Featured Image for Selection Sort">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2024.09.21</small>
+      <div class="singleTitle">Selection Sort</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>📚 /algorithm 시리즈</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/algorithm/00_selection_sort/">0. Selection Sort</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-selection-sort">1. Selection sort</h2>
+<img src="https://i.imgur.com/YJvMRgL.png" max-width=100%>
+<p><code>Selection sort</code> 는 배열에서 가장 작은(또는 가장 큰) 요소를 찾아서 순서대로 정렬해 나가는 단순한 정렬 알고리즘이다.
+배열을 처리할 때, 정렬되지 않은 부분에서 최소값을 찾아 정렬된 부분의 끝에 위치시킴으로써 정렬을 확장해 나간다.</p>
+<p>이 알고리즘에서는 두 개의 주요 루프가 존재한다.</p>
+<ul>
+<li><strong>첫 번째 루프</strong>는 배열의 모든 요소를 차례로 선택하는 루프로, 인덱스 0부터 배열의 끝(n-1)까지 반복된다.</li>
+<li><strong>두 번째 루프</strong>는 현재 선택된 인덱스부터 배열의 끝까지 탐색하여 최소값의 인덱스를 찾는 과정이다.</li>
+</ul>
+<br>
+<br>
+<h2 id="2-구현-분석">2. 구현 분석</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">selectionSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> N) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>) { <span style="color:#75715e">// 루프_1
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> minIndex <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;</span> N; j<span style="color:#f92672">++</span>) { <span style="color:#75715e">// 루프_2
+</span></span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (arr[j] <span style="color:#f92672">&lt;</span> arr[minIndex]) {
+</span></span><span style="display:flex;"><span>				minIndex <span style="color:#f92672">=</span> j;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		swap(arr[i], arr[minIndex]);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
+<h3 id="2-1-루프-1">2-1. 루프 [1]</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>)
+</span></span></code></pre></div><p>이 부분은 배열의 첫 번째 요소부터 마지막에서 두 번째 요소까지 순차적으로 선택하는 루프이다.<br>
+각 반복에서 현재 위치 <code>i</code>부터 배열의 끝까지 중에서 최소값을 찾아 현재 위치에 놓는다.<br>
+이때, 마지막 요소는 비교 대상이 되지만, 마지막에는 이미 모든 요소가 정렬되었기 때문에 <code>i</code>는 <code>N - 2</code>까지만 반복하면 된다.<br>
+하지만 코드에서는 <code>i &lt; N - 1</code>로 되어 있어 마지막에서 두 번째 요소까지 선택한다.</p>
+<br>
+<h3 id="2-2-루프-2">2-2. 루프 [2]</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;</span> N; j<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (arr[j] <span style="color:#f92672">&lt;</span> arr[minIndex]) {
+</span></span><span style="display:flex;"><span>			minIndex <span style="color:#f92672">=</span> j;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span></code></pre></div><p>이 부분은 현재 선택된 위치 <code>i</code>부터 배열의 끝까지 탐색하여 최소값의 인덱스를 찾는 루프이다. 변수 <code>minIndex</code>는 현재까지 발견한 최소값의 인덱스를 저장하며, 처음에는 <code>i</code>로 초기화된다.</p>
+<ul>
+<li><strong><code>for (int j = i + 1; j &lt; N; j++)</code></strong>
+<ul>
+<li><code>j</code>는 현재 선택된 위치 <code>i</code>의 다음 인덱스부터 시작하여 배열의 끝까지 반복한다.</li>
+<li>이를 통해 <code>i</code> 이후의 모든 요소를 비교 대상으로 삼는다.</li>
+</ul>
+</li>
+<li><strong><code>if (arr[j] &lt; arr[minIndex])</code></strong>
+<ul>
+<li>현재 탐색 중인 요소 <code>arr[j]</code>가 현재까지의 최소값 <code>arr[minIndex]</code>보다 작으면, <code>minIndex</code>를 <code>j</code>로 업데이트한다.</li>
+<li>이 과정을 통해 가장 작은 요소의 인덱스를 찾는다.</li>
+</ul>
+</li>
+<li><strong><code>swap(arr[i], arr[minIndex]);</code></strong>
+<ul>
+<li>내부 루프가 끝난 후, 현재 위치 <code>i</code>에 최소값을 가진 요소를 배치하기 위해 <code>arr[i]</code>와 <code>arr[minIndex]</code>를 교환한다.</li>
+<li>만약 <code>minIndex</code>가 <code>i</code>와 같다면 이미 올바른 위치에 있으므로 교환은 의미가 없다.</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="3-정확성-분석">3. 정확성 분석</h2>
+<p><code>Selection sort</code>는 배열에서 가장 작은 요소를 선택하여 정렬되지 않은 부분의 첫 번째 위치에 놓는 과정을 반복함으로써 전체 배열을 정렬한다. 이제 귀납법을 통해 <code>Selection sort</code> 알고리즘이 항상 입력된 배열을 올바르게 정렬하는지 그 <strong>정확성</strong> 을 증명해보자.</p>
+<br>
+<h3 id="3-1-명제-설정">3-1. 명제 설정</h3>
+<p><strong>명제 P(i)</strong>: <em>반복문이 i번째 반복 후에 배열의 앞부분 A[0&hellip;i]은 정렬되어 있고, 이 요소들은 원래 배열의 가장 작은 (i + 1)개의 요소들이다.</em></p>
+<br>
+<h3 id="3-2-귀납적-증명의-구성-요소">3-2. 귀납적 증명의 구성 요소</h3>
+<p>귀납법은 다음 네 가지 단계로 이루어진다.</p>
+<ol>
+<li><strong>기저 사례(Base Case):</strong> P(0)이 참임을 보인다.</li>
+<li><strong>귀납 가정(Inductive Hypothesis):</strong> 임의의 자연수 k에 대해 P(k-1)가 참이라고 가정한다.</li>
+<li><strong>귀납 단계(Inductive Step):</strong> P(k-1)가 참일 때 P(k)도 참임을 보인다.</li>
+<li><strong>종료성(Termination):</strong> 알고리즘이 유한한 단계 내에 종료함을 보인다.</li>
+</ol>
+<br>
+<h3 id="3-3-귀납적-증명">3-3. 귀납적 증명</h3>
+<h4 id="기저-사례">기저 사례</h4>
+<ul>
+<li><em>P(0)이 참임을 보이자.</em></li>
+</ul>
+<p>첫 번째 반복에서 <code>i = 0</code>이다. 내부 루프를 통해 배열 A[0&hellip;N-1]에서 가장 작은 요소를 찾아 A[0]과 교환한다. 따라서 A[0]에는 배열 전체에서 가장 작은 값이 저장된다. 그러므로 P(0)은 참이다.</p>
+<br>
+<h4 id="귀납-가정">귀납 가정</h4>
+<ul>
+<li><em>P(k-1)가 참이라고 가정하자.</em></li>
+</ul>
+<p>즉, 배열의 앞부분 A[0&hellip;k-1]은 정렬되어 있고, 이 요소들은 원래 배열의 가장 작은 k개의 요소들이다.</p>
+<br>
+<h4 id="귀납-단계">귀납 단계</h4>
+<ul>
+<li><em>P(k-1)가 참일 때, P(k)도 참임을 보이자.</em></li>
+</ul>
+<p>반복문의 k번째 반복에서 <code>i = k</code>이다. 내부 루프를 통해 A[k&hellip;N-1]에서 최소값을 찾아 A[k]와 교환한다. 귀납 가정에 의해 A[0&hellip;k-1]은 정렬되어 있고, 배열에서 가장 작은 k개의 요소들이다. 새로운 최소값은 배열에서 (k+1)번째로 작은 값이며, 이를 A[k]에 위치시킴으로써 A[0&hellip;k]는 정렬되고, 배열의 가장 작은 (k+1)개의 요소들을 포함하게 된다. 따라서 P(k)는 참이다.</p>
+<br>
+<h4 id="종료성">종료성</h4>
+<ul>
+<li><em>알고리즘이 유한한 단계 내에 종료함을 보이자.</em></li>
+</ul>
+<p>외부 루프는 <code>i = 0</code>부터 <code>i = N - 2</code>까지 총 N - 1회 실행된다. 각 반복마다 내부 루프는 유한한 횟수 내에 종료된다. 따라서 알고리즘은 유한한 단계 내에 반드시 종료한다.</p>
+<br>
+<h4 id="결론">결론</h4>
+<ul>
+<li>P(0)이 참이고, P(k-1) ⇒ P(k)가 참이므로, 수학적 귀납법에 의해 모든 자연수 k에 대해 P(k)가 참이다.</li>
+<li>따라서 알고리즘이 종료된 후 배열 A[0&hellip;N-1]은 정렬되어 있다.</li>
+<li>또한 알고리즘이 유한한 단계 내에 종료하므로, 알고리즘은 정확하게 동작한다.</li>
+</ul>
+<br>
+<br>
+<h2 id="4-효율성-분석">4. 효율성 분석</h2>
+<h3 id="4-1-best-case">4-1. Best Case</h3>
+<p>선택 정렬의 경우, 입력 배열의 상태와 관계없이 항상 동일한 비교 횟수를 수행한다. 따라서 Best Case와 Worst Case의 시간 복잡도가 동일하다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">selectionSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> N) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>) {			<span style="color:#75715e">// 1. (N - 1) Times
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> minIndex <span style="color:#f92672">=</span> i;						<span style="color:#75715e">// 2. (N - 1) Times
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;</span> N; j<span style="color:#f92672">++</span>) {		<span style="color:#75715e">// 3. 1/2 * (N - 1)(N) Times
+</span></span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (arr[j] <span style="color:#f92672">&lt;</span> arr[minIndex]) {		<span style="color:#75715e">// 4. 1/2 * (N - 1)(N) Times
+</span></span></span><span style="display:flex;"><span>				minIndex <span style="color:#f92672">=</span> j;					<span style="color:#75715e">// 5. 최대 (N - 1) Times
+</span></span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		swap(arr[i], arr[minIndex]);			<span style="color:#75715e">// 6. (N - 1) Times
+</span></span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol>
+<li>
+<p><code>for (int i = 0; i &lt; N - 1; i++)</code></p>
+<ul>
+<li><strong>(N - 1)</strong> 번 실행된다.</li>
+</ul>
+</li>
+<li>
+<p><code>int minIndex = i;</code></p>
+<ul>
+<li><strong>(N - 1)</strong> 번 실행된다.</li>
+</ul>
+</li>
+<li>
+<p><code>for (int j = i + 1; j &lt; N; j++)</code></p>
+<ul>
+<li>내부 루프의 총 실행 횟수는 다음과 같다:
+<ul>
+<li><code>i = 0</code>일 때, <code>j</code>는 <code>1</code>부터 <code>N - 1</code>까지 ⇒ <strong>(N - 1)</strong> 번</li>
+<li><code>i = 1</code>일 때, <code>j</code>는 <code>2</code>부터 <code>N - 1</code>까지 ⇒ <strong>(N - 2)</strong> 번</li>
+<li>&hellip;</li>
+<li>총 합은 $\frac{N(N - 1)}{2}$ 번 실행된다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>if (arr[j] &lt; arr[minIndex])</code></p>
+<ul>
+<li>내부 루프와 동일하게 <strong>$\frac{N(N - 1)}{2}$</strong> 번 실행된다.</li>
+</ul>
+</li>
+<li>
+<p><code>minIndex = j;</code></p>
+<ul>
+<li>배열이 이미 정렬된 경우에는 조건이 항상 거짓이므로 이 부분은 실행되지 않는다.</li>
+<li>하지만 Best Case에서도 비교 횟수는 동일하므로 시간 복잡도에 영향이 없다.</li>
+</ul>
+</li>
+<li>
+<p><code>swap(arr[i], arr[minIndex]);</code></p>
+<ul>
+<li><strong>(N - 1)</strong> 번 실행된다.</li>
+<li>Best Case에서는 <code>minIndex</code>가 항상 <code>i</code>와 같으므로 교환이 필요 없지만, 코드상으로는 교환 함수가 호출된다.</li>
+</ul>
+</li>
+</ol>
+<p>따라서 선택 정렬의 Best Case 시간 복잡도는 다음과 같다.</p>
+<p>$$
+\Omega\left(\frac{N(N - 1)}{2}\right) \approx O(N^2)
+$$</p>
+<br>
+<h3 id="4-2-worst-case">4-2. Worst Case</h3>
+<p>선택 정렬은 입력 배열의 상태와 관계없이 항상 동일한 비교 횟수를 수행하므로, Worst Case의 시간 복잡도도 Best Case와 동일하다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">selectionSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> N) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>) {			<span style="color:#75715e">// 1. (N - 1) Times
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> minIndex <span style="color:#f92672">=</span> i;						<span style="color:#75715e">// 2. (N - 1) Times
+</span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;</span> N; j<span style="color:#f92672">++</span>) {		<span style="color:#75715e">// 3. 1/2 * (N - 1)(N) Times
+</span></span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (arr[j] <span style="color:#f92672">&lt;</span> arr[minIndex]) {		<span style="color:#75715e">// 4. 1/2 * (N - 1)(N) Times
+</span></span></span><span style="display:flex;"><span>				minIndex <span style="color:#f92672">=</span> j;					<span style="color:#75715e">// 5. 최대 (N - 1) Times
+</span></span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		swap(arr[i], arr[minIndex]);			<span style="color:#75715e">// 6. (N - 1) Times
+</span></span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>위의 분석과 동일하게 총 비교 횟수와 실행 횟수가 계산된다.</li>
+<li>Worst Case에서는 배열이 역순으로 정렬되어 있어 <code>minIndex</code>가 항상 변경되므로 <code>minIndex = j;</code>가 최대 횟수로 실행된다.</li>
+<li>그러나 시간 복잡도는 여전히 $O(N^2)$이다.</li>
+</ul>
+<p>따라서 선택 정렬의 Worst Case 시간 복잡도는 다음과 같다.</p>
+<p>$$
+O\left(\frac{N(N - 1)}{2}\right) \approx O(N^2)
+$$</p>
+<br>
+<br>
+<h2 id="5-결론">5. 결론</h2>
+<p><code>Selection sort</code>는 구현이 간단하고 직관적인 정렬 알고리즘이지만, 시간 복잡도가 $O(N^2)$로 효율적이지 않다. 데이터의 크기가 작거나 메모리 공간이 제한적인 경우에만 사용이 권장된다. 이 알고리즘은 배열의 상태와 관계없이 항상 동일한 비교 횟수를 수행하므로, Best Case와 Worst Case의 시간 복잡도가 동일하다는 특징이 있다.</p>
+<br>
+<br>
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

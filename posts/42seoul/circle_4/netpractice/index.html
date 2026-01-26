@@ -204,44 +204,44 @@
 <br>
 <br>
 <h3 id="2-2-osi-7계층-모델">2-2. OSI 7계층 모델</h3>
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/6ZH2Etm3LlFHTgmkjLmkxp/59ff240fb3ebdc7794ffaa6e1d69b7c2/osi_model_7_layers.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/6ZH2Etm3LlFHTgmkjLmkxp/59ff240fb3ebdc7794ffaa6e1d69b7c2/osi_model_7_layers.png" max-width=100%>
 <p>OSI(Open Systems Interconnection) 모델은 네트워크 통신을 계층적으로 나누어 설명하는 표준화된 모델이다. 이는 통신 시스템의 다양한 기능을 7개의 계층으로 나누어 설명하며 네트워크 설계 및 문제 해결을 용이하게 한다. 현대 인터넷에서는 OSI 모델을 엄격하게 따르고 있지는 않지만, 이러한 유형의 구분은 네트워크 문제를 해결하는 데 유용하다. 사용자와 가장 가까운 응용 프로그램 계층부터 알아보자!</p>
 <br>
 <h4 id="계층-7--응용-프로그램-계층--application-layer">계층 [7] : 응용 프로그램 계층 : Application Layer</h4>
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/2rcDKpr4WLqoyAZ7GDKkyJ/7cab96402de7ac5465b86e617da3da4e/osi_model_application_layer_7.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/2rcDKpr4WLqoyAZ7GDKkyJ/7cab96402de7ac5465b86e617da3da4e/osi_model_application_layer_7.png" max-width=100%>
 <p>응용 프로그램 계층은 사용자와 직접 상호작용하는 유일한 계층으로, 사용자가 네트워크에 접근하고 데이터를 주고받을 수 있는 인터페이스를 제공한다. 이는 웹 브라우저, 이메일 클라이언트, 파일 전송 애플리케이션 등 다양한 형태로 구현된다.</p>
 <p>주의해야 할 점은 클라이언트 소프트웨어 애플리케이션과 응용 프로그램(애플리케이션) 계층은 다른 개념이라는 것이다. 실제 소프트웨어 애플리케이션은 사용자가 직접 상호작용하는 도구(웹 브라우저, 이메일 클라이언트 등의 인터페이스)이고, 애플리케이션 계층은 클라이언트 애플리케이션이 통신을 수행할 수 있도록 지원하는 네트워크 계층이다.</p>
 <p>응용 프로그램 프로토콜에는 HTTP, SMTP, DNS, FTP 등이 존재한다.</p>
 <br>
 <h4 id="계층-6--프레젠테이션-계층--the-presetation-layer">계층 [6] : 프레젠테이션 계층 : The Presetation Layer</h4>
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/19L86neKKT8srUkOSe4rf7/ff4c91c94a1790651df7b48433913f59/osi_model_presentation_layer_6.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/19L86neKKT8srUkOSe4rf7/ff4c91c94a1790651df7b48433913f59/osi_model_presentation_layer_6.png" max-width=100%>
 <p>프레젠테이션 계층은 응용 프로그램 계층과 직접 상호작용하며, 응용 프로그램이 데이터를 올바르게 해석하고 표시할 수 있도록 데이터를 준비하는 역할을 수행한다.</p>
 <p>프레젠테이션 계층은 <strong>데이터의 변환</strong>을 통해 송신자와 수신자가 서로 다른 데이터 형식을 사용하더라도 통신이 가능하게 한다. 예를 들어 텍스트 데이터를 <code>ASCII</code>에서 <code>Unicode</code>로 변환하거나 그 반대를 수행한다.</p>
 <p>장치가 암호화된 연결을 통해 통신하는 경우, 송신 측에서 데이터를 <strong>암호화</strong>하고 수신 측에서 <strong>복호화</strong>하는 과정을 통해 데이터가 안전하게 전송될 수 있게 한다.</p>
 <p>또한 응용 프로그램 계층(7)에서 수신한 데이터를 다음 세션 계층(5)으로 전송하기 전에 압축하는 일도 담당한다. 전송하는 데이터양을 줄임으로써 통신의 속도와 효율이 높아진다.</p>
 <br>
 <h4 id="계층-5--세션-계층--the-session-layer">계층 [5] : 세션 계층 : The Session Layer</h4>
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/29mRrgK22AqJVlg2MMlD86/34d8f4071b6cc0d3b03c93f55e4d89b7/osi_model_session_layer_5.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/29mRrgK22AqJVlg2MMlD86/34d8f4071b6cc0d3b03c93f55e4d89b7/osi_model_session_layer_5.png" max-width=100%>
 <p>세션 계층은 통신 세션의 설정, 관리 그리고 종료를 담당한다. 이때 통신이 시작될 때부터 종료될 때까지의 시간을 세션이라고 하며, 세션 계층은 교환되고 있는 모든 데이터를 전송할 수 있도록 충분히 오랫동안 세션을 개방한 다음 리소스를 낭비하지 않기 위해 세션을 즉시 닫을 수 있게 한다. 즉, 송신자와 수신자 간의 대화를 관리하고 데이터 교환이 원활하게 이루어질 수 있도록 돕는 역할을 수행한다.</p>
 <p>세션 계층은 데이터 전송 과정에서 체크포인트를 사용한다. 예를 들어 100mb의 파일이 전송되는 경우 세션 계층이 5mb 체크포인트를 설정할 수 있다. 이때 62mb가 전송된 후 연결이 끊어지거나 충돌이 발생하면 마지막 체크 포인트에서 세션을 재개할 수 있다. 즉, 40mb의 데이터만 더 전송하면 된다.</p>
 <p>세션 계층은 세션 ID를 통해 각 세션을 고유하게 식별하며 추적하고 관리한다.</p>
 <p>세션 프로토콜에는 RPC, PPTP 등이 존재한다.</p>
 <br>
 <h4 id="계층-4--전송-계층--transport-layer">계층 [4] : 전송 계층 : Transport Layer</h4>
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3OlO75NcADGL3SmEADFDqd/723b8c7639c4e2e6b4febcbe7fd36e0e/osi_model_transport_layer_4.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3OlO75NcADGL3SmEADFDqd/723b8c7639c4e2e6b4febcbe7fd36e0e/osi_model_transport_layer_4.png" max-width=100%>
 <p>전송 계층은 두 기기 간의 종단 간 통신을 담당하며, 데이터를 가져와 <strong>세그먼트</strong>라는 조각으로 분할하는 역할을 수행한다. 이를 통해 <strong>신뢰성 있는 전송</strong>을 보장하는 것에 중점을 둔다. 또한 전송 계층은 컴퓨터 내부에서 논리적으로 구축되는 통신 당사자인 프로세스 사이의 통신 문제를 다룬다. 예를 들면 통화자 사이에 통화 연결을 설정하는 역할을 하는 것! 전송 계층 하위에 있는 물리 / 데이터 링크 / 네트워크 계층은 전송계층의 연결을 설정하고 어떻게 활용할지 다루는 것  뿐이다.</p>
 <p>전송 계층은 흐름제어 및 오류 제어 기능의 역할도 수행하지만, 네트워크 간 통신에 대해서만 작동한다.</p>
 <p>전송 계층 프로토콜에는 TCP(전송 제어 프로토콜), UDP(사용자 데이터그램 프로토콜)이 존재한다.</p>
 <br>
 <h4 id="계층-3--네트워크-계층--the-network-layer">계층 [3] : 네트워크 계층 : The Network Layer</h4>
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3g2Hv0frHsql5SFauJL5EG/d8cede7b6a780e63413bd86de9eee7f9/osi_model_network_layer_3.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3g2Hv0frHsql5SFauJL5EG/d8cede7b6a780e63413bd86de9eee7f9/osi_model_network_layer_3.png" max-width=100%>
 <p>네트워크 계층은 서로 다른 두 네트워크 간 데이터 전송을 용이하게 하며 라우팅, IP 주소 관리, 패킷 포워딩 등의 기능을 수행한다. 이때 서로 통신하는 두 장치가 동일한 네트워크에 있는 경우에는 네트워크 계층이 필요하지 않음!</p>
 <p>네트워크 계층의 중요한 기능 중 하나는 <strong>라우팅</strong>이다. <strong>라우팅</strong>은 데이터 패킷이 출발지에서 목적지까지 가는 최적의 물리적 경로를 결정하는 과정으로, 네트워크 계층은 여러 네트워크를 통과하는 경로를 설정하며 각 패킷을 올바른 경로로 전달한다.</p>
 <p>네트워크 계층은 데이터를 패킷 단위로 처리한다. 패킷은 목적지 IP 주소를 포함하고 있으며, 이를 기반으로 데이터를 목적지까지 포워딩(전달)한다.</p>
 <p>네트워크 계층 프로토콜에는 IP, ICMP, IGMP, 그리고 장비로는 라우터 등이 존재한다.</p>
 <br>
 <h4 id="계층-2--데이터-연결-계층--the-data-link-layer">계층 [2] : 데이터 연결 계층 : The Data Link Layer</h4>
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3TLHavXiotb9ayyZFKECf3/9456d1c431cd71ceea7f4b407f076f11/data_link_layer_osi_model.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3TLHavXiotb9ayyZFKECf3/9456d1c431cd71ceea7f4b407f076f11/data_link_layer_osi_model.png" max-width=100%>
 <p>상위 계층에서 전달받은 데이터를 받아 Frame(물리 계층을 통해 전송할 수 있는 데이터 패킷)으로 나누고, 각 프레임에는 시작과 끝을 알리는 특정 비트 패턴과 제어 정보를 포함하여 데이터의 구분/무결성을 유지한다. 주로 CRC(Cyclic Redundancy Chec : 패리티 비트 또는 체크섬 방식 등)을 사용한다.</p>
 <p>프레임을 전송할 때 각 네트워크 인터페이스에 할당된 고유의 물리적 주소인 MAC 주소를 사용한다.</p>
 <p>데이터 연결 계층은 또한 인트라 네트워크 통신에서 <strong>흐름 제어</strong> 및 <strong>오류 제어</strong>를 담당한다. <strong>오류 제어</strong>에서 오류 검출 기능은 수행하지만, 오류 수정은 또 다른 문제&hellip; 발견된 오류는 상위 계층에서 수정되거나 재전송을 요구할 수 있다. <strong>흐름 제어</strong>를 통해 송신자와 수신자의 데이터 처리 속도가 다를 경우 문제를 제어하며 결과적으로 데이터가 수신자에게 너무 빠르게 전달되어 버퍼 오퍼플로우가 발생하는 것을 막는다.</p>
@@ -249,7 +249,7 @@
 <p>네트워크 인터페이스 카드, 스위치, 브리지 등이 존재한다.</p>
 <br>
 <h4 id="계층-1--물리-계층--the-physical-layer">계층 [1] : 물리 계층 : The physical layer</h4>
-<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/1HQ1W5P4XAinIdM37DTu4U/900ccdceda346baf03ce8b9f977d2974/osi_model_physical_layer_1.png" width="600">
+<img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/1HQ1W5P4XAinIdM37DTu4U/900ccdceda346baf03ce8b9f977d2974/osi_model_physical_layer_1.png" max-width=100%>
 <p>상위 계층에서 전달된 데이터를 물리적 매체를 통해 전송할 수 있는 형태(Bit 형태)로 변환하여 전송한다. 즉, 데이터를 비트 스트림으로 나누어 전송하고, 수신 측에서 다시 원래 데이터로 재조립하는 것!</p>
 <p>단순히 데이터를 전달하는 역할만 수행하며, 내용은 관여하지 않는다. 에러 검출이나 신뢰성에 대해 무관심하고 알 수도 없다.</p>
 <p>네트워크 어댑터, 리피터와 허브, 케이블, 커넥터 등이 존재한다.</p>
@@ -287,7 +287,7 @@ TCP/IP란 TCP 및 IP라 불리는 프로토콜을 중심으로 구성되는 일�
 <p>IP는 Internet Protocol로 TCP/IP 모델의 인터넷 계층(3)에서 사용되는 프로토콜이다. 네트워크에 존재하는 각 장비들을 식별하기 위한 논리주소이며 모든 장비는 IP 주소를 통해 출발지와 목적지를 식별하여 패킷을 주고받는다. 현재 IP 주소는 주로 IPv4와 IPv6 두 가지 버전이 사용된다.</p>
 <p>인터넷의 성장에 따라 IPv4에 할당할 수 있는 주소 공간이 부족해지자 더 넓은 주소 공간을 제공하는 IPv6가 도입되었다.</p>
 <h4 id="ipv4">IPv4</h4>
-<img src="https://i.imgur.com/X1c2YZn.png" width="600">
+<img src="https://i.imgur.com/X1c2YZn.png" max-width=100%>
 <p>IPv4 주소는 32비트 길이로 구성되며 이 비트는 이론상 2^32개의 고유한 주소를 만들 수 있다. 클래스 기반의 IP 주소체계인 클래스 풀에 따르면 IPv4 주소는 A, B, C, D, E 클래스로 나뉜다. 현재는 클래스 개념 없이 사용하긴 한다. (Classes)</p>
 <details>
 <summary>Classes 구분</summary>
@@ -326,7 +326,7 @@ TCP/IP란 TCP 및 IP라 불리는 프로토콜을 중심으로 구성되는 일�
 </ul>
 <br>
 <h4 id="ipv6">IPv6</h4>
-<img src="https://i.imgur.com/Fc3YAgp.png" width="600">
+<img src="https://i.imgur.com/Fc3YAgp.png" max-width=100%>
 <p>IPv6 주소는 128비트 길이로 구성되며 2^128개의 고유한 주소를 만들 수 있다. IPv6는 기본적으로 더 많은 주소 공간을 제공하며, IPsec을 통해 보안을 기본적으로 통합하고 호스트가 네트워크에 연결되었을 때 자동으로 주소를 구성할 수 있도록 설계되었다.</p>
 <p>IPv6 주소는 총 8개의 16비트 블록으로 나뉘는데, 각 Octet은 8비트로 구성된다.</p>
 <ul>
@@ -410,7 +410,7 @@ TCP/IP란 TCP 및 IP라 불리는 프로토콜을 중심으로 구성되는 일�
 <details>
 <summary>LEVEL_01</summary>
 <div markdown="1">
-<img src="https://i.imgur.com/dlxEmX1.png" width="600">
+<img src="https://i.imgur.com/dlxEmX1.png" max-width=100%>
 <p><strong>client A</strong> 와 <strong>client B</strong>를 연결해보자. 서브넷 마스크 <code>255.255.255.0</code>는 CIDR 표기법으로 <code>/24</code>와 동일하다. 즉 네트워크를 표현하기위해 왼쪽부터 24자리, 나머지 8자리는 호스트를 표현하기 위해 사용한다는 의미이다.</p>
 <p>IP 주소와 서브넷 마스크를 AND 연산하여 네트워크 ID <code>104.94.23.0</code> 를 얻을 수 있다. 브로드캐스트 주소는 네트워크 ID에서 호스트 부분의 모든 비트를 1로 설정한 상태이므로 <code>104.94.23.255</code> 임을 알 수 있다.</p>
 <p>그렇다면 <strong>client A</strong> 의 IP 주소를 <code>104.94.23.1</code> ~ <code>104.94.23.254</code> 사이로 설정하면 해결! D와 C도 같은 방법으로 풀이하면 된다.</p>
@@ -420,7 +420,7 @@ TCP/IP란 TCP 및 IP라 불리는 프로토콜을 중심으로 구성되는 일�
 <details>
 <summary>LEVEL_02</summary>
 <div markdown="1">
-<img src="https://i.imgur.com/KU0QtmC.png" width="600">
+<img src="https://i.imgur.com/KU0QtmC.png" max-width=100%>
 <p><strong>client A</strong> 와 <strong>client B</strong>를 연결해보자. 우선 둘의 서브넷 마스크를 <code>255.255.255.224</code> 하나로 통일해주자. 서브넷 마스크 <code>255.255.255.224</code>는 CIDR 표기법으로 <code>/27</code>와 동일하다. 즉 네트워크를 표현하기위해 왼쪽부터 27자리, 나머지 5자리는 호스트를 표현하기 위해 사용한다는 의미이다.</p>
 <p>B의 IP 주소와 서브넷 마스크를 AND 연산하여 네트워크 ID <code>192.168.134.192</code> ()를 얻을 수 있다. 브로드캐스트 주소는 네트워크 ID에서 호스트 부분의 모든 비트를 1로 설정한 상태이므로 <code>104.94.23.223</code> 임을 알 수 있다.</p>
 <p><strong>네트워크 ID</strong></p>
@@ -438,7 +438,7 @@ TCP/IP란 TCP 및 IP라 불리는 프로토콜을 중심으로 구성되는 일�
 <details>
 <summary>LEVEL_03</summary>
 <div markdown="1">
-<img src="https://i.imgur.com/y97WZDM.png" width="600">
+<img src="https://i.imgur.com/y97WZDM.png" max-width=100%>
 <blockquote>
 <p>Goal 1 : Host A need to communicate with Host B
 Goal 2 : Host A need to communicate with Host C
@@ -453,7 +453,7 @@ Goal 3 : Host B need to communicate with Host C</p>
 <details>
 <summary>LEVEL_04</summary>
 <div markdown="1">
-<img src="https://i.imgur.com/rKWwPb1.png" width="600">
+<img src="https://i.imgur.com/rKWwPb1.png" max-width=100%>
 <blockquote>
 <p>Goal 1 : A nice host need to communicate with Another host
 Goal 2 : A nice host need to communicate with My_Gate
@@ -468,7 +468,7 @@ Goal 3 : Another host need to communicate with My_Gate</p>
 <details>
 <summary>LEVEL_05</summary>
 <div markdown="1">
-<img src="https://i.imgur.com/rQ3XDDw.png" width="600">
+<img src="https://i.imgur.com/rQ3XDDw.png" max-width=100%>
 <blockquote>
 <p>Goal 1 : Machine A need to communicate with The Mighty Router
 Goal 2 : Machine B need to communicate with The Mighty Router
@@ -483,7 +483,7 @@ Goal 3 : Machine A need to communicate with Machine B</p>
 <details>
 <summary>LEVEL_06</summary>
 <div markdown="1">
-<img src="https://i.imgur.com/sQYZYIk.png" width="600">
+<img src="https://i.imgur.com/sQYZYIk.png" max-width=100%>
 <blockquote>
 <p>Goal 1 : Interface A1 need to communicate with interface Somewhere on the Net</p>
 </blockquote>

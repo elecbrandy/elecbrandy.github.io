@@ -483,12 +483,12 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 <h3 id="4-2-철학자의-생사-조건">4-2. 철학자의 생사 조건</h3>
 <p>그렇다면 정확히 철학자의 생사 조건은 어떻게 될까? 아무리 노력해도, 어떤 철학자는 스파게티를 먹지 못해 죽을 수 있다. 죽을 수 밖에 없는 상황도 있을 것이다. 사용자가 논리적으로 철학자 시뮬레이션이 불가능한 값을 프로그램에 입력하면 철학자 시뮬레이션은 특정 시점에 종료되는 것이 정상이다. 줄글로 작성했으니 다시한번 차근 차근 <strong>인자부터 확인해보자.</strong></p>
 <p><strong>현재 우리는 이런 인자들을 받는다</strong>
-<img src="https://i.imgur.com/2TUoAKS.png" width="600"></p>
+<img src="https://i.imgur.com/2TUoAKS.png" max-width=100%></p>
 <p><strong>현재 시뮬레이션 상황는 이렇다</strong>
-<img src="https://i.imgur.com/DBDRFHb.png" width="600"></p>
+<img src="https://i.imgur.com/DBDRFHb.png" max-width=100%></p>
 <p><strong>이때, 철학자의 수가 짝수인 경우는&hellip;</strong><br>
 최소한의 조건이 이렇다. -&gt; <code>lifetime &gt;= (먹는 시간 * 2)</code></p>
-<img src="https://i.imgur.com/T5Ga9yk.png" width="600">
+<img src="https://i.imgur.com/T5Ga9yk.png" max-width=100%>
 <p><strong>왜 lifetime이 (먹는 시간 * 2) 보다 커야 할까?</strong><br>
 철학자들을 짝수/홀수로 나누어 번갈아 식사하게 하면, 동시에 포크 충돌이 줄어든다. 예를 들어 짝수 철학자들이 먼저, 그다음 홀수 철학자들이 식사한다고 하자. 이렇게 되면 처음 식사한 철학자는 다음 식사까지 최소 두 번의 식사 차례를 기다려야 한다. 즉, <code>먹는 시간 × 2</code>만큼 기다려야 다시 식사 기회가 온다.</p>
 <p>그런데 철학자는 일정 시간 안에 식사하지 않으면 죽는다. 따라서 <strong>죽기까지의 시간(lifetime)</strong> 은 최소한 <code>먹는 시간 × 2</code> 보다 커야 한다. 또한, 어떤 철학자가 식사하려면 자신과 포크를 공유하는 이웃 철학자가 식사를 마쳐야 하므로, 실제로는 조금 더 긴 시간 여유가 필요할 수도 있다.</p>
@@ -496,13 +496,13 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 <br>
 <p><strong>그렇다면 철학자 수가 홀수인 경우는?</strong><br>
 최소한의 조건이 이렇다. -&gt; <code>lifetime &gt;= (먹는 시간 * 3)</code></p>
-<img src="https://i.imgur.com/BrIiuw2.png" width="600">
+<img src="https://i.imgur.com/BrIiuw2.png" max-width=100%>
 <p><strong>왜 lifetime이 (먹는 시간 * 3) 보다 커야 할까?</strong><br>
 철학자 수가 홀수일 경우, 동시에 식사할 수 있는 철학자 수는 최대 절반(N/2)이므로, 항상 한 명 이상은 대기해야 하는 상황이 발생한다. 예를 들어 5명의 철학자가 있다면, 한 번에 최대 2명만 식사할 수 있고 1명은 반드시 대기해야 한다.</p>
 <p>이 구조에서 어떤 철학자는 가장 늦게 식사 기회를 얻게 된다. 예를 들어, 한 철학자가 처음 식사 차례를 놓쳤다고 하면, 이웃 철학자가 식사하고, 다시 다른 철학자가 식사하고, 그제서야 자신의 차례가 돌아올 수 있다. 즉, 먹는 시간 × 3 정도의 시간을 기다려야 첫 식사를 할 수 있는 최악의 경우가 생길 수 있다.</p>
 <p>그런데 철학자는 일정 시간 안에 식사를 하지 않으면 죽는다. 따라서 죽기까지의 시간(lifetime) 은 최소한 먹는 시간 × 3보다 커야 한다. 여기에 포크 충돌이나 시스템 지연 등의 요소까지 고려하면, 실제로는 조금 더 긴 여유 시간이 필요할 수 있다.</p>
 <p>결론적으로, 철학자가 단 한 번이라도 식사할 기회를 얻고 생존하려면 lifetime ≥ 먹는 시간 × 3 + 여유 시간 조건이 반드시 충족되어야 한다.</p>
-<img src="https://i.imgur.com/LVq7gqE.png" width="600">
+<img src="https://i.imgur.com/LVq7gqE.png" max-width=100%>
 <br>
 <br>
 <h3 id="4-3-코드">4-3. 코드</h3>

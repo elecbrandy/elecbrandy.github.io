@@ -62,7 +62,7 @@
       <link>https://elecbrandy.github.io/tags/42seoul/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/42seoul/</guid>
-      <description>&lt;div style=&#34;display: flex; align-items: center; gap: 8px;&#34;&gt;&#xA;  &lt;span style=&#34;font-size: 16px; line-height: 1;&#34;&gt;💻&lt;/span&gt;&#xA;  &lt;img src=&#34;https://custom-icon-badges.demolab.com/badge/Seoul-black?logo=42_white&amp;logoColor=white&#34; &#xA;    alt=&#34;ssu&#34; &#xA;    height=&#34;20&#34; &#xA;    style=&#34;width: auto !important;&#34;&gt;&#xA;&lt;/div&gt;&#xA;프랑스 `42 école` 과정 기반 컴퓨터 학교 (서울 캠퍼스).  &#xA;&lt;p&gt;📚 &lt;strong&gt;커리큘럼&lt;/strong&gt; &lt;br&gt;&#xA;C, C++, UNIX, 알고리즘, 네트워크, OS 등.&lt;br&gt;&#xA;동료학습과 코드 피어리뷰를 기반으로 문제를 해결.&lt;/p&gt;&#xA;&lt;p&gt;🗓️ &lt;strong&gt;재학기간&lt;/strong&gt; &lt;br&gt;&#xA;&lt;code&gt;2023.10.04-2025.05.06&lt;/code&gt;&lt;/p&gt;&#xA;&lt;hr&gt;</description>
+      <description>&lt;div style=&#34;display: flex; align-items: center; gap: 8px;&#34;&gt;&#xA;  &lt;span style=&#34;font-size: 16px; line-height: 1;&#34;&gt;💻&lt;/span&gt;&#xA;  &lt;img src=&#34;https://custom-icon-badges.demolab.com/badge/Seoul-black?logo=42_white&amp;logoColor=white&#34; &#xA;    alt=&#34;ssu&#34; &#xA;    height=&#34;20&#34; &#xA;    style=&#34;width: auto !important;&#34;&gt;&#xA;&lt;/div&gt;&#xA;프랑스 42 école 과정 기반 컴퓨터 학교 (서울 캠퍼스).  &#xA;&lt;p&gt;📚 &lt;strong&gt;커리큘럼&lt;/strong&gt; &lt;br&gt;&#xA;C, C++, UNIX, 알고리즘, 네트워크, OS 등.&lt;br&gt;&#xA;동료학습과 코드 피어리뷰를 기반으로 문제를 해결.&lt;/p&gt;&#xA;&lt;p&gt;🗓️ &lt;strong&gt;재학기간&lt;/strong&gt; &lt;br&gt;&#xA;&lt;code&gt;2023.10.04-2025.05.06&lt;/code&gt;&lt;/p&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
       <title>docker</title>
@@ -84,6 +84,13 @@
       <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/c/</guid>
       <description>&lt;p&gt;&lt;em&gt;c programming language&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>algorithm</title>
+      <link>https://elecbrandy.github.io/tags/algorithm/</link>
+      <pubDate>Sat, 21 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/algorithm/</guid>
+      <description>&lt;p&gt;&lt;em&gt;algorithm&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
       <title>ui/ux</title>
