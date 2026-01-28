@@ -25,6 +25,7 @@ tags = ['ai','skala']
 
 <br>
 <br>
+<br>
 
 ## 2. DB의 진화
 
@@ -84,6 +85,7 @@ tags = ['ai','skala']
     - 복잡하고 추상적인 개념을 세밀하게 표현.
     - 그러나 차원이 너무 높아지면 ... 모든 벡터 간의 거리가 멀어져 유사도 판단이 어려워지는 **차원의 저주** 현상이 발생 가능
 
+<br>
 <br>
 <br>
 
@@ -156,6 +158,7 @@ COLUMNS (열 방향) -------------------------->
 
 <br>
 <br>
+<br>
 
 ## 4. Vector & Embedding
 
@@ -219,6 +222,7 @@ Embedding을 사람이 직접 관찰하고 그 의미를 파악하기는 어려�
 3. metadata 필터 또는 그냥 개발자가 개입해서 소팅을 하는 경우도 존재한다.
 4. 최종 검색 결과 반환
 
+<br>
 <br>
 <br>
 
@@ -332,6 +336,7 @@ _Recall은 진짜 정답이 후보군 안에 포함될 확률을 뜻하며, 현�
 
 <br>
 <br>
+<br>
 
 ## 6. VectorDB 종류
 
@@ -399,8 +404,10 @@ AI 서비스 개발 중 마주칠 수 있는 VectorDB에 대해서 정리해보�
 
 <br>
 <br>
+<br>
 
 {{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
+<br>
 <br>
 <br>

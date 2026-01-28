@@ -17,6 +17,7 @@ tags = ['hugo']
 
 <br>
 <br>
+<br>
 
 ## 2. `Github Action` 설정하기
 
@@ -124,9 +125,11 @@ jobs:
 
 <br>
 <br>
+<br>
 
 {{<series title="📚 /Hugo 블로그 만들기" series="hugo" >}}
 
+<br>
 <br>
 <br>
 

@@ -17,6 +17,7 @@ Hugo 테마는 종류도 정말 많고, 각 테마마다 지원하는 기능이 
 
 <br>
 <br>
+<br>
 
 ## 2. freshPink 지원 기능
 
@@ -158,6 +159,7 @@ items:
 
 <br>
 <br>
+<br>
 
 ## 3. 기타 기능
 
@@ -170,8 +172,10 @@ items:
 
 <br>
 <br>
+<br>
 
 {{<series title="📚 /Hugo 블로그 만들기" series="hugo" >}}
 
+<br>
 <br>
 <br>

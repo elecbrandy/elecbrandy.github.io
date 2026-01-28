@@ -18,6 +18,7 @@ tags = ['c', '42seoul']
 
 <br>
 <br>
+<br>
 
 ## 2. get_next_line 명세서
 
@@ -40,6 +41,7 @@ tags = ['c', '42seoul']
 	- 한 줄을 제대로 읽은 정상작동의 경우 읽은 라인을 반환한다.
 	- 비정상작동의 경우 `NULL`을 반환한다.
 
+<br>
 <br>
 <br>
 
@@ -84,6 +86,7 @@ void	ft_free(void **target)
 ```
 메모리 해제 후 포인터를 NULL로 설정함으로써, 포인터의 `Dangling Pointer` 상태(해제된 메모리를 가르키는 상태)를 방지한다. 또한 이 과정을 통해 이미 할당 해제된 메모리 주소에 다시 접근하는 것을 방지할 수 있다.
 
+<br>
 <br>
 <br>
 
@@ -138,6 +141,7 @@ char	*get_next_line(int fd)
 
 <br>
 <br>
+<br>
 
 ## 5. BONUS
 
@@ -173,6 +177,7 @@ char	*get_next_line(int fd)
 
 <br>
 <br>
+<br>
 
 ## 6. Evaluation
 
@@ -194,6 +199,7 @@ _2025.05 코드 리뷰 추가 삽입_
 
 <br>
 <br>
+<br>
 
 ## 7. Reference
 
@@ -201,5 +207,6 @@ _2025.05 코드 리뷰 추가 삽입_
 - https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html
 - https://code-lab1.tistory.com/65
 
+<br>
 <br>
 <br>

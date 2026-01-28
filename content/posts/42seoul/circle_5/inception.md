@@ -18,6 +18,7 @@ tags = ['docker', '42seoul']
 
 <br>
 <br>
+<br>
 
 ## 2. inception 명세서
 
@@ -62,6 +63,7 @@ tags = ['docker', '42seoul']
     - 인프라 진입점
         - 오직 nginx 컨테이너만 포트 433으로 외부 요청을 받아야 함
 
+<br>
 <br>
 <br>
 
@@ -191,6 +193,7 @@ TLS(Transport Layer Security)는 애플리케이션 계층과 전송 계층 
     - 최신 브라우저·라이브러리는 1.3을 기본 지원하므로, 호환성 이슈가 거의 없다.
     - 인증서·키는 **컨테이너 외부 볼륨**에 마운트해, 이미지 빌드 과정에 비밀 키가 섞이지 않게 한다.
 
+<br>
 <br>
 <br>
 
@@ -486,6 +489,7 @@ ENTRYPOINT ["/usr/bin/dumb-init", "--", "/usr/local/bin/entrypoint.sh"]
 
 <br>
 <br>
+<br>
 
 ## 5. Evaluation
 
@@ -507,6 +511,7 @@ _2025.05 코드 리뷰 추가 삽입_
 
 <br>
 <br>
+<br>
 
 ## 6. Reference
 
@@ -514,5 +519,6 @@ _2025.05 코드 리뷰 추가 삽입_
 - https://hub.docker.com/_/nginx
 - https://github.com/Xperaz/inception-42
 
+<br>
 <br>
 <br>

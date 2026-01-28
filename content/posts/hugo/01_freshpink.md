@@ -23,6 +23,7 @@ tags = ['hugo']
 
 <br>
 <br>
+<br>
 
 ## 2. 기본 정보
 
@@ -56,6 +57,7 @@ GitHub Pages는 GitHub 저장소에 있는 HTML, CSS, JS 파일 등의 정적 �
 
 <br>
 <br>
+<br>
 
 ## 4. freshPink 테마 살펴보기
 
@@ -71,6 +73,7 @@ GitHub Pages는 GitHub 저장소에 있는 HTML, CSS, JS 파일 등의 정적 �
 
 <br>
 <br>
+<br>
 
 ## 5. 설치 방법
 
@@ -83,6 +86,7 @@ GitHub Pages는 GitHub 저장소에 있는 HTML, CSS, JS 파일 등의 정적 �
   2. **배포** Github Action이 `public/` 내용을 **배포 브랜치**(`gh-pages`)에 푸시한다.
   3. **호스팅** GitHub Pages가 배포 브랜치의 정적 파일을 읽어 전 세계에 서비스한다.
 
+<br>
 <br>
 <br>
 
@@ -260,6 +264,7 @@ hugo mod tidy
 
 <br>
 <br>
+<br>
 
 ## 7. 마무리
 
@@ -269,9 +274,11 @@ hugo mod tidy
 
 <br>
 <br>
+<br>
 
 {{<series title="📚 /Hugo 블로그 만들기" series="hugo" >}}
 
+<br>
 <br>
 <br>
 

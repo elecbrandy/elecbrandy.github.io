@@ -16,6 +16,7 @@ LLM을 사용할때 명령을 어떻게 내리느냐에 따라서 결과가 많�
 
 <br>
 <br>
+<br>
 
 ## 2. LLM 핵심 파라미터
 
@@ -59,6 +60,7 @@ LLM을 사용할때 명령을 어떻게 내리느냐에 따라서 결과가 많�
 
 LLM 파라미터 조정은 결국 **확률의 제어** 이다. 과제의 성격이 정답이 하나로 정해진 수학 문제라면 `Temperature` 를 0으로 설정하여 엄밀함을 확보해야 하고, 사용자와의 자유로운 대화나 창작이 목적이라면 이를 높여 유연함을 부여해야 한다. 각 파라미터가 확률 분포에 미치는 영향을 정확히 이해할 때, 모델의 성능을 한계치까지 끌어낼 수 있다.
 
+<br>
 <br>
 <br>
 
@@ -110,6 +112,7 @@ function getUser(userId) {
 
 <br>
 <br>
+<br>
 
 ## 4. Shot
 
@@ -152,6 +155,7 @@ function getUser(userId) {
 결과: ~~
 ```
 
+<br>
 <br>
 <br>
 
@@ -205,6 +209,7 @@ _Gemini로 요약_
 
 <br>
 <br>
+<br>
 
 ## 6. Reference
 - SKALA
@@ -212,8 +217,10 @@ _Gemini로 요약_
 
 <br>
 <br>
+<br>
 
 {{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
+<br>
 <br>
 <br>

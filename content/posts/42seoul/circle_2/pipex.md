@@ -17,6 +17,7 @@ tags = ['c', '42seoul']
 
 <br>
 <br>
+<br>
 
 ## 2. pipex 명세서
 
@@ -36,6 +37,7 @@ tags = ['c', '42seoul']
 	- pipex : `./pipex here_doc LIMITER cmd cmd1 file`
 	- bash : `cmd << LIMITER | cmd1 >> file`
 
+<br>
 <br>
 <br>
 
@@ -142,6 +144,7 @@ yes | head -n 1
 
 <br>
 <br>
+<br>
 
 ## 4. Mandatory
 
@@ -236,6 +239,7 @@ static void	child_02(char **av, char **envp, t_data *data)
 
 <br>
 <br>
+<br>
 
 ## 5. Bonus
 
@@ -284,6 +288,7 @@ Bonus 부분에서는 다중 파이프를 구현해야한다. 두가지 선택�
 
 <br>
 <br>
+<br>
 
 ## 5. Evaluation
 
@@ -303,6 +308,7 @@ _2025.05 코드 리뷰 추가 삽입_
 
 <br>
 <br>
+<br>
 
 ## 6. Reference
 
@@ -312,5 +318,6 @@ _2025.05 코드 리뷰 추가 삽입_
 - https://www.youtube.com/watch?v=bKzonnwoR2I
 - https://www.youtube.com/watch?v=uHH7nHkgZ4w
 
+<br>
 <br>
 <br>

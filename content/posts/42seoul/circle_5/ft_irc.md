@@ -31,6 +31,7 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 
 <br>
 <br>
+<br>
 
 ## 2. ft_irc 명세서
 
@@ -62,6 +63,7 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
         - `o`: 운영자 권한 부여/박탈
         - `l`: 채널 인원 제한 설정/해체
 
+<br>
 <br>
 <br>
 
@@ -312,6 +314,7 @@ _과제 지침에 따르면 우리는 비동기+논블로킹을 구현해야한�
 
 <br>
 <br>
+<br>
 
 ## 4. Mandatory 
 
@@ -558,6 +561,7 @@ _fdsToRemove.clear();
 
 <br>
 <br>
+<br>
 
 ## 5. Evaluation
 
@@ -579,6 +583,7 @@ _2025.05 코드 리뷰 추가 삽입_
 
 <br>
 <br>
+<br>
 
 ## 6. Reference
 
@@ -586,5 +591,6 @@ _2025.05 코드 리뷰 추가 삽입_
 - https://www.rfc-editor.org/rfc/rfc2812
 - https://80000coding.oopy.io/1ac75b59-6930-4297-9c9d-7dec31eff19d
 
+<br>
 <br>
 <br>

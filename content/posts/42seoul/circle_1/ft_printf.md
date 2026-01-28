@@ -18,6 +18,7 @@ tags = ['c', '42seoul']
 
 <br>
 <br>
+<br>
 
 ## 2. ft_printf 명세서
 
@@ -43,6 +44,7 @@ tags = ['c', '42seoul']
 	- _Upon successful return, these functions return the number of characters printed (excluding the null byte used to end output to strings)._
 	- 성공적으로 반환되면, 이 함수들은 인쇄된 문자 수를 (출력을 끝내는 데 사용되는 널 바이트 제외) 문자열을 반환함
 
+<br>
 <br>
 <br>
 
@@ -146,6 +148,7 @@ void ft_putbase(unsigned int n, char *base, unsigned int number, int *cnt)
 
 <br>
 <br>
+<br>
 
 ## 5. Evaluation
 
@@ -167,6 +170,7 @@ ft_printf 과제는 정말 심혈을 기울여서 작업했고, 깔끔해보이�
 
 <br>
 <br>
+<br>
 
 ## 6. Reference
 
@@ -175,5 +179,6 @@ ft_printf 과제는 정말 심혈을 기울여서 작업했고, 깔끔해보이�
 - https://www.gnu.org/software/libc/manual/html_node/Argument-Macros.html
 - https://azrael.digipen.edu/~mmead/www/Courses/CS120/VariadicFunctions.html#STACKS
 
+<br>
 <br>
 <br>

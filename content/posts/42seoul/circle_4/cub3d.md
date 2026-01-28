@@ -19,6 +19,7 @@ tags = ['C', '42seoul']
 
 <br>
 <br>
+<br>
 
 ## 2. cub3D 명세서
 
@@ -35,6 +36,7 @@ tags = ['C', '42seoul']
         - 동적 스프라이트
         - 마우스를 통한 뷰 이동
 
+<br>
 <br>
 <br>
 
@@ -59,12 +61,14 @@ tags = ['C', '42seoul']
 
 <br>
 <br>
+<br>
 
 ## 4. Mandatory
 
 
 - _추후 추가_
 
+<br>
 <br>
 <br>
 
@@ -86,11 +90,13 @@ _2025.05 코드 리뷰 추가 삽입_
 
 <br>
 <br>
+<br>
 
 ## 6. Reference
 
 - [영어원문] https://lodev.org/cgtutor/raycasting.html
 - [번역본] https://github.com/365kim/raycasting_tutorial?tab=readme-ov-file
 
+<br>
 <br>
 <br>

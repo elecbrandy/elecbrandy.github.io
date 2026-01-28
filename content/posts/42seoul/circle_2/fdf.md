@@ -27,6 +27,7 @@ tags = ['C', '42seoul']
 
 <br>
 <br>
+<br>
 
 ## 2. fdf 명세서
 
@@ -43,6 +44,7 @@ tags = ['C', '42seoul']
 		- All functions of the MiniLibX
 		- ft_printf and any equivalent YOU coded
 
+<br>
 <br>
 <br>
 
@@ -66,6 +68,7 @@ tags = ['C', '42seoul']
 
 이러한 점들이 1자로 모이면 선, 선이 모이면 면이 그려지는 것이다. 그렇다면 어느 정도 함수를 어떻게 구성해야할지 느낌이 오는 것 같다. 우선 점을 찍고, 그 다음 점들을 모아 선을 만들고... 반복!
 
+<br>
 <br>
 <br>
 
@@ -146,6 +149,7 @@ minilibx 사용법은 42 슬랙이나 구글에 검색하면 각각의 함수 �
 
 <br>
 <br>
+<br>
 
 ## 5. Evaluation
 
@@ -170,6 +174,7 @@ _2025.05 코드 리뷰 추가 삽입_
 
 <br>
 <br>
+<br>
 
 ## 6. Reference
 _
@@ -177,5 +182,6 @@ _
 - https://harm-smits.github.io/42docs/libs/minilibx
 - https://love-every-moment.tistory.com/62
 
+<br>
 <br>
 <br>

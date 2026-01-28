@@ -13,12 +13,14 @@ tags = ['java','dev101']
 
 <br>
 <br>
+<br>
 
 ## 2. Gradle이란 무엇인가
 `Gradle` 은 단순히 make의 자바 버전을 넘어, 의존성 관리와 태스크 기반 라이프사이클이 결합된 고도화된 빌드 도구이다. `Makefile` 이 파일 간의 관계를 정의하여 빌드 명령어를 실행하는 방식이라면, `Gradle` 은 표준화된 빌드 라이프사이클을 내장하고 있어 의존성 다운로드부터 컴파일, 테스트, 패키징까지의 과정을 자동화한다.
 
 `Makefile` 에서는 특정 바이너리를 만들기 위해 컴파일러와 링크 과정을 개발자가 일일이 명시해야 한다. 반면 `Gradle` 은 자바 빌드에 필요한 표준 절차를 이미 알고 있다! 개발자는 `build.gradle` 파일에 필요한 라이브러리와 플러그인을 선언하기만 하면 된다.
 
+<br>
 <br>
 <br>
 
@@ -30,6 +32,7 @@ tags = ['java','dev101']
 2. **Configuration** :  build.gradle 파일을 실행하여 태스크들 간의 의존 관계를 나타내는 DAG를 생성한다.
 3. **Execution** : 선택한 태스크와 그에 의존하는 상위 태스크들을 실제 실행한다.
 
+<br>
 <br>
 <br>
 
@@ -73,6 +76,7 @@ gemini에게 `Makefile` 과 `Gradle` 의 비교를 위한 간단한 예시를 �
 
 <br>
 <br>
+<br>
 
 ## 5. 결론
 C++은 소스 파일 간의 복잡한 포함 관계(`#include`)로 인해 파일 단위 제어가 중요하지만, 자바는 패키지 구조와 클래스 경로 기반으로 동작한다. 따라서 대규모 프로젝트에서는 특정 폴더의 소스를 몽땅 읽어 처리하는 추상화된 태스크 방식이 훨씬 효율적이다. 글 작성을 위해 검색하는 과정에서 빌드 도구의 진화 과정에 따른 Makefile, Maven, Gradle과 관련된 다양한 글도 볼 수 있었다.
@@ -83,11 +87,13 @@ C++은 소스 파일 간의 복잡한 포함 관계(`#include`)로 인해 파일
 
 <br>
 <br>
+<br>
 
 ## 6. Reference
 - https://docs.gradle.org/current/userguide/build_lifecycle.html
 - https://velog.io/@leesomyoung/Maven%EA%B3%BC-Gradle%EC%9D%98-%EC%B0%A8%EC%9D%B4-%EB%B0%8F-%EB%B9%84%EA%B5%90
 - https://www.reddit.com/r/cpp_questions/comments/1en2eeh/why_is_cmake_so_hated_and_why_not_use_make_files/?tl=ko
 
+<br>
 <br>
 <br>

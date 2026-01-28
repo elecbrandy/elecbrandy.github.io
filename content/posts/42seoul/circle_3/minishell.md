@@ -24,6 +24,7 @@ shell의 내부 구현 (`fork`와 `execv`를 활용한 명령어 처리 등) 은
 
 <br>
 <br>
+<br>
 
 ## 2. minishell 명세서
 
@@ -73,6 +74,7 @@ shell의 내부 구현 (`fork`와 `execv`를 활용한 명령어 처리 등) 은
 
 <br>
 <br>
+<br>
 
 ## 3. 개념 정리
 
@@ -96,6 +98,7 @@ Shell에서 **built-in** 함수란 Shell 자체에 내장된 명령어 또는 �
 
 이 말은 즉슨, 해당 함수들은 환경변수 PATH가 변경되거나 망가지는 일이 있어도 정상적으로 동작해야한다는 점! 또한 Shell 자체에서 실행한다는 점을 곱씹으면, built-in 함수를 실행할 때는 fork를 사용할 필요 없다는 것도 알 수 있다.
 
+<br>
 <br>
 <br>
 
@@ -241,6 +244,7 @@ Shell에서 **built-in** 함수란 Shell 자체에 내장된 명령어 또는 �
 
 <br>
 <br>
+<br>
 
 ## 5. Evaluation
 
@@ -264,6 +268,7 @@ _2025.05 코드 리뷰 추가 삽입_
 
 <br>
 <br>
+<br>
 
 
 ## 6. Reference
@@ -273,5 +278,6 @@ _2025.05 코드 리뷰 추가 삽입_
 - https://millar-library99.tistory.com/21
 - https://tsi.kr/entry/Minishell-미니쉘-테스트-할만한거
 
+<br>
 <br>
 <br>

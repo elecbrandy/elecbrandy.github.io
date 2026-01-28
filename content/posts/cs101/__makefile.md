@@ -14,6 +14,7 @@ draft = true
 
 <br>
 <br>
+<br>
 
 ## 2. Makefile의 특징
 
@@ -34,6 +35,7 @@ draft = true
 - `dependency` : 하나의 대상과 그것이 의존하는 소스파일
 - `rule` : 의존 파일들로부터 대상 파일을 생성하는 방법을 정의
 
+<br>
 <br>
 <br>
 
@@ -94,6 +96,7 @@ NAME = a.out
 
 <br>
 <br>
+<br>
 
 ``` Makefile
 SRCS = \
@@ -104,6 +107,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 - `SRCS` 는 사용자가 설정한 `.c` 확장자 파일을 뜻하며, `SRCS` 에서 파생된 `.o` 파일을 `OBJS` 라고 정의함
 
+<br>
 <br>
 <br>
 
@@ -124,6 +128,7 @@ $(NAME) : $(OBJS)
 
 <br>
 <br>
+<br>
 
 ``` Makefile
 %.o: %.c
@@ -138,6 +143,7 @@ $(NAME) : $(OBJS)
 	- `-I$(INS)` : 컴파일러에게 include files의 위치를 알려줌
 		- 여기서 $(INS)는 include 디렉터리를 지정하는 변수!
 
+<br>
 <br>
 <br>
 
@@ -156,6 +162,7 @@ re : fclean all
 	- 실행 시 `clean` 이후 `rm -f $(NAME)` 를 이행함
 - `re` 의 경우 `fclean` 이후  `all` 을 이행함
 
+<br>
 <br>
 <br>
 

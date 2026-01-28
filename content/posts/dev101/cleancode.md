@@ -22,6 +22,7 @@ AI에게 먹히지 않는
 
 <br>
 <br>
+<br>
 
 ## 2. Clean Code
 
@@ -68,6 +69,7 @@ Breaks $browser.onHashChange, which was removed (use onUrlChange instead)
 - 기존 버전과 호환되지 않는 변경인 경우 필수 명시
 - 또는 해당 커밋으로 닫히는 이슈가 있을 경우 나열
 
+<br>
 <br>
 <br>
 
@@ -368,6 +370,7 @@ The removed `inject` wasn't generaly useful for directives so there should be no
 </div>
 </details>
 
+<br>
 <br>
 <br>
 

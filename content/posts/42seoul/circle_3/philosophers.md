@@ -23,6 +23,7 @@ tags = ['c', '42seoul']
 
 <br>
 <br>
+<br>
 
 ## 2. philosopher 명세서
 
@@ -97,6 +98,7 @@ _상황이 복잡하므로, 다시 한번 정리해보자_
 ‼️ **프로세스와 스레드에 대한 기본적인 이해가 있고, 바로 과제에 대한 정보를 얻고 싶다면?** ‼️   
 [_철학자를살리러너만오면GO_](#custom-id)   (<< click!!!) 
 
+<br>
 <br>
 <br>
 
@@ -232,6 +234,7 @@ _당신이 카페에 있습니다. 이 카페에는 3개의 테이블이 있습�
 
 <br>
 <br>
+<br>
 
 ## 4. Mandatory
 
@@ -296,6 +299,7 @@ _이러한 문제들을 해결하기 위한 일반적인 방법은 다음과 같
 
 <img src="https://i.imgur.com/LVq7gqE.png" max-width=100%>
 
+<br>
 <br>
 <br>
 
@@ -432,6 +436,7 @@ void *philo_routine(void *arg)
 
 <br>
 <br>
+<br>
 
 ## 5. Evaluation
 
@@ -455,6 +460,7 @@ _2025.05 코드 리뷰 추가 삽입_
 
 <br>
 <br>
+<br>
 
 ## 6. Reference
 
@@ -463,5 +469,6 @@ _2025.05 코드 리뷰 추가 삽입_
 - https://code-lab1.tistory.com/65
 - https://thebook.io/080367/0021/
 
+<br>
 <br>
 <br>

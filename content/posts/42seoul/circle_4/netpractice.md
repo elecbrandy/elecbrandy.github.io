@@ -17,6 +17,7 @@ tags = ['C', '42seoul']
 
 <br>
 <br>
+<br>
 
 ## 2. 개념 정리
 
@@ -56,6 +57,7 @@ tags = ['C', '42seoul']
 #### 서브넷 마스크
 서브넷 마스크는 IP주소를 네트워크 부분과 호스트부분으로 구분하는데 사용한다. 서브넷 마스크를 통해 비로소 네트워크를 더 작은 서브넷으로 나눌 수 있다.
 
+<br>
 <br>
 <br>
 
@@ -153,6 +155,7 @@ OSI(Open Systems Interconnection) 모델은 네트워크 통신을 계층적으�
 
 <br>
 <br>
+<br>
 
 ### 2-3. TCP/IP 모델
 <img src = "https://i.imgur.com/1ARBFjM.png" width = "600">
@@ -192,6 +195,7 @@ TCP/IP 모델은 OSI 모델과 유사하게 네트워크 통신을 계층화하�
 
 주요 프로토콜에는 이더넷, Wi-Fi, PPP(Point-to-Point Protocol), ARP 등이 존재한다. 예를 들면, 이더넷 케이블을 통해 컴퓨터와 라우터가 연결될 때, 이 계층에서 데이터가 전기 신호로 변환되어 전송된다. Wi-Fi를 통해 무선으로 데이터가 전송될 때도 이 계층이 작동한다.
 
+<br>
 <br>
 <br>
 
@@ -248,6 +252,7 @@ IPv6 주소는 총 8개의 16비트 블록으로 나뉘는데, 각 Octet은 8비
 - 중간 블록 : 서브넷 ID 또는 서브넷 구분
 - 마지막 블록 : 인터페이스 식별자로, 해당 서브넷 내 특정 장치 식별
 
+<br>
 <br>
 <br>
 
@@ -419,6 +424,7 @@ LEVEL 06 부터 인터넷이 등장한다. 라우터와 A를 연결하자. R1과
 
 <br>
 <br>
+<br>
 
 ## 4. Reference
 
@@ -429,5 +435,6 @@ LEVEL 06 부터 인터넷이 등장한다. 라우터와 A를 연결하자. R1과
 - https://nordvpn.com/ko/blog/what-is-subnet-mask/
 - https://80000coding.oopy.io/17d8f803-479c-4e67-ab77-0be44da1e6d4
 
+<br>
 <br>
 <br>

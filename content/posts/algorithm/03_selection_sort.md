@@ -1,6 +1,6 @@
 +++
 title = 'Selection Sort'
-date = 2024-09-21
+date = 2024-10-01
 featured_image = "https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_shaker_sort_anim.gif"
 tags = ['algorithm']
 +++
@@ -11,7 +11,7 @@ tags = ['algorithm']
 
 ## 1. Selection sort
 
-<img src="https://i.imgur.com/YJvMRgL.png" max-width=100%>
+<img src="https://i.imgur.com/KQKTuh4.png" max-width=100%>
 
 `Selection sort` 는 배열에서 가장 작은(또는 가장 큰) 요소를 찾아서 순서대로 정렬해 나가는 단순한 정렬 알고리즘이다.
 배열을 처리할 때, 정렬되지 않은 부분에서 최소값을 찾아 정렬된 부분의 끝에 위치시킴으로써 정렬을 확장해 나간다.
@@ -20,6 +20,7 @@ tags = ['algorithm']
 - **첫 번째 루프**는 배열의 모든 요소를 차례로 선택하는 루프로, 인덱스 0부터 배열의 끝(n-1)까지 반복된다.
 - **두 번째 루프**는 현재 선택된 인덱스부터 배열의 끝까지 탐색하여 최소값의 인덱스를 찾는 과정이다.
 
+<br>
 <br>
 <br>
 
@@ -76,6 +77,7 @@ for (int i = 0; i < N - 1; i++)
 	- 내부 루프가 끝난 후, 현재 위치 `i`에 최소값을 가진 요소를 배치하기 위해 `arr[i]`와 `arr[minIndex]`를 교환한다.
 	- 만약 `minIndex`가 `i`와 같다면 이미 올바른 위치에 있으므로 교환은 의미가 없다.
 
+<br>
 <br>
 <br>
 
@@ -142,6 +144,7 @@ for (int i = 0; i < N - 1; i++)
 - 따라서 알고리즘이 종료된 후 배열 A[0...N-1]은 정렬되어 있다.
 - 또한 알고리즘이 유한한 단계 내에 종료하므로, 알고리즘은 정확하게 동작한다.
 
+<br>
 <br>
 <br>
 
@@ -227,10 +230,18 @@ $$
 
 <br>
 <br>
+<br>
 
 ## 5. 결론
 
 `Selection sort`는 구현이 간단하고 직관적인 정렬 알고리즘이지만, 시간 복잡도가 $O(N^2)$로 효율적이지 않다. 데이터의 크기가 작거나 메모리 공간이 제한적인 경우에만 사용이 권장된다. 이 알고리즘은 배열의 상태와 관계없이 항상 동일한 비교 횟수를 수행하므로, Best Case와 Worst Case의 시간 복잡도가 동일하다는 특징이 있다.
 
+<br>
+<br>
+<br>
+
+{{<series title="📚 /algorithm 시리즈" series="algorithm">}}
+
+<br>
 <br>
 <br>

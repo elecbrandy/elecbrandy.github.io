@@ -1,9 +1,8 @@
 +++
-title = '[알고리즘] Insertion Sort'
-date = 2024-09-21
+title = 'Insertion Sort'
+date = 2024-10-02
 featured_image = "https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_shaker_sort_anim.gif"
-tags = ['algorithm', 'sorting']
-draft = true
+tags = ['algorithm']
 +++
 
 {{<series title="📚 /algorithm" series="algorithm">}}
@@ -11,9 +10,8 @@ draft = true
 <br>
 
 ## 1. Insertion sort
-____
 
-<img src="https://i.imgur.com/sW8twRl.png" width="700">
+<img src="https://i.imgur.com/RDQhEhc.png" max-width=100%>
 
 `Insertion sort`(삽입 정렬)는 말 그대로 정렬된 배열에 새로운 요소를 삽입하여 정렬을 확장해 나가는 알고리즘이다. 배열을 처리할 때, 전체 배열 중 왼쪽 부분은 이미 정렬된 상태이고, 오른쪽 부분은 아직 정렬되지 않은 상태로 남아 있다. 삽입 정렬은 이 정렬되지 않은 부분에서 하나씩 요소를 가져와서, 정렬된 배열의 어느 위치에 삽입해야 할지 결정하는 방식으로 동작한다.
 
@@ -23,9 +21,10 @@ ____
 
 <br>
 <br>
+<br>
 
 ## 2. 구현 분석
-____
+
 
 ``` C++
 void insertionSort(int *arr, int N) {
@@ -84,9 +83,10 @@ for (int i = 1; i < N; i++)
 
 <br>
 <br>
+<br>
 
 ## 3. 정확성 분석
-____
+
 `Insertion sort`은 결국 리스트를 순차적으로 하나씩 살펴보며, 현재 요소를 이미 정렬된 부분에 알맞은 위치에 삽입하여 전체 리스트를 정렬하는 알고리즘이다. 예를 들어, 카드 게임에서 손에 카드를 한 장씩 추가하면서 이미 정렬된 손에 새로운 카드를 올바른 위치에 끼워 넣는 과정과 같다. 이제 귀납법을 통해 `Insertion sort` 알고리즘이 항상 입력된 리스트를 올바르게 정렬하는지 그 **정확성** 을 증명해보자.
 
 <br>
@@ -152,9 +152,10 @@ P(k)가 참일 때, P(k+1)도 참이라는 것은 곧 `A[0...k]`이 정렬되어
 
 <br>
 <br>
+<br>
 
 ## 4. 효율성 분석
-____
+
 
 ### 4-1. Best Case
 선택정렬에서 Best Case는 결국 이미 정렬이 된 배열이 Input으로 들어왔을 경우이다.
@@ -242,12 +243,20 @@ $$
 
 <br>
 <br>
+<br>
 
 ## 5. Reference
-____
+
 - https://www.geeksforgeeks.org/insertion-sort-algorithm/
 - https://medium.com/humanscape-tech/코드의-시간-복잡도-계산하기-b67dd8625966
 - https://elecbrandy.github.io/posts/cs101/algorithm/bigo/
 
+<br>
+<br>
+<br>
+
+{{<series title="📚 /algorithm" series="algorithm">}}
+
+<br>
 <br>
 <br>

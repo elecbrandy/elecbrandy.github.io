@@ -26,6 +26,7 @@ draft = true
 
 <br>
 <br>
+<br>
 
 ## 2. Seogo-Scraper
 
@@ -42,6 +43,7 @@ draft = true
 **Seogo-Scrpaer**는 대규모 전자도서관 데이터를 효율적으로 수집하기 위해 설계된 분산 웹스크래퍼 입니다.
 단일 프로세스의 성능 한계를 극복하기 위해 **Ray 아키텍처**를 도입하였으며, Docker 환경에서 실행 가능합니다.
 
+<br>
 <br>
 <br>
 
@@ -90,6 +92,7 @@ draft = true
 
 <br>
 <br>
+<br>
 
 ### ⚡ Key Decisions
 
@@ -107,6 +110,7 @@ draft = true
 
 <br>
 <br>
+<br>
 
 ### 🛠 Tech Stack
 
@@ -118,6 +122,7 @@ draft = true
 | **Database** | MySQL 8.0, aiomysql |
 | **Infrastructure** | Docker, Docker Compose |
 
+<br>
 <br>
 <br>
 
@@ -137,6 +142,7 @@ draft = true
 └── db                      # DB 스키마 및 초기화
 ```
 
+<br>
 <br>
 <br>
 
@@ -187,6 +193,7 @@ services:
 
 <br>
 <br>
+<br>
 
 ### 🚀 Quick Start
 
@@ -211,6 +218,7 @@ make logs
 make clean
 ```
 
+<br>
 <br>
 <br>
 
@@ -251,6 +259,7 @@ make clean
 
 <br>
 <br>
+<br>
 
 ## 3. 정리
     
@@ -280,5 +289,6 @@ make clean
 
 {{<series title="📚 서고: 전자책 검색 서비스" series="seogo">}}
 
+<br>
 <br>
 <br>

@@ -26,6 +26,7 @@ ____
 
 <br>
 <br>
+<br>
 
 ## 2. 복잡도
 ____
@@ -54,6 +55,7 @@ ____
 
 <br>
 <br>
+<br>
 
 ## 3. 점근적 접근 방법
 ____
@@ -62,11 +64,13 @@ ____
 
 <br>
 <br>
+<br>
 
 ## 4. 재귀적 접근 방법
 ____
 
 <a href="https://elecbrandy.github.io/tags/42cursus">  Recurrence Relation </a>
 
+<br>
 <br>
 <br>
