@@ -171,6 +171,7 @@
 <p>프롬프트 엔지니어링은 사용자의 의도를 인공지능이 이해할 수 있는 최적의 형태로 변환하는 기술이다. 단순히 질문을 던지는 것보다 모델이 사고할 수 있는 프레임워크를 제공할 때 답변의 일관성과 품질이 상승한다..! 아니 상승할 수 있는 가능성이 높아진다. RAG나 모델 튜닝 이전에 가장 적은 비용으로 효과를 볼수 있는 프롬프트 엔지니어링을 공부해보자.</p>
 <br>
 <br>
+<br>
 <h2 id="2-llm-핵심-파라미터">2. LLM 핵심 파라미터</h2>
 <p>대규모 언어 모델(LLM)을 활용할 때, 단순히 좋은 프롬프트를 작성하는 것만큼 중요한 것이 파라미터 설정이다. 동일한 입력값이라도 파라미터 설정에 따라 모델의 응답은 논리적이고 정교해질 수도, 혹은 창의적이고 자유로워질 수도 있다. 주요 파라미터인 Temperature, Top-K, Top-P 등이 모델의 텍스트 생성 메커니즘에 어떤 영향을 주는지 정리해보자.</p>
 <br>
@@ -200,6 +201,7 @@
 <br>
 <h2 id="2-5-llm-파라미터-요약">2-5. LLM 파라미터 요약</h2>
 <p>LLM 파라미터 조정은 결국 <strong>확률의 제어</strong> 이다. 과제의 성격이 정답이 하나로 정해진 수학 문제라면 <code>Temperature</code> 를 0으로 설정하여 엄밀함을 확보해야 하고, 사용자와의 자유로운 대화나 창작이 목적이라면 이를 높여 유연함을 부여해야 한다. 각 파라미터가 확률 분포에 미치는 영향을 정확히 이해할 때, 모델의 성능을 한계치까지 끌어낼 수 있다.</p>
+<br>
 <br>
 <br>
 <h2 id="3-rice">3. RICE</h2>
@@ -255,6 +257,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div><br>
 <br>
+<br>
 <h2 id="4-shot">4. Shot</h2>
 <p><code>RICE</code> 를 직접 활용해보면 알겠지만, 그냥 단도직입적으로 LLM에게 질의하는 것보다 조금 더 내가 원하는 정보와 응답을 받아내기 용이하다. 이때, 모델에게 제공하는 예시의 양에 따라 성능과 효율성이 달라짐을 어느정도 느낄 수 있을 것이다. 이제 RICE의 Example 요소를 좀 더 구체화한 <code>Shot</code> 기법에 대해서 알아보자.</p>
 <h3 id="4-1-zero-shot">4-1. Zero-shot</h3>
@@ -289,6 +292,7 @@
 </span></span><span style="display:flex;"><span>작업: <span style="color:#e6db74">&#34;로그인이 계속 실패하고 서버 에러 메시지가 뜹니다.&#34;</span>
 </span></span><span style="display:flex;"><span>결과: ~~
 </span></span></code></pre></div><br>
+<br>
 <br>
 <h2 id="5-아주아주-간단한-논문-리뷰">5. 아주아주 간단한 논문 리뷰</h2>
 <p><em>Gemini로 요약</em></p>
@@ -341,11 +345,13 @@
 </ul>
 <br>
 <br>
+<br>
 <h2 id="6-reference">6. Reference</h2>
 <ul>
 <li>SKALA</li>
 <li><a href="https://www.samsungsds.com/kr/insights/prompt-engineering.html">https://www.samsungsds.com/kr/insights/prompt-engineering.html</a></li>
 </ul>
+<br>
 <br>
 <br>
 <div class="series">
@@ -365,6 +371,7 @@
   </details>
 </div>
 
+<br>
 <br>
 <br>
 

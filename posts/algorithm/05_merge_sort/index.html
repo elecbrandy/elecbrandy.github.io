@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Merge Sort | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.9b52840ff847d49a3f3379e089850a370dbfdffb41226dfaeda079f69691a88c.css" 
+      integrity="sha256-m1KED/hH1Jo/M3ngiYUKNw2/3/tBIm367aB59paRqIw="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-merge-sort">1. Merge Sort</a></li>
+    <li><a href="#2-구현-분석">2. 구현 분석</a>
+      <ul>
+        <li><a href="#2-1-구현">2-1. 구현</a></li>
+        <li><a href="#2-2-mergesort">2-2. mergeSort</a></li>
+        <li><a href="#2-3-merge">2-3. merge</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-정확성-분석">3. 정확성 분석</a>
+      <ul>
+        <li><a href="#3-1-명제-설정">3-1. 명제 설정</a></li>
+        <li><a href="#3-2-귀납적-증명의-구성-요소">3-2. 귀납적 증명의 구성 요소</a></li>
+        <li><a href="#3-3-귀납적-증명">3-3. 귀납적 증명</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-효율성-분석">4. 효율성 분석</a>
+      <ul>
+        <li><a href="#4-1-시간-복잡도">4-1. 시간 복잡도</a></li>
+        <li><a href="#4-2-공간-복잡도">4-2. 공간 복잡도</a></li>
+        <li><a href="#4-3-best-average-worst-case">4-3. Best, Average, Worst Case</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-결론">5. 결론</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_shaker_sort_anim.gif" alt="Featured Image for Merge Sort">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2024.10.04</small>
+      <div class="singleTitle">Merge Sort</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>📚 /algorithm</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/algorithm/00_selection_sort/">0. Selection Sort</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-merge-sort">1. Merge Sort</h2>
+<img src="https://i.imgur.com/jRBle47.png" max-width=100%>
+<p><code>병합 정렬</code>은 분할 정복(Divide and Conquer) 알고리즘의 한 종류로, 데이터를 작은 부분으로 분할하고, 정렬된 부분을 병합하여 전체 데이터를 정렬하는 방식으로 동작한다. 이 알고리즘은 리스트를 반으로 나누어 재귀적으로 각 부분 리스트를 정렬한 후, 정렬된 부분 리스트들을 합쳐서 전체 리스트를 정렬한다.</p>
+<ul>
+<li>병합 정렬은 다음과 같은 단계로 이루어진다.
+<ul>
+<li><strong>분할(Divide):</strong> 리스트를 중간 지점에서 두 부분으로 분할</li>
+<li><strong>정복(Conquer):</strong> 각 부분 리스트를 재귀적으로 병합 정렬을 이용하여 정렬</li>
+<li><strong>병합(Combine):</strong> 두 개의 정렬된 부분 리스트를 하나의 정렬된 리스트로 병합</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="2-구현-분석">2. 구현 분석</h2>
+<h3 id="2-1-구현">2-1. 구현</h3>
+<details>
+<summary>MergeSort Code</summary>
+<div markdown="1">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mergeSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (left <span style="color:#f92672">&lt;</span> right) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> left <span style="color:#f92672">+</span> (right <span style="color:#f92672">-</span> left) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		mergeSort(arr, left, mid);
+</span></span><span style="display:flex;"><span>		mergeSort(arr, mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, right);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		merge(arr, left, mid, right);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">merge</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> mid, <span style="color:#66d9ef">int</span> right) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> i, j, k;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> left_len <span style="color:#f92672">=</span> mid <span style="color:#f92672">-</span> left <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> right_len <span style="color:#f92672">=</span> right <span style="color:#f92672">-</span> mid;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> L[left_len], R[right_len];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> left_len; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		L[i] <span style="color:#f92672">=</span> arr[left <span style="color:#f92672">+</span> i];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> right_len; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		R[j] <span style="color:#f92672">=</span> arr[m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> j];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	k <span style="color:#f92672">=</span> left;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> left_len <span style="color:#f92672">&amp;&amp;</span> j <span style="color:#f92672">&lt;</span> right_len) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (L[i] <span style="color:#f92672">&lt;=</span> R[j]) {
+</span></span><span style="display:flex;"><span>			arr[k] <span style="color:#f92672">=</span> L[i];
+</span></span><span style="display:flex;"><span>			i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>		} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>			arr[k] <span style="color:#f92672">=</span> R[j];
+</span></span><span style="display:flex;"><span>			j<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		k<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> left_len) {
+</span></span><span style="display:flex;"><span>		arr[k] <span style="color:#f92672">=</span> L[i];
+</span></span><span style="display:flex;"><span>		i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>		k<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (j <span style="color:#f92672">&lt;</span> right_len) {
+</span></span><span style="display:flex;"><span>		arr[k] <span style="color:#f92672">=</span> R[j];
+</span></span><span style="display:flex;"><span>		j<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>		k<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></div>
+</details>
+<h3 id="2-2-mergesort">2-2. mergeSort</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mergeSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right) {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/* 재귀 종료 조건 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (left <span style="color:#f92672">&lt;</span> right) {
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/* mid index 계산 */</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> left <span style="color:#f92672">+</span> (right <span style="color:#f92672">-</span> left) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/* 분할 재귀 호출 */</span>
+</span></span><span style="display:flex;"><span>		mergeSort(arr, left, mid);
+</span></span><span style="display:flex;"><span>		mergeSort(arr, mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, right);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/* 정렬, 병합 */</span>
+</span></span><span style="display:flex;"><span>		merge(arr, left, mid, right);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>주 함수 <code>void mergeSort(int *arr, int left, int right)</code>는 정렬 대상 배열, 좌측 끝 인덱스, 우측 끝 인덱스를 받는다. 이때 좌측, 우측 끝 인덱스를 받는 이유는 한 재귀 호출 안에서 다루는 배열의 범위가 어디서 부터 어디인지 알기 위함이다.</p>
+<ul>
+<li><strong><code>if (left &lt; right)</code></strong>
+<ul>
+<li>이때 이 <strong>재귀의 종료 조건</strong>은 곧 배열을 계속 쪼개 나가다가 <code>left</code> 인덱스와 <code>right</code> 인덱스가 같아질 때, 즉 더 이상 <strong>divide</strong> 할 수 없을 때를 의미한다.</li>
+</ul>
+</li>
+<li><strong><code>int mid = left + (right - left) / 2;</code></strong>
+<ul>
+<li>다음 재귀 호출로 배열의 범위를 넘겨줄 때에는, 현재 범위에서 반을 잘라 넘겨 주어야 한다. 그러므로 그 중간 지점을 계산하는 연산이 필요하며, <code>int mid</code> 에 담아 다음 호출에 전달한다.</li>
+</ul>
+</li>
+<li><strong><code>mergeSort(arr, left, mid);</code></strong> , <strong><code>mergeSort(arr, mid + 1, right);</code></strong>
+<ul>
+<li>첫번째 재귀 호출에는 <code>left ~ mid</code>를 넘겨 왼쪽의 배열을 처리하게하고, 두번째 재귀 호출에는 <code>mid + 1 ~ right</code>을 넘겨 오른쪽 배열을 처리하게 한다.</li>
+</ul>
+</li>
+<li><strong><code>merge(arr, left, mid, right);</code></strong>
+정렬된 두 리스트를 병합한다.</li>
+</ul>
+<br>
+<br>
+<br>
+<h3 id="2-3-merge">2-3. merge</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">merge</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> mid, <span style="color:#66d9ef">int</span> right) {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/* 좌측, 우측 배열 길이 계산 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> left_len <span style="color:#f92672">=</span> mid <span style="color:#f92672">-</span> left <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> right_len <span style="color:#f92672">=</span> right <span style="color:#f92672">-</span> mid;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/* 복사 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> i, j, k;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> L[left_len], R[right_len];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> left_len; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		L[i] <span style="color:#f92672">=</span> arr[left <span style="color:#f92672">+</span> i];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> right_len; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		R[j] <span style="color:#f92672">=</span> arr[m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> j];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	k <span style="color:#f92672">=</span> left;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/* 비교 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> left_len <span style="color:#f92672">&amp;&amp;</span> j <span style="color:#f92672">&lt;</span> right_len) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (L[i] <span style="color:#f92672">&lt;=</span> R[j]) {
+</span></span><span style="display:flex;"><span>			arr[k] <span style="color:#f92672">=</span> L[i];
+</span></span><span style="display:flex;"><span>			i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>		} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>			arr[k] <span style="color:#f92672">=</span> R[j];
+</span></span><span style="display:flex;"><span>			j<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		k<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/* 잔여 처리 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> left_len) {
+</span></span><span style="display:flex;"><span>		arr[k] <span style="color:#f92672">=</span> L[i];
+</span></span><span style="display:flex;"><span>		i<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>		k<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (j <span style="color:#f92672">&lt;</span> right_len) {
+</span></span><span style="display:flex;"><span>		arr[k] <span style="color:#f92672">=</span> R[j];
+</span></span><span style="display:flex;"><span>		j<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>		k<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>merge</code> 함수의 구조는 생각보다 간단하다. 우선 이번 재귀 호출로 <code>merge</code> 함수가 받아온 좌측 배열 범위와 우측 배열 범위를 임시 배열에 각각 복사한다. 그 다음, 좌측 임시 배열과 우측 임시 배열에서 값을 하나씩 꺼내어 더 비교하며 원래 배열을 정렬한다. 비교가 모두 끝난 이후 좌측 또는 우측에 남아있는 값들이 있다면 그냥 뒤에 이어 붙여준다. 즉, 이 함수는 정렬된 두 부분 리스트를 병합하여 하나의 정렬된 리스트로 만드는 역할을 한다.</p>
+<ul>
+<li><strong>임시 배열 생성 및 데이터 복사</strong>
+<ul>
+<li>좌측 부분 리스트 <code>L</code>과 우측 부분 리스트 <code>R</code>을 생성하고, 각각의 데이터를 복사한다.</li>
+</ul>
+</li>
+<li><strong>병합 과정</strong>
+<ul>
+<li>두 임시 배열 <code>L</code>과 <code>R</code>의 요소들을 비교하여 작은 값부터 <code>arr</code>에 저장한다.</li>
+</ul>
+</li>
+<li><strong>남은 요소들 복사</strong>
+<ul>
+<li>한쪽 배열의 모든 요소를 다 사용한 후, 다른 배열에 남은 요소들을 <code>arr</code>에 복사한다.</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="3-정확성-분석">3. 정확성 분석</h2>
+<p><code>병합 정렬</code>은 리스트를 재귀적으로 분할하고, 병합하는 과정에서 정렬을 수행한다. 이제 수학적 귀납법을 통해 이 알고리즘의 정확성을 증명해보자.</p>
+<br>
+<h3 id="3-1-명제-설정">3-1. 명제 설정</h3>
+<p><strong>명제 P(n):</strong> <em>길이 n인 배열을 <code>mergeSort</code> 함수로 정렬하면, 배열은 항상 오름차순으로 정렬된다.</em></p>
+<br>
+<h3 id="3-2-귀납적-증명의-구성-요소">3-2. 귀납적 증명의 구성 요소</h3>
+<ol>
+<li><strong>기저 사례(Base Case):</strong> n = 1일 때, 명제가 참임을 보인다.</li>
+<li><strong>귀납 가정(Inductive Hypothesis):</strong> 길이가 k 이하인 배열에 대해 명제가 참이라고 가정한다.</li>
+<li><strong>귀납 단계(Inductive Step):</strong> 길이가 k + 1인 배열에 대해서도 명제가 참임을 보인다.</li>
+<li><strong>종료성(Termination):</strong> 알고리즘이 유한한 단계 내에 종료함을 보인다.</li>
+</ol>
+<br>
+<h3 id="3-3-귀납적-증명">3-3. 귀납적 증명</h3>
+<h4 id="기저-사례">기저 사례</h4>
+<ul>
+<li><strong>n = 1인 경우</strong> 배열의 길이가 1이면, 이미 정렬된 상태이므로 명제 P(1)은 참이다.</li>
+</ul>
+<br>
+<h4 id="귀납-가정">귀납 가정</h4>
+<ul>
+<li><strong>길이가 k 이하인 배열은 <code>mergeSort</code>로 정렬되었을 때 항상 오름차순이다</strong>라고 가정한다.</li>
+</ul>
+<br>
+<h4 id="귀납-단계">귀납 단계</h4>
+<ul>
+<li><strong>길이가 k + 1인 배열에 대하여</strong>
+<ol>
+<li>배열을 중간 지점에서 두 부분으로 분할하면, 각 부분의 길이는 최대 k이다.</li>
+<li>귀납 가정에 의해, 각 부분 배열은 <code>mergeSort</code>를 통해 정렬된다.</li>
+<li><code>merge</code> 함수는 두 개의 정렬된 배열을 병합하여 하나의 정렬된 배열을 만든다.</li>
+<li>따라서, 길이가 k + 1인 배열도 정렬된다.</li>
+</ol>
+</li>
+</ul>
+<br>
+<h4 id="종료성">종료성</h4>
+<ul>
+<li><strong>알고리즘의 종료성</strong>
+<ul>
+<li>각 재귀 호출마다 배열의 크기가 절반으로 감소하므로, 재귀 깊이는 최대 <code>log n</code> !</li>
+<li>배열의 크기가 1이 되면 재귀 호출이 종료되므로, 알고리즘은 유한한 단계 내에 종료한다.</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="결론">결론</h4>
+<ul>
+<li>기저 사례와 귀납 단계를 통해 모든 자연수 n에 대해 명제 P(n)이 참임을 증명하였다.</li>
+<li>따라서 <code>mergeSort</code> 알고리즘은 항상 배열을 올바르게 정렬한다.</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="4-효율성-분석">4. 효율성 분석</h2>
+<h3 id="4-1-시간-복잡도">4-1. 시간 복잡도</h3>
+<p><code>병합 정렬</code>의 시간 복잡도는 분할 단계와 병합 단계로 나누어 분석할 수 있다.</p>
+<ul>
+<li><strong>분할 단계</strong>
+<ul>
+<li>배열을 반으로 분할하는 작업은 <code>O(1)</code>의 시간 복잡도를 가지며, 분할 횟수는 <code>log n</code>이다.</li>
+</ul>
+</li>
+<li><strong>병합 단계</strong>
+<ul>
+<li>각 단계에서 배열의 모든 요소를 한 번씩 비교하거나 복사한다.</li>
+<li>각 단계의 시간 복잡도는 <code>O(n)</code>이다.</li>
+</ul>
+</li>
+</ul>
+<p>따라서 전체 시간 복잡도는 다음과 같다.</p>
+<p>$$
+T(n) = 2T\left(\frac{n}{2}\right) + O(n)
+$$</p>
+<p>이를 마스터 정리를 통해 해석하면,</p>
+<p>$$
+T(n) = O(n \log n)
+$$</p>
+<br>
+<h3 id="4-2-공간-복잡도">4-2. 공간 복잡도</h3>
+<p><code>병합 정렬</code>은 추가적인 임시 배열을 사용하여 데이터를 저장하므로, 공간 복잡도는 <code>O(n)</code>이다. 이는 입력 배열의 크기에 비례하는 추가 메모리가 필요함을 의미한다.</p>
+<br>
+<h3 id="4-3-best-average-worst-case">4-3. Best, Average, Worst Case</h3>
+<p><code>병합 정렬</code>은 입력 배열의 초기 상태와 관계없이 항상 동일한 분할과 병합 과정을 수행하므로, Best Case, Average Case, Worst Case 모두 시간 복잡도가 <code>O(nlog n)</code>이다.</p>
+<br>
+<br>
+<br>
+<h2 id="5-결론">5. 결론</h2>
+<p><code>병합 정렬</code>은 분할 정복 알고리즘을 활용하여 안정적이고 효율적인 정렬을 수행한다. 시간 복잡도가 <code>O(nlog n)</code>으로 효율적이며, 입력 데이터의 분포에 영향을 받지 않는다. 그러나 추가적인 메모리 공간을 필요로 하기 때문에 메모리 사용이 중요한 환경에서는 고려가 필요하다. 대량의 데이터를 안정적으로 정렬해야 하는 경우에 적합한 알고리즘이다.</p>
+<br>
+<br>
+<br>
+<div class="series">
+  <details>
+    <summary>📚 /algorithm</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/algorithm/00_selection_sort/">0. Selection Sort</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<br>
+<br>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

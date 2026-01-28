@@ -190,9 +190,11 @@
 <p>42서울 본과정 입과 후 네번째로 수행한 과제로, 가상머신에 리눅스를 설치하고 공부하는 과정이다. 가상머신에 리눅스(Debian or Rocky)를 설치하고, LVM를 통한 파티션 설정과 기타 여러가지 기능을 직접 실습한다. 요구사항이 상당히 많고 처음 접한다면 배워야할 개념도 상당히 많다. 리눅스 설치는 하다보면 10번 넘게 하다보니&hellip; 중요한 개념 위주로만 정리했다.</p>
 <br>
 <br>
+<br>
 <h2 id="2-개념-정리">2. 개념 정리</h2>
 <h3 id="2-1-운영체제">2-1. 운영체제</h3>
 <p>Operating System은 응용 프로그램 또는 사용자에게 컴퓨터 자원을 사용할 수 있는 인터페이스를 제공하고, 그 결과를 돌려주는 시스템 소프트웨어이다. CPU, Memory, 저장장치 등의 하드웨어를 관리하고 Process 관리, 자원 접근 및 할당, 파일 시스템을 관리한다.</p>
+<br>
 <br>
 <br>
 <h3 id="2-2-virtual-machinevm">2-2. Virtual Machine(VM)</h3>
@@ -203,9 +205,11 @@
 </ul>
 <br>
 <br>
+<br>
 <h3 id="2-3-debian">2-3. Debian</h3>
 <p>다양한 환경에서 광범위 하게 사용되는 운영체제로, 다양한 소프트웨어 패키지를 제공한다.
 커뮤니티 중심으로 개발되는 프로젝트이며, 자유 소프트웨어 원칙을 강력히 지지하는 것이 특징! 패키지 관리자로 Package management tools, 보안 모듈로 AppArmor를 사용한다.</p>
+<br>
 <br>
 <br>
 <h3 id="2-4-debian과-rocky의-차이점">2-4. Debian과 Rocky의 차이점</h3>
@@ -262,6 +266,7 @@
 </table>
 <br>
 <br>
+<br>
 <h3 id="2-5-package-management-tools">2-5. Package management tools</h3>
 <p>Linux의 패키징 시스템을 관리하는 도구 모음으로 패키지 설치, 업그레이드, 제거 등을 자동화하여 쉽게 관리 가능하다. 특정 소프트웨어가 필요로 하는 모든 추가 패키지를 자동으로 파악하고 설치함으로써 의존성 문제를 해결했다. <strong>Debian과 Rocky 사이의 Package management tools의 차이점을 더 공부해보자 :)</strong></p>
 <ul>
@@ -302,6 +307,7 @@
 </ul>
 <br>
 <br>
+<br>
 <h3 id="2-6-apparmor">2-6. AppArmor</h3>
 <p>시스템 관리자가 개별 응용프로그램이 엑세스 할 수 있는 시스템 리소스와 권한을 제어 할 수 있게 하는 Linux Kernel 보안 모듈로 MAC(Mandatory Access Control) 방식을 통해 사전에 정의된 규칙(Profile)에 기반하여 권한을 제어한다. 즉, 특정 프로그램이 파일/네트워크/기타 시스템 자원에 접근하는 방식을 경로를 통해 구분한다.</p>
 <p>타 모듈에 비해 간단한 설정이 장점이지만, 단순한만큼 복잡한 보안 요구 사항을 충족시키지 못할 수 있으며 Profile 로딩 시간 때문에 시스템 시작 속도에 영향을 미칠 수 있다. 또한 동일 어플리케이션에 대하여 여러 경로가 존재할 수 있기 때문, 한 프로그램에 대하여 여러 보안 Profile이 생성될 수 있다.</p>
@@ -326,6 +332,7 @@
 <p>AppArmor가 도입되기 전에는 <strong>SELinux</strong>와 같은 다른 MAC 방식의 보안 모듈도 존재했지만, 설정이 복잡하고 관리가 어려워 일부 시스템 관리자들에게는 DAC 방식이 여전히 주로 사용되었다.</p>
 <br>
 <br>
+<br>
 <h3 id="2-7-sudo">2-7. Sudo</h3>
 <p>Sudo(Superuser do)는 Unix 및 Linux 기반 시스템에서 슈퍼유저 또는 root 권한으로 명령을 실행할 수 있게 해주는 프로그램이다. 일반 사용자에게 관리자(루트) 권한으로 명령을 실행할 수 있는 권한을 제한적으로 부여하여 루트 사용자로의 지속적인 로그인을 방지하고, 보안 위험을 줄일 수 있다. 또한 루트 권한으로 실행된 모든 명령과 사용자를 기록 가능해 시스템 관리, 감시 추적 등이 용이하다.</p>
 <p><strong>sudo log를 어디서 확인 할 수 있을까?</strong> <code>sudo</code> 명령어로 실행된 작업에 대한 로그는 보통 <code>/var/log/auth.log</code> 또는 <code>/var/log/secure</code> 경로에서 확인할 수 있다. 사용 중인 배포판에 따라 경로가 약간 다를 수 있지만, 일반적으로 다음 경로에서 <code>sudo</code> 관련 로그를 찾을 수 있다:</p>
@@ -347,6 +354,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep <span style="color:#e6db74">&#39;sudo&#39;</span> /var/log/auth.log    <span style="color:#75715e"># Debian 기반 시스템</span>
 </span></span><span style="display:flex;"><span>grep <span style="color:#e6db74">&#39;sudo&#39;</span> /var/log/secure      <span style="color:#75715e"># Red Hat 기반 시스템</span>
 </span></span></code></pre></div><br>
+<br>
 <br>
 <h3 id="2-8-tty">2-8. TTY</h3>
 <p>TTY(Tele Type Writer)는 컴퓨터와 연결된 가상의 터미널로 한 컴퓨터를 여럿이서 사용하기 위해 (물리적 한계 극복) 사용했으며 현재 UNIX 시스템에서 터미널 역할을 수행한다. 텍스트 기반 인터페이스와 다중 터미널 세션 기능, 원격 접속과 시스템 관리 및 표준 입출력 관리가 특징이다. 이때 Sudo가 TTY를 요구한다는 것은 Sudo 명령어를 사용자가 직접 터미널 세션에서 입력해야만 Sudo 권한을 사용할 수 있다는 것을 의미한다.</p>
@@ -370,8 +378,10 @@ TTY 환경에서는 사용자가 어떤 터미널에서 어떤 명령을 실행�
 </span></span></code></pre></div><p>그러나, 이 설정은 보안 위험을 초래할 수 있으므로 매우 신중하게 사용해야 한다. TTY 요구는 사용자가 터미널을 통해 직접 인증할 수 있게 하고, 시스템의 보안을 강화하기 위한 중요한 요소이다.</p>
 <br>
 <br>
+<br>
 <h3 id="2-9-ufw">2-9. UFW</h3>
 <p>UFW(Uncomlicted FireWall)은 사용자 친화적인 방화벽 관리 인터페이스로 기존 iptables의 복잡성을 단순화 시켰으며 주로 입출력 트래픽을 제어하고, 원하지 않는 네트워크 접근을 차단하기 위해 사용한다.</p>
+<br>
 <br>
 <br>
 <h3 id="2-10-ssh">2-10. SSH</h3>
@@ -483,6 +493,7 @@ TTY 환경에서는 사용자가 어떤 터미널에서 어떤 명령을 실행�
 <p>이처럼 MBR과 sda5는 디스크의 부트 프로세스와 파티션 구조에서 중요한 역할을 하며, MBR은 부팅 시 운영 체제가 위치한 논리 파티션(sda5)을 식별하고 부팅을 진행하게 된다.</p>
 <br>
 <br>
+<br>
 <h2 id="2-13-lvm">2-13. LVM</h2>
 <p>LVM(Linux Volume Manager)은 Linux에서 복잡한 스토리지 구성을 효율적으로 관리하기 위한 시스템으로 물리적 디스크를 하나의 논리적 볼륨으로 결합할 수 있고, 볼륨의 크기를 쉽게 조정 가능하다.</p>
 <h4 id="lvm-단위-구성">LVM 단위 구성</h4>
@@ -521,6 +532,7 @@ TTY 환경에서는 사용자가 어떤 터미널에서 어떤 명령을 실행�
 </ul>
 </li>
 </ul>
+<br>
 <br>
 <br>
 <h3 id="2-14-cron">2-14. Cron</h3>
@@ -593,6 +605,7 @@ TTY 환경에서는 사용자가 어떤 터미널에서 어떤 명령을 실행�
 </details>
 <br>
 <br>
+<br>
 <h2 id="3-evaluation">3. Evaluation</h2>
 <p><em>2025.05 코드 리뷰 추가 삽입</em></p>
 <p><strong>try1 - review 1</strong><br>
@@ -605,6 +618,7 @@ TTY 환경에서는 사용자가 어떤 터미널에서 어떤 명령을 실행�
 <img src="https://i.imgur.com/bvaCct2.png" width="300"></p>
 <p>태어나서 처음으로 가상머신, 그리고 그 위에 도커를 올려봤던 과제. 첫번째 try에서는 그 작동법도 미숙했고, 마지막 평가 항목에서 스크립트를 잘못짜서 fail을 받았다.</p>
 <p>해당 부분을 수정하고, 명령어나 figma 도식 등을 좀 더 깔끔하게 정리했다. 다행히 2차 try에서는 통과할 수 있었다. 평가 중 부트로더의 작동에 대해서 이야기를 좀 나누었는데, 아쉽게 둘다 해당 부분은 지식이 깊지 않기도 했고 마침 주변에 더 물어볼만한 사람이 없어서 마무리 했다.</p>
+<br>
 <br>
 <br>
 <h2 id="4-reference">4. Reference</h2>

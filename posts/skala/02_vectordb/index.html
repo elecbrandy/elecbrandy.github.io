@@ -220,6 +220,7 @@
 </table>
 <br>
 <br>
+<br>
 <h2 id="2-db의-진화">2. DB의 진화</h2>
 <h3 id="2-1-기존-db-vs-vectordb">2-1. 기존 DB vs VectorDB</h3>
 <p>기존 DB 설계가 잘못되었다라는 것이 아니라, LLM의 등장으로 데이터 비교 기준의 변화가 일어났다. 즉, 단순히 특정 값의 존재와 value에서 뛰어났던 SQL/NoSQL에서 <code>앞선 대화에서 그 값의 의미는 무엇인가?</code> 등의 사용자 쿼리로 변화가 일어난 것이다.</p>
@@ -305,6 +306,7 @@
 </ul>
 <br>
 <br>
+<br>
 <h2 id="3-vector-db">3. Vector DB</h2>
 <h3 id="3-1-vector-db의-정체">3-1. Vector DB의 정체</h3>
 <p>RDB가 Row와 Column을 기준으로 삼고, NoSQL이 Key와 Field를 기준으로 한다면, 벡터 DB는 <strong>벡터(Vector)와 메타데이터(Metadata)</strong> 를 저장 단위로 삼는다.</p>
@@ -382,6 +384,7 @@
 <p>벡터 DB는 정확한 키워드 매칭이 아니라, 벡터 간의 거리를 계산하여 <code>유사한 의미</code> 를 찾는다. 이때 주로 활용되는 것이 <strong>코사인 유사도</strong> 이다.</p>
 <p>학창시절 기하와 벡터에서 배우는 기본적인 내적 개념과 동일하다. 코사인 유사도는 두 벡터 간의 각도를 계산하여 유사성을 평가하는 기법이다. 여기서 중요한 점은 벡터의 크기가 아니라 <strong>방향</strong> 에 초점을 맞춘다는 것이다. 수식적으로는 분자에 두 벡터의 내적을, 분모에 각 벡터의 노름 곱을 배치하여 계산한다.</p>
 <p>검색 시에는 거리 기반으로 가장 유사한 개의 결과를 반환하는 <strong>Top-k</strong> 방식을 사용한다. 실무에서는 보통 값을 3 또는 5로 설정한다. 이때 3순위 이후의 결과가 유효하지 않다고 해서 이를 억지로 거르기 위해 과도한 로직을 짜는 것보다, 적절한 임계치를 설정하는 것이 효율적이다.</p>
+<br>
 <br>
 <br>
 <h2 id="4-vector--embedding">4. Vector &amp; Embedding</h2>
@@ -488,6 +491,7 @@ Embedding을 사람이 직접 관찰하고 그 의미를 파악하기는 어려�
 <li>metadata 필터 또는 그냥 개발자가 개입해서 소팅을 하는 경우도 존재한다.</li>
 <li>최종 검색 결과 반환</li>
 </ol>
+<br>
 <br>
 <br>
 <h2 id="5-index-구조">5. Index 구조</h2>
@@ -667,6 +671,7 @@ Graph 구조로 벡터가 가까운 이웃 벡터들과 연결되도록 구성�
 </table>
 <br>
 <br>
+<br>
 <h2 id="6-vectordb-종류">6. VectorDB 종류</h2>
 <p>AI 서비스 개발 중 마주칠 수 있는 VectorDB에 대해서 정리해보자.</p>
 <br>
@@ -756,6 +761,7 @@ Graph 구조로 벡터가 가까운 이웃 벡터들과 연결되도록 구성�
 </ul>
 <br>
 <br>
+<br>
 <div class="series">
   <details>
     <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
@@ -773,6 +779,7 @@ Graph 구조로 벡터가 가까운 이웃 벡터들과 연결되도록 구성�
   </details>
 </div>
 
+<br>
 <br>
 <br>
 

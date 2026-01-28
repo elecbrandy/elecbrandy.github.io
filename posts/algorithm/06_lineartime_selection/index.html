@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Linear-time selection | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.9b52840ff847d49a3f3379e089850a370dbfdffb41226dfaeda079f69691a88c.css" 
+      integrity="sha256-m1KED/hH1Jo/M3ngiYUKNw2/3/tBIm367aB59paRqIw="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-개요">1. 개요</a></li>
+    <li><a href="#2-아이디어-퀵-정렬의-변형">2. 아이디어: 퀵 정렬의 변형</a>
+      <ul>
+        <li><a href="#2-1-동작-프로세스">2-1. 동작 프로세스</a></li>
+        <li><a href="#2-2-퀵-정렬과의-비교">2-2. 퀵 정렬과의 비교</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-구현">3. 구현</a>
+      <ul>
+        <li><a href="#3-1-partition-함수">3-1. Partition 함수</a></li>
+        <li><a href="#3-2-select-함수">3-2. Select 함수</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-알고리즘의-효율성-분석">4. 알고리즘의 효율성 분석</a></li>
+    <li><a href="#5-귀납법을-통한-증명">5. 귀납법을 통한 증명</a></li>
+    <li><a href="#6-결론">6. 결론</a></li>
+    <li><a href="#7-reference">7. Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_shaker_sort_anim.gif" alt="Featured Image for Linear-time selection">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2024.10.20</small>
+      <div class="singleTitle">Linear-time selection</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>📚 /algorithm</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/algorithm/00_selection_sort/">0. Selection Sort</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-개요">1. 개요</h2>
+<p>정렬되지 않은 데이터에서 k번째로 작은 수를 가장 효율적으로 찾는 방법은 무엇일까? 알고리즘 문제를 풀다 보면 <code>데이터 집합에서 중앙값을 찾아라</code> 혹은 <code>k번째로 작은 수를 구하라</code>는 요구사항을 마주한다. 가장 직관적인 방법은 배열을 정렬한 뒤 인덱스로 접근하는 것이다. 하지만 일반적인 정렬 알고리즘은 $O(n \log n)$ 의 시간 복잡도를 가진다.</p>
+<p>고작 숫자 하나를 찾기 위해 배열 전체를 정렬하는 것은 낭비가 아닐까? 만약 정렬 없이 $O(n)$ 의 시간 복잡도로 원하는 순서의 요소를 찾을 수 있다면 훨씬 효율적일 것이다. 이를 가능하게 하는 것이 바로 <strong>선형 시간 선택 알고리즘(Linear-Time Selection Algorithm)</strong> 이다.</p>
+<br>
+<br>
+<br>
+<h2 id="2-아이디어-퀵-정렬의-변형">2. 아이디어: 퀵 정렬의 변형</h2>
+<p>이 알고리즘의 핵심 아이디어는 Quick Sort 의 분할 과정에 있다. 퀵 정렬은 피벗을 기준으로 작은 값은 왼쪽, 큰 값은 오른쪽으로 보내며 양쪽 모두를 재귀적으로 정렬한다. 하지만 우리의 목표는 정렬이 아니라 <strong>&lsquo;k번째 수 찾기&rsquo;이다.</strong></p>
+<p>따라서 피벗을 기준으로 나눈 뒤, k번째 수가 존재할 가능성이 있는 <strong>한쪽 영역만 선택해서 탐색</strong> 하면 된다.</p>
+<br>
+<h3 id="2-1-동작-프로세스">2-1. 동작 프로세스</h3>
+<ol>
+<li>배열에서 임의의 <strong>피벗(Pivot)</strong> 을 선택한다.</li>
+<li>피벗을 기준으로 배열을 분할한다. (왼쪽: 피벗보다 작은 수, 오른쪽: 피벗보다 큰 수)</li>
+<li>분할이 끝나면 피벗은 자신의 정렬된 위치(인덱스)를 찾게 된다.</li>
+<li>피벗의 위치와 찾고자 하는 <code>k</code> 를 비교한다.
+<ul>
+<li><code>pivot_index == k</code> : 피벗이 바로 우리가 찾는 값이다. (종료)</li>
+<li><code>pivot_index &gt; k</code> : 우리가 찾는 값은 왼쪽에 있다. (왼쪽만 재귀 탐색)</li>
+<li><code>pivot_index &lt; k</code> : 우리가 찾는 값은 오른쪽에 있다. (오른쪽만 재귀 탐색)</li>
+</ul>
+</li>
+</ol>
+<br>
+<h3 id="2-2-퀵-정렬과의-비교">2-2. 퀵 정렬과의 비교</h3>
+<p>이해를 돕기 위해 퀵 정렬과 선형 시간 선택 알고리즘을 비교해보자.</p>
+<table>
+  <thead>
+      <tr>
+          <th>구분</th>
+          <th>퀵 정렬 (Quick Sort)</th>
+          <th>선형 시간 선택 (Quick Select)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>목표</strong></td>
+          <td>전체 배열을 순서대로 나열</td>
+          <td>특정 순서(k번째)의 값 하나만 찾음</td>
+      </tr>
+      <tr>
+          <td><strong>탐색 범위</strong></td>
+          <td>피벗 기준 <strong>양쪽</strong> 모두 재귀 호출</td>
+          <td>피벗 기준 <strong>한쪽</strong>만 선택하여 재귀 호출</td>
+      </tr>
+      <tr>
+          <td><strong>시간 복잡도</strong></td>
+          <td>평균 $O(n \log n)$</td>
+          <td>평균 $O(n)$</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+<h2 id="3-구현">3. 구현</h2>
+<p>아이디어를 코드로 구현하면 다음과 같다. C++의 <code>std::swap</code> 등을 활용할 수 있지만, 알고리즘의 이해를 위해 직접 구현한 형태이다.</p>
+<br>
+<h3 id="3-1-partition-함수">3-1. Partition 함수</h3>
+<p>먼저 피벗을 기준으로 배열을 나누는 <code>partition</code> 함수이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">partition</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right, <span style="color:#66d9ef">int</span> pivot) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (left <span style="color:#f92672">&lt;=</span> right) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (arr[left] <span style="color:#f92672">&lt;</span> pivot) left<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (arr[right] <span style="color:#f92672">&gt;</span> pivot) right<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (left <span style="color:#f92672">&lt;=</span> right) {
+</span></span><span style="display:flex;"><span>            std<span style="color:#f92672">::</span>swap(arr[left], arr[right]);
+</span></span><span style="display:flex;"><span>            left<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            right<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> left <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">// 피벗의 최종 위치 반환
+</span></span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
+<h3 id="3-2-select-함수">3-2. Select 함수</h3>
+<p>실질적인 탐색을 수행하는 <code>select</code> 함수이다. 분할 후 k값이 속한 범위로 좁혀 들어가는 로직을 볼 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">select</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right, <span style="color:#66d9ef">int</span> k) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// k가 유효 범위를 벗어난 경우 예외 처리
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (k <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> k <span style="color:#f92672">&gt;=</span> right <span style="color:#f92672">-</span> left <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> INT_MAX;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> right <span style="color:#f92672">-</span> left <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 최악의 경우를 방지하기 위해 피벗을 무작위로 선택
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> pivot <span style="color:#f92672">=</span> arr[left <span style="color:#f92672">+</span> rand() <span style="color:#f92672">%</span> n];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 분할 수행
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> pivot_idx <span style="color:#f92672">=</span> partition(arr, left, right, pivot);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 피벗 위치와 k 비교
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (pivot_idx <span style="color:#f92672">-</span> left <span style="color:#f92672">==</span> k) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> arr[pivot_idx];
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (pivot_idx <span style="color:#f92672">-</span> left <span style="color:#f92672">&gt;</span> k) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> select(arr, left, pivot_idx <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, k);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 오른쪽 그룹에서 찾을 때는 k값을 조정해야 함 (상대적 위치)
+</span></span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> select(arr, pivot_idx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, right, k <span style="color:#f92672">-</span> (pivot_idx <span style="color:#f92672">-</span> left <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
+<br>
+<br>
+<h2 id="4-알고리즘의-효율성-분석">4. 알고리즘의 효율성 분석</h2>
+<p>왜 이 알고리즘이  의 성능을 낼까? 직관적으로 계산해보자.</p>
+<ul>
+<li><strong><code>평균 시간 복잡도: O(N)</code></strong>
+<ul>
+<li>이상적인 경우, 피벗이 매번 배열을 절반으로 나눈다고 가정해보자. 첫 단계에서는 개의 요소를 살펴본다. 그 다음 단계에서는 절반인 , 그 다음은 &hellip; 이런 식으로 탐색 범위가 줄어든다. 이는 전체를 정렬하는 비용보다 훨씬 효율적이다.</li>
+</ul>
+</li>
+<li><strong><code>평균 시간 복잡도: O(N^2)</code></strong></li>
+<li>하지만 퀵 정렬과 마찬가지로 최악의 경우도 존재한다. 만약 피벗이 매번 가장 작은 값이나 가장 큰 값으로 선택된다면, 배열이 절반으로 줄어드는 게 아니라 고작 1개씩만 줄어든다.</li>
+</ul>
+<p>이를 방지하기 위해 구현 코드에서는 <code>rand()</code> 를 사용하여 피벗을 무작위로 선택했다. 더 확실한 방법으로는 <strong>Median of Medians</strong> 알고리즘을 사용하여 피벗을 신중하게 고르는 방법이 있지만, 구현이 복잡하고 상수 오버헤드가 커서 잘 쓰이지 않는다.</p>
+<br>
+<br>
+<br>
+<h2 id="5-귀납법을-통한-증명">5. 귀납법을 통한 증명</h2>
+<p>이 알고리즘이 정말로 $k$ 번째 원소를 찾아내는지 수학적 귀납법을 통해 간단히 확인해보자.</p>
+<p><strong>명제 $P(n)$</strong>: 배열 크기가 $n$일 때, <code>select</code> 함수는 $k$번째로 작은 요소를 정확히 반환한다.</p>
+<ul>
+<li><strong>기저 사례 (Base Case)</strong>
+<ul>
+<li>$n=1$ 일 때, 배열에는 원소가 하나뿐이므로 $k=0$ 일 수밖에 없다. 함수는 즉시 해당 원소를 반환하므로 명제는 참이다.</li>
+</ul>
+</li>
+<li><strong>귀납 가정 (Inductive Hypothesis)</strong>
+<ul>
+<li>$n$보다 작은 모든 크기의 배열에 대해 명제 $P$가 참이라고 가정한다.</li>
+</ul>
+</li>
+<li><strong>귀납 단계 (Inductive Step)</strong>
+<ul>
+<li>크기가 $n$인 배열을 생각해보자.
+<ul>
+<li><code>partition</code> 함수는 피벗을 기준으로 배열을 두 개의 부분 배열로 나눈다.</li>
+<li>피벗의 위치가 $k$와 같다면 정답을 찾은 것이다.</li>
+<li>피벗 위치가 $k$와 다르다면, 왼쪽 혹은 오른쪽 부분 배열에 대해 재귀 호출을 수행한다.</li>
+<li>이때 호출되는 부분 배열의 크기는 반드시 $n$보다 작다.</li>
+<li>귀납 가정에 의해, $n$보다 작은 배열에서의 탐색은 정확한 값을 반환한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>결론</strong>
+<ul>
+<li>따라서 모든 자연수 $n$에 대해 <code>select</code> 알고리즘은 올바른 값을 반환한다. 또한 매 재귀마다 문제의 크기(<code>n</code>)가 줄어들므로 알고리즘은 무한 루프 없이 종료된다.</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="6-결론">6. 결론</h2>
+<p>선형 시간 선택 알고리즘은 정렬 문제의 부분집합과 같다. 전체를 줄 세울 필요가 없을 때, 굳이 줄을 세우지 않고도 원하는 답을 찾아낼 수 있다.
+C++ STL에서도 이 알고리즘을 <code>std::nth_element</code> 라는 이름으로 제공하고 있다. 전체 정렬(<code>std::sort</code>)이 부담스러운 상황에서 상위 10%의 데이터를 추리거나 중앙값을 구할 때 매우 유용하게 사용할 수 있다.</p>
+<br>
+<br>
+<br>
+<h2 id="7-reference">7. Reference</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Quickselect">https://en.wikipedia.org/wiki/Quickselect</a></li>
+<li><a href="https://www.geeksforgeeks.org/quickselect-algorithm/">https://www.geeksforgeeks.org/quickselect-algorithm/</a></li>
+<li>Introduction to Algorithms (CLRS)</li>
+</ul>
+<br>
+<br>
+<br>
+<div class="series">
+  <details>
+    <summary>📚 /algorithm</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/algorithm/00_selection_sort/">0. Selection Sort</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<br>
+<br>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

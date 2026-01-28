@@ -136,9 +136,11 @@
 <p>이전에 C++ 기반의 IRC 서버를 구현할 당시에는 <code>Makefile</code> 과 <code>docker-compose</code> 를 통해 서버를 관리했다. 자바 스프링 생태계로 넘어오면서 <code>Gradle</code> 이 표준 빌드 자동화 도구로 활용되는 것을 확인하였고, 내부적으로 어떻게 동작하는지 정리해보고자 한다.</p>
 <br>
 <br>
+<br>
 <h2 id="2-gradle이란-무엇인가">2. Gradle이란 무엇인가</h2>
 <p><code>Gradle</code> 은 단순히 make의 자바 버전을 넘어, 의존성 관리와 태스크 기반 라이프사이클이 결합된 고도화된 빌드 도구이다. <code>Makefile</code> 이 파일 간의 관계를 정의하여 빌드 명령어를 실행하는 방식이라면, <code>Gradle</code> 은 표준화된 빌드 라이프사이클을 내장하고 있어 의존성 다운로드부터 컴파일, 테스트, 패키징까지의 과정을 자동화한다.</p>
 <p><code>Makefile</code> 에서는 특정 바이너리를 만들기 위해 컴파일러와 링크 과정을 개발자가 일일이 명시해야 한다. 반면 <code>Gradle</code> 은 자바 빌드에 필요한 표준 절차를 이미 알고 있다! 개발자는 <code>build.gradle</code> 파일에 필요한 라이브러리와 플러그인을 선언하기만 하면 된다.</p>
+<br>
 <br>
 <br>
 <h2 id="3-gradle의-빌드-라이프사이클">3. Gradle의 빌드 라이프사이클</h2>
@@ -148,6 +150,7 @@
 <li><strong>Configuration</strong> :  build.gradle 파일을 실행하여 태스크들 간의 의존 관계를 나타내는 DAG를 생성한다.</li>
 <li><strong>Execution</strong> : 선택한 태스크와 그에 의존하는 상위 태스크들을 실제 실행한다.</li>
 </ol>
+<br>
 <br>
 <br>
 <h2 id="4-gradle-task">4. Gradle Task</h2>
@@ -197,11 +200,13 @@
 </table>
 <br>
 <br>
+<br>
 <h2 id="5-결론">5. 결론</h2>
 <p>C++은 소스 파일 간의 복잡한 포함 관계(<code>#include</code>)로 인해 파일 단위 제어가 중요하지만, 자바는 패키지 구조와 클래스 경로 기반으로 동작한다. 따라서 대규모 프로젝트에서는 특정 폴더의 소스를 몽땅 읽어 처리하는 추상화된 태스크 방식이 훨씬 효율적이다. 글 작성을 위해 검색하는 과정에서 빌드 도구의 진화 과정에 따른 Makefile, Maven, Gradle과 관련된 다양한 글도 볼 수 있었다.</p>
 <p>42서울 본과정 내내 Makefile 사용이 필수였기에, 이것이 빌드의 기본이자 가장 효율적인 방법이라 믿어 의심치 않았다. 굳이 다른 대안을 찾아볼 필요성조차 느끼지 못했던 것이 사실이다.
 물론 Makefile을 선호하는 사람도 있었지만 난 가장 나은 방법 중 하나라고 생각하고 있었는데 더 편리하고 발전된 대안들이 많았다&hellip; 우물에서 기어나온 기분이다.
 여튼 결론은 <code>Gradle</code> 이 <strong>객체 지향적 설계</strong> 와 <strong>고도화된 상태 비교</strong> 를 통해 빠르고 유연한 빌드 환경을 제공한다는 것!</p>
+<br>
 <br>
 <br>
 <h2 id="6-reference">6. Reference</h2>
@@ -210,6 +215,7 @@
 <li><a href="https://velog.io/@leesomyoung/Maven%EA%B3%BC-Gradle%EC%9D%98-%EC%B0%A8%EC%9D%B4-%EB%B0%8F-%EB%B9%84%EA%B5%90">https://velog.io/@leesomyoung/Maven%EA%B3%BC-Gradle%EC%9D%98-%EC%B0%A8%EC%9D%B4-%EB%B0%8F-%EB%B9%84%EA%B5%90</a></li>
 <li><a href="https://www.reddit.com/r/cpp_questions/comments/1en2eeh/why_is_cmake_so_hated_and_why_not_use_make_files/?tl=ko">https://www.reddit.com/r/cpp_questions/comments/1en2eeh/why_is_cmake_so_hated_and_why_not_use_make_files/?tl=ko</a></li>
 </ul>
+<br>
 <br>
 <br>
 

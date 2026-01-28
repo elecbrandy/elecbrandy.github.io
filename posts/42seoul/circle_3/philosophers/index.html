@@ -191,6 +191,7 @@
 <a href="#custom-id"><em>철학자를살리러너만오면GO</em></a>   (&laquo; click!!!)</p>
 <br>
 <br>
+<br>
 <h2 id="2-philosopher-명세서">2. philosopher 명세서</h2>
 <details>
 <summary>philosopher 명세서</summary>
@@ -298,6 +299,7 @@
 </ul>
 <p>‼️ <strong>프로세스와 스레드에 대한 기본적인 이해가 있고, 바로 과제에 대한 정보를 얻고 싶다면?</strong> ‼️<br>
 <a href="#custom-id"><em>철학자를살리러너만오면GO</em></a>   (&laquo; click!!!)</p>
+<br>
 <br>
 <br>
 <h2 id="3-개념-정리">3. 개념 정리</h2>
@@ -464,6 +466,7 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 </ul>
 <br>
 <br>
+<br>
 <h2 id="4-mandatory">4. Mandatory</h2>
 <h3 id="custom-id">4-1. pthread_mutex_lock과 철학자 문제의 동기화</h3>
 <p>스레드 프로그래밍에서 중요한 부분 중 하나는 자원에 언제 lock을 걸고, 언제 unlock할지를 결정하는 것이다. 여기서 lock이란 특정 스레드가 특정 자원을 독점적으로 점유하고 있음을 의미하며, 다른 스레드들은 해당 자원에 접근하지 못하고 lock이 풀릴 때까지 기다리게 된다.</p>
@@ -503,6 +506,7 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 <p>그런데 철학자는 일정 시간 안에 식사를 하지 않으면 죽는다. 따라서 죽기까지의 시간(lifetime) 은 최소한 먹는 시간 × 3보다 커야 한다. 여기에 포크 충돌이나 시스템 지연 등의 요소까지 고려하면, 실제로는 조금 더 긴 여유 시간이 필요할 수 있다.</p>
 <p>결론적으로, 철학자가 단 한 번이라도 식사할 기회를 얻고 생존하려면 lifetime ≥ 먹는 시간 × 3 + 여유 시간 조건이 반드시 충족되어야 한다.</p>
 <img src="https://i.imgur.com/LVq7gqE.png" max-width=100%>
+<br>
 <br>
 <br>
 <h3 id="4-3-코드">4-3. 코드</h3>
@@ -614,6 +618,7 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 <p>홀수 ID 철학자에게 <code>time_to_eat / 2</code>만큼 선행 딜레이를 주어 모두 동시에 포크를 집으려다 교착 상태가 일어날 확률을 낮춘다. 여러가지 방법을 사용해보자</p>
 <br>
 <br>
+<br>
 <h2 id="5-evaluation">5. Evaluation</h2>
 <p><em>2025.05 코드 리뷰 추가 삽입</em></p>
 <p><strong>try1 - review 1</strong><br>
@@ -627,6 +632,7 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 <p>이번 경험을 통해 ‘42 과정을 제대로 활용하려면 어떻게 해야 할까?’라는 고민이 깊어졌다. 마음만 먹으면 형식적인 코드로 빠르게 통과할 수도 있겠지만, 그렇게 얻는 것은 없고 실력 향상에도 도움이 되지 않는다. 평가자와 나눈 여러 이야기까지 포함해, 의미있는 시간이었다.</p>
 <br>
 <br>
+<br>
 <h2 id="6-reference">6. Reference</h2>
 <ul>
 <li><a href="https://man7.org/linux/man-pages/man2/read.2.html">https://man7.org/linux/man-pages/man2/read.2.html</a></li>
@@ -634,6 +640,7 @@ OS는 결국 이러한 프로세스의 순서를 결정하는 스케줄링을 �
 <li><a href="https://code-lab1.tistory.com/65">https://code-lab1.tistory.com/65</a></li>
 <li><a href="https://thebook.io/080367/0021/">https://thebook.io/080367/0021/</a></li>
 </ul>
+<br>
 <br>
 <br>
 

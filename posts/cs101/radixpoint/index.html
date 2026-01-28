@@ -149,6 +149,7 @@
 <p>그렇다면 어느 순간 소수를 사용해야하는 상황이 있을때, 컴퓨터는 소수를 어떻게 저장하고 사용할까?</p>
 <br>
 <br>
+<br>
 <h2 id="2-소수---이진수">2. 소수 -&gt; 이진수</h2>
 <p>우선, 소수를 이진수로 변환하는 과정부터 알아보자. <code>0.n</code>으로 표현된 숫자 역시 이진수로 표현 가능하다. 소수 부분이 0이 될때까지 계속해서 2를 곱해주다가, 그 과정에서 <strong>소수</strong> 에서 <strong>정수의 1의 자리</strong> 부분으로 올림이 일어나면 1을 기록하고 - 아니면 0을 기록해나간다. 간단한 예시로 살펴보자.</p>
 <h4 id="025---이진수">0.25 -&gt; 이진수:</h4>
@@ -184,6 +185,7 @@
 <h4 id="정밀도가-떨어지는-정확한-예시">정밀도가 떨어지는 정확한 예시</h4>
 <p><code>0.1</code>을 고정소수점 방식으로 컴퓨터에 저장해보자. 먼저, <code>0.1</code>을 이진수로 변환하면 <code>0.000110011001100...</code> 처럼 무한 소수가 된다. 고정소수점 방식에서 32비트 크기를 사용하는 경우, 이를 표현할 수 있는 방법은 제한적이다. 우선 부호는 양수이므로 <code>+</code> 이고, 정수 부분은 0이다. 소수를 표현할 수 있는 비트는 15비트라고 가정하면, 소수점 이하로 반복되는 무한 소수 중 15번째 자리까지만 기록할 수 있다.</p>
 <p>이렇게 보면, 고정소수점 방식도 나름 소수점을 잘 기록할 수 있는 것처럼 보일 수 있다. 그러나 부동소수점 방식과 비교해보자. 부동소수점 방식은 소수점의 위치를 가변적으로 옮길 수 있어, 32비트 내에서도 더 많은 소수 부분을 표현할 수 있다. 즉, 소수 부분의 비트를 더 확보하여 고정소수점 방식보다 더 많은 무한 소수 자릿수를 저장할 수 있는 것이다. 물론, <strong>부동소수점 방식도 한계는 존재하지만</strong>, 고정소수점에 비해 더 유연하며 정확도가 높은 방법이다.</p>
+<br>
 <br>
 <br>
 <h2 id="3-부동소수점">3. 부동소수점</h2>
@@ -247,6 +249,7 @@
 </ul>
 <br>
 <br>
+<br>
 <h2 id="4-편향된-지수">4. 편향된 지수?</h2>
 <p>편향된 지수, 개념이 조금 어려울 수 있지만 한 번 더 살펴보자.</p>
 <p>부동소수점에서 <strong>지수(Exponent)</strong> 는 숫자의 소수점을 왼쪽이나 오른쪽으로 움직여 숫자를 정규화하는 역할을 한다. 예를 들어, <strong>0.0001</strong> 이라는 숫자를 부동소수점으로 표현하려면 <strong>1.0 × 10^(-4)</strong> 로 정규화해야 한다. 이때, <strong>지수 -4</strong> 를 나타내야 하는데, <strong>음수 지수를 어떻게 표현할까?</strong> 만약 음수를 직접 저장하려면 지수에 음수를 나타내는 <strong>비트</strong> 를 하나 더 사용해야 할 것 같다. 하지만 이렇게 되면 지수를 표현할 수 있는 비트 수가 줄어들어, 더 작은 범위만 표현할 수 있다는 문제가 생긴다.</p>
@@ -291,6 +294,7 @@
 <p>즉, 지수가 126이면 127보다 작고, 128보다 크다는 것을 간단하게 알 수 있다. 이렇게 하면 연산에서의 복잡성을 줄이고, 비교 연산을 더욱 효율적으로 할 수 있다. 또한, 편향된 지수를 통해 음의 지수도 표현할 수 있게 되어, 매우 작은 수부터 매우 큰 수까지 광범위한 실수 범위를 표현할 수 있다.</p>
 <br>
 <br>
+<br>
 <h2 id="5-reference">5. Reference</h2>
 <ul>
 <li><a href="https://modulabs.co.kr/blog/fixed-points-and-floating-points-how-computers-understand-numbers/">https://modulabs.co.kr/blog/fixed-points-and-floating-points-how-computers-understand-numbers/</a></li>
@@ -299,6 +303,7 @@
 <li><a href="https://www.naukri.com/code360/library/fixed-and-floating-point-representation">https://www.naukri.com/code360/library/fixed-and-floating-point-representation</a></li>
 <li><a href="https://1bytenand.hashnode.dev/floating-point-numbers">https://1bytenand.hashnode.dev/floating-point-numbers</a></li>
 </ul>
+<br>
 <br>
 <br>
 

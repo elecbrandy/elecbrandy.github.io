@@ -187,6 +187,7 @@
 <p>42서울 본과정 입과 후 세번째로 수행한 과제로, 파일 디스크립터로부터 읽혀진 - 개행으로 끝나는 한 줄을 반환하는 함수를 만드는 과제이다. 즉 파일 하나를 연 다음, 파일 내용에서 개행으로 끝나는 줄 하나를 반환해야한다. 파일을 열고, 지정된 <strong>BUFFER_SIZE</strong> 만큼 <code>read</code>함수를 통해 파일을 읽다가 개행문자 <code>\n</code>이 나타나면 개행문자 전까지만 반환한다.</p>
 <br>
 <br>
+<br>
 <h2 id="2-get_next_line-명세서">2. get_next_line 명세서</h2>
 <ul>
 <li><strong>PROTOTYPE</strong>
@@ -231,6 +232,7 @@
 </ul>
 <br>
 <br>
+<br>
 <h2 id="3-개념-정리">3. 개념 정리</h2>
 <h3 id="3-1-연결리스트와-open_max">3-1. 연결리스트와 OPEN_MAX</h3>
 <p>본 과제를 <strong>BONUS</strong>까지 수행한다면, 즉 동시에 여러 파일 디스크립터를 감안하는 프로그램을 만들고 싶다면 크게 두가지 방법이 존재한다.</p>
@@ -269,6 +271,7 @@
 </span></span></code></pre></div><p>메모리 해제 후 포인터를 NULL로 설정함으로써, 포인터의 <code>Dangling Pointer</code> 상태(해제된 메모리를 가르키는 상태)를 방지한다. 또한 이 과정을 통해 이미 할당 해제된 메모리 주소에 다시 접근하는 것을 방지할 수 있다.</p>
 <br>
 <br>
+<br>
 <h2 id="4-mandatory">4. Mandatory</h2>
 <img src="https://imgur.com/w1qsdXS.png" max-width=100%>
 <br>
@@ -304,6 +307,7 @@
 <p><code>read_main_buf</code>를 통해 <code>main_buf</code>를 정리(잘라낸 line을 없애고 나머지만 남김)하여 다음 호출을 대비한다.</p>
 <br>
 <br>
+<br>
 <h2 id="5-bonus">5. BONUS</h2>
 <p>본 과제를 <strong>BONUS</strong>까지 수행한다면,
 위에서 언급한 것 처럼 우리가 만든 <code>get_next_line</code>이 여러 파일 디스트립터를 관리할 수 있어야 한다. 쉽게 말하면, <strong>a.txt</strong>를 읽다가 갑자기 <strong>b.txt</strong>을 읽을 수 있어야 한다는 것! 다시 <strong>a.txt</strong>로 읽기 위해 돌아갔을 때, 그 전에 어디까지 읽었는지 당연히 기억하고 있어야 한다.</p>
@@ -329,6 +333,7 @@
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><br>
 <br>
+<br>
 <h2 id="6-evaluation">6. Evaluation</h2>
 <p><em>2025.05 코드 리뷰 추가 삽입</em></p>
 <p><strong>try1 - review 1</strong><br>
@@ -341,12 +346,14 @@
 <p>설명의 용이를 위해 figma로 도식을 그려서 설명을 했고, 나름 효과적이었다. 다만 로직 중 무조건 작동하는 분기가 있었던 것 같은데.. 그것과 관련해 이야기를 나누었던 것이 기억난다.</p>
 <br>
 <br>
+<br>
 <h2 id="7-reference">7. Reference</h2>
 <ul>
 <li><a href="https://man7.org/linux/man-pages/man2/read.2.html">https://man7.org/linux/man-pages/man2/read.2.html</a></li>
 <li><a href="https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html">https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html</a></li>
 <li><a href="https://code-lab1.tistory.com/65">https://code-lab1.tistory.com/65</a></li>
 </ul>
+<br>
 <br>
 <br>
 

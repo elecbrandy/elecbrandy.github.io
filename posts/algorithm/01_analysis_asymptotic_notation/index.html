@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>알고리즘의 점근적 분석 | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.9b52840ff847d49a3f3379e089850a370dbfdffb41226dfaeda079f69691a88c.css" 
+      integrity="sha256-m1KED/hH1Jo/M3ngiYUKNw2/3/tBIm367aB59paRqIw="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-점근적-접근-방법">1. 점근적 접근 방법</a></li>
+    <li><a href="#2-점근적-표기법이란">2. 점근적 표기법이란?</a></li>
+    <li><a href="#3-tn과-gn">3. <code>T(n)</code>과 <code>g(n)</code></a></li>
+    <li><a href="#4-big-o">4. Big-O</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#5-big-ω">5. Big-Ω</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#6-big-θ">6. Big-Θ</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#7-증명-예시">7. 증명 예시</a>
+      <ul>
+        <li><a href="#7-1-big-o--함수식을-통한-tn--on의-증명-예시">7-1. Big O : 함수식을 통한 T(n) = O(n²)의 증명 예시</a></li>
+        <li><a href="#7-2-big-θ--함수식을-통한-tn--θn의-증명-예시">7-2. Big Θ : 함수식을 통한 T(n) = Θ(n²)의 증명 예시</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-reference">8. Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://i.programmerhumor.io/2022/03/programmerhumor-io-databases-memes-backend-memes-82e9af018d923b5.jpg" alt="Featured Image for 알고리즘의 점근적 분석">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2024.09.29</small>
+      <div class="singleTitle">알고리즘의 점근적 분석</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>📚 /algorithm</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/algorithm/00_selection_sort/">0. Selection Sort</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-점근적-접근-방법">1. 점근적 접근 방법</h2>
+<p><em>Asymptotic Analysis</em></p>
+<p><strong>점근적 접근 방법</strong> 은 알고리즘의 성능이 입력 크기 <code>n</code>이 매우 커질 때 (무한에 가까울 때) 어떻게 변하는지를 분석하는 방법이다. 이는 작은 입력 크기에서 발생하는 미세한 차이들을 무시하고, 하드웨어, 언어 등의 특정 요인에서 벗어나 추상화하는 과정을 통해 알고리즘이 <strong>입력 크기가 커짐에 따라 성능이 어떻게 변화하는지</strong> 에 집중한다. 물론 <code>n</code>이 큰 경우에만 의미가 있는 한계가 있다.</p>
+<br>
+<br>
+<br>
+<h2 id="2-점근적-표기법이란">2. 점근적 표기법이란?</h2>
+<p>어떤 알고리즘의 성능을 점근적으로 표기하기 위해 보통 <code>Big-O</code> 표기법을 사용한다.</p>
+<ul>
+<li><strong><code>Big-O</code> 표기법이란?</strong>
+<ul>
+<li>알고리즘의 효율성을 평가하는 도구</li>
+<li>알고리즘의 실행 시간이 입력 크기에 따라 어떻게 변하는지를 나타내는 방법</li>
+<li>입력 데이터가 많아질 때 알고리즘의 소요 시간 or 메모리 사용량을 알 수 있음</li>
+<li>큰 의미로 <code>Big-Ω</code>, <code>Big-Θ</code> 표기도 내포하고 있음</li>
+</ul>
+</li>
+<li><strong><code>Big-O 표기법의 의의</code></strong>
+<ul>
+<li>아주 정확한 실행 시간을 측정 ❌</li>
+<li>입력 크기가 커짐에 따라 시간이 어떻게 변하는지를 보는 것 ✅</li>
+<li>상수 시간이나 작은 차이를 배제하고, 입력 크기와 관련된 <code>성능 경향</code> 을 평가 👀</li>
+</ul>
+</li>
+<li><strong><code>간단한 예시</code></strong>
+<ul>
+<li><code>O(1)</code>
+<ul>
+<li>상수 시간</li>
+<li>입력 크기가 얼마든지 상관없이, 항상 같은 시간이 걸림</li>
+<li>예를 들어, 배열에서 첫 번째 요소를 찾는 연산은 입력 크기와 관계없이 한 번에 끝남</li>
+</ul>
+</li>
+<li><code>O(n)</code>
+<ul>
+<li>입력 크기만큼 시간이 걸림</li>
+<li>예를 들어, 배열 안에서 특정 값을 찾기 위해 처음부터 끝까지 하나씩 비교하는 경우, 배열이 길어질수록 시간이 더 오래 걸림</li>
+</ul>
+</li>
+<li><code>O(log n)</code>
+<ul>
+<li>입력 크기가 커질수록 실행 시간이 천천히 증가</li>
+<li>예를 들어, 이진 탐색 알고리즘이 이에 해당</li>
+<li>데이터가 두 배로 늘어나도, 탐색 횟수는 조금밖에 늘어나지 않음</li>
+</ul>
+</li>
+<li><code>O(n²)</code>
+<ul>
+<li>이중 반복문처럼 입력 크기가 커지면 실행 시간이 제곱으로 증가</li>
+<li>예를 들어, 배열 안의 모든 쌍을 비교하는 알고리즘이 이에 속함</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="3-tn과-gn">3. <code>T(n)</code>과 <code>g(n)</code></h2>
+<p>앞으로 점근적 분석에서 알고리즘의 성능을 표현할 때는 두 함수 <code>T(n)</code>과 <code>g(n)</code>의 관계를 사용하겠다!</p>
+<ul>
+<li><code>T(n)</code>
+<ul>
+<li>입력 크기 <code>n</code>에 따라 알고리즘이 실행되는 실제 시간 or 실제 자원 사용량을 나타내는 함수</li>
+<li>알고리즘의 성능을 측정하는 실제 실행 시간이나 메모리 사용량</li>
+</ul>
+</li>
+<li><code>g(n)</code>
+<ul>
+<li>알고리즘의 성능을 설명하기 위해 사용하는 비교 함수</li>
+<li>일반적으로는 알고리즘의 시간 복잡도 또는 공간 복잡도를 설명하기 위한 기준 함수로 사용</li>
+<li>다양한 수학적 함수(<code>n</code>, <code>n^2</code>. <code>log n</code> 등)로 표현</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="4-big-o">4. Big-O</h2>
+<p>$$
+T(n) = O(g(n))
+$$</p>
+<img src="https://i.imgur.com/fbFpjCW.png" max-width=100%>
+<ul>
+<li><strong>Big-O</strong> 는 <strong>상한선</strong> 을 나타내는 표기법이다.</li>
+<li>즉, 알고리즘(<code>T(n)</code>)이 특정 기준(<code>g(n)</code>)보다 빠르게 증가하지 않는다는 것을 의미한다.</li>
+<li>주로 알고리즘의 <strong>최악의 경우</strong> 성능을 평가할 때 사용된다.</li>
+<li><code>T(n)</code>, <code>g(n)</code>을 양의 정수 함수라고 하면, <code>T(n)</code> 을 런타임이라 볼 수 있다.</li>
+<li><code>T(n)</code> 이 <code>g(n)</code> 보다 느리게 증가하거나, 최소한 같게 증가한다는 것을 의미하는 것!</li>
+</ul>
+<br>
+<h4 id="즉-입력-크기-n-이-커질-때">즉, 입력 크기 <code>n</code> 이 커질 때</h4>
+<ul>
+<li><code>T(n)</code>이 <code>g(n)</code>보다 더 빨리 커지지 않는다.</li>
+<li><code>g(n)</code>은 <code>T(n)</code>의 상한선이다.</li>
+<li>Big-O는 최악의 경우에도 <code>T(n)</code>이 <code>g(n)</code>보다 더 빨리 증가하지 않는다!</li>
+</ul>
+<br>
+<h4 id="성립을-위한-조건은">성립을 위한 조건은</h4>
+<ul>
+<li>상수 <strong>c</strong> 와 <strong>nₒ</strong> 가 존재해야 한다.</li>
+<li><strong>c</strong>: <code>T(n)</code> 이 <code>g(n)</code> 보다 얼마나 느리게 증가할 수 있는지 나타내는 상수</li>
+<li><strong>nₒ</strong>: 특정 최소 입력 크기</li>
+<li><strong>모든 n ≥ nₒ</strong> 에 대해 <code>T(n) ≤ c * g(n)</code> 을 만족해야 한다.
+<ul>
+<li>즉, <strong>nₒ</strong> 이상의 입력에서는 <code>T(n)</code>이 <code>g(n)</code>보다 더 빠르게 증가하지 않아야 한다.</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="간단한-예시를-살펴보자">간단한 예시를 살펴보자</h4>
+<p>예를 들어, <code>T(n) = 3n + 2</code> 라는 알고리즘을 생각해보자. 이 알고리즘이 <code>O(n)</code> 인지 확인해보자.
+우선, <code>g(n) = n</code> 으로 두고 <code>T(n) = 3n + 2</code> 가 <strong>n</strong> 보다 더 느리게 증가하는지 살펴보자.</p>
+<ul>
+<li>상수 <strong>c</strong> 를 4로, <code>nₒ</code> 를 1로 설정하면,</li>
+<li>모든 <code>n ≥ 1</code> 에서 <code>3n + 2 ≤ 4n</code> 이 성립한다.</li>
+<li>따라서 <code>T(n)</code> 은 <strong>n</strong> 보다 느리게 증가하므로 <code>T(n) = O(n)</code> 이라고 할 수 있다.</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="5-big-ω">5. Big-Ω</h2>
+<p>$$
+T(n) = Ω(g(n))
+$$</p>
+<img src="https://i.imgur.com/DC2rul0.png" max-width=100%>
+<ul>
+<li><strong>Big-Ω</strong> 는 알고리즘 성능의 <strong>하한선</strong> 을 나타내는 표기법이다.</li>
+<li>즉, <strong>최소한 이 정도는 걸린다</strong>는 것을 보장해 주는 도구이다.</li>
+<li>주로 알고리즘의 <strong>최적의 경우</strong> 성능을 평가할 때 사용된다.</li>
+</ul>
+<br>
+<h4 id="즉-입력-크기-n-이-커질-때-1">즉, 입력 크기 <code>n</code> 이 커질 때</h4>
+<ul>
+<li><code>T(n)</code> 이 <code>g(n)</code> 보다 더 작거나 같은 비율로 증가한다는 뜻이다.</li>
+<li><code>T(n)</code>을 알고리즘의 시간 복잡도라고 할 때, <code>T(n) = Ω(g(n))</code> 는 <code>T(n)</code> 이 <code>g(n)</code> 보다 더 느리게 증가할 수 없다는 것을 의미한다.</li>
+</ul>
+<br>
+<h4 id="성립을-위한-조건은-1">성립을 위한 조건은</h4>
+<ul>
+<li>상수 <strong>c</strong> 와 <code>nₒ</code> 가 존재해야 한다.</li>
+<li><strong>c</strong>: <code>T(n)</code> 이 <code>g(n)</code> 보다 얼마나 빠르게 증가할 수 있는지를 나타내는 상수</li>
+<li><strong>nₒ</strong>: 특정 최소 입력 크기</li>
+<li>모든 <code>n ≥ nₒ</code> 에 대해 <code>T(n) ≥ c * g(n)</code> 을 만족해야 한다.
+<ul>
+<li>즉, <code>T(n)</code> 은 <code>g(n)</code> 보다 더 느리게 증가할 수 없다는 뜻!</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="간단한-예시를-살펴보자-1">간단한 예시를 살펴보자</h4>
+<p>예를 들어, 알고리즘의 시간 복잡도가 <code>T(n) = 3n + 2</code> 라고 하자. 이 알고리즘이 <code>Ω(n)</code> 에 속하는지 확인해보자. 여기서 <code>g(n) = n</code> 으로 두고 <code>T(n) ≥ c * g(n)</code> 을 만족하는 상수 <strong>c</strong> 와 <code>nₒ</code> 를 찾아보자.</p>
+<ul>
+<li>상수 <strong>c</strong> 를 2로, <code>nₒ</code> 을 1로 설정하면, 모든 <code>n ≥ 1</code> 에서 <code>3n + 2 ≥ 2n</code> 이 성립한다.</li>
+<li>따라서 <code>T(n) = Ω(n)</code> 이라고 할 수 있다.</li>
+</ul>
+<p>이처럼, <strong>Big-Ω</strong> 는 <code>T(n)</code> 이 <code>g(n)</code> 보다 더 느리게 증가할 수 없다는 것을 나타내므로, 알고리즘의 최소 성능을 평가할 때 매우 유용하다. 즉, Big-Ω 표기법은 <strong>알고리즘의 성능이 이 정도 이상으로는 반드시 나온다</strong> 는 보장을 제공하는 중요한 도구이다.</p>
+<br>
+<br>
+<br>
+<h2 id="6-big-θ">6. Big-Θ</h2>
+<p>$$
+T(n) = Θ(g(n))
+$$</p>
+<img src="https://i.imgur.com/UQmXG2Z.png" max-width=100%>
+<ul>
+<li><strong>Big-Θ</strong> 는 알고리즘 성능이 상한과 하한 모두에서 특정 함수와 같은 비율로 성장함을 나타낸다.</li>
+<li>즉, 알고리즘이 입력 크기가 커짐에 따라 <strong>정확하게</strong> 어느 정도의 시간이 걸리는지를 나타내는 더 엄밀한 평가 기준이다.</li>
+<li><code>T(n)</code>을 알고리즘의 시간 복잡도라고 할 때, <code>T(n) = Θ(g(n))</code> 는 <code>T(n)</code>이 <code>g(n)</code>과 같은 비율로 증가한다는 의미이다.</li>
+</ul>
+<br>
+<h4 id="즉-입력-크기-n-이-커질-때-2">즉, 입력 크기 <code>n</code> 이 커질 때</h4>
+<ul>
+<li><code>T(n)</code>이 <code>g(n)</code>보다 더 빠르게 증가하지 않으면서 동시에 더 느리게 증가하지 않는다는 뜻이다.</li>
+</ul>
+<br>
+<h4 id="성립을-위한-조건은-2">성립을 위한 조건은</h4>
+<ul>
+<li>상수 <strong>c1, c2</strong> 와 <code>nₒ</code> 가 존재해야 한다.</li>
+<li><strong>c1</strong>: <code>T(n)</code>이 <code>g(n)</code>보다 얼마나 빠르게 증가할 수 있는지를 나타내는 상수</li>
+<li><strong>c2</strong>: <code>T(n)</code>이 <code>g(n)</code>보다 얼마나 느리게 증가할 수 있는지를 나타내는 상수</li>
+<li><code>nₒ</code> 는 특정 최소 입력 크기</li>
+<li>모든 <code>n ≥ nₒ</code> 에 대해 <code>c1 * g(n) ≤ T(n) ≤ c2 * g(n)</code> 을 만족해야 한다.
+<ul>
+<li>입력 크기 <code>nₒ</code> 이상의 모든 입력에서 <code>T(n)</code>은 <code>g(n)</code>과 동일한 비율로 증가해야 한다.</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="간단한-예시를-살펴보자-2">간단한 예시를 살펴보자</h4>
+<p>예를 들어, 알고리즘의 시간 복잡도가 <code>T(n) = 3n + 2</code> 라면, 이 알고리즘이 <code>Θ(n)</code> 에 속하는지 확인해보자. 여기서 <code>g(n) = n</code> 으로 가정하고, 두 상수 <strong>c1</strong> 과 <strong>c2</strong> 를 찾아보자.</p>
+<ul>
+<li><strong>c1</strong>을 2로, <strong>c2</strong>를 4로 설정하고 <strong>nₒ</strong>을 1로 설정하면, 모든 <code>n ≥ 1</code> 에서 <code>2n ≤ 3n + 2 ≤ 4n</code> 이 성립한다.</li>
+<li>따라서 <code>T(n) = Θ(n)</code> 이라고 할 수 있다.</li>
+</ul>
+<p>이처럼, Big-Θ 알고리즘이 <code>g(n)</code>과 같은 속도로 증가한다는 것을 나타낸다. <code>T(n)</code>이 <code>g(n)</code>과 정확히 같은 비율로 증가할 때 <strong>Big-Θ</strong> 표기법을 사용한다. <strong>Big-Θ</strong> 는 상한선과 하한선을 모두 포함하므로, 알고리즘의 실제 성능을 <strong>정확하게 평가</strong> 하는 데 사용된다. <code>T(n)</code>이 <code>g(n)</code>과 비슷한 비율로 성장한다는 것을 보장하므로, 성능을 평가 시 더 엄격하고 명확한 기준을 제공한다.</p>
+<br>
+<br>
+<br>
+<h2 id="7-증명-예시">7. 증명 예시</h2>
+<h3 id="7-1-big-o--함수식을-통한-tn--on의-증명-예시">7-1. Big O : 함수식을 통한 T(n) = O(n²)의 증명 예시</h3>
+<h4 id="01--문제">01 : 문제</h4>
+<p>$$
+\frac{3}{2}n^2 + \frac{5}{2}n - 3 \leq O(n^2)
+$$</p>
+<p>위 수식이 <code>T(n) = O(n²)</code> 인지 증명해보자. 결국 이 문제는 주어진 함수가 <code>n²</code> 보다 더 빠르게 증가하지 않는다는 것을 증명하는 과정이다. 따라서 우리는 상수 <strong>c</strong> 와 <code>nₒ</code>라는 상수를 찾아서 아래 부등식을 만족시키는 것이 목표이다.</p>
+<p>$$
+T(n) \leq c \cdot n^2 \quad \text{(for } n \geq n_0)
+$$</p>
+<p>이를 풀기 위해, 위처럼 우리는 주어진 함수 <code>T(n)</code> 의 각 항을 <code>n²</code>과 비교하면서 <strong>c</strong> 와 <code>nₒ</code>를 찾아야 한다. 주어진 함수는 총 세 개의 항으로 이루어져 있다.</p>
+<ul>
+<li><code>n²</code>항 : <code>n²</code> 의 형태로 되어 있으므로 그대로 유지한다.</li>
+<li><code>n</code>항 : 이 항은 <code>n²</code> 에 비해 작은 값이다. 이는 일정한 상수로 보정해야 한다.</li>
+<li><code>-3</code>항 : 상수항도 입력 크기와는 상관없이 고정된 값이므로 <code>n²</code> 에 비해 작은 값이다.</li>
+</ul>
+<br>
+<h4 id="02--c-nₒ-찾기">02 : c, nₒ 찾기</h4>
+<p>$$
+\frac{3}{2}n^2 + \frac{5}{2}n - 3 \leq 2n^2
+$$</p>
+<p>상수 <strong>c</strong> 는 <code>n²</code>의 계수보다 크면서, <code>n</code>의 계수와 상수 <code>-3</code>을 포함할 수 있는 값이어야 한다. 예를 들어, <strong>c = 2</strong> 로 설정할 수 있다.</p>
+<p>이젠 부등식이 성립하는 최소 <code>nₒ</code>를 찾아야 한다. <code>n</code>이 충분히 크면 <code>n²</code>가 <code>n</code>부분과 상수보다 커지므로, <strong>nₒ = 1</strong> 로 설정할 수 있다.</p>
+<p>따라서, <strong>c = 2</strong>, <strong>nₒ = 1</strong> 일 때 아래 부등식이 성립한다.</p>
+<p>$$
+T(n) = \frac{3}{2}n^2 + \frac{5}{2}n - 3 \leq 2n^2 \quad \text{for } n \geq 1
+$$</p>
+<p>이로써 <code>T(n) = O(n²)</code>임을 증명할 수 있다.</p>
+<br>
+<br>
+<br>
+<h3 id="7-2-big-θ--함수식을-통한-tn--θn의-증명-예시">7-2. Big Θ : 함수식을 통한 T(n) = Θ(n²)의 증명 예시</h3>
+<h4 id="01--문제-1">01 : 문제</h4>
+<p>$$
+\frac{1}{2}n^2 - 3n = \Theta(n^2)
+$$</p>
+<p>위 수식이 <code>T(n) = Θ(n²)</code> 인지 증명해보자! 이는 함수가 n² 과 정확히 같은 비율로 증가한다는 것을 보이는 문제이다. 우리는 상수 <strong>c₁</strong> , <strong>c₂</strong> 그리고 <code>nₒ</code>를 찾아서 아래 부등식이 성립하는지를 증명해야 한다.</p>
+<p>$$
+c_1 n^2 \leq \frac{1}{2}n^2 - 3n \leq c_2 n^2 \quad \text{(for } n \geq n_0)
+$$</p>
+<br>
+<h4 id="02--big-o-증명">02 : Big-O 증명</h4>
+<p>우리는 함수의 상한선을 구하기 위해 <strong>c₂</strong>와 <code>nₒ</code>를 찾아야 한다. 우선, 주어진 함수 <code>T(n)</code>이 <code>n²</code>보다 더 빠르게 증가하지 않는지 확인해보자.</p>
+<ol>
+<li>주어진 함수에서 <code>n²</code>항과 <code>n</code>항을 살펴보면, 이미 <code>n²</code> 형태이므로 그대로 유지된다.</li>
+<li><code>-3n</code> 항은 <code>n²</code>에 비해 작은 항이므로 이를 상수 <strong>c₂</strong>로 보정할 수 있다.</li>
+</ol>
+<p>다음 부등식을 만족하는 <strong>c₂</strong>와 <code>nₒ</code>를 찾자.</p>
+<p>$$
+\frac{1}{2}n^2 - 3n \leq c_2 n^2
+$$</p>
+<p>여기서 $ c_2 = 1 $로 설정하면 다음 부등식이 성립한다.</p>
+<p>$$
+\frac{1}{2}n^2 - 3n \leq n^2
+$$</p>
+<p>이 부등식은 <strong>nₒ = 6</strong> 일 때 성립한다. <code>n &gt;= 6</code>에서는 <code>n²</code>항이 <code>-3n</code> 보다 커지므로, 상한을 만족한다. 따라서, <code>T(n) = O(n²)</code>임을 증명할 수 있다.</p>
+<br>
+<h4 id="03--big-omega-증명">03 : Big-Omega 증명</h4>
+<p>이제 하한선을 구하기 위해 <strong>c₁</strong> 과 <code>nₒ</code>를 찾아보자.</p>
+<p>$$
+c_1 n^2 \leq \frac{1}{2}n^2 - 3n
+$$</p>
+<p>이 부등식이 성립하도록 <strong>c₁</strong> 을 구하면 된다. $c₁ = \frac{1}{3}$ 로 설정하면 다음 부등식이 성립한다:</p>
+<p>$$
+\frac{1}{3}n^2 \leq \frac{1}{2}n^2 - 3n
+$$</p>
+<p>이때도 $nₒ = 8$ 일 때 성립한다. $n \geq 8$ 에서 이 부등식이 만족된다. 따라서 $T(n) = \Omega(n^2)$ 임을 증명할 수 있다.</p>
+<br>
+<h4 id="04--결론">04 : 결론</h4>
+<p>결국, 상수 $c_1 = \frac{1}{3}$, $c_2 = 1$, 그리고 $n_0 = 8$ 에서 다음 부등식이 성립한다.</p>
+<p>$$
+\frac{1}{3}n^2 \leq \frac{1}{2}n^2 - 3n \leq n^2 \quad \text{(for } n \geq 8)
+$$</p>
+<p>따라서, 주어진 함수는 $ \Theta(n^2) $임을 증명할 수 있다.</p>
+<br>
+<br>
+<br>
+<h2 id="8-reference">8. Reference</h2>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/types-of-asymptotic-notations-in-complexity-analysis-of-algorithms/">https://www.geeksforgeeks.org/types-of-asymptotic-notations-in-complexity-analysis-of-algorithms/</a></li>
+</ul>
+<br>
+<br>
+<br>
+<div class="series">
+  <details>
+    <summary>📚 /algorithm</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/algorithm/00_selection_sort/">0. Selection Sort</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<br>
+<br>
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

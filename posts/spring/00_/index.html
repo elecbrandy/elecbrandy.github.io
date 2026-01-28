@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title> | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.9b52840ff847d49a3f3379e089850a370dbfdffb41226dfaeda079f69691a88c.css" 
+      integrity="sha256-m1KED/hH1Jo/M3ngiYUKNw2/3/tBIm367aB59paRqIw="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#-스프링-부트-요청-인풋input-유형-총정리">📥 스프링 부트 요청 인풋(Input) 유형 총정리</a>
+      <ul>
+        <li><a href="#1-요청-데이터-분류-체계">1. 요청 데이터 분류 체계</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-인풋별-상세-설명-및-활용">2. 인풋별 상세 설명 및 활용</a>
+      <ul>
+        <li><a href="#-url-경로-변수-pathvariable">📍 URL 경로 변수 (<code>@PathVariable</code>)</a></li>
+        <li><a href="#-쿼리-파라미터-requestparam">🔍 쿼리 파라미터 (<code>@RequestParam</code>)</a></li>
+        <li><a href="#-폼form-데이터-modelattribute">📝 폼(Form) 데이터 (<code>@ModelAttribute</code>)</a></li>
+        <li><a href="#-메시지-바디--api-requestbody">🤖 메시지 바디 / API (<code>@RequestBody</code>)</a></li>
+        <li><a href="#-메타데이터-requestheader">📑 메타데이터 (<code>@RequestHeader</code>)</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-데이터-흐름-요약도">3. 데이터 흐름 요약도</a></li>
+    <li><a href="#-autowired-필드-주입을-사용하는-상황">🏗️ @Autowired 필드 주입을 사용하는 상황</a>
+      <ul>
+        <li><a href="#1-테스트-코드-springboottest">1. 테스트 코드 (<code>@SpringBootTest</code>)</a></li>
+        <li><a href="#2-레거시-코드-유지보수">2. 레거시 코드 유지보수</a></li>
+        <li><a href="#3-설정-클래스-configuration">3. 설정 클래스 (<code>@Configuration</code>)</a></li>
+        <li><a href="#4-의존성이-필수가-아닐-때-optional-dependency">4. 의존성이 필수가 아닐 때 (Optional Dependency)</a></li>
+      </ul>
+    </li>
+    <li><a href="#-그럼에도-주의할-점">⚠️ 그럼에도 주의할 점</a>
+      <ul>
+        <li><a href="#-한-줄-요약">💡 한 줄 요약</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+    <div class="overlay-text">
+      <small>0001.01.01</small>
+      <div class="singleTitle"></div>
+    </div>
+  </div>
+  <p>Spring</p>
+<p>또 nginx이네&hellip;</p>
+<p>정적파일은 nginx가 앞에서 먼저 정적 파일 서빙 -&gt; 단순한걸로 was에 부하를 주지 않기 위함. 등</p>
+<p>그래서 우리가 만들 RESTful API이란?
+REST(Representational State Transfer 원칙을 따르는 웹 기반 API)</p>
+<p>URI vs URL
+URI는 리소스를 식별하는 모든 방식 (이름, 위치, 둘다 포함의 총칭)
+모든 URL은 URI 이지만 모든 URI가 URL은 아니다.
+이거 간단한 예시와함께 쉽게 다시 설명</p>
+<p>RESTful API</p>
+<ul>
+<li>자원 명사 사용 -&gt; 실무가서도 원칙을 지키야. 대산은 명사로. 가져올대상, 업데이트할 대상. 영어권애들은 자원명에 복수단수 구분하는경우도 있는데 이건 컨벤션 따라서</li>
+<li>동사 대신 GET.POST.PUT,DELETE 등 HTTP 메서드로 동작을 표현</li>
+<li>계층적구조</li>
+<li>단수복수일관성</li>
+<li>쿼리 파라미터</li>
+<li>상태코드 활용</li>
+<li>응답포맷 주로 JSON형식 사용</li>
+<li>Stateless: 각 요청은 독립적으로 처리, 서버는 클라이언트의 상태 저장 X
+<ul>
+<li>이 방식의 장단점 기술.</li>
+</ul>
+</li>
+</ul>
+<p>Spring과 Spring boot의 차이점. 톰캣 탑재와 빈 관점에서</p>
+<p>bff
+나중에 BFF 한번 써봐라 스프링클라우드게이트웨이. 즉 백앤드와 프론트 사이에서
+마이크로서비스아키텍쳐를 위해 스프링클라우드게이트웨이가 분기처리를 비동기로 빠르게 해준다.
+프론트에서 받아온 API를 받아서 백단에 spring, pythonaiserver 등등 다양한 백단까지 왔다갔다하는거.
+이 과정에서 JWT 토큰의 사용이 bff 노드에서 일어남</p>
+<p>컴포넌트 스캔?
+실무에서 만약 누군가 만들어준 공통 라이브러리를 사용해야한다면
+Maven에 등록해서 디펜던시 걸고 컴포넌트 스캔해서 넣어야함</p>
+<p>MVC 패턴
+Model
+View
+Controller</p>
+<p>그리고 결국 api 구성에는 Repository-service-Controller 쌍으로 묶여서 활동하게됨.</p>
+<ul>
+<li>spring 컨테이너
+<ul>
+<li>스프링 빈의 생성,설정,관리,소멸 등 생명 주기 전반을 담당하는 핵심 엔진
+스프링빈의 생성,</li>
+</ul>
+</li>
+<li>빈이란?
+<ul>
+<li>스프링이 관리하는 객체(인스턴스)를 의미</li>
+<li>스프링 컨테이너가 생성하고 생명주기를 관리. 개발자가 new로 직접생성X</li>
+<li>싱글턴 방식으로 관리.</li>
+</ul>
+</li>
+<li>싱클톤패턴
+<ul>
+<li>프로그램 실행 내내 단 하나의 객체만 생성해서 공유하는 디자인 패턴</li>
+<li>스프링 컨테이너는 기본적으로 모든 비능ㄹ 싱글턴으로 관리</li>
+</ul>
+</li>
+<li>어노테이션
+<ul>
+<li>자바 코드에 메타데이터를 제공하는 특수한 표기법</li>
+<li>@기호로 시작</li>
+<li>컴파일러, 개발 툴, 런타임 등에서 특별한 의미로 해석</li>
+<li>스프링에서의 어노테이션?
+<ul>
+<li>설정 및 의존성 주입을 간편하게 처리하고 객체를 자동으로 등록하거나 관리</li>
+<li>다양한 기능(트랜잭션, 보안, 예외처리등)을 선언적으로 적용하는 방식2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>클라이언트가 스프링 서버로 보내는 데이터는 위치와 목적에 따라 다양합니다. 요청의 성격에 맞춰 데이터를 어떻게 구분하고, 어떤 어노테이션을 사용하여 받는지 한 페이지로 완벽하게 정리해 드릴게요.</p>
+<hr>
+<h2 id="-스프링-부트-요청-인풋input-유형-총정리">📥 스프링 부트 요청 인풋(Input) 유형 총정리</h2>
+<p>HTTP 요청의 어느 부분에 데이터가 담겨 오느냐에 따라 크게 5가지로 나뉩니다.</p>
+<h3 id="1-요청-데이터-분류-체계">1. 요청 데이터 분류 체계</h3>
+<table>
+  <thead>
+      <tr>
+          <th>구분</th>
+          <th>위치</th>
+          <th>설명</th>
+          <th>핵심 어노테이션</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>URL 경로 (Path)</strong></td>
+          <td><code>/users/{id}</code></td>
+          <td>URL 경로 자체에 값을 포함 (자원 식별)</td>
+          <td><code>@PathVariable</code></td>
+      </tr>
+      <tr>
+          <td><strong>쿼리 파라미터 (Query)</strong></td>
+          <td><code>?name=kim&amp;age=20</code></td>
+          <td>URL 끝에 <code>?</code>와 함께 전달 (필터링, 검색)</td>
+          <td><code>@RequestParam</code></td>
+      </tr>
+      <tr>
+          <td><strong>폼 데이터 (Form)</strong></td>
+          <td>Body (<code>key=value</code>)</td>
+          <td>HTML <code>&lt;form&gt;</code> 태그를 통해 전달되는 데이터</td>
+          <td><code>@ModelAttribute</code> / <code>@RequestParam</code></td>
+      </tr>
+      <tr>
+          <td><strong>메시지 바디 (API/JSON)</strong></td>
+          <td>Body (<code>{...}</code>)</td>
+          <td>REST API에서 주로 쓰는 JSON 형태의 데이터</td>
+          <td><code>@RequestBody</code></td>
+      </tr>
+      <tr>
+          <td><strong>메타데이터 (Metadata)</strong></td>
+          <td>Header / Cookie</td>
+          <td>인증 토큰, 브라우저 정보, 세션 ID 등</td>
+          <td><code>@RequestHeader</code> / <code>@CookieValue</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="2-인풋별-상세-설명-및-활용">2. 인풋별 상세 설명 및 활용</h2>
+<h3 id="-url-경로-변수-pathvariable">📍 URL 경로 변수 (<code>@PathVariable</code>)</h3>
+<ul>
+<li><strong>특징:</strong> 자원의 위치를 명확히 할 때 사용합니다.</li>
+<li><strong>예시:</strong> <code>GET /posts/10</code> → 10번 게시글을 가져올 때.</li>
+<li><strong>용도:</strong> 주로 RESTful API에서 특정 리소스를 식별하는 ID 값으로 씁니다.</li>
+</ul>
+<h3 id="-쿼리-파라미터-requestparam">🔍 쿼리 파라미터 (<code>@RequestParam</code>)</h3>
+<ul>
+<li><strong>특징:</strong> URL은 유지하면서 추가적인 옵션을 줄 때 사용합니다.</li>
+<li><strong>예시:</strong> <code>GET /posts?category=tech&amp;sort=desc</code> → tech 카테고리 글을 최신순으로 정렬할 때.</li>
+<li><strong>용도:</strong> 검색, 필터링, 페이징 처리에 적합합니다.</li>
+</ul>
+<h3 id="-폼form-데이터-modelattribute">📝 폼(Form) 데이터 (<code>@ModelAttribute</code>)</h3>
+<ul>
+<li><strong>특징:</strong> <code>application/x-www-form-urlencoded</code> 형식으로 전달됩니다.</li>
+<li><strong>용도:</strong> 전통적인 웹 페이지의 회원가입, 게시글 작성 화면에서 사용자가 입력한 값을 객체(DTO)로 통째로 바인딩할 때 매우 편리합니다.</li>
+</ul>
+<h3 id="-메시지-바디--api-requestbody">🤖 메시지 바디 / API (<code>@RequestBody</code>)</h3>
+<ul>
+<li><strong>특징:</strong> 주로 <strong>JSON</strong> 형식을 사용하며, 외부에 노출되지 않도록 HTTP Body에 담겨 옵니다.</li>
+<li><strong>용도:</strong> 현대적인 웹(React, Vue)이나 앱과의 통신에서 복잡한 객체 데이터를 주고받을 때 표준으로 사용됩니다.</li>
+</ul>
+<h3 id="-메타데이터-requestheader">📑 메타데이터 (<code>@RequestHeader</code>)</h3>
+<ul>
+<li><strong>특징:</strong> 비즈니스 데이터가 아닌, 통신에 필요한 부가 정보를 담습니다.</li>
+<li><strong>용도:</strong> 인증 토큰(JWT), 클라이언트 기기 정보(User-Agent), 응답받고 싶은 데이터 형식(Accept) 등을 확인할 때 씁니다.</li>
+</ul>
+<hr>
+<h2 id="3-데이터-흐름-요약도">3. 데이터 흐름 요약도</h2>
+<p>데이터가 들어오면 <strong>Handler Adapter</strong>가 이 어노테이션들을 확인하여 적절한 데이터 형식으로 변환해 줍니다.</p>
+<blockquote>
+<p><strong>💡 팁:</strong> &gt; * 단순한 값 1~2개면? 👉 <code>@RequestParam</code></p>
+<ul>
+<li>복잡한 객체나 JSON이면? 👉 <code>@RequestBody</code></li>
+<li>URL 경로에 포함된 ID면? 👉 <code>@PathVariable</code></li>
+</ul>
+</blockquote>
+<p>a 컴포넌트 b컴포넌트 있응ㅇㄹ때, A가 있어야 B가있는 상황에서 어노테이션을 통해 빈 시공간순서 제어가능</p>
+<p><code>private final</code>을 이용한 생성자 주입이 권장된다는 사실을 아시다니, 이미 스프링의 핵심을 꿰뚫고 계시네요! 사실 현대 스프링 개발에서는 필드 주입(<code>@Autowired</code> 직접 사용)을 &ldquo;피해야 할 안티 패턴&quot;으로 보기도 하지만, 여전히 실무에서 사용되는 **&lsquo;현실적인 이유&rsquo;**들이 있습니다.</p>
+<p><code>@Autowired</code> 필드 주입 방식을 사용해도 괜찮거나, 혹은 어쩔 수 없이 쓰게 되는 4가지 상황을 정리해 드릴게요.</p>
+<hr>
+<h2 id="-autowired-필드-주입을-사용하는-상황">🏗️ @Autowired 필드 주입을 사용하는 상황</h2>
+<h3 id="1-테스트-코드-springboottest">1. 테스트 코드 (<code>@SpringBootTest</code>)</h3>
+<p>가장 대표적인 경우입니다. 테스트 코드에서는 객체의 불변성을 보장하거나 생성자를 복잡하게 설계할 필요가 없습니다.</p>
+<ul>
+<li><strong>이유:</strong> 테스트 클래스는 스프링이 생성자를 통해 빈을 주입하는 방식과 JUnit의 동작 방식이 충돌할 수 있어, 가장 단순한 <code>@Autowired</code> 필드 주입을 주로 사용합니다.</li>
+<li><strong>예시:</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@SpringBootTest</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyTest</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span>
+</span></span><span style="display:flex;"><span>    MyService myService; <span style="color:#75715e">// 테스트에서는 간결함이 최고!</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="2-레거시-코드-유지보수">2. 레거시 코드 유지보수</h3>
+<p>이미 수만 줄의 코드가 필드 주입 방식으로 작성된 프로젝트를 맡게 되었을 때입니다.</p>
+<ul>
+<li><strong>이유:</strong> 혼자만 생성자 주입으로 바꾸면 코드의 일관성이 깨지고, 전체를 다 바꾸기엔 리스크가 큽니다. 이런 경우 팀의 컨벤션을 따르기 위해 계속 사용하기도 합니다.</li>
+</ul>
+<h3 id="3-설정-클래스-configuration">3. 설정 클래스 (<code>@Configuration</code>)</h3>
+<p>스프링 설정 자체를 담당하는 클래스 내에서 다른 빈을 잠시 참조해야 할 때 사용합니다.</p>
+<ul>
+<li><strong>이유:</strong> 설정 클래스는 실제 비즈니스 로직이 아니므로 불변성이나 테스트 용이성에서 상대적으로 자유롭기 때문입니다.</li>
+</ul>
+<h3 id="4-의존성이-필수가-아닐-때-optional-dependency">4. 의존성이 필수가 아닐 때 (Optional Dependency)</h3>
+<p>특정 빈이 없어도 프로그램이 돌아가야 하는 경우에 사용합니다.</p>
+<ul>
+<li><strong>방법:</strong> <code>@Autowired(required = false)</code> 옵션을 주면, 주입할 빈이 없어도 에러가 나지 않고 <code>null</code>로 유지됩니다.</li>
+<li><strong>참고:</strong> 생성자 주입은 빈이 없으면 객체 생성 자체가 안 되어 애플리케이션이 멈추기 때문에, 옵션이 필요한 경우 필드 주입이나 Setter 주입이 대안이 됩니다.</li>
+</ul>
+<hr>
+<h2 id="-그럼에도-주의할-점">⚠️ 그럼에도 주의할 점</h2>
+<p>제공해주신 표를 보면 <code>@Autowired</code>는 <strong>필드, 생성자, 메서드</strong> 어디든 사용 가능하다고 되어 있습니다. 하지만 실무에서는 다음과 같은 이유로 여전히 생성자 주입을 선호합니다.</p>
+<table>
+  <thead>
+      <tr>
+          <th>문제점</th>
+          <th>필드 주입 (<code>@Autowired</code>)</th>
+          <th>해결책 (생성자 주입)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>NPE 위험</strong></td>
+          <td>주입 없이 객체를 생성하면 메서드 호출 시 터짐</td>
+          <td>객체 생성 시점에 주입이 강제됨</td>
+      </tr>
+      <tr>
+          <td><strong>의존성 숨김</strong></td>
+          <td>클래스 외부에서 어떤 의존성이 있는지 알기 어려움</td>
+          <td>생성자의 파라미터를 통해 명확히 보임</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-한-줄-요약">💡 한 줄 요약</h3>
+<p><strong>&ldquo;테스트 코드나 아주 간단한 프로토타이핑이 아니라면, 가급적 <code>private final</code>과 생성자 주입을 쓰되, <code>@Autowired</code>는 보조 수단으로 이해하자!&rdquo;</strong></p>
+<p>결국 생성자 final 방식으로 선언하는게 제일 안전함. 서비스 빈이 만들어지는 동시에 레포지토리 빈 주소까지 받아오는.</p>
+<p>순환참조 오류 -&gt; 내지말아라</p>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

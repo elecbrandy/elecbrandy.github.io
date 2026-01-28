@@ -3,7 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://elecbrandy.github.io/</loc>
-    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/</loc>
+    <lastmod>2026-01-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/spring-boot/</loc>
+    <lastmod>2026-01-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/spring/rest_spring/</loc>
+    <lastmod>2026-01-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/</loc>
+    <lastmod>2026-01-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/web/</loc>
+    <lastmod>2026-01-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/skala/02_vectordb/</loc>
     <lastmod>2026-01-22T00:00:00+00:00</lastmod>
@@ -11,13 +26,7 @@
     <loc>https://elecbrandy.github.io/tags/ai/</loc>
     <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/</loc>
-    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://elecbrandy.github.io/tags/skala/</loc>
-    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/</loc>
     <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/skala/01_prompt_engineering/</loc>
@@ -84,10 +93,25 @@
     <lastmod>2024-11-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/algorithm/</loc>
-    <lastmod>2024-09-21T00:00:00+00:00</lastmod>
+    <lastmod>2024-10-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/algorithm/00_selection_sort/</loc>
-    <lastmod>2024-09-21T00:00:00+00:00</lastmod>
+    <loc>https://elecbrandy.github.io/posts/algorithm/06_lineartime_selection/</loc>
+    <lastmod>2024-10-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/algorithm/05_merge_sort/</loc>
+    <lastmod>2024-10-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/algorithm/04_insertion_sort/</loc>
+    <lastmod>2024-10-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/algorithm/03_selection_sort/</loc>
+    <lastmod>2024-10-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/algorithm/02_analysis_recurrence_relation/</loc>
+    <lastmod>2024-09-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/algorithm/01_analysis_asymptotic_notation/</loc>
+    <lastmod>2024-09-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/cs101/radixpoint/</loc>
     <lastmod>2024-09-16T00:00:00+00:00</lastmod>
@@ -145,6 +169,8 @@
   </url><url>
     <loc>https://elecbrandy.github.io/posts/uiux/ux101/</loc>
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/spring/00_/</loc>
   </url><url>
     <loc>https://elecbrandy.github.io/about/</loc>
   </url>

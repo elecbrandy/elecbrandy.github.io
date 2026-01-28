@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>알고리즘의 재귀적 분석 | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.9b52840ff847d49a3f3379e089850a370dbfdffb41226dfaeda079f69691a88c.css" 
+      integrity="sha256-m1KED/hH1Jo/M3ngiYUKNw2/3/tBIm367aB59paRqIw="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-재귀적-접근-방법">1. 재귀적 접근 방법</a>
+      <ul>
+        <li><a href="#1-2-재귀적-분석과-점근적-분석의-차이점">1-2. 재귀적 분석과 점근적 분석의 차이점</a></li>
+        <li><a href="#1-3-재귀-관계식의-구조">1-3. 재귀 관계식의 구조</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-recursion-tree-method">2. Recursion tree Method</a>
+      <ul>
+        <li><a href="#2-1-runtime-분석">2-1. Runtime 분석</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-iteration-method">3. Iteration Method</a>
+      <ul>
+        <li><a href="#3-1-재귀-관계식-확장">3-1. 재귀 관계식 확장</a></li>
+        <li><a href="#3-2-k의-의미">3-2. k의 의미</a></li>
+        <li><a href="#3-3-runtime-분석">3-3. Runtime 분석</a></li>
+        <li><a href="#3-4-결론">3-4. 결론</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-master-method">4. Master Method</a>
+      <ul>
+        <li><a href="#4-1-기본-가정">4-1. 기본 가정</a></li>
+        <li><a href="#4-2-divide와-conquer">4-2. Divide와 Conquer</a></li>
+        <li><a href="#4-3-세-가지-경우의-분석">4-3. 세 가지 경우의 분석</a></li>
+        <li><a href="#4-4-master-method-예시">4-4. Master Method 예시</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-master-method-specific-ver">5. Master Method (specific ver)</a>
+      <ul>
+        <li></li>
+        <li><a href="#5-2-master-method-예시">5-2. Master Method 예시</a></li>
+        <li><a href="#5-3-연습">5-3. 연습</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://substackcdn.com/image/fetch/$s_!1oOq!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5edc4abf-f75a-48d1-847f-9896de85dcd7_704x354.jpeg" alt="Featured Image for 알고리즘의 재귀적 분석">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2024.09.30</small>
+      <div class="singleTitle">알고리즘의 재귀적 분석</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>📚 /algorithm</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/algorithm/00_selection_sort/">0. Selection Sort</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-재귀적-접근-방법">1. 재귀적 접근 방법</h2>
+<p><em>Recursive Analysis</em></p>
+<p><strong>재귀적 접근 방법</strong> 은 알고리즘이 재귀적으로 동작할 때 그 성능을 분석하는 방법이다. 재귀적 알고리즘은 문제를 더 작은 하위 문제로 나누고, 각 하위 문제를 재귀적으로 해결하는 방식으로 동작한다. 재귀적 분석은 하위 문제들이 어떻게 구성되고 합쳐지는지에 따라 전체 성능을 평가하는 데 집중한다.</p>
+<p>재귀적 분석의 핵심은 <code>재귀 관계식</code> 을 세우는 것이다. 재귀 관계식은 알고리즘의 실행 시간이나 자원 사용량이 작은 하위 문제들에 의해 어떻게 정의되는지를 나타내는 수식이다. 이를 해결함으로써 알고리즘의 성능을 분석할 수 있다.</p>
+<br>
+<br>
+<br>
+<h3 id="1-2-재귀적-분석과-점근적-분석의-차이점">1-2. 재귀적 분석과 점근적 분석의 차이점</h3>
+<p>점근적 분석은 <strong>입력 크기가 매우 클 때</strong> 성능을 평가하는 방법이다. 이때는 알고리즘이 어떻게 동작하는지에 대한 세부적인 내용보다는 입력 크기에 따른 전체 성능 경향을 중요하게 다룬다. 예를 들어 $O(n^2)$, $O(n \log n)$ 등의 표현을 통해 성능을 추상적으로 표현한다.</p>
+<p>재귀적 분석은 <strong>알고리즘의 재귀적 구조</strong>에 집중한다. 알고리즘이 재귀적으로 문제를 해결할 때 하위 문제로 나뉘는 과정과 그에 따른 <strong>재귀 호출의 실행 시간</strong>을 구체적으로 분석한다. 주로 어떤 <code>n</code>번째 시퀸스의 값은 <code>n - 1</code> 시퀸스와 <code>n - 2</code> 시퀸스의 합으로 이루어진다. 즉 수식으로 표현하면 아래와 같다.</p>
+<p>$$
+T(n) = T(n - 1) + T(n - 2)
+$$</p>
+<p>그러나 이런 점화식 표현은 읽기 어렵기 때문에 일반 Runtime 표기법과 비슷하게 바꿔주는 과정이 필요하다.</p>
+<br>
+<h3 id="1-3-재귀-관계식의-구조">1-3. 재귀 관계식의 구조</h3>
+<p>재귀 관계식은 보통 다음과 같은 형태로 표현된다.</p>
+<p>$$
+T(n) = a \cdot T\left(\frac{n}{b}\right) + O(n^d)
+$$</p>
+<ul>
+<li>$T(n)$ 은 입력 크기 <code>n</code> 에 따른 알고리즘의 실행 시간 또는 자원 사용량을 나타낸다.</li>
+<li>$a$ 는 문제를 몇 개의 하위 문제로 나누는지를 나타낸다.</li>
+<li>$\frac{n}{b}$ 는 각 하위 문제의 크기를 나타낸다. 여기서 $b$ 는 문제를 나눌 때 입력 크기를 몇 배 줄이는지를 나타낸다.</li>
+<li>$O(n^d)$ 는 하위 문제들을 나누고 다시 합치는 데 필요한 추가 작업을 나타낸다. 여기서 $d$ 는 이러한 추가 작업의 복잡도를 나타낸다.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h4 id="merge-sort의-점화식">merge sort의 점화식</h4>
+<blockquote>
+<p>$$
+T(1) \leq c , T(n) \leq 2T\left(\frac{n}{2}\right) + cn
+$$</p>
+</blockquote>
+<p>이전에 공부했던 <a href="https://elecbrandy.github.io/posts/algorithm/merge_sort/"> <em>merge sort</em> </a> 을 활용해서 재귀적 접근의 여러가지 분석 방법을 공부해보자.</p>
+<br>
+<br>
+<br>
+<br>
+<h2 id="2-recursion-tree-method">2. Recursion tree Method</h2>
+<img src="https://i.imgur.com/jBkUXgx.png" max-width=100%>
+<p><strong>Recursion tree Method</strong>은 직접 재귀 상황을 직접 그려보며 분석하는 방법이다. 주어진 input의 사이즈를 계속해서 이분할하며 내려가면 결국 Tree 형태를 가질 것이다. 이때 Runtime을 수동으로 계산해보자!</p>
+<br>
+<h3 id="2-1-runtime-분석">2-1. Runtime 분석</h3>
+<ul>
+<li><strong><code>Divide</code></strong>
+<ul>
+<li>$ cn \log_2 n$</li>
+<li>트리 마지막 노드까지 내려가는 비용</li>
+</ul>
+</li>
+<li><strong><code>Conquer</code></strong>
+<ul>
+<li>$ cn $</li>
+<li>각 배열을 비교하고 합치는 것은 Linear Time 안에 가능</li>
+</ul>
+</li>
+</ul>
+<p>따라서 $ cn \log_2 n + cn$ 을 BigO 표기법으로 정리하면 Runtime은 다음과 같다.</p>
+<blockquote>
+<p>$$
+O(n logn)
+$$</p>
+</blockquote>
+<br>
+<br>
+<br>
+<br>
+<h2 id="3-iteration-method">3. Iteration Method</h2>
+<p><strong>Iteration Method</strong>는 재귀적 관계식을 반복적으로 확장하여 하나의 패턴을 찾아내는 방법이다.
+이를 통해 재귀적으로 정의된 알고리즘의 성능을 분석할 수 있다. merge sort의 재귀 관계식은 다음과 같다.</p>
+<p>$$
+T(1) \leq c, \quad T(n) \leq 2T\left(\frac{n}{2}\right) + cn
+$$</p>
+<p>여기서, $T(n)$은 항상 $2T\left(\frac{n}{2}\right) + cn$ 보다 같거나 작다는 것을 알 수 있다. 따라서 우리는 $T(n)$을 이 식을 이용하여 분석할 수 있다. 이 식은 재귀적으로 표현된 알고리즘의 실행 시간을 나타내므로, 이를 반복적으로 확장하여 성능을 분석하는 것이다.</p>
+<br>
+<h3 id="3-1-재귀-관계식-확장">3-1. 재귀 관계식 확장</h3>
+<p>재귀 관계식을 여러 번 확장하여 패턴을 찾아본다. 우선, $T\left(\frac{n}{2}\right)$ 을 구하기 위해 해당 값을 대입해보자:</p>
+<p>$$
+T\left(\frac{n}{2}\right) = 2T\left(\frac{n}{4}\right) + \frac{cn}{2}
+$$</p>
+<p>이 식을 $ T(n) $에 대입하면,</p>
+<p>$$
+T(n) \leq 2\left(2T\left(\frac{n}{4}\right) + \frac{cn}{2}\right) + cn = 4T\left(\frac{n}{4}\right) + 2cn
+$$</p>
+<p>이 과정을 반복하면 다음과 같은 패턴을 찾을 수 있다!</p>
+<p>$$
+T(n) \leq 2^k T\left(\frac{n}{2^k}\right) + kcn
+$$</p>
+<br>
+<h3 id="3-2-k의-의미">3-2. k의 의미</h3>
+<p>여기서 $k$ 는 배열을 이분할하는 횟수를 의미한다. 즉, 배열의 크기를 계속 2로 나누어 1이 될 때까지의 단계를 나타낸다. 배열의 크기 $n$ 을 1로 나누는 데 필요한 횟수는 <strong>$\log_2 n$</strong> 이다. 따라서 $k = \log_2 n$이 된다.</p>
+<br>
+<h3 id="3-3-runtime-분석">3-3. Runtime 분석</h3>
+<p>위에서 구한 관계식에 $k = \log_2 n$ 을 대입하면 다음과 같다.</p>
+<p>$$
+T(n) \leq 2^{\log_2 n} T\left(\frac{n}{2^{\log_2 n}}\right) + cn \log_2 n
+$$</p>
+<p>이를 간단히 해보자.</p>
+<p>$$
+T(n) \leq nT(1) + cn \log_2 n
+$$</p>
+<p>여기서 $T(1) \leq c$ 이므로, 이를 대입하면 최종적으로 다음과 같은 식을 얻게 된다.</p>
+<p>$$
+T(n) \leq cn + cn \log_2 n
+$$</p>
+<p>따라서 병합 정렬의 시간 복잡도는,</p>
+<blockquote>
+<p>$$
+T(n) = O(n \log n)
+$$</p>
+</blockquote>
+<br>
+<h3 id="3-4-결론">3-4. 결론</h3>
+<p>Iteration Method를 통해 병합 정렬의 재귀적 관계식을 확장하고 패턴을 찾아 시간 복잡도를 구할 수 있다. 최종적으로 병합 정렬의 시간 복잡도는 <strong>$ O(n \log n) $</strong> 이다. 이는 입력 배열을 분할하는 단계와 병합하는 단계가 각각 $O(\log n)$ 과 $O(n)$ 에 비례하기 때문에, 전체 시간 복잡도는 두 단계의 곱인 $O(n \log n)$으로 나타난다.</p>
+<br>
+<br>
+<br>
+<h2 id="4-master-method">4. Master Method</h2>
+<p>우리의 목표는 최종적으로 재귀 관계식을 <strong>시간 복잡도</strong> 로 추상화하는 것이다. 이 과정에서 <strong>Master Method</strong> 는 특정한 형태의 재귀식에 대해 시간 복잡도를 계산할 수 있는 도구이다. 특히, Master Method는 모든 하위 문제가 같은 크기일 때 사용되며, Divide와 Conquer 단계에서 발생하는 작업의 상대적인 크기를 비교하여 시간 복잡도를 분석한다.</p>
+<br>
+<h3 id="4-1-기본-가정">4-1. 기본 가정</h3>
+<p>Master Method는 다음과 같은 형태의 재귀 관계식에 적용된다.</p>
+<p>$$
+T(n) = aT\left(\frac{n}{b}\right) + f(n)
+$$</p>
+<ul>
+<li>$a \geq 1$, $b &gt; 1$ 은 상수이다.</li>
+<li>$f(n)$ 은 <strong>asymptotically positive</strong>인 함수로, 즉 입력 크기가 충분히 클 때 양수가 되는 함수이다.</li>
+</ul>
+<br>
+<h3 id="4-2-divide와-conquer">4-2. Divide와 Conquer</h3>
+<ul>
+<li>Master Method에서는 재귀식의 두 주요 부분인 <strong>Divide</strong>와 <strong>Conquer</strong>를 비교한다.</li>
+<li><strong>Divide</strong>는 문제를 나누는 단계로, $a$ 개의 하위 문제를 생성하는데 각 하위 문제의 크기는 $\frac{n}{b}$ 이다.</li>
+<li><strong>Conquer</strong>는 하위 문제를 해결하고 이를 다시 병합하는 과정으로, 병합하는 데 걸리는 시간은 $f(n)$ 으로 표현된다.</li>
+</ul>
+<p>이때, <strong>Divide</strong> 부분에서 발생하는 전체 작업량은 <strong>$n^{\log_b a}$</strong> 로 계산할 수 있다. 이것은 문제를 나누는 데 필요한 연산 양을 의미한다.</p>
+<ul>
+<li><strong>$n^{\log_b a}$</strong> : 재귀 호출을 통해 나누어진 하위 문제들의 시간 복잡도를 의미한다.</li>
+<li><strong>$f(n)$</strong> : 병합 과정에서 수행되는 연산의 시간 복잡도를 나타낸다.</li>
+</ul>
+<br>
+<h3 id="4-3-세-가지-경우의-분석">4-3. 세 가지 경우의 분석</h3>
+<p>Master Method는 $f(n)$ 과 $n^{\log_b a}$ 를 비교하여 세 가지 경우로 나뉜다.</p>
+<img src="https://i.imgur.com/aMIxeFx.png" max-width=100%>
+<img src="https://i.imgur.com/h3AsjVw.png" max-width=100%>
+<ol>
+<li>
+<p><strong>$f(n) = \Theta(n^{\log_b a})$</strong></p>
+<ul>
+<li>이 경우, 하위 문제를 나누고 해결하는 데 걸리는 시간과 병합하는 데 걸리는 시간이 동일하다.</li>
+<li>이때 전체 시간 복잡도는 <strong>$T(n) = \Theta(n^{\log_b a} \log n)$</strong> 가 된다. (여기서 로그 항은 병합 단계의 추가 비용 의미)</li>
+</ul>
+</li>
+<li>
+<p><strong>$f(n) = \Omega(n^{\log_b a + \epsilon})$</strong>  (for a constant $\epsilon &gt; 0$)</p>
+<ul>
+<li>이 경우, 병합 과정에서의 연산이 더 많은 시간 복잡도를 차지한다.</li>
+<li>따라서 전체 시간 복잡도는 <strong>$T(n) = \Theta(f(n))$</strong> 가 된다. 즉, 병합 과정이 지배적이므로 병합의 시간 복잡도가 최종적인 시간 복잡도가 된다.</li>
+</ul>
+</li>
+<li>
+<p><strong>$f(n) = O(n^{\log_b a - \epsilon})$</strong>  (for a constant $\epsilon &gt; 0$)</p>
+<ul>
+<li>이 경우, 하위 문제를 나누고 해결하는 데 걸리는 시간이 더 많은 연산을 필요로 한다.</li>
+<li>따라서 전체 시간 복잡도는 <strong>$T(n) = \Theta(n^{\log_b a})$</strong> 가 된다.</li>
+</ul>
+</li>
+</ol>
+<br>
+<h3 id="4-4-master-method-예시">4-4. Master Method 예시</h3>
+<p>병합 정렬(merge sort)의 재귀식은 다음과 같다.</p>
+<p>$$
+T(n) = 2T\left(\frac{n}{2}\right) + O(n)
+$$</p>
+<p>여기서:</p>
+<ul>
+<li>$a = 2$ , $b = 2$</li>
+<li>$f(n) = O(n)$</li>
+<li>$n^{\log_b a} = n^{\log_2 2} = n$</li>
+</ul>
+<p>따라서 이 식은 첫 번째 경우에 해당한다. 이 경우 전체 시간 복잡도는 <strong>$O(n \log n)$</strong> 가 된다. 이는 병합 정렬의 시간 복잡도를 잘 설명해준다.</p>
+<br>
+<br>
+<br>
+<h2 id="5-master-method-specific-ver">5. Master Method (specific ver)</h2>
+<img src="https://i.imgur.com/0NfOQJb.png" max-width=100%>
+<p>위 방법에서 $f(n)$ 이 $n^d$, 즉 n의 d차식으로 표현되는 경우 조금 더 간단하게 판별할 수 있다.</p>
+<ul>
+<li>$a$ 는 <strong>하위 문제의 개수</strong>를 나타낸다.</li>
+<li>$b$ 는 <strong>입력 크기가 얼마나 줄어드는지</strong>를 나타낸다.</li>
+<li>$d$ 는 <strong>각 하위 문제를 처리하기 위해 필요한 추가 작업의 복잡도</strong>를 나타낸다.</li>
+</ul>
+<br>
+<h4 id="a--bd"><strong>$a = b^d$</strong></h4>
+<p>$$
+T(n) = O(n^d \log n) \quad \text{if } a = b^d
+$$</p>
+<ul>
+<li>Divide 단계와 Conquer 단계가 <strong>동일한 크기</strong>의 작업을 요구하는 경우이다.</li>
+<li>이 경우는 문제를 나누는 과정과 병합하는 과정이 <strong>균형을 이루는</strong> 상황에 해당한다.</li>
+</ul>
+<br>
+<h4 id="a--bd-1"><strong>$a &gt; b^d$</strong></h4>
+<p>$$
+T(n) = O(n^d) \quad \text{if } a &lt; b^d
+$$</p>
+<ul>
+<li>Divide에서 더 많은 작업이 발생하는 경우이다.</li>
+<li>이 경우는 주로 하위 문제의 수가 많아지면서 문제가 Divide에서 더 많은 연산을 요구하는 상황이다.</li>
+</ul>
+<br>
+<h4 id="a--bd-2"><strong>$a &lt; b^d$</strong></h4>
+<p>$$
+T(n) = O(n^{\log_b a}) \quad \text{if } a &gt; b^d
+$$</p>
+<ul>
+<li>Conquer에서 더 많은 작업이 발생하는 경우이다.</li>
+<li>이 경우는 병합 단계에서 더 많은 연산이 요구되며, 병합 과정이 시간 복잡도를 지배한다.</li>
+</ul>
+<br>
+<h3 id="5-2-master-method-예시">5-2. Master Method 예시</h3>
+<p>이번에도 병합정렬을 예시로 분석해보자.</p>
+<p>$$
+T(n) = 2T\left(\frac{n}{2}\right) + O(n)
+$$</p>
+<ul>
+<li>$a = 2$ (하위 문제의 개수),</li>
+<li>$b = 2$ (입력 크기가 2로 나누어짐),</li>
+<li>$d = 1$ (병합하는 데 걸리는 시간은 O(n))이다.</li>
+</ul>
+<p>이를 Master Method에 적용하면, $a = b^d$ 이므로 <strong>case 1</strong>에 해당한다. 따라서 병합 정렬의 시간 복잡도는!</p>
+<blockquote>
+<p>$$
+O(n logn)
+$$</p>
+</blockquote>
+<br>
+<h3 id="5-3-연습">5-3. 연습</h3>
+<p>아래 예시들을 통해 더 연습해보자</p>
+<p>$$
+T(n) = T\left(\frac{n}{2}\right) + n
+$$</p>
+<p>$$
+T(n) = 2 \cdot T\left(\frac{n}{2}\right) + n
+$$</p>
+<p>$$
+T(n) = 4 \cdot T\left(\frac{n}{2}\right) + n
+$$</p>
+<br>
+<br>
+<br>
+<div class="series">
+  <details>
+    <summary>📚 /algorithm</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/algorithm/00_selection_sort/">0. Selection Sort</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<br>
+<br>
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>
