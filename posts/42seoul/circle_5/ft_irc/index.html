@@ -668,7 +668,7 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 <p>세부 명령어와 프로토콜은 과제를 수행하며 RFC 문서를 질리도록 읽게될 것이므로&hellip;<br>
 서버 기본 작동 구현을 소개하겠다.</p>
 <h4 id="main">main</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> ac, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> av) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> ac, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> av) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (ac <span style="color:#f92672">!=</span> <span style="color:#ae81ff">3</span>) {
 </span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cerr <span style="color:#f92672">&lt;&lt;</span> C_ERR <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Error: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> ERR_ARG_COUNT <span style="color:#f92672">&lt;&lt;</span> C_RESET <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
@@ -687,7 +687,7 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h4 id="run">run</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> IrcServer<span style="color:#f92672">::</span>run() {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> IrcServer<span style="color:#f92672">::</span>run() {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">bool</span> exitFlag <span style="color:#f92672">=</span> false;
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (true) {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">try</span> {
@@ -750,21 +750,21 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 </ol>
 <br>
 <p><strong>무한 루프 (while true)</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (true) { ...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (true) { ...
 </span></span></code></pre></div><ul>
 <li>서버가 계속 동작하도록, 내부에서 오류 발생 시에도 잡아서 로깅한 뒤 재시도 하고 있다.</li>
 <li>특별한 일이 아니면 서버는 절대 꺼지면 안된다고 명시되어있다.</li>
 </ul>
 <br>
 <p><strong>ping 타임아웃 검사</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>checkPingTimeOut();
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>checkPingTimeOut();
 </span></span></code></pre></div><ul>
 <li>일정 시간(ping interval)을 넘긴 연결을 찾아 강제 종료한다.</li>
 <li>내부적으로 <code>removeClientFd()</code> 등을 호출해 <code>_fds</code>에서 fd를 제거하고 자원을 정리한다.</li>
 </ul>
 <br>
 <p><strong>논블로킹 poll()</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (poll(<span style="color:#f92672">&amp;</span>_fds[<span style="color:#ae81ff">0</span>], _fds.size(), <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (poll(<span style="color:#f92672">&amp;</span>_fds[<span style="color:#ae81ff">0</span>], _fds.size(), <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (errno <span style="color:#f92672">!=</span> EINTR) {
 </span></span><span style="display:flex;"><span>        exitFlag <span style="color:#f92672">=</span> true;
 </span></span><span style="display:flex;"><span>    }
@@ -781,7 +781,7 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 </ul>
 <br>
 <p><strong>이벤트 루프 (역순 순회)</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> _fds.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; <span style="color:#f92672">--</span>i) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> _fds.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; <span style="color:#f92672">--</span>i) {
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// POLLIN
 </span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLIN) { <span style="color:#960050;background-color:#1e0010">…</span> }
 </span></span><span style="display:flex;"><span>
@@ -794,7 +794,7 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 </ul>
 <br>
 <p><strong>POLLIN 처리</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLIN) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLIN) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (_fds[i].fd <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>_fd) {
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 서버 소켓 → 새로운 클라이언트 수락
 </span></span></span><span style="display:flex;"><span>        acceptClient();
@@ -822,7 +822,7 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 </ul>
 <br>
 <p><strong>POLLOUT 처리</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLOUT) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (_fds[i].revents <span style="color:#f92672">&amp;</span> POLLOUT) {
 </span></span><span style="display:flex;"><span>    handleSocketWrite(_fds[i].fd);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (getClient(_fds[i].fd) <span style="color:#f92672">==</span> NULL)
 </span></span><span style="display:flex;"><span>        _fdsToRemove.push_back(_fds[i].fd);
@@ -837,7 +837,7 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 </ul>
 <br>
 <p><strong>연결 종료된 FD 정리</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (size_t j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> _fdsToRemove.size(); <span style="color:#f92672">++</span>j) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (size_t j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> _fdsToRemove.size(); <span style="color:#f92672">++</span>j) {
 </span></span><span style="display:flex;"><span>    removeClientFd(_fdsToRemove[j]);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>_fdsToRemove.clear();
@@ -853,7 +853,7 @@ docker 컨테이너를 통해 환경 구축을 표준화하여, 팀원들이 빠
 </ul>
 <br>
 <p><strong>예외 처리 및 종료</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> ServerException<span style="color:#f92672">&amp;</span> e) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">const</span> ServerException<span style="color:#f92672">&amp;</span> e) {
 </span></span><span style="display:flex;"><span>    serverLog(<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>_fd, LOG_ERR, C_ERR, e.what());
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (exitFlag) {
 </span></span><span style="display:flex;"><span>        exit(EXIT_FAILURE);

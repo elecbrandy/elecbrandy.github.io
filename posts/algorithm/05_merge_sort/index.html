@@ -173,7 +173,7 @@
 <details>
 <summary>MergeSort Code</summary>
 <div markdown="1">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mergeSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mergeSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (left <span style="color:#f92672">&lt;</span> right) {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> left <span style="color:#f92672">+</span> (right <span style="color:#f92672">-</span> left) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
 </span></span><span style="display:flex;"><span>
@@ -223,7 +223,7 @@
 </span></span></code></pre></div></div>
 </details>
 <h3 id="2-2-mergesort">2-2. mergeSort</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mergeSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mergeSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right) {
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">/* 재귀 종료 조건 */</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (left <span style="color:#f92672">&lt;</span> right) {
 </span></span><span style="display:flex;"><span>		<span style="color:#75715e">/* mid index 계산 */</span>
@@ -261,7 +261,7 @@
 <br>
 <br>
 <h3 id="2-3-merge">2-3. merge</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">merge</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> mid, <span style="color:#66d9ef">int</span> right) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">merge</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> mid, <span style="color:#66d9ef">int</span> right) {
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">/* 좌측, 우측 배열 길이 계산 */</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> left_len <span style="color:#f92672">=</span> mid <span style="color:#f92672">-</span> left <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> right_len <span style="color:#f92672">=</span> right <span style="color:#f92672">-</span> mid;

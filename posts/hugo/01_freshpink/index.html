@@ -145,11 +145,11 @@
       
       
       
-      <li>-<a href="https://elecbrandy.github.io/posts/project/01_freshpink/">1. Hugo 개인 블로그 구축하기</a></li>
+      <li>-<a href="https://elecbrandy.github.io/posts/hugo/01_freshpink/">1. Hugo 개인 블로그 구축하기</a></li>
       
-      <li>-<a href="https://elecbrandy.github.io/posts/project/02_freshpink_/">2. Github Actions로 자동 배포하기</a></li>
+      <li>-<a href="https://elecbrandy.github.io/posts/hugo/02_freshpink/">2. Github Actions로 자동 배포하기</a></li>
       
-      <li>-<a href="https://elecbrandy.github.io/posts/project/03_freshpink/">3. 테마 커스터마이징</a></li>
+      <li>-<a href="https://elecbrandy.github.io/posts/hugo/03_freshpink/">3. 테마 커스터마이징</a></li>
       
     </ul>
   </details>
@@ -241,7 +241,7 @@
 <br>
 <h2 id="6-local에-설치하기">6. Local에 설치하기</h2>
 <h3 id="6-1-go--hugo-설치">6-1. <code>Go</code> , <code>Hugo</code> 설치</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Go, Hugo 설치하기</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Go, Hugo 설치하기</span>
 </span></span><span style="display:flex;"><span>brew install go
 </span></span><span style="display:flex;"><span>brew install hugo
 </span></span><span style="display:flex;"><span>
@@ -261,7 +261,7 @@
 <li>이후, 터미널에서 아래 명령어를 실행하자.</li>
 <li>루트 디렉토리에 <code>.gitignore</code> 파일을 만들고 안에 <code>/public/</code> 을 추가하자. 어처피 우리가 나중에 호스팅할 파일은 다른 브랜치에 모여있을 예정이기 때문이다.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 클론 받기</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 클론 받기</span>
 </span></span><span style="display:flex;"><span>git clone https://github.com/&lt;username&gt;/&lt;username&gt;.github.io.git
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 해당 디렉토리로 이동</span>
@@ -278,7 +278,7 @@
 <li>디렉토리에 생성된 <code>hugo.toml</code> 파일을 열어보자.</li>
 <li>기존 내용을 모두 지운 뒤 아래 내용을 복사해서 붙여넣자!</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#39;https://example.org/&#39;</span> <span style="color:#75715e"># your git repository address</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#39;https://example.org/&#39;</span> <span style="color:#75715e"># your git repository address</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#39;freshpink&#39;</span> <span style="color:#75715e"># your own blog title</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">languageCode</span> = <span style="color:#e6db74">&#39;en-us&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">canonifyURLs</span> = <span style="color:#66d9ef">true</span>
@@ -387,7 +387,7 @@
 <ul>
 <li>설정을 마쳤다면 아래 명령어를 입력해 theme 파일을 받아오자.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># go.mod 만들기 -&gt; 모듈로 테마를 관리하겠다는 뜻 -&gt; go.mod 가 생성됨</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># go.mod 만들기 -&gt; 모듈로 테마를 관리하겠다는 뜻 -&gt; go.mod 가 생성됨</span>
 </span></span><span style="display:flex;"><span>hugo mod init github.com/username/username.github.io
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># hugo.toml 파일에 지정한 테마를 모듈로 다운받는다는 뜻</span>
@@ -401,7 +401,7 @@
 <li>우선 테스트용 게시글을 하나 만들어본 후, 로컬 서버를 실행해 블로그가 잘 작동하는지 확인해보자.</li>
 <li>인터넷 브라우저를 켜고 <code>http://localhost:1313</code> 주소로 접속하면 확인할 수 있다.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 새로운 글 만들어보기</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 새로운 글 만들어보기</span>
 </span></span><span style="display:flex;"><span>hugo new posts/hello.md
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 로컬 서버 띄우기 (캐시 무시)</span>
@@ -413,7 +413,7 @@
 </span></span><span style="display:flex;"><span>git push origin main
 </span></span></code></pre></div><br>
 <h3 id="6-6-theme-업데이트">6-6. <code>theme</code> 업데이트</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo mod get -u
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo mod get -u
 </span></span><span style="display:flex;"><span>hugo mod tidy
 </span></span></code></pre></div><p>만약 사용하던 테마에 새로운 기능이 추가되었다면 -&gt; 테마를 최신 버전으로 업데이트하기 위해 위 명령어를 사용하면 된다.</p>
 <br>
@@ -423,7 +423,7 @@
 <ul>
 <li>이렇게 로컬 환경에 Hugo 블로그를 무사히 설치했다.</li>
 <li>이어서 <code>Github Action</code> 을 통해 블로그 배포 자동화를 시도해봅시다!</li>
-<li>🌏 <a href="https://themes.gohugo.io">Github Action 적용하러가기 &raquo;</a></li>
+<li>🌏 <a href="https://elecbrandy.github.io/posts/hugo/02_freshpink/">Github Action 적용하러가기 &raquo;</a></li>
 </ul>
 <br>
 <br>
@@ -435,11 +435,11 @@
       
       
       
-      <li>-<a href="https://elecbrandy.github.io/posts/project/01_freshpink/">1. Hugo 개인 블로그 구축하기</a></li>
+      <li>-<a href="https://elecbrandy.github.io/posts/hugo/01_freshpink/">1. Hugo 개인 블로그 구축하기</a></li>
       
-      <li>-<a href="https://elecbrandy.github.io/posts/project/02_freshpink_/">2. Github Actions로 자동 배포하기</a></li>
+      <li>-<a href="https://elecbrandy.github.io/posts/hugo/02_freshpink/">2. Github Actions로 자동 배포하기</a></li>
       
-      <li>-<a href="https://elecbrandy.github.io/posts/project/03_freshpink/">3. 테마 커스터마이징</a></li>
+      <li>-<a href="https://elecbrandy.github.io/posts/hugo/03_freshpink/">3. 테마 커스터마이징</a></li>
       
     </ul>
   </details>

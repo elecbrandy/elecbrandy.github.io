@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Vue.js(3) watched | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.9b52840ff847d49a3f3379e089850a370dbfdffb41226dfaeda079f69691a88c.css" 
+      integrity="sha256-m1KED/hH1Jo/M3ngiYUKNw2/3/tBIm367aB59paRqIw="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-computed-계산된-속성">1. computed (계산된 속성)</a></li>
+    <li><a href="#2-watch-감시">2. watch (감시)</a></li>
+    <li><a href="#3-reactive-객체-감시와-deep-옵션">3. Reactive 객체 감시와 Deep 옵션</a></li>
+    <li><a href="#4-immediate-옵션">4. Immediate 옵션</a></li>
+    <li><a href="#5-watcheffect-계산-및-감시">5. watchEffect (계산 및 감시)</a></li>
+    <li><a href="#4-도구별-비교-및-선택-가이드">4. 도구별 비교 및 선택 가이드</a></li>
+    <li><a href="#5-computed-감시하기">5. computed 감시하기</a></li>
+    <li><a href="#6-computed-watch-watcheffect-최종-요약">6. computed, watch, watchEffect 최종 요약</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://cdn.devdojo.com/images/May2015/vue.js.jpg?auto=format&amp;q=70&amp;w=1280" alt="Featured Image for Vue.js(3) watched">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2026.02.02</small>
+      <div class="singleTitle">Vue.js(3) watched</div>
+    </div>
+  </div>
+  <br>
+<h2 id="1-computed-계산된-속성">1. computed (계산된 속성)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ref</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">computed</span>(() =&gt; <span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>); <span style="color:#75715e">// count가 바뀔 때만 재계산됨
+</span></span></span></code></pre></div><ul>
+<li><code>computed</code>는 기존 데이터를 가공하여 <strong>새로운 값을 생성</strong>할 때 사용.</li>
+<li><strong>특징</strong>
+<ul>
+<li>계산 결과가 캐싱됨</li>
+<li>의존하는 반응형 데이터가 변경되지 않으면 함수를 다시 실행하지 않고 기존 값을 재사용</li>
+</ul>
+</li>
+<li><strong>용도</strong>
+<ul>
+<li>데이터 필터링, 포맷팅, 복잡한 연산 결과 노출 등</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="2-watch-감시">2. watch (감시)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 단일 감시
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">watch</span>(<span style="color:#a6e22e">count</span>, (<span style="color:#a6e22e">newVal</span>, <span style="color:#a6e22e">oldVal</span>) =&gt; { ... });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 동시 감시
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">watch</span>([<span style="color:#a6e22e">count</span>, <span style="color:#a6e22e">name</span>], ([<span style="color:#a6e22e">newCount</span>, <span style="color:#a6e22e">newName</span>], [<span style="color:#a6e22e">oldCount</span>, <span style="color:#a6e22e">oldName</span>]) =&gt; { ... });
+</span></span></code></pre></div><ul>
+<li><code>watch</code>는 특정 데이터의 변화를 감지한 후 로직을 실행할 때 사용</li>
+<li>비동기 처리나 DOM 조작 등에 적합</li>
+<li><strong>단일 감시</strong>
+<ul>
+<li>하나의 소스만 추적</li>
+</ul>
+</li>
+<li><strong>동시 감시</strong>
+<ul>
+<li>여러 소스를 배열로 묶어 동시에 추적</li>
+<li>변경된 값들을 배열 형태로 수신</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="3-reactive-객체-감시와-deep-옵션">3. Reactive 객체 감시와 Deep 옵션</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">reactive</span>({ <span style="color:#a6e22e">user</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">20</span> } });
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">watch</span>(() =&gt; <span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">user</span>, (<span style="color:#a6e22e">val</span>) =&gt; { ... }, { <span style="color:#a6e22e">deep</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> });
+</span></span></code></pre></div><ul>
+<li><strong>Reactive 전체 감시</strong>
+<ul>
+<li><code>reactive</code>로 선언된 객체를 감시하면 내부 속성이 바뀔 때마다 실행</li>
+<li>이때 <code>deep</code> 옵션은 자동으로 <code>true</code>로 설정</li>
+</ul>
+</li>
+<li><strong>중첩 속성 감시 (Deep)</strong>
+<ul>
+<li>객체 내부의 깊은 곳에 있는 값을 감시할 때 사용</li>
+<li>일반 <code>ref</code> 객체의 내부를 감시하려면 <code>{ deep: true }</code> 설정이 필요</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="4-immediate-옵션">4. Immediate 옵션</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">watch</span>(<span style="color:#a6e22e">source</span>, (<span style="color:#a6e22e">val</span>) =&gt; { ... }, { <span style="color:#a6e22e">immediate</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> });
+</span></span></code></pre></div><ul>
+<li><strong>동작 방식</strong>
+<ul>
+<li>데이터가 처음 선언될 때 즉시 감시 로직을 한 번 실행하고 싶을 때 사용</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="5-watcheffect-계산-및-감시">5. watchEffect (계산 및 감시)</h2>
+<ul>
+<li><code>watchEffect</code>는 감시 대상을 명시하지 않고, 함수 내부에서 참조하는 모든 반응형 데이터를 자동으로 추적</li>
+<li><strong>특징</strong>
+<ul>
+<li>선언과 동시에 즉시 실행(<code>immediate: true</code>와 유사)</li>
+<li>의존성 자동 추적으로 어떤 데이터가 바뀔지 일일이 명시할 필요가 없어 코드가 간결</li>
+</ul>
+</li>
+<li><strong>용도</strong>
+<ul>
+<li>여러 데이터가 얽힌 초기 로직 설정이나 동기화 작업에 사용</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="4-도구별-비교-및-선택-가이드">4. 도구별 비교 및 선택 가이드</h2>
+<table>
+  <thead>
+      <tr>
+          <th>구분</th>
+          <th><code>computed</code></th>
+          <th><code>watch</code></th>
+          <th><code>watchEffect</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>목적</strong></td>
+          <td>새로운 값 산출 (결과값 반환)</td>
+          <td>특정 상태 변화에 따른 로직 실행</td>
+          <td>의존성 기반의 자동 로직 실행</td>
+      </tr>
+      <tr>
+          <td><strong>캐싱</strong></td>
+          <td><strong>지원</strong> (성능 최적화)</td>
+          <td>지원 안 함</td>
+          <td>지원 안 함</td>
+      </tr>
+      <tr>
+          <td><strong>실행 시점</strong></td>
+          <td>참조될 때 (Lazy)</td>
+          <td>명시된 타겟이 바뀔 때</td>
+          <td>즉시 실행 + 의존성 바뀔 때</td>
+      </tr>
+      <tr>
+          <td><strong>권장 상황</strong></td>
+          <td>템플릿 내 복잡한 연산</td>
+          <td>비동기 호출, 외부 라이브러리 연동</td>
+          <td>다수의 데이터를 참조하는 설정 로직</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+<h2 id="5-computed-감시하기">5. computed 감시하기</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isAdult</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">computed</span>(() =&gt; <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">20</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 계산된 결과(isAdult)가 바뀔 때 로그 전송
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">watch</span>(<span style="color:#a6e22e">isAdult</span>, (<span style="color:#a6e22e">newVal</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">newVal</span>) <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;성인 인증 완료&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><ul>
+<li>computed 결과값도 감시가 가능하다!</li>
+<li><code>computed</code> 또한 내부적으로는 <code>ref</code>와 같은 반응형 객체를 반환하기 때문에, <code>watch</code>의 대상이 될 수 있음</li>
+<li>이는 <em>가공된 데이터의 최종 결과가 특정 조건을 만족할 때</em> 추가 로직을 실행하기 위해 사용</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="6-computed-watch-watcheffect-최종-요약">6. computed, watch, watchEffect 최종 요약</h2>
+<ul>
+<li><strong><code>computed</code></strong>
+<ul>
+<li>선언적 구조</li>
+<li>&ldquo;A는 B에 의해 결정된다&quot;는 정의에 집중</li>
+</ul>
+</li>
+<li><strong><code>watch</code></strong>
+<ul>
+<li>명령적 구조</li>
+<li>&ldquo;A가 바뀌면 B를 수행하라&quot;는 절차에 집중</li>
+</ul>
+</li>
+<li><strong><code>watchEffect</code></strong>
+<ul>
+<li>자동화 구조</li>
+<li>&ldquo;이 로직 안에 있는 데이터가 변경되면 다시 실행하라&quot;는 흐름에 집중</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

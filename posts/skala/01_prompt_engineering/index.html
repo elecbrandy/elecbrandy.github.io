@@ -231,7 +231,7 @@
 <br>
 <h4 id="rice-개념을-적용한-구조적-프롬프트-예시">RICE 개념을 적용한 구조적 프롬프트 예시</h4>
 <p><code>RICE</code> 프레임워크를 모두 활용하여 기술적인 코드 리뷰를 요청하는 프롬프트의 예시를 한번 살펴보자.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Role</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Role</span>
 </span></span><span style="display:flex;"><span>너는 10년 차 이상의 시니어 백엔드 개발자이자 보안 아키텍트이다. 
 </span></span><span style="display:flex;"><span>주니어 개발자가 작성한 코드를 꼼꼼하게 검토하고 피드백을 주는 역할을 수행한다.
 </span></span><span style="display:flex;"><span>
@@ -265,7 +265,7 @@
 <li>추가 학습 데이터나 예시 없이 지시사항만 전달</li>
 <li>모델의 내장된 지식과 기본적인 추론 능력에만 의존</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>지시: 다음 문장의 감성을 <span style="color:#e6db74">&#39;긍정&#39;</span> 또는 <span style="color:#e6db74">&#39;부정&#39;</span>으로 분류하라.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>지시: 다음 문장의 감성을 <span style="color:#e6db74">&#39;긍정&#39;</span> 또는 <span style="color:#e6db74">&#39;부정&#39;</span>으로 분류하라.
 </span></span><span style="display:flex;"><span>문장: <span style="color:#e6db74">&#34;오늘 새로 산 키보드의 타건감이 생각보다 훨씬 부드럽다.&#34;</span>
 </span></span><span style="display:flex;"><span>결과: ~~
 </span></span></code></pre></div><h3 id="4-2-one-shot">4-2. One-shot</h3>
@@ -273,7 +273,7 @@
 <li>단 하나의 예시를 통해 출력의 방향성과 형식을 제시</li>
 <li>모델이 작업의 의도를 파악하는 데 매우 유용</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>지시: 기술 용어를 초등학생도 이해할 수 있게 비유로 설명하라.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>지시: 기술 용어를 초등학생도 이해할 수 있게 비유로 설명하라.
 </span></span><span style="display:flex;"><span>예시: <span style="color:#e6db74">&#34;데이터베이스는 정리 정돈이 잘 된 거대한 도서관과 같다.&#34;</span>
 </span></span><span style="display:flex;"><span>작업: <span style="color:#e6db74">&#34;API를 비유로 설명하라.&#34;</span>
 </span></span><span style="display:flex;"><span>결과: ~~
@@ -283,7 +283,7 @@
 <li>특히 논문이나 연구 결과에 따르면, 모델의 크기가 클수록 Few-shot을 통한 성능 향상 폭이 크다고 함</li>
 <li>예시의 정답 여부보다 **입력과 출력의 형식(Format)**을 일정하게 유지하는 것이 모델이 규칙을 파악하는 데 더 큰 영향을 미침</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>지시: 사용자 문의 사항을 카테고리별로 분류하고 중요도를 측정하라.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>지시: 사용자 문의 사항을 카테고리별로 분류하고 중요도를 측정하라.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>예시 1: <span style="color:#e6db74">&#34;결제가 안 돼요.&#34;</span> -&gt; <span style="color:#f92672">[</span>카테고리: 결제<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>중요도: 상<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>예시 2: <span style="color:#e6db74">&#34;아이디를 변경하고 싶어요.&#34;</span> -&gt; <span style="color:#f92672">[</span>카테고리: 계정<span style="color:#f92672">]</span>, <span style="color:#f92672">[</span>중요도: 중<span style="color:#f92672">]</span>

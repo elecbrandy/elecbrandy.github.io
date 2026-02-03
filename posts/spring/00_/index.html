@@ -309,7 +309,7 @@ Controller</p>
 <li><strong>이유:</strong> 테스트 클래스는 스프링이 생성자를 통해 빈을 주입하는 방식과 JUnit의 동작 방식이 충돌할 수 있어, 가장 단순한 <code>@Autowired</code> 필드 주입을 주로 사용합니다.</li>
 <li><strong>예시:</strong></li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@SpringBootTest</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@SpringBootTest</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyTest</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span>
 </span></span><span style="display:flex;"><span>    MyService myService; <span style="color:#75715e">// 테스트에서는 간결함이 최고!</span>

@@ -3,18 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://elecbrandy.github.io/</loc>
-    <lastmod>2026-01-28T00:00:00+00:00</lastmod>
+    <lastmod>2026-02-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/</loc>
-    <lastmod>2026-01-28T00:00:00+00:00</lastmod>
+    <lastmod>2026-02-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/</loc>
+    <lastmod>2026-02-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/vue.js/</loc>
+    <lastmod>2026-02-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/vue/01_ref/</loc>
+    <lastmod>2026-02-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/vue/00_basic/</loc>
+    <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/vue/03_component/</loc>
+    <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/vue/02_watched/</loc>
+    <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/algorithm/</loc>
+    <lastmod>2026-01-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/dev101/boj/</loc>
+    <lastmod>2026-01-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/spring-boot/</loc>
     <lastmod>2026-01-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/spring/rest_spring/</loc>
-    <lastmod>2026-01-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/</loc>
     <lastmod>2026-01-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/web/</loc>
@@ -65,7 +86,7 @@
     <loc>https://elecbrandy.github.io/posts/hugo/03_freshpink/</loc>
     <lastmod>2025-05-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/hugo/02_freshpink_/</loc>
+    <loc>https://elecbrandy.github.io/posts/hugo/02_freshpink/</loc>
     <lastmod>2025-05-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/hugo/01_freshpink/</loc>
@@ -91,9 +112,6 @@
   </url><url>
     <loc>https://elecbrandy.github.io/tags/c/</loc>
     <lastmod>2024-11-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/algorithm/</loc>
-    <lastmod>2024-10-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/algorithm/06_lineartime_selection/</loc>
     <lastmod>2024-10-20T00:00:00+00:00</lastmod>

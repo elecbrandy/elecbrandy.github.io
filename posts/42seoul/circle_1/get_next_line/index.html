@@ -260,7 +260,7 @@
 <br>
 <h3 id="3-3-동적할당과-해제">3-3. 동적할당과 해제</h3>
 <p>메모리 누수를 막기위해서 동적으로 할당한 힙 영역의 메모리는 사용이 끝난 경우 해제해야 하는 것이 당연하다. 이때 아래 함수를 통해서 free를 조금 더 안전하고 유용하게 사용할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">void</span>	<span style="color:#a6e22e">ft_free</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">**</span>target)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">void</span>	<span style="color:#a6e22e">ft_free</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">**</span>target)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (target <span style="color:#f92672">!=</span> NULL <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#f92672">*</span>target) <span style="color:#f92672">!=</span> NULL)
 </span></span><span style="display:flex;"><span>	{
@@ -284,7 +284,7 @@
 <br>
 <h3 id="4-1-구현">4-1. 구현</h3>
 <h4 id="get_next_line">get_next_line</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span>	<span style="color:#f92672">*</span><span style="color:#a6e22e">get_next_line</span>(<span style="color:#66d9ef">int</span> fd)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span>	<span style="color:#f92672">*</span><span style="color:#a6e22e">get_next_line</span>(<span style="color:#66d9ef">int</span> fd)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span>	<span style="color:#f92672">*</span>main_buf;
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span>		<span style="color:#f92672">*</span>line;
@@ -314,7 +314,7 @@
 <p>아래는 <code>OPEN_MAX</code>를 통해 디스크립터 테이블만큼 배열을 만들어 정적 배열을 통해 여러 파일 디스크립터를 다루는 방법이다.</p>
 <br>
 <h3 id="5-1-구현">5-1. 구현</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">char</span>	<span style="color:#f92672">*</span><span style="color:#a6e22e">get_next_line</span>(<span style="color:#66d9ef">int</span> fd)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">char</span>	<span style="color:#f92672">*</span><span style="color:#a6e22e">get_next_line</span>(<span style="color:#66d9ef">int</span> fd)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span>	<span style="color:#f92672">*</span>main_buf[OPEN_MAX];
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span>		<span style="color:#f92672">*</span>line;

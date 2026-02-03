@@ -351,7 +351,7 @@
 </li>
 </ul>
 <p>로그 파일에서 <code>sudo</code> 명령을 필터링하여 확인하려면 <code>grep</code> 명령을 사용할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep <span style="color:#e6db74">&#39;sudo&#39;</span> /var/log/auth.log    <span style="color:#75715e"># Debian 기반 시스템</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep <span style="color:#e6db74">&#39;sudo&#39;</span> /var/log/auth.log    <span style="color:#75715e"># Debian 기반 시스템</span>
 </span></span><span style="display:flex;"><span>grep <span style="color:#e6db74">&#39;sudo&#39;</span> /var/log/secure      <span style="color:#75715e"># Red Hat 기반 시스템</span>
 </span></span></code></pre></div><br>
 <br>
@@ -374,7 +374,7 @@ TTY 환경에서는 사용자가 어떤 터미널에서 어떤 명령을 실행�
 </li>
 </ol>
 <p>때로는 <code>sudo</code>가 TTY 없이도 작동해야 하는 경우가 있다. 예를 들어, 특정 자동화 작업이나 데몬 프로세스에서 <code>sudo</code> 명령이 필요할 때 TTY 요구를 비활성화할 수 있다. 이를 위해서는 <code>/etc/sudoers</code> 파일에 다음과 같은 규칙을 추가한다:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Defaults !requiretty
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Defaults !requiretty
 </span></span></code></pre></div><p>그러나, 이 설정은 보안 위험을 초래할 수 있으므로 매우 신중하게 사용해야 한다. TTY 요구는 사용자가 터미널을 통해 직접 인증할 수 있게 하고, 시스템의 보안을 강화하기 위한 중요한 요소이다.</p>
 <br>
 <br>
@@ -540,7 +540,7 @@ TTY 환경에서는 사용자가 어떤 터미널에서 어떤 명령을 실행�
 <details>
 <summary>cron code</summary>
 <div markdown="1">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># The architecture of your operating system and its kernel version.</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># The architecture of your operating system and its kernel version.</span>
 </span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34;#Architecture: &#34;</span>
 </span></span><span style="display:flex;"><span>uname -a
 </span></span><span style="display:flex;"><span>

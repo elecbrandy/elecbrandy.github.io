@@ -311,7 +311,7 @@
 <h3 id="3-1-vector-db의-정체">3-1. Vector DB의 정체</h3>
 <p>RDB가 Row와 Column을 기준으로 삼고, NoSQL이 Key와 Field를 기준으로 한다면, 벡터 DB는 <strong>벡터(Vector)와 메타데이터(Metadata)</strong> 를 저장 단위로 삼는다.</p>
 <p><em>기존 RDB가 다음과 같았다면&hellip;</em></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>COLUMNS <span style="color:#f92672">(</span>열 방향<span style="color:#f92672">)</span> --------------------------&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>COLUMNS <span style="color:#f92672">(</span>열 방향<span style="color:#f92672">)</span> --------------------------&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>       +-----------+------------+------------+------------+
 </span></span><span style="display:flex;"><span>       |    ID     |   COL <span style="color:#ae81ff">1</span>    |   COL <span style="color:#ae81ff">2</span>    |   COL <span style="color:#ae81ff">3</span>    |  &lt;-- Primary Key <span style="color:#f92672">(</span>ID<span style="color:#f92672">)</span>
@@ -326,7 +326,7 @@
 </span></span><span style="display:flex;"><span>  v <span style="color:#f92672">(</span>행 방향<span style="color:#f92672">)</span>
 </span></span></code></pre></div><br>
 <p><strong>VectorDB는 아래와 같다!</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>                    DIMENSIONS <span style="color:#f92672">(</span>벡터 차원<span style="color:#f92672">)</span> ----------------------&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>                    DIMENSIONS <span style="color:#f92672">(</span>벡터 차원<span style="color:#f92672">)</span> ----------------------&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>       +-------+   +---------------------------+   +-----------+
 </span></span><span style="display:flex;"><span>       |  id   |---|          vector           |---| meta data |

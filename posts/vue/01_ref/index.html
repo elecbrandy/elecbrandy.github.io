@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Vue.js(2) ref | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.9b52840ff847d49a3f3379e089850a370dbfdffb41226dfaeda079f69691a88c.css" 
+      integrity="sha256-m1KED/hH1Jo/M3ngiYUKNw2/3/tBIm367aB59paRqIw="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-ref의-정체와-value의-필연성">1 <code>ref</code>의 정체와 <code>.value</code>의 필연성</a></li>
+    <li><a href="#2-반응형-api의-변주와-도구들">2. 반응형 API의 변주와 도구들</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#3-프록시-탈출하기">3. 프록시 탈출하기</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://cdn.devdojo.com/images/May2015/vue.js.jpg?auto=format&amp;q=70&amp;w=1280" alt="Featured Image for Vue.js(2) ref">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2026.02.03</small>
+      <div class="singleTitle">Vue.js(2) ref</div>
+    </div>
+  </div>
+  <br>
+<h2 id="1-ref의-정체와-value의-필연성">1 <code>ref</code>의 정체와 <code>.value</code>의 필연성</h2>
+<p><br> <em><strong><code>ref의 정체는 무엇이며, 왜 .value로 접근해야하는 경우가 있을까?</code></strong></em> <br></p>
+<ul>
+<li>
+<p><code>ref</code>는 전달받은 인자를 받아 <code>.value</code> 속성을 가진 **반응형 객체(RefImpl)**로 감싸서 반환하는 함수</p>
+</li>
+<li>
+<p><strong>왜 <code>ref</code>를 사용하는가?</strong></p>
+</li>
+<li>
+<p>JS의 기본 자료형은 참조 타입이 아닌 값 자체로 전달되므로 값이 변경되어도 Vue가 이를 추적할 방법이 없음</p>
+</li>
+<li>
+<p>이를 해결하기 위해 Vue는 기본 타입을 객체로 래핑하여 메모리상의 동일한 주소를 참조함</p>
+</li>
+<li>
+<p>또한 Vue는 ref의 <code>value</code> 속성이 바뀔 때마다 반응형 시스템이 이를 감지함</p>
+</li>
+<li>
+<p><strong>스크립트 vs 템플릿의 차이</strong></p>
+</li>
+<li>
+<p><code>setup</code> 에서는 실제 객체인 <code>ref</code> 인스턴스에 접근하므로 <code>.value</code>를 명시 필요</p>
+</li>
+<li>
+<p><code>template</code> 에서는 Vue가 내부적으로 Unwrapping 과정을 거치므로 변수명만 사용 가능</p>
+<ul>
+<li>즉, 해당 변수가 <code>ref</code>인지 확인하고 자동으로 <code>.value</code>를 추출하여 보여줌</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="2-반응형-api의-변주와-도구들">2. 반응형 API의 변주와 도구들</h2>
+<p><br> <em><strong><code>ref, reactive... 등 종류가 많던데?</code></strong></em> <br></p>
+<ul>
+<li>
+<p>반응형 상태 관리는 결국 <code>ref</code>와 <code>reactive</code>라는 두 줄기에서 시작되는것!</p>
+</li>
+<li>
+<p>나머지는 상황에 따른 최적화나 조작을 위한 변주에 불과함!!!</p>
+</li>
+<li>
+<p><strong><code>ref</code> (모든 타입의 반응성)</strong></p>
+<ul>
+<li>기본 자료형(Number, String 등)과 객체 모두 사용 가능</li>
+<li>스크립트 영역에서는 <code>.value</code>, 템플릿 변수명만으로 접근</li>
+</ul>
+</li>
+<li>
+<p><strong><code>reactive</code> (객체/배열 전용 반응성)</strong></p>
+<ul>
+<li><code>.value</code> 없이 속성에 직접 접근할 수 있어 코드가 간결</li>
+<li>단, 기본 자료형에는 사용할 수 없으며, 분해 할당 시 반응성을 상실하므로 원본 객체 형태를 유지해야 함</li>
+</ul>
+</li>
+<li>
+<p><strong><code>shallowRef</code> (얕은 반응성 관리)</strong></p>
+<ul>
+<li>객체 내부 속성의 미세한 변경은 감지 X</li>
+<li>depth 1까지만</li>
+<li>오직 <code>.value</code> 자체가 통째로 교체될 때만 UI를 업데이트</li>
+<li>대규모 리스트나 외부 라이브러리 인스턴스를 다룰 때 성능 최적화 용도로 사용</li>
+</ul>
+</li>
+<li>
+<p><strong><code>isRef</code> / <code>isReactive</code> (상태 확인)</strong></p>
+<ul>
+<li>데이터가 <code>ref</code>인지, 혹은 프록시 형태의 <code>reactive</code>인지 판별하여 <code>boolean</code> 값을 반환</li>
+<li>전달받은 인자의 데이터 타입을 검사해야 하는 조건부 로직에서 사용</li>
+</ul>
+</li>
+<li>
+<p><strong><code>unref</code> (안전한 값 추출)</strong></p>
+<ul>
+<li>대상이 <code>ref</code>라면 <code>.value</code>를, 일반 값이라면 대상 자체를 반환</li>
+<li><code>ref</code>와 일반 값을 모두 수용해야 하는 유틸리티 함수를 작성할 때 로직의 범용성 높여줌</li>
+</ul>
+</li>
+<li>
+<p><strong><code>toRaw</code> (순수 객체 복구)</strong></p>
+<ul>
+<li>반응형 프록시(Proxy)를 순수 JS 객체로 환원</li>
+<li>서버 전송 전 데이터를 직렬화(JSON 변환)하거나, 반응형 시스템의 간섭 없이 원본 데이터를 읽어야 할 때 사용</li>
+</ul>
+</li>
+<li>
+<p><strong><code>markRaw</code> (반응성 제외 표시)</strong></p>
+<ul>
+<li>특정 객체가 이후에도 절대로 반응형으로 변하지 않도록 영구적인 표식 남김</li>
+<li>지도 인스턴스나 차트 라이브러리 같은 대형 자산을 다룰 때 불필요한 추적 오버헤드를 방지</li>
+</ul>
+</li>
+</ul>
+<h4 id="언제-어떻게-사용하는게-좋을까">언제 어떻게 사용하는게 좋을까?</h4>
+<ul>
+<li><strong>데이터 성격에 따른 선택</strong>
+<ul>
+<li>기본적으로는 <code>ref</code>를 사용</li>
+<li>객체의 Depth가 깊고 속성 접근이 잦은 경우에는 <code>reactive</code>를 고려</li>
+<li>단, 데이터의 불변성을 유지하거나 대규모 데이터를 다룰 때는 <code>shallowRef</code>가 성능 면에서 유리</li>
+</ul>
+</li>
+<li><strong>데이터 전송의 안정성</strong>
+<ul>
+<li><code>JSON.stringify</code>를 수행하거나 외부 라이브러리와 통신할 때는 <code>toRaw</code>나 <code>unref</code>를 통해 Raw Data로 변환해 에러 방지</li>
+</ul>
+</li>
+<li><strong>유연한 함수 설계</strong>
+<ul>
+<li>컴포넌트 외부의 유틸리티 함수를 만들 때 인자로 <code>ref</code>와 일반 값 모두를 수용하고 싶다면?</li>
+<li>내부적으로 <code>unref</code>를 사용하자!</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="3-프록시-탈출하기">3. 프록시 탈출하기</h2>
+<ul>
+<li>Vue의 반응형 객체는 내부적으로 <strong>Proxy</strong> 기반으로 동작함</li>
+<li>이는 일종의 <code>싱글톤 기반의 스마트 포인터</code> 처럼 작동하며, 원본 데이터를 감시하는 막이 씌워진 상태</li>
+</ul>
+<h4 id="문제는-서버로-데이터를-보낼-때-발생">문제는 서버로 데이터를 보낼 때 발생</h4>
+<p>대부분의 라이브러리(axios 등)나 <code>JSON.stringify()</code>는 객체를 직렬화할 때 프록시 구조를 해석하려다 의도치 않은 결과를 초래하거나, 순환 참조 등의 에러를 발생시킬 수 있다. 특히 데이터의 규모가 크거나 복잡하게 중첩된 경우, 반응형 객체 그대로를 <code>JSON</code>으로 변환하는 것은 위험하다.</p>
+<ul>
+<li><strong>안전한 처리 방식</strong>
+<ul>
+<li>서버에 데이터를 전송하기 전에는 반드시 반응성이라는 껍데기 벗겨내기</li>
+</ul>
+</li>
+<li><strong><code>toRaw()</code>의 활용</strong>
+<ul>
+<li><code>reactive</code> 객체를 순수 JSON 객체로 변환할 때 가장 확실한 방법</li>
+</ul>
+</li>
+<li><strong><code>markRaw()</code>의 활용</strong>
+<ul>
+<li>특정 객체가 절대로 반응형으로 변하지 않도록 표시하여, 전송용 데이터가 불필요하게 반응형 시스템에 편입되는 것을 방지</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

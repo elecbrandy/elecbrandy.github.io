@@ -249,7 +249,7 @@
 <br>
 <h3 id="4-1-구현">4-1. 구현</h3>
 <h4 id="ft_printf">ft_printf</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">int</span>	<span style="color:#a6e22e">ft_printf</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>format, ...)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">int</span>	<span style="color:#a6e22e">ft_printf</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>format, ...)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>		print_cnt;
 </span></span><span style="display:flex;"><span>	va_list	ap;
@@ -262,7 +262,7 @@
 </span></span></code></pre></div><p>우선 <code>printf</code>의 return 값은 print된 문자의 수이므로 <code>printf_cnt</code> 함수에 담았다가 return 하는 방식을 선택했다.</p>
 <br>
 <h4 id="ft_printf_format">ft_printf_format</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span>	<span style="color:#a6e22e">ft_print_format</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>str, va_list ap)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span>	<span style="color:#a6e22e">ft_print_format</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>str, va_list ap)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span>	print_cnt;
 </span></span><span style="display:flex;"><span>
@@ -283,7 +283,7 @@
 </span></span></code></pre></div><p>함수 <code>ft_printf_format</code>은 인자로 받은 <code>const char *fortmat</code>을 문자 <code>%</code>가 나올 때까지 탐색한다. 문자 <code>%</code>을 발견하면, <code>%</code> 바로 뒤의 포맷을 확인해서 해당하는 포맷과 알맞은 출력을 진행한다.</p>
 <br>
 <h4 id="ft_putbase">ft_putbase</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ft_putbase</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> n, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>base, <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> number, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>cnt)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ft_putbase</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> n, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>base, <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> number, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>cnt)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">*</span>cnt <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ;

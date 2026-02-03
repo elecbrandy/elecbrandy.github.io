@@ -207,7 +207,7 @@
 <br>
 <h3 id="3-1-partition-함수">3-1. Partition 함수</h3>
 <p>먼저 피벗을 기준으로 배열을 나누는 <code>partition</code> 함수이다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">partition</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right, <span style="color:#66d9ef">int</span> pivot) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">partition</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right, <span style="color:#66d9ef">int</span> pivot) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (left <span style="color:#f92672">&lt;=</span> right) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (arr[left] <span style="color:#f92672">&lt;</span> pivot) left<span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (arr[right] <span style="color:#f92672">&gt;</span> pivot) right<span style="color:#f92672">--</span>;
@@ -223,7 +223,7 @@
 </span></span></code></pre></div><br>
 <h3 id="3-2-select-함수">3-2. Select 함수</h3>
 <p>실질적인 탐색을 수행하는 <code>select</code> 함수이다. 분할 후 k값이 속한 범위로 좁혀 들어가는 로직을 볼 수 있다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">select</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right, <span style="color:#66d9ef">int</span> k) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">select</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> left, <span style="color:#66d9ef">int</span> right, <span style="color:#66d9ef">int</span> k) {
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// k가 유효 범위를 벗어난 경우 예외 처리
 </span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (k <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> k <span style="color:#f92672">&gt;=</span> right <span style="color:#f92672">-</span> left <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> INT_MAX;
 </span></span><span style="display:flex;"><span>

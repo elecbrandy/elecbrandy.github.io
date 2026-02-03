@@ -163,7 +163,7 @@
 <br>
 <br>
 <h2 id="2-구현-분석">2. 구현 분석</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insertionSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> N) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insertionSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> N) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> N; i<span style="color:#f92672">++</span>) { <span style="color:#75715e">// 루프_1
 </span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> key <span style="color:#f92672">=</span> arr[i];
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
@@ -176,12 +176,12 @@
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><br>
 <h3 id="2-1-루프-1">2-1. 루프 [1]</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> N; i<span style="color:#f92672">++</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> N; i<span style="color:#f92672">++</span>)
 </span></span></code></pre></div><p>이 부분은 정렬되지 않은 배열의 인덱스를 하나씩 선택하는 루프이다. 정렬되지 않은 부분에서 하나씩 가져와서 처리할 것이기 때문에, 이 루프는 결국 인덱스 <code>1</code> 부터 <code>N - 1</code> 까지 모든 인덱스를 순차적으로 처리하게 된다. 선택한 인덱스 <code>int key</code> 에 저장한다. 여기서 선택된 <code>int key</code>를 가지고 다음으로 넘어가 <code>while</code> 루프에서 지금 선택한 인덱스가 정렬된 부분에서 어느 위치에 들어가야 정렬 상태가 유지될지 결정한다.</p>
 <p>이때, 왜 인덱스를 <code>1</code>부터 시작하는지 궁금할 수 있다. 사실, <code>0</code>번 인덱스부터 시작해도 문제는 없다. 하지만 처음 상황에서, 아직 정렬을 시작하지 않은 상태에서는 굳이 <code>0</code>번 인덱스부터 처리할 필요가 없다. <code>0</code>번 인덱스는 이미 하나의 요소로만 이루어졌기 때문에, 크기가 1인 배열은 정렬된 상태라고 가정할 수 있다. 따라서, 굳이 <code>0</code>번부터 시작하지 않고, <code>1</code>번 인덱스부터 정렬을 시작하면 된다.</p>
 <br>
 <h3 id="2-2-루프-2">2-2. 루프 [2]</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (j <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> arr[j] <span style="color:#f92672">&gt;</span> key) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (j <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> arr[j] <span style="color:#f92672">&gt;</span> key) {
 </span></span><span style="display:flex;"><span>		arr[j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> arr[j];
 </span></span><span style="display:flex;"><span>		j<span style="color:#f92672">--</span>;
 </span></span><span style="display:flex;"><span>	}
@@ -266,7 +266,7 @@
 <h3 id="4-1-best-case">4-1. Best Case</h3>
 <p>선택정렬에서 Best Case는 결국 이미 정렬이 된 배열이 Input으로 들어왔을 경우이다.
 해당 경우의 시간복잡도를 자세하게 살펴보자.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insertionSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> N) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insertionSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> N) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> N; i<span style="color:#f92672">++</span>) {			<span style="color:#75715e">// 1. (N - 1) Times
 </span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> key <span style="color:#f92672">=</span> arr[i];					<span style="color:#75715e">// 2. (N - 1) Times
 </span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;						<span style="color:#75715e">// 3. (N - 1) Times
@@ -317,7 +317,7 @@ $$</p>
 <h3 id="4-2-worst-case">4-2. Worst Case</h3>
 <p>선택정렬에서 Worst Case는 역순으로 정렬된 배열이 Input으로 들어왔을 경우이다.
 해당 경우의 시간복잡도를 자세하게 살펴보자.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insertionSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> N) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insertionSort</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>arr, <span style="color:#66d9ef">int</span> N) {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> N; i<span style="color:#f92672">++</span>) {			<span style="color:#75715e">// 1. (N - 1) Times
 </span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> key <span style="color:#f92672">=</span> arr[i];					<span style="color:#75715e">// 2. (N - 1) Times
 </span></span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;						<span style="color:#75715e">// 3. (N - 1) Times

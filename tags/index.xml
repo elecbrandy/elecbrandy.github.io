@@ -6,8 +6,22 @@
     <description>Recent content in Tags on elecbrandy</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://elecbrandy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>vue.js</title>
+      <link>https://elecbrandy.github.io/tags/vue.js/</link>
+      <pubDate>Tue, 03 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/vue.js/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Vue.js&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>algorithm</title>
+      <link>https://elecbrandy.github.io/tags/algorithm/</link>
+      <pubDate>Fri, 30 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/tags/algorithm/</guid>
+      <description>&lt;p&gt;&lt;em&gt;algorithm&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;</description>
+    </item>
     <item>
       <title>Spring Boot</title>
       <link>https://elecbrandy.github.io/tags/spring-boot/</link>
@@ -98,13 +112,6 @@
       <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
       <guid>https://elecbrandy.github.io/tags/c/</guid>
       <description>&lt;p&gt;&lt;em&gt;c programming language&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;</description>
-    </item>
-    <item>
-      <title>algorithm</title>
-      <link>https://elecbrandy.github.io/tags/algorithm/</link>
-      <pubDate>Sun, 20 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/tags/algorithm/</guid>
-      <description>&lt;p&gt;&lt;em&gt;algorithm&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
       <title>ui/ux</title>
