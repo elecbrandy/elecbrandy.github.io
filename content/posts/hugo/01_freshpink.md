@@ -270,7 +270,7 @@ hugo mod tidy
 
 - 이렇게 로컬 환경에 Hugo 블로그를 무사히 설치했다.
 - 이어서 `Github Action` 을 통해 블로그 배포 자동화를 시도해봅시다!
-- 🌏 [Github Action 적용하러가기 >>](https://themes.gohugo.io)
+- 🌏 [Github Action 적용하러가기 >>](https://elecbrandy.github.io/posts/hugo/02_freshpink/)
 
 <br>
 <br>

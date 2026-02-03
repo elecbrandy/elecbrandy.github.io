@@ -121,7 +121,7 @@ jobs:
 
 이제 복잡한 배포 과정은 신경 쓰지 않아도 된다. 자유롭게 글을 작성하고, 마지막에 `git push` 명령어 한 번만 입력하면 내 블로그가 즉시 업데이트된다 본격적인 테마 사용법이나 나만의 스타일로 커스텀하는 방법이 궁금하다면 아래 링크를 참고하자.
 
-- 🌏 [freshPink 테마 사용방법 알아보기 >>](https://elecbrandy.github.io/posts/project/freshpink/)
+- 🌏 [freshPink 테마 사용방법 알아보기 >>](https://elecbrandy.github.io/posts/hugo/03_freshpink/)
 
 <br>
 <br>
@@ -132,16 +132,3 @@ jobs:
 <br>
 <br>
 <br>
-
-
-
-``` markdown
-### 내가 여태까지 했던 방식
-- 레포지토리 1개로 `/frontend`, `/backend` 디렉토리로 관리.
-- makefile + docker-compose로 각각 front, back 컨테이너를 띄우는 방식으로 공통 환경설정 팀원들에게 줬음.
-- 브런치 설정
-    - main: 실제 버전이 올라갈때 머지
-    - dev: front+back 머지용
-    - front: 프론트끼리 작업하고 합치는용
-    - back: 백끼리 작업하고 합치는용
-```
