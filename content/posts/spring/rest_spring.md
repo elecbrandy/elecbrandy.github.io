@@ -1,7 +1,7 @@
 +++
 title = 'Spring Boot REST API 요청 처리 과정'
 date = 2026-01-28
-tags = ['Spring Boot','Web']
+tags = ['springboot']
 +++
 
 > 정리중

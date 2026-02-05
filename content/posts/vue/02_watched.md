@@ -3,6 +3,7 @@ title = 'Vue.js(3) watched'
 date = 2026-02-03
 featured_image = "https://cdn.devdojo.com/images/May2015/vue.js.jpg?auto=format&q=70&w=1280"
 tags = ['vue.js']
+draft = true
 +++
 
 <br>
@@ -94,7 +95,7 @@ watch(source, (val) => { ... }, { immediate: true });
 <br>
 <br>
 
-## 4. 도구별 비교 및 선택 가이드
+## 6. 도구별 비교 및 선택 가이드
 
 | 구분 | `computed` | `watch` | `watchEffect` |
 | --- | --- | --- | --- |
@@ -107,7 +108,7 @@ watch(source, (val) => { ... }, { immediate: true });
 <br>
 <br>
 
-## 5. computed 감시하기
+## 7. computed 감시하기
 
 ```javascript
 const isAdult = computed(() => user.age >= 20);
@@ -128,7 +129,7 @@ watch(isAdult, (newVal) => {
 <br>
 <br>
 
-## 6. computed, watch, watchEffect 최종 요약
+## 8. computed, watch, watchEffect 최종 요약
 
 - **`computed`**
     - 선언적 구조
@@ -138,7 +139,7 @@ watch(isAdult, (newVal) => {
     - "A가 바뀌면 B를 수행하라"는 절차에 집중
 - **`watchEffect`**
     - 자동화 구조
-    - "이 로직 안에 있는 데이터가 변경되면 다시 실행하라"는 흐름에 집중
+    - 이 로직 안에 있는 데이터가 변경되면 다시 실행하라"는 흐름에 집중
 
 <br>
 <br>

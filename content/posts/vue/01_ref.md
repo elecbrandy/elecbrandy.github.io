@@ -3,6 +3,7 @@ title = 'Vue.js(2) ref'
 date = 2026-02-03
 featured_image = "https://cdn.devdojo.com/images/May2015/vue.js.jpg?auto=format&q=70&w=1280"
 tags = ['vue.js']
+draft = true
 +++
 
 <br>

@@ -1,0 +1,12 @@
+title: "board"
+items:
+  - name: "0. README.md"
+    link: "https://elecbrandy.github.io/posts/skala/00_data/"
+  - name: "1. 기능 요구사항 명세서"
+    link: "https://elecbrandy.github.io/posts/skala/01_prompt_engineering/"
+  - name: "2. REST API 명세서"
+    link: "https://elecbrandy.github.io/posts/skala/02_vectordb/"
+  - name: "3. 트러블 슈팅 기록"
+    link: "https://elecbrandy.github.io/posts/skala/02_vectordb/"
+  - name: "4. 학습 기록"
+    link: "https://elecbrandy.github.io/posts/skala/02_vectordb/"
