@@ -108,8 +108,7 @@
     </li>
     <li><a href="#2-개념정리">2. 개념정리</a>
       <ul>
-        <li><a href="#2-1-소수-에라토스테네스의-체">2-1. 소수: 에라토스테네스의 체</a></li>
-        <li><a href="#2-2-dp-활용하는-팩토리얼">2-2. DP 활용하는 팩토리얼</a></li>
+        <li></li>
       </ul>
     </li>
   </ul>
@@ -118,113 +117,53 @@
   
   <div class="featured-container">
     
+      <div class="featured-image">
+        <img src="https://i.programmerhumor.io/2022/09/programmerhumor-io-programming-memes-554f860437608f3.jpg" alt="Featured Image for 알고리즘 유형별 정리">
+      </div>
+    
     <div class="overlay-text">
       <small>2026.01.30</small>
       <div class="singleTitle">알고리즘 유형별 정리</div>
     </div>
   </div>
-  <blockquote>
-<p>Crtl + F</p>
-</blockquote>
-<br>
+  <br>
 <h2 id="1-오답노트">1. 오답노트</h2>
-<h4 id="백준">백준</h4>
-<ul>
-<li><a href="https://www.acmicpc.net/problem/1676">팩토리얼0의개수</a></li>
-<li><a href="https://www.acmicpc.net/problem/1966">프린터큐</a></li>
-<li><a href="https://www.acmicpc.net/problem/1874">스택수열</a></li>
-<li><a href="https://www.acmicpc.net/problem/1929">소수구하기</a>
-<ul>
-<li>어디까지 탐색할것인지 -&gt; 루트 int 변환시 +1</li>
-<li>1은 소수가 아니다</li>
-</ul>
-</li>
-<li><a href="https://www.acmicpc.net/problem/14626">ISBN</a>
-<ul>
-<li>체크섬인 m은 가중치와 무관</li>
-<li>m이 *인경우도 고려해야함</li>
-</ul>
-</li>
-</ul>
+<h4 id="백준-다시-풀기">백준 다시 풀기</h4>
+<p><a href="https://www.acmicpc.net/problem/1676">팩토리얼0의개수</a>,
+<a href="https://www.acmicpc.net/problem/1966">프린터큐</a>,
+<a href="https://www.acmicpc.net/problem/1874">스택수열</a>,
+<a href="https://www.acmicpc.net/problem/1929">소수구하기</a>,
+<a href="https://www.acmicpc.net/problem/14626">ISBN</a>,
+<a href="https://www.acmicpc.net/problem/11723">집합</a>,
+<a href="https://www.acmicpc.net/problem/1003">피보나치</a>,</p>
 <br>
 <br>
 <br>
 <h2 id="2-개념정리">2. 개념정리</h2>
-<h3 id="2-1-소수-에라토스테네스의-체">2-1. 소수: 에라토스테네스의 체</h3>
+<h4 id="소수-에라토스테네스의-체">소수: 에라토스테네스의 체</h4>
 <ul>
-<li>소수가 아닌 수(합성수)는 어떤 소수의 배수임</li>
-<li>1부터 까지의 숫자 중에서 소수를 찾고 싶다면, 소수의 배수들을 순차적으로 제거하고 남는 숫자들을 확인</li>
-<li><strong>시간 복잡도</strong>
-<ul>
-<li>$O(n \log \log n)$</li>
-</ul>
-</li>
-<li><strong>장점</strong>
-<ul>
-<li>하나하나 나누어보며 소수인지 확인하는 방식보다 훨씬 빠릅니다. 특히 특정 범위 내의 소수를 한꺼번에 구할 때 유리</li>
-</ul>
-</li>
-<li><strong>단점</strong>
-<ul>
-<li>숫자의 범위가 커질수록 메모리(숫자들을 저장할 공간)를 많이 차지</li>
-</ul>
-</li>
-</ul>
-<h4 id="예시수행-단계-1부터-30까지의-예시">예시수행 단계 (1부터 30까지의 예시)</h4>
-<ul>
-<li><strong>초기화</strong>
-<ul>
-<li>2부터 30까지의 숫자를 나열하기</li>
-<li>1은 소수가 아니므로 제외</li>
-</ul>
-</li>
-<li><strong>2 선택</strong>
-<ul>
-<li>아직 지워지지 않은 가장 작은 수인 <code>2</code> 를 소수로 선택</li>
-<li>2의 배수를 모두 지우기. (4, 6, 8, &hellip;)</li>
-</ul>
-</li>
-<li><strong>3 선택</strong>
-<ul>
-<li>다음으로 지워지지 않은 수인 <code>3</code> 을 소수로 선택</li>
-<li><strong>3의 배수</strong>를 모두 지우기. (6, 9, 12, &hellip;)</li>
-</ul>
-</li>
-<li><strong>반복</strong>
-<ul>
-<li>이 과정을 반복</li>
-<li>다음 숫자인 4는 이미 지워졌으니 건너뛰고, <strong>5</strong>를 선택해 그 배수를 지우기&hellip;</li>
-</ul>
-</li>
-<li><strong>종료</strong>
-<ul>
-<li>구하려는 범위의 제곱근까지만 반복하면 남은 모든 수는 소수임!</li>
-</ul>
-</li>
-</ul>
-<h4 id="실전에서">실전에서</h4>
-<ul>
-<li><strong>제곱근까지만 확인</strong>
-<ul>
-<li>0 숫자 까지의 소수를 구할 때, $\sqrt{n}$까지만 배수를 지우면 충분</li>
-<li>예를 들어 100까지의 소수를 구할 때 10의 배수까지만 지우면 나머지는 자동으로 결정</li>
-</ul>
-</li>
-<li><strong>이미 지워진 수는 패스</strong>
-<ul>
-<li>이미 배수로 판명되어 지워진 숫자는 다시 검사할 필요가 없음</li>
-</ul>
-</li>
+<li>소수가 아닌 수(합성수)는 어떤 소수의 배수임 (1은 소수X)</li>
+<li>1부터 까지의 숫자 중에서 소수를 찾고 싶다면 소수의 배수들을 순차적으로 제거하고 남는 숫자들을 확인하면 되며, 제곱근까지만 확인해도 무방</li>
+<li>특정 범위 내에서 유리</li>
 </ul>
 <br>
+<h4 id="dp">DP</h4>
+<ul>
+<li>중복된 계산은 다시 하지 않는다.</li>
+<li>기록하고 참조하기.</li>
+</ul>
 <br>
+<h4 id="비트연산">비트연산</h4>
+<ul>
+<li>C++ 비트연산 하는법 다시 까먹지말자</li>
+</ul>
 <br>
-<h3 id="2-2-dp-활용하는-팩토리얼">2-2. DP 활용하는 팩토리얼</h3>
-<p>적어두고, 그거랑 곱하기
-for문으로만 가능</p>
+<h4 id="팩토리얼">팩토리얼</h4>
+<ul>
+<li>적어두고, 그거랑 곱하기, for문으로만 가능</li>
+</ul>
+<br>
 <h4 id="이진탐색">이진탐색</h4>
-<br>
-<br>
 <br>
 <h4 id="c-round">C++ Round</h4>
 <br>
