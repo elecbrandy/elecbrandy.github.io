@@ -26,8 +26,8 @@
   
 
 
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.f51c8d533aa35bfd56aa18a9402a99e72ad01d1483ff21c4283f5b2ce2c87ef7.css" 
-      integrity="sha256-9RyNUzqjW/1WqhipQCqZ5yrQHRSD/yHEKD9bLOLIfvc="><style>
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
+      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
   :root {
     --primary-color: #fa8b84;
   }
@@ -116,7 +116,7 @@
       </div>
     
     <div class="overlay-text">
-      <small>2026.02.05</small>
+      <small>2026.02.04</small>
       <div class="singleTitle">[게시판] README.md</div>
     </div>
   </div>
@@ -154,55 +154,18 @@
 <br>
 <h2 id="2-아키텍쳐">2. 아키텍쳐</h2>
 <p><img src="https://elecbrandy.github.io/images/board_arch.png" alt="게시판_아키텍쳐"></p>
+<p><img src="https://img.shields.io/badge/vue.js-4FC08D?style=for-the-badge&amp;logo=vue.js&amp;logoColor=white" alt="Vue.js">
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&amp;logo=springboot&amp;logoColor=white" alt="Spring Boot">
+<img src="https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&amp;logo=postgresql&amp;logoColor=white" alt="PostgreSQL">
+<img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&amp;logo=nginx&amp;logoColor=white" alt="Nginx"></p>
 <ul>
-<li><img src="https://img.shields.io/badge/vue.js-4FC08D?style=for-the-badge&amp;logo=vue.js&amp;logoColor=white" alt="Vue.js"></li>
-<li><img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&amp;logo=springboot&amp;logoColor=white" alt="Spring Boot"></li>
-<li><img src="https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&amp;logo=postgresql&amp;logoColor=white" alt="PostgreSQL"></li>
-<li><img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&amp;logo=nginx&amp;logoColor=white" alt="Nginx"></li>
+<li><a href="https://mermaid.ai/d/60e005e7-17e4-4b51-9315-f222c7d590e8">Mermaid Editor로 자세히보기 &raquo;</a></li>
 </ul>
-<details>
-<summary>Mermaid</summary>
-<div markdown="1">
-<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">---
-config:
-  layout: fixed
----
-flowchart LR
- subgraph Client_Side[&#34;Client Side&#34;]
-        Browser[&#34;Web Browser&lt;br&gt;Vue.js SPA&#34;]
-  end
- subgraph Server_Side[&#34;Server Infrastructure&#34;]
-        Nginx[&#34;Nginx&lt;br&gt;Web Server &amp;amp; Reverse Proxy&#34;]
-        SpringBoot[&#34;Spring Boot&lt;br&gt;API Server&#34;]
-        PostgreSQL[(&#34;PostgreSQL&lt;br&gt;Database&#34;)]
-  end
-    User((&#34;User&#34;)) -- Access URL --&gt; Browser
-    Browser -- &#34;1. Static Assets Req (HTML/JS/CSS)&#34; --&gt; Nginx
-    Nginx -- Returns Vue Files --&gt; Browser
-    Browser -- &#34;2. REST API Req (JSON)&#34; --&gt; Nginx
-    Nginx -- Proxy Pass (/api) --&gt; SpringBoot
-    SpringBoot -- &#34;3. JDBC/JPA&#34; --&gt; PostgreSQL
-    PostgreSQL -- Data Result --&gt; SpringBoot
-    SpringBoot -- JSON Response --&gt; Nginx
-    Nginx -- Forward Response --&gt; Browser
-
-     Browser:::client
-     Nginx:::proxy
-     SpringBoot:::server
-     PostgreSQL:::db
-     User:::user
-    classDef user fill:#f9f,stroke:#333,stroke-width:2px,color:black
-    classDef client fill:#d1e7dd,stroke:#0f5132,stroke-width:2px,color:black
-    classDef proxy fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:black
-    classDef server fill:#cfe2ff,stroke:#084298,stroke-width:2px,color:black
-    classDef db fill:#e2e3e5,stroke:#41464b,stroke-width:2px,color:black
-</code></pre></div>
-</details>
 <br>
 <br>
 <br>
 <h2 id="3-erd-설계">3. ERD 설계</h2>
-<p><img src="https://elecbrandy.github.io/images/board_erd.png" alt="게시판_erd"></p>
+<iframe max-width=100% height="336" src="https://www.erdcloud.com/p/t8TqSS5CrJKbCM6TZ" frameborder="0" allowfullscreen></iframe>
 <ul>
 <li><strong>핵심 엔티티</strong>
 <ul>
