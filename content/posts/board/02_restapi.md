@@ -1,6 +1,6 @@
 +++
 title = '[게시판] REST API 명세서'
-date = 2026-02-05
+date = 2026-02-06
 featured_image = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/330px-Spring_Boot.svg.png"
 tags = ['skala','springboot','board']
 +++

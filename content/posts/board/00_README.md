@@ -1,6 +1,6 @@
 +++
 title = '[게시판] README.md'
-date = 2026-02-05
+date = 2026-02-04
 featured_image = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/330px-Spring_Boot.svg.png"
 tags = ['skala','springboot','board']
 +++
@@ -24,54 +24,12 @@ tags = ['skala','springboot','board']
 
 ![게시판_아키텍쳐](/images/board_arch.png)
 
-- ![Vue.js](https://img.shields.io/badge/vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
-- ![Spring Boot](https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
-- ![PostgreSQL](https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
-- ![Nginx](https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
+![Vue.js](https://img.shields.io/badge/vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Nginx](https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 
-<details>
-<summary>Mermaid</summary>
-<div markdown="1">
-
-``` mermaid
----
-config:
-  layout: fixed
----
-flowchart LR
- subgraph Client_Side["Client Side"]
-        Browser["Web Browser<br>Vue.js SPA"]
-  end
- subgraph Server_Side["Server Infrastructure"]
-        Nginx["Nginx<br>Web Server &amp; Reverse Proxy"]
-        SpringBoot["Spring Boot<br>API Server"]
-        PostgreSQL[("PostgreSQL<br>Database")]
-  end
-    User(("User")) -- Access URL --> Browser
-    Browser -- "1. Static Assets Req (HTML/JS/CSS)" --> Nginx
-    Nginx -- Returns Vue Files --> Browser
-    Browser -- "2. REST API Req (JSON)" --> Nginx
-    Nginx -- Proxy Pass (/api) --> SpringBoot
-    SpringBoot -- "3. JDBC/JPA" --> PostgreSQL
-    PostgreSQL -- Data Result --> SpringBoot
-    SpringBoot -- JSON Response --> Nginx
-    Nginx -- Forward Response --> Browser
-
-     Browser:::client
-     Nginx:::proxy
-     SpringBoot:::server
-     PostgreSQL:::db
-     User:::user
-    classDef user fill:#f9f,stroke:#333,stroke-width:2px,color:black
-    classDef client fill:#d1e7dd,stroke:#0f5132,stroke-width:2px,color:black
-    classDef proxy fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:black
-    classDef server fill:#cfe2ff,stroke:#084298,stroke-width:2px,color:black
-    classDef db fill:#e2e3e5,stroke:#41464b,stroke-width:2px,color:black
-```
-
-</div>
-</details>
-
+- [Mermaid Editor로 자세히보기 >>](https://mermaid.ai/d/60e005e7-17e4-4b51-9315-f222c7d590e8)
 
 <br>
 <br>
@@ -79,7 +37,7 @@ flowchart LR
 
 ## 3. ERD 설계
 
-![게시판_erd](/images/board_erd.png)
+<iframe max-width=100% height="336" src="https://www.erdcloud.com/p/t8TqSS5CrJKbCM6TZ" frameborder="0" allowfullscreen></iframe>
 
 - **핵심 엔티티**
     - `USERS`: 시스템의 주체
