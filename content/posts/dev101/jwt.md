@@ -324,7 +324,55 @@ Controller에 도달 못함!
 <br>
 <br>
 
-## 7. 정리
+## 7. Spring의 몫 vs 개발자의 몫
+
+### 7-1. Spring Security에서 제공하는 것
+
+- `Filter Chain`
+    - 요청을 가로채서 검사할 수 있는 검문소 구조
+    - 개발자가 커스텀 필터를 만들기만 하면 끼울 수 있는 슬롯 제공
+- `SecurityContext`
+    - _현재 로그인한 사람이 누구냐?_ 를 저장하는 전역 저장소
+    - 개발자가 검증된 유저 정보를 여기에 넣어주기만 하면, 컨트롤러 어디서든 꺼내 쓸 수 있게 관리
+- `Authorization`
+    - 접근 제어
+    - _이 URL은 로그인한 사람만", "저 URL은 관리자만_ 같은 규칙을 설정(SecurityConfig)
+    - 설정하면 알아서 막아줌
+- `BCryptPasswordEncoder`
+    - 강력한 암호화 도구를 제공
+    - 비밀번호 암호화 등에 사용 가능
+
+<br>
+
+### 7-2. 개발자가 만들어야 하는 것
+
+- `JwtTokenProvider`
+    - 토큰 생성기 & 검증기
+    - Spring은 JWT라는 문자열을 어떻게 사용하는지 모름
+    - 외부 라이브러리(jjwt)를 써서 토큰 생성, 만료 확인, 위조 확인 하는 코드는 개발자가 짜야함
+- `JwtAuthenticationFilter`
+    - 인증 필터
+    - Spring은 요청이 들어올 때 헤더(Header)를 자동으로 뒤져서 토큰을 찾지 않음
+    - 개발자가 임의로
+        - _헤더에서 Authorization 꺼내서,_
+        - _JwtTokenProvider한테 검사 맡기고,_
+        - _통과하면 SecurityContext에 넣어라_
+        - 라는 로직을 작성해야 함
+- `UserDetailsService`
+    - 신원 조회 시스템
+    - Spring Security는 우리 DB의 users 테이블이 어떻게 생겼는지 모름
+    - UserSerivce 로직과 함께 쓰기도 하나, 순환참조 조심하기
+- `AuthService`
+    - 토큰 발급 창구
+    - 사용자가 아이디/비번을 보냈을 때
+        - DB와 비교하고,
+        - 맞으면 JwtTokenProvider을 시켜서 토큰을 리턴해주는 서비스 로직
+
+<br>
+<br>
+<br>
+
+## 7. 결론
 
 #### JWT란?
 
@@ -350,14 +398,6 @@ POST /login → 토큰 생성 → "eyJhbG..." 반환
 // 이후 요청  
 GET /api/posts + Header(토큰) → Filter에서 검증 → Controller
 ```
-
-<br>
-
-#### Spring에 JWT 도입 시 만들어야 하는 것
-
-- `JwtTokenProvider` → 토큰 생성/검증
-- `JwtAuthenticationFilter` → 요청마다 토큰 체크
-- `SecurityConfig` → 필터 등록
 
 <br>
 <br>
