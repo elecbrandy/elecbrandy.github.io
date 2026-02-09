@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>[게시판] Spring Security와 JWT token 인증 도입 | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
+      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-소개">1. 소개</a></li>
+    <li><a href="#2-spring-security">2. Spring Security</a></li>
+    <li><a href="#3-spring-security-내부구조">3. Spring Security 내부구조</a></li>
+    <li><a href="#4-spring-security-with-jwt">4. Spring Security with JWT</a>
+      <ul>
+        <li><a href="#4-1-login">4-1. <code>Login</code></a></li>
+        <li><a href="#4-1-posting">4-1. <code>Posting</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#5-reference">5. Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/330px-Spring_Boot.svg.png" alt="Featured Image for [게시판] Spring Security와 JWT token 인증 도입">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2026.02.09</small>
+      <div class="singleTitle">[게시판] Spring Security와 JWT token 인증 도입</div>
+    </div>
+  </div>
+  <br>
+<div class="series">
+  <details>
+    <summary>🍀 게시판 개발</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/board/00_readme/">0. README.md</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/board/01_requirements/">1. 기능 요구사항 명세서</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/board/02_api/">2. REST API 명세서</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/board/03_troubleshooting/">3. 트러블 슈팅 기록</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/board/04_learning/">4. 학습 기록</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-소개">1. 소개</h2>
+<ul>
+<li>register 기능을 만든후 로그인 기능 도입</li>
+<li><em>세션 vs jwt</em> → <code>jwt</code> 토큰 발급 방식</li>
+<li>Spring Security 와 함께 사용할 것</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="2-spring-security">2. Spring Security</h2>
+<p>스프링에서 제공하는 인증과 권한 보안 관련 기능을 제공하는 프레임워크이다.</p>
+<ul>
+<li><strong>Authentication</strong> (인증)
+<ul>
+<li>신원 확인</li>
+<li>id/pw 입력</li>
+</ul>
+</li>
+<li><strong>Authorization</strong> (인가)
+<ul>
+<li>권한 확인 / 부여</li>
+<li>특정 리소스에 대한 특정 유저의 접근 권한</li>
+</ul>
+</li>
+<li><strong>주요 구성 요소</strong>
+<ul>
+<li><code>Principal</code>
+<ul>
+<li>보호된 리소스에 접근하는 대상 (사용자)</li>
+</ul>
+</li>
+<li><code>SecurityContextHolder</code>
+<ul>
+<li>현재 보안 컨텍스트의 세부 정보를 담고 있는 바구니</li>
+</ul>
+</li>
+<li><code>Authentication</code>
+<ul>
+<li>현재 사용자의 인증 정보를 담는 객체</li>
+</ul>
+</li>
+<li><code>GrantedAuthority</code>
+<ul>
+<li>사용자에게 부여된 권한</li>
+<li>예: ROLE_USER, ROLE_ADMIN</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="3-spring-security-내부구조">3. Spring Security 내부구조</h2>
+<p>Spring Security의 내부 구조는 서블릿 필터 체인이다.
+즉, 클라이언트 요청이 서블릿(controller)에 도달하기 전에 여러 개의 필터를 거치며 보안 검사를 수행한다. 또한 사용자는 이 필터를 커스텀해 사용할 수 있다.</p>
+<ul>
+<li><strong>주요 필터 구성 요소</strong>
+<ul>
+<li><code>DelegatingFilterProxy</code>
+<ul>
+<li>서블릿 컨테이너와 스프링 컨테이너 사이의 다리 역할</li>
+</ul>
+</li>
+<li><code>FilterChainProxy</code>
+<ul>
+<li>여러 SecurityFilterChain을 관리하고 적절한 필터를 실행</li>
+</ul>
+</li>
+<li><code>AuthenticationFilter</code>
+<ul>
+<li>요청을 가로채서 인증을 시도합</li>
+<li>예: UsernamePasswordAuthenticationFilter</li>
+</ul>
+</li>
+<li><code>AuthenticationManager</code>
+<ul>
+<li>실제 인증 로직이 시작되는 곳</li>
+</ul>
+</li>
+<li><code>AuthenticationProvider</code>
+<ul>
+<li>실제 인증 로직(DB 대조, 외부 연동 등)을 수행</li>
+</ul>
+</li>
+<li><code>UserDetailsService</code>
+<ul>
+<li>사용자의 정보를 DB에서 가져오는 인터페이스</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="4-spring-security-with-jwt">4. Spring Security with JWT</h2>
+<h3 id="4-1-login">4-1. <code>Login</code></h3>
+<br>
+<h4 id="-1번-login-요청-진입">🔴 1번: Login 요청 (진입)</h4>
+<p><img src="https://elecbrandy.github.io/images/spring/spring-security-0.png" alt="spring-security-number"></p>
+<ul>
+<li><strong>상황</strong>
+<ul>
+<li>사용자가 프론트엔드(웹/앱)에서 아이디와 비밀번호를 입력 후</li>
+<li><strong>로그인 버튼</strong>을 누름</li>
+</ul>
+</li>
+<li><strong>데이터</strong>
+<ul>
+<li>JSON 형태의 Body가 날아옵니다.</li>
+<li><code>{&quot;email&quot;: &quot;user@test.com&quot;, &quot;password&quot;: &quot;1234&quot;}</code></li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h4 id="-2번-security-filter-chain">🔴 2번: Security Filter Chain</h4>
+<p><img src="https://elecbrandy.github.io/images/spring/spring-security-1.png" alt="spring-security-number"></p>
+<ul>
+<li><code>JwtAuthenticationFilter</code>
+<ul>
+<li>&ldquo;어? 헤더에 토큰 없네?&rdquo; (로그인 요청이니까 당연히 없음) -&gt; <strong>통과</strong></li>
+</ul>
+</li>
+<li><code>AuthorizationFilter</code>
+<ul>
+<li><code>SecurityConfig</code>의 설정을 확인</li>
+<li><code>/api/auth/login</code> 주소는 <code>permitAll()</code>(모두 허용)이네?
+<ul>
+<li><strong>검문 없이 문 열어줌</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>만약 로그인이 아닌 다른 요청이었다면 여기서 막힘</li>
+</ul>
+<br>
+<br>
+<h4 id="-3번-userservice">🔴 3번: UserService</h4>
+<p><img src="https://elecbrandy.github.io/images/spring/spring-security-2.png" alt="spring-security-number"></p>
+<ul>
+<li><code>AuthController</code>
+<ul>
+<li>DTO(<code>LoginRequest</code>)를 검증(<code>@Valid</code>)</li>
+<li>이후 <code>UserService.login()</code>을 호출</li>
+</ul>
+</li>
+<li>DB를 뒤지기 전에
+<ul>
+<li>일단 유저가 보낸 이메일/비번만 가지고 임시신분증을 하나 부여</li>
+<li>코드: <code>new UsernamePasswordAuthenticationToken(email, password)</code></li>
+<li>이 신분증에는 아직 인증 도장이 없음</li>
+</ul>
+</li>
+<li>이 신분증이 진짜인지 확인을 위해 AuthenticationManager로 이동</li>
+</ul>
+<br>
+<br>
+<h4 id="-4번-authenticationmanager">🔴 4번: AuthenticationManager</h4>
+<p><img src="https://elecbrandy.github.io/images/spring/spring-security-3.png" alt="spring-security-number"></p>
+<ul>
+<li><code>UserDetailsService</code> 호출
+<ul>
+<li>이 이메일 가진 사람 서류 가져와</li>
+</ul>
+</li>
+<li><code>PasswordEncoder</code>
+<ul>
+<li>비밀번호 맞는지 확인해줘</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h4 id="-5번-실질적-검증-및-인증-성공">🔴 5번: 실질적 검증 및 인증 성공</h4>
+<p><img src="https://elecbrandy.github.io/images/spring/spring-security-3.png" alt="spring-security-number"></p>
+<ul>
+<li><code>UserDetailsService</code>
+<ul>
+<li>유저 정보 조회</li>
+<li><code>UserRepository</code>를 통해 DB(<code>users</code> 테이블)를 조회</li>
+<li>DB에 있는 데이터를 꺼내와서 <code>UserDetails</code>라는 포맷으로 포장해서 제공</li>
+</ul>
+</li>
+<li><code>Password Encoder</code>
+<ul>
+<li>비밀번호 해독</li>
+<li>유저가 입력한 비밀번호와 DB에서 가져온 암호화된 비밀번호를 여기에 넣고 비교</li>
+<li><code>matches()</code> 메서드가 돌아가고 <strong>&ldquo;일치함!&rdquo;</strong> 판정</li>
+</ul>
+</li>
+<li><code>인증 성공 기록</code>
+<ul>
+<li>검증이 끝나면 팀장은 <strong>정식신분증</strong> (<code>Authentication</code>) 발급</li>
+<li><code>SecurityContext</code> 에 정식 신분증을 잠시 저장</li>
+<li>이후 <code>UserService</code>로 돌아가서 실제 JWT 토큰 발급 받음</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h3 id="4-1-posting">4-1. <code>Posting</code></h3>
+<p><em>작성중</em></p>
+<h2 id="5-reference">5. Reference</h2>
+<ul>
+<li><a href="https://velog.io/@dhkim1522/SpringSecurity-JWT-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84">https://velog.io/@dhkim1522/SpringSecurity-JWT-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84</a></li>
+<li><a href="https://inkyu-yoon.github.io/docs/Language/SpringBoot/SpringSecurityJoin">https://inkyu-yoon.github.io/docs/Language/SpringBoot/SpringSecurityJoin</a></li>
+</ul>
+<br>
+<br>
+<br>
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>
