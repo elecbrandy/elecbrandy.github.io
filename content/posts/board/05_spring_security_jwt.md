@@ -84,7 +84,7 @@ Spring Security의 내부 구조는 서블릿 필터 체인이다.
     * 사용자가 프론트엔드(웹/앱)에서 아이디와 비밀번호를 입력 후
     * **로그인 버튼**을 누름
 * **데이터**
-    * JSON 형태의 Body가 날아옵니다. 
+    * JSON 형태의 Body가 전달
     * `{"email": "user@test.com", "password": "1234"}`
 
 <br>
@@ -156,10 +156,68 @@ Spring Security의 내부 구조는 서블릿 필터 체인이다.
 
 ### 4-1. `Posting`
 
-_작성중_
+![spring-security-number](/images/spring/spring-security-posting-1.png)
 
+<br>
 
+#### 🔴 1번: Posting 요청
 
+![spring-security-number](/images/spring/spring-security-posting-2.png)
+
+* **상황**
+    * 유저가 `POST /api/posts` 요청을 보냈을 때
+    * 헤더에 JWT가 들어가 있는 상태
+* **데이터**
+    * JSON 형태의 Body
+    * `Request Header: { Authorization: "Bearer eyJhb..." }`
+
+<br>
+<br>
+
+#### 🔴 2번: Spring Security Filter
+
+![spring-security-number](/images/spring/spring-security-posting-2.png)
+
+1. **`JwtAuthenticationFilter` 의 토큰 검증**
+    * 스프링 시큐리티의 문지기로, 가장 먼저 요청을 가로챔
+    * 헤더에서 토큰 추출해서 `JwtTokenProvider`에게 토큰 유효한지 질문
+2. **`Security Context` 에 신분증 저장**
+    * 토큰을 기반으로 `Authentication` 객체를 만들어 저장
+3. **`AuthorizationFilter` 의 규칙 확인**
+    * 이 요청(`POST /api/posts`)은 `인증된 사람만 가능하네
+    * 아까 저장한 `SecurityContextHolder` 를 열어볼게
+    * 신분증 _Authentication_ 이 들어있네? 통과!
+
+<br>
+<br>
+
+#### 🔴 3번: Spring boot 로직
+
+![spring-security-number](/images/spring/spring-security-posting-3.png)
+
+* `DispatcherServlet`
+    * URL을 보고 `PostController`의 `write()` 메서드를 호출
+* `PostService`
+    * 컨트롤러가 `service.write(dto)`를 호출
+    * 그런데 DTO에는 제목과 내용만 있고 누가 썼는지가 없습...
+* 정보를 가져오자!
+    * 아까 저장한 `SecurityContextHolder` 를 열어볼게
+    * 조회 완료
+<br>
+<br>
+
+#### 정리
+
+유저가 보낸 토큰은
+
+- **필터(1단계)** 에서 **신분증(`Authentication`)** 으로 변환
+- **금고(`SecurityContext`)** 에 저장되고,
+- 이후 **서비스(4단계)** 가 그 금고를 열어서 사용
+- 이 구조 덕분에 컨트롤러나 서비스 메서드에 매번 토큰을 파라미터로 넘길 필요가 없음
+
+<br>
+<br>
+<br>
 
 ## 5. Reference
 - https://velog.io/@dhkim1522/SpringSecurity-JWT-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84
