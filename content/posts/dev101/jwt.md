@@ -86,7 +86,7 @@ Signature 는 토큰의 무결성을 증명하는 핵심 부분이다. 인코딩
 
 <br>
 
-### 3-1. Stateful → `세션/쿠키`
+### 3-1. Stateful → `세션`
 
 전통적인 세션 방식은 서버가 사용자의 상태를 메모리나 데이터베이스에 유지한다.
 
@@ -135,190 +135,116 @@ JWT는 서버가 상태를 저장하지 않는 Stateless 아키텍처를 지향�
 <br>
 <br>
 
-## 5. 안전한 토큰 보관소?
+## 5. JWT와 쿠키
 
-- 그렇다면 클라이언트에서 토큰을 어디에 저장하는게 좋을까?
-    - **`Local Storage` vs `Cookie` ?**
-    - **HttpOnly와 Secure 옵션이 적용된 쿠키 사용을 권장**
+쿠키와 JWT는 사실 완전히 상이한 개념이다.
+
+- **쿠키**
+    - 브라우저가 가지고 있는 작은 메모장
+    - 뭐든 저장 가능
+    - 브라우저가 자동으로 서버에 보여줌
+- **JWT**
+    - 사용자 인증 정보를 담은 내용물
+    - 어딘가에 보관해야함
+
+<br>
+<br>
+<br>
+
+## 6. JWT 토큰 보관 장소?
+
+그렇다면 클라이언트에서 토큰을 어디에 저장하는게 좋을까?
+브라우저의 로컬 스토리지에 담을 수도 있고, 쿠키에 담아 보관할 수도 있다.
+
+<br>
+
+### 6-1. Local Storage
+
+``` json
+
+// HTTP 응답
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "token": "eyJhbGci...",
+  "username": "hong"
+}
+
+```
+
+JWT 토큰을 로컬 스토리지에 보관하기 위해서는, 백엔드가 Response Body에 토큰을 담아보내면 된다.
+그러면 프론트에서 토큰을 받아 로컬스토리지에 저장하면 된다.
+
+<br>
+<br>
+
+### 6-2. Cookie
+
+``` java
+// 백엔드 (Cookie 방식)
+@PostMapping("/login")
+public ResponseEntity<?> login(@RequestBody LoginRequest request, 
+                                HttpServletResponse response) {
+    // 인증 처리
+    String token = jwtTokenProvider.createToken(username);
+
+    // 쿠키로 토큰 전달
+    Cookie cookie = new Cookie("jwt", token);  // 쿠키에 담아서 줌
+    cookie.setHttpOnly(true);   // JS 접근 차단
+    cookie.setSecure(true);     // HTTPS만
+    cookie.setMaxAge(3600);     // 1시간
+    cookie.setPath("/");
+    response.addCookie(cookie);
+
+    return ResponseEntity.ok(new LoginResponse("로그인 성공"));
+}
+```
+
+JWT 토큰을 쿠키에 저장하기 위해서는 백엔드에서 보낼 때 `Cookie` 객체에 담아서 보내면 된다.
+보안을 위한 몇가지 설정을 하고 쿠키 객체에 담아서 보내면 프론트에서 추가작업 없이 자동적으로 브라우저의 쿠키영역에 토큰이 저장된다.
+
+<br>
+<br>
+
+### 6-3. 보관 방법 선택
+
+그래서 어디에 저장하는게 좋을까?
+
+#### 차이점 정리
 
 | 구분 | Local Storage | HttpOnly Cookie |
 | --- | --- | --- |
-| **주요 위협** | XSS 취약 | CSRF 취약 |
-| **접근성** | JS로 접근 👍 | JS로 접근 👎 (HttpOnly 설정 시) |
-| **난이도** | 구현 간단 | 구현 복잡 |
-| **결론** | 보안 수준 낮음 | 보안 수준 더 높음 |
-
-* **HttpOnly**
-    * 브라우저에서 자바스크립트가 쿠키에 접근하는 것을 원천 봉쇄
-    * 이를 통해 해커가 악성 스크립트를 심어 토큰을 훔쳐가는 **XSS 공격**을 막을 수 있음
-* **Secure & SameSite**
-    * HTTPS 환경에서만 전송되도록 하고, 다른 도메인에서의 비정상적인 요청인 **CSRF 공격**을 차단
-* **이중화 전략**
-    * Access Token은 메모리나 로컬 스토리지에 둘 수 있으나...
-    * 토큰을 재발급하는 핵심 열쇠인 **Refresh Token** 은 반드시 보안 쿠키에 담아 서버에서 관리
-
-<br>
-<br>
-<br>
-
-
-## 6. Spring Security 와 JWT
-
-Spring Security 상에서 JWT를 사용할 때 내부적으로 어떤 일이 일어나는지 공부해보자.
+| XSS 공격 | 취약 (JS 접근 가능) | 안전 (HttpOnly시 JS 접근 불가) |
+| CSRF 공격 | 안전 | 취약 (자동 요청) |
+| 용량 제한 | 약 5MB | 약 4KB |
 
 <br>
 
-### 6-1. Spring 내부 전개
+#### Local Storage를 선택하는 경우
+- 장점
+    - 구현이 직관적이고, CSRF 방어 로직을 따로 짤 필요가 없음
+    - 모바일 앱과 웹을 동시에 운영할 때 로직이 비슷해서 편함
+- 단점
+    - XSS 공격에 매우 취약
+    - 공격자가 내 사이트에 악성 스크립트를 심는 순간 사용자의 모든 토큰이 탈취 가능
 
-``` bash
-# == 전체 흐름 ==
-사용자 요청
-    ↓
-① Tomcat (웹 서버)
-    ↓
-② DispatcherServlet (Spring MVC 입구)
-    ↓
-③ Spring Security Filter Chain (여기서 JWT 검증!)
-    ↓
-④ Controller (우리가 만든 코드)
-```
+#### Cookie (HttpOnly & Secure)를 선택하는 경우
+- 장점
+    - HttpOnly 플래그를 쓰면 XSS 공격으로 토큰 탈취 불가
+- 단점
+    - CSRF 공격을 막기 위해 SameSite 설정 필요
+    - 또한 CSRF 토큰을 별도로 관리 필요
 
-<br>
+#### 요즘 어떤걸 쓰나 보니까
+- Access Token
+    - 아주 짧은 수명(15분~1시간)으로 설정
+    - Local Storage 혹은 **변수(Memory)** 에 저장.
+- Refresh Token
+    - 긴 수명(7일~14일)으로 설정
+    - HttpOnly, Secure, SameSite=Strict 옵션이 적용된 Cookie에 저장
 
-#### ① Tomcat이 요청을 
-
-``` bash
-사용자가 보낸 HTTP 요청:
-┌─────────────────────────────────────┐
-│ POST /api/posts HTTP/1.1            │
-│ Authorization: Bearer eyJhbGc...    │  ← JWT 토큰!
-│                                     │
-│ { "title": "안녕하세요" }              │    
-└─────────────────────────────────────┘
-
-```
-
-<br>
-
-#### ② DispatcherServlet으로 전달
-
-* **DispatcherServlet**
-    * `어떤 Controller로 보내야 하지?`
-    * `URL이 /api/posts 니까... PostController로 보내야겠다!`
-    * `하지만 잠깐! 보내기 전에 Filter들을 먼저 통과시켜야 해!`
-
-<br>
-
-#### ③ Spring Security Filter Chain
-
-- 여기서 JWT 검증이 일어남!
-- Filter Chain은 여러 개의 필터가 체인처럼 연결된 구조
-    - `[Filter 1: CORS 필터]`
-    - `[Filter 2: JWT 인증 필터]`
-    - `[Filter 3: 권한 체크 필터]`
-    - 이후 컨트롤러로...
-
-<br>
-
-### 6-2. 성공 / 실패 케이스
-
-#### 인증 성공 케이스
-
-``` bash
-
-[0ms] 사용자 요청 도착
-      POST /api/posts
-      Authorization: Bearer eyJhbG...
-
-[1ms] Tomcat이 받음
-      → DispatcherServlet으로 전달
-
-[2ms] DispatcherServlet
-      "Controller 찾기 전에 Filter 먼저!"
-
-[3ms] CORS 필터 통과
-      "다른 도메인 요청이네? 허용할까? OK!"
-
-[4ms] JWT 필터
-      ├─ [4.1ms] 헤더에서 토큰 추출
-      ├─ [4.2ms] 서명 검증 (암호화 연산)
-      ├─ [4.3ms] 만료시간 확인
-      ├─ [4.4ms] Payload에서 userId, role 추출
-      └─ [4.5ms] SecurityContext에 저장
-      
-[5ms] 권한 체크 필터
-      "ROLE_USER 권한 있네? 통과!"
-
-[6ms] Controller 도착!
-      PostController.createPost() 실행
-
-[10ms] 응답 반환
-    {
-        "id": 1, "title": "안녕하세요"
-    }
-```
-
-<br>
-
-#### 실패케이스
-
-``` bash
-# == 토큰이 없는 경우 ==
-
-요청: POST /api/posts
-헤더: Authorization 없음
-
-[JWT 필터]
-→ "토큰이 없네? 그냥 통과" (인증 안 된 상태로)
-
-[권한 체크 필터]  
-→ "이 API는 로그인 필요한데 인증 안 됐네?"
-→ 401 Unauthorized 응답
-
-Controller에 도달 못함!
-```
-
-<br>
-
-``` bash
-# == 토큰이 만료된 경우 ==
-
-요청: POST /api/posts
-헤더: Authorization: Bearer (만료된토큰)
-
-[JWT 필터]
-→ 토큰 검증 중...
-→ 만료시간 확인: 2024-02-08 14:00 < 현재 15:00
-→ ExpiredJwtException 발생!
-→ 401 응답: "토큰이 만료되었습니다"
-
-Controller에 도달 못함!
-```
-
-<br>
-
-``` bash
-# == 토큰이 위조된 경우 ==
-
-요청: POST /api/posts  
-헤더: Authorization: Bearer (해커가조작한토큰)
-
-[JWT 필터]
-→ 서명 검증 중...
-→ 계산된 서명 ≠ 토큰의 서명
-→ JwtException 발생!
-→ 401 응답: "유효하지 않은 토큰입니다"
-
-Controller에 도달 못함!
-```
-
-<br>
-
-#### 결국 핵심은
-
-1. **필터에서 JWT를 검증** 하고
-2. **SecurityContext에 인증 정보를 저장** 하면
-3. **Controller에서 자유롭게 사용자 정보를 쓸 수** 있음!
+> 이렇게 하면 XSS로 Access Token이 털려도 금방 만료되어 피해가 적고, 핵심인 Refresh Token은 자바스크립트가 접근할 수 없어 안전하게 보호 가능!
 
 <br>
 <br>
@@ -372,7 +298,13 @@ Controller에 도달 못함!
 <br>
 <br>
 
-## 7. 결론
+## 7. 추가 질문
+
+### session과 쿠키의 발전과정?
+세션도 있는데 왜 쿠키가 나오게 된거?
+세션인증이 필요한
+
+## 8. 결론
 
 #### JWT란?
 
@@ -380,11 +312,11 @@ Controller에 도달 못함!
 
 <br>
 
-#### JWT vs Cookie
+#### JWT vs Session 인증
 
-- `JWT`
+- `JWT` 인증
     - 서버는 아무것도 저장 안 하고, 사용자가 신분증을 직접 들고 다니며 매번 보여줌
-- `Cookie`
+- `Session` 인증
     - 서버가 로그인 정보를 메모리에 저장하고, 브라우저는 번호표(Session ID)만 들고 다님
 
 <br>
@@ -403,7 +335,7 @@ GET /api/posts + Header(토큰) → Filter에서 검증 → Controller
 <br>
 <br>
 
-## 8. Reference
+## 9. Reference
 
 - https://tecoble.techcourse.co.kr/post/2021-05-22-cookie-session-jwt/
 - https://www.youtube.com/watch?v=36lpDzQzVXs
