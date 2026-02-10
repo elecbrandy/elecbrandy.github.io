@@ -259,7 +259,7 @@
 </li>
 <li><strong>데이터</strong>
 <ul>
-<li>JSON 형태의 Body가 날아옵니다.</li>
+<li>JSON 형태의 Body가 전달</li>
 <li><code>{&quot;email&quot;: &quot;user@test.com&quot;, &quot;password&quot;: &quot;1234&quot;}</code></li>
 </ul>
 </li>
@@ -352,7 +352,84 @@
 <br>
 <br>
 <h3 id="4-1-posting">4-1. <code>Posting</code></h3>
-<p><em>작성중</em></p>
+<p><img src="https://elecbrandy.github.io/images/spring/spring-security-posting-1.png" alt="spring-security-number"></p>
+<br>
+<h4 id="-1번-posting-요청">🔴 1번: Posting 요청</h4>
+<p><img src="https://elecbrandy.github.io/images/spring/spring-security-posting-2.png" alt="spring-security-number"></p>
+<ul>
+<li><strong>상황</strong>
+<ul>
+<li>유저가 <code>POST /api/posts</code> 요청을 보냈을 때</li>
+<li>헤더에 JWT가 들어가 있는 상태</li>
+</ul>
+</li>
+<li><strong>데이터</strong>
+<ul>
+<li>JSON 형태의 Body</li>
+<li><code>Request Header: { Authorization: &quot;Bearer eyJhb...&quot; }</code></li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h4 id="-2번-spring-security-filter">🔴 2번: Spring Security Filter</h4>
+<p><img src="https://elecbrandy.github.io/images/spring/spring-security-posting-2.png" alt="spring-security-number"></p>
+<ol>
+<li><strong><code>JwtAuthenticationFilter</code> 의 토큰 검증</strong>
+<ul>
+<li>스프링 시큐리티의 문지기로, 가장 먼저 요청을 가로챔</li>
+<li>헤더에서 토큰 추출해서 <code>JwtTokenProvider</code>에게 토큰 유효한지 질문</li>
+</ul>
+</li>
+<li><strong><code>Security Context</code> 에 신분증 저장</strong>
+<ul>
+<li>토큰을 기반으로 <code>Authentication</code> 객체를 만들어 저장</li>
+</ul>
+</li>
+<li><strong><code>AuthorizationFilter</code> 의 규칙 확인</strong>
+<ul>
+<li>이 요청(<code>POST /api/posts</code>)은 `인증된 사람만 가능하네</li>
+<li>아까 저장한 <code>SecurityContextHolder</code> 를 열어볼게</li>
+<li>신분증 <em>Authentication</em> 이 들어있네? 통과!</li>
+</ul>
+</li>
+</ol>
+<br>
+<br>
+<h4 id="-3번-spring-boot-로직">🔴 3번: Spring boot 로직</h4>
+<p><img src="https://elecbrandy.github.io/images/spring/spring-security-posting-3.png" alt="spring-security-number"></p>
+<ul>
+<li><code>DispatcherServlet</code>
+<ul>
+<li>URL을 보고 <code>PostController</code>의 <code>write()</code> 메서드를 호출</li>
+</ul>
+</li>
+<li><code>PostService</code>
+<ul>
+<li>컨트롤러가 <code>service.write(dto)</code>를 호출</li>
+<li>그런데 DTO에는 제목과 내용만 있고 누가 썼는지가 없습&hellip;</li>
+</ul>
+</li>
+<li>정보를 가져오자!
+<ul>
+<li>아까 저장한 <code>SecurityContextHolder</code> 를 열어볼게</li>
+<li>조회 완료
+<br>
+<br></li>
+</ul>
+</li>
+</ul>
+<h4 id="정리">정리</h4>
+<p>유저가 보낸 토큰은</p>
+<ul>
+<li><strong>필터(1단계)</strong> 에서 <strong>신분증(<code>Authentication</code>)</strong> 으로 변환</li>
+<li><strong>금고(<code>SecurityContext</code>)</strong> 에 저장되고,</li>
+<li>이후 <strong>서비스(4단계)</strong> 가 그 금고를 열어서 사용</li>
+<li>이 구조 덕분에 컨트롤러나 서비스 메서드에 매번 토큰을 파라미터로 넘길 필요가 없음</li>
+</ul>
+<br>
+<br>
+<br>
 <h2 id="5-reference">5. Reference</h2>
 <ul>
 <li><a href="https://velog.io/@dhkim1522/SpringSecurity-JWT-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84">https://velog.io/@dhkim1522/SpringSecurity-JWT-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84</a></li>
@@ -361,6 +438,7 @@
 <br>
 <br>
 <br>
+
 
     
 
