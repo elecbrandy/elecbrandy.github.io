@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title> | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
+      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#조인을-통한-연결">조인을 통한 연결</a>
+      <ul>
+        <li><a href="#nested-loop-join">Nested Loop Join</a></li>
+        <li><a href="#sort-merge-join">Sort Merge Join</a></li>
+        <li><a href="#hash-join">Hash Join</a></li>
+      </ul>
+    </li>
+    <li><a href="#조인-이외의-연결방법">조인 이외의 연결방법</a>
+      <ul>
+        <li><a href="#union">Union</a></li>
+        <li><a href="#스칼라-서브쿼리">스칼라 서브쿼리</a></li>
+        <li><a href="#함수">함수</a></li>
+      </ul>
+    </li>
+    <li><a href="#전체-범위-처리-및-부분-범위-처리-이해">전체 범위 처리 및 부분 범위 처리 이해</a></li>
+    <li><a href="#인덱스-사용-방법-및-인덱스-적용-안되는-경우">인덱스 사용 방법 및 인덱스 적용 안되는 경우</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+    <div class="overlay-text">
+      <small>0001.01.01</small>
+      <div class="singleTitle"></div>
+    </div>
+  </div>
+  <p>트랜잭션 all or nothing</p>
+<p>DB</p>
+<p>task 뽑고 업무분담</p>
+<p>데이터웨어하우스(data mart) : 시장</p>
+<ul>
+<li>Fact
+<ul>
+<li>[D]imension : who</li>
+<li>[D]imension : where</li>
+<li>[D]imension : what</li>
+<li>[D]imension : when</li>
+</ul>
+</li>
+</ul>
+<p>이렇게 정리해서 저장하는걸 데이터웨어 하우스라고 함.</p>
+<p>기존 데이터 플로우는 안에있는게 나가는 방식. 인사이드 아웃
+그런데 클라우드와 빅데이터의 발전으로 아웃사이드 인도 가능.
+기존 인류가 만들었던</p>
+<p>이 흐름은 DBMS-DW-DM-VectorDB</p>
+<p>조별과제</p>
+<ol>
+<li>이해관계자 가치 설계</li>
+<li>전체 AI서비스 아키텍처를 제시하시오 (RDB -&gt; VectorDB 포함 필수)</li>
+<li>기존 ERD(별첨참고) 확인하고  &gt; 별도 시스템으로 추가된 업무를 기존 시스템과 통합하여, 재설계하고 최종 통합 ERD로 반영하시오</li>
+<li>기존 ERD와 데이터 값을 참조하여</li>
+</ol>
+<p>두 테이블 조인할때 테이블 순서 주의 driving table</p>
+<h2 id="조인을-통한-연결">조인을 통한 연결</h2>
+<h3 id="nested-loop-join">Nested Loop Join</h3>
+<p>• 순차적으로 처리되어, 부분 범위 처리 가능
+• 먼저 처리되는 테이블의 처리범위에 따라 처리량이 결정
+• 랜덤 임의, Random 액세스 위주
+• 연결고리 상태에 따라 영향이 많음
+• 일반적으로 좁은 범위 처리에 사용
+외부 테이블 Outer Table에서 조건에 만족하는 레코드를 검색한 후, 결합 조건에 일치하는 레코드를 내
+부 테이블 Inner Table에서 조인하는 방식
+Outer Join 에서 만족하는 레코드가 적을수록 NL 조인에서 효율이 좋음
+조인 조건에 해당하는 컬럼들은 인덱스를 가지고 있어야 함</p>
+<h3 id="sort-merge-join">Sort Merge Join</h3>
+<p>• 동시 처리되며, 무조건 전체 범위 처리
+• 독립적으로 자기의 처리 범위만으로 처리량 결정
+• 스캔 Scan 액세스 위주
+• 연결고리 상태에 영향이 없음
+• 일반적으로 넓은 범위 처리에 사용
+외부 테이블 Outer Table 에서 조건에 만족하는 레코드를 검색한 후, 조인 키를 기준으로 정렬작업을 수행
+내부 테이블 Inner Table 에서 조건에 만족하는 레코드를 검색한 후, 조인 키를 기준으로 정렬작업을 수행
+이후, 정렬된 결과를 이용하여 조인을 수행하며 조인에 성공하면 추출 버퍼에 넣은 뒤 출력, 조인 조건에 해당
+하는 컬럼에 인덱스가 없어도 가능</p>
+<h3 id="hash-join">Hash Join</h3>
+<p>작은 테이블과 큰 테이블의 Join시에 유리
+• 테이블간 컬럼값이 정확히 일치 시 사용 가능 Equi Join
+• 드라이빙 테이블에 인덱스를 필요로 하지 않음
+• 각 테이블에 대하여 1번만 읽음
+외부 테이블 Outer Table 및 내부 테이블 Inner Table 에서 각각 파티션별 해시키를 생
+성
+이후, 서로 매칭되는 파티션별 해시키를 이용하여 조인
+해시 조인은, 테이블 설계 시부터 해시 파티션 이용하여 정의하여 사용 가능</p>
+<h2 id="조인-이외의-연결방법">조인 이외의 연결방법</h2>
+<h3 id="union">Union</h3>
+<p>union은 합친다음에 같은걸 뺀다. 이 빼는 연산 주의</p>
+<p>즉, 단순히 값 유무등의 조회라면 union all 해서 빼는연산없애기
+가령 김민수가 존재하냐 안하냐 그럴땐 unionall 하는게 나은거지</p>
+<h3 id="스칼라-서브쿼리">스칼라 서브쿼리</h3>
+<h3 id="함수">함수</h3>
+<p>select JOB 역할, fnename1003 직원명 from EMP
+where MGR is null;</p>
+<p>-&gt; 이렇게 하면안됨? 모든 라인에 계산들어가니까.</p>
+<h2 id="전체-범위-처리-및-부분-범위-처리-이해">전체 범위 처리 및 부분 범위 처리 이해</h2>
+<h2 id="인덱스-사용-방법-및-인덱스-적용-안되는-경우">인덱스 사용 방법 및 인덱스 적용 안되는 경우</h2>
+<p>인덱스를 걸어놔도 인덱스가 사용되지 않는경우도 있다. 전체범위처리부분에서.</p>
+<p>3군 AI 인사검증체계 도입</p>
+<ul>
+<li>
+<p><strong>인사검증체계란?</strong></p>
+<ul>
+<li>주로 장교 및 부사관의 진급, 임관, 장기복무 선발 과정에서 엄격한 자격 요건과 품성을 검증하는 절차</li>
+</ul>
+</li>
+<li>
+<p><strong>인사검증체계 현황</strong></p>
+<ul>
+<li>1년에 3-4번의 큰 인사검증대상</li>
+<li>주로 범죄/처벌 이력이 있는 진급 대상자 대상으로 진행</li>
+<li>범죄, 처벌명, 승진 누락 누적 연도 범죄를 고려해서 결정</li>
+<li>검증 순서
+<ul>
+<li>인사검증과에서 자료를 취합 정리 / 예상 진급 유무 적고</li>
+<li>정기 인사검증위원회에서 고위직이 모여서 실제 대상자 진급 유무 정함</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>현재 문제점</strong></p>
+<ul>
+<li><strong>업무 과중</strong>
+<ul>
+<li>주 업무는 액셀 특정인이 이번에 진급대상자인지 아닌지 결정하는 것</li>
+<li>각 위원회 담당하는 담당자 6급 공무원 1인이 최소 3개월 동안 진행</li>
+<li>3~4개월 매일 야근함</li>
+</ul>
+</li>
+<li><strong>자료 현황</strong>
+<ul>
+<li>테이블 하나에 모두 저장되어있는 상황으로 기본 정규화조차 안되어있음</li>
+<li><code>| 군번 | 이름 | 죄명 | 범죄 상세 내용 | 처벌명 | 과년도 인사검증결과 | 과과년도 인사검증결과 | 과과과년도...</code></li>
+</ul>
+</li>
+<li><strong>지속적인 업데이트 필요</strong>
+<ul>
+<li>각 군마다 모두 상이한 진급 규칙</li>
+<li>매 분기마다 인사자료검증 규칙 업데이트</li>
+<li>분기마다 새로운 검증 대상자가 유입되고, 사라짐</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>과제할때</strong></p>
+<ul>
+<li>우선 통짜 테이블을 RDB로 쪼갠다 (db 모델링 및 마이그레이션 진행했다고 주장하기)</li>
+<li>vectorDB에 넣을것
+<ul>
+<li>통짜 테이블 쪼갠 RDB 임베딩해서 넣기</li>
+<li>각 군 인사자료 검증 규칙 등</li>
+</ul>
+</li>
+<li>과년도, 과과년도 진급누락 여부를 학습한 ai로 예측해주자</li>
+</ul>
+</li>
+<li>
+<p><strong>돈이 되는가?</strong></p>
+<ul>
+<li>룰만 바꾸면 3군에 모두 팔수있음</li>
+<li>ai 인사검증체계 도입~ 이런식으로</li>
+<li>구조 비슷하게 기업 HR 팀에도 팔수 있지 않을까?</li>
+</ul>
+</li>
+</ul>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

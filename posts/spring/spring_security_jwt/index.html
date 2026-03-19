@@ -14,7 +14,7 @@
         });"></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>[게시판] Spring Security와 JWT token 인증 도입 | elecbrandy</title>
+<title>Spring Security와 JWT 인증 | elecbrandy</title>
 
 
 
@@ -118,41 +118,18 @@
   <div class="featured-container">
     
       <div class="featured-image">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/330px-Spring_Boot.svg.png" alt="Featured Image for [게시판] Spring Security와 JWT token 인증 도입">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/330px-Spring_Boot.svg.png" alt="Featured Image for Spring Security와 JWT 인증">
       </div>
     
     <div class="overlay-text">
       <small>2026.02.09</small>
-      <div class="singleTitle">[게시판] Spring Security와 JWT token 인증 도입</div>
+      <div class="singleTitle">Spring Security와 JWT 인증</div>
     </div>
   </div>
   <br>
-<div class="series">
-  <details>
-    <summary>🍀 게시판 개발</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/board/00_readme/">0. README.md</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/board/01_requirements/">1. 기능 요구사항 명세서</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/board/02_api/">2. REST API 명세서</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/board/03_troubleshooting/">3. 트러블 슈팅 기록</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/board/04_learning/">4. 학습 기록</a></li>
-      
-    </ul>
-  </details>
-</div>
-
-<br>
 <h2 id="1-소개">1. 소개</h2>
 <ul>
-<li>register 기능을 만든후 로그인 기능 도입</li>
-<li><em>세션 vs jwt</em> → <code>jwt</code> 토큰 발급 방식</li>
+<li><em>세션 vs jwt</em> → <code>jwt</code> 토큰 발급 방식 공부</li>
 <li>Spring Security 와 함께 사용할 것</li>
 </ul>
 <br>
@@ -249,7 +226,7 @@
 <h3 id="4-1-login">4-1. <code>Login</code></h3>
 <br>
 <h4 id="-1번-login-요청-진입">🔴 1번: Login 요청 (진입)</h4>
-<p><img src="https://elecbrandy.github.io/images/spring/spring-security-0.png" alt="spring-security-number"></p>
+<p><img src="https://elecbrandy.github.io/images/spring/security/spring-security-0.png" alt="spring-security-number"></p>
 <ul>
 <li><strong>상황</strong>
 <ul>
@@ -267,7 +244,7 @@
 <br>
 <br>
 <h4 id="-2번-security-filter-chain">🔴 2번: Security Filter Chain</h4>
-<p><img src="https://elecbrandy.github.io/images/spring/spring-security-1.png" alt="spring-security-number"></p>
+<p><img src="https://elecbrandy.github.io/images/spring/security/spring-security-1.png" alt="spring-security-number"></p>
 <ul>
 <li><code>JwtAuthenticationFilter</code>
 <ul>
@@ -289,7 +266,7 @@
 <br>
 <br>
 <h4 id="-3번-userservice">🔴 3번: UserService</h4>
-<p><img src="https://elecbrandy.github.io/images/spring/spring-security-2.png" alt="spring-security-number"></p>
+<p><img src="https://elecbrandy.github.io/images/spring/security/spring-security-2.png" alt="spring-security-number"></p>
 <ul>
 <li><code>AuthController</code>
 <ul>
@@ -309,7 +286,7 @@
 <br>
 <br>
 <h4 id="-4번-authenticationmanager">🔴 4번: AuthenticationManager</h4>
-<p><img src="https://elecbrandy.github.io/images/spring/spring-security-3.png" alt="spring-security-number"></p>
+<p><img src="https://elecbrandy.github.io/images/spring/security/spring-security-3.png" alt="spring-security-number"></p>
 <ul>
 <li><code>UserDetailsService</code> 호출
 <ul>
@@ -325,7 +302,7 @@
 <br>
 <br>
 <h4 id="-5번-실질적-검증-및-인증-성공">🔴 5번: 실질적 검증 및 인증 성공</h4>
-<p><img src="https://elecbrandy.github.io/images/spring/spring-security-3.png" alt="spring-security-number"></p>
+<p><img src="https://elecbrandy.github.io/images/spring/security/spring-security-3.png" alt="spring-security-number"></p>
 <ul>
 <li><code>UserDetailsService</code>
 <ul>
@@ -352,10 +329,10 @@
 <br>
 <br>
 <h3 id="4-1-posting">4-1. <code>Posting</code></h3>
-<p><img src="https://elecbrandy.github.io/images/spring/spring-security-posting-1.png" alt="spring-security-number"></p>
+<p><img src="https://elecbrandy.github.io/images/spring/security/spring-security-posting-1.png" alt="spring-security-number"></p>
 <br>
 <h4 id="-1번-posting-요청">🔴 1번: Posting 요청</h4>
-<p><img src="https://elecbrandy.github.io/images/spring/spring-security-posting-2.png" alt="spring-security-number"></p>
+<p><img src="https://elecbrandy.github.io/images/spring/security/spring-security-posting-2.png" alt="spring-security-number"></p>
 <ul>
 <li><strong>상황</strong>
 <ul>

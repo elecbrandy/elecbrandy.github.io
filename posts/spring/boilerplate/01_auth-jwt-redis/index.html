@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Spring Boot Boilerplate: auth-jwt-redis | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
+      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-소개">1. 소개</a></li>
+    <li><a href="#2-erd-구조">2. ERD 구조</a></li>
+    <li><a href="#3-restapi">3. RestAPI</a></li>
+    <li><a href="#4-apiauthlogin">4. <code>/api/auth/login</code></a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#5-reference">5. Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/330px-Spring_Boot.svg.png" alt="Featured Image for Spring Boot Boilerplate: auth-jwt-redis">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2026.02.09</small>
+      <div class="singleTitle">Spring Boot Boilerplate: auth-jwt-redis</div>
+    </div>
+  </div>
+  <br>
+<h2 id="1-소개">1. 소개</h2>
+<ul>
+<li>Spring Boot Boilerplate</li>
+<li><strong><code>auth-jwt-redis</code></strong>
+<ul>
+<li>Access Token + Refresh Token 전략</li>
+<li>Redis 활용 -&gt; Refresh Token을 저장하여 보안성 강화</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="2-erd-구조">2. ERD 구조</h2>
+<p><img src="https://elecbrandy.github.io/images/spring/boilerplate/0.png" alt="erd"></p>
+<br>
+<br>
+<br>
+<h2 id="3-restapi">3. RestAPI</h2>
+<ul>
+<li><code>/api/auth/register</code> : 회원가입</li>
+<li><code>/api/auth/login</code> : 로그인</li>
+<li><code>/api/auth/logout</code> : 로그아웃</li>
+<li><code>/api/auth/reissue</code> : 토큰재발급</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="4-apiauthlogin">4. <code>/api/auth/login</code></h2>
+<p><img src="https://elecbrandy.github.io/images/spring/boilerplate/1.png" alt="login"></p>
+<p><em>전체 구조</em></p>
+<br>
+<br>
+<h4 id="로그인-요청과-security-filter-chain-진입">로그인 요청과 Security Filter Chain 진입</h4>
+<p><img src="https://elecbrandy.github.io/images/spring/boilerplate/2.png" alt="login"></p>
+<ol>
+<li><strong>Login 요청</strong>
+<ul>
+<li><code>POST /api/auth/login</code> 요청</li>
+<li><code>{&quot;email&quot;: &quot;user@test.com&quot;, &quot;password&quot;: &quot;1234&quot;}</code></li>
+</ul>
+</li>
+<li><strong>Security Filter</strong>
+<ul>
+<li>로그인 요청은 반드시 <em>Spring Security FilterChain</em> 을 거친다</li>
+<li><strong><code>JwtAuthenticationFilter</code></strong>
+<ul>
+<li><em>resolveToken(request)</em> 를 실행해 쿠키나 헤더에 토큰이 있는지 찾는다</li>
+<li>로그인 시점에는 토큰이 없으므로 <em>token == null</em></li>
+<li>따라서 조용히 다음 필터로 이동한다</li>
+</ul>
+</li>
+<li><strong><code>AuthorizationFilter</code></strong>
+<ul>
+<li>이 요청이 권한이 필요한가? 를 확인한다</li>
+<li><em>SecurityConfig</em> 의 <em>permitAll()</em> 설정에 의해 로그인 요청은 인증 객체 없어도 통과된다</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br>
+<br>
+<h4 id="controller와-service-진입">Controller와 Service 진입</h4>
+<p><img src="https://elecbrandy.github.io/images/spring/boilerplate/3.png" alt="login"></p>
+<ol start="3">
+<li><strong>AuthController 진입</strong>
+<ul>
+<li><code>@Valid</code> 를 통해 Request의 형식이 맞는지 검사한다</li>
+<li>통과하면 userService를 호출한다</li>
+</ul>
+</li>
+<li><strong>UserService 진입</strong>
+<ul>
+<li>사용자가 입력한 이메일 + 평문 비밀번호를 담은 임시 인증용 토근을 발급한다</li>
+<li>임시 토큰: <code>UsernamePasswordAuthenticationToken</code></li>
+<li>이 토큰을 <code>AuthenticationManager</code> 에게 던진다</li>
+<li><em>이 사람 진짜 유저인지 너가 검증해줘!</em></li>
+</ul>
+</li>
+</ol>
+<br>
+<br>
+<h4 id="spring-security-핵심-인증-처리">Spring Security 핵심 인증 처리</h4>
+<p><img src="https://elecbrandy.github.io/images/spring/boilerplate/4.png" alt="login"></p>
+<ol start="5">
+<li><strong>AuthenticationManager</strong>
+<ul>
+<li><code>UserService</code> 에게 받은 요청을 어떤 Provider에게 위임할지 결정한다</li>
+<li>&hellip; 살펴보다가 <code>AuthenticationProvider</code> 에게 위임!</li>
+</ul>
+</li>
+<li><strong>CustomUserDetailService ↭ UserRepository ↭ DB</strong>
+<ul>
+<li><code>AuthenticationProvider</code> 는 유저 검증을 위해서 DB에 있는 실제 유저 정보가 필요하다. 그러나 스스로 가져올 수 없으므로&hellip;</li>
+<li><code>CustomUserDetailService</code>를 호출해 DB에 있는 유저 정보를 가져온다</li>
+</ul>
+</li>
+<li><strong>다시 AuthenticationProvider</strong>
+<ul>
+<li>DB에서 가져온 정보와 사용자 입력 정보를 비교한다</li>
+<li>일치하는 경우 인증 성공!</li>
+</ul>
+</li>
+</ol>
+<br>
+<br>
+<h4 id="토큰-발급-및-응답-마무리">토큰 발급 및 응답 마무리</h4>
+<p><img src="https://elecbrandy.github.io/images/spring/boilerplate/5.png" alt="login"></p>
+<ol start="8">
+<li><strong>UserService</strong>
+<ul>
+<li>인증 성공하여 돌아온 완성된 토큰을 <code>JwtTokenProvider</code> 에게 넘긴다</li>
+</ul>
+</li>
+<li><strong>JwtTokenProvider</strong>
+<ul>
+<li><code>generateToken()</code> 으로 <em>AccessToken, RefreshToken</em> 을 생성한다</li>
+</ul>
+</li>
+<li><strong>UserService ↭ RefreshTokenRepository</strong>
+<ul>
+<li>생성된 <code>RefreshToken</code> 을 DB에 저장한다</li>
+<li>저장 과정에서 현재 이메일로 저장된 토큰이 설정값을 넘으면 가장 오래된 것을 삭제한다</li>
+</ul>
+</li>
+<li><strong>다시 AuthController</strong>
+<ul>
+<li><code>setTokenCookies()</code> 으로  <em>Access/Refresh Token</em> 을 각각 HttpOnly 쿠키로 세팅한다</li>
+<li>최종적으로 클라이언트에게 <code>200 OK</code> 와 <code>로그인 성공</code> 메세지를 담은 <code>JSON(ApiResponse)</code> 을 반환한다</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-reference">5. Reference</h2>
+<ul>
+<li><a href="https://velog.io/@dhkim1522/SpringSecurity-JWT-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84">https://velog.io/@dhkim1522/SpringSecurity-JWT-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84</a></li>
+<li><a href="https://inkyu-yoon.github.io/docs/Language/SpringBoot/SpringSecurityJoin">https://inkyu-yoon.github.io/docs/Language/SpringBoot/SpringSecurityJoin</a></li>
+</ul>
+<br>
+<br>
+<br>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

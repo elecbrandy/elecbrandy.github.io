@@ -14,7 +14,7 @@
         });"></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>board | elecbrandy</title>
+<title>Spring Boot Boilerplate | elecbrandy</title>
 
 
 
@@ -97,41 +97,97 @@
   </script>
 
     
-
-
-
-
-
-
-
-
-
-        
-
-
-<div class="breadcrumb">
-  🏷
   
-    /tags/board
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-프로젝트-소개">1. 프로젝트 소개</a></li>
+    <li><a href="#2-기능-분기">2. 기능 분기</a></li>
+    <li><a href="#3-개발-문서-정리">3. 개발 문서 정리</a></li>
+  </ul>
+</nav>
+  </aside>
   
-</div>
-
-
-<div class="list">
-  <p><em>Spring Boot로 게시판 개발하기</em></p>
-<hr>
-  <div class="page-links">
+  <div class="featured-container">
     
-      <a href="https://elecbrandy.github.io/posts/board/05_spring_security_jwt/" class="page-link"> # [게시판] Spring Security와 JWT token 인증 도입</a>
+      <div class="featured-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/330px-Spring_Boot.svg.png" alt="Featured Image for Spring Boot Boilerplate">
+      </div>
     
-      <a href="https://elecbrandy.github.io/posts/board/02_restapi/" class="page-link"> # [게시판] REST API 명세서</a>
-    
-      <a href="https://elecbrandy.github.io/posts/board/01_requirements/" class="page-link"> # [게시판] 기능 요구사항 명세서</a>
-    
-      <a href="https://elecbrandy.github.io/posts/board/00_readme/" class="page-link"> # [게시판] README.md</a>
-    
+    <div class="overlay-text">
+      <small>2026.02.04</small>
+      <div class="singleTitle">Spring Boot Boilerplate</div>
+    </div>
   </div>
+  <div class="series">
+  <details>
+    <summary>🍀 Spring Boot: Boilerplate 개발</summary>
+    <ul>
+      
+      
+      
+    </ul>
+  </details>
 </div>
+
+<br>
+<h2 id="1-프로젝트-소개">1. 프로젝트 소개</h2>
+<ul>
+<li>Spring Boot Boilerplate</li>
+<li>기본적인 인증 세션을 구현하고, 브랜치 별로 다양한 기능을 분기</li>
+<li>외부 DB 컨테이너와 연결</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="2-기능-분기">2. 기능 분기</h2>
+<ul>
+<li><strong><code>auth-jwt-redis</code></strong>
+<ul>
+<li>Access Token + Refresh Token 전략</li>
+<li>Redis 활용 -&gt; Refresh Token을 저장하여 보안성 강화</li>
+</ul>
+</li>
+<li><strong><code>auth-oauth-jwt</code></strong>
+<ul>
+<li>Google, Kakao, Naver 등의 OAuth2 공급자와 연동</li>
+<li>최초 소셜 인증은 OAuth2 프로토콜 사용</li>
+<li>이후 서비스 내부에서 JWT 발급하여 Stateless 구조 유지</li>
+</ul>
+</li>
+<li><strong><code>auth-mfa-otp</code></strong>
+<ul>
+<li>추가로 OTP 검증 도입</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<br>
+<h2 id="3-개발-문서-정리">3. 개발 문서 정리</h2>
+<ul>
+<li><a href=""><code>auth-jwt-redis</code> &raquo; 바로가기</a></li>
+<li><a href=""><code>auth-oauth-jwt</code> &raquo; 바로가기</a></li>
+<li><a href=""><code>auth-mfa-otp</code> &raquo; 바로가기</a></li>
+</ul>
+<br>
+<br>
+<br>
+<div class="series">
+  <details>
+    <summary>🍀 Spring Boot: Boilerplate 개발</summary>
+    <ul>
+      
+      
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<br>
+<br>
+
 
     
 

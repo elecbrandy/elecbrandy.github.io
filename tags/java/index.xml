@@ -6,8 +6,15 @@
     <description>Recent content in java on elecbrandy</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://elecbrandy.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spring Boot Boilerplate</title>
+      <link>https://elecbrandy.github.io/posts/spring/boilerplate/00_intro/</link>
+      <pubDate>Wed, 04 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://elecbrandy.github.io/posts/spring/boilerplate/00_intro/</guid>
+      <description>&lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;🍀 Spring Boot: Boilerplate 개발&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;1-프로젝트-소개&#34;&gt;1. 프로젝트 소개&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Spring Boot Boilerplate&lt;/li&gt;&#xA;&lt;li&gt;기본적인 인증 세션을 구현하고, 브랜치 별로 다양한 기능을 분기&lt;/li&gt;&#xA;&lt;li&gt;외부 DB 컨테이너와 연결&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;2-기능-분기&#34;&gt;2. 기능 분기&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;&lt;code&gt;auth-jwt-redis&lt;/code&gt;&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Access Token + Refresh Token 전략&lt;/li&gt;&#xA;&lt;li&gt;Redis 활용 -&amp;gt; Refresh Token을 저장하여 보안성 강화&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;&lt;code&gt;auth-oauth-jwt&lt;/code&gt;&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Google, Kakao, Naver 등의 OAuth2 공급자와 연동&lt;/li&gt;&#xA;&lt;li&gt;최초 소셜 인증은 OAuth2 프로토콜 사용&lt;/li&gt;&#xA;&lt;li&gt;이후 서비스 내부에서 JWT 발급하여 Stateless 구조 유지&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;&lt;code&gt;auth-mfa-otp&lt;/code&gt;&lt;/strong&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;추가로 OTP 검증 도입&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;3-개발-문서-정리&#34;&gt;3. 개발 문서 정리&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;&lt;code&gt;auth-jwt-redis&lt;/code&gt; &amp;raquo; 바로가기&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;&lt;code&gt;auth-oauth-jwt&lt;/code&gt; &amp;raquo; 바로가기&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;&#34;&gt;&lt;code&gt;auth-mfa-otp&lt;/code&gt; &amp;raquo; 바로가기&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;🍀 Spring Boot: Boilerplate 개발&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;br&gt;&#xA;&lt;br&gt;&#xA;&lt;br&gt;</description>
+    </item>
     <item>
       <title>Gradle</title>
       <link>https://elecbrandy.github.io/posts/java/gradle/</link>

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Docker Container | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
+      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-소개">1. 소개</a></li>
+    <li><a href="#2-기저의-역사">2. 기저의 역사</a>
+      <ul>
+        <li><a href="#21-컨테이너의-탄생">2.1. 컨테이너의 탄생</a></li>
+        <li><a href="#22-vm과-컨테이너의-공존">2.2. VM과 컨테이너의 공존</a></li>
+        <li><a href="#23-docker의-등장">2.3. Docker의 등장</a></li>
+        <li><a href="#24-docker-그-이후">2.4 Docker 그 이후</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-vm과-컨테이너">3. VM과 컨테이너</a></li>
+    <li><a href="#4-docker">4. Docker</a>
+      <ul>
+        <li><a href="#41-docker-핵심-개념">4.1. Docker 핵심 개념</a></li>
+        <li><a href="#42-dockerfile">4.2. Dockerfile</a></li>
+        <li><a href="#43-docker-내부-아키텍처와-작동-방식">4.3. Docker 내부 아키텍처와 작동 방식</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-사용-방법">5. 사용 방법</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#6-qa">6. Q&amp;A</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#7-reference">7. Reference</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://cdn.idaegu.com/news/photo/201902/361449_1.jpg" alt="Featured Image for Docker Container">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2026.03.18</small>
+      <div class="singleTitle">Docker Container</div>
+    </div>
+  </div>
+  <br>
+<h2 id="1-소개">1. 소개</h2>
+<p>로컬과 서버의 OS가 다르고, 설치된 언어의 버전이 꼬이거나 라이브러리 경로가 어긋나면 본격적인 개발을 시작하기도 전에 진이 다 빠지곤 한다. 도커 컨테이너는 바로 이러한 환경의 파편화 문제를 해결하기 위해 등장했다. 핵심은 실행 환경의 표준화이다. 어디서든 동일한 환경을 보장해주는 도커 컨테이너의 내부 동작 방식과 실제 활용법을 정리해보고자 한다.</p>
+<br>
+<br>
+<h2 id="2-기저의-역사">2. 기저의 역사</h2>
+<p><em>컨테이너 기술의 탄생부터 도커, 그리고 현재의 클라우드 네이티브 생태계까지</em></p>
+<h3 id="21-컨테이너의-탄생">2.1. 컨테이너의 탄생</h3>
+<ul>
+<li>컨테이너의 개념은 리눅스/유닉스 시스템의 프로세스 격리 기술에서 출발함</li>
+<li><strong>1979년 chroot</strong>
+<ul>
+<li>특정 프로세스의 루트 디렉토리를 변경하여 파일 시스템을 격리하는 최초의 시도</li>
+</ul>
+</li>
+<li><strong>2000년대 초반 (FreeBSD Jails, Solaris Zones)</strong>
+<ul>
+<li>단순 파일 시스템 격리를 넘어 네트워크, 사용자 등을 독립적으로 관리하는 가상 환경의 개념이 정립</li>
+</ul>
+</li>
+<li><strong>2008년 LXC (Linux Containers)</strong>
+<ul>
+<li>리눅스 커널의 <strong>Cgroups</strong>(자원 제한)와 <strong>Namespaces</strong>(자원 격리)를 조합하여 현대적인 컨테이너 기술의 기틀을 마련</li>
+<li>하지만 사용법이 매우 복잡하여 전문가들만 사용하는 기술에 머무름</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="22-vm과-컨테이너의-공존">2.2. VM과 컨테이너의 공존</h3>
+<ul>
+<li>2010년대 초반까지 IT 인프라의 주인공은 VMware나 가상 머신(VM)</li>
+<li>당시 컨테이너는 가볍지만 위험하고 다루기 힘든 기술로 치부</li>
+<li>따라서 주로 대규모 인프라를 직접 운영하는 거대 기업 내부에서만 사용됨</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">구분</th>
+          <th style="text-align: left">가상 머신 (VM)</th>
+          <th style="text-align: left">초기 컨테이너 (LXC 등)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>격리</strong></td>
+          <td style="text-align: left">하드웨어 수준 격리 (하이퍼바이저)로 안전</td>
+          <td style="text-align: left">호스트 커널을 공유하여 보안 우려</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>범용성</strong></td>
+          <td style="text-align: left">Windows 호스트에서 Linux 실행이 가능</td>
+          <td style="text-align: left">호스트 OS와 컨테이너 OS가 동일해야함</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>관리</strong></td>
+          <td style="text-align: left">VMware 등 성숙한 관리 솔루션이 존재</td>
+          <td style="text-align: left">CLI 기반으로 설정이 매우 복잡하고 파편화</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>이식성</strong></td>
+          <td style="text-align: left">가상 디스크가 너무 커서 옮기기 어려움</td>
+          <td style="text-align: left">환경이 조금만 달라져도 실행이 안 되는 경우가 많았음</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h3 id="23-docker의-등장">2.3. Docker의 등장</h3>
+<ul>
+<li><strong>Image와 레이어</strong>
+<ul>
+<li>파일 시스템을 레이어 단위로 쌓고 이를 이미지로 박제/관리</li>
+</ul>
+</li>
+<li><strong>Dockerfile</strong>
+<ul>
+<li>인프라 설정을 코드로 관리(IaC)할 수 있게 하여 재현성을 용이하게 관리</li>
+</ul>
+</li>
+<li><strong>Docker Hub</strong>
+<ul>
+<li>전 세계 사람들이 이미지를 공유하는 중앙 저장소를 만들어 인프라 확장</li>
+</ul>
+</li>
+<li><strong>표준화</strong>
+<ul>
+<li>복잡한 리눅스 커널 명령어를 <code>docker run</code> 등으로 단순화</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="24-docker-그-이후">2.4 Docker 그 이후</h3>
+<ul>
+<li>도커가 시장을 장악한 이후, 기술의 독점을 막고 표준화를 위해 OCI 설립</li>
+<li>이제는 도커 외에도 다양한 목적에 특화된 툴들이 등장
+<ul>
+<li><strong>Kubernetes</strong>
+<ul>
+<li>수천 개의 컨테이너를 관리하는 사실상 업계 표준</li>
+</ul>
+</li>
+<li><strong>Podman</strong>
+<ul>
+<li>도커 데몬 없이 동작하며 루트 권한이 필요 없는 보안에 특화된 컨테이너 엔진</li>
+</ul>
+</li>
+<li><strong>containerd &amp; CRI-O</strong>
+<ul>
+<li>도커의 무거운 기능들을 걷어냄</li>
+<li>컨테이너 실행이라는 본연의 기능에만 집중한 경량 런타임</li>
+<li>현재 쿠버네티스의 기본 엔진으로 주로 쓰임</li>
+</ul>
+</li>
+<li><strong>Buildah &amp; Skopeo</strong>
+<ul>
+<li>이미지 빌드, 관리 작업을 도커 없이 수행할 수 있게 해주는 특화 도구들</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="3-vm과-컨테이너">3. VM과 컨테이너</h2>
+<ul>
+<li><strong>VM (Virtual Machine)</strong>
+<ul>
+<li>하드웨어 수준의 가상화</li>
+<li>하이퍼바이저 위에 Guest OS를 통째로 올리기 때문에 시스템 자원을 많이 차지하고 부팅 속도가 느림</li>
+</ul>
+</li>
+<li><strong>Docker Container</strong>
+<ul>
+<li>OS 레벨의 가상화</li>
+<li>Host OS의 커널을 공유하면서 프로세스 단위로 격리된 환경을 제공</li>
+<li>별도의 OS를 띄우지 않으므로 훨씬 가볍고 실행 속도가 빠름</li>
+</ul>
+</li>
+</ul>
+<br>
+<table>
+  <thead>
+      <tr>
+          <th>구분</th>
+          <th>VM</th>
+          <th>Docker Container</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>구조</strong></td>
+          <td>HW 레벨 가상화 (Guest OS 필수)</td>
+          <td>OS 레벨 가상화 (Host OS 커널 공유)</td>
+      </tr>
+      <tr>
+          <td><strong>속도</strong></td>
+          <td>부팅 및 실행이 느림 (분 단위)</td>
+          <td>프로세스 실행 수준으로 매우 빠름 (초 단위)</td>
+      </tr>
+      <tr>
+          <td><strong>무게</strong></td>
+          <td>GB 단위, 무겁고 자원소모⬆️</td>
+          <td>MB 단위, 가볍고 효율적임</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<h2 id="4-docker">4. Docker</h2>
+<h3 id="41-docker-핵심-개념">4.1. Docker 핵심 개념</h3>
+<ul>
+<li><strong>Dockerfile</strong>
+<ul>
+<li>Dockerfile은 이미지를 만들기 위한 설계도로, 명령어로 이미지의 Layer를 형성</li>
+</ul>
+</li>
+<li><strong>Docker 이미지</strong>
+<ul>
+<li>애플리케이션 실행에 필요한 코드, 라이브러리, 환경 설정을 모두 담아놓은 템플릿</li>
+</ul>
+</li>
+<li><strong>Docker 컨테이너</strong>
+<ul>
+<li>Docker 이미지를 메모리에 올려 실행시킨 격리된 프로세스, 실제 서비스가 동작하는 공간</li>
+</ul>
+</li>
+<li><strong>Docker 볼륨</strong>
+<ul>
+<li>컨테이너가 삭제되더라도 데이터를 보존하기 위해 host와 연결하는 독립적 저장 공간</li>
+</ul>
+</li>
+<li><strong>Docker 네트워크</strong>
+<ul>
+<li>격리된 컨테이너들이 서로 통신하거나, 외부와 연결해주는 가상의 통신망</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="42-dockerfile">4.2. Dockerfile</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">명령어</th>
+          <th style="text-align: left">의미 및 역할</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong><code>FROM</code></strong></td>
+          <td style="text-align: left">이미지를 생성할 때 기반이 되는 Base Image 지정</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>RUN</code></strong></td>
+          <td style="text-align: left">이미지 빌드 과정에서 명령어를 실행하여 새로운 레이어를 생성</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>COPY</code></strong></td>
+          <td style="text-align: left">호스트에 있는 파일이나 디렉토리를 이미지 내부의 경로로 복사</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>ADD</code></strong></td>
+          <td style="text-align: left"><code>COPY</code>와 유사 -&gt; 압축 파일 해제, 파일을 다운로드하는 기능 등</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>WORKDIR</code></strong></td>
+          <td style="text-align: left">이후 실행될 명령어가 실행될 작업 디렉토리를 설정</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>ENV</code></strong></td>
+          <td style="text-align: left">이미지 내부에서 사용할 환경 변수를 설</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>EXPOSE</code></strong></td>
+          <td style="text-align: left">컨테이너가 실행될 때 외부로 노출할 포트 번호 지정</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>CMD</code></strong></td>
+          <td style="text-align: left">컨테이너가 실행될 때 기본으로 실행될 명령어</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>ENTRYPOINT</code></strong></td>
+          <td style="text-align: left">컨테이너 실행 시 반드시 실행되어야 하는 명령어 지정</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<h3 id="43-docker-내부-아키텍처와-작동-방식">4.3. Docker 내부 아키텍처와 작동 방식</h3>
+<img src="https://www.docker.com/app/uploads/2022/12/docker-engine-1-11-runc-1.png.webp">  
+<ul>
+<li><strong>dockerd (Docker Daemon)</strong>
+<ul>
+<li>도커 엔진의 핵심! 사용자의 요청을 받는 API 서버 역할</li>
+<li>이미지 관리, 네트워크 설정, 볼륨 관리 등 고수준 작업을 처리</li>
+<li>실제 컨테이너 생성 작업은 스스로 X, <code>containerd</code> 에게 요청을 넘김</li>
+</ul>
+</li>
+<li><strong>containerd</strong>
+<ul>
+<li>컨테이너의 생명주기를 관리하는 상위 수준 런타임</li>
+<li>이미지 전송, 스토리지 관리, 컨테이너 실행 및 네트워크 관리를 담당</li>
+<li>실질적인 컨테이너 프로세스 실행을 위해 <code>containerd-shim</code>을 생성</li>
+</ul>
+</li>
+<li><strong>containerd-shim</strong>
+<ul>
+<li><code>containerd</code>와 실제 컨테이너 사이의 중간 다리 역할</li>
+<li><code>runc</code>가 컨테이너를 생성한 후 바로 종료될 수 있게 도와줌</li>
+<li>컨테이너의 표준 입출력(I/O)과 로그, 종료 상태를 유지하는 역할</li>
+</ul>
+</li>
+<li><strong>runc</strong>
+<ul>
+<li>OCI 표준을 따르는 저수준 컨테이너 런타임</li>
+<li>리눅스 커널의 기능을 통해 실제 컨테이너 프로세스를 생성
+<ul>
+<li><code>Namespace</code> (격리) 와 <code>Cgroups</code> (자원 제한) 기능</li>
+</ul>
+</li>
+<li>컨테이너를 만들고 프로세스를 실행시킨 뒤, 자신은 바로 종료</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="실행-흐름-요약">실행 흐름 요약</h4>
+<ol>
+<li>사용자가 명령을 내리면 <code>dockerd</code>가 이를 수신한다.</li>
+<li><code>dockerd</code>는 <code>containerd</code>에게 컨테이너 생성을 요청한다.</li>
+<li><code>containerd</code>는 <code>containerd-shim</code>을 띄우고 <code>runc</code>를 호출한다.</li>
+<li><code>runc</code>는 운영체제 커널 기능을 이용해 컨테이너를 만들고 사라진다.</li>
+<li>결과적으로 컨테이너 프로세스는 <code>containerd-shim</code>에 의해 관리되며 안정적으로 돌아간다.</li>
+</ol>
+<br>
+<h4 id="지방-축제-부스를-예시로-다시-정리해보자">지방 축제 부스를 예시로 다시 정리해보자</h4>
+<ul>
+<li>1️⃣ <strong>dockerd (시청 / 인허가 부서)</strong>
+<ul>
+<li>사용자의 요청을 받아 <code>이곳에 부스를 지어도 되는지 검토</code> 하고 허가증을 발급</li>
+<li>부스 도면(이미지)을 확인하고 총괄 담당(<code>containerd</code>)에게 연락</li>
+</ul>
+</li>
+<li>2️⃣ <strong>containerd (총괄 담당)</strong>
+<ul>
+<li>전체 공사 일정을 관리하고 인력을 배치</li>
+<li>필요한 자재(이미지 레이어)를 현장에 운반</li>
+<li>부스를 실제로 올릴 기술자(<code>runc</code>)를 부름</li>
+<li>공사가 끝나면 현장을 관리할 경비원(<code>shim</code>)을 미리 대기시킴</li>
+</ul>
+</li>
+<li>3️⃣ <strong>runc (건물 골조 기술자)</strong>
+<ul>
+<li>컨테이너라는 격리된 공간을 설계도대로 세팅하고 사라지는 전문가</li>
+<li>현장에 도착해 울타리를 치고(Namespace), 전기와 물의 양을 제한하며(Cgroups)</li>
+<li>이후 부스 안에 실제 작업할 사람(프로세스)을 입장시킴</li>
+<li>입장이 완료되고 부스의 물리적 환경 세팅이 끝나면, <code>runc</code>는 장비를 챙겨 바로 현장을 떠남</li>
+</ul>
+</li>
+<li>4️⃣ <strong>containerd-shim (축제 경비원)</strong>
+<ul>
+<li><code>runc</code> 가 떠난 뒤, 부스에 남은 사람(프로세스)을 24시간 감시하고 보고</li>
+<li><code>containerd</code>가 &ldquo;그 부스 잘 돌아가나?&ldquo;라고 물어보면 상황을 보고</li>
+<li>부스가 무너지거나(프로세스 종료) 안에 사람이 나가면 그 소식을 전함</li>
+<li>특히, 시청(<code>dockerd</code>)이 공사 중이어도 경비원은 자리를 지키므로 부스 안의 사람(서비스)은 안전</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="5-사용-방법">5. 사용 방법</h2>
+<p><em>간단한 파이썬 애플리케이션을 도커 환경에서 실행하는 과정을 통해 사용 방법을 알아보자</em></p>
+<h4 id="dockerfile-작성"><code>Dockerfile</code> 작성</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># 1. 베이스 이미지 지정</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">python:3.9-slim</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 호스트의 파일을 컨테이너 내부로 복사</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . /app<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 의존성 설치 및 앱 실행</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> pip install -r requirements.txt<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;python&#34;</span>, <span style="color:#e6db74">&#34;app.py&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h4 id="docker-image-빌드와-run">Docker image 빌드와 run</h4>
+<p>작성이 완료되면 터미널에서 이미지를 빌드하고 컨테이너를 띄운다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile을 읽어 &#39;my-python-app&#39;이라는 이름의 이미지를 빌드한다.</span>
+</span></span><span style="display:flex;"><span>$ docker build -t my-python-app .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 빌드된 이미지를 백그라운드(-d)에서 포트 8080으로 연결하여 실행한다.</span>
+</span></span><span style="display:flex;"><span>$ docker run -d -p 8080:8080 my-python-app
+</span></span></code></pre></div><br>
+<br>
+<h2 id="6-qa">6. Q&amp;A</h2>
+<h4 id="docker가-os를-따로-설치하지-않는데-from-을-통해-ubuntu-apline-등을-가져오는-이유">Docker가 OS를 따로 설치하지 않는데, <code>FROM</code> 을 통해 ubuntu, apline 등을 가져오는 이유</h4>
+<ul>
+<li><code>OS를 설치하지 않는다</code> 는 말은 커널을 포함하지 않는다는 뜻</li>
+<li>하지만 애플리케이션이 실행되려면 커널 외에도 다양한 시스템 라이브러리와 유틸리티가 필요함</li>
+<li>모든 컨테이너는 호스트 OS의 리눅스 커널을 공유하므로, 컨테이너 내부에 커널을 또 설치할 필요가 X</li>
+<li>애플리케이션은 커널 위에서 돌아가는 <code>ls, bash, python, libc, apt</code> 등의 라이브러리 환경이 필요</li>
+<li><code>FROM ubuntu</code> , <code>FROM alpine</code> 은 바로 이 환경을 제공하는 것</li>
+</ul>
+<br>
+<h4 id="도커-이미지에-실제-코드가-압축되어-들어가나">도커 이미지에 실제 코드가 압축되어 들어가나?</h4>
+<ul>
+<li>결론부터 말하자면 맞지만, 단순한 압축 파일이 아니라 <code>레이어 기반의 스냅샷</code> 형태</li>
+<li>Dockerfile의 각 명령어(COPY, RUN 등)는 하나의 읽기 전용 레이어를 생성</li>
+<li>이 레이어들은 실제 파일 시스템의 변경 사항을 담고 있는 Diff 데이터</li>
+<li>이미지를 빌드하고 푸시할 때, 각 레이어는 tar로 묶여 gzip이나 zstd 방식으로 압축되어 전송됨</li>
+<li>컨테이너가 실행될 때, 이 여러 개의 압축된 레이어들을 하나로 겹쳐서 사용자에게는 하나의 통합된 파일 시스템처럼 보이게 함</li>
+<li>코드는 이 레이어 중 하나에 고스란히 담겨 있음</li>
+</ul>
+<br>
+<h4 id="컨테이너는-인스턴스-인가">컨테이너는 인스턴스 인가?</h4>
+<ul>
+<li>이미지는 클래스이고, 컨테이너는 그 클래스를 통해 생성된 인스턴스(객체)</li>
+<li>이미지는 실행 가능한 파일과 설정의 집합일 뿐인 정적인 상태</li>
+<li>이미지를 메모리에 올리고 프로세스로 격리하여 실행시킨 상태가 컨테이너</li>
+<li><strong>사실 자세히 들여다보면,</strong>
+<ul>
+<li>컨테이너는 하나의 공간이고, 인스턴스가 X</li>
+<li>컨테이너는 하나의 공간이고, 그 안에 있는 프로세스가 인스턴스인 셈</li>
+<li>그럼에도 그냥 인스턴스라고 부르기도 함&hellip;</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="컨테이너-내부에서-pid-1의-의미">컨테이너 내부에서 PID 1의 의미</h4>
+<ul>
+<li>리눅스 시스템에서 PID 1은 모든 프로세스의 조상인 Init 프로세스를 의미</li>
+<li><strong>컨테이너 환경에서 PID 1은 단순한 번호 이상의 권한과 책임을 가짐!</strong>
+<ul>
+<li><code>최상위 부모</code>
+<ul>
+<li>컨테이너 안에서 실행되는 모든 프로세스는 PID 1의 자식</li>
+<li>PID 1 프로세스가 종료되면 해당 컨테이너 전체가 종료</li>
+</ul>
+</li>
+<li><code>시그널 처리의 특권과 책임</code>
+<ul>
+<li>리눅스 커널은 PID 1에게 전달되는 시그널을 특별하게 취급</li>
+<li>일반 프로세스는 커널이 기본 종료 핸들러를 제공하지만, PID 1은 개발자가 직접 시그널 핸들러를 구현하지 않으면 SIGTERM(종료 요청)조차 무시할 수 있음</li>
+<li>이것이 docker stop이 가끔 10초나 걸리는 이유</li>
+</ul>
+</li>
+<li><code>좀비 프로세스 회수</code>
+<ul>
+<li>자식 프로세스가 죽고 부모가 그 상태를 확인하지 않으면 좀비가 됨</li>
+<li>정상 PID 1(systemd, tini 등)은 이 고아 프로세스들을 입양하여 자원을 해제해야 함</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="왜-runc는-퇴근해야-할까">왜 runc는 퇴근해야 할까?</h4>
+<ul>
+<li>만약 <code>runc</code>가 퇴근하지 않고 컨테이너가 실행되는 내내 붙어 있다면 다음과 같은 문제가 발생
+<ul>
+<li><code>자원 낭비</code>
+<ul>
+<li>수천 개의 컨테이너를 띄울 때마다 실행 런타임(<code>runc</code>) 프로세스가 메모리를 계속 차지</li>
+</ul>
+</li>
+<li><code>결합도 문제</code>
+<ul>
+<li><code>runc</code>에 문제가 생기면 그와 연결된 모든 컨테이너 프로세스가 위험</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>따라서 <code>runc</code>는 컨테이너라는 격리된 공간을 만드는 역할만 수행하고, 완성되면 즉시 빠지는 구조를 택함</li>
+<li>이후의 관리는 매우 가벼운 프로세스인 <code>shim</code>이 전담</li>
+</ul>
+<br>
+<h4 id="unix-domain-socket-program">Unix Domain Socket Program</h4>
+<ul>
+<li>동일한 Host 내에서 실행 중인 프로세스 간 통신을 위한 메커니즘</li>
+<li>TCP/IP 와 달리, UDS는 파일 시스템의 경로(예: <code>/var/run/docker.sock</code>)를 주소로 사용</li>
+<li>데이터가 네트워크 스택을 거치지 않고 커널 메모리 내에서 직접 복사되므로, TCP/IP 루프백 통신보다 지연 시간이 낮고 오버헤드가 적음</li>
+<li>파일 시스템 권한을 통해 소켓에 접근할 수 있는 프로세스를 제어할 수 있음</li>
+</ul>
+<br>
+<h4 id="폐쇄망에서-작업-시-dns-서버의-부재">폐쇄망에서 작업 시 Dns 서버의 부재</h4>
+<ul>
+<li><code>docker pull</code> 시 도메인 기반의 이미지를 찾지 못하며, 마이크로서비스 간의 통신에서 호스트 네임을 사용 불가</li>
+<li><strong>해결책</strong>
+<ul>
+<li><code>내부 DNS 구축</code>
+<ul>
+<li>CoreDNS나 Bind9 등을 활용하여 폐쇄망 전용 권한 있는 DNS 서버를 구축</li>
+</ul>
+</li>
+<li><code>Private Registry 운영</code>
+<ul>
+<li>외부 Docker Hub 대신 망 내부에 전용 이미지 저장소(Harbor 등)를 두고 내부 DNS에 등록하여 사용</li>
+</ul>
+</li>
+<li><code>Etc Hosts 관리</code>
+<ul>
+<li>규모가 작을 경우 <code>/etc/hosts</code> 파일에 수동으로 IP와 도메인을 매핑</li>
+<li>그러나 보통 관리가 어려우므로 자동화 도구(Ansible 등)를 병용</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="overlayfs-기반-계층-파일-시스템이란">OverlayFS 기반 계층 파일 시스템이란?</h4>
+<ul>
+<li>여러 개의 디렉토리를 하나의 논리적인 파일 시스템으로 통합하여 보여주는 파일 시스템의 일종이다</li>
+<li><strong>계층 구조</strong>
+<ul>
+<li><code>LowerDir</code>
+<ul>
+<li>읽기 전용(Read-only) 레이어로, 베이스 이미지의 내용이 담김</li>
+<li>여러 컨테이너가 이 레이어를 공유함</li>
+</ul>
+</li>
+<li><code>UpperDir</code>
+<ul>
+<li>읽기-쓰기(Read-Write) 레이어</li>
+<li>컨테이너에서 발생하는 모든 변경 사항(파일 생성, 수정, 삭제)이 기록됨</li>
+</ul>
+</li>
+<li><code>MergedDir</code>
+<ul>
+<li>사용자에게 최종적으로 보이는 통합된 뷰(View)</li>
+</ul>
+</li>
+<li><code>Copy-on-Write (CoW) 메커니즘</code>
+<ul>
+<li>LowerDir에 있는 파일을 수정하려고 하면, 해당 파일을 UpperDir로 복사한 뒤 수정함</li>
+<li>덕분에 원본 이미지는 손상되지 않으면서도 컨테이너마다 독립적인 상태를 유지할 수 가능</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="그럼에도-불구하고-vm을-사용하는-경우">그럼에도 불구하고 VM을 사용하는 경우</h4>
+<ul>
+<li><strong>강력한 보안 격리</strong>
+<ul>
+<li>컨테이너는 커널을 공유하므로 커널 취약점을 통한 공격에 노출 가능</li>
+<li>하드웨어 수준의 완전한 격리가 필요한 경우</li>
+</ul>
+</li>
+<li><strong>커널 종속성 및 OS 이질성</strong>
+<ul>
+<li>컨테이너는 호스트의 커널을 공유해야 한다</li>
+<li>만약 Windows 전용 앱을 Linux 호스트에서 돌려야 하거나, 특정 버전의 커널 모듈이 반드시 필요한 경우</li>
+</ul>
+</li>
+<li><strong>리소스 할당의 엄격함</strong>
+<ul>
+<li>VM은 하드웨어 자원을 물리적으로 분할하여 점유함</li>
+<li>다른 서비스의 자원 간섭으로부터 훨씬 자유롭고 안정적인 성능 예측이 가능</li>
+</ul>
+</li>
+<li><strong>전통적인 엔터프라이즈 앱</strong>
+<ul>
+<li>클라우드 네이티브로 설계되지 않은 거대 Monolithic 앱</li>
+<li>또는 복잡한 드라이버 설치가 필요한 소프트웨어는 VM 환경이 더 적합</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="7-reference">7. Reference</h2>
+<ul>
+<li><a href="https://docs.docker.com/get-started/overview/">https://docs.docker.com/get-started/overview/</a></li>
+<li><a href="https://aws.amazon.com/ko/docker/">https://aws.amazon.com/ko/docker/</a></li>
+</ul>
+<br>
+<br>
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>
