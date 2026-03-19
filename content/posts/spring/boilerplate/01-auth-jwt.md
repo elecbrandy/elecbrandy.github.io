@@ -1,9 +1,11 @@
 +++
-title = 'Spring Boot Boilerplate: auth-jwt-redis'
+title = 'Spring Boot: auth-jwt'
 date = 2026-02-09
 featured_image = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/330px-Spring_Boot.svg.png"
 tags = ['skala','springboot']
 +++
+
+{{<series title="🍀 Spring Boot: Boilerplate 개발" series="boilerpate">}}
 
 <br>
 

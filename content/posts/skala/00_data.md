@@ -1,5 +1,5 @@
 +++
-title = '[skala] 데이터 분석 개요 및 기초통계'
+title = '데이터 분석 개요 및 기초통계'
 date = 2026-01-07
 featured_image = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Standard_deviation_diagram.svg/500px-Standard_deviation_diagram.svg.png"
 tags = ['skala','python']

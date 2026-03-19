@@ -1,5 +1,5 @@
 +++
-title = '[skala] VectorDB'
+title = 'VectorDB'
 date = 2026-01-22
 featured_image = "https://images.contentstack.io/v3/assets/blt7151619cb9560896/blt5c3b8fcafa132cf2/667daaeb82ce1d23f7312f32/lorbgyz9ffm8ui8jh-vector-database-search1.png"
 tags = ['ai','skala']
