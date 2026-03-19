@@ -1,20 +1,15 @@
 +++
-title = '[게시판] Spring Security와 JWT token 인증 도입'
+title = 'Spring Security와 JWT 인증'
 date = 2026-02-09
 featured_image = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/330px-Spring_Boot.svg.png"
-tags = ['skala','springboot','board']
+tags = ['skala','springboot']
 +++
-
-<br>
-
-{{<series title="🍀 게시판 개발" series="board">}}
 
 <br>
 
 ## 1. 소개
 
-- register 기능을 만든후 로그인 기능 도입
-- _세션 vs jwt_ → `jwt` 토큰 발급 방식
+- _세션 vs jwt_ → `jwt` 토큰 발급 방식 공부
 - Spring Security 와 함께 사용할 것
 
 <br>
@@ -78,7 +73,7 @@ Spring Security의 내부 구조는 서블릿 필터 체인이다.
 
 #### 🔴 1번: Login 요청 (진입)
 
-![spring-security-number](/images/spring/spring-security-0.png)
+![spring-security-number](/images/spring/security/spring-security-0.png)
 
 * **상황**
     * 사용자가 프론트엔드(웹/앱)에서 아이디와 비밀번호를 입력 후
@@ -92,7 +87,7 @@ Spring Security의 내부 구조는 서블릿 필터 체인이다.
 
 #### 🔴 2번: Security Filter Chain
 
-![spring-security-number](/images/spring/spring-security-1.png)
+![spring-security-number](/images/spring/security/spring-security-1.png)
 
 * `JwtAuthenticationFilter`
     * "어? 헤더에 토큰 없네?" (로그인 요청이니까 당연히 없음) -> **통과**
@@ -107,7 +102,7 @@ Spring Security의 내부 구조는 서블릿 필터 체인이다.
 
 #### 🔴 3번: UserService
 
-![spring-security-number](/images/spring/spring-security-2.png)
+![spring-security-number](/images/spring/security/spring-security-2.png)
 
 
 * `AuthController`
@@ -124,7 +119,7 @@ Spring Security의 내부 구조는 서블릿 필터 체인이다.
 
 #### 🔴 4번: AuthenticationManager
 
-![spring-security-number](/images/spring/spring-security-3.png)
+![spring-security-number](/images/spring/security/spring-security-3.png)
 
 * `UserDetailsService` 호출
     * 이 이메일 가진 사람 서류 가져와
@@ -136,7 +131,7 @@ Spring Security의 내부 구조는 서블릿 필터 체인이다.
 
 #### 🔴 5번: 실질적 검증 및 인증 성공
 
-![spring-security-number](/images/spring/spring-security-3.png)
+![spring-security-number](/images/spring/security/spring-security-3.png)
 
 * `UserDetailsService`
     * 유저 정보 조회
@@ -156,13 +151,13 @@ Spring Security의 내부 구조는 서블릿 필터 체인이다.
 
 ### 4-1. `Posting`
 
-![spring-security-number](/images/spring/spring-security-posting-1.png)
+![spring-security-number](/images/spring/security/spring-security-posting-1.png)
 
 <br>
 
 #### 🔴 1번: Posting 요청
 
-![spring-security-number](/images/spring/spring-security-posting-2.png)
+![spring-security-number](/images/spring/security/spring-security-posting-2.png)
 
 * **상황**
     * 유저가 `POST /api/posts` 요청을 보냈을 때
