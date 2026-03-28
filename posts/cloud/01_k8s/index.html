@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>k8s (2) | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
+      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-소개">1. 소개</a></li>
+    <li><a href="#2-application-실행-in-k8s">2. Application 실행 in k8s</a>
+      <ul>
+        <li><a href="#21-거시적인-구조-흐름">2.1 거시적인 구조 흐름</a></li>
+        <li><a href="#22-미시적인-구조-흐름">2.2 미시적인 구조 흐름</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-rbac를-통한-전급-관리">3. RBAC를 통한 전급 관리</a></li>
+    <li><a href="#4-replicaset">4. ReplicaSet</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://www.yachtworld.com/research/files/2024/05/pexels-enver-gulmez-507867534-16155671-scaled.jpg" alt="Featured Image for k8s (2)">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2026.03.21</small>
+      <div class="singleTitle">k8s (2)</div>
+    </div>
+  </div>
+  <br>
+<h2 id="1-소개">1. 소개</h2>
+<p>k8s의 내부 동작을 공부해보자.</p>
+<br>
+<br>
+<h2 id="2-application-실행-in-k8s">2. Application 실행 in k8s</h2>
+<h3 id="21-거시적인-구조-흐름">2.1 거시적인 구조 흐름</h3>
+<p><em>사용자가 작성한 코드가 어떻게 실제 서버(노드)까지 도달하는지 흐름을 알아보자</em></p>
+<img src="https://miro.medium.com/v2/resize:fit:1180/format:webp/1*tVsyzkyn4_4kZh3Vla-ASQ.jpeg">  
+<ul>
+<li><strong>1단계: 사용자 및 앱 정의(App Descriptor)</strong>
+<ul>
+<li>사용자가 원하는 상태(Pod 개수, 사용할 이미지 등)를 YAML 파일로 작성</li>
+<li>보라색/주황색 도형들은 서로 다른 종류의 컨테이너 이미지를 의미</li>
+</ul>
+</li>
+<li><strong>2단계: 이미지 레지스트리(Image Registry)</strong>
+<ul>
+<li>사용자가 빌드한 컨테이너 이미지들을 저장소(Docker Hub 등)에 업로드</li>
+<li>나중에 워커 노드들이 여기서 이미지를 받아오게 됨</li>
+</ul>
+</li>
+<li><strong>3단계: 컨트롤 플레인(Control Plane)</strong>
+<ul>
+<li>사용자가 보낸 YAML 파일을 받아 &ldquo;누가, 어디서 실행될지&rdquo; 전체적인 지휘를 내림</li>
+</ul>
+</li>
+<li><strong>4단계: 워커 노드(Worker Nodes) 배포</strong>
+<ul>
+<li>컨트롤 플레인의 명령에 따라 여러 대의 워커 노드에 작업이 분산됨
+<ul>
+<li><code>kubelet</code> 마스터와 소통하며 명령을 수행</li>
+<li><code>kube-proxy</code> 네트워크 통신을 담당</li>
+<li><code>docker</code> 실제 컨테이너를 실행</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>5단계: Pod와 컨테이너 구성</strong>
+<ul>
+<li>한 Pod 안에 여러 컨테이너가 묶여서 실행될 수 있음</li>
+</ul>
+</li>
+</ul>
+<br>
+<h3 id="22-미시적인-구조-흐름">2.2 미시적인 구조 흐름</h3>
+<p><em>마스터 노드 내부의 컴포넌트들의 서로 통신 구조를 알아보자</em></p>
+<img src="https://miro.medium.com/v2/resize:fit:1180/format:webp/0*pcRHCYoOpu6pn2rq.jpg">
+<ul>
+<li><strong>1~2단계: Deployment 생성 및 감지</strong>
+<ul>
+<li>kubectl 명령이 API Server에 전달되어 Deployment 오브젝트가 생성</li>
+<li>Controller Manager는 Watch 기능을 통해 이를 감지</li>
+</ul>
+</li>
+<li><strong>3~4단계: ReplicaSet 생성</strong>
+<ul>
+<li>Deployment 컨트롤러가 <code>Pod를 관리할 ReplicaSet이 필요해!</code> 라고 판단</li>
+<li>API 서버를 통해 이를 생성</li>
+</ul>
+</li>
+<li><strong>5~6단계: Pod 생성 및 대기</strong>
+<ul>
+<li>ReplicaSet 컨트롤러가 정의된 개수만큼 Pod 오브젝트를 생성</li>
+<li>이때 Pod는 아직 어느 노드에 갈지 정해지지 않은 Pending 상태</li>
+</ul>
+</li>
+<li><strong>7단계: 스케줄링(Scheduler)</strong>
+<ul>
+<li>Scheduler가 <code>주인 없는 Pod가 있네? Node X가 널널하니까 거기로 보내자!</code> 라고 결정</li>
+</ul>
+</li>
+<li><strong>8단계: 노드로 통지(kubelet)</strong>
+<ul>
+<li>배정된 노드의 kubelet이 API 서버를 지켜보다가&hellip;</li>
+<li><code>내 노드에 Pod A를 띄우라는 명령이 왔네?</code> 라고 확인</li>
+</ul>
+</li>
+<li><strong>9~10단계: 실제 컨테이너 가동</strong>
+<ul>
+<li>kubelet이 노드 내의 containerd/cri-o에게 명령</li>
+<li>이미지를 다운로드하고 Container를 실제로 실행하게 시킴</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="3-rbac를-통한-전급-관리">3. RBAC를 통한 전급 관리</h2>
+<ul>
+<li><strong>k8s는 RBAC를 통해 접근을 관리</strong>
+<ul>
+<li>RBAC(Role-Based Access Control, 역할 기반 접근 제어)</li>
+<li>누가(Subject), 어떤 리소스(Resource)에, 어떤 권한(Verb)을 가질 것인가?</li>
+</ul>
+</li>
+<li><strong>핵심 구성 요소 (누가, 무엇을, 어떻게?)</strong>
+<ul>
+<li><code>k8s Resource</code>
+<ul>
+<li>접근 대상 -&gt; Pod, Service, Secret 등</li>
+</ul>
+</li>
+<li><code>권한 목록</code>
+<ul>
+<li>Role -&gt; namespacse 안에서만 통하는 신분증</li>
+<li>ClusterRole -&gt; 클러스터 전체에서 통하는 프리패스권</li>
+</ul>
+</li>
+<li><code>Binding</code>
+<ul>
+<li>특정 사용자나 서비스 계정에 역할을 묶어주는 역할</li>
+</ul>
+</li>
+<li><code>Service Account (사용자)</code>
+<ul>
+<li>실제 접근을 시도하는 주체</li>
+<li>사람이 쓰는 계정 또는 Pod 안에서 돌아가는 프로그램일 수도 있음</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>이렇게 복잡하게 나누는 이유?</strong>
+<ul>
+<li>사용자에게 직접 너는 Pod를 볼 수 있어라고 권한을 주는 것이 아니라, 역할이라는 중간 단계를 두는 이유는 관리가 편하기 때문</li>
+<li>간단한 예시
+<ul>
+<li>회사(클러스터)에 신입사원이라는 역할(Role)을 미리 만들자 (Pod 읽기 권한만 포함)</li>
+<li>새로운 사람이 올 때마다 일일이 권한을 주는 게 아니라, 그 사람을 신입사원 역할에 바인딩만 시켜주면 끝</li>
+<li>나중에 신입사원의 권한을 바꾸고 싶다면? 한 명씩 고칠 필요 없이 <code>신입사원 Role</code> 하나만 수정하면 모두에게 적용</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="4-replicaset">4. ReplicaSet</h2>
+<ul>
+<li>사용자가 설정한 Replicas 개수를 확인하고, 부족하면 새로 만들고 많으면 삭제하여 항상 원하는 개수를 유지함</li>
+<li>각 Pod는 서로 다른 이름과 고유 IP를 가지며, 사용자는 3개의 Pod IP를 일일히 알 필요 X</li>
+<li>대표 입구인 <strong>Service</strong> 의 IP로만 요청을 보내면, 서비스가 알아서 3개의 Pod에 요청을 골고루 분산(Load Balancing)함</li>
+</ul>
+<br>
+<br>
+<ol start="5">
+<li>Namespaces</li>
+</ol>
+<br>
+<br>
+<p><a href="https://medium.com/@Techie1/kubernetes-running-an-application-in-kubernetes-part-3-ae81b9fca1e5">https://medium.com/@Techie1/kubernetes-running-an-application-in-kubernetes-part-3-ae81b9fca1e5</a></p>
+<p><a href="https://ajay-yadav.medium.com/internals-of-kubernetes-aff264063e91">https://ajay-yadav.medium.com/internals-of-kubernetes-aff264063e91</a></p>
+<p><a href="https://kubernetes.io/ko/docs/concepts/services-networking/ingress/">https://kubernetes.io/ko/docs/concepts/services-networking/ingress/</a>
+<a href="https://kubernetes.io/ko/docs/concepts/workloads/controllers/replicaset/">https://kubernetes.io/ko/docs/concepts/workloads/controllers/replicaset/</a></p>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>
