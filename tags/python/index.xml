@@ -10,9 +10,9 @@
     <atom:link href="https://elecbrandy.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>데이터 분석 개요 및 기초통계</title>
-      <link>https://elecbrandy.github.io/posts/skala/00_data/</link>
+      <link>https://elecbrandy.github.io/posts/ai/data/</link>
       <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/posts/skala/00_data/</guid>
+      <guid>https://elecbrandy.github.io/posts/ai/data/</guid>
       <description>&lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;🦋 SKALA: SK AX AI Leader Academy&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/skala/00_data/&#34;&gt;0. 데이터 기초&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/skala/01_prompt_engineering/&#34;&gt;1. 프롬프트 엔지니어링&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/skala/02_vectordb/&#34;&gt;2. 벡터 DB&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;p&gt;skala 2일차.. 전공에서 공부했던 기초통계를 다시 톺아보는 시간을 가졌다. 회귀분석이니&amp;hellip; R스퀘어니&amp;hellip; 수업이 끝난 후 복습 좀 하려고 전공과목 필기를 뒤져봤는데 그 사이 어디론가 사라진 모양이다.&lt;/p&gt;&#xA;&lt;p&gt;학교에서는 주로 이론적인 내용과 가설을 세우고 검증하는 과정하는 느낌이었다면, 아무래도 회사에서 배우는 과정이다보니 실제 비즈니스와 연관된 강의라고 느껴졌다.&#xA;현업에서 경험이 많으신 분이 이런저런 예시로 설명해주셔서 다시 복습을 열심히 할 수 있었다.&lt;/p&gt;</description>
     </item>
     <item>
