@@ -1,5 +1,5 @@
 ---
-title: "cs101"
+title: "ai"
 ---
 
 _artificial intelligence_
