@@ -53,19 +53,34 @@
     <loc>https://elecbrandy.github.io/posts/spring/boilerplate/00_intro/</loc>
     <lastmod>2026-02-04T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://elecbrandy.github.io/tags/ai/</loc>
+    <lastmod>2026-02-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/ai/dl-cv/</loc>
+    <lastmod>2026-02-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://elecbrandy.github.io/tags/algorithm/</loc>
     <lastmod>2026-01-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/dev101/boj/</loc>
     <lastmod>2026-01-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://elecbrandy.github.io/posts/ai/dl-lstm/</loc>
+    <lastmod>2026-01-28T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://elecbrandy.github.io/posts/spring/rest_spring/</loc>
     <lastmod>2026-01-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/tags/ai/</loc>
-    <lastmod>2026-01-23T00:00:00+00:00</lastmod>
+    <loc>https://elecbrandy.github.io/posts/ai/dl-rnn/</loc>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://elecbrandy.github.io/posts/ai/basic_dl/</loc>
+    <loc>https://elecbrandy.github.io/posts/ai/dl-cnn/</loc>
+    <lastmod>2026-01-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/ai/01_basic_dl/</loc>
+    <lastmod>2026-01-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/ai/00_basic_dl/</loc>
     <lastmod>2026-01-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/db/vectordb/</loc>

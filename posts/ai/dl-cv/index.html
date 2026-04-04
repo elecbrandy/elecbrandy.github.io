@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>DL-AlexNet &amp; ResNet | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
+      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-alexnet--resnet">1. AlexNet &amp; ResNet</a>
+      <ul>
+        <li><a href="#2-alexnet">2. AlexNet</a></li>
+        <li><a href="#3-degradation-problem">3. Degradation Problem</a></li>
+        <li><a href="#4-resnet">4. ResNet</a></li>
+        <li><a href="#5-alexnet-vs-resnet-한눈에-비교">5. AlexNet vs ResNet 한눈에 비교</a></li>
+        <li><a href="#6-bottleneck-architecture-resnet의-전략">6. Bottleneck Architecture (ResNet의 전략)</a></li>
+        <li><a href="#7-통합-핵심-정리">7. 통합 핵심 정리</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://zrr.kr/XQ8OAd" alt="Featured Image for DL-AlexNet &amp; ResNet">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2026.02.01</small>
+      <div class="singleTitle">DL-AlexNet &amp; ResNet</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/skala/00_data/">0. 데이터 기초</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/skala/01_prompt_engineering/">1. 프롬프트 엔지니어링</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/skala/02_vectordb/">2. 벡터 DB</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-alexnet--resnet">1. AlexNet &amp; ResNet</h2>
+<ul>
+<li><strong>AlexNet</strong> GPU 기반 딥러닝의 서막을 알림</li>
+<li><strong>ResNet</strong>: 더 깊게, 더 멀리 층을 쌓을 수 있게 만든 현대 CNN의 표준 (2015년)</li>
+</ul>
+<br>
+<br>
+<h3 id="2-alexnet">2. AlexNet</h3>
+<img src="https://neurohive.io/wp-content/uploads/2018/10/AlexNet-1.png" max-width=100%>
+<ul>
+<li>2012년 ILSVRC 대회에서 압도적인 성적으로 우승하며 GPU 기반 딥러닝의 서막을 알림</li>
+<li><strong>핵심 기술적 특징</strong>
+<ul>
+<li><code>ReLU</code> 활성화 함수 사용: Sigmoid보다 훨씬 빠른 학습 속도 구현</li>
+<li><code>Dropout</code> 과적합을 방지하기 위해 뉴런의 일부를 무작위로 끔</li>
+<li><code>GPU 병렬 연산</code> 당시 메모리 한계로 인해 두 개의 GTX 580 GPU에 네트워크를 나누어 학습</li>
+<li><code>Data Augmentation</code> 데이터를 뻥튀기하여 모델의 일반화 성능을 높임</li>
+</ul>
+</li>
+<li><strong>한계</strong>
+<ul>
+<li>8개 층(Layer) 정도로 구성되었으며, 이보다 더 깊게 쌓으려 하면 오히려 성능이 떨어지는 문제에 직면함</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h3 id="3-degradation-problem">3. Degradation Problem</h3>
+<ul>
+<li><em>왜 층을 더 못 쌓지?</em></li>
+<li>이론적으로는 층이 깊어질수록 더 복잡한 특징을 배울 수 있어야 함</li>
+<li>하지만 실제로는 층이 깊어질수록 **기울기 소실(Vanishing Gradient)**과 <strong>연산 복잡도</strong> 때문에 오히려 학습이 안 되고 에러가 높아지는 현상이 발생</li>
+<li>이를 &lsquo;망이 퇴화한다&rsquo;는 의미에서 <code>Degradation Problem</code>이라고 부름</li>
+</ul>
+<br>
+<br>
+<h3 id="4-resnet">4. ResNet</h3>
+<img src="https://i.imgur.com/OIZpyvg.png" max-width=100%>
+<ul>
+<li><em>기존의 정보를 그대로 다음 층으로 전달하면 어떨까?</em> 라는 단순하지만 혁신적인 아이디어</li>
+<li>각 층의 출력을 다음 층으로 직접 전달하는 Skip Connection 추가해 문제 해결</li>
+<li><strong>Residual Learning (잔차 학습)</strong>
+<ul>
+<li>단순히 $H(x)$를 학습하는 것이 아니라, $H(x) - x$ (잔차)를 학습하는 방식</li>
+<li>$H(x) = F(x) + x$ 라는 수식으로 표현됨</li>
+</ul>
+</li>
+<li><strong>Skip Connection (Shortcut)</strong>
+<ul>
+<li>입력을 출력에 직접 더해주는 경로를 추가</li>
+<li>미분 시 $x$의 미분값인 <strong>1</strong>이 살아남아, 아무리 층이 깊어져도 기울기가 앞단까지 잘 전달됨</li>
+<li>공부한 내용($F(x)$) 뿐만 아니라 교과서 내용($x$)도 같이 시험장에 가져가는 것</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h3 id="5-alexnet-vs-resnet-한눈에-비교">5. AlexNet vs ResNet 한눈에 비교</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">구분</th>
+          <th style="text-align: left">AlexNet (2012)</th>
+          <th style="text-align: left">ResNet (2015)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>층의 개수</strong></td>
+          <td style="text-align: left">8개</td>
+          <td style="text-align: left">152개 이상</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>핵심 아이디어</strong></td>
+          <td style="text-align: left">ReLU, Dropout, GPU 병렬화</td>
+          <td style="text-align: left">Skip Connection (잔차 학습)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>활성화 함수</strong></td>
+          <td style="text-align: left">ReLU</td>
+          <td style="text-align: left">ReLU (주로 Batch Norm과 함께)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>파라미터 효율</strong></td>
+          <td style="text-align: left">층에 비해 파라미터가 매우 많음</td>
+          <td style="text-align: left">깊이에 비해 파라미터가 효율적임</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>역사적 의의</strong></td>
+          <td style="text-align: left">딥러닝의 실용성 증명</td>
+          <td style="text-align: left">초거대 신경망 학습의 가능성 제시</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<h3 id="6-bottleneck-architecture-resnet의-전략">6. Bottleneck Architecture (ResNet의 전략)</h3>
+<ul>
+<li>ResNet-50 이상의 깊은 모델에서는 연산량을 줄이기 위해 <strong>Bottleneck 구조</strong>를 사용함</li>
+<li>1x1, 3x3, 1x1 Convolution을 차례로 배치하여 차원을 줄였다가 다시 늘림</li>
+<li>이는 마치 모래시계처럼 데이터를 꽉 조였다가 풀어주는 과정으로, 성능은 유지하면서 연산 비용을 획기적으로 낮춤</li>
+</ul>
+<br>
+<br>
+<h3 id="7-통합-핵심-정리">7. 통합 핵심 정리</h3>
+<ul>
+<li><code>AlexNet</code>이 **&ldquo;딥러닝도 이미지를 잘 인식할 수 있다&rdquo;**는 가능성을 열었다면</li>
+<li><code>ResNet</code>은 **&ldquo;지름길(Shortcut)만 있다면 층은 무한히 깊어질 수 있다&rdquo;**는 해답을 제시함</li>
+<li>오늘날 우리가 사용하는 대부분의 고성능 모델은 ResNet의 Skip Connection 개념을 기본적으로 탑재하고 있음</li>
+</ul>
+<br>
+<br>
+<br>
+<div class="series">
+  <details>
+    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/skala/00_data/">0. 데이터 기초</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/skala/01_prompt_engineering/">1. 프롬프트 엔지니어링</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/skala/02_vectordb/">2. 벡터 DB</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<br>
+<br>
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

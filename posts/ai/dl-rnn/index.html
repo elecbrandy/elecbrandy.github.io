@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>DL-RNN | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
+      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-rnn">1. RNN</a>
+      <ul>
+        <li><a href="#11-recurrent-structure-순환-구조">1.1. Recurrent Structure (순환 구조)</a></li>
+        <li><a href="#12-hidden-state-은닉-상태">1.2. Hidden State (은닉 상태)</a></li>
+        <li><a href="#13-bptt-backpropagation-through-time">1.3. BPTT (Backpropagation Through Time)</a></li>
+        <li><a href="#14-rnn의-다양한-구조">1.4. RNN의 다양한 구조</a></li>
+        <li><a href="#15-lstm--gru-진화된-rnn">1.5. LSTM &amp; GRU (진화된 RNN)</a></li>
+        <li><a href="#16-rnn-핵심-정리">1.6. RNN 핵심 정리</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-rnn-vs-lstm">2. RNN vs LSTM</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://zrr.kr/XQ8OAd" alt="Featured Image for DL-RNN">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2026.01.27</small>
+      <div class="singleTitle">DL-RNN</div>
+    </div>
+  </div>
+  <div class="series">
+  <details>
+    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/skala/00_data/">0. 데이터 기초</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/skala/01_prompt_engineering/">1. 프롬프트 엔지니어링</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/skala/02_vectordb/">2. 벡터 DB</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<h2 id="1-rnn">1. RNN</h2>
+<ul>
+<li><em>Recurrent Neural Network</em></li>
+<li>음성, 텍스트, 주가 등 순서가 있는 <strong>시퀀스(Sequence) 데이터</strong>나 시계열 데이터 처리에 최적화된 구조</li>
+<li>쉽게 말하면, 앞의 정보를 잊지 않고 다음 단계의 입력에 반영하는 &lsquo;기억력&rsquo;을 가진 신경망</li>
+<li>예를 들어 문장을 읽을 때 <em>&ldquo;나는&rdquo;</em> 다음에 <em>&ldquo;밥을&rdquo;</em> 이 나오면, 그 뒤에 <em>&ldquo;먹었다&rdquo;</em> 가 나올 것을 예측하는 것처럼 과거의 맥락을 현재에 활용</li>
+<li><strong>특징</strong>
+<ul>
+<li><code>Sequential Data</code> 데이터의 순서 정보가 매우 중요함</li>
+<li><code>Variable Length</code> 입력과 출력의 길이에 유연하게 대응 가능</li>
+<li><code>Weight Sharing</code> 모든 시점($t$)에서 동일한 가중치를 공유하여 파라미터 효율성을 높임</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h3 id="11-recurrent-structure-순환-구조">1.1. Recurrent Structure (순환 구조)</h3>
+<img src="https://i.imgur.com/mJbqj8q.png" max-width=100%>
+<ul>
+<li><strong>RNN</strong>
+<ul>
+<li>메모리를 저장하는 네트워크</li>
+</ul>
+</li>
+<li><strong>Cell, Memory Cell</strong>
+<ul>
+<li>Hidden Layer에서 Activation Function을 통해 결과를 내보내는 역할</li>
+<li>내부 연산 단위</li>
+</ul>
+</li>
+<li><strong>Hidden State</strong>
+<ul>
+<li>여태까지 들어온 과거의 Input 정보를 저장</li>
+<li>이후 이를 가지고 다음 단어 예측 (결과값, 결과 상태값)</li>
+</ul>
+</li>
+<li><strong>특징</strong>
+<ul>
+<li>자기 자신으로 순환하는 루프가 있다는 것</li>
+<li>시계열 데이터를 처리하기 위해 네트워크를 시간축으로 펼쳐서 이해할 수 있음</li>
+<li>$t$ 시점의 입력 $x_t$와 이전 시점($t-1$)의 기억이 합쳐져 현재의 상태를 결정</li>
+<li>마치 이어달리기에서 바톤을 넘겨주듯, 이전 단계의 정보가 계속 전달되는 구조</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h3 id="12-hidden-state-은닉-상태">1.2. Hidden State (은닉 상태)</h3>
+<ul>
+<li>RNN의 핵심이자 메모리 역할!!!</li>
+<li>특정 시점까지의 정보를 압축해서 들고 있는 벡터로, $h_t$로 표기함</li>
+<li><strong>수학적 정의</strong>
+<ul>
+<li>$h_t = \tanh(W_{xh}x_t + W_{hh}h_{t-1} + b_h)$</li>
+<li>현재의 입력($x_t$)과 이전의 상태($h_{t-1}$)에 각각 가중치를 곱해 더한 후 활성화 함수를 통과시킴</li>
+</ul>
+</li>
+<li><strong>특징</strong>
+<ul>
+<li>과거의 모든 입력 정보를 이론적으로는 포함하고 있음</li>
+<li>새로운 입력이 들어올 때마다 업데이트</li>
+<li>출력층으로 정보를 보내기도 하지만 다음 시점의 자신에게 정보를 전달하는 것이 핵심</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h3 id="13-bptt-backpropagation-through-time">1.3. BPTT (Backpropagation Through Time)</h3>
+<ul>
+<li>RNN의 학습 방식으로, 시간의 흐름을 거슬러 올라가며 오차를 전파함</li>
+<li>각 시점($t$)에서의 손실(Loss)을 모두 더하여 전체 손실을 계산하고, 가중치를 업데이트</li>
+<li><strong>문제점: 기울기 소실(Vanishing Gradient)</strong>
+<ul>
+<li>시퀀스가 길어질수록(시간이 멀어질수록) 앞부분의 정보가 뒤로 전달되지 않는 문제 발생</li>
+<li>곱셈 연산이 반복되면서 미분값이 0에 가까워져, 초반부 데이터의 학습이 제대로 이루어지지 않음</li>
+<li>마치 아주 긴 문장을 읽다 보면 앞 문장의 주어가 무엇이었는지 까먹는 것과 같음</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h3 id="14-rnn의-다양한-구조">1.4. RNN의 다양한 구조</h3>
+<ul>
+<li>입력과 출력의 형태에 따라 유연하게 구성 가능</li>
+<li><code>One-to-Many</code> 하나의 이미지에서 설명을 생성하는 Image Captioning</li>
+<li><code>Many-to-One</code> 문장을 읽고 긍정/부정을 판단하는 감성 분석(Sentiment Analysis)</li>
+<li><code>Many-to-Many</code> 문장을 번역하거나(Seq2Seq), 영상의 프레임마다 태그를 다는 작업</li>
+</ul>
+<br>
+<br>
+<h3 id="15-lstm--gru-진화된-rnn">1.5. LSTM &amp; GRU (진화된 RNN)</h3>
+<ul>
+<li>기본 RNN의 장기 의존성(Long-term dependency) 문제를 해결하기 위해 등장</li>
+<li><strong>LSTM (Long Short-Term Memory)</strong>
+<ul>
+<li><code>Cell State</code>라는 정보 고속도로를 두어 중요한 정보는 멀리까지 보냄</li>
+<li><code>Forget Gate</code>, <code>Input Gate</code>, <code>Output Gate</code>를 통해 어떤 정보를 버리고 저장할지 정밀하게 제어</li>
+</ul>
+</li>
+<li><strong>GRU (Gated Recurrent Unit)</strong>
+<ul>
+<li>LSTM을 간소화하여 연산 속도를 높인 모델</li>
+<li>파라미터 수는 적지만 LSTM과 유사한 성능을 내어 널리 쓰임</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h3 id="16-rnn-핵심-정리">1.6. RNN 핵심 정리</h3>
+<ul>
+<li><code>Input</code> 순서가 있는 데이터를 집어넣고</li>
+<li><code>Hidden State</code> 이전 시점의 기억과 합쳐 맥락을 파악하며</li>
+<li><code>Unrolling</code> 시간 순서대로 펼쳐서 연산하고</li>
+<li><code>BPTT</code> 과거로 돌아가며 학습하여 최적의 가중치를 찾는 구조</li>
+</ul>
+<br>
+<br>
+<h2 id="2-rnn-vs-lstm">2. RNN vs LSTM</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">구분</th>
+          <th style="text-align: left">RNN</th>
+          <th style="text-align: left">LSTM</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>기억 능력</strong></td>
+          <td style="text-align: left">* 과거 정보를 짧게 기억</td>
+          <td style="text-align: left">* RNN 보다는 과거 정보를 길게 기억 가능</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>구조</strong></td>
+          <td style="text-align: left">* 현재 상태와 입력값을 받아 Hidden State(현재 상태)를 통해 출력<br>* tanh 함수로 단순 계산</td>
+          <td style="text-align: left">* Cell State(기억 저장소, 장기 상태)와 Gate를 활용하여 상태 출력<br>* Forget/Input/Output Gate로 정보 조절<br>* 계산량이 많고, RNN보다 학습 시간이 길어짐</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>한계점</strong></td>
+          <td style="text-align: left">* 어느 정도 과거를 기억하지만, 긴 시퀀스 학습 어려움 (Vanishing Gradient)<br>* 시간 순서 의존 $\rightarrow$ 연산 속도 느림 (병렬처리 한계)</td>
+          <td style="text-align: left">* 계산량이 많고, 긴 시퀀스에서 목적을 달성하기 어려움<br>* 시간 순서 의존 $\rightarrow$ 연산 속도 느림 (병렬처리 한계)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>설명</strong></td>
+          <td style="text-align: left">* 순간순간 정보를 이어가는 방식</td>
+          <td style="text-align: left">* 순간순간 정보를 이어가는 방식에 더해<br>* 중요한 정보를 따로 저장하는 기억 저장소(Cell)를 통해 과거 중요한 정보를 오래 활용할 수 있도록 함</td>
+      </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+<div class="series">
+  <details>
+    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
+    <ul>
+      
+      
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/skala/00_data/">0. 데이터 기초</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/skala/01_prompt_engineering/">1. 프롬프트 엔지니어링</a></li>
+      
+      <li>-<a href="https://elecbrandy.github.io/posts/skala/02_vectordb/">2. 벡터 DB</a></li>
+      
+    </ul>
+  </details>
+</div>
+
+<br>
+<br>
+<br>
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>
