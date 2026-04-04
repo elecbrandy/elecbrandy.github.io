@@ -71,8 +71,8 @@ tags = ['skala','ai']
 - 답(`Y`)을 찾기위한 학습
 - 최적의 정확도를 보이는 모델로 미래 데이터 예측
 - **Output**
-    - 분류(Classification) -> 이산적인 구분
-    - 회귀(Regression) -> 연속적인 예측
+    - 분류(Classification) → 이산적인 구분
+    - 회귀(Regression) → 연속적인 예측
 
 #### 준지도 학습 (Semi-Supervised Learning)
 
@@ -81,8 +81,8 @@ tags = ['skala','ai']
 - `Labeled` 데이터로만 학습한 모델보다 더 좋은 성능의 모델을 만들어낼 가능성 있음
 - `Unlabeled` 데이터를 함께 활용한다는 측면에서 지도 학습과 차이가 있으나, Output은 동일
 - **Output**
-    - 분류(Classification) -> 이산적인 구분
-    - 회귀(Regression) -> 연속적인 예측
+    - 분류(Classification) → 이산적인 구분
+    - 회귀(Regression) → 연속적인 예측
 
 #### 비지도 학습 (Unsupervised Learning)
 
@@ -91,8 +91,8 @@ tags = ['skala','ai']
 - 답을 알려주지 않은 상태 또는 답을 알지 못하는 상태에서 스스로 학습
 - 예상 패턴/클러스터링과 비교하여 Insight 도출
 - **Output**
-    - 군집화 (Clustering) -> 덩어리로 묶기
-    - 추정 및 차원 축소 (Estimation / Dimension Reduction) -> 핵심 특성 파악
+    - 군집화 (Clustering) → 덩어리로 묶기
+    - 추정 및 차원 축소 (Estimation / Dimension Reduction) → 핵심 특성 파악
 
 <br>
 <br>
@@ -145,7 +145,7 @@ tags = ['skala','ai']
 - Tree 기반으로 분류/예측하는 분석 방법
 - 의사결정규칙을 도표화하여 관심대상이 되는 집단을 몇 개의 소집단으로 분류하거나 예측
 - 모델링 내용은 Tree 구조로 한눈에 파악되어 쉽게 이해하고 설명할 수 있음
-- 쉽게 말하면 스무고개와 비슷함 -> 복잡한 데이터를 보고 계속 질문을 던져서 정답을 찾아감
+- 쉽게 말하면 스무고개와 비슷함 → 복잡한 데이터를 보고 계속 질문을 던져서 정답을 찾아감
 
 #### 특이사항
 - **불순도를 낮추자**
