@@ -14,7 +14,7 @@ date = '2026-07-01'
 <small>**기간:** `2026.04 - 2026.06`</small>   
 <small>**역할:** 팀 프로젝트 (6인) · 백엔드/AI Agent 담당</small>   
 <small>**스택:** `React` `Spring` `FastAPI` `LangGraph` `PostgreSQL` `Qdrant` `K8S`</small>   
-<small>**링크:** &nbsp;&nbsp;<a href="/posts/portfolio/project/ivery" target="_blank" rel="noopener noreferrer">>> 프로젝트 자세히 보기 <<</a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/SKALA-TEAM5" target="_blank" rel="noopener noreferrer">>> GitHub Link <<</a></small>  
+<small>**링크:** &nbsp;&nbsp;<a href="/posts/portfolio/project/iveri" target="_blank" rel="noopener noreferrer">>> 프로젝트 자세히 보기 <<</a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/SKALA-TEAM5" target="_blank" rel="noopener noreferrer">>> GitHub Link <<</a></small>  
 
 ----
 

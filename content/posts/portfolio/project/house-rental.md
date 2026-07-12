@@ -1,10 +1,14 @@
-#  🏠 House-rental-chat
++++
+title = 'HOUSE Rental Chat'
+date = '2026-06-10'
+featured_image = 'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20140318_178%2F1395116881571K6wA5_JPEG%2Fmovie_image.jpg'
++++
 
 <br>
 
 ## 📌 Overview
 
-> _**주택임대차보호법 RAG 챗봇 + RAGAS 정량 평가**_
+> _주택임대차보호법 RAG 챗봇 + RAGAS 정량 평가
 
 - `House-rental-chat`은 [주택임대차보호법](https://www.law.go.kr/법령/주택임대차보호법)을 근거로 전세·월세·보증금·계약갱신 질문에 **조문을 인용해 답하는** RAG 챗봇입니다.
 - RAG 도입, 튜닝 전후의 RAG의 기여분을 격리해서 측정했습니다.
