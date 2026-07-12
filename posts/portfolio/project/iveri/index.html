@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>AI Agent 기반 기업 Compliance 솔루션: i-veri | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
+      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#-overview">📌 Overview</a></li>
+    <li><a href="#-core-features">🧩 Core features</a></li>
+    <li><a href="#-system-architecture">🏗️ System Architecture</a></li>
+    <li><a href="#-demo">📺 Demo</a></li>
+    <li><a href="#-key-decisions--troubleshooting">🚨 Key Decisions &amp; Troubleshooting</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#-link">🔗 Link</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="https://i.namu.wiki/i/BWyG5oPbxZ_pKwRjYVwVwiffq4eGgSdpb8cPAOUFUjK-LlnVXE888oSuyJhBQVFzPFuDAA3K9fIhjXwPU7SGQmF8sxgeGnAH2K00CfRI-TlAuHK2EYWoDbkYgAsjrHm77R1aH54HfG6p3t_4Ljqt5jog2HCLze3QbwNsFi3tldY.webp" alt="Featured Image for AI Agent 기반 기업 Compliance 솔루션: i-veri">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2026.07.01</small>
+      <div class="singleTitle">AI Agent 기반 기업 Compliance 솔루션: i-veri</div>
+    </div>
+  </div>
+  <br>
+<h2 id="-overview">📌 Overview</h2>
+<blockquote>
+<p>SK AX 주관 SK AI Leader Academy 3기 최종 프로젝트 (SK AX SHE 현업 부서 요청 과제 기반)</p>
+</blockquote>
+<ul>
+<li><code>i-veri</code>는 산업 현장의 Compliance 업무를 AI Agent 기반으로 지원하는 솔루션입니다. 법령 검토, 증빙 자료 정리, 현장 데이터 관리처럼 반복적이고 복잡한 업무를 자동화해, 실무자가 더 빠르게 판단하고 대응할 수 있도록 돕습니다.</li>
+</ul>
+<table>
+	<thead>
+			<tr>
+					<th>항목</th>
+					<th>내용</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>기간</td>
+					<td><code>2026.04 ~ 2026.06</code></td>
+			</tr>
+			<tr>
+					<td>스택</td>
+					<td><code>React</code> <code>Spring</code> <code>FastAPI</code> <code>LangGraph</code> <code>PostgreSQL</code> <code>Qdrant</code> <code>K8S</code></td>
+			</tr>
+			<tr>
+					<td>팀</td>
+					<td>6인 (Backend 1 · Frontend 1 · AI/Agent 3 · PM/Infra 1)</td>
+			</tr>
+			<tr>
+					<td>담당</td>
+					<td>Backend</td>
+			</tr>
+	</tbody>
+</table>
+<ul>
+<li><strong>주요 업무</strong>
+<ul>
+<li>Spring Boot 기반 인증/프로젝트/집행 내역 API 개발</li>
+<li>FastAPI 기반 AI Agent 서버 연동</li>
+<li>PostgreSQL 쿼리 튜닝 및 인덱스 개선</li>
+<li>부하 테스트 결과 기반 병목 분석 및 개선</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="-core-features">🧩 Core features</h2>
+<ul>
+<li><strong>증빙 등록</strong>: 현장 담당자가 세금계산서·현장 사진 등 증빙자료 업로드</li>
+<li><strong>AI 법령 검토</strong>: LangGraph 기반 Agent가 등록된 자료를 법령과 대조해 집행 적정성 판단, 근거 조문까지 명시</li>
+<li><strong>보완사항 확인</strong>: SHE 담당자가 AI 검토 결과와 보완 필요 항목을 확인하고 승인/반려 처리</li>
+</ul>
+<br>
+<br>
+<h2 id="-system-architecture">🏗️ System Architecture</h2>
+<p><img src="https://github.com/SKALA-TEAM5/.github/raw/main/img/arch.png" alt="architecture"></p>
+<br>
+<br>
+<h2 id="-demo">📺 Demo</h2>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/anGs3avv3aU?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+
+<br>
+<br>
+<br>
+<h2 id="-key-decisions--troubleshooting">🚨 Key Decisions &amp; Troubleshooting</h2>
+<h4 id="법령-데이터-반정규화--rag-인용-정확성을-위한-rdb-설계">법령 데이터 반정규화 — RAG 인용 정확성을 위한 RDB 설계</h4>
+<ul>
+<li><strong>상황</strong>
+<ul>
+<li>AI Agent가 법령을 검토할 때 &ldquo;어느 조 어느 항 어느 호에 근거한 판단인지&quot;를
+응답에 명시해야 하는 요구사항</li>
+<li>초기 설계안은 법령 / 조 / 항 / 호를 각각 별도 테이블로 분리한 정규화 구조</li>
+</ul>
+</li>
+<li><strong>선택지</strong>
+<ul>
+<li>정규화 유지: 법령 계층을 테이블로 분리 → 정합성 높지만 JOIN 복잡, 벡터 검색
+결과를 RDB에 매핑하기 어려움</li>
+<li>반정규화 마스터 테이블: corpus(조문)와 rule(허용/불가 규칙)을 단일 테이블에
+<code>record_type</code>으로 구분, 조문 계층을 컬럼으로 보유</li>
+</ul>
+</li>
+<li><strong>결정</strong>
+<ul>
+<li>반정규화 단일 테이블(<code>legal_master</code>)로 설계하자고 제안</li>
+<li><code>article_no / paragraph_no / item_no / section_path</code> 컬럼을 두어 &ldquo;제7조 &gt; 제1항 &gt;
+제2호&rdquo; 단위로 인용 출처를 명시할 수 있도록 구조화</li>
+<li><code>chunk_id</code>로 Qdrant 벡터 DB 청크와 1:1 연결 → 벡터 검색 결과에 RDB 메타데이터를
+보강해 AI가 정확한 조문 출처를 응답에 포함할 수 있는 구조</li>
+<li><code>hash</code> 컬럼 + <code>law_log</code> 테이블로 새벽 배치 시 법령 변경을 청크 단위로 감지하고
+벡터 DB 재적재 여부를 판단</li>
+</ul>
+</li>
+<li><strong>trade-off</strong>
+<ul>
+<li>corpus 전용 컬럼과 rule 전용 컬럼이 같은 테이블에 있어 nullable 컬럼이 많아짐</li>
+<li>대신 JOIN 없이 단일 쿼리로 조회 가능하고, 벡터 검색 결과와 RDB를 <code>chunk_id</code>
+하나로 연결할 수 있어 RAG 파이프라인이 단순해짐</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="인증-병목으로-인한-401-연쇄-실패-개선">인증 병목으로 인한 401 연쇄 실패 개선</h4>
+<ul>
+<li><strong>문제</strong>
+<ul>
+<li>동시 사용자 1,000명 기준 전체 요청의 18.3%가 실패, 그 중 401 에러가 4,358건</li>
+<li>로그인 지연 -&gt; 토큰 갱신 실패 -&gt; 이후 모든 인증 요청이 실패하는 구조</li>
+</ul>
+</li>
+<li><strong>원인</strong>
+<ul>
+<li>로그인 함수의 트랜잭션이 bcrypt 연산(CPU 50~100ms) 동안에도 DB 커넥션을 점유</li>
+<li>커넥션 풀 기본값(10)이 작아 대기 큐 포화</li>
+<li>application.yaml에 hikari 설정을 추가했으나 실제로는 미적용 상태
+— DataSource bean을 직접 생성하는 구조라 yaml binding이 무시됨. DB 커넥션 수를 직접 확인해 발견</li>
+</ul>
+</li>
+<li><strong>해결</strong>
+<ul>
+<li><code>@Transactional</code> 제거 — bcrypt 연산은 트랜잭션 밖으로, DB 쓰기(refresh token 저장)만 내부 메서드에 유지해 커넥션 점유 시간 단축</li>
+<li><code>DataSource</code> bean에 <code>@ConfigurationProperties</code> 추가 → hikari 설정이 실제로 적용되도록
+수정</li>
+<li>커넥션 풀 10 → 20 상향 (PG max_connections 100 기준 여유 확인 후 결정)</li>
+<li><code>POST /auth/refresh</code> p99 121초 → 15초 (-88%), 401 건수 완전 해소</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="프로젝트-목록-조회-풀스캔-제거">프로젝트 목록 조회 풀스캔 제거</h4>
+<ul>
+<li><strong>문제</strong>
+<ul>
+<li>부하 테스트에서 프로젝트 목록 조회 p99가 90초</li>
+<li>쿼리 플랜을 확인하니 정렬·기간 필터 조건에서 Seq Scan 발생</li>
+</ul>
+</li>
+<li><strong>원인</strong>
+<ul>
+<li><code>construction_start_date, construction_end_date, (project_name, id)</code> 컬럼에 인덱스 X</li>
+<li>데이터가 늘수록 정렬·범위 필터 비용이 선형으로 증가하는 구조</li>
+</ul>
+</li>
+<li><strong>해결</strong>
+<ul>
+<li>세 컬럼에 B-tree 인덱스 추가</li>
+<li>정렬 옵션별로 실행 계획을 확인해 인덱스가 실제로 타는지 검증 후 배포</li>
+<li>p99 90초 → 18초 (-80%)</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="-link">🔗 Link</h2>
+<ul>
+<li><a href="https://github.com/SKALA-TEAM5">GitHub Repo</a></li>
+</ul>
+<br>
+<br>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

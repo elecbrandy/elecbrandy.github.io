@@ -218,46 +218,46 @@ Controller</p>
 <p>HTTP 요청의 어느 부분에 데이터가 담겨 오느냐에 따라 크게 5가지로 나뉩니다.</p>
 <h3 id="1-요청-데이터-분류-체계">1. 요청 데이터 분류 체계</h3>
 <table>
-  <thead>
-      <tr>
-          <th>구분</th>
-          <th>위치</th>
-          <th>설명</th>
-          <th>핵심 어노테이션</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>URL 경로 (Path)</strong></td>
-          <td><code>/users/{id}</code></td>
-          <td>URL 경로 자체에 값을 포함 (자원 식별)</td>
-          <td><code>@PathVariable</code></td>
-      </tr>
-      <tr>
-          <td><strong>쿼리 파라미터 (Query)</strong></td>
-          <td><code>?name=kim&amp;age=20</code></td>
-          <td>URL 끝에 <code>?</code>와 함께 전달 (필터링, 검색)</td>
-          <td><code>@RequestParam</code></td>
-      </tr>
-      <tr>
-          <td><strong>폼 데이터 (Form)</strong></td>
-          <td>Body (<code>key=value</code>)</td>
-          <td>HTML <code>&lt;form&gt;</code> 태그를 통해 전달되는 데이터</td>
-          <td><code>@ModelAttribute</code> / <code>@RequestParam</code></td>
-      </tr>
-      <tr>
-          <td><strong>메시지 바디 (API/JSON)</strong></td>
-          <td>Body (<code>{...}</code>)</td>
-          <td>REST API에서 주로 쓰는 JSON 형태의 데이터</td>
-          <td><code>@RequestBody</code></td>
-      </tr>
-      <tr>
-          <td><strong>메타데이터 (Metadata)</strong></td>
-          <td>Header / Cookie</td>
-          <td>인증 토큰, 브라우저 정보, 세션 ID 등</td>
-          <td><code>@RequestHeader</code> / <code>@CookieValue</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>구분</th>
+					<th>위치</th>
+					<th>설명</th>
+					<th>핵심 어노테이션</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>URL 경로 (Path)</strong></td>
+					<td><code>/users/{id}</code></td>
+					<td>URL 경로 자체에 값을 포함 (자원 식별)</td>
+					<td><code>@PathVariable</code></td>
+			</tr>
+			<tr>
+					<td><strong>쿼리 파라미터 (Query)</strong></td>
+					<td><code>?name=kim&amp;age=20</code></td>
+					<td>URL 끝에 <code>?</code>와 함께 전달 (필터링, 검색)</td>
+					<td><code>@RequestParam</code></td>
+			</tr>
+			<tr>
+					<td><strong>폼 데이터 (Form)</strong></td>
+					<td>Body (<code>key=value</code>)</td>
+					<td>HTML <code>&lt;form&gt;</code> 태그를 통해 전달되는 데이터</td>
+					<td><code>@ModelAttribute</code> / <code>@RequestParam</code></td>
+			</tr>
+			<tr>
+					<td><strong>메시지 바디 (API/JSON)</strong></td>
+					<td>Body (<code>{...}</code>)</td>
+					<td>REST API에서 주로 쓰는 JSON 형태의 데이터</td>
+					<td><code>@RequestBody</code></td>
+			</tr>
+			<tr>
+					<td><strong>메타데이터 (Metadata)</strong></td>
+					<td>Header / Cookie</td>
+					<td>인증 토큰, 브라우저 정보, 세션 ID 등</td>
+					<td><code>@RequestHeader</code> / <code>@CookieValue</code></td>
+			</tr>
+	</tbody>
 </table>
 <hr>
 <h2 id="2-인풋별-상세-설명-및-활용">2. 인풋별 상세 설명 및 활용</h2>
@@ -334,25 +334,25 @@ Controller</p>
 <h2 id="-그럼에도-주의할-점">⚠️ 그럼에도 주의할 점</h2>
 <p>제공해주신 표를 보면 <code>@Autowired</code>는 <strong>필드, 생성자, 메서드</strong> 어디든 사용 가능하다고 되어 있습니다. 하지만 실무에서는 다음과 같은 이유로 여전히 생성자 주입을 선호합니다.</p>
 <table>
-  <thead>
-      <tr>
-          <th>문제점</th>
-          <th>필드 주입 (<code>@Autowired</code>)</th>
-          <th>해결책 (생성자 주입)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>NPE 위험</strong></td>
-          <td>주입 없이 객체를 생성하면 메서드 호출 시 터짐</td>
-          <td>객체 생성 시점에 주입이 강제됨</td>
-      </tr>
-      <tr>
-          <td><strong>의존성 숨김</strong></td>
-          <td>클래스 외부에서 어떤 의존성이 있는지 알기 어려움</td>
-          <td>생성자의 파라미터를 통해 명확히 보임</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>문제점</th>
+					<th>필드 주입 (<code>@Autowired</code>)</th>
+					<th>해결책 (생성자 주입)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>NPE 위험</strong></td>
+					<td>주입 없이 객체를 생성하면 메서드 호출 시 터짐</td>
+					<td>객체 생성 시점에 주입이 강제됨</td>
+			</tr>
+			<tr>
+					<td><strong>의존성 숨김</strong></td>
+					<td>클래스 외부에서 어떤 의존성이 있는지 알기 어려움</td>
+					<td>생성자의 파라미터를 통해 명확히 보임</td>
+			</tr>
+	</tbody>
 </table>
 <hr>
 <h3 id="-한-줄-요약">💡 한 줄 요약</h3>

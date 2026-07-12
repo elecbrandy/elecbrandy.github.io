@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>python on elecbrandy</title>
-    <link>https://elecbrandy.github.io/tags/python/</link>
-    <description>Recent content in python on elecbrandy</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://elecbrandy.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>데이터 분석 개요 및 기초통계</title>
-      <link>https://elecbrandy.github.io/posts/ai/data/</link>
-      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/posts/ai/data/</guid>
-      <description>&lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;🦋 SKALA: SK AX AI Leader Academy&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/skala/00_data/&#34;&gt;0. 데이터 기초&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/skala/01_prompt_engineering/&#34;&gt;1. 프롬프트 엔지니어링&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/skala/02_vectordb/&#34;&gt;2. 벡터 DB&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;p&gt;skala 2일차.. 전공에서 공부했던 기초통계를 다시 톺아보는 시간을 가졌다. 회귀분석이니&amp;hellip; R스퀘어니&amp;hellip; 수업이 끝난 후 복습 좀 하려고 전공과목 필기를 뒤져봤는데 그 사이 어디론가 사라진 모양이다.&lt;/p&gt;&#xA;&lt;p&gt;학교에서는 주로 이론적인 내용과 가설을 세우고 검증하는 과정하는 느낌이었다면, 아무래도 회사에서 배우는 과정이다보니 실제 비즈니스와 연관된 강의라고 느껴졌다.&#xA;현업에서 경험이 많으신 분이 이런저런 예시로 설명해주셔서 다시 복습을 열심히 할 수 있었다.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Ray 아키텍쳐</title>
-      <link>https://elecbrandy.github.io/posts/python/ray/</link>
-      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/posts/python/ray/</guid>
-      <description>&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;python의 병렬 프로그래밍&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;병렬 작업이란 무엇일까? 넓은 의미에서 &lt;code&gt;한 번에 여러 가지 일을 하는 것&lt;/code&gt; 을 의미한다. 기술적으로는 멀티프로세싱이나 멀티스레딩을 통해 구현되며, I/O 대기 시간을 활용하는 것 부터 여러 CPU 코어를 동시에 활용하는 진정한 의미의 병렬성까지 다양한 스펙트럼을 포함한다. 결국 OS 스케줄러의 관점에서 보면, 고속으로 처리되는 수많은 작업을 사용자가 병렬로 인식하도록 분배하는 것이다. 현재 나는 전자책 DB 구축을 위해 대규모 웹 스크래핑 작업을 계획하고 있다. 그 분량이 너무 많아, 물리적인 시간으로 링크 하나씩 순차적으로 스크래핑을 진행하면 자료 수집에만 몇 개월이 걸릴 수 있다. 이는 현실적으로 불가능한 일정이다. 이때 병렬 처리가 해법이 될 수 있다! 만약 1개의 스크래퍼가 아닌 n개의 스크래퍼를 동시에 구동한다면, 이론적으로 예상 기간은 n분의 1로 줄어들 것이다.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>2023 데이터 청년 캠퍼스</title>
-      <link>https://elecbrandy.github.io/posts/_etc/dataonair/</link>
-      <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://elecbrandy.github.io/posts/_etc/dataonair/</guid>
-      <description>&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;2023 데이터 청년 캠퍼스 경제/금융분야 페이크 뉴스 탐지 시스템 구축을 주제로&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;3학년 여름방학에 데이터와 코딩 관련 경험을 해보고자 과학기술정보통신부와 한국데이터산업진흥원에서 국내 대학교와 함께 운영하는 &lt;strong&gt;2023 데이터 청년 캠퍼스&lt;/strong&gt;에 신청했다. 사실 그렇게 전공이라고 보기에 애매한 상황에서 붙을 수 있을까 고민했는데, 다행히 선발되어 상명대학교 데이터융합과정 (빅데이터 분석 기반 금융분야 비즈니스 인사이트 역량제고 과정)에 참여하게 되었다. 크게 4주 동안의 집체교육, 이후 6주 동안의 프로젝트 기간으로 구성되어있으며 집체교육 동안에는 파이썬 기초부터 ~ 딥러닝(&amp;hellip;의 형상을 하고있는 무언가)를 공부하게된다.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>python on elecbrandy</title>
+		<link>https://elecbrandy.github.io/tags/python/</link>
+		<description>Recent content in python on elecbrandy</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://elecbrandy.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>데이터 분석 개요 및 기초통계</title>
+				<link>https://elecbrandy.github.io/posts/ai/data/</link>
+				<pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+				<guid>https://elecbrandy.github.io/posts/ai/data/</guid>
+				<description>&lt;div class=&#34;series&#34;&gt;&#xA;  &lt;details&gt;&#xA;    &lt;summary&gt;🦋 SKALA: SK AX AI Leader Academy&lt;/summary&gt;&#xA;    &lt;ul&gt;&#xA;      &#xA;      &#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/skala/00_data/&#34;&gt;0. 데이터 기초&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/skala/01_prompt_engineering/&#34;&gt;1. 프롬프트 엔지니어링&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;      &lt;li&gt;-&lt;a href=&#34;https://elecbrandy.github.io/posts/skala/02_vectordb/&#34;&gt;2. 벡터 DB&lt;/a&gt;&lt;/li&gt;&#xA;      &#xA;    &lt;/ul&gt;&#xA;  &lt;/details&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;p&gt;skala 2일차.. 전공에서 공부했던 기초통계를 다시 톺아보는 시간을 가졌다. 회귀분석이니&amp;hellip; R스퀘어니&amp;hellip; 수업이 끝난 후 복습 좀 하려고 전공과목 필기를 뒤져봤는데 그 사이 어디론가 사라진 모양이다.&lt;/p&gt;&#xA;&lt;p&gt;학교에서는 주로 이론적인 내용과 가설을 세우고 검증하는 과정하는 느낌이었다면, 아무래도 회사에서 배우는 과정이다보니 실제 비즈니스와 연관된 강의라고 느껴졌다.&#xA;현업에서 경험이 많으신 분이 이런저런 예시로 설명해주셔서 다시 복습을 열심히 할 수 있었다.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Ray 아키텍쳐</title>
+				<link>https://elecbrandy.github.io/posts/python/ray/</link>
+				<pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
+				<guid>https://elecbrandy.github.io/posts/python/ray/</guid>
+				<description>&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;python의 병렬 프로그래밍&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;병렬 작업이란 무엇일까? 넓은 의미에서 &lt;code&gt;한 번에 여러 가지 일을 하는 것&lt;/code&gt; 을 의미한다. 기술적으로는 멀티프로세싱이나 멀티스레딩을 통해 구현되며, I/O 대기 시간을 활용하는 것 부터 여러 CPU 코어를 동시에 활용하는 진정한 의미의 병렬성까지 다양한 스펙트럼을 포함한다. 결국 OS 스케줄러의 관점에서 보면, 고속으로 처리되는 수많은 작업을 사용자가 병렬로 인식하도록 분배하는 것이다. 현재 나는 전자책 DB 구축을 위해 대규모 웹 스크래핑 작업을 계획하고 있다. 그 분량이 너무 많아, 물리적인 시간으로 링크 하나씩 순차적으로 스크래핑을 진행하면 자료 수집에만 몇 개월이 걸릴 수 있다. 이는 현실적으로 불가능한 일정이다. 이때 병렬 처리가 해법이 될 수 있다! 만약 1개의 스크래퍼가 아닌 n개의 스크래퍼를 동시에 구동한다면, 이론적으로 예상 기간은 n분의 1로 줄어들 것이다.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>2023 데이터 청년 캠퍼스</title>
+				<link>https://elecbrandy.github.io/posts/_etc/dataonair/</link>
+				<pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
+				<guid>https://elecbrandy.github.io/posts/_etc/dataonair/</guid>
+				<description>&lt;br&gt;&#xA;&lt;h2 id=&#34;1-소개&#34;&gt;1. 소개&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;2023 데이터 청년 캠퍼스 경제/금융분야 페이크 뉴스 탐지 시스템 구축을 주제로&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;3학년 여름방학에 데이터와 코딩 관련 경험을 해보고자 과학기술정보통신부와 한국데이터산업진흥원에서 국내 대학교와 함께 운영하는 &lt;strong&gt;2023 데이터 청년 캠퍼스&lt;/strong&gt;에 신청했다. 사실 그렇게 전공이라고 보기에 애매한 상황에서 붙을 수 있을까 고민했는데, 다행히 선발되어 상명대학교 데이터융합과정 (빅데이터 분석 기반 금융분야 비즈니스 인사이트 역량제고 과정)에 참여하게 되었다. 크게 4주 동안의 집체교육, 이후 6주 동안의 프로젝트 기간으로 구성되어있으며 집체교육 동안에는 파이썬 기초부터 ~ 딥러닝(&amp;hellip;의 형상을 하고있는 무언가)를 공부하게된다.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

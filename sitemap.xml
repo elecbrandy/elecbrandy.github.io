@@ -3,7 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://elecbrandy.github.io/</loc>
-    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/portfolio/project/iveri/</loc>
+    <lastmod>2026-07-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/portfolio/portfolio/</loc>
+    <lastmod>2026-07-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/</loc>
+    <lastmod>2026-07-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/ai/</loc>
+    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/ai/rag-eval/</loc>
+    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/skala/</loc>
+    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/tags/</loc>
+    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/tags/cloud/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
@@ -15,15 +36,6 @@
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/cloud/01_k8s/</loc>
-    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/posts/</loc>
-    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/skala/</loc>
-    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/cloud/00_k8s/</loc>
@@ -52,9 +64,6 @@
   </url><url>
     <loc>https://elecbrandy.github.io/posts/spring/boilerplate/00_intro/</loc>
     <lastmod>2026-02-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://elecbrandy.github.io/tags/ai/</loc>
-    <lastmod>2026-02-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/ai/dl-cv/</loc>
     <lastmod>2026-02-01T00:00:00+00:00</lastmod>
@@ -125,6 +134,9 @@
     <loc>https://elecbrandy.github.io/posts/hugo/01_freshpink/</loc>
     <lastmod>2025-05-09T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://elecbrandy.github.io/posts/portfolio/project/ft_transcendence/</loc>
+    <lastmod>2025-05-06T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_6/ft_transcendence/</loc>
     <lastmod>2025-03-22T00:00:00+00:00</lastmod>
   </url><url>
@@ -136,6 +148,9 @@
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_5/inception/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/portfolio/project/ft_irc/</loc>
+    <lastmod>2024-12-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_5/ft_irc/</loc>
     <lastmod>2024-11-20T00:00:00+00:00</lastmod>
@@ -175,6 +190,9 @@
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_3/minishell/</loc>
     <lastmod>2024-06-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/portfolio/project/minishell/</loc>
+    <lastmod>2024-06-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/42seoul/circle_2/fdf/</loc>
     <lastmod>2024-04-09T00:00:00+00:00</lastmod>
@@ -219,6 +237,8 @@
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/db/00_sql/</loc>
+  </url><url>
+    <loc>https://elecbrandy.github.io/posts/portfolio/project/house-rental/</loc>
   </url><url>
     <loc>https://elecbrandy.github.io/posts/spring/00_/</loc>
   </url><url>

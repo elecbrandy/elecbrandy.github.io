@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>FT_IRC | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
+      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#-overview">📌 Overview</a></li>
+    <li><a href="#-core-features">🧩 Core features</a></li>
+    <li><a href="#-system-architecture">🏗️ System Architecture</a></li>
+    <li><a href="#-key-decisions--troubleshooting">🚨 Key Decisions &amp; Troubleshooting</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#-link">🔗 Link</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+      <div class="featured-image">
+        <img src="http://t1.daumcdn.net/movie/ddbe24743b592b34a7776fa250640a4fb5b2bdc8" alt="Featured Image for FT_IRC">
+      </div>
+    
+    <div class="overlay-text">
+      <small>2024.12.02</small>
+      <div class="singleTitle">FT_IRC</div>
+    </div>
+  </div>
+  <br>
+<h2 id="-overview">📌 Overview</h2>
+<blockquote>
+<p>42Seoul C++98 기반 IRC 서버 구현</p>
+</blockquote>
+<ul>
+<li><code>ft_irc</code>는 <a href="https://en.wikipedia.org/wiki/Internet_Relay_Chat">IRC(Internet Relay Chat)</a> 프로토콜을 직접 구현하는 프로젝트입니다.</li>
+<li>소켓 프로그래밍과 네트워크 프로토콜의 기본 구조를 유지하면서, 클라이언트 생명주기와 채널 상태 관리 로직을 더 안전하게 정리하는 것을 목표로 합니다.</li>
+</ul>
+<table>
+	<thead>
+			<tr>
+					<th>항목</th>
+					<th>내용</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>기간</td>
+					<td><code>2024.10 ~ 2024.11</code></td>
+			</tr>
+			<tr>
+					<td>스택</td>
+					<td><code>C++98</code> <code>TCP Socket</code> <code>poll()</code> <code>Makefile</code> <code>Docker</code> <code>Python</code></td>
+			</tr>
+			<tr>
+					<td>팀</td>
+					<td>3인 (Server 1 · Cmd 2)</td>
+			</tr>
+			<tr>
+					<td>담당</td>
+					<td>Server / Infra</td>
+			</tr>
+	</tbody>
+</table>
+<ul>
+<li><strong>주요 업무</strong>
+<ul>
+<li><code>poll()</code> 기반 non-blocking IRC 서버 이벤트 루프 구현 및 리팩토링</li>
+<li>클라이언트 접속, 등록, 종료 생명주기 관리</li>
+<li>read/write, send buffer, 비정상 disconnect 대응</li>
+<li>Python 기반 통합 테스트</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="-core-features">🧩 Core features</h2>
+<ul>
+<li><strong>클라이언트 등록</strong>: <code>PASS</code>, <code>NICK</code>, <code>USER</code> 명령을 통해 IRC 클라이언트 등록 상태 관리</li>
+<li><strong>채널 참여 및 메시징</strong>: <code>JOIN</code>, <code>PART</code>, <code>PRIVMSG</code> 기반 채널 입장, 퇴장, 브로드캐스트 처리</li>
+<li><strong>운영자 기능</strong>: <code>KICK</code>, <code>INVITE</code>, <code>TOPIC</code>, <code>MODE</code> 명령으로 채널 운영 권한 제어</li>
+<li><strong>채널 모드 관리</strong>: <code>+i</code>, <code>+t</code>, <code>+k</code>, <code>+o</code>, <code>+l</code> 모드 지원</li>
+<li><strong>연결 안정성 처리</strong>: non-blocking socket, partial packet buffering, send buffer, timeout 기반 클라이언트 정리</li>
+</ul>
+<br>
+<br>
+<h2 id="-system-architecture">🏗️ System Architecture</h2>
+<p><img src="https://github.com/elecbrandy/ft_irc_refactor/raw/main/img/irc_arch.png" alt="architecture"></p>
+<br>
+<ul>
+<li><code>ircserv</code>는 단일 스레드 이벤트 루프 구조</li>
+<li>서버 socket과 모든 클라이언트 socket을 하나의 <code>poll()</code> 루프에서 감시</li>
+<li>읽기 이벤트가 발생하면 IRC 메시지를 파싱한 뒤 <code>Cmd</code> 계층으로 dispatch</li>
+<li>서버 상태는 <code>Client</code>, <code>Channel</code>, nickname map을 중심으로 메모리에서 관리</li>
+</ul>
+<table>
+	<thead>
+			<tr>
+					<th>Layer</th>
+					<th>Responsibility</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>I/O</td>
+					<td>클라이언트 접속 수락, non-blocking read/write, send buffer 관리</td>
+			</tr>
+			<tr>
+					<td>Protocol</td>
+					<td>IRC 메시지 파싱, 명령어 dispatch, numeric reply 생성</td>
+			</tr>
+			<tr>
+					<td>State</td>
+					<td>클라이언트, 채널, 닉네임 인덱스, 채널 모드 관리</td>
+			</tr>
+			<tr>
+					<td>Test</td>
+					<td>Python socket 기반 통합 테스트로 회귀 검증</td>
+			</tr>
+	</tbody>
+</table>
+<br>
+<br>
+<h2 id="-key-decisions--troubleshooting">🚨 Key Decisions &amp; Troubleshooting</h2>
+<h4 id="클라이언트-삭제-지연-처리--반복자-무효화와-use-after-free-방지">클라이언트 삭제 지연 처리 — 반복자 무효화와 use-after-free 방지</h4>
+<ul>
+<li><strong>문제</strong>
+<ul>
+<li><code>broadcastMsg()</code>가 <code>_clients</code> 또는 channel map을 순회하는 중 <code>castMsg()</code>를 호출</li>
+<li>죽은 socket으로 전송하다가 <code>EPIPE</code>, <code>ECONNRESET</code>, <code>ENOTCONN</code> 등이 발생하면, 기존 구조에서는 순회 중인 map에서 client를 즉시 erase/delete할 수 있었음</li>
+<li>이 경우 반복자 무효화와 use-after-free가 발생할 수 있어 비결정적인 메모리 오류로 이어질 위험이 있었음</li>
+</ul>
+</li>
+<li><strong>원인</strong>
+<ul>
+<li><code>QUIT</code>, ping timeout, write error, <code>POLLERR/POLLHUP</code>, broadcast 실패 등 클라이언트 삭제 경로가 여러 곳에 분산됨</li>
+<li><code>markClientForRemoval()</code>이라는 이름과 달리 실제로는 즉시 teardown까지 수행하던 경로가 있어, 마킹과 삭제의 책임이 섞여 있었음</li>
+</ul>
+</li>
+<li><strong>해결</strong>
+<ul>
+<li><code>std::set&lt;int&gt; _toRemove</code>를 도입해 모든 삭제 경로가 client를 즉시 삭제하지 않고 fd만 표시하도록 변경</li>
+<li><code>markClientForRemoval(fd)</code>는 마킹 전용, <code>removeClientFromServer(client)</code>는 실제 teardown 전용으로 역할 분리</li>
+<li>실제 정리는 <code>cleanupMarkedClients()</code>에서 poll loop 순회가 끝난 뒤 한 번만 수행</li>
+<li>channel 퇴장, nickname map 삭제, <code>_clients</code> erase, <code>delete client</code>, <code>_fds</code> 압축을 단일 cleanup 지점으로 통합</li>
+<li><code>acceptClient()</code>의 <code>revents = 0</code> 초기화, <code>POLLERR/POLLHUP/POLLNVAL</code> 분기도 함께 추가</li>
+</ul>
+</li>
+<li><strong>검증</strong>
+<ul>
+<li><code>make re</code>, <code>make test</code> 통과</li>
+<li>다중 클라이언트가 채널에 참여한 뒤 일부가 비정상 종료되고, 남은 클라이언트가 브로드캐스트하는 상황에서 메모리 오류 없이 서버 생존 확인</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="테스트-안전망-구축--리팩토링-회귀-방지">테스트 안전망 구축 — 리팩토링 회귀 방지</h4>
+<ul>
+<li><strong>상황</strong>
+<ul>
+<li>IRC 서버는 실제 socket 연결, 명령어 순서, 서버 응답, 연결 종료 흐름을 함께 검증해야 함</li>
+<li>클라이언트 생명주기와 채널 운영자 상태는 수동 테스트만으로 회귀를 잡기 어려웠음</li>
+</ul>
+</li>
+<li><strong>결정</strong>
+<ul>
+<li><code>test/run_all.py</code>를 추가해 <code>test/test_*.py</code> 파일을 자동 수집하고 순차 실행</li>
+<li><code>make test</code>에서 서버 실행 후 Python 통합 테스트를 수행하도록 구성</li>
+<li>생명주기 작업 검증을 위해 <code>make asan</code> 타깃 추가</li>
+</ul>
+</li>
+<li><strong>검증 범위</strong>
+<ul>
+<li>등록 흐름과 USER 검증</li>
+<li>기본 IRC 명령 처리</li>
+<li>운영자 <code>MODE +o/-o</code>, <code>NICK</code>, <code>KICK</code> 흐름</li>
+<li>비정상 disconnect 이후 서버 생존 여부</li>
+</ul>
+</li>
+<li><strong>결과</strong>
+<ul>
+<li>문서 기준 <code>make test</code> 4/4 통과</li>
+<li>ASan/UBSan 빌드로 메모리 오류 여부를 함께 확인할 수 있는 안전망 확보</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="-link">🔗 Link</h2>
+<ul>
+<li><a href="https://github.com/elecbrandy/ft_irc_refactor">GitHub Repo &raquo;</a></li>
+</ul>
+<br>
+<br>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

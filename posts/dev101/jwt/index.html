@@ -253,30 +253,30 @@
 </li>
 </ul>
 <table>
-  <thead>
-      <tr>
-          <th>구분</th>
-          <th>세션/쿠키 방식</th>
-          <th>JWT 방식</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>저장 위치</strong></td>
-          <td>서버(Memory/DB) 및 클라이언트 쿠키</td>
-          <td>클라이언트 (Local Storage/Cookie)</td>
-      </tr>
-      <tr>
-          <td><strong>확장성</strong></td>
-          <td>낮음 (세션 동기화 필요)</td>
-          <td>높음 (어느 서버에서나 검증 가능)</td>
-      </tr>
-      <tr>
-          <td><strong>보안성</strong></td>
-          <td>세션 ID 탈취 시 위험하지만 서버 제어 가능</td>
-          <td>토큰 탈취 시 만료 전까지 무방비 상태</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>구분</th>
+					<th>세션/쿠키 방식</th>
+					<th>JWT 방식</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>저장 위치</strong></td>
+					<td>서버(Memory/DB) 및 클라이언트 쿠키</td>
+					<td>클라이언트 (Local Storage/Cookie)</td>
+			</tr>
+			<tr>
+					<td><strong>확장성</strong></td>
+					<td>낮음 (세션 동기화 필요)</td>
+					<td>높음 (어느 서버에서나 검증 가능)</td>
+			</tr>
+			<tr>
+					<td><strong>보안성</strong></td>
+					<td>세션 ID 탈취 시 위험하지만 서버 제어 가능</td>
+					<td>토큰 탈취 시 만료 전까지 무방비 상태</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <br>
@@ -343,7 +343,7 @@
 <h3 id="6-2-cookie">6-2. Cookie</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 백엔드 (Cookie 방식)</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@PostMapping</span>(<span style="color:#e6db74">&#34;/login&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> ResponseEntity<span style="color:#f92672">&lt;?&gt;</span> login(<span style="color:#a6e22e">@RequestBody</span> LoginRequest request, 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> ResponseEntity<span style="color:#f92672">&lt;?&gt;</span> <span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">@RequestBody</span> LoginRequest request, 
 </span></span><span style="display:flex;"><span>                                HttpServletResponse response) {
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 인증 처리</span>
 </span></span><span style="display:flex;"><span>    String token <span style="color:#f92672">=</span> jwtTokenProvider.<span style="color:#a6e22e">createToken</span>(username);
@@ -366,30 +366,30 @@
 <p>그래서 어디에 저장하는게 좋을까?</p>
 <h4 id="차이점-정리">차이점 정리</h4>
 <table>
-  <thead>
-      <tr>
-          <th>구분</th>
-          <th>Local Storage</th>
-          <th>HttpOnly Cookie</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>XSS 공격</td>
-          <td>취약 (JS 접근 가능)</td>
-          <td>안전 (HttpOnly시 JS 접근 불가)</td>
-      </tr>
-      <tr>
-          <td>CSRF 공격</td>
-          <td>안전</td>
-          <td>취약 (자동 요청)</td>
-      </tr>
-      <tr>
-          <td>용량 제한</td>
-          <td>약 5MB</td>
-          <td>약 4KB</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>구분</th>
+					<th>Local Storage</th>
+					<th>HttpOnly Cookie</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>XSS 공격</td>
+					<td>취약 (JS 접근 가능)</td>
+					<td>안전 (HttpOnly시 JS 접근 불가)</td>
+			</tr>
+			<tr>
+					<td>CSRF 공격</td>
+					<td>안전</td>
+					<td>취약 (자동 요청)</td>
+			</tr>
+			<tr>
+					<td>용량 제한</td>
+					<td>약 5MB</td>
+					<td>약 4KB</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <h4 id="local-storage를-선택하는-경우">Local Storage를 선택하는 경우</h4>

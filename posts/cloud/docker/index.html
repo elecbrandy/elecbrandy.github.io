@@ -196,35 +196,35 @@
 <li>따라서 주로 대규모 인프라를 직접 운영하는 거대 기업 내부에서만 사용됨</li>
 </ul>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">구분</th>
-          <th style="text-align: left">가상 머신 (VM)</th>
-          <th style="text-align: left">초기 컨테이너 (LXC 등)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>격리</strong></td>
-          <td style="text-align: left">하드웨어 수준 격리 (하이퍼바이저)로 안전</td>
-          <td style="text-align: left">호스트 커널을 공유하여 보안 우려</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>범용성</strong></td>
-          <td style="text-align: left">Windows 호스트에서 Linux 실행이 가능</td>
-          <td style="text-align: left">호스트 OS와 컨테이너 OS가 동일해야함</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>관리</strong></td>
-          <td style="text-align: left">VMware 등 성숙한 관리 솔루션이 존재</td>
-          <td style="text-align: left">CLI 기반으로 설정이 매우 복잡하고 파편화</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>이식성</strong></td>
-          <td style="text-align: left">가상 디스크가 너무 커서 옮기기 어려움</td>
-          <td style="text-align: left">환경이 조금만 달라져도 실행이 안 되는 경우가 많았음</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">구분</th>
+					<th style="text-align: left">가상 머신 (VM)</th>
+					<th style="text-align: left">초기 컨테이너 (LXC 등)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>격리</strong></td>
+					<td style="text-align: left">하드웨어 수준 격리 (하이퍼바이저)로 안전</td>
+					<td style="text-align: left">호스트 커널을 공유하여 보안 우려</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>범용성</strong></td>
+					<td style="text-align: left">Windows 호스트에서 Linux 실행이 가능</td>
+					<td style="text-align: left">호스트 OS와 컨테이너 OS가 동일해야함</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>관리</strong></td>
+					<td style="text-align: left">VMware 등 성숙한 관리 솔루션이 존재</td>
+					<td style="text-align: left">CLI 기반으로 설정이 매우 복잡하고 파편화</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>이식성</strong></td>
+					<td style="text-align: left">가상 디스크가 너무 커서 옮기기 어려움</td>
+					<td style="text-align: left">환경이 조금만 달라져도 실행이 안 되는 경우가 많았음</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <h3 id="23-docker의-등장">2.3. Docker의 등장</h3>
@@ -301,30 +301,30 @@
 </ul>
 <br>
 <table>
-  <thead>
-      <tr>
-          <th>구분</th>
-          <th>VM</th>
-          <th>Docker Container</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>구조</strong></td>
-          <td>HW 레벨 가상화 (Guest OS 필수)</td>
-          <td>OS 레벨 가상화 (Host OS 커널 공유)</td>
-      </tr>
-      <tr>
-          <td><strong>속도</strong></td>
-          <td>부팅 및 실행이 느림 (분 단위)</td>
-          <td>프로세스 실행 수준으로 매우 빠름 (초 단위)</td>
-      </tr>
-      <tr>
-          <td><strong>무게</strong></td>
-          <td>GB 단위, 무겁고 자원소모⬆️</td>
-          <td>MB 단위, 가볍고 효율적임</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>구분</th>
+					<th>VM</th>
+					<th>Docker Container</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>구조</strong></td>
+					<td>HW 레벨 가상화 (Guest OS 필수)</td>
+					<td>OS 레벨 가상화 (Host OS 커널 공유)</td>
+			</tr>
+			<tr>
+					<td><strong>속도</strong></td>
+					<td>부팅 및 실행이 느림 (분 단위)</td>
+					<td>프로세스 실행 수준으로 매우 빠름 (초 단위)</td>
+			</tr>
+			<tr>
+					<td><strong>무게</strong></td>
+					<td>GB 단위, 무겁고 자원소모⬆️</td>
+					<td>MB 단위, 가볍고 효율적임</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <br>
@@ -360,50 +360,50 @@
 <br>
 <h3 id="42-dockerfile">4.2. Dockerfile</h3>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">명령어</th>
-          <th style="text-align: left">의미 및 역할</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong><code>FROM</code></strong></td>
-          <td style="text-align: left">이미지를 생성할 때 기반이 되는 Base Image 지정</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong><code>RUN</code></strong></td>
-          <td style="text-align: left">이미지 빌드 과정에서 명령어를 실행하여 새로운 레이어를 생성</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong><code>COPY</code></strong></td>
-          <td style="text-align: left">호스트에 있는 파일이나 디렉토리를 이미지 내부의 경로로 복사</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong><code>ADD</code></strong></td>
-          <td style="text-align: left"><code>COPY</code>와 유사 -&gt; 압축 파일 해제, 파일을 다운로드하는 기능 등</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong><code>WORKDIR</code></strong></td>
-          <td style="text-align: left">이후 실행될 명령어가 실행될 작업 디렉토리를 설정</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong><code>ENV</code></strong></td>
-          <td style="text-align: left">이미지 내부에서 사용할 환경 변수를 설</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong><code>EXPOSE</code></strong></td>
-          <td style="text-align: left">컨테이너가 실행될 때 외부로 노출할 포트 번호 지정</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong><code>CMD</code></strong></td>
-          <td style="text-align: left">컨테이너가 실행될 때 기본으로 실행될 명령어</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong><code>ENTRYPOINT</code></strong></td>
-          <td style="text-align: left">컨테이너 실행 시 반드시 실행되어야 하는 명령어 지정</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">명령어</th>
+					<th style="text-align: left">의미 및 역할</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong><code>FROM</code></strong></td>
+					<td style="text-align: left">이미지를 생성할 때 기반이 되는 Base Image 지정</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong><code>RUN</code></strong></td>
+					<td style="text-align: left">이미지 빌드 과정에서 명령어를 실행하여 새로운 레이어를 생성</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong><code>COPY</code></strong></td>
+					<td style="text-align: left">호스트에 있는 파일이나 디렉토리를 이미지 내부의 경로로 복사</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong><code>ADD</code></strong></td>
+					<td style="text-align: left"><code>COPY</code>와 유사 -&gt; 압축 파일 해제, 파일을 다운로드하는 기능 등</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong><code>WORKDIR</code></strong></td>
+					<td style="text-align: left">이후 실행될 명령어가 실행될 작업 디렉토리를 설정</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong><code>ENV</code></strong></td>
+					<td style="text-align: left">이미지 내부에서 사용할 환경 변수를 설</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong><code>EXPOSE</code></strong></td>
+					<td style="text-align: left">컨테이너가 실행될 때 외부로 노출할 포트 번호 지정</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong><code>CMD</code></strong></td>
+					<td style="text-align: left">컨테이너가 실행될 때 기본으로 실행될 명령어</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong><code>ENTRYPOINT</code></strong></td>
+					<td style="text-align: left">컨테이너 실행 시 반드시 실행되어야 하는 명령어 지정</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <h3 id="43-docker-내부-아키텍처와-작동-방식">4.3. Docker 내부 아키텍처와 작동 방식</h3>

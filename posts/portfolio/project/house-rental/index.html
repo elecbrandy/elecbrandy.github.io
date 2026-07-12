@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '$', right: '$', display: false}
+            ]
+        });"></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title> | elecbrandy</title>
+
+
+
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
+      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
+  :root {
+    --primary-color: #fa8b84;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZL1NP5K5CJ');
+</script>
+
+
+</head>
+<body>
+    <header class="main-header">
+	<nav>
+		
+		<li><a href="https://elecbrandy.github.io/">/home</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
+		
+		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
+		
+	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
+	</nav>
+  </header>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function() {
+	  const themeToggle = document.getElementById('theme-toggle');
+	  
+	  
+	  let currentTheme = localStorage.getItem('theme') || 'light';
+  
+	  
+	  document.body.setAttribute('data-theme', currentTheme);
+	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
+  
+	  
+	  function toggleTheme() {
+		
+		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  
+		
+		document.body.setAttribute('data-theme', newTheme);
+  
+		
+		localStorage.setItem('theme', newTheme);
+  
+		
+		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
+	  }
+  
+	  
+	  themeToggle.addEventListener('click', toggleTheme);
+	});
+  </script>
+
+    
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#-overview">📌 Overview</a></li>
+    <li><a href="#-core-features">🧩 Core features</a></li>
+    <li><a href="#-system-architecture">🏗️ System Architecture</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#-key-decisions--troubleshooting">🚨 Key Decisions &amp; Troubleshooting</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#-link">🔗 Link</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <div class="featured-container">
+    
+    <div class="overlay-text">
+      <small>0001.01.01</small>
+      <div class="singleTitle"></div>
+    </div>
+  </div>
+  <h1 id="-house-rental-chat">🏠 House-rental-chat</h1>
+<br>
+<h2 id="-overview">📌 Overview</h2>
+<blockquote>
+<p><em><strong>주택임대차보호법 RAG 챗봇 + RAGAS 정량 평가</strong></em></p>
+</blockquote>
+<ul>
+<li><code>House-rental-chat</code>은 <a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%ED%98%B8%EB%B2%95">주택임대차보호법</a>을 근거로 전세·월세·보증금·계약갱신 질문에 <strong>조문을 인용해 답하는</strong> RAG 챗봇입니다.</li>
+<li>RAG 도입, 튜닝 전후의 RAG의 기여분을 격리해서 측정했습니다.</li>
+</ul>
+<table>
+	<thead>
+			<tr>
+					<th>항목</th>
+					<th>내용</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>스택</td>
+					<td><code>FastAPI</code> <code>LangGraph</code> <code>PostgreSQL</code> <code>RAGAS</code></td>
+			</tr>
+			<tr>
+					<td>팀</td>
+					<td>2인</td>
+			</tr>
+			<tr>
+					<td>담당</td>
+					<td>RAG pipeline 구축 및 서빙</td>
+			</tr>
+	</tbody>
+</table>
+<ul>
+<li><strong>주요 업무</strong>
+<ul>
+<li>법령 수집·청킹·임베딩·Qdrant 인덱싱 오프라인 파이프라인 구현</li>
+<li>BGE-M3 dense + Kiwi+BM25 sparse 하이브리드 검색기 + cross-encoder 리랭커 구현</li>
+<li>top-k·하이브리드·리랭커 단계별 ablation 실험 및검색 튜닝</li>
+<li>골든셋 작성·라벨 감사, RAGAS 평가 파이프라인 구축</li>
+<li>Base LLM vs RAG 격리 비교로 RAG 기여분 정량화</li>
+<li>LangGraph 오케스트레이션 구현</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="-core-features">🧩 Core features</h2>
+<ul>
+<li>Ingestion: 국가법령정보센터 API 수집 → 조문 청킹 → 임베딩 → Qdrant 인덱싱</li>
+<li>Hybrid Retrieval: BGE-M3 dense + Kiwi+BM25 sparse → RRF → cross-encoder 리랭킹</li>
+<li>Grounded Generation: quote-then-answer 프롬프트로 근거 조문 인용 후 답변 생성</li>
+<li>Evaluation: RAGAS 4지표 + 자체 exact-match 조문/세부 정답률 보조지표</li>
+<li>Agent: 인젝션 가드 → query rewrite → 3-way 의도분류 → tool dispatch → 응답 합성 (LangGraph, 멀티턴)</li>
+</ul>
+<br>
+<br>
+<h2 id="-system-architecture">🏗️ System Architecture</h2>
+<h4 id="langgraph-architecture">LangGraph Architecture</h4>
+<p><img src="https://github.com/elecbrandy/house-rental-chat/raw/main/img/house-arch2.png" alt="lang architecture"></p>
+<br>
+<h4 id="system-architecture">System Architecture</h4>
+<p><img src="https://github.com/elecbrandy/house-rental-chat/raw/main/img/house-arch.png" alt="system architecture"></p>
+<br>
+<br>
+<h2 id="-key-decisions--troubleshooting">🚨 Key Decisions &amp; Troubleshooting</h2>
+<br>
+<h4 id="후보폭top-k-스윕">후보폭(top-k) 스윕</h4>
+<ul>
+<li><strong>문제</strong>
+<ul>
+<li>retriever의 top-5k 가 1, 5 등으로 작은 경우 문제 상황 발생</li>
+<li>정답 조문이 검색 후보에 아예 안 들어오는 경우가 있었음 (<code>recall .73</code>)</li>
+</ul>
+</li>
+<li><strong>원인</strong>
+<ul>
+<li>후보폭이 좁으면 뒤에 붙일 하이브리드·리랭커로도 못 살림</li>
+<li>즉, 후보에 없는 건 못 건지는 상황</li>
+</ul>
+</li>
+<li><strong>해결</strong>
+<ul>
+<li>k를 <code>{3, 5, 10, 20, 40}</code>으로 스윕해 recall·hit이 꺾이는 지점을 찾음</li>
+<li><code>k=5→10</code>에서 recall <code>.73→.85</code>·hit <code>.85→.93</code>으로 가장 크게 오르고 이후 완만 → <code>k=10</code> 고정</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="hybrid-search-kiwi--bm25">Hybrid Search (Kiwi + BM25)</h4>
+<ul>
+<li><strong>문제</strong>
+<ul>
+<li>dense 단독은 정답이 대개 상위에 오지만(<code>mrr .62</code>) 주변이 노이즈.</li>
+</ul>
+</li>
+<li><strong>원인</strong>
+<ul>
+<li>dense는 의미는 잘 잡지만 <code>제6조의3</code> 같은 정확한 어휘 매칭이 약함.</li>
+<li>순수 whitespace BM25는 한국어 조사·어미(<code>임차인이</code>/<code>임차인은</code>)와 조문번호를 못 쪼갬.</li>
+</ul>
+</li>
+<li><strong>해결</strong>
+<ul>
+<li>Kiwi 형태소 + 조문번호 정규화 + BM25(sparse)를 dense와 RRF로 결합.</li>
+<li>hit은 무승부, mrr <code>.62→.66</code> → 못 찾던 조문을 새로 찾진 못해도 이미 찾은 정답을 상위로 끌어올림.</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="reranker--wide-fetch">Reranker + Wide Fetch</h4>
+<ul>
+<li><strong>문제</strong>
+<ul>
+<li>하이브리드 후에도 정답 주변 노이즈가 남고, top-10 밖으로 밀린 정답을 못 건짐</li>
+<li>후보폭을 넓히면 distractor가 늘어 precision이 나빠질 것으로 봤음(그래서 앞 단계에서 k=10에 멈춤)</li>
+</ul>
+</li>
+<li><strong>원인</strong>
+<ul>
+<li>dense·sparse는 query와 조문을 각각 임베딩해 유사도만 봄</li>
+<li>순위를 한 번에 다시 볼 장치가 없음</li>
+</ul>
+</li>
+<li><strong>해결</strong>
+<ul>
+<li>cross-encoder 리랭커로 넓게 뽑은 뒤(<code>fetch=40</code>) top-10으로 좁힘
+<ul>
+<li>mrr <code>.66→.72</code>, hit <code>.92→.94</code>.</li>
+</ul>
+</li>
+<li>precision은 그대로
+<ul>
+<li>리랭커가 distractor를 밀어냈기 때문</li>
+<li>&ldquo;넓히면 안 된다&quot;던 정책 변경 → <code>fetch=40</code> 고정</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="골든셋-라벨-감사">골든셋 라벨 감사</h4>
+<ul>
+<li><strong>문제</strong>
+<ul>
+<li>hit@k가 <code>.94</code>에서 더 안 올라, 남은 miss를 검색 실패로 의심</li>
+</ul>
+</li>
+<li><strong>원인</strong>
+<ul>
+<li>실제로 까보니 일부는 검색 실패가 아니라 골든셋 <strong>정답 라벨이 불완전</strong>했음</li>
+<li>(묵시적 갱신 질문에 정답 조문 일부가 누락 — retriever는 이미 정답을 가져오고 있었음)</li>
+</ul>
+</li>
+<li><strong>해결</strong>
+<ul>
+<li>라벨을 감사·정정 → hit@k <code>.94 → .99</code></li>
+<li>단 이는 <strong>검색 코드 개선이 아니라 측정 정정</strong>임을 구분해 기록 (성과로 오인 방지)</li>
+<li>지표가 안 오를 때 알고리즘부터 만지기 전에 골든셋 라벨을 먼저 점검해야 하는 습관 가지기</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="ragas-환각">RAGAS 환각</h4>
+<ul>
+<li><strong>문제</strong>
+<ul>
+<li>base LLM이 조문번호를 지어내는 환각 발생</li>
+<li>그럼에도 RAGAS <code>answer_correctness</code>는 base와 RAG를 거의 같게 채점(+0.02, flat)</li>
+</ul>
+</li>
+<li><strong>원인</strong>
+<ul>
+<li><code>answer_correctness</code>는 의미 유사도 위주</li>
+<li>따라서 <code>제6조의3</code> 을 <code>제6조의2</code> 로 틀린 것 같은 조문번호 오류에 둔감함</li>
+</ul>
+</li>
+<li><strong>해결</strong>
+<ul>
+<li>&ldquo;정답 조문번호를 맞혔는가&quot;를 직접 재는 <strong>exact-match 조문 정답률</strong> 보조지표를 정의해 eval에 추가</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="recallk-vs-hitk">recall@k vs hit@k</h4>
+<ul>
+<li><strong>문제</strong>
+<ul>
+<li><code>recall@k(.86)</code>와 <code>hit@k(.99)</code>가 크게 벌어져, &ldquo;검색이 잘 되는 건가?&ldquo;를 판단할 때 어느 숫자를 봐야 할지 헷갈림</li>
+</ul>
+</li>
+<li><strong>원인</strong>
+<ul>
+<li><code>hit@k</code>: 이 질문, 검색이 정답을 건드리긴 했나
+<ul>
+<li>top-k 후보 안에 정답 조문이 <strong>하나라도</strong> 있으면 성공(0/1)</li>
+</ul>
+</li>
+<li><code>recall@k</code>: 정답을 빠짐없이 다 담았나
+— 정답 조문이 여러 개인 질문에서 그중 몇 개가 top-k에 들어왔는지</li>
+<li>정답이 1개인 질문은 두 값이 같지만, 다중조문 질문에서 일부만 담기면 <code>hit=1</code>인데 <code>recall&lt;1</code> → <strong>항상 <code>hit@k ≥ recall@k</code></strong></li>
+<li>즉 현재 격차(<code>.99</code> vs <code>.86</code>)는 검색 실패라기보다, 다중조문 질문에서 정답 청크 일부가 top-10 밖으로 밀린 것</li>
+</ul>
+</li>
+<li><strong>해결</strong>
+<ul>
+<li>두 지표를 목적별로 분리해 사용</li>
+<li><code>hit@k</code>(.99) → <em>&ldquo;정답이 후보에 들어왔나&rdquo;</em> = <strong>검색이 병목인지 가르는 진단용</strong> → 병목은 검색이 아님을 확정</li>
+<li><code>recall@k</code>(.86) → <em>&ldquo;다 담았나&rdquo;</em> = <strong>k·청킹을 더 조일지 판단용</strong></li>
+<li>k를 키우면 <code>recall@k</code>는 오르지만(<code>k=40</code>에서 <code>.93</code>) <code>precision@k</code>가 붕괴(<code>.12→.03</code>) → k=10 유지, 남은 recall은 <strong>청킹으로만</strong> 개선 여지</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="병목-진단">병목 진단</h4>
+<ul>
+<li><strong>문제</strong>
+<ul>
+<li>지표가 여럿(recall·mrr·hit·RAGAS·조문 정답률)이라 &ldquo;다음에 무엇을 개선할지&quot;가 불명확</li>
+</ul>
+</li>
+<li><strong>원인</strong>
+<ul>
+<li>단계를 나눠 보니 격차의 위치가 드러남</li>
+<li>검색은 정답 조문을 거의 다 후보에 넣음 (<code>hit ≈ .99</code>)</li>
+<li>그런데 답이 그 조문을 실제로 인용하는 비율은 <code>.76</code> → 격차는 검색이 아니라 <strong>생성</strong>에 있음</li>
+</ul>
+</li>
+<li><strong>해결</strong>
+<ul>
+<li>검색을 더 튜닝하는 대신 개선 축을 <strong>생성(프롬프트·모델)으로 이동</strong></li>
+<li><code>hit@k</code>는 성과 지표가 아니라 <strong>&ldquo;병목이 검색이 아님&quot;을 보이는 진단 근거</strong>로 사용</li>
+</ul>
+</li>
+</ul>
+<br>
+<h4 id="generation-프롬프트-튜닝">Generation 프롬프트 튜닝</h4>
+<ul>
+<li><strong>문제</strong>
+<ul>
+<li>검색이 정답 조문을 가져와도(article_hit↑), 그 안의 기간·비율(5%·2년) 세부는 base와 동급으로 못 뽑음</li>
+<li>프롬프트를 바꿔봐도 run마다 점수가 <code>±0.1</code> 흔들려 개선인지 노이즈인지 구분 불가</li>
+</ul>
+</li>
+<li><strong>원인</strong>
+<ul>
+<li>조문번호는 맞혀도 조문 속 수치를 옮기지 못하는 생성(generation) 병목</li>
+<li>generator LLM에 temperature가 안 걸려(기본값 &gt; 0) 매 실행 답이 달라짐 → A/B 비교 불가</li>
+</ul>
+</li>
+<li><strong>해결</strong>
+<ul>
+<li><code>quote-then-answer</code> 프롬프트: 답 쓰기 전에 근거 조문의 수치를 원문 그대로 인용하도록 유도</li>
+<li>generator <code>temperature=0</code> 고정으로 eval 재현성 확보 (judge뿐 아니라 생성도 결정적으로)</li>
+<li>이를 재는 <strong>세부(기간·산식) exact-match</strong> 지표도 함께 신설</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+<h2 id="-link">🔗 Link</h2>
+<ul>
+<li><a href="https://github.com/elecbrandy/house-rental-chat">GitHub Repo &raquo;</a></li>
+</ul>
+<br>
+<br>
+
+
+    
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 40,
+  backgroundColor: '#ec42ff',
+  textColor: '#fff'
+})</script>
+
+</body>
+</html>

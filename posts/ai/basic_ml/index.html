@@ -757,64 +757,64 @@
 <br>
 <h4 id="알고리즘별-스케일링-필요-여부-요약">알고리즘별 스케일링 필요 여부 요약</h4>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">계열</th>
-          <th style="text-align: left">ML Algorithm</th>
-          <th style="text-align: left">표준화 필요 여부</th>
-          <th style="text-align: left">주요 이유</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>Tree-Based</strong></td>
-          <td style="text-align: left">DecisionTree</td>
-          <td style="text-align: left"><strong>필요 없음</strong></td>
-          <td style="text-align: left">조건에 따른 <strong>분기 방식</strong>으로 값의 크기나 단위와 무관</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">randomForest</td>
-          <td style="text-align: left"><strong>필요 없음</strong></td>
-          <td style="text-align: left">개별 트리 자체가 스케일 영향 받지 않음, 다양한 트리 조합이 더 중요</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">XGBoost</td>
-          <td style="text-align: left"><strong>필요 없음</strong></td>
-          <td style="text-align: left">트리 기반 부스팅 방식으로 크기와 단위 영향이 적음</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">LGBM</td>
-          <td style="text-align: left"><strong>필요 없음</strong></td>
-          <td style="text-align: left">Leaf 중심 분할 방식으로 값의 절대적인 크기 영향이 적음</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"></td>
-          <td style="text-align: left">CatBoost</td>
-          <td style="text-align: left"><strong>필요 없음</strong></td>
-          <td style="text-align: left">역시 값의 크기 단위 영향 적음<br>범주형 처리도 안정적</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Kernel (거리)</strong></td>
-          <td style="text-align: left"><strong>SVM</strong></td>
-          <td style="text-align: left"><strong>필요</strong></td>
-          <td style="text-align: left">그룹 간 경계 결정에 계산이 핵심<br>변수 크기 차이가 크면 특정 변수가 과하게 영향을 미침</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Penalty (회귀)</strong></td>
-          <td style="text-align: left"><strong>LASSO</strong></td>
-          <td style="text-align: left"><strong>필요</strong></td>
-          <td style="text-align: left">가중치 절대값의 합(L1)에 패널티 적용<br>변수 특성 크기가 다르면 <strong>큰 값을 가진 특성에 패널티가 쏠림</strong></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"></td>
-          <td style="text-align: left"><strong>Ridge</strong></td>
-          <td style="text-align: left"><strong>필요</strong></td>
-          <td style="text-align: left">가중치 제곱합(L2)에 패널티 적용<br>변수 크기 차이가 크면 <strong>작은 값의 특성은 무시</strong>될 수 있음</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">계열</th>
+					<th style="text-align: left">ML Algorithm</th>
+					<th style="text-align: left">표준화 필요 여부</th>
+					<th style="text-align: left">주요 이유</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>Tree-Based</strong></td>
+					<td style="text-align: left">DecisionTree</td>
+					<td style="text-align: left"><strong>필요 없음</strong></td>
+					<td style="text-align: left">조건에 따른 <strong>분기 방식</strong>으로 값의 크기나 단위와 무관</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"></td>
+					<td style="text-align: left">randomForest</td>
+					<td style="text-align: left"><strong>필요 없음</strong></td>
+					<td style="text-align: left">개별 트리 자체가 스케일 영향 받지 않음, 다양한 트리 조합이 더 중요</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"></td>
+					<td style="text-align: left">XGBoost</td>
+					<td style="text-align: left"><strong>필요 없음</strong></td>
+					<td style="text-align: left">트리 기반 부스팅 방식으로 크기와 단위 영향이 적음</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"></td>
+					<td style="text-align: left">LGBM</td>
+					<td style="text-align: left"><strong>필요 없음</strong></td>
+					<td style="text-align: left">Leaf 중심 분할 방식으로 값의 절대적인 크기 영향이 적음</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"></td>
+					<td style="text-align: left">CatBoost</td>
+					<td style="text-align: left"><strong>필요 없음</strong></td>
+					<td style="text-align: left">역시 값의 크기 단위 영향 적음<br>범주형 처리도 안정적</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Kernel (거리)</strong></td>
+					<td style="text-align: left"><strong>SVM</strong></td>
+					<td style="text-align: left"><strong>필요</strong></td>
+					<td style="text-align: left">그룹 간 경계 결정에 계산이 핵심<br>변수 크기 차이가 크면 특정 변수가 과하게 영향을 미침</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Penalty (회귀)</strong></td>
+					<td style="text-align: left"><strong>LASSO</strong></td>
+					<td style="text-align: left"><strong>필요</strong></td>
+					<td style="text-align: left">가중치 절대값의 합(L1)에 패널티 적용<br>변수 특성 크기가 다르면 <strong>큰 값을 가진 특성에 패널티가 쏠림</strong></td>
+			</tr>
+			<tr>
+					<td style="text-align: left"></td>
+					<td style="text-align: left"><strong>Ridge</strong></td>
+					<td style="text-align: left"><strong>필요</strong></td>
+					<td style="text-align: left">가중치 제곱합(L2)에 패널티 적용<br>변수 크기 차이가 크면 <strong>작은 값의 특성은 무시</strong>될 수 있음</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <br>

@@ -226,35 +226,35 @@
 <li><strong>$\eta$ (학습률)</strong>: 그 방향으로 <strong>얼마나 갈지</strong> 곱해주는 보폭</li>
 </ul>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">구분</th>
-          <th style="text-align: left">경사하강법 (Gradient Descent)</th>
-          <th style="text-align: left">학습률 (Learning Rate)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>역할</strong></td>
-          <td style="text-align: left">최적의 파라미터를 찾는 <strong>전략/알고리즘</strong></td>
-          <td style="text-align: left">업데이트의 <strong>크기/보폭</strong>을 조절</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>핵심</strong></td>
-          <td style="text-align: left">어느 방향이 오차가 가장 작아지는 길인가?</td>
-          <td style="text-align: left">한 번에 몇 미터씩 이동할 것인가?</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>결정 주체</strong></td>
-          <td style="text-align: left">수학적 공식 (기울기 계산)</td>
-          <td style="text-align: left"><strong>사람 (하이퍼파라미터 설정)</strong></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>잘못될 경우</strong></td>
-          <td style="text-align: left">길을 못 찾거나 엉뚱한 곳에 갇힘</td>
-          <td style="text-align: left">시간 오래 걸리거나 목표를 지나침</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">구분</th>
+					<th style="text-align: left">경사하강법 (Gradient Descent)</th>
+					<th style="text-align: left">학습률 (Learning Rate)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>역할</strong></td>
+					<td style="text-align: left">최적의 파라미터를 찾는 <strong>전략/알고리즘</strong></td>
+					<td style="text-align: left">업데이트의 <strong>크기/보폭</strong>을 조절</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>핵심</strong></td>
+					<td style="text-align: left">어느 방향이 오차가 가장 작아지는 길인가?</td>
+					<td style="text-align: left">한 번에 몇 미터씩 이동할 것인가?</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>결정 주체</strong></td>
+					<td style="text-align: left">수학적 공식 (기울기 계산)</td>
+					<td style="text-align: left"><strong>사람 (하이퍼파라미터 설정)</strong></td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>잘못될 경우</strong></td>
+					<td style="text-align: left">길을 못 찾거나 엉뚱한 곳에 갇힘</td>
+					<td style="text-align: left">시간 오래 걸리거나 목표를 지나침</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <br>
@@ -333,35 +333,35 @@
 <li><strong>업데이트</strong>: 넘어지지 않도록 균형을 잡으며 최적의 보폭으로 빠르게 내려가기</li>
 </ol>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">구분</th>
-          <th style="text-align: left">일반 경사하강법 (GD)</th>
-          <th style="text-align: left">Adam Optimizer</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>방식</strong></td>
-          <td style="text-align: left">현재 위치의 경사만 보고 이동</td>
-          <td style="text-align: left">이전 경험(방향+속도)을 기억하며 이동</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>속도</strong></td>
-          <td style="text-align: left">비교적 느림</td>
-          <td style="text-align: left"><strong>매우 빠름</strong></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>안정성</strong></td>
-          <td style="text-align: left">작은 골짜기에 빠지기 쉬움</td>
-          <td style="text-align: left"><strong>울퉁불퉁한 지형에서도 효과적</strong></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>학습률</strong></td>
-          <td style="text-align: left">고정된 보폭 사용</td>
-          <td style="text-align: left">상황에 따라 <strong>보폭을 자동으로 조절</strong></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">구분</th>
+					<th style="text-align: left">일반 경사하강법 (GD)</th>
+					<th style="text-align: left">Adam Optimizer</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>방식</strong></td>
+					<td style="text-align: left">현재 위치의 경사만 보고 이동</td>
+					<td style="text-align: left">이전 경험(방향+속도)을 기억하며 이동</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>속도</strong></td>
+					<td style="text-align: left">비교적 느림</td>
+					<td style="text-align: left"><strong>매우 빠름</strong></td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>안정성</strong></td>
+					<td style="text-align: left">작은 골짜기에 빠지기 쉬움</td>
+					<td style="text-align: left"><strong>울퉁불퉁한 지형에서도 효과적</strong></td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>학습률</strong></td>
+					<td style="text-align: left">고정된 보폭 사용</td>
+					<td style="text-align: left">상황에 따라 <strong>보폭을 자동으로 조절</strong></td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <br>

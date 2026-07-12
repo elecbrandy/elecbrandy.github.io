@@ -241,40 +241,40 @@
 <li><strong>목표</strong> → 데이터에 가장 적합한 $W$와 $b$를 계산</li>
 </ul>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">단계</th>
-          <th style="text-align: left">구분</th>
-          <th style="text-align: left">주요 내용</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">1️⃣</td>
-          <td style="text-align: left"><strong>데이터 정의</strong></td>
-          <td style="text-align: left">$(x, y)$ 데이터 준비 (예: 몸무게와 키)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">2️⃣</td>
-          <td style="text-align: left"><strong>선형 모델 정의</strong></td>
-          <td style="text-align: left">가설 수립: $y = Wx + b$ <br> ($W$: 회귀계수/가중치/기울기, $b$: 절편/Bias)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">3️⃣</td>
-          <td style="text-align: left"><strong>오차 평가 정의</strong></td>
-          <td style="text-align: left">손실 함수(MSE) 정의: $MSE = \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2$</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">4️⃣</td>
-          <td style="text-align: left"><strong>오차 최소화</strong></td>
-          <td style="text-align: left"><strong>최소제곱법(Least Squares Method)</strong> 사용 <br> $b = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$ 등의 공식을 통한 최적화</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">5️⃣</td>
-          <td style="text-align: left"><strong>파라미터 계산</strong></td>
-          <td style="text-align: left">최종 파라미터 도출 (예: $y = 2.5x + 29$)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">단계</th>
+					<th style="text-align: left">구분</th>
+					<th style="text-align: left">주요 내용</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">1️⃣</td>
+					<td style="text-align: left"><strong>데이터 정의</strong></td>
+					<td style="text-align: left">$(x, y)$ 데이터 준비 (예: 몸무게와 키)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">2️⃣</td>
+					<td style="text-align: left"><strong>선형 모델 정의</strong></td>
+					<td style="text-align: left">가설 수립: $y = Wx + b$ <br> ($W$: 회귀계수/가중치/기울기, $b$: 절편/Bias)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">3️⃣</td>
+					<td style="text-align: left"><strong>오차 평가 정의</strong></td>
+					<td style="text-align: left">손실 함수(MSE) 정의: $MSE = \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2$</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">4️⃣</td>
+					<td style="text-align: left"><strong>오차 최소화</strong></td>
+					<td style="text-align: left"><strong>최소제곱법(Least Squares Method)</strong> 사용 <br> $b = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$ 등의 공식을 통한 최적화</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">5️⃣</td>
+					<td style="text-align: left"><strong>파라미터 계산</strong></td>
+					<td style="text-align: left">최종 파라미터 도출 (예: $y = 2.5x + 29$)</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <h3 id="22-dl에서의-파라미터">2.2 DL에서의 파라미터</h3>
@@ -285,52 +285,52 @@
 <li><strong>반복 학습</strong> → 데이터를 통해 파라미터를 지속적으로 업데이트하여 최적의 해를 찾음</li>
 </ul>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">단계</th>
-          <th style="text-align: left">구분</th>
-          <th style="text-align: left">주요 내용</th>
-          <th></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">1️⃣</td>
-          <td style="text-align: left"><strong>데이터 준비</strong></td>
-          <td style="text-align: left">학습 데이터 전처리 (입력값 $x$, 결과값 $y$)</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td style="text-align: left">2️⃣</td>
-          <td style="text-align: left"><strong>모델 정의</strong></td>
-          <td style="text-align: left">신경망 Layer 개수와 구조를 설정하고 가중치를 초기화</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td style="text-align: left">3️⃣</td>
-          <td style="text-align: left"><strong>손실 함수 설정</strong></td>
-          <td style="text-align: left">모델의 예측값, 실제 정답 사이의 오차 계산 기준 설정</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td style="text-align: left">4️⃣</td>
-          <td style="text-align: left"><strong>최적화</strong></td>
-          <td style="text-align: left">경사하강법을 통해 파라미터를 조정</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td style="text-align: left">5️⃣</td>
-          <td style="text-align: left"><strong>파라미터 조정</strong></td>
-          <td style="text-align: left">학습된 데이터 바탕 최적의 $W$(가중치)와 $b$(편향) 값 확정</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td style="text-align: left">6️⃣</td>
-          <td style="text-align: left"><strong>평가 및 추론</strong></td>
-          <td style="text-align: left">새로운 데이터를 넣어 모델이 정답을 잘 맞히는지 확인</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">단계</th>
+					<th style="text-align: left">구분</th>
+					<th style="text-align: left">주요 내용</th>
+					<th></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">1️⃣</td>
+					<td style="text-align: left"><strong>데이터 준비</strong></td>
+					<td style="text-align: left">학습 데이터 전처리 (입력값 $x$, 결과값 $y$)</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td style="text-align: left">2️⃣</td>
+					<td style="text-align: left"><strong>모델 정의</strong></td>
+					<td style="text-align: left">신경망 Layer 개수와 구조를 설정하고 가중치를 초기화</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td style="text-align: left">3️⃣</td>
+					<td style="text-align: left"><strong>손실 함수 설정</strong></td>
+					<td style="text-align: left">모델의 예측값, 실제 정답 사이의 오차 계산 기준 설정</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td style="text-align: left">4️⃣</td>
+					<td style="text-align: left"><strong>최적화</strong></td>
+					<td style="text-align: left">경사하강법을 통해 파라미터를 조정</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td style="text-align: left">5️⃣</td>
+					<td style="text-align: left"><strong>파라미터 조정</strong></td>
+					<td style="text-align: left">학습된 데이터 바탕 최적의 $W$(가중치)와 $b$(편향) 값 확정</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td style="text-align: left">6️⃣</td>
+					<td style="text-align: left"><strong>평가 및 추론</strong></td>
+					<td style="text-align: left">새로운 데이터를 넣어 모델이 정답을 잘 맞히는지 확인</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 <ul>
 <li>결국 딥러닝의 절차는 크게 **&lsquo;순전파(Forward)&rsquo;**와 **&lsquo;역전파(Backward)&rsquo;**의 반복
@@ -381,35 +381,35 @@
 <br>
 <h3 id="33-선형회귀-vs-딥러닝-비교">3.3. 선형회귀 vs 딥러닝 비교</h3>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">구분</th>
-          <th style="text-align: left">선형회귀 (Linear Regression)</th>
-          <th style="text-align: left">딥러닝 (Deep Learning)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>기본 구조</strong></td>
-          <td style="text-align: left">$y = Wx + b$</td>
-          <td style="text-align: left">$y = \sigma(Wx + b)$ (단, $\sigma$는 활성화 함수)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>특징</strong></td>
-          <td style="text-align: left">정직한 선형 관계를 찾음</td>
-          <td style="text-align: left">비선형 관계를 찾음</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>깊이</strong></td>
-          <td style="text-align: left">Single Layer</td>
-          <td style="text-align: left">Multi-Layer</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>비유</strong></td>
-          <td style="text-align: left">자 대고 직선 하나 긋기</td>
-          <td style="text-align: left">여러 개의 자를 꺾어 붙여서 복잡한 그리기</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">구분</th>
+					<th style="text-align: left">선형회귀 (Linear Regression)</th>
+					<th style="text-align: left">딥러닝 (Deep Learning)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>기본 구조</strong></td>
+					<td style="text-align: left">$y = Wx + b$</td>
+					<td style="text-align: left">$y = \sigma(Wx + b)$ (단, $\sigma$는 활성화 함수)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>특징</strong></td>
+					<td style="text-align: left">정직한 선형 관계를 찾음</td>
+					<td style="text-align: left">비선형 관계를 찾음</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>깊이</strong></td>
+					<td style="text-align: left">Single Layer</td>
+					<td style="text-align: left">Multi-Layer</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>비유</strong></td>
+					<td style="text-align: left">자 대고 직선 하나 긋기</td>
+					<td style="text-align: left">여러 개의 자를 꺾어 붙여서 복잡한 그리기</td>
+			</tr>
+	</tbody>
 </table>
 <blockquote>
 <p><strong>&ldquo;딥러닝 = (선형회귀 + 활성화 함수)를 아주 깊게(Deep) 층층이 쌓아 올린 것&rdquo;</strong></p>
@@ -423,46 +423,46 @@
 <li>출력값의 범위를 제한하여 계산의 안정성도 보장</li>
 </ul>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">구분</th>
-          <th style="text-align: left"><strong>Sigmoid</strong></th>
-          <th style="text-align: left"><strong>Tanh</strong></th>
-          <th style="text-align: left"><strong>ReLU</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>정의</strong></td>
-          <td style="text-align: left">$\sigma(x) = \frac{1}{1 + e^{-x}}$</td>
-          <td style="text-align: left">$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$</td>
-          <td style="text-align: left">$ReLU(x) = \max(0, x)$</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>출력 범위</strong></td>
-          <td style="text-align: left">$(0, 1)$</td>
-          <td style="text-align: left">$(-1, 1)$</td>
-          <td style="text-align: left">$(0, \infty)$</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>장점</strong></td>
-          <td style="text-align: left">확률값(0~1) 출력 유용</td>
-          <td style="text-align: left">출력값이 0 중심이라 학습 효율 좋음</td>
-          <td style="text-align: left">계산 빠르고 성능 좋음</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>단점</strong></td>
-          <td style="text-align: left">Gradient Vanishing 발생 가능</td>
-          <td style="text-align: left">Gradient Vanishing 발생 가능</td>
-          <td style="text-align: left">일부 뉴런이 죽는 현상 발생 가능</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>주요 활용</strong></td>
-          <td style="text-align: left">이진 분류</td>
-          <td style="text-align: left">RNN, LSTM 신경망</td>
-          <td style="text-align: left"><strong>현대 딥러닝의 표준</strong></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">구분</th>
+					<th style="text-align: left"><strong>Sigmoid</strong></th>
+					<th style="text-align: left"><strong>Tanh</strong></th>
+					<th style="text-align: left"><strong>ReLU</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>정의</strong></td>
+					<td style="text-align: left">$\sigma(x) = \frac{1}{1 + e^{-x}}$</td>
+					<td style="text-align: left">$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$</td>
+					<td style="text-align: left">$ReLU(x) = \max(0, x)$</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>출력 범위</strong></td>
+					<td style="text-align: left">$(0, 1)$</td>
+					<td style="text-align: left">$(-1, 1)$</td>
+					<td style="text-align: left">$(0, \infty)$</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>장점</strong></td>
+					<td style="text-align: left">확률값(0~1) 출력 유용</td>
+					<td style="text-align: left">출력값이 0 중심이라 학습 효율 좋음</td>
+					<td style="text-align: left">계산 빠르고 성능 좋음</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>단점</strong></td>
+					<td style="text-align: left">Gradient Vanishing 발생 가능</td>
+					<td style="text-align: left">Gradient Vanishing 발생 가능</td>
+					<td style="text-align: left">일부 뉴런이 죽는 현상 발생 가능</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>주요 활용</strong></td>
+					<td style="text-align: left">이진 분류</td>
+					<td style="text-align: left">RNN, LSTM 신경망</td>
+					<td style="text-align: left"><strong>현대 딥러닝의 표준</strong></td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <h3 id="41-sigmoid">4.1 Sigmoid</h3>

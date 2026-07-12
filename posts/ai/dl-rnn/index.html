@@ -264,35 +264,35 @@
 <br>
 <h2 id="2-rnn-vs-lstm">2. RNN vs LSTM</h2>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">구분</th>
-          <th style="text-align: left">RNN</th>
-          <th style="text-align: left">LSTM</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>기억 능력</strong></td>
-          <td style="text-align: left">* 과거 정보를 짧게 기억</td>
-          <td style="text-align: left">* RNN 보다는 과거 정보를 길게 기억 가능</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>구조</strong></td>
-          <td style="text-align: left">* 현재 상태와 입력값을 받아 Hidden State(현재 상태)를 통해 출력<br>* tanh 함수로 단순 계산</td>
-          <td style="text-align: left">* Cell State(기억 저장소, 장기 상태)와 Gate를 활용하여 상태 출력<br>* Forget/Input/Output Gate로 정보 조절<br>* 계산량이 많고, RNN보다 학습 시간이 길어짐</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>한계점</strong></td>
-          <td style="text-align: left">* 어느 정도 과거를 기억하지만, 긴 시퀀스 학습 어려움 (Vanishing Gradient)<br>* 시간 순서 의존 $\rightarrow$ 연산 속도 느림 (병렬처리 한계)</td>
-          <td style="text-align: left">* 계산량이 많고, 긴 시퀀스에서 목적을 달성하기 어려움<br>* 시간 순서 의존 $\rightarrow$ 연산 속도 느림 (병렬처리 한계)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>설명</strong></td>
-          <td style="text-align: left">* 순간순간 정보를 이어가는 방식</td>
-          <td style="text-align: left">* 순간순간 정보를 이어가는 방식에 더해<br>* 중요한 정보를 따로 저장하는 기억 저장소(Cell)를 통해 과거 중요한 정보를 오래 활용할 수 있도록 함</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">구분</th>
+					<th style="text-align: left">RNN</th>
+					<th style="text-align: left">LSTM</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>기억 능력</strong></td>
+					<td style="text-align: left">* 과거 정보를 짧게 기억</td>
+					<td style="text-align: left">* RNN 보다는 과거 정보를 길게 기억 가능</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>구조</strong></td>
+					<td style="text-align: left">* 현재 상태와 입력값을 받아 Hidden State(현재 상태)를 통해 출력<br>* tanh 함수로 단순 계산</td>
+					<td style="text-align: left">* Cell State(기억 저장소, 장기 상태)와 Gate를 활용하여 상태 출력<br>* Forget/Input/Output Gate로 정보 조절<br>* 계산량이 많고, RNN보다 학습 시간이 길어짐</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>한계점</strong></td>
+					<td style="text-align: left">* 어느 정도 과거를 기억하지만, 긴 시퀀스 학습 어려움 (Vanishing Gradient)<br>* 시간 순서 의존 $\rightarrow$ 연산 속도 느림 (병렬처리 한계)</td>
+					<td style="text-align: left">* 계산량이 많고, 긴 시퀀스에서 목적을 달성하기 어려움<br>* 시간 순서 의존 $\rightarrow$ 연산 속도 느림 (병렬처리 한계)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>설명</strong></td>
+					<td style="text-align: left">* 순간순간 정보를 이어가는 방식</td>
+					<td style="text-align: left">* 순간순간 정보를 이어가는 방식에 더해<br>* 중요한 정보를 따로 저장하는 기억 저장소(Cell)를 통해 과거 중요한 정보를 오래 활용할 수 있도록 함</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <br>

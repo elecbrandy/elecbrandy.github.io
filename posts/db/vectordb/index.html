@@ -171,45 +171,45 @@
 <p>데이터베이스(DB)는 본질적으로 정보를 체계적으로 저장하고, 필요할 때 원하는 데이터를 빠르게 추출하기 위해 정리된 창고와 같다. IT 기술이 발전함에 따라 데이터의 형태가 단순한 텍스트와 숫자에서 복잡한 비정형 데이터로 확장되었고, 이에 맞춰 DB의 패러다임도 관계형 데이터베이스(RDB)에서 도큐먼트 DB(Document DB), 그리고 최근의 벡터 DB(Vector DB)로 진화해 왔다.</p>
 <br>
 <table>
-  <thead>
-      <tr>
-          <th>구분</th>
-          <th>Relatioinal DB</th>
-          <th>Document DB</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>등장 배경</td>
-          <td>정형 데이터, 트랜잭션 중심 업무</td>
-          <td>비정형/반정형 데이터 증가</td>
-      </tr>
-      <tr>
-          <td>데이터 관리</td>
-          <td>정규화로 중복 최소화</td>
-          <td>중복 허용 (읽기 성능 우선)</td>
-      </tr>
-      <tr>
-          <td>처리 가능한 질문</td>
-          <td>값의 존재와 value</td>
-          <td>값의 존재</td>
-      </tr>
-      <tr>
-          <td>검색 기준</td>
-          <td>정확히 값은 값 (컬럼 값 비교)</td>
-          <td>정확히 같은 값 (필드 값 비교)</td>
-      </tr>
-      <tr>
-          <td>스키마</td>
-          <td>정해진 구조</td>
-          <td>유연한 구조</td>
-      </tr>
-      <tr>
-          <td>데이터 형태</td>
-          <td>테이블</td>
-          <td>문서</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>구분</th>
+					<th>Relatioinal DB</th>
+					<th>Document DB</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>등장 배경</td>
+					<td>정형 데이터, 트랜잭션 중심 업무</td>
+					<td>비정형/반정형 데이터 증가</td>
+			</tr>
+			<tr>
+					<td>데이터 관리</td>
+					<td>정규화로 중복 최소화</td>
+					<td>중복 허용 (읽기 성능 우선)</td>
+			</tr>
+			<tr>
+					<td>처리 가능한 질문</td>
+					<td>값의 존재와 value</td>
+					<td>값의 존재</td>
+			</tr>
+			<tr>
+					<td>검색 기준</td>
+					<td>정확히 값은 값 (컬럼 값 비교)</td>
+					<td>정확히 같은 값 (필드 값 비교)</td>
+			</tr>
+			<tr>
+					<td>스키마</td>
+					<td>정해진 구조</td>
+					<td>유연한 구조</td>
+			</tr>
+			<tr>
+					<td>데이터 형태</td>
+					<td>테이블</td>
+					<td>문서</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <br>
@@ -219,35 +219,35 @@
 <p>기존 DB 설계가 잘못되었다라는 것이 아니라, LLM의 등장으로 데이터 비교 기준의 변화가 일어났다. 즉, 단순히 특정 값의 존재와 value에서 뛰어났던 SQL/NoSQL에서 <code>앞선 대화에서 그 값의 의미는 무엇인가?</code> 등의 사용자 쿼리로 변화가 일어난 것이다.</p>
 <br>
 <table>
-  <thead>
-      <tr>
-          <th>구분</th>
-          <th>기존 DB</th>
-          <th>Vector DB</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>목적</strong></td>
-          <td><strong>값</strong>을 저장하고 비교하는 시스템</td>
-          <td><strong>의미를 숫자로</strong> 저장하고 비교하는 시스템</td>
-      </tr>
-      <tr>
-          <td><strong>데이터 관리</strong></td>
-          <td>값 (숫자, 문자열)</td>
-          <td>벡터 (숫자 배열)</td>
-      </tr>
-      <tr>
-          <td><strong>처리 가능한 질문</strong></td>
-          <td>값이 있는가? 값이 같은가?</td>
-          <td>얼마나 비슷한가?</td>
-      </tr>
-      <tr>
-          <td><strong>검색 기준</strong></td>
-          <td>정확히 같은 <strong>값</strong></td>
-          <td><strong>의미적으로 유사한 데이터</strong> (거리 계산)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>구분</th>
+					<th>기존 DB</th>
+					<th>Vector DB</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>목적</strong></td>
+					<td><strong>값</strong>을 저장하고 비교하는 시스템</td>
+					<td><strong>의미를 숫자로</strong> 저장하고 비교하는 시스템</td>
+			</tr>
+			<tr>
+					<td><strong>데이터 관리</strong></td>
+					<td>값 (숫자, 문자열)</td>
+					<td>벡터 (숫자 배열)</td>
+			</tr>
+			<tr>
+					<td><strong>처리 가능한 질문</strong></td>
+					<td>값이 있는가? 값이 같은가?</td>
+					<td>얼마나 비슷한가?</td>
+			</tr>
+			<tr>
+					<td><strong>검색 기준</strong></td>
+					<td>정확히 같은 <strong>값</strong></td>
+					<td><strong>의미적으로 유사한 데이터</strong> (거리 계산)</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <h3 id="2-2-머신과-텍스트">2-2. 머신과 텍스트</h3>
@@ -337,40 +337,40 @@
 </span></span><span style="display:flex;"><span> <span style="color:#f92672">(</span>포인트 방향<span style="color:#f92672">)</span>
 </span></span></code></pre></div><p>이렇게 벡터 DB는 단순한 수치 저장소가 아니라, 의미 기반 유사도 검색을 위해 설계된 특화 구조를 가진다.</p>
 <table>
-  <thead>
-      <tr>
-          <th>구성 요소</th>
-          <th>상세 내용</th>
-          <th>RDB 대응 개념</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Collection</strong></td>
-          <td>벡터들을 그룹화한 저장 단위</td>
-          <td><strong>Table</strong></td>
-      </tr>
-      <tr>
-          <td><strong>Point</strong></td>
-          <td>벡터 하나의 데이터 단위 (ID, Vector, Payload로 구성)</td>
-          <td><strong>Row</strong></td>
-      </tr>
-      <tr>
-          <td><strong>ID</strong></td>
-          <td>각 Point를 식별하는 고유값 (주로 UUID)</td>
-          <td><strong>Primary Key</strong></td>
-      </tr>
-      <tr>
-          <td><strong>Vector</strong></td>
-          <td>다차원 수치 임베딩 데이터</td>
-          <td><strong>Field Data</strong></td>
-      </tr>
-      <tr>
-          <td><strong>Metadata</strong></td>
-          <td>벡터에 부가된 설명 정보 (필터링용)</td>
-          <td><strong>Column</strong></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>구성 요소</th>
+					<th>상세 내용</th>
+					<th>RDB 대응 개념</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Collection</strong></td>
+					<td>벡터들을 그룹화한 저장 단위</td>
+					<td><strong>Table</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Point</strong></td>
+					<td>벡터 하나의 데이터 단위 (ID, Vector, Payload로 구성)</td>
+					<td><strong>Row</strong></td>
+			</tr>
+			<tr>
+					<td><strong>ID</strong></td>
+					<td>각 Point를 식별하는 고유값 (주로 UUID)</td>
+					<td><strong>Primary Key</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Vector</strong></td>
+					<td>다차원 수치 임베딩 데이터</td>
+					<td><strong>Field Data</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Metadata</strong></td>
+					<td>벡터에 부가된 설명 정보 (필터링용)</td>
+					<td><strong>Column</strong></td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <h3 id="3-4-벡터-검색과-코사인-유사도">3-4. 벡터 검색과 코사인 유사도</h3>
@@ -390,52 +390,52 @@ Embedding을 사람이 직접 관찰하고 그 의미를 파악하기는 어려�
 현업에서는 상용 모델을 사용하는 경우도 있고, 오픈소스 모델을 로컬로 내려서 사용하는 경우도 있다.
 아래 표는 다양한 Embedding 모델의 특징을 정리한 것이다.</p>
 <table>
-  <thead>
-      <tr>
-          <th>구분</th>
-          <th>OpenAI Embedding</th>
-          <th>Cohere Embedding</th>
-          <th>Upstage Embedding</th>
-          <th>SBERT / E5 계열</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>특징</strong></td>
-          <td>글로벌 범용, 기준이 되는 임베딩</td>
-          <td>검색 특화</td>
-          <td>한국어 특화</td>
-          <td>오픈소스, 목적이 드러나는 임베딩</td>
-      </tr>
-      <tr>
-          <td><strong>학습 데이터</strong></td>
-          <td>WEB, Q&amp;A, 기술문서, 대화체 혼합</td>
-          <td>검색 쿼리 – 문서 페어</td>
-          <td>뉴스, 리포트, 업무 문서</td>
-          <td>QA, retrieval, paraphrase</td>
-      </tr>
-      <tr>
-          <td><strong>임베딩 성향</strong></td>
-          <td>고차원</td>
-          <td>중간 수준</td>
-          <td>비교적 적은 수준</td>
-          <td>중간 수준</td>
-      </tr>
-      <tr>
-          <td><strong>검색 특징</strong></td>
-          <td>개념 중심 설명 문서가 상위에 노출되는 경향</td>
-          <td>질문 의도에 맞는 결과, 질문-답변 관계가 명확하지 않은 문서에는 불리</td>
-          <td>실제 문서/사례 중심, 범용 질문에서 과도한 제한 (문서 문맥 우선)</td>
-          <td>목적에 맞는 정밀 검색 가능, 학습 목적과 다른 질의 대응 어려움</td>
-      </tr>
-      <tr>
-          <td><strong>대표 모델</strong></td>
-          <td>text-embedding-3-large, text-embedding-3-small</td>
-          <td>Embed-multilingual-v3.0</td>
-          <td>solar-embedding-1-large, solar-embedding-1-small</td>
-          <td>e5-large, e5-small, mpnet</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>구분</th>
+					<th>OpenAI Embedding</th>
+					<th>Cohere Embedding</th>
+					<th>Upstage Embedding</th>
+					<th>SBERT / E5 계열</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>특징</strong></td>
+					<td>글로벌 범용, 기준이 되는 임베딩</td>
+					<td>검색 특화</td>
+					<td>한국어 특화</td>
+					<td>오픈소스, 목적이 드러나는 임베딩</td>
+			</tr>
+			<tr>
+					<td><strong>학습 데이터</strong></td>
+					<td>WEB, Q&amp;A, 기술문서, 대화체 혼합</td>
+					<td>검색 쿼리 – 문서 페어</td>
+					<td>뉴스, 리포트, 업무 문서</td>
+					<td>QA, retrieval, paraphrase</td>
+			</tr>
+			<tr>
+					<td><strong>임베딩 성향</strong></td>
+					<td>고차원</td>
+					<td>중간 수준</td>
+					<td>비교적 적은 수준</td>
+					<td>중간 수준</td>
+			</tr>
+			<tr>
+					<td><strong>검색 특징</strong></td>
+					<td>개념 중심 설명 문서가 상위에 노출되는 경향</td>
+					<td>질문 의도에 맞는 결과, 질문-답변 관계가 명확하지 않은 문서에는 불리</td>
+					<td>실제 문서/사례 중심, 범용 질문에서 과도한 제한 (문서 문맥 우선)</td>
+					<td>목적에 맞는 정밀 검색 가능, 학습 목적과 다른 질의 대응 어려움</td>
+			</tr>
+			<tr>
+					<td><strong>대표 모델</strong></td>
+					<td>text-embedding-3-large, text-embedding-3-small</td>
+					<td>Embed-multilingual-v3.0</td>
+					<td>solar-embedding-1-large, solar-embedding-1-small</td>
+					<td>e5-large, e5-small, mpnet</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <h3 id="4-2-embedding의-단위">4-2. Embedding의 단위</h3>
@@ -608,59 +608,59 @@ Graph 구조로 벡터가 가까운 이웃 벡터들과 연결되도록 구성�
 <br>
 <h4 id="표로-정리해보자면">표로 정리해보자면</h4>
 <table>
-  <thead>
-      <tr>
-          <th>구분</th>
-          <th>Flat</th>
-          <th>IVF</th>
-          <th>HNSW</th>
-          <th>PQ</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>특징</strong></td>
-          <td>모든 벡터와 직접 거리 계산 (Exhaustive Search)</td>
-          <td>벡터를 클러스터링 한 후에 해당 클러스터 내에서만 탐색</td>
-          <td>그래프 기반 탐색, 다단계 계층적 그래프 구조</td>
-          <td>벡터를 압축하여 저장, 거리 계산은 근사값</td>
-      </tr>
-      <tr>
-          <td><strong>계산</strong></td>
-          <td>Nearest Neighbor</td>
-          <td>ANN</td>
-          <td>ANN</td>
-          <td>ANN</td>
-      </tr>
-      <tr>
-          <td><strong>적합한 경우</strong></td>
-          <td>소형 테스트 시 유용</td>
-          <td>중~대규모 데이터셋</td>
-          <td>실시간 검색, 정밀도-속도 균형 고려</td>
-          <td>모바일, 임베디드 환경</td>
-      </tr>
-      <tr>
-          <td><strong>장점</strong></td>
-          <td>정확도 100%, 정확한 최근접 이웃</td>
-          <td>속도 빠름, 검색 공간 축소</td>
-          <td>빠른 검색, 정밀도 높음</td>
-          <td>빠른 근사 검색, 저장공간 절감</td>
-      </tr>
-      <tr>
-          <td><strong>단점</strong></td>
-          <td>속도 느림, 대규모 처리 비효율</td>
-          <td>정밀도 저하, nprobe 조절하여 속도/정확도 균형 조정 가능</td>
-          <td>인덱스 구축에 메모리 소모, 벡터 삽입 느림</td>
-          <td>정확도 저하, 압축 따른 정보 손실</td>
-      </tr>
-      <tr>
-          <td><strong>예시</strong></td>
-          <td>FAISS (feat. Scikit-learn)</td>
-          <td>Pinecone, FAISS, Milvus</td>
-          <td>Qdrant, Weaviate, Vespa.ai</td>
-          <td>FAISS, Annoy (Spotify)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>구분</th>
+					<th>Flat</th>
+					<th>IVF</th>
+					<th>HNSW</th>
+					<th>PQ</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>특징</strong></td>
+					<td>모든 벡터와 직접 거리 계산 (Exhaustive Search)</td>
+					<td>벡터를 클러스터링 한 후에 해당 클러스터 내에서만 탐색</td>
+					<td>그래프 기반 탐색, 다단계 계층적 그래프 구조</td>
+					<td>벡터를 압축하여 저장, 거리 계산은 근사값</td>
+			</tr>
+			<tr>
+					<td><strong>계산</strong></td>
+					<td>Nearest Neighbor</td>
+					<td>ANN</td>
+					<td>ANN</td>
+					<td>ANN</td>
+			</tr>
+			<tr>
+					<td><strong>적합한 경우</strong></td>
+					<td>소형 테스트 시 유용</td>
+					<td>중~대규모 데이터셋</td>
+					<td>실시간 검색, 정밀도-속도 균형 고려</td>
+					<td>모바일, 임베디드 환경</td>
+			</tr>
+			<tr>
+					<td><strong>장점</strong></td>
+					<td>정확도 100%, 정확한 최근접 이웃</td>
+					<td>속도 빠름, 검색 공간 축소</td>
+					<td>빠른 검색, 정밀도 높음</td>
+					<td>빠른 근사 검색, 저장공간 절감</td>
+			</tr>
+			<tr>
+					<td><strong>단점</strong></td>
+					<td>속도 느림, 대규모 처리 비효율</td>
+					<td>정밀도 저하, nprobe 조절하여 속도/정확도 균형 조정 가능</td>
+					<td>인덱스 구축에 메모리 소모, 벡터 삽입 느림</td>
+					<td>정확도 저하, 압축 따른 정보 손실</td>
+			</tr>
+			<tr>
+					<td><strong>예시</strong></td>
+					<td>FAISS (feat. Scikit-learn)</td>
+					<td>Pinecone, FAISS, Milvus</td>
+					<td>Qdrant, Weaviate, Vespa.ai</td>
+					<td>FAISS, Annoy (Spotify)</td>
+			</tr>
+	</tbody>
 </table>
 <br>
 <br>
