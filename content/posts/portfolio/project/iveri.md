@@ -1,7 +1,7 @@
 +++
 title = 'AI Agent 기반 기업 Compliance 솔루션: i-veri'
 date = '2026-07-01'
-featured_image = "https://i.namu.wiki/i/BWyG5oPbxZ_pKwRjYVwVwiffq4eGgSdpb8cPAOUFUjK-LlnVXE888oSuyJhBQVFzPFuDAA3K9fIhjXwPU7SGQmF8sxgeGnAH2K00CfRI-TlAuHK2EYWoDbkYgAsjrHm77R1aH54HfG6p3t_4Ljqt5jog2HCLze3QbwNsFi3tldY.webp"
+featured_image = "https://kiha21.or.kr/wp-content/uploads/kboard_attached/30/202005/5ec343cb919e92073491.png"
 +++
 
 <br>
