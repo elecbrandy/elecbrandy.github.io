@@ -2,10 +2,10 @@
 title = 'Spring Boot Boilerplate'
 date = 2026-02-04
 featured_image = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/330px-Spring_Boot.svg.png"
-tags = ['skala','springboot','java']
+tags = ['skala','spring']
 +++
 
-{{<series title="🍀 Spring Boot: Boilerplate 개발" series="boilerpate">}}
+{{<series title="🍀 Spring Boot Boilerplate" series="boilerplate">}}
 
 <br>
 
@@ -45,7 +45,7 @@ tags = ['skala','springboot','java']
 <br>
 <br>
 
-{{<series title="🍀 Spring Boot: Boilerplate 개발" series="boilerpate">}}
+{{<series title="🍀 Spring Boot Boilerplate" series="boilerplate">}}
 
 <br>
 <br>

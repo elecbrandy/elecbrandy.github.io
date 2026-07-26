@@ -5,7 +5,7 @@ featured_image = "https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_sh
 tags = ['algorithm']
 +++
 
-{{<series title="📚 /algorithm" series="algorithm">}}
+{{<series title="📚 algorithm" series="algorithm">}}
 
 <br>
 
@@ -173,7 +173,7 @@ C++ STL에서도 이 알고리즘을 `std::nth_element` 라는 이름으로 제�
 <br>
 <br>
 
-{{<series title="📚 /algorithm" series="algorithm">}}
+{{<series title="📚 algorithm" series="algorithm">}}
 
 <br>
 <br>

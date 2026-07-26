@@ -5,7 +5,6 @@ featured_image = "https://zrr.kr/XQ8OAd"
 tags = ['skala','ai']
 +++
 
-{{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
 <br>
 
@@ -92,7 +91,6 @@ tags = ['skala','ai']
 <br>
 <br>
 
-{{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
 <br>
 <br>

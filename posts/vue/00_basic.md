@@ -2,7 +2,7 @@
 title = 'Vue.js(1) basic'
 date = 2026-02-02
 featured_image = "https://cdn.devdojo.com/images/May2015/vue.js.jpg?auto=format&q=70&w=1280"
-tags = ['vue.js']
+tags = ['vue']
 draft=true
 +++
 

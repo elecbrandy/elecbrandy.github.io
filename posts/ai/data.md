@@ -5,7 +5,6 @@ featured_image = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Stan
 tags = ['skala','python']
 +++
 
-{{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
 <br>
 
@@ -22,7 +21,6 @@ skala 2일차.. 전공에서 공부했던 기초통계를 다시 톺아보는 �
 <br>
 <br>
 
-{{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
 <br>
 <br>

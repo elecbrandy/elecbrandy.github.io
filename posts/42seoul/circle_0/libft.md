@@ -1,11 +1,11 @@
 +++
-title = '[42seoul] libft'
+title = 'libft'
 date = 2023-11-03
 featured_image = "http://t1.daumcdn.net/cfile/116C5A10B09188A10A"
 tags = ['c', '42seoul']
 +++
 
-{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
+{{<series title="📚 42seoul" series="42seoul">}}
 
 <br>
 

@@ -2,7 +2,7 @@
 title = 'Spring Security와 JWT 인증'
 date = 2026-02-09
 featured_image = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/330px-Spring_Boot.svg.png"
-tags = ['skala','springboot']
+tags = ['skala','spring']
 +++
 
 <br>

@@ -5,7 +5,7 @@ featured_image = "https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_sh
 tags = ['algorithm']
 +++
 
-{{<series title="📚 /algorithm 시리즈" series="algorithm">}}
+{{<series title="📚 algorithm" series="algorithm">}}
 
 <br>
 
@@ -240,7 +240,7 @@ $$
 <br>
 <br>
 
-{{<series title="📚 /algorithm 시리즈" series="algorithm">}}
+{{<series title="📚 algorithm" series="algorithm">}}
 
 <br>
 <br>

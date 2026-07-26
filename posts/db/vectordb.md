@@ -5,7 +5,6 @@ featured_image = "https://images.contentstack.io/v3/assets/blt7151619cb9560896/b
 tags = ['ai','skala']
 +++
 
-{{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
 <br>
 
@@ -406,7 +405,6 @@ AI 서비스 개발 중 마주칠 수 있는 VectorDB에 대해서 정리해보�
 <br>
 <br>
 
-{{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
 <br>
 <br>

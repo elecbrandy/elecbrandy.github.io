@@ -2,10 +2,9 @@
 title = 'Docker Container'
 date = 2026-03-18
 featured_image = "https://cdn.idaegu.com/news/photo/201902/361449_1.jpg"
-tags = ['skala','docker','cloud']
+tags = ['skala','docker']
 +++
 
-{{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
 <br>
 

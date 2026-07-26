@@ -2,7 +2,7 @@
 title = 'JWT'
 date = 2026-02-08
 featured_image = "https://tecoble.techcourse.co.kr/static/408d754c1376bb22579b82422d439f83/00419/jwt.avif"
-tags = ['dev101','springboot']
+tags = ['dev101','spring']
 +++
 
 <br>

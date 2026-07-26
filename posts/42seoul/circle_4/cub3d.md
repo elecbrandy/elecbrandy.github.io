@@ -1,11 +1,11 @@
 +++
-title = '[42seoul] cub3d'
+title = 'cub3d'
 date = 2024-08-20
 featured_image = "https://upload.wikimedia.org/wikipedia/en/d/de/Doom_ingame_1.png"
-tags = ['C', '42seoul']
+tags = ['c', '42seoul']
 +++
 
-{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
+{{<series title="📚 42seoul" series="42seoul">}}
 
 <br>
 

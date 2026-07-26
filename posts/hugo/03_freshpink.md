@@ -5,7 +5,7 @@ featured_image = "https://i.imgur.com/URQWyyY.png"
 tags = ['hugo']
 +++
 
-{{<series title="📚 /Hugo 블로그 만들기" series="hugo" >}}
+{{<series title="📚 Hugo 블로그 만들기" series="hugo" >}}
 
 <br>
 
@@ -155,7 +155,7 @@ items:
 
 #### 시리즈 토글 예시
 
-{{< series title="📚 /hugo 튜토리얼" series="hugo" >}}
+{{< series title="📚 Hugo 블로그 만들기" series="hugo" >}}
 
 <br>
 <br>
@@ -174,7 +174,7 @@ items:
 <br>
 <br>
 
-{{<series title="📚 /Hugo 블로그 만들기" series="hugo" >}}
+{{<series title="📚 Hugo 블로그 만들기" series="hugo" >}}
 
 <br>
 <br>

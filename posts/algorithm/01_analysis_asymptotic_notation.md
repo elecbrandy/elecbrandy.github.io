@@ -5,7 +5,7 @@ featured_image = "https://i.programmerhumor.io/2022/03/programmerhumor-io-databa
 tags = ['algorithm']
 +++
 
-{{<series title="📚 /algorithm" series="algorithm">}}
+{{<series title="📚 algorithm" series="algorithm">}}
 
 <br>
 
@@ -322,7 +322,7 @@ $$
 <br>
 <br>
 
-{{<series title="📚 /algorithm" series="algorithm">}}
+{{<series title="📚 algorithm" series="algorithm">}}
 
 <br>
 <br>

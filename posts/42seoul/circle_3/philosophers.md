@@ -1,11 +1,11 @@
 +++
-title = '[42seoul] philosopers'
+title = 'philosophers'
 date = 2024-08-05
 featured_image = "https://i.imgur.com/QOMTZ7P.png"
 tags = ['c', '42seoul']
 +++
 
-{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
+{{<series title="📚 42seoul" series="42seoul">}}
 
 <br>
 

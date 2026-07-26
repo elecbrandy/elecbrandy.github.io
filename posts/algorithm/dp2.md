@@ -1,8 +1,8 @@
 +++
-title = '[42cursus] ft_printf'
+title = 'DP (2)'
 date = 2023-11-15
 featured_image = "http://t1.daumcdn.net/cfile/146B7E10B091A05214"
-tags = ['c', '42cursus']
+tags = ['algorithm']
 draft = true
 +++
 

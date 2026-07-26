@@ -6,7 +6,7 @@ tags = ['algorithm', 'cpp', 'dfs']
 draft=true
 +++
 
-{{<series title="📚 /algorithm" series="algorithm">}}
+{{<series title="📚 algorithm" series="algorithm">}}
 
 <br>
 

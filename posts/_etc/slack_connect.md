@@ -1,12 +1,12 @@
 +++
-title = '[hugo] spring boot 기반 slack bot'
+title = 'Spring Boot 기반 Slack Bot'
 date = 2025-05-09
 featured_image = "https://gohugo.io/images/hugo-logo-wide.svg"
 tags = ['hugo']
 draft = true
 +++
 
-{{<series title="📚 /hugo 튜토리얼" series="hugo" >}}
+{{<series title="📚 Hugo 블로그 만들기" series="hugo" >}}
 
 <br>
 

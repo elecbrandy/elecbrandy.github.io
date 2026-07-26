@@ -1,12 +1,12 @@
 +++
-title = '[알고리즘] 알고리즘 분석'
+title = '알고리즘 분석'
 date = 2024-09-20
 featured_image = "https://ih1.redbubble.net/image.1502642451.8092/st,small,507x507-pad,600x600,f8f8f8.jpg"
 tags = ['algorithm']
 draft = true
 +++
 
-{{<series title="📚 /algorithm" series="algorithm">}}
+{{<series title="📚 algorithm" series="algorithm">}}
 
 <br>
 
@@ -60,7 +60,7 @@ ____
 ## 3. 점근적 접근 방법
 ____
 
-<a href="https://elecbrandy.github.io/tags/42cursus"> Asymptotic Notation </a>
+<a href="/tags/algorithm"> Asymptotic Notation </a>
 
 <br>
 <br>
@@ -69,7 +69,7 @@ ____
 ## 4. 재귀적 접근 방법
 ____
 
-<a href="https://elecbrandy.github.io/tags/42cursus">  Recurrence Relation </a>
+<a href="/tags/algorithm">  Recurrence Relation </a>
 
 <br>
 <br>

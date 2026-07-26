@@ -142,7 +142,7 @@ function loadPost(absPath: string): Post | null {
 
 /* ---------- 숏코드 → HTML ---------- */
 
-function preprocess(body: string, post: Post, seriesMap: Map<string, Post[]>): string {
+function preprocess(body: string, post: Post, seriesMap: Map<string, Post[]>, md: MarkdownIt): string {
   // 코드펜스(```) 안은 건드리지 않도록 분리해서 처리
   return body
     .split(/(```[\s\S]*?```)/g)
@@ -168,6 +168,11 @@ function preprocess(body: string, post: Post, seriesMap: Map<string, Post[]>): s
       // 알림 박스
       out = out.replace(/\{\{<\s*alert\s*>\}\}/g, `<div class="callout">💡<div>`);
       out = out.replace(/\{\{<\s*\/alert\s*>\}\}/g, `</div></div>`);
+      // 노션식 토글: `>! 제목` + 이어지는 `>` 줄들 → <details> 아코디언 (빈 줄이 나오면 종료)
+      out = out.replace(/^>![ \t]*(.*)\r?\n((?:^>.*(?:\r?\n|$))*)/gm, (_m, title: string, quoted: string) => {
+        const inner = quoted.replace(/^> ?/gm, "");
+        return `<details class="toggle"><summary>${md.renderInline(title.trim())}</summary>\n\n${inner}\n</details>\n\n`;
+      });
       // 공백 낀 인라인 수식 정규화: `$ x $` → `$x$` (안 하면 $ 짝이 밀려 본문이 수식으로 렌더링됨)
       out = out.replace(/\$ +([^$\n]+?) +\$/g, (_m, expr: string) => `$${"" + expr}$`);
       return out;
@@ -263,7 +268,7 @@ async function main() {
 
   let usesMath = false;
   for (const p of posts) {
-    const html = md.render(preprocess(p.body, p, seriesMap));
+    const html = md.render(preprocess(p.body, p, seriesMap, md));
     p.html = html;
     const math = html.includes("katex");
     usesMath ||= math;

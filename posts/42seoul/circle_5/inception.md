@@ -1,11 +1,11 @@
 +++
-title = '[42seoul] inception'
+title = 'inception'
 date = 2025-01-27
 featured_image = "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/07/cobb-s-totem-in-inception.jpg?q=49&fit=crop&w=750&h=422&dpr=2"
 tags = ['docker', '42seoul']
 +++
 
-{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
+{{<series title="📚 42seoul" series="42seoul">}}
 
 <br>
 

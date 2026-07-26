@@ -6,7 +6,6 @@ tags = ['skala','ai']
 draft=true
 +++
 
-{{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
 <br>
 
@@ -95,7 +94,6 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
 <br>
 <br>
 
-{{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
 <br>
 <br>

@@ -5,7 +5,7 @@ featured_image = "https://substackcdn.com/image/fetch/$s_!1oOq!,f_auto,q_auto:go
 tags = ['algorithm']
 +++
 
-{{<series title="📚 /algorithm" series="algorithm">}}
+{{<series title="📚 algorithm" series="algorithm">}}
 
 <br>
 
@@ -322,7 +322,7 @@ $$
 <br>
 <br>
 
-{{<series title="📚 /algorithm" series="algorithm">}}
+{{<series title="📚 algorithm" series="algorithm">}}
 
 <br>
 <br>

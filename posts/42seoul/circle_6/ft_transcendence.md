@@ -1,11 +1,11 @@
 +++
-title = '[42seoul] ft_transcendence'
+title = 'ft_transcendence'
 date = 2025-03-22
 featured_image = "https://img.khan.co.kr/news/2021/09/06/l_2021090701000718800062862.webp"
 tags = ['javascript', 'docker', '42seoul']
 +++
 
-{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
+{{<series title="📚 42seoul" series="42seoul">}}
 
 <br>
 

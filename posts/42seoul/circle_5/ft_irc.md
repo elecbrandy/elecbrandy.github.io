@@ -1,11 +1,11 @@
 +++
-title = '[42seoul] ft_irc'
+title = 'ft_irc'
 date = '2024-11-20'
 featured_image = "https://www.shutterstock.com/ko/blog/wp-content/uploads/sites/17/2020/09/showing-text-banner.jpg"
 tags = ['c', '42seoul']
 +++
 
-{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
+{{<series title="📚 42seoul" series="42seoul">}}
 
 <br>
 

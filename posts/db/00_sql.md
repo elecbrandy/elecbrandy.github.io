@@ -1,4 +1,4 @@
-
+# SQL & 데이터 모델링 노트
 
 트랜잭션 all or nothing
 

@@ -5,7 +5,6 @@ featured_image = "http://t1.daumcdn.net/movie/171980d2cd9344808580f4fc0cb65e1515
 tags = ['ai','skala']
 +++
 
-{{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
 <br>
 
@@ -302,7 +301,6 @@ Reranker 이후: Top-5
 <br>
 <br>
 
-{{<series title="🦋 SKALA: SK AX AI Leader Academy" series="skala">}}
 
 <br>
 <br>

@@ -2,7 +2,7 @@
 title = 'Spring Boot 면접 준비'
 date = 2026-07-15
 featured_image = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/330px-Spring_Boot.svg.png"
-tags = ['java','dev101']
+tags = ['java','spring']
 +++
 
 ## 1. 소개

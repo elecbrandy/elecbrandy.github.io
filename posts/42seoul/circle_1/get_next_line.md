@@ -1,11 +1,11 @@
 +++
-title = '[42seoul] get_next_line'
+title = 'get_next_line'
 date = 2023-12-18
 featured_image = "http://t1.daumcdn.net/cfile/15110210A8445BF80D"
 tags = ['c', '42seoul']
 +++
 
-{{<series title="📚 /42seoul 시리즈" series="42seoul">}}
+{{<series title="📚 42seoul" series="42seoul">}}
 
 <br>
 
