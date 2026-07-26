@@ -62,7 +62,16 @@ function parseFrontmatter(src: string): { data: Record<string, unknown>; content
   return { data: {}, content: src };
 }
 
+const gitDateCache = new Map<string, Date | null>(); // --serve 재빌드 시 git 재호출 방지
+
 function gitFirstCommitDate(absPath: string): Date | null {
+  if (gitDateCache.has(absPath)) return gitDateCache.get(absPath)!;
+  const date = gitFirstCommitDateUncached(absPath);
+  gitDateCache.set(absPath, date);
+  return date;
+}
+
+function gitFirstCommitDateUncached(absPath: string): Date | null {
   try {
     const out = execFileSync(
       "git",
@@ -216,9 +225,9 @@ function extractToc(html: string): TocItem[] {
 
 /* ---------- 메인 ---------- */
 
-async function main() {
-  const t0 = Date.now();
+let buildVersion = String(Date.now()); // --serve 라이브 리로드용
 
+async function main() {
   const md = MarkdownIt({ html: true, linkify: true });
   md.use(
     await Shiki({
@@ -229,6 +238,17 @@ async function main() {
   );
   md.use(texmath, { engine: katex, delimiters: "dollars" });
   md.use(headingIds);
+
+  runBuild(md);
+
+  if (process.argv.includes("--serve")) {
+    serve();
+    watchAndRebuild(md);
+  }
+}
+
+function runBuild(md: MarkdownIt) {
+  const t0 = Date.now();
 
   // 1) 글 수집
   const posts = walkMd(POSTS_DIR)
@@ -320,11 +340,34 @@ async function main() {
   }
   fs.writeFileSync(path.join(DIST, ".nojekyll"), "");
 
+  buildVersion = String(Date.now());
   console.log(`✓ ${posts.length}개 글, ${tagMap.size}개 태그 — ${Date.now() - t0}ms`);
-
-  // 4) --serve
-  if (process.argv.includes("--serve")) serve();
 }
+
+/* ---------- 개발 서버 (--serve): 파일 감시 + 라이브 리로드 ---------- */
+
+function watchAndRebuild(md: MarkdownIt) {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const trigger = (name: string) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      console.log(`↻ ${name} 변경 감지`);
+      try {
+        runBuild(md);
+      } catch (e) {
+        console.error("빌드 실패:", (e as Error).message);
+      }
+    }, 300);
+  };
+  fs.watch(POSTS_DIR, { recursive: true }, (_e, fn) => fn?.endsWith(".md") && trigger(fn));
+  fs.watch(ROOT, (_e, fn) => (fn === "about.md" || fn === "home.md") && trigger(fn));
+  fs.watch(path.join(ROOT, "src"), (_e, fn) => fn === "style.css" && trigger(fn!));
+  console.log("… posts/, about.md, home.md, src/style.css 감시 중 (저장하면 자동 반영)");
+}
+
+// 서빙되는 HTML에만 주입 (dist 파일은 그대로): 1초마다 빌드 버전을 확인해 바뀌면 새로고침
+const LIVERELOAD =
+  `<script>(function(){var v=null;setInterval(function(){fetch("/__version").then(function(r){return r.text()}).then(function(t){if(v===null)v=t;else if(t!==v)location.reload()}).catch(function(){})},1000)})();</script>`;
 
 function serve(port = 4321) {
   const types: Record<string, string> = {
@@ -334,11 +377,20 @@ function serve(port = 4321) {
   };
   http
     .createServer((req, res) => {
-      let p = decodeURIComponent((req.url ?? "/").split("?")[0]);
+      const p = decodeURIComponent((req.url ?? "/").split("?")[0]);
+      if (p === "/__version") {
+        res.writeHead(200, { "content-type": "text/plain" }).end(buildVersion);
+        return;
+      }
       let file = path.join(DIST, p);
       if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, "index.html");
       if (!fs.existsSync(file)) {
         res.writeHead(404).end("404");
+        return;
+      }
+      if (file.endsWith(".html")) {
+        const html = fs.readFileSync(file, "utf8").replace("</body>", LIVERELOAD + "</body>");
+        res.writeHead(200, { "content-type": types[".html"] }).end(html);
         return;
       }
       res.writeHead(200, { "content-type": types[path.extname(file)] ?? "application/octet-stream" });
