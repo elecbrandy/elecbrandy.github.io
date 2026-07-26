@@ -1,31 +1,41 @@
-name: Deploy Hugo Site
+name: Deploy Blog
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch: # Actions 탭에서 수동 실행 가능
+
+permissions:
+  contents: write # gh-pages 브랜치 push용
+
+concurrency:
+  group: deploy-blog
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        submodules: true
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 프론트매터 없는 글의 날짜를 git 최초 커밋일로 추론하기 위해 전체 이력 필요
 
-    - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2
-      with:
-        hugo-version: 'latest'
-        extended: true
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
-    - name: Build
-      run: hugo --destination public
+      - name: Build
+        run: |
+          npm ci
+          npm run build
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.BLOG }}
-        publish_dir: ./public
-        keep_files: false
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          keep_files: false
