@@ -28,7 +28,6 @@
 <article class="post">
 <h1 class="post-title">RAG Evaluation</h1>
 <div class="post-meta"><time>2026-06-12</time><a class="chip" href="/tags/ai/">ai</a><a class="chip" href="/tags/skala/">skala</a></div>
-<div class="series"><details open><summary>🦋 SKALA: SK AX AI Leader Academy</summary><ol><li><a href="/posts/ai/data/">데이터 분석 개요 및 기초통계</a><time>2026-01-07</time></li><li><a href="/posts/ai/prompt_engineering/">Prompt Engineering</a><time>2026-01-12</time></li><li><a href="/posts/ai/basic_ml/">ML/DL 이해: Machine Learning</a><time>2026-01-21</time></li><li><a href="/posts/db/vectordb/">VectorDB</a><time>2026-01-22</time></li><li><a href="/posts/ai/00_basic_dl/">ML/DL 이해: Deep Learning</a><time>2026-01-23</time></li><li><a href="/posts/ai/01_basic_dl/">DL 최적화 개념 및 방법</a><time>2026-01-24</time></li><li><a href="/posts/ai/dl-cnn/">DL-CNN</a><time>2026-01-25</time></li><li><a href="/posts/ai/dl-rnn/">DL-RNN</a><time>2026-01-27</time></li><li><a href="/posts/ai/dl-lstm/">DL-LSTM</a><time>2026-01-28</time></li><li><a href="/posts/ai/dl-cv/">DL-AlexNet &amp; ResNet</a><time>2026-02-01</time></li><li><a href="/posts/cloud/docker/">Docker Container</a><time>2026-03-18</time></li><li><a href="/posts/cloud/00_k8s/">k8s (1)</a><time>2026-03-20</time></li><li><a href="/posts/cloud/01_k8s/">k8s (2)</a><time>2026-03-21</time></li><li class="current">RAG Evaluation<time>2026-06-12</time></li></ol></details></div>
 <br>
 <h2 id="1-소개">1. 소개</h2>
 <p>RAG 시스템을 평가할 때 검색 품질을 측정하는 지표로 <code>Precision@K</code>, <code>Recall@K</code>, <code>Context Precision</code>, <code>Context Recall</code>이 자주 등장한다. 이름이 비슷해서 혼동하기 쉽지만, 각 지표가 보는 관점은 다르다.</p>
@@ -285,7 +284,6 @@
 <p>특히 법령 도메인에서는 단순히 정답 chunk ID를 맞추는 것보다 최종 답변에 필요한 법적 요건, 예외, 효력 발생 시점, 적용 조건이 context에 제대로 포함되었는지가 중요하다. 따라서 <code>Recall@K</code>와 <code>Context Recall</code>을 함께 보되, 둘의 의미를 구분해서 해석해야 한다.</p>
 <br>
 <br>
-<div class="series"><details open><summary>🦋 SKALA: SK AX AI Leader Academy</summary><ol><li><a href="/posts/ai/data/">데이터 분석 개요 및 기초통계</a><time>2026-01-07</time></li><li><a href="/posts/ai/prompt_engineering/">Prompt Engineering</a><time>2026-01-12</time></li><li><a href="/posts/ai/basic_ml/">ML/DL 이해: Machine Learning</a><time>2026-01-21</time></li><li><a href="/posts/db/vectordb/">VectorDB</a><time>2026-01-22</time></li><li><a href="/posts/ai/00_basic_dl/">ML/DL 이해: Deep Learning</a><time>2026-01-23</time></li><li><a href="/posts/ai/01_basic_dl/">DL 최적화 개념 및 방법</a><time>2026-01-24</time></li><li><a href="/posts/ai/dl-cnn/">DL-CNN</a><time>2026-01-25</time></li><li><a href="/posts/ai/dl-rnn/">DL-RNN</a><time>2026-01-27</time></li><li><a href="/posts/ai/dl-lstm/">DL-LSTM</a><time>2026-01-28</time></li><li><a href="/posts/ai/dl-cv/">DL-AlexNet &amp; ResNet</a><time>2026-02-01</time></li><li><a href="/posts/cloud/docker/">Docker Container</a><time>2026-03-18</time></li><li><a href="/posts/cloud/00_k8s/">k8s (1)</a><time>2026-03-20</time></li><li><a href="/posts/cloud/01_k8s/">k8s (2)</a><time>2026-03-21</time></li><li class="current">RAG Evaluation<time>2026-06-12</time></li></ol></details></div>
 <br>
 <br>
 

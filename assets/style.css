@@ -191,6 +191,33 @@ pre {
 }
 pre code { font-size: 12.5px; }
 
+/* ---------- 노션식 토글 (>! 문법) ---------- */
+.post details.toggle {
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 4px 0;
+}
+.toggle > summary {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+.toggle > summary::-webkit-details-marker { display: none; }
+.toggle > summary::before {
+  content: "▶";
+  flex: none;
+  font-size: 9px;
+  color: var(--muted);
+  transition: transform 0.15s ease;
+}
+.toggle[open] > summary::before { transform: rotate(90deg); }
+.toggle > *:not(summary) { margin-left: 21px; }
+.toggle > summary:hover { background: var(--chip-bg); border-radius: 4px; }
+
 /* ---------- 시리즈/콜아웃/비디오 ---------- */
 .series {
   border: 1px solid var(--border);
