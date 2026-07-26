@@ -1,148 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>Hugo 블로그 구축하기 (2) | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hugo 블로그 구축하기 (2) · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-github-action-설정하기">2. <code>Github Action</code> 설정하기</a>
-      <ul>
-        <li><a href="#2-1-workflow-파일-작성">2-1. <code>workflow</code> 파일 작성</a></li>
-        <li><a href="#2-2-github_token--권한-부여">2-2. <code>GITHUB_TOKEN</code> 권한 부여</a></li>
-        <li><a href="#2-3-github-pages-위치-지정">2-3. <code>Github Pages</code> 위치 지정</a></li>
-        <li><a href="#2-4-우리가-방금-한-일은">2-4. 우리가 방금 한 일은?</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-마무리">3. 마무리</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://i.imgur.com/URQWyyY.png" alt="Featured Image for Hugo 블로그 구축하기 (2)">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2025.05.10</small>
-      <div class="singleTitle">Hugo 블로그 구축하기 (2)</div>
-    </div>
-  </div>
-  <div class="series">
-  <details>
-    <summary>📚 /Hugo 블로그 만들기</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/hugo/01_freshpink/">1. Hugo 개인 블로그 구축하기</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/hugo/02_freshpink/">2. Github Actions로 자동 배포하기</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/hugo/03_freshpink/">3. 테마 커스터마이징</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">Hugo 블로그 구축하기 (2)</h1>
+<div class="post-meta"><time>2025-05-10</time><a class="chip" href="/tags/hugo/">hugo</a></div>
+<div class="series"><details open><summary>📚 /Hugo 블로그 만들기</summary><ol><li><a href="/posts/hugo/01_freshpink/">Hugo 블로그 구축하기 (1)</a><time>2025-05-09</time></li><li class="current">Hugo 블로그 구축하기 (2)<time>2025-05-10</time></li><li><a href="/posts/hugo/03_freshpink/">Hugo 블로그 구축하기 (3)</a><time>2025-05-11</time></li></ol></details></div>
 <br>
 <h2 id="1-소개">1. 소개</h2>
 <blockquote>
@@ -166,38 +52,38 @@
 </ol>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy Hugo Site</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>: [<span style="color:#ae81ff">main]</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">build-and-deploy</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Checkout repository</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">submodules</span>: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Setup Hugo</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">peaceiris/actions-hugo@v2</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">hugo-version</span>: <span style="color:#e6db74">&#39;latest&#39;</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">extended</span>: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build site</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">hugo --destination public</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy to GitHub Pages</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">peaceiris/actions-gh-pages@v3</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">github_token</span>: <span style="color:#ae81ff">${{ secrets.GITHUB_TOKEN }}</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">publish_dir</span>: <span style="color:#ae81ff">./public</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">keep_files</span>: <span style="color:#66d9ef">false</span>
-</span></span></code></pre></div><br>
-<h3 id="2-2-github_token--권한-부여">2-2. <code>GITHUB_TOKEN</code>  권한 부여</h3>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-yml"><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Deploy Hugo Site</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">on</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  push</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    branches</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="color:#032F62;--shiki-dark:#9ECBFF">main</span><span style="color:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">jobs</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  build-and-deploy</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    runs-on</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">ubuntu-latest</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    steps</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#22863A;--shiki-dark:#85E89D">name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Checkout repository</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        uses</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">actions/checkout@v4</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        with</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">          submodules</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#22863A;--shiki-dark:#85E89D">name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Setup Hugo</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        uses</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">peaceiris/actions-hugo@v2</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        with</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">          hugo-version</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'latest'</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">          extended</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#22863A;--shiki-dark:#85E89D">name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Build site</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        run</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">hugo --destination public</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#22863A;--shiki-dark:#85E89D">name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Deploy to GitHub Pages</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        uses</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">peaceiris/actions-gh-pages@v3</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        with</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">          github_token</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">${{ secrets.GITHUB_TOKEN }}</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">          publish_dir</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">./public</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">          keep_files</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">false</span></span></code></pre>
+<br>
+<h3 id="2-2-githubtoken-권한-부여">2-2. <code>GITHUB_TOKEN</code>  권한 부여</h3>
 <ul>
 <li>방금 설정한 workflow에서 사용한 <code>GITHUB_TOKEN</code> 에게 권한을 부여하자!
 <ol>
@@ -256,7 +142,7 @@
 <li>
 <p><strong>브랜치를 나누어 관리하는 이유?</strong></p>
 <ul>
-<li>결과물(<code>/public</code>)을 원본 코드와 함께 올리면&hellip;
+<li>결과물(<code>/public</code>)을 원본 코드와 함께 올리면...
 <ul>
 <li>글자 하나만 수정해도 수많은 HTML 파일이 변경된 것으로 인식되어 관리 기록이 복잡해진다.</li>
 <li>내가 쓴 글과 Hugo가 만든 결과물이 섞여 관리가 어려워진다.</li>
@@ -276,41 +162,42 @@
 <h2 id="3-마무리">3. 마무리</h2>
 <p>이제 복잡한 배포 과정은 신경 쓰지 않아도 된다. 자유롭게 글을 작성하고, 마지막에 <code>git push</code> 명령어 한 번만 입력하면 내 블로그가 즉시 업데이트된다 본격적인 테마 사용법이나 나만의 스타일로 커스텀하는 방법이 궁금하다면 아래 링크를 참고하자.</p>
 <ul>
-<li>🌏 <a href="https://elecbrandy.github.io/posts/hugo/03_freshpink/">freshPink 테마 사용방법 알아보기 &raquo;</a></li>
+<li>🌏 <a href="https://elecbrandy.github.io/posts/hugo/03_freshpink/">freshPink 테마 사용방법 알아보기 &gt;&gt;</a></li>
 </ul>
 <br>
 <br>
 <br>
-<div class="series">
-  <details>
-    <summary>📚 /Hugo 블로그 만들기</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/hugo/01_freshpink/">1. Hugo 개인 블로그 구축하기</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/hugo/02_freshpink/">2. Github Actions로 자동 배포하기</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/hugo/03_freshpink/">3. 테마 커스터마이징</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<div class="series"><details open><summary>📚 /Hugo 블로그 만들기</summary><ol><li><a href="/posts/hugo/01_freshpink/">Hugo 블로그 구축하기 (1)</a><time>2025-05-09</time></li><li class="current">Hugo 블로그 구축하기 (2)<time>2025-05-10</time></li><li><a href="/posts/hugo/03_freshpink/">Hugo 블로그 구축하기 (3)</a><time>2025-05-11</time></li></ol></details></div>
 <br>
 <br>
 <br>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%86%8C%EA%B0%9C" data-id="1-소개">1. 소개</a><a class="lv0" href="#2-github-action-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0" data-id="2-github-action-설정하기">2. Github Action 설정하기</a><a class="lv1" href="#2-1-workflow-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1" data-id="2-1-workflow-파일-작성">2-1. workflow 파일 작성</a><a class="lv1" href="#2-2-githubtoken-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC" data-id="2-2-githubtoken-권한-부여">2-2. GITHUB_TOKEN  권한 부여</a><a class="lv1" href="#2-3-github-pages-%EC%9C%84%EC%B9%98-%EC%A7%80%EC%A0%95" data-id="2-3-github-pages-위치-지정">2-3. Github Pages 위치 지정</a><a class="lv1" href="#2-4-%EC%9A%B0%EB%A6%AC%EA%B0%80-%EB%B0%A9%EA%B8%88-%ED%95%9C-%EC%9D%BC%EC%9D%80" data-id="2-4-우리가-방금-한-일은">2-4. 우리가 방금 한 일은?</a><a class="lv0" href="#3-%EB%A7%88%EB%AC%B4%EB%A6%AC" data-id="3-마무리">3. 마무리</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

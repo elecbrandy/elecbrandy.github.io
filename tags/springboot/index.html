@@ -1,149 +1,56 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>spring boot | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#springboot · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-
-
-
-
-
-
-
-
-
-        
-
-
-<div class="breadcrumb">
-  🏷
-  
-    /tags/springboot
-  
-</div>
-
-
-<div class="list">
-  <p><em>Spring Boot</em></p>
-<hr>
-
-  <div class="page-links">
-    
-      <a href="https://elecbrandy.github.io/posts/spring/boilerplate/01-auth-jwt/" class="page-link"> # Spring Boot: auth-jwt</a>
-    
-      <a href="https://elecbrandy.github.io/posts/spring/spring_security_jwt/" class="page-link"> # Spring Security와 JWT 인증</a>
-    
-      <a href="https://elecbrandy.github.io/posts/dev101/jwt/" class="page-link"> # JWT</a>
-    
-      <a href="https://elecbrandy.github.io/posts/spring/boilerplate/00_intro/" class="page-link"> # Spring Boot Boilerplate</a>
-    
-      <a href="https://elecbrandy.github.io/posts/spring/rest_spring/" class="page-link"> # Spring Boot REST API 요청 처리 과정</a>
-    
-  </div>
-</div>
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<h3 class="page-title">#springboot</h3><ul class="post-list"><li class="post-item"><time>2026-02-09</time><a href="/posts/spring/boilerplate/01-auth-jwt/">Spring Boot: auth-jwt</a><span class="tags"><a class="chip" href="/tags/skala/">skala</a><a class="chip" href="/tags/springboot/">springboot</a></span></li><li class="post-item"><time>2026-02-09</time><a href="/posts/spring/spring_security_jwt/">Spring Security와 JWT 인증</a><span class="tags"><a class="chip" href="/tags/skala/">skala</a><a class="chip" href="/tags/springboot/">springboot</a></span></li><li class="post-item"><time>2026-02-08</time><a href="/posts/dev101/jwt/">JWT</a><span class="tags"><a class="chip" href="/tags/dev101/">dev101</a><a class="chip" href="/tags/springboot/">springboot</a></span></li><li class="post-item"><time>2026-02-04</time><a href="/posts/spring/boilerplate/00_intro/">Spring Boot Boilerplate</a><span class="tags"><a class="chip" href="/tags/skala/">skala</a><a class="chip" href="/tags/springboot/">springboot</a><a class="chip" href="/tags/java/">java</a></span></li><li class="post-item"><time>2026-01-28</time><a href="/posts/spring/rest_spring/">Spring Boot REST API 요청 처리 과정</a><span class="tags"><a class="chip" href="/tags/springboot/">springboot</a></span></li></ul>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

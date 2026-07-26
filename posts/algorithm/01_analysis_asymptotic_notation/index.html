@@ -1,159 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>알고리즘의 점근적 분석 | elecbrandy</title>
-
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>알고리즘의 점근적 분석 · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/katex/katex.min.css">
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-점근적-접근-방법">1. 점근적 접근 방법</a></li>
-    <li><a href="#2-점근적-표기법이란">2. 점근적 표기법이란?</a></li>
-    <li><a href="#3-tn과-gn">3. <code>T(n)</code>과 <code>g(n)</code></a></li>
-    <li><a href="#4-big-o">4. Big-O</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#5-big-ω">5. Big-Ω</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#6-big-θ">6. Big-Θ</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#7-증명-예시">7. 증명 예시</a>
-      <ul>
-        <li><a href="#7-1-big-o--함수식을-통한-tn--on의-증명-예시">7-1. Big O : 함수식을 통한 T(n) = O(n²)의 증명 예시</a></li>
-        <li><a href="#7-2-big-θ--함수식을-통한-tn--θn의-증명-예시">7-2. Big Θ : 함수식을 통한 T(n) = Θ(n²)의 증명 예시</a></li>
-      </ul>
-    </li>
-    <li><a href="#8-reference">8. Reference</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://i.programmerhumor.io/2022/03/programmerhumor-io-databases-memes-backend-memes-82e9af018d923b5.jpg" alt="Featured Image for 알고리즘의 점근적 분석">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2024.09.29</small>
-      <div class="singleTitle">알고리즘의 점근적 분석</div>
-    </div>
-  </div>
-  <div class="series">
-  <details>
-    <summary>📚 /algorithm</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/algorithm/00_selection_sort/">0. Selection Sort</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">알고리즘의 점근적 분석</h1>
+<div class="post-meta"><time>2024-09-29</time><a class="chip" href="/tags/algorithm/">algorithm</a></div>
+<div class="series"><details open><summary>📚 /algorithm</summary><ol><li class="current">알고리즘의 점근적 분석<time>2024-09-29</time></li><li><a href="/posts/algorithm/02_analysis_recurrence_relation/">알고리즘의 재귀적 분석</a><time>2024-09-30</time></li><li><a href="/posts/algorithm/03_selection_sort/">Selection Sort</a><time>2024-10-01</time></li><li><a href="/posts/algorithm/04_insertion_sort/">Insertion Sort</a><time>2024-10-02</time></li><li><a href="/posts/algorithm/05_merge_sort/">Merge Sort</a><time>2024-10-04</time></li><li><a href="/posts/algorithm/06_lineartime_selection/">Linear-time selection</a><time>2024-10-20</time></li></ol></details></div>
 <br>
 <h2 id="1-점근적-접근-방법">1. 점근적 접근 방법</h2>
 <p><em>Asymptotic Analysis</em></p>
@@ -234,10 +109,9 @@
 <br>
 <br>
 <h2 id="4-big-o">4. Big-O</h2>
-<p>$$
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>O</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 T(n) = O(g(n))
-$$</p>
-<img src="https://i.imgur.com/fbFpjCW.png" max-width=100%>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">))</span></span></span></span></span></eqn></section><img src="https://i.imgur.com/fbFpjCW.png" max-width=100%>
 <ul>
 <li><strong>Big-O</strong> 는 <strong>상한선</strong> 을 나타내는 표기법이다.</li>
 <li>즉, 알고리즘(<code>T(n)</code>)이 특정 기준(<code>g(n)</code>)보다 빠르게 증가하지 않는다는 것을 의미한다.</li>
@@ -277,23 +151,22 @@ $$</p>
 <br>
 <br>
 <h2 id="5-big-ω">5. Big-Ω</h2>
-<p>$$
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">Ω</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 T(n) = Ω(g(n))
-$$</p>
-<img src="https://i.imgur.com/DC2rul0.png" max-width=100%>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Ω</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">))</span></span></span></span></span></eqn></section><img src="https://i.imgur.com/DC2rul0.png" max-width=100%>
 <ul>
 <li><strong>Big-Ω</strong> 는 알고리즘 성능의 <strong>하한선</strong> 을 나타내는 표기법이다.</li>
 <li>즉, <strong>최소한 이 정도는 걸린다</strong>는 것을 보장해 주는 도구이다.</li>
 <li>주로 알고리즘의 <strong>최적의 경우</strong> 성능을 평가할 때 사용된다.</li>
 </ul>
 <br>
-<h4 id="즉-입력-크기-n-이-커질-때-1">즉, 입력 크기 <code>n</code> 이 커질 때</h4>
+<h4 id="즉-입력-크기-n-이-커질-때-2">즉, 입력 크기 <code>n</code> 이 커질 때</h4>
 <ul>
 <li><code>T(n)</code> 이 <code>g(n)</code> 보다 더 작거나 같은 비율로 증가한다는 뜻이다.</li>
 <li><code>T(n)</code>을 알고리즘의 시간 복잡도라고 할 때, <code>T(n) = Ω(g(n))</code> 는 <code>T(n)</code> 이 <code>g(n)</code> 보다 더 느리게 증가할 수 없다는 것을 의미한다.</li>
 </ul>
 <br>
-<h4 id="성립을-위한-조건은-1">성립을 위한 조건은</h4>
+<h4 id="성립을-위한-조건은-2">성립을 위한 조건은</h4>
 <ul>
 <li>상수 <strong>c</strong> 와 <code>nₒ</code> 가 존재해야 한다.</li>
 <li><strong>c</strong>: <code>T(n)</code> 이 <code>g(n)</code> 보다 얼마나 빠르게 증가할 수 있는지를 나타내는 상수</li>
@@ -305,7 +178,7 @@ $$</p>
 </li>
 </ul>
 <br>
-<h4 id="간단한-예시를-살펴보자-1">간단한 예시를 살펴보자</h4>
+<h4 id="간단한-예시를-살펴보자-2">간단한 예시를 살펴보자</h4>
 <p>예를 들어, 알고리즘의 시간 복잡도가 <code>T(n) = 3n + 2</code> 라고 하자. 이 알고리즘이 <code>Ω(n)</code> 에 속하는지 확인해보자. 여기서 <code>g(n) = n</code> 으로 두고 <code>T(n) ≥ c * g(n)</code> 을 만족하는 상수 <strong>c</strong> 와 <code>nₒ</code> 를 찾아보자.</p>
 <ul>
 <li>상수 <strong>c</strong> 를 2로, <code>nₒ</code> 을 1로 설정하면, 모든 <code>n ≥ 1</code> 에서 <code>3n + 2 ≥ 2n</code> 이 성립한다.</li>
@@ -316,22 +189,21 @@ $$</p>
 <br>
 <br>
 <h2 id="6-big-θ">6. Big-Θ</h2>
-<p>$$
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">Θ</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 T(n) = Θ(g(n))
-$$</p>
-<img src="https://i.imgur.com/UQmXG2Z.png" max-width=100%>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">))</span></span></span></span></span></eqn></section><img src="https://i.imgur.com/UQmXG2Z.png" max-width=100%>
 <ul>
 <li><strong>Big-Θ</strong> 는 알고리즘 성능이 상한과 하한 모두에서 특정 함수와 같은 비율로 성장함을 나타낸다.</li>
 <li>즉, 알고리즘이 입력 크기가 커짐에 따라 <strong>정확하게</strong> 어느 정도의 시간이 걸리는지를 나타내는 더 엄밀한 평가 기준이다.</li>
 <li><code>T(n)</code>을 알고리즘의 시간 복잡도라고 할 때, <code>T(n) = Θ(g(n))</code> 는 <code>T(n)</code>이 <code>g(n)</code>과 같은 비율로 증가한다는 의미이다.</li>
 </ul>
 <br>
-<h4 id="즉-입력-크기-n-이-커질-때-2">즉, 입력 크기 <code>n</code> 이 커질 때</h4>
+<h4 id="즉-입력-크기-n-이-커질-때-3">즉, 입력 크기 <code>n</code> 이 커질 때</h4>
 <ul>
 <li><code>T(n)</code>이 <code>g(n)</code>보다 더 빠르게 증가하지 않으면서 동시에 더 느리게 증가하지 않는다는 뜻이다.</li>
 </ul>
 <br>
-<h4 id="성립을-위한-조건은-2">성립을 위한 조건은</h4>
+<h4 id="성립을-위한-조건은-3">성립을 위한 조건은</h4>
 <ul>
 <li>상수 <strong>c1, c2</strong> 와 <code>nₒ</code> 가 존재해야 한다.</li>
 <li><strong>c1</strong>: <code>T(n)</code>이 <code>g(n)</code>보다 얼마나 빠르게 증가할 수 있는지를 나타내는 상수</li>
@@ -344,7 +216,7 @@ $$</p>
 </li>
 </ul>
 <br>
-<h4 id="간단한-예시를-살펴보자-2">간단한 예시를 살펴보자</h4>
+<h4 id="간단한-예시를-살펴보자-3">간단한 예시를 살펴보자</h4>
 <p>예를 들어, 알고리즘의 시간 복잡도가 <code>T(n) = 3n + 2</code> 라면, 이 알고리즘이 <code>Θ(n)</code> 에 속하는지 확인해보자. 여기서 <code>g(n) = n</code> 으로 가정하고, 두 상수 <strong>c1</strong> 과 <strong>c2</strong> 를 찾아보자.</p>
 <ul>
 <li><strong>c1</strong>을 2로, <strong>c2</strong>를 4로 설정하고 <strong>nₒ</strong>을 1로 설정하면, 모든 <code>n ≥ 1</code> 에서 <code>2n ≤ 3n + 2 ≤ 4n</code> 이 성립한다.</li>
@@ -355,79 +227,68 @@ $$</p>
 <br>
 <br>
 <h2 id="7-증명-예시">7. 증명 예시</h2>
-<h3 id="7-1-big-o--함수식을-통한-tn--on의-증명-예시">7-1. Big O : 함수식을 통한 T(n) = O(n²)의 증명 예시</h3>
-<h4 id="01--문제">01 : 문제</h4>
-<p>$$
+<h3 id="7-1-big-o-함수식을-통한-tn-on²의-증명-예시">7-1. Big O : 함수식을 통한 T(n) = O(n²)의 증명 예시</h3>
+<h4 id="01-문제">01 : 문제</h4>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mn>3</mn><mn>2</mn></mfrac><msup><mi>n</mi><mn>2</mn></msup><mo>+</mo><mfrac><mn>5</mn><mn>2</mn></mfrac><mi>n</mi><mo>−</mo><mn>3</mn><mo>≤</mo><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 \frac{3}{2}n^2 + \frac{5}{2}n - 3 \leq O(n^2)
-$$</p>
-<p>위 수식이 <code>T(n) = O(n²)</code> 인지 증명해보자. 결국 이 문제는 주어진 함수가 <code>n²</code> 보다 더 빠르게 증가하지 않는다는 것을 증명하는 과정이다. 따라서 우리는 상수 <strong>c</strong> 와 <code>nₒ</code>라는 상수를 찾아서 아래 부등식을 만족시키는 것이 목표이다.</p>
-<p>$$
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></eqn></section><p>위 수식이 <code>T(n) = O(n²)</code> 인지 증명해보자. 결국 이 문제는 주어진 함수가 <code>n²</code> 보다 더 빠르게 증가하지 않는다는 것을 증명하는 과정이다. 따라서 우리는 상수 <strong>c</strong> 와 <code>nₒ</code>라는 상수를 찾아서 아래 부등식을 만족시키는 것이 목표이다.</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>≤</mo><mi>c</mi><mo>⋅</mo><msup><mi>n</mi><mn>2</mn></msup><mspace width="1em"/><mtext>(for </mtext><mi>n</mi><mo>≥</mo><msub><mi>n</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 T(n) \leq c \cdot n^2 \quad \text{(for } n \geq n_0)
-$$</p>
-<p>이를 풀기 위해, 위처럼 우리는 주어진 함수 <code>T(n)</code> 의 각 항을 <code>n²</code>과 비교하면서 <strong>c</strong> 와 <code>nₒ</code>를 찾아야 한다. 주어진 함수는 총 세 개의 항으로 이루어져 있다.</p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4445em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord text"><span class="mord">(for </span></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></eqn></section><p>이를 풀기 위해, 위처럼 우리는 주어진 함수 <code>T(n)</code> 의 각 항을 <code>n²</code>과 비교하면서 <strong>c</strong> 와 <code>nₒ</code>를 찾아야 한다. 주어진 함수는 총 세 개의 항으로 이루어져 있다.</p>
 <ul>
 <li><code>n²</code>항 : <code>n²</code> 의 형태로 되어 있으므로 그대로 유지한다.</li>
 <li><code>n</code>항 : 이 항은 <code>n²</code> 에 비해 작은 값이다. 이는 일정한 상수로 보정해야 한다.</li>
 <li><code>-3</code>항 : 상수항도 입력 크기와는 상관없이 고정된 값이므로 <code>n²</code> 에 비해 작은 값이다.</li>
 </ul>
 <br>
-<h4 id="02--c-nₒ-찾기">02 : c, nₒ 찾기</h4>
-<p>$$
+<h4 id="02-c-nₒ-찾기">02 : c, nₒ 찾기</h4>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mn>3</mn><mn>2</mn></mfrac><msup><mi>n</mi><mn>2</mn></msup><mo>+</mo><mfrac><mn>5</mn><mn>2</mn></mfrac><mi>n</mi><mo>−</mo><mn>3</mn><mo>≤</mo><mn>2</mn><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">
 \frac{3}{2}n^2 + \frac{5}{2}n - 3 \leq 2n^2
-$$</p>
-<p>상수 <strong>c</strong> 는 <code>n²</code>의 계수보다 크면서, <code>n</code>의 계수와 상수 <code>-3</code>을 포함할 수 있는 값이어야 한다. 예를 들어, <strong>c = 2</strong> 로 설정할 수 있다.</p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8641em;"></span><span class="mord">2</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></eqn></section><p>상수 <strong>c</strong> 는 <code>n²</code>의 계수보다 크면서, <code>n</code>의 계수와 상수 <code>-3</code>을 포함할 수 있는 값이어야 한다. 예를 들어, <strong>c = 2</strong> 로 설정할 수 있다.</p>
 <p>이젠 부등식이 성립하는 최소 <code>nₒ</code>를 찾아야 한다. <code>n</code>이 충분히 크면 <code>n²</code>가 <code>n</code>부분과 상수보다 커지므로, <strong>nₒ = 1</strong> 로 설정할 수 있다.</p>
 <p>따라서, <strong>c = 2</strong>, <strong>nₒ = 1</strong> 일 때 아래 부등식이 성립한다.</p>
-<p>$$
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>3</mn><mn>2</mn></mfrac><msup><mi>n</mi><mn>2</mn></msup><mo>+</mo><mfrac><mn>5</mn><mn>2</mn></mfrac><mi>n</mi><mo>−</mo><mn>3</mn><mo>≤</mo><mn>2</mn><msup><mi>n</mi><mn>2</mn></msup><mspace width="1em"/><mtext>for </mtext><mi>n</mi><mo>≥</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">
 T(n) = \frac{3}{2}n^2 + \frac{5}{2}n - 3 \leq 2n^2 \quad \text{for } n \geq 1
-$$</p>
-<p>이로써 <code>T(n) = O(n²)</code>임을 증명할 수 있다.</p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0001em;vertical-align:-0.136em;"></span><span class="mord">2</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord text"><span class="mord">for </span></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></eqn></section><p>이로써 <code>T(n) = O(n²)</code>임을 증명할 수 있다.</p>
 <br>
 <br>
 <br>
-<h3 id="7-2-big-θ--함수식을-통한-tn--θn의-증명-예시">7-2. Big Θ : 함수식을 통한 T(n) = Θ(n²)의 증명 예시</h3>
-<h4 id="01--문제-1">01 : 문제</h4>
-<p>$$
+<h3 id="7-2-big-θ-함수식을-통한-tn-θn²의-증명-예시">7-2. Big Θ : 함수식을 통한 T(n) = Θ(n²)의 증명 예시</h3>
+<h4 id="01-문제-2">01 : 문제</h4>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>n</mi><mn>2</mn></msup><mo>−</mo><mn>3</mn><mi>n</mi><mo>=</mo><mi mathvariant="normal">Θ</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 \frac{1}{2}n^2 - 3n = \Theta(n^2)
-$$</p>
-<p>위 수식이 <code>T(n) = Θ(n²)</code> 인지 증명해보자! 이는 함수가 n² 과 정확히 같은 비율로 증가한다는 것을 보이는 문제이다. 우리는 상수 <strong>c₁</strong> , <strong>c₂</strong> 그리고 <code>nₒ</code>를 찾아서 아래 부등식이 성립하는지를 증명해야 한다.</p>
-<p>$$
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></eqn></section><p>위 수식이 <code>T(n) = Θ(n²)</code> 인지 증명해보자! 이는 함수가 n² 과 정확히 같은 비율로 증가한다는 것을 보이는 문제이다. 우리는 상수 <strong>c₁</strong> , <strong>c₂</strong> 그리고 <code>nₒ</code>를 찾아서 아래 부등식이 성립하는지를 증명해야 한다.</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><msup><mi>n</mi><mn>2</mn></msup><mo>≤</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>n</mi><mn>2</mn></msup><mo>−</mo><mn>3</mn><mi>n</mi><mo>≤</mo><msub><mi>c</mi><mn>2</mn></msub><msup><mi>n</mi><mn>2</mn></msup><mspace width="1em"/><mtext>(for </mtext><mi>n</mi><mo>≥</mo><msub><mi>n</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 c_1 n^2 \leq \frac{1}{2}n^2 - 3n \leq c_2 n^2 \quad \text{(for } n \geq n_0)
-$$</p>
-<br>
-<h4 id="02--big-o-증명">02 : Big-O 증명</h4>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0141em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">3</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord text"><span class="mord">(for </span></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></eqn></section><br>
+<h4 id="02-big-o-증명">02 : Big-O 증명</h4>
 <p>우리는 함수의 상한선을 구하기 위해 <strong>c₂</strong>와 <code>nₒ</code>를 찾아야 한다. 우선, 주어진 함수 <code>T(n)</code>이 <code>n²</code>보다 더 빠르게 증가하지 않는지 확인해보자.</p>
 <ol>
 <li>주어진 함수에서 <code>n²</code>항과 <code>n</code>항을 살펴보면, 이미 <code>n²</code> 형태이므로 그대로 유지된다.</li>
 <li><code>-3n</code> 항은 <code>n²</code>에 비해 작은 항이므로 이를 상수 <strong>c₂</strong>로 보정할 수 있다.</li>
 </ol>
 <p>다음 부등식을 만족하는 <strong>c₂</strong>와 <code>nₒ</code>를 찾자.</p>
-<p>$$
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>n</mi><mn>2</mn></msup><mo>−</mo><mn>3</mn><mi>n</mi><mo>≤</mo><msub><mi>c</mi><mn>2</mn></msub><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">
 \frac{1}{2}n^2 - 3n \leq c_2 n^2
-$$</p>
-<p>여기서 $ c_2 = 1 $로 설정하면 다음 부등식이 성립한다.</p>
-<p>$$
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">3</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0141em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></eqn></section><p>여기서 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>2</mn></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">c_2 = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></eq>로 설정하면 다음 부등식이 성립한다.</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>n</mi><mn>2</mn></msup><mo>−</mo><mn>3</mn><mi>n</mi><mo>≤</mo><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">
 \frac{1}{2}n^2 - 3n \leq n^2
-$$</p>
-<p>이 부등식은 <strong>nₒ = 6</strong> 일 때 성립한다. <code>n &gt;= 6</code>에서는 <code>n²</code>항이 <code>-3n</code> 보다 커지므로, 상한을 만족한다. 따라서, <code>T(n) = O(n²)</code>임을 증명할 수 있다.</p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">3</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8641em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></eqn></section><p>이 부등식은 <strong>nₒ = 6</strong> 일 때 성립한다. <code>n &gt;= 6</code>에서는 <code>n²</code>항이 <code>-3n</code> 보다 커지므로, 상한을 만족한다. 따라서, <code>T(n) = O(n²)</code>임을 증명할 수 있다.</p>
 <br>
-<h4 id="03--big-omega-증명">03 : Big-Omega 증명</h4>
+<h4 id="03-big-omega-증명">03 : Big-Omega 증명</h4>
 <p>이제 하한선을 구하기 위해 <strong>c₁</strong> 과 <code>nₒ</code>를 찾아보자.</p>
-<p>$$
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><msup><mi>n</mi><mn>2</mn></msup><mo>≤</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>n</mi><mn>2</mn></msup><mo>−</mo><mn>3</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">
 c_1 n^2 \leq \frac{1}{2}n^2 - 3n
-$$</p>
-<p>이 부등식이 성립하도록 <strong>c₁</strong> 을 구하면 된다. $c₁ = \frac{1}{3}$ 로 설정하면 다음 부등식이 성립한다:</p>
-<p>$$
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0141em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mord mathnormal">n</span></span></span></span></span></eqn></section><p>이 부등식이 성립하도록 <strong>c₁</strong> 을 구하면 된다. <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>=</mo><mfrac><mn>1</mn><mn>3</mn></mfrac></mrow><annotation encoding="application/x-tex">c₁ = \frac{1}{3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></eq> 로 설정하면 다음 부등식이 성립한다:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mn>1</mn><mn>3</mn></mfrac><msup><mi>n</mi><mn>2</mn></msup><mo>≤</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>n</mi><mn>2</mn></msup><mo>−</mo><mn>3</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">
 \frac{1}{3}n^2 \leq \frac{1}{2}n^2 - 3n
-$$</p>
-<p>이때도 $nₒ = 8$ 일 때 성립한다. $n \geq 8$ 에서 이 부등식이 만족된다. 따라서 $T(n) = \Omega(n^2)$ 임을 증명할 수 있다.</p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mord mathnormal">n</span></span></span></span></span></eqn></section><p>이때도 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>o</mi></msub><mo>=</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">nₒ = 8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span></eq>일 때 성립한다.<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">n \geq 8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span></eq>에서 이 부등식이 만족된다. 따라서<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">Ω</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T(n) = \Omega(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord">Ω</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></eq> 임을 증명할 수 있다.</p>
 <br>
-<h4 id="04--결론">04 : 결론</h4>
-<p>결국, 상수 $c_1 = \frac{1}{3}$, $c_2 = 1$, 그리고 $n_0 = 8$ 에서 다음 부등식이 성립한다.</p>
-<p>$$
+<h4 id="04-결론">04 : 결론</h4>
+<p>결국, 상수 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>=</mo><mfrac><mn>1</mn><mn>3</mn></mfrac></mrow><annotation encoding="application/x-tex">c_1 = \frac{1}{3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></eq>, <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>2</mn></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">c_2 = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></eq>, 그리고 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mn>0</mn></msub><mo>=</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">n_0 = 8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span></eq> 에서 다음 부등식이 성립한다.</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mn>1</mn><mn>3</mn></mfrac><msup><mi>n</mi><mn>2</mn></msup><mo>≤</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>n</mi><mn>2</mn></msup><mo>−</mo><mn>3</mn><mi>n</mi><mo>≤</mo><msup><mi>n</mi><mn>2</mn></msup><mspace width="1em"/><mtext>(for </mtext><mi>n</mi><mo>≥</mo><mn>8</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 \frac{1}{3}n^2 \leq \frac{1}{2}n^2 - 3n \leq n^2 \quad \text{(for } n \geq 8)
-$$</p>
-<p>따라서, 주어진 함수는 $ \Theta(n^2) $임을 증명할 수 있다.</p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">3</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord text"><span class="mord">(for </span></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">8</span><span class="mclose">)</span></span></span></span></span></eqn></section><p>따라서, 주어진 함수는 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Θ</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Theta(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></eq>임을 증명할 수 있다.</p>
 <br>
 <br>
 <br>
@@ -438,31 +299,36 @@ $$</p>
 <br>
 <br>
 <br>
-<div class="series">
-  <details>
-    <summary>📚 /algorithm</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/algorithm/00_selection_sort/">0. Selection Sort</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<div class="series"><details open><summary>📚 /algorithm</summary><ol><li class="current">알고리즘의 점근적 분석<time>2024-09-29</time></li><li><a href="/posts/algorithm/02_analysis_recurrence_relation/">알고리즘의 재귀적 분석</a><time>2024-09-30</time></li><li><a href="/posts/algorithm/03_selection_sort/">Selection Sort</a><time>2024-10-01</time></li><li><a href="/posts/algorithm/04_insertion_sort/">Insertion Sort</a><time>2024-10-02</time></li><li><a href="/posts/algorithm/05_merge_sort/">Merge Sort</a><time>2024-10-04</time></li><li><a href="/posts/algorithm/06_lineartime_selection/">Linear-time selection</a><time>2024-10-20</time></li></ol></details></div>
 <br>
 <br>
 <br>
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%A0%90%EA%B7%BC%EC%A0%81-%EC%A0%91%EA%B7%BC-%EB%B0%A9%EB%B2%95" data-id="1-점근적-접근-방법">1. 점근적 접근 방법</a><a class="lv0" href="#2-%EC%A0%90%EA%B7%BC%EC%A0%81-%ED%91%9C%EA%B8%B0%EB%B2%95%EC%9D%B4%EB%9E%80" data-id="2-점근적-표기법이란">2. 점근적 표기법이란?</a><a class="lv0" href="#3-tn%EA%B3%BC-gn" data-id="3-tn과-gn">3. T(n)과 g(n)</a><a class="lv0" href="#4-big-o" data-id="4-big-o">4. Big-O</a><a class="lv0" href="#5-big-%CF%89" data-id="5-big-ω">5. Big-Ω</a><a class="lv0" href="#6-big-%CE%B8" data-id="6-big-θ">6. Big-Θ</a><a class="lv0" href="#7-%EC%A6%9D%EB%AA%85-%EC%98%88%EC%8B%9C" data-id="7-증명-예시">7. 증명 예시</a><a class="lv1" href="#7-1-big-o-%ED%95%A8%EC%88%98%EC%8B%9D%EC%9D%84-%ED%86%B5%ED%95%9C-tn-on%C2%B2%EC%9D%98-%EC%A6%9D%EB%AA%85-%EC%98%88%EC%8B%9C" data-id="7-1-big-o-함수식을-통한-tn-on²의-증명-예시">7-1. Big O : 함수식을 통한 T(n) = O(n²)의 증명 예시</a><a class="lv1" href="#7-2-big-%CE%B8-%ED%95%A8%EC%88%98%EC%8B%9D%EC%9D%84-%ED%86%B5%ED%95%9C-tn-%CE%B8n%C2%B2%EC%9D%98-%EC%A6%9D%EB%AA%85-%EC%98%88%EC%8B%9C" data-id="7-2-big-θ-함수식을-통한-tn-θn²의-증명-예시">7-2. Big Θ : 함수식을 통한 T(n) = Θ(n²)의 증명 예시</a><a class="lv0" href="#8-reference" data-id="8-reference">8. Reference</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

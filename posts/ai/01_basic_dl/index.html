@@ -1,157 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>DL 최적화 개념 및 방법 | elecbrandy</title>
-
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DL 최적화 개념 및 방법 · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/katex/katex.min.css">
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-dl-모델-최적화-개념방법">1. DL 모델 최적화 개념/방법</a></li>
-    <li><a href="#2-gradient-descent-learning-rate">2. Gradient Descent, Learning Rate</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#3-forwardbackward-propagation">3. Forward/Backward-propagation</a></li>
-    <li><a href="#4-optimizer">4. Optimizer</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#5-gradient-vanishing-exploding">5. Gradient Vanishing, Exploding</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#6-dropout">6. Dropout</a></li>
-    <li><a href="#7-dl-의-목표">7. DL 의 목표</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://zrr.kr/XQ8OAd" alt="Featured Image for DL 최적화 개념 및 방법">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2026.01.24</small>
-      <div class="singleTitle">DL 최적화 개념 및 방법</div>
-    </div>
-  </div>
-  <div class="series">
-  <details>
-    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/00_data/">0. 데이터 기초</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/01_prompt_engineering/">1. 프롬프트 엔지니어링</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/02_vectordb/">2. 벡터 DB</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">DL 최적화 개념 및 방법</h1>
+<div class="post-meta"><time>2026-01-24</time><a class="chip" href="/tags/skala/">skala</a><a class="chip" href="/tags/ai/">ai</a></div>
+<div class="series"><details open><summary>🦋 SKALA: SK AX AI Leader Academy</summary><ol><li><a href="/posts/ai/data/">데이터 분석 개요 및 기초통계</a><time>2026-01-07</time></li><li><a href="/posts/ai/prompt_engineering/">Prompt Engineering</a><time>2026-01-12</time></li><li><a href="/posts/ai/basic_ml/">ML/DL 이해: Machine Learning</a><time>2026-01-21</time></li><li><a href="/posts/db/vectordb/">VectorDB</a><time>2026-01-22</time></li><li><a href="/posts/ai/00_basic_dl/">ML/DL 이해: Deep Learning</a><time>2026-01-23</time></li><li class="current">DL 최적화 개념 및 방법<time>2026-01-24</time></li><li><a href="/posts/ai/dl-cnn/">DL-CNN</a><time>2026-01-25</time></li><li><a href="/posts/ai/dl-rnn/">DL-RNN</a><time>2026-01-27</time></li><li><a href="/posts/ai/dl-lstm/">DL-LSTM</a><time>2026-01-28</time></li><li><a href="/posts/ai/dl-cv/">DL-AlexNet &amp; ResNet</a><time>2026-02-01</time></li><li><a href="/posts/cloud/docker/">Docker Container</a><time>2026-03-18</time></li><li><a href="/posts/cloud/00_k8s/">k8s (1)</a><time>2026-03-20</time></li><li><a href="/posts/cloud/01_k8s/">k8s (2)</a><time>2026-03-21</time></li><li><a href="/posts/ai/rag-eval/">RAG Evaluation</a><time>2026-06-12</time></li></ol></details></div>
 <br>
 <h2 id="1-dl-모델-최적화-개념방법">1. DL 모델 최적화 개념/방법</h2>
 <ul>
@@ -183,7 +60,7 @@
 <ul>
 <li>Optimizer 초기 버전, 함수의 기울기를 이용하여 함수의 최소값을 찾으려고 함</li>
 <li>오차(<code>Loss</code>)를 줄이기 위해 기울기(<code>Gradient</code>)를 따라 아래로 내려감</li>
-<li>산꼭대기에서 안대를 쓰고 골짜기(<code>최저점</code>)를 찾아 내려가는 상황을 상상해 보자&hellip; 발을 내디딜 때마다 경사가 아래쪽인 방향을 찾는 행위 자체가 경사하강법임</li>
+<li>산꼭대기에서 안대를 쓰고 골짜기(<code>최저점</code>)를 찾아 내려가는 상황을 상상해 보자... 발을 내디딜 때마다 경사가 아래쪽인 방향을 찾는 행위 자체가 경사하강법임</li>
 <li><strong>목표</strong>
 <ul>
 <li>오차가 최소가 되는 지점(<code>Global Minimum</code>)을 찾는 것</li>
@@ -199,7 +76,7 @@
 <ul>
 <li>중간 계곡(<code>local minimum</code>)에 빠질 수 있음</li>
 <li>출발 위치에 민감</li>
-<li>즉, 항상 정답으로 가는 것은 아님&hellip;</li>
+<li>즉, 항상 정답으로 가는 것은 아님...</li>
 </ul>
 </li>
 </ul>
@@ -220,41 +97,40 @@
 <br>
 <br>
 <h4 id="gradient-descent-과-learning-rate">Gradient Descent 과 Learning Rate</h4>
-<p>$$W_{new} = W_{old} - \eta \times \frac{\partial E}{\partial W}$$</p>
-<ul>
-<li><strong>$\frac{\partial E}{\partial W}$ (기울기)</strong>: <strong>경사하강법</strong>이 알려주는 방향과 경사도</li>
-<li><strong>$\eta$ (학습률)</strong>: 그 방향으로 <strong>얼마나 갈지</strong> 곱해주는 보폭</li>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>W</mi><mrow><mi>n</mi><mi>e</mi><mi>w</mi></mrow></msub><mo>=</mo><msub><mi>W</mi><mrow><mi>o</mi><mi>l</mi><mi>d</mi></mrow></msub><mo>−</mo><mi>η</mi><mo>×</mo><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>E</mi></mrow><mrow><mi mathvariant="normal">∂</mi><mi>W</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">W_{new} = W_{old} - \eta \times \frac{\partial E}{\partial W}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.0269em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">η</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.0556em;">∂</span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.0556em;">∂</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></eqn></section><ul>
+<li><strong><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>E</mi></mrow><mrow><mi mathvariant="normal">∂</mi><mi>W</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\partial E}{\partial W}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight" style="margin-right:0.0556em;">∂</span><span class="mord mathnormal mtight" style="margin-right:0.1389em;">W</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight" style="margin-right:0.0556em;">∂</span><span class="mord mathnormal mtight" style="margin-right:0.0576em;">E</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></eq> (기울기)</strong>: <strong>경사하강법</strong>이 알려주는 방향과 경사도</li>
+<li><strong><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">η</span></span></span></span></eq> (학습률)</strong>: 그 방향으로 <strong>얼마나 갈지</strong> 곱해주는 보폭</li>
 </ul>
 <table>
-	<thead>
-			<tr>
-					<th style="text-align: left">구분</th>
-					<th style="text-align: left">경사하강법 (Gradient Descent)</th>
-					<th style="text-align: left">학습률 (Learning Rate)</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td style="text-align: left"><strong>역할</strong></td>
-					<td style="text-align: left">최적의 파라미터를 찾는 <strong>전략/알고리즘</strong></td>
-					<td style="text-align: left">업데이트의 <strong>크기/보폭</strong>을 조절</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>핵심</strong></td>
-					<td style="text-align: left">어느 방향이 오차가 가장 작아지는 길인가?</td>
-					<td style="text-align: left">한 번에 몇 미터씩 이동할 것인가?</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>결정 주체</strong></td>
-					<td style="text-align: left">수학적 공식 (기울기 계산)</td>
-					<td style="text-align: left"><strong>사람 (하이퍼파라미터 설정)</strong></td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>잘못될 경우</strong></td>
-					<td style="text-align: left">길을 못 찾거나 엉뚱한 곳에 갇힘</td>
-					<td style="text-align: left">시간 오래 걸리거나 목표를 지나침</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th style="text-align:left">구분</th>
+<th style="text-align:left">경사하강법 (Gradient Descent)</th>
+<th style="text-align:left">학습률 (Learning Rate)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>역할</strong></td>
+<td style="text-align:left">최적의 파라미터를 찾는 <strong>전략/알고리즘</strong></td>
+<td style="text-align:left">업데이트의 <strong>크기/보폭</strong>을 조절</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>핵심</strong></td>
+<td style="text-align:left">어느 방향이 오차가 가장 작아지는 길인가?</td>
+<td style="text-align:left">한 번에 몇 미터씩 이동할 것인가?</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>결정 주체</strong></td>
+<td style="text-align:left">수학적 공식 (기울기 계산)</td>
+<td style="text-align:left"><strong>사람 (하이퍼파라미터 설정)</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>잘못될 경우</strong></td>
+<td style="text-align:left">길을 못 찾거나 엉뚱한 곳에 갇힘</td>
+<td style="text-align:left">시간 오래 걸리거나 목표를 지나침</td>
+</tr>
+</tbody>
 </table>
 <br>
 <br>
@@ -269,7 +145,7 @@
 </li>
 <li><strong>역전파 (Backward-propagation)</strong>
 <ul>
-<li>출력층에서 발생한 오차를 입력층 방향으로 거꾸로 전파하며, 각 가중치($W$)가 오차에 기여한 정도(기울기)를 계산하는 과정</li>
+<li>출력층에서 발생한 오차를 입력층 방향으로 거꾸로 전파하며, 각 가중치(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></eq>)가 오차에 기여한 정도(기울기)를 계산하는 과정</li>
 <li>누가 얼마나 틀렸는지 점수를 매기는 계산원</li>
 <li>미분의 연쇄 법칙(Chain Rule)을 이용해 복잡한 층 사이의 기울기를 효율적으로 계산함</li>
 </ul>
@@ -293,7 +169,7 @@
 <ul>
 <li><strong>정의</strong>
 <ul>
-<li>역전파를 통해 계산된 기울기를 바탕으로, 실제로 가중치($W$)를 어떤 방식으로 업데이트할지 결정하는 알고리즘</li>
+<li>역전파를 통해 계산된 기울기를 바탕으로, 실제로 가중치(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></eq>)를 어떤 방식으로 업데이트할지 결정하는 알고리즘</li>
 <li>경사하강법(GD)에서 시작하여 성능을 개선해 온 다양한 버전들이 존재함</li>
 </ul>
 </li>
@@ -333,35 +209,35 @@
 <li><strong>업데이트</strong>: 넘어지지 않도록 균형을 잡으며 최적의 보폭으로 빠르게 내려가기</li>
 </ol>
 <table>
-	<thead>
-			<tr>
-					<th style="text-align: left">구분</th>
-					<th style="text-align: left">일반 경사하강법 (GD)</th>
-					<th style="text-align: left">Adam Optimizer</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td style="text-align: left"><strong>방식</strong></td>
-					<td style="text-align: left">현재 위치의 경사만 보고 이동</td>
-					<td style="text-align: left">이전 경험(방향+속도)을 기억하며 이동</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>속도</strong></td>
-					<td style="text-align: left">비교적 느림</td>
-					<td style="text-align: left"><strong>매우 빠름</strong></td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>안정성</strong></td>
-					<td style="text-align: left">작은 골짜기에 빠지기 쉬움</td>
-					<td style="text-align: left"><strong>울퉁불퉁한 지형에서도 효과적</strong></td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>학습률</strong></td>
-					<td style="text-align: left">고정된 보폭 사용</td>
-					<td style="text-align: left">상황에 따라 <strong>보폭을 자동으로 조절</strong></td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th style="text-align:left">구분</th>
+<th style="text-align:left">일반 경사하강법 (GD)</th>
+<th style="text-align:left">Adam Optimizer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>방식</strong></td>
+<td style="text-align:left">현재 위치의 경사만 보고 이동</td>
+<td style="text-align:left">이전 경험(방향+속도)을 기억하며 이동</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>속도</strong></td>
+<td style="text-align:left">비교적 느림</td>
+<td style="text-align:left"><strong>매우 빠름</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>안정성</strong></td>
+<td style="text-align:left">작은 골짜기에 빠지기 쉬움</td>
+<td style="text-align:left"><strong>울퉁불퉁한 지형에서도 효과적</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>학습률</strong></td>
+<td style="text-align:left">고정된 보폭 사용</td>
+<td style="text-align:left">상황에 따라 <strong>보폭을 자동으로 조절</strong></td>
+</tr>
+</tbody>
 </table>
 <br>
 <br>
@@ -443,21 +319,20 @@
 <br>
 <br>
 <h2 id="7-dl-의-목표">7. DL 의 목표</h2>
-<p>$$y = x_1W_1 + x_2W_2$$</p>
-<ul>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>y</mi><mo>=</mo><msub><mi>x</mi><mn>1</mn></msub><msub><mi>W</mi><mn>1</mn></msub><mo>+</mo><msub><mi>x</mi><mn>2</mn></msub><msub><mi>W</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">y = x_1W_1 + x_2W_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></eqn></section><ul>
 <li><strong>수식의 의미</strong>
 <ul>
-<li><code>공부할 값</code> ($x$ : 정해진 값) 입력 데이터(Feature)</li>
-<li><code>공부 시킬 값</code> ($W$ : 가중치) 정답과 가까워지도록 학습을 통해 계속 업데이트해야 할 파라미터</li>
-<li><code>공부 결과</code> ($\hat{y}$) 모델이 예측한 값</li>
-<li><code>오차/손실</code> ($y$ : 채점) 실제 정답과 예측값 사이의 차이</li>
+<li><code>공부할 값</code> (<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></eq> : 정해진 값) 입력 데이터(Feature)</li>
+<li><code>공부 시킬 값</code> (<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></eq> : 가중치) 정답과 가까워지도록 학습을 통해 계속 업데이트해야 할 파라미터</li>
+<li><code>공부 결과</code> (<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>y</mi><mo>^</mo></mover></mrow><annotation encoding="application/x-tex">\hat{y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord katex-accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span></span></span></span></eq>) 모델이 예측한 값</li>
+<li><code>오차/손실</code> (<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span></eq> : 채점) 실제 정답과 예측값 사이의 차이</li>
 </ul>
 </li>
 <li><strong>무엇을, 언제까지 공부시키나?</strong>
 <ul>
 <li><code>가중치 학습</code>
 <ul>
-<li>정답($Y$)과 최대한 가까워지도록 Gradient Descent을 사용하여 가중치($W$)를 수정</li>
+<li>정답(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span></span></span></eq>)과 최대한 가까워지도록 Gradient Descent을 사용하여 가중치(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></eq>)를 수정</li>
 </ul>
 </li>
 <li><code>학습 중단</code>
@@ -487,36 +362,37 @@
 <br>
 <br>
 <br>
-<div class="series">
-  <details>
-    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/00_data/">0. 데이터 기초</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/01_prompt_engineering/">1. 프롬프트 엔지니어링</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/02_vectordb/">2. 벡터 DB</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<div class="series"><details open><summary>🦋 SKALA: SK AX AI Leader Academy</summary><ol><li><a href="/posts/ai/data/">데이터 분석 개요 및 기초통계</a><time>2026-01-07</time></li><li><a href="/posts/ai/prompt_engineering/">Prompt Engineering</a><time>2026-01-12</time></li><li><a href="/posts/ai/basic_ml/">ML/DL 이해: Machine Learning</a><time>2026-01-21</time></li><li><a href="/posts/db/vectordb/">VectorDB</a><time>2026-01-22</time></li><li><a href="/posts/ai/00_basic_dl/">ML/DL 이해: Deep Learning</a><time>2026-01-23</time></li><li class="current">DL 최적화 개념 및 방법<time>2026-01-24</time></li><li><a href="/posts/ai/dl-cnn/">DL-CNN</a><time>2026-01-25</time></li><li><a href="/posts/ai/dl-rnn/">DL-RNN</a><time>2026-01-27</time></li><li><a href="/posts/ai/dl-lstm/">DL-LSTM</a><time>2026-01-28</time></li><li><a href="/posts/ai/dl-cv/">DL-AlexNet &amp; ResNet</a><time>2026-02-01</time></li><li><a href="/posts/cloud/docker/">Docker Container</a><time>2026-03-18</time></li><li><a href="/posts/cloud/00_k8s/">k8s (1)</a><time>2026-03-20</time></li><li><a href="/posts/cloud/01_k8s/">k8s (2)</a><time>2026-03-21</time></li><li><a href="/posts/ai/rag-eval/">RAG Evaluation</a><time>2026-06-12</time></li></ol></details></div>
 <br>
 <br>
 <br>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-dl-%EB%AA%A8%EB%8D%B8-%EC%B5%9C%EC%A0%81%ED%99%94-%EA%B0%9C%EB%85%90%EB%B0%A9%EB%B2%95" data-id="1-dl-모델-최적화-개념방법">1. DL 모델 최적화 개념/방법</a><a class="lv0" href="#2-gradient-descent-learning-rate" data-id="2-gradient-descent-learning-rate">2. Gradient Descent, Learning Rate</a><a class="lv0" href="#3-forwardbackward-propagation" data-id="3-forwardbackward-propagation">3. Forward/Backward-propagation</a><a class="lv0" href="#4-optimizer" data-id="4-optimizer">4. Optimizer</a><a class="lv0" href="#5-gradient-vanishing-exploding" data-id="5-gradient-vanishing-exploding">5. Gradient Vanishing, Exploding</a><a class="lv0" href="#6-dropout" data-id="6-dropout">6. Dropout</a><a class="lv0" href="#7-dl-%EC%9D%98-%EB%AA%A9%ED%91%9C" data-id="7-dl-의-목표">7. DL 의 목표</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

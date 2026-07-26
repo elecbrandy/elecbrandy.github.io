@@ -1,159 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>ML/DL 이해: Deep Learning | elecbrandy</title>
-
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ML/DL 이해: Deep Learning · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/katex/katex.min.css">
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-deep-learning">1. Deep Learning</a></li>
-    <li><a href="#2-선형회귀의-재해석">2. 선형회귀의 재해석</a>
-      <ul>
-        <li><a href="#21-선형회귀에서의-파라미터">2.1. 선형회귀에서의 파라미터</a></li>
-        <li><a href="#22-dl에서의-파라미터">2.2 DL에서의 파라미터</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-dl의-정체">3. DL의 정체</a>
-      <ul>
-        <li><a href="#31-딥러닝의-최소-단위-perceptron">3.1. 딥러닝의 최소 단위 Perceptron</a></li>
-        <li><a href="#32-왜-활성화-함수를-더할까">3.2. 왜 활성화 함수를 더할까?</a></li>
-        <li><a href="#33-선형회귀-vs-딥러닝-비교">3.3. 선형회귀 vs 딥러닝 비교</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-활성화-함수">4. 활성화 함수</a>
-      <ul>
-        <li><a href="#41-sigmoid">4.1 Sigmoid</a></li>
-        <li><a href="#42-tanh">4.2 Tanh</a></li>
-        <li><a href="#43-relu">4.3 ReLU</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://zrr.kr/XQ8OAd" alt="Featured Image for ML/DL 이해: Deep Learning">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2026.01.23</small>
-      <div class="singleTitle">ML/DL 이해: Deep Learning</div>
-    </div>
-  </div>
-  <div class="series">
-  <details>
-    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/00_data/">0. 데이터 기초</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/01_prompt_engineering/">1. 프롬프트 엔지니어링</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/02_vectordb/">2. 벡터 DB</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">ML/DL 이해: Deep Learning</h1>
+<div class="post-meta"><time>2026-01-23</time><a class="chip" href="/tags/skala/">skala</a><a class="chip" href="/tags/ai/">ai</a></div>
+<div class="series"><details open><summary>🦋 SKALA: SK AX AI Leader Academy</summary><ol><li><a href="/posts/ai/data/">데이터 분석 개요 및 기초통계</a><time>2026-01-07</time></li><li><a href="/posts/ai/prompt_engineering/">Prompt Engineering</a><time>2026-01-12</time></li><li><a href="/posts/ai/basic_ml/">ML/DL 이해: Machine Learning</a><time>2026-01-21</time></li><li><a href="/posts/db/vectordb/">VectorDB</a><time>2026-01-22</time></li><li class="current">ML/DL 이해: Deep Learning<time>2026-01-23</time></li><li><a href="/posts/ai/01_basic_dl/">DL 최적화 개념 및 방법</a><time>2026-01-24</time></li><li><a href="/posts/ai/dl-cnn/">DL-CNN</a><time>2026-01-25</time></li><li><a href="/posts/ai/dl-rnn/">DL-RNN</a><time>2026-01-27</time></li><li><a href="/posts/ai/dl-lstm/">DL-LSTM</a><time>2026-01-28</time></li><li><a href="/posts/ai/dl-cv/">DL-AlexNet &amp; ResNet</a><time>2026-02-01</time></li><li><a href="/posts/cloud/docker/">Docker Container</a><time>2026-03-18</time></li><li><a href="/posts/cloud/00_k8s/">k8s (1)</a><time>2026-03-20</time></li><li><a href="/posts/cloud/01_k8s/">k8s (2)</a><time>2026-03-21</time></li><li><a href="/posts/ai/rag-eval/">RAG Evaluation</a><time>2026-06-12</time></li></ol></details></div>
 <br>
 <h2 id="1-deep-learning">1. Deep Learning</h2>
 <ul>
@@ -175,7 +50,7 @@
 </li>
 <li><code>데이터의 힘</code>
 <ul>
-<li>데이터가 많으면 많을수록, 층을 통과하며 파라미터($W, b$)를 최적화하는 과정이 정교해짐</li>
+<li>데이터가 많으면 많을수록, 층을 통과하며 파라미터(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo separator="true">,</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">W, b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span></span></span></span></eq>)를 최적화하는 과정이 정교해짐</li>
 <li>사람보다 더 정확한 판단을 내리기도!</li>
 </ul>
 </li>
@@ -236,45 +111,45 @@
 <h2 id="2-선형회귀의-재해석">2. 선형회귀의 재해석</h2>
 <h3 id="21-선형회귀에서의-파라미터">2.1. 선형회귀에서의 파라미터</h3>
 <ul>
-<li>선형 회귀에서는 알고 있는 데이터 $(x, y)$를 학습시켜 최적의 기울기($W$)와 절편($b$)을 결정</li>
-<li><strong>파라미터</strong> → 기울기($W$), 절편($b$)</li>
-<li><strong>목표</strong> → 데이터에 가장 적합한 $W$와 $b$를 계산</li>
+<li>선형 회귀에서는 알고 있는 데이터 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mclose">)</span></span></span></span></eq>를 학습시켜 최적의 기울기(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></eq>)와 절편(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></eq>)을 결정</li>
+<li><strong>파라미터</strong> → 기울기(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></eq>), 절편(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></eq>)</li>
+<li><strong>목표</strong> → 데이터에 가장 적합한 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></eq>와 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></eq>를 계산</li>
 </ul>
 <table>
-	<thead>
-			<tr>
-					<th style="text-align: left">단계</th>
-					<th style="text-align: left">구분</th>
-					<th style="text-align: left">주요 내용</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td style="text-align: left">1️⃣</td>
-					<td style="text-align: left"><strong>데이터 정의</strong></td>
-					<td style="text-align: left">$(x, y)$ 데이터 준비 (예: 몸무게와 키)</td>
-			</tr>
-			<tr>
-					<td style="text-align: left">2️⃣</td>
-					<td style="text-align: left"><strong>선형 모델 정의</strong></td>
-					<td style="text-align: left">가설 수립: $y = Wx + b$ <br> ($W$: 회귀계수/가중치/기울기, $b$: 절편/Bias)</td>
-			</tr>
-			<tr>
-					<td style="text-align: left">3️⃣</td>
-					<td style="text-align: left"><strong>오차 평가 정의</strong></td>
-					<td style="text-align: left">손실 함수(MSE) 정의: $MSE = \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2$</td>
-			</tr>
-			<tr>
-					<td style="text-align: left">4️⃣</td>
-					<td style="text-align: left"><strong>오차 최소화</strong></td>
-					<td style="text-align: left"><strong>최소제곱법(Least Squares Method)</strong> 사용 <br> $b = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}$ 등의 공식을 통한 최적화</td>
-			</tr>
-			<tr>
-					<td style="text-align: left">5️⃣</td>
-					<td style="text-align: left"><strong>파라미터 계산</strong></td>
-					<td style="text-align: left">최종 파라미터 도출 (예: $y = 2.5x + 29$)</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th style="text-align:left">단계</th>
+<th style="text-align:left">구분</th>
+<th style="text-align:left">주요 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1️⃣</td>
+<td style="text-align:left"><strong>데이터 정의</strong></td>
+<td style="text-align:left"><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x, y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mclose">)</span></span></span></span></eq> 데이터 준비 (예: 몸무게와 키)</td>
+</tr>
+<tr>
+<td style="text-align:left">2️⃣</td>
+<td style="text-align:left"><strong>선형 모델 정의</strong></td>
+<td style="text-align:left">가설 수립: <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>W</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y = Wx + b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></eq> <br> (<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></eq>: 회귀계수/가중치/기울기, <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></eq>: 절편/Bias)</td>
+</tr>
+<tr>
+<td style="text-align:left">3️⃣</td>
+<td style="text-align:left"><strong>오차 평가 정의</strong></td>
+<td style="text-align:left">손실 함수(MSE) 정의: <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>S</mi><mi>E</mi><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mo stretchy="false">(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><msub><mover accent="true"><mi>Y</mi><mo>^</mo></mover><mi>i</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">MSE = \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">M</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1968em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord katex-accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9468em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">^</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></eq></td>
+</tr>
+<tr>
+<td style="text-align:left">4️⃣</td>
+<td style="text-align:left"><strong>오차 최소화</strong></td>
+<td style="text-align:left"><strong>최소제곱법(Least Squares Method)</strong> 사용 <br> <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mfrac><mrow><mo>∑</mo><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><mo stretchy="false">)</mo><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><mi>y</mi><mo>ˉ</mo></mover><mo stretchy="false">)</mo></mrow><mrow><mo>∑</mo><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">b = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop op-symbol small-op mtight" style="position:relative;top:0em;">∑</span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord katex-accent mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord mathnormal mtight">x</span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord mtight">ˉ</span></span></span></span></span></span></span><span class="mclose mtight"><span class="mclose mtight">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop op-symbol small-op mtight" style="position:relative;top:0em;">∑</span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord katex-accent mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord mathnormal mtight">x</span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord mtight">ˉ</span></span></span></span></span></span></span><span class="mclose mtight">)</span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord katex-accent mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord mathnormal mtight" style="margin-right:0.0359em;">y</span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord mtight">ˉ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></eq> 등의 공식을 통한 최적화</td>
+</tr>
+<tr>
+<td style="text-align:left">5️⃣</td>
+<td style="text-align:left"><strong>파라미터 계산</strong></td>
+<td style="text-align:left">최종 파라미터 도출 (예: <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mn>2.5</mn><mi>x</mi><mo>+</mo><mn>29</mn></mrow><annotation encoding="application/x-tex">y = 2.5x + 29</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2.5</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">29</span></span></span></span></eq>)</td>
+</tr>
+</tbody>
 </table>
 <br>
 <h3 id="22-dl에서의-파라미터">2.2 DL에서의 파라미터</h3>
@@ -284,71 +159,30 @@
 <li><strong>경사하강법</strong> → 손실 함수의 기울기(Gradient)를 따라 낮은 쪽으로 이동하며 근사값을 찾음</li>
 <li><strong>반복 학습</strong> → 데이터를 통해 파라미터를 지속적으로 업데이트하여 최적의 해를 찾음</li>
 </ul>
-<table>
-	<thead>
-			<tr>
-					<th style="text-align: left">단계</th>
-					<th style="text-align: left">구분</th>
-					<th style="text-align: left">주요 내용</th>
-					<th></th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td style="text-align: left">1️⃣</td>
-					<td style="text-align: left"><strong>데이터 준비</strong></td>
-					<td style="text-align: left">학습 데이터 전처리 (입력값 $x$, 결과값 $y$)</td>
-					<td></td>
-			</tr>
-			<tr>
-					<td style="text-align: left">2️⃣</td>
-					<td style="text-align: left"><strong>모델 정의</strong></td>
-					<td style="text-align: left">신경망 Layer 개수와 구조를 설정하고 가중치를 초기화</td>
-					<td></td>
-			</tr>
-			<tr>
-					<td style="text-align: left">3️⃣</td>
-					<td style="text-align: left"><strong>손실 함수 설정</strong></td>
-					<td style="text-align: left">모델의 예측값, 실제 정답 사이의 오차 계산 기준 설정</td>
-					<td></td>
-			</tr>
-			<tr>
-					<td style="text-align: left">4️⃣</td>
-					<td style="text-align: left"><strong>최적화</strong></td>
-					<td style="text-align: left">경사하강법을 통해 파라미터를 조정</td>
-					<td></td>
-			</tr>
-			<tr>
-					<td style="text-align: left">5️⃣</td>
-					<td style="text-align: left"><strong>파라미터 조정</strong></td>
-					<td style="text-align: left">학습된 데이터 바탕 최적의 $W$(가중치)와 $b$(편향) 값 확정</td>
-					<td></td>
-			</tr>
-			<tr>
-					<td style="text-align: left">6️⃣</td>
-					<td style="text-align: left"><strong>평가 및 추론</strong></td>
-					<td style="text-align: left">새로운 데이터를 넣어 모델이 정답을 잘 맞히는지 확인</td>
-					<td></td>
-			</tr>
-	</tbody>
-</table>
+<p>| 단계 | 구분 | 주요 내용 |
+| :--- | :--- | :--- | :--- |
+| 1️⃣ | <strong>데이터 준비</strong> | 학습 데이터 전처리 (입력값 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></eq>, 결과값 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span></eq>) |
+| 2️⃣ | <strong>모델 정의</strong> | 신경망 Layer 개수와 구조를 설정하고 가중치를 초기화 |
+| 3️⃣ | <strong>손실 함수 설정</strong> | 모델의 예측값, 실제 정답 사이의 오차 계산 기준 설정 |
+| 4️⃣ | <strong>최적화</strong> | 경사하강법을 통해 파라미터를 조정 |
+| 5️⃣ | <strong>파라미터 조정</strong> | 학습된 데이터 바탕 최적의 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></eq>(가중치)와 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></eq>(편향) 값 확정 |
+| 6️⃣ | <strong>평가 및 추론</strong> | 새로운 데이터를 넣어 모델이 정답을 잘 맞히는지 확인 |</p>
 <ul>
-<li>결국 딥러닝의 절차는 크게 **&lsquo;순전파(Forward)&rsquo;**와 **&lsquo;역전파(Backward)&rsquo;**의 반복
+<li>결국 딥러닝의 절차는 크게 **'순전파(Forward)'**와 **'역전파(Backward)'**의 반복
 <ul>
 <li><code>순전파</code> 입력 데이터가 층을 통과하며 예측값을 내놓는 과정 (1️⃣ ~ 3️⃣)</li>
 <li><code>오차 계산</code> 예측값과 실제 정답을 비교하여 틀린 만큼의 점수를 매김 (3️⃣)</li>
-<li><code>역전파</code> 계산된 오차를 뒤로 전달하며 &ldquo;얼마나 고쳐야 하는지&rdquo; 계산 (4️⃣)</li>
-<li><code>업데이트</code> 계산된 양만큼 파라미터($W, b$)를 수정 (5️⃣)</li>
+<li><code>역전파</code> 계산된 오차를 뒤로 전달하며 &quot;얼마나 고쳐야 하는지&quot; 계산 (4️⃣)</li>
+<li><code>업데이트</code> 계산된 양만큼 파라미터(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo separator="true">,</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">W, b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span></span></span></span></eq>)를 수정 (5️⃣)</li>
 </ul>
 </li>
-<li>이 과정을 수천, 수만 번 반복하면서 컴퓨터는 바나나 사진만 보고도 <em>이건 바나나다!</em> 라고 말할 수 있는 최적의 숫자($W, b$)들을 찾아냄</li>
+<li>이 과정을 수천, 수만 번 반복하면서 컴퓨터는 바나나 사진만 보고도 <em>이건 바나나다!</em> 라고 말할 수 있는 최적의 숫자(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo separator="true">,</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">W, b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span></span></span></span></eq>)들을 찾아냄</li>
 </ul>
 <br>
 <h2 id="3-dl의-정체">3. DL의 정체</h2>
 <h3 id="31-딥러닝의-최소-단위-perceptron">3.1. 딥러닝의 최소 단위 Perceptron</h3>
-<p>$$Output = \text{Activation}(Wx + b)$$</p>
-<ul>
-<li>$Wx + b$
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>O</mi><mi>u</mi><mi>t</mi><mi>p</mi><mi>u</mi><mi>t</mi><mo>=</mo><mtext>Activation</mtext><mo stretchy="false">(</mo><mi>W</mi><mi>x</mi><mo>+</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Output = \text{Activation}(Wx + b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mord mathnormal">u</span><span class="mord mathnormal">tp</span><span class="mord mathnormal">u</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Activation</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span></span></span></span></span></eqn></section><ul>
+<li><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">Wx + b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></eq>
 <ul>
 <li>데이터를 직선으로 표현하려는 시도 (선형회귀)</li>
 </ul>
@@ -367,7 +201,7 @@
 <li>선형회귀만으로는 해결할 수 없는 복잡한 문제를 풀기 위해서!</li>
 <li><strong>선형회귀</strong>
 <ul>
-<li>아무리 층을 높게 쌓아도 결국은 거대한 직선 하나일 뿐&hellip;</li>
+<li>아무리 층을 높게 쌓아도 결국은 거대한 직선 하나일 뿐...</li>
 </ul>
 </li>
 <li><strong>활성화 함수 추가</strong>
@@ -381,40 +215,40 @@
 <br>
 <h3 id="33-선형회귀-vs-딥러닝-비교">3.3. 선형회귀 vs 딥러닝 비교</h3>
 <table>
-	<thead>
-			<tr>
-					<th style="text-align: left">구분</th>
-					<th style="text-align: left">선형회귀 (Linear Regression)</th>
-					<th style="text-align: left">딥러닝 (Deep Learning)</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td style="text-align: left"><strong>기본 구조</strong></td>
-					<td style="text-align: left">$y = Wx + b$</td>
-					<td style="text-align: left">$y = \sigma(Wx + b)$ (단, $\sigma$는 활성화 함수)</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>특징</strong></td>
-					<td style="text-align: left">정직한 선형 관계를 찾음</td>
-					<td style="text-align: left">비선형 관계를 찾음</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>깊이</strong></td>
-					<td style="text-align: left">Single Layer</td>
-					<td style="text-align: left">Multi-Layer</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>비유</strong></td>
-					<td style="text-align: left">자 대고 직선 하나 긋기</td>
-					<td style="text-align: left">여러 개의 자를 꺾어 붙여서 복잡한 그리기</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th style="text-align:left">구분</th>
+<th style="text-align:left">선형회귀 (Linear Regression)</th>
+<th style="text-align:left">딥러닝 (Deep Learning)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>기본 구조</strong></td>
+<td style="text-align:left"><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>W</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y = Wx + b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></eq></td>
+<td style="text-align:left"><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>W</mi><mi>x</mi><mo>+</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y = \sigma(Wx + b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span></span></span></span></eq>(단,<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span></span></span></span></eq>는 활성화 함수)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>특징</strong></td>
+<td style="text-align:left">정직한 선형 관계를 찾음</td>
+<td style="text-align:left">비선형 관계를 찾음</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>깊이</strong></td>
+<td style="text-align:left">Single Layer</td>
+<td style="text-align:left">Multi-Layer</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>비유</strong></td>
+<td style="text-align:left">자 대고 직선 하나 긋기</td>
+<td style="text-align:left">여러 개의 자를 꺾어 붙여서 복잡한 그리기</td>
+</tr>
+</tbody>
 </table>
 <blockquote>
-<p><strong>&ldquo;딥러닝 = (선형회귀 + 활성화 함수)를 아주 깊게(Deep) 층층이 쌓아 올린 것&rdquo;</strong></p>
+<p><strong>&quot;딥러닝 = (선형회귀 + 활성화 함수)를 아주 깊게(Deep) 층층이 쌓아 올린 것&quot;</strong></p>
 </blockquote>
-<p>그래서 딥러닝 모델은 <strong>거대한 수식 덩어리</strong> 라고도 부른다. 수조 개의 $W$(가중치)와 $b$(편향)가 활성화 함수와 얽혀서 우리가 말하는 인공지능의 지능을 만들어내는 것이다.</p>
+<p>그래서 딥러닝 모델은 <strong>거대한 수식 덩어리</strong> 라고도 부른다. 수조 개의 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span></eq>(가중치)와 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></eq>(편향)가 활성화 함수와 얽혀서 우리가 말하는 인공지능의 지능을 만들어내는 것이다.</p>
 <br>
 <br>
 <h2 id="4-활성화-함수">4. 활성화 함수</h2>
@@ -423,52 +257,52 @@
 <li>출력값의 범위를 제한하여 계산의 안정성도 보장</li>
 </ul>
 <table>
-	<thead>
-			<tr>
-					<th style="text-align: left">구분</th>
-					<th style="text-align: left"><strong>Sigmoid</strong></th>
-					<th style="text-align: left"><strong>Tanh</strong></th>
-					<th style="text-align: left"><strong>ReLU</strong></th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td style="text-align: left"><strong>정의</strong></td>
-					<td style="text-align: left">$\sigma(x) = \frac{1}{1 + e^{-x}}$</td>
-					<td style="text-align: left">$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$</td>
-					<td style="text-align: left">$ReLU(x) = \max(0, x)$</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>출력 범위</strong></td>
-					<td style="text-align: left">$(0, 1)$</td>
-					<td style="text-align: left">$(-1, 1)$</td>
-					<td style="text-align: left">$(0, \infty)$</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>장점</strong></td>
-					<td style="text-align: left">확률값(0~1) 출력 유용</td>
-					<td style="text-align: left">출력값이 0 중심이라 학습 효율 좋음</td>
-					<td style="text-align: left">계산 빠르고 성능 좋음</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>단점</strong></td>
-					<td style="text-align: left">Gradient Vanishing 발생 가능</td>
-					<td style="text-align: left">Gradient Vanishing 발생 가능</td>
-					<td style="text-align: left">일부 뉴런이 죽는 현상 발생 가능</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>주요 활용</strong></td>
-					<td style="text-align: left">이진 분류</td>
-					<td style="text-align: left">RNN, LSTM 신경망</td>
-					<td style="text-align: left"><strong>현대 딥러닝의 표준</strong></td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th style="text-align:left">구분</th>
+<th style="text-align:left"><strong>Sigmoid</strong></th>
+<th style="text-align:left"><strong>Tanh</strong></th>
+<th style="text-align:left"><strong>ReLU</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>정의</strong></td>
+<td style="text-align:left"><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\sigma(x) = \frac{1}{1 + e^{-x}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.2484em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7027em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></eq></td>
+<td style="text-align:left"><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>tanh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">tanh</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.3907em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9874em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5935em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7027em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7385em;"><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8477em;"><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></eq></td>
+<td style="text-align:left"><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi><mi>L</mi><mi>U</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">ReLU(x) = \max(0, x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.109em;">LU</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></eq></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>출력 범위</strong></td>
+<td style="text-align:left"><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0, 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></eq></td>
+<td style="text-align:left"><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-1, 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></eq></td>
+<td style="text-align:left"><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mi mathvariant="normal">∞</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0, \infty)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">∞</span><span class="mclose">)</span></span></span></span></eq></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>장점</strong></td>
+<td style="text-align:left">확률값(0~1) 출력 유용</td>
+<td style="text-align:left">출력값이 0 중심이라 학습 효율 좋음</td>
+<td style="text-align:left">계산 빠르고 성능 좋음</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>단점</strong></td>
+<td style="text-align:left">Gradient Vanishing 발생 가능</td>
+<td style="text-align:left">Gradient Vanishing 발생 가능</td>
+<td style="text-align:left">일부 뉴런이 죽는 현상 발생 가능</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>주요 활용</strong></td>
+<td style="text-align:left">이진 분류</td>
+<td style="text-align:left">RNN, LSTM 신경망</td>
+<td style="text-align:left"><strong>현대 딥러닝의 표준</strong></td>
+</tr>
+</tbody>
 </table>
 <br>
 <h3 id="41-sigmoid">4.1 Sigmoid</h3>
 <img src="https://static.wikidocs.net/images/page/163752/Fig_3.png" max-width=100%>
 <ul>
-<li><strong>정의:</strong> $\sigma(x) = \frac{1}{1 + e^{-x}}$</li>
+<li><strong>정의:</strong> <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\sigma(x) = \frac{1}{1 + e^{-x}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.2484em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7027em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></eq></li>
 <li>출력값이 0과 1 사이로 제한되어 확률값을 출력하는 데 매우 유용함</li>
 <li>입력값이 극단적일 경우(매우 크거나 작을 때) 기울기가 0에 가까워지는 Gradient Vanishing 현상 발생 가능</li>
 <li><strong>🏥 간단한 예시 → 환자의 질병 유무 판정</strong>
@@ -479,7 +313,7 @@
 <li><code>결과값</code> 수치가 높을수록 1(100%)에 가까워지고, 낮을수록 0(0%)에 가까워짐</li>
 </ul>
 </li>
-<li><code>결과</code> &ldquo;이 환자가 암일 확률은 85%입니다&quot;와 같은 이진 분류 문제에 주로 사용됨</li>
+<li><code>결과</code> &quot;이 환자가 암일 확률은 85%입니다&quot;와 같은 이진 분류 문제에 주로 사용됨</li>
 </ul>
 </li>
 </ul>
@@ -489,7 +323,7 @@
 <img src="https://static.wikidocs.net/images/page/163752/Fig_4.png" max-width=100%>
 <ul>
 <li><em>Hyperbolic Tangent</em></li>
-<li><strong>정의:</strong> $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$</li>
+<li><strong>정의:</strong> <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>tanh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">tanh</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.3907em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9874em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5935em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7027em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7385em;"><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8477em;"><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></eq></li>
 <li>출력값이 <strong>-1과 1 사이</strong>이며, 중심값이 0(Zero-centered)임</li>
 <li>Sigmoid와 유사하지만, 출력값이 음수와 양수에 걸쳐 있어 Sigmoid보다 학습 효율이 더 좋음</li>
 <li>Sigmoid와 마찬가지로 입력값이 커지면 Gradient Vanishing 문제가 발생할 수 있음</li>
@@ -498,8 +332,8 @@
 <li><code>입력</code> 리뷰 텍스트 데이터의 단어 특징들 뉴런에 넣기</li>
 <li><code>필터링</code> 문장의 톤이 긍정적인지 부정적인지 분류
 <ul>
-<li><code>긍정 신호</code> → &ldquo;최고예요&rdquo;, &ldquo;재미있어요&rdquo; → +1에 가까운 값 출력</li>
-<li><code>부정 신호</code> → &ldquo;지루해요&rdquo;, &ldquo;최악이에요&rdquo; → -1에 가까운 값 출력</li>
+<li><code>긍정 신호</code> → &quot;최고예요&quot;, &quot;재미있어요&quot; → +1에 가까운 값 출력</li>
+<li><code>부정 신호</code> → &quot;지루해요&quot;, &quot;최악이에요&quot; → -1에 가까운 값 출력</li>
 </ul>
 </li>
 <li><code>결과</code> 0을 중심으로 데이터가 분포되어 있어 RNN, LSTM 같은 순환 신경망에서 신호의 방향성을 정할 때 자주 사용됨</li>
@@ -512,7 +346,7 @@
 <img src="https://static.wikidocs.net/images/page/163752/Fig_5.png" max-width=100%>
 <ul>
 <li><em>Rectified Linear Unit</em></li>
-<li><strong>정의:</strong> $ReLU(x) = \max(0, x)$</li>
+<li><strong>정의:</strong> <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>e</mi><mi>L</mi><mi>U</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">ReLU(x) = \max(0, x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.109em;">LU</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></eq></li>
 <li>음수는 버리고, 양수만 살림 (입력이 양수면 그대로 출력, 음수면 0으로 처리)</li>
 <li>계산이 단순해 학습 속도가 비약적으로 빠르며, 현대 딥러닝에서 가장 기본적으로 많이 사용됨</li>
 <li>양수 영역에서는 기울기가 일정하여 층이 깊어져도 신호가 잘 전달됨 (Gradient Vanishing 완화)</li>
@@ -532,36 +366,37 @@
 <br>
 <br>
 <br>
-<div class="series">
-  <details>
-    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/00_data/">0. 데이터 기초</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/01_prompt_engineering/">1. 프롬프트 엔지니어링</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/02_vectordb/">2. 벡터 DB</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<div class="series"><details open><summary>🦋 SKALA: SK AX AI Leader Academy</summary><ol><li><a href="/posts/ai/data/">데이터 분석 개요 및 기초통계</a><time>2026-01-07</time></li><li><a href="/posts/ai/prompt_engineering/">Prompt Engineering</a><time>2026-01-12</time></li><li><a href="/posts/ai/basic_ml/">ML/DL 이해: Machine Learning</a><time>2026-01-21</time></li><li><a href="/posts/db/vectordb/">VectorDB</a><time>2026-01-22</time></li><li class="current">ML/DL 이해: Deep Learning<time>2026-01-23</time></li><li><a href="/posts/ai/01_basic_dl/">DL 최적화 개념 및 방법</a><time>2026-01-24</time></li><li><a href="/posts/ai/dl-cnn/">DL-CNN</a><time>2026-01-25</time></li><li><a href="/posts/ai/dl-rnn/">DL-RNN</a><time>2026-01-27</time></li><li><a href="/posts/ai/dl-lstm/">DL-LSTM</a><time>2026-01-28</time></li><li><a href="/posts/ai/dl-cv/">DL-AlexNet &amp; ResNet</a><time>2026-02-01</time></li><li><a href="/posts/cloud/docker/">Docker Container</a><time>2026-03-18</time></li><li><a href="/posts/cloud/00_k8s/">k8s (1)</a><time>2026-03-20</time></li><li><a href="/posts/cloud/01_k8s/">k8s (2)</a><time>2026-03-21</time></li><li><a href="/posts/ai/rag-eval/">RAG Evaluation</a><time>2026-06-12</time></li></ol></details></div>
 <br>
 <br>
 <br>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span></div><div class="toc-list"><a class="lv0" href="#1-deep-learning" data-id="1-deep-learning">1. Deep Learning</a><a class="lv0" href="#2-%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80%EC%9D%98-%EC%9E%AC%ED%95%B4%EC%84%9D" data-id="2-선형회귀의-재해석">2. 선형회귀의 재해석</a><a class="lv1" href="#21-%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80%EC%97%90%EC%84%9C%EC%9D%98-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0" data-id="21-선형회귀에서의-파라미터">2.1. 선형회귀에서의 파라미터</a><a class="lv1" href="#22-dl%EC%97%90%EC%84%9C%EC%9D%98-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0" data-id="22-dl에서의-파라미터">2.2 DL에서의 파라미터</a><a class="lv0" href="#3-dl%EC%9D%98-%EC%A0%95%EC%B2%B4" data-id="3-dl의-정체">3. DL의 정체</a><a class="lv1" href="#31-%EB%94%A5%EB%9F%AC%EB%8B%9D%EC%9D%98-%EC%B5%9C%EC%86%8C-%EB%8B%A8%EC%9C%84-perceptron" data-id="31-딥러닝의-최소-단위-perceptron">3.1. 딥러닝의 최소 단위 Perceptron</a><a class="lv1" href="#32-%EC%99%9C-%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%A8%EC%88%98%EB%A5%BC-%EB%8D%94%ED%95%A0%EA%B9%8C" data-id="32-왜-활성화-함수를-더할까">3.2. 왜 활성화 함수를 더할까?</a><a class="lv1" href="#33-%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80-vs-%EB%94%A5%EB%9F%AC%EB%8B%9D-%EB%B9%84%EA%B5%90" data-id="33-선형회귀-vs-딥러닝-비교">3.3. 선형회귀 vs 딥러닝 비교</a><a class="lv0" href="#4-%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%A8%EC%88%98" data-id="4-활성화-함수">4. 활성화 함수</a><a class="lv1" href="#41-sigmoid" data-id="41-sigmoid">4.1 Sigmoid</a><a class="lv1" href="#42-tanh" data-id="42-tanh">4.2 Tanh</a><a class="lv1" href="#43-relu" data-id="43-relu">4.3 ReLU</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

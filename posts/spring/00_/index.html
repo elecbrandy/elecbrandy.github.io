@@ -1,147 +1,35 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title> | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>00_ · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#-스프링-부트-요청-인풋input-유형-총정리">📥 스프링 부트 요청 인풋(Input) 유형 총정리</a>
-      <ul>
-        <li><a href="#1-요청-데이터-분류-체계">1. 요청 데이터 분류 체계</a></li>
-      </ul>
-    </li>
-    <li><a href="#2-인풋별-상세-설명-및-활용">2. 인풋별 상세 설명 및 활용</a>
-      <ul>
-        <li><a href="#-url-경로-변수-pathvariable">📍 URL 경로 변수 (<code>@PathVariable</code>)</a></li>
-        <li><a href="#-쿼리-파라미터-requestparam">🔍 쿼리 파라미터 (<code>@RequestParam</code>)</a></li>
-        <li><a href="#-폼form-데이터-modelattribute">📝 폼(Form) 데이터 (<code>@ModelAttribute</code>)</a></li>
-        <li><a href="#-메시지-바디--api-requestbody">🤖 메시지 바디 / API (<code>@RequestBody</code>)</a></li>
-        <li><a href="#-메타데이터-requestheader">📑 메타데이터 (<code>@RequestHeader</code>)</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-데이터-흐름-요약도">3. 데이터 흐름 요약도</a></li>
-    <li><a href="#-autowired-필드-주입을-사용하는-상황">🏗️ @Autowired 필드 주입을 사용하는 상황</a>
-      <ul>
-        <li><a href="#1-테스트-코드-springboottest">1. 테스트 코드 (<code>@SpringBootTest</code>)</a></li>
-        <li><a href="#2-레거시-코드-유지보수">2. 레거시 코드 유지보수</a></li>
-        <li><a href="#3-설정-클래스-configuration">3. 설정 클래스 (<code>@Configuration</code>)</a></li>
-        <li><a href="#4-의존성이-필수가-아닐-때-optional-dependency">4. 의존성이 필수가 아닐 때 (Optional Dependency)</a></li>
-      </ul>
-    </li>
-    <li><a href="#-그럼에도-주의할-점">⚠️ 그럼에도 주의할 점</a>
-      <ul>
-        <li><a href="#-한-줄-요약">💡 한 줄 요약</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-    <div class="overlay-text">
-      <small>0001.01.01</small>
-      <div class="singleTitle"></div>
-    </div>
-  </div>
-  <p>Spring</p>
-<p>또 nginx이네&hellip;</p>
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">00_</h1>
+<div class="post-meta"><time>2026-01-28</time><a class="chip" href="/tags/spring/">spring</a></div>
+<p>Spring</p>
+<p>또 nginx이네...</p>
 <p>정적파일은 nginx가 앞에서 먼저 정적 파일 서빙 -&gt; 단순한걸로 was에 부하를 주지 않기 위함. 등</p>
 <p>그래서 우리가 만들 RESTful API이란?
 REST(Representational State Transfer 원칙을 따르는 웹 기반 API)</p>
@@ -218,46 +106,46 @@ Controller</p>
 <p>HTTP 요청의 어느 부분에 데이터가 담겨 오느냐에 따라 크게 5가지로 나뉩니다.</p>
 <h3 id="1-요청-데이터-분류-체계">1. 요청 데이터 분류 체계</h3>
 <table>
-	<thead>
-			<tr>
-					<th>구분</th>
-					<th>위치</th>
-					<th>설명</th>
-					<th>핵심 어노테이션</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>URL 경로 (Path)</strong></td>
-					<td><code>/users/{id}</code></td>
-					<td>URL 경로 자체에 값을 포함 (자원 식별)</td>
-					<td><code>@PathVariable</code></td>
-			</tr>
-			<tr>
-					<td><strong>쿼리 파라미터 (Query)</strong></td>
-					<td><code>?name=kim&amp;age=20</code></td>
-					<td>URL 끝에 <code>?</code>와 함께 전달 (필터링, 검색)</td>
-					<td><code>@RequestParam</code></td>
-			</tr>
-			<tr>
-					<td><strong>폼 데이터 (Form)</strong></td>
-					<td>Body (<code>key=value</code>)</td>
-					<td>HTML <code>&lt;form&gt;</code> 태그를 통해 전달되는 데이터</td>
-					<td><code>@ModelAttribute</code> / <code>@RequestParam</code></td>
-			</tr>
-			<tr>
-					<td><strong>메시지 바디 (API/JSON)</strong></td>
-					<td>Body (<code>{...}</code>)</td>
-					<td>REST API에서 주로 쓰는 JSON 형태의 데이터</td>
-					<td><code>@RequestBody</code></td>
-			</tr>
-			<tr>
-					<td><strong>메타데이터 (Metadata)</strong></td>
-					<td>Header / Cookie</td>
-					<td>인증 토큰, 브라우저 정보, 세션 ID 등</td>
-					<td><code>@RequestHeader</code> / <code>@CookieValue</code></td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th>구분</th>
+<th>위치</th>
+<th>설명</th>
+<th>핵심 어노테이션</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>URL 경로 (Path)</strong></td>
+<td><code>/users/{id}</code></td>
+<td>URL 경로 자체에 값을 포함 (자원 식별)</td>
+<td><code>@PathVariable</code></td>
+</tr>
+<tr>
+<td><strong>쿼리 파라미터 (Query)</strong></td>
+<td><code>?name=kim&amp;age=20</code></td>
+<td>URL 끝에 <code>?</code>와 함께 전달 (필터링, 검색)</td>
+<td><code>@RequestParam</code></td>
+</tr>
+<tr>
+<td><strong>폼 데이터 (Form)</strong></td>
+<td>Body (<code>key=value</code>)</td>
+<td>HTML <code>&lt;form&gt;</code> 태그를 통해 전달되는 데이터</td>
+<td><code>@ModelAttribute</code> / <code>@RequestParam</code></td>
+</tr>
+<tr>
+<td><strong>메시지 바디 (API/JSON)</strong></td>
+<td>Body (<code>{...}</code>)</td>
+<td>REST API에서 주로 쓰는 JSON 형태의 데이터</td>
+<td><code>@RequestBody</code></td>
+</tr>
+<tr>
+<td><strong>메타데이터 (Metadata)</strong></td>
+<td>Header / Cookie</td>
+<td>인증 토큰, 브라우저 정보, 세션 ID 등</td>
+<td><code>@RequestHeader</code> / <code>@CookieValue</code></td>
+</tr>
+</tbody>
 </table>
 <hr>
 <h2 id="2-인풋별-상세-설명-및-활용">2. 인풋별 상세 설명 및 활용</h2>
@@ -278,7 +166,7 @@ Controller</p>
 <li><strong>특징:</strong> <code>application/x-www-form-urlencoded</code> 형식으로 전달됩니다.</li>
 <li><strong>용도:</strong> 전통적인 웹 페이지의 회원가입, 게시글 작성 화면에서 사용자가 입력한 값을 객체(DTO)로 통째로 바인딩할 때 매우 편리합니다.</li>
 </ul>
-<h3 id="-메시지-바디--api-requestbody">🤖 메시지 바디 / API (<code>@RequestBody</code>)</h3>
+<h3 id="-메시지-바디-api-requestbody">🤖 메시지 바디 / API (<code>@RequestBody</code>)</h3>
 <ul>
 <li><strong>특징:</strong> 주로 <strong>JSON</strong> 형식을 사용하며, 외부에 노출되지 않도록 HTTP Body에 담겨 옵니다.</li>
 <li><strong>용도:</strong> 현대적인 웹(React, Vue)이나 앱과의 통신에서 복잡한 객체 데이터를 주고받을 때 표준으로 사용됩니다.</li>
@@ -299,7 +187,7 @@ Controller</p>
 </ul>
 </blockquote>
 <p>a 컴포넌트 b컴포넌트 있응ㅇㄹ때, A가 있어야 B가있는 상황에서 어노테이션을 통해 빈 시공간순서 제어가능</p>
-<p><code>private final</code>을 이용한 생성자 주입이 권장된다는 사실을 아시다니, 이미 스프링의 핵심을 꿰뚫고 계시네요! 사실 현대 스프링 개발에서는 필드 주입(<code>@Autowired</code> 직접 사용)을 &ldquo;피해야 할 안티 패턴&quot;으로 보기도 하지만, 여전히 실무에서 사용되는 **&lsquo;현실적인 이유&rsquo;**들이 있습니다.</p>
+<p><code>private final</code>을 이용한 생성자 주입이 권장된다는 사실을 아시다니, 이미 스프링의 핵심을 꿰뚫고 계시네요! 사실 현대 스프링 개발에서는 필드 주입(<code>@Autowired</code> 직접 사용)을 &quot;피해야 할 안티 패턴&quot;으로 보기도 하지만, 여전히 실무에서 사용되는 **'현실적인 이유'**들이 있습니다.</p>
 <p><code>@Autowired</code> 필드 주입 방식을 사용해도 괜찮거나, 혹은 어쩔 수 없이 쓰게 되는 4가지 상황을 정리해 드릴게요.</p>
 <hr>
 <h2 id="-autowired-필드-주입을-사용하는-상황">🏗️ @Autowired 필드 주입을 사용하는 상황</h2>
@@ -309,12 +197,13 @@ Controller</p>
 <li><strong>이유:</strong> 테스트 클래스는 스프링이 생성자를 통해 빈을 주입하는 방식과 JUnit의 동작 방식이 충돌할 수 있어, 가장 단순한 <code>@Autowired</code> 필드 주입을 주로 사용합니다.</li>
 <li><strong>예시:</strong></li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@SpringBootTest</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyTest</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span>
-</span></span><span style="display:flex;"><span>    MyService myService; <span style="color:#75715e">// 테스트에서는 간결함이 최고!</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="2-레거시-코드-유지보수">2. 레거시 코드 유지보수</h3>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-java"><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">@</span><span style="color:#D73A49;--shiki-dark:#F97583">SpringBootTest</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">class</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> MyTest</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    @</span><span style="color:#D73A49;--shiki-dark:#F97583">Autowired</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    MyService myService; </span><span style="color:#6A737D;--shiki-dark:#6A737D">// 테스트에서는 간결함이 최고!</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<h3 id="2-레거시-코드-유지보수">2. 레거시 코드 유지보수</h3>
 <p>이미 수만 줄의 코드가 필드 주입 방식으로 작성된 프로젝트를 맡게 되었을 때입니다.</p>
 <ul>
 <li><strong>이유:</strong> 혼자만 생성자 주입으로 바꾸면 코드의 일관성이 깨지고, 전체를 다 바꾸기엔 리스크가 큽니다. 이런 경우 팀의 컨벤션을 따르기 위해 계속 사용하기도 합니다.</li>
@@ -334,41 +223,58 @@ Controller</p>
 <h2 id="-그럼에도-주의할-점">⚠️ 그럼에도 주의할 점</h2>
 <p>제공해주신 표를 보면 <code>@Autowired</code>는 <strong>필드, 생성자, 메서드</strong> 어디든 사용 가능하다고 되어 있습니다. 하지만 실무에서는 다음과 같은 이유로 여전히 생성자 주입을 선호합니다.</p>
 <table>
-	<thead>
-			<tr>
-					<th>문제점</th>
-					<th>필드 주입 (<code>@Autowired</code>)</th>
-					<th>해결책 (생성자 주입)</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>NPE 위험</strong></td>
-					<td>주입 없이 객체를 생성하면 메서드 호출 시 터짐</td>
-					<td>객체 생성 시점에 주입이 강제됨</td>
-			</tr>
-			<tr>
-					<td><strong>의존성 숨김</strong></td>
-					<td>클래스 외부에서 어떤 의존성이 있는지 알기 어려움</td>
-					<td>생성자의 파라미터를 통해 명확히 보임</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th>문제점</th>
+<th>필드 주입 (<code>@Autowired</code>)</th>
+<th>해결책 (생성자 주입)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NPE 위험</strong></td>
+<td>주입 없이 객체를 생성하면 메서드 호출 시 터짐</td>
+<td>객체 생성 시점에 주입이 강제됨</td>
+</tr>
+<tr>
+<td><strong>의존성 숨김</strong></td>
+<td>클래스 외부에서 어떤 의존성이 있는지 알기 어려움</td>
+<td>생성자의 파라미터를 통해 명확히 보임</td>
+</tr>
+</tbody>
 </table>
 <hr>
 <h3 id="-한-줄-요약">💡 한 줄 요약</h3>
-<p><strong>&ldquo;테스트 코드나 아주 간단한 프로토타이핑이 아니라면, 가급적 <code>private final</code>과 생성자 주입을 쓰되, <code>@Autowired</code>는 보조 수단으로 이해하자!&rdquo;</strong></p>
+<p><strong>&quot;테스트 코드나 아주 간단한 프로토타이핑이 아니라면, 가급적 <code>private final</code>과 생성자 주입을 쓰되, <code>@Autowired</code>는 보조 수단으로 이해하자!&quot;</strong></p>
 <p>결국 생성자 final 방식으로 선언하는게 제일 안전함. 서비스 빈이 만들어지는 동시에 레포지토리 빈 주소까지 받아오는.</p>
 <p>순환참조 오류 -&gt; 내지말아라</p>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv1"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv1"></span></div><div class="toc-list"><a class="lv0" href="#-%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B6%80%ED%8A%B8-%EC%9A%94%EC%B2%AD-%EC%9D%B8%ED%92%8Binput-%EC%9C%A0%ED%98%95-%EC%B4%9D%EC%A0%95%EB%A6%AC" data-id="-스프링-부트-요청-인풋input-유형-총정리">📥 스프링 부트 요청 인풋(Input) 유형 총정리</a><a class="lv1" href="#1-%EC%9A%94%EC%B2%AD-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EB%A5%98-%EC%B2%B4%EA%B3%84" data-id="1-요청-데이터-분류-체계">1. 요청 데이터 분류 체계</a><a class="lv0" href="#2-%EC%9D%B8%ED%92%8B%EB%B3%84-%EC%83%81%EC%84%B8-%EC%84%A4%EB%AA%85-%EB%B0%8F-%ED%99%9C%EC%9A%A9" data-id="2-인풋별-상세-설명-및-활용">2. 인풋별 상세 설명 및 활용</a><a class="lv1" href="#-url-%EA%B2%BD%EB%A1%9C-%EB%B3%80%EC%88%98-pathvariable" data-id="-url-경로-변수-pathvariable">📍 URL 경로 변수 (@PathVariable)</a><a class="lv1" href="#-%EC%BF%BC%EB%A6%AC-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0-requestparam" data-id="-쿼리-파라미터-requestparam">🔍 쿼리 파라미터 (@RequestParam)</a><a class="lv1" href="#-%ED%8F%BCform-%EB%8D%B0%EC%9D%B4%ED%84%B0-modelattribute" data-id="-폼form-데이터-modelattribute">📝 폼(Form) 데이터 (@ModelAttribute)</a><a class="lv1" href="#-%EB%A9%94%EC%8B%9C%EC%A7%80-%EB%B0%94%EB%94%94-api-requestbody" data-id="-메시지-바디-api-requestbody">🤖 메시지 바디 / API (@RequestBody)</a><a class="lv1" href="#-%EB%A9%94%ED%83%80%EB%8D%B0%EC%9D%B4%ED%84%B0-requestheader" data-id="-메타데이터-requestheader">📑 메타데이터 (@RequestHeader)</a><a class="lv0" href="#3-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%9D%90%EB%A6%84-%EC%9A%94%EC%95%BD%EB%8F%84" data-id="3-데이터-흐름-요약도">3. 데이터 흐름 요약도</a><a class="lv0" href="#-autowired-%ED%95%84%EB%93%9C-%EC%A3%BC%EC%9E%85%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%83%81%ED%99%A9" data-id="-autowired-필드-주입을-사용하는-상황">🏗️ @Autowired 필드 주입을 사용하는 상황</a><a class="lv1" href="#1-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C-springboottest" data-id="1-테스트-코드-springboottest">1. 테스트 코드 (@SpringBootTest)</a><a class="lv1" href="#2-%EB%A0%88%EA%B1%B0%EC%8B%9C-%EC%BD%94%EB%93%9C-%EC%9C%A0%EC%A7%80%EB%B3%B4%EC%88%98" data-id="2-레거시-코드-유지보수">2. 레거시 코드 유지보수</a><a class="lv1" href="#3-%EC%84%A4%EC%A0%95-%ED%81%B4%EB%9E%98%EC%8A%A4-configuration" data-id="3-설정-클래스-configuration">3. 설정 클래스 (@Configuration)</a><a class="lv1" href="#4-%EC%9D%98%EC%A1%B4%EC%84%B1%EC%9D%B4-%ED%95%84%EC%88%98%EA%B0%80-%EC%95%84%EB%8B%90-%EB%95%8C-optional-dependency" data-id="4-의존성이-필수가-아닐-때-optional-dependency">4. 의존성이 필수가 아닐 때 (Optional Dependency)</a><a class="lv0" href="#-%EA%B7%B8%EB%9F%BC%EC%97%90%EB%8F%84-%EC%A3%BC%EC%9D%98%ED%95%A0-%EC%A0%90" data-id="-그럼에도-주의할-점">⚠️ 그럼에도 주의할 점</a><a class="lv1" href="#-%ED%95%9C-%EC%A4%84-%EC%9A%94%EC%95%BD" data-id="-한-줄-요약">💡 한 줄 요약</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

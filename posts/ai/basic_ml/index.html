@@ -1,174 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>ML/DL 이해: Machine Learning | elecbrandy</title>
-
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ML/DL 이해: Machine Learning · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/katex/katex.min.css">
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-짧게-보는-ai-발전사">1. 짧게 보는 AI 발전사</a></li>
-    <li><a href="#2-machine-learning">2. Machine Learning</a>
-      <ul>
-        <li><a href="#21-ml-이란">2.1 ML 이란?</a></li>
-        <li><a href="#22-ml-type">2.2. ML Type</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-ml-algorithm-roadmap">3. ML Algorithm RoadMap</a>
-      <ul>
-        <li><a href="#31-cart">3.1. CART</a></li>
-        <li><a href="#32-boosting">3.2. Boosting</a></li>
-        <li><a href="#33-kernal">3.3 Kernal</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-ml-algorithms">4. ML Algorithms</a>
-      <ul>
-        <li><a href="#41-decision-tree">4.1. Decision Tree</a></li>
-        <li><a href="#42-randomforest">4.2. RandomForest</a></li>
-        <li><a href="#43-xgboost">4.3. XGBoost</a></li>
-        <li><a href="#44-lightgbm">4.4. LightGBM</a></li>
-        <li><a href="#45-catboost">4.5. CatBoost</a></li>
-        <li><a href="#46-svm">4.6. SVM</a></li>
-      </ul>
-    </li>
-    <li><a href="#5-regularization">5. Regularization</a>
-      <ul>
-        <li><a href="#51-l1l2-regularization">5.1 L1/L2 Regularization</a></li>
-        <li><a href="#52-lasso-regression">5.2. Lasso Regression</a></li>
-        <li><a href="#53-ridge-regression">5.3. Ridge Regression</a></li>
-      </ul>
-    </li>
-    <li><a href="#6-scaling">6. Scaling</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://zrr.kr/XQ8OAd" alt="Featured Image for ML/DL 이해: Machine Learning">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2026.01.21</small>
-      <div class="singleTitle">ML/DL 이해: Machine Learning</div>
-    </div>
-  </div>
-  <div class="series">
-  <details>
-    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/00_data/">0. 데이터 기초</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/01_prompt_engineering/">1. 프롬프트 엔지니어링</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/02_vectordb/">2. 벡터 DB</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">ML/DL 이해: Machine Learning</h1>
+<div class="post-meta"><time>2026-01-21</time><a class="chip" href="/tags/skala/">skala</a><a class="chip" href="/tags/ai/">ai</a></div>
+<div class="series"><details open><summary>🦋 SKALA: SK AX AI Leader Academy</summary><ol><li><a href="/posts/ai/data/">데이터 분석 개요 및 기초통계</a><time>2026-01-07</time></li><li><a href="/posts/ai/prompt_engineering/">Prompt Engineering</a><time>2026-01-12</time></li><li class="current">ML/DL 이해: Machine Learning<time>2026-01-21</time></li><li><a href="/posts/db/vectordb/">VectorDB</a><time>2026-01-22</time></li><li><a href="/posts/ai/00_basic_dl/">ML/DL 이해: Deep Learning</a><time>2026-01-23</time></li><li><a href="/posts/ai/01_basic_dl/">DL 최적화 개념 및 방법</a><time>2026-01-24</time></li><li><a href="/posts/ai/dl-cnn/">DL-CNN</a><time>2026-01-25</time></li><li><a href="/posts/ai/dl-rnn/">DL-RNN</a><time>2026-01-27</time></li><li><a href="/posts/ai/dl-lstm/">DL-LSTM</a><time>2026-01-28</time></li><li><a href="/posts/ai/dl-cv/">DL-AlexNet &amp; ResNet</a><time>2026-02-01</time></li><li><a href="/posts/cloud/docker/">Docker Container</a><time>2026-03-18</time></li><li><a href="/posts/cloud/00_k8s/">k8s (1)</a><time>2026-03-20</time></li><li><a href="/posts/cloud/01_k8s/">k8s (2)</a><time>2026-03-21</time></li><li><a href="/posts/ai/rag-eval/">RAG Evaluation</a><time>2026-06-12</time></li></ol></details></div>
 <br>
 <h2 id="1-짧게-보는-ai-발전사">1. 짧게 보는 AI 발전사</h2>
 <ul>
@@ -350,7 +210,7 @@
 <li><strong>SVM (Support Vector Machine)</strong>
 <ul>
 <li><code>Maximum Margin</code>: 그룹 간의 경계(여백)가 가장 커지도록 결정 경계를 설정</li>
-<li><code>Kernel Trick</code>: 직선으로 나눌 수 없는 비선형 데이터는 차원을 높여 &lsquo;커널&rsquo;로 구분</li>
+<li><code>Kernel Trick</code>: 직선으로 나눌 수 없는 비선형 데이터는 차원을 높여 '커널'로 구분</li>
 </ul>
 </li>
 </ul>
@@ -420,7 +280,7 @@
 <li>훈련 데이터의 일부분과 변수의 일부분을 무작위로 선택해 서로 다른 개성을 가진 나무들을 키워냄</li>
 <li>각 나무가 독립적으로 학습하기 때문에 병렬 처리에 매우 유리함</li>
 </ul>
-<h4 id="특이사항-1">특이사항</h4>
+<h4 id="특이사항-2">특이사항</h4>
 <ul>
 <li><strong>학습 방법</strong>
 <ul>
@@ -448,7 +308,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="장점과-단점-1">장점과 단점</h4>
+<h4 id="장점과-단점-2">장점과 단점</h4>
 <ul>
 <li><strong>장점</strong>
 <ul>
@@ -475,7 +335,7 @@
 <li>여러 개의 약한 학습기(Weak Learner)를 순차적으로 결합하여 오차를 수정해 나가는 방식</li>
 <li>수평적인 확장</li>
 </ul>
-<h4 id="특이사항-2">특이사항</h4>
+<h4 id="특이사항-3">특이사항</h4>
 <ul>
 <li><strong>균형 잡힌 트리 (Level-wise)</strong>
 <ul>
@@ -487,7 +347,7 @@
 <li><strong>병렬 처리 및 최적화</strong>
 <ul>
 <li>CPU의 멀티 코어를 활용한 병렬 학습이 가능하여 기존 GBM보다 훨씬 빠름</li>
-<li>$L_1$ (Lasso), $L_2$ (Ridge) 규제를 통해 모델이 너무 복잡해지는 것을 스스로 억제함</li>
+<li><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">L_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq>(Lasso),<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">L_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> (Ridge) 규제를 통해 모델이 너무 복잡해지는 것을 스스로 억제함</li>
 </ul>
 </li>
 <li><strong>결측치 처리</strong>
@@ -496,7 +356,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="장점과-단점-2">장점과 단점</h4>
+<h4 id="장점과-단점-3">장점과 단점</h4>
 <ul>
 <li><strong>장점</strong>
 <ul>
@@ -524,7 +384,7 @@
 <li>비대칭적인 트리 모양을 가지지만, 그만큼 오차를 줄이는 속도가 매우 빠름</li>
 <li>수직적인 확장</li>
 </ul>
-<h4 id="특이사항-3">특이사항</h4>
+<h4 id="특이사항-4">특이사항</h4>
 <ul>
 <li><strong>수직적 성장 (Leaf-wise)</strong>
 <ul>
@@ -545,7 +405,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="장점과-단점-3">장점과 단점</h4>
+<h4 id="장점과-단점-4">장점과 단점</h4>
 <ul>
 <li><strong>장점</strong>
 <ul>
@@ -573,7 +433,7 @@
 <li>대칭 트리 구조를 사용하여 예측 속도가 매우 빠르고 모델의 일반화 능력이 뛰어남</li>
 <li>기존 부스팅 모델들의 고질적인 문제인 정보 누수, 과적합 방지를 위해 Ordered 개념 도입</li>
 </ul>
-<h4 id="특이사항-4">특이사항</h4>
+<h4 id="특이사항-5">특이사항</h4>
 <ul>
 <li><strong>Leaf-Wise + Ordered Boosting</strong>
 <ul>
@@ -585,7 +445,7 @@
 <li><strong>Ordered Target Encoding</strong>
 <ul>
 <li>범주형 데이터를 수치로 바꿀 때, 현재 행의 정답을 제외한 이전 행들의 평균값만을 사용하여 인코딩함</li>
-<li>이를 통해 데이터 간의 독립성을 유지하고 모델이 정답을 미리 &lsquo;외워버리는&rsquo; 현상을 막음</li>
+<li>이를 통해 데이터 간의 독립성을 유지하고 모델이 정답을 미리 '외워버리는' 현상을 막음</li>
 </ul>
 </li>
 <li><strong>Symmetric Trees (대칭 트리)</strong>
@@ -595,7 +455,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="장점과-단점-4">장점과 단점</h4>
+<h4 id="장점과-단점-5">장점과 단점</h4>
 <ul>
 <li><strong>장점</strong>
 <ul>
@@ -622,7 +482,7 @@
 <li>분류(SVC)와 회귀(SVR) 모두에 사용될 수 있으나, 주로 복잡한 분류 문제에서 강력한 성능을 발휘함</li>
 <li>선형으로 분리되지 않는 복잡한 데이터셋도 고차원으로 변환하여 깔끔하게 분리할 수 있는 능력을 갖춤</li>
 </ul>
-<h4 id="특이사항-5">특이사항</h4>
+<h4 id="특이사항-6">특이사항</h4>
 <ul>
 <li><strong>마진 최대화</strong>
 <ul>
@@ -639,12 +499,12 @@
 </li>
 <li><strong>커널 트릭(Kernel Trick)</strong>
 <ul>
-<li>데이터가 직선으로 도저히 안 나눠질 때, 데이터를 아주 높은 차원($R^n$)으로 보내서 평면으로 자를 수 있게 만드는 기술</li>
+<li>데이터가 직선으로 도저히 안 나눠질 때, 데이터를 아주 높은 차원(<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>R</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">R^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></eq>)으로 보내서 평면으로 자를 수 있게 만드는 기술</li>
 <li><code>Linear</code>, <code>Polynomial</code>, <code>RBF(방사 기저 함수)</code> 등 다양한 커널을 선택할 수 있음</li>
 </ul>
 </li>
 </ul>
-<h4 id="장점과-단점-5">장점과 단점</h4>
+<h4 id="장점과-단점-6">장점과 단점</h4>
 <ul>
 <li><strong>장점</strong>
 <ul>
@@ -735,15 +595,15 @@
 </ul>
 <h4 id="요약하자면">요약하자면</h4>
 <ul>
-<li><strong>L2</strong>는 &ldquo;모두 다 데려가되, 힘(가중치)을 좀 빼자!&rdquo; (안정적)</li>
-<li><strong>L1</strong>는 &ldquo;쓸모없는 놈은 버리고, 에이스만 데려가자!&rdquo; (명확함)</li>
+<li><strong>L2</strong>는 &quot;모두 다 데려가되, 힘(가중치)을 좀 빼자!&quot; (안정적)</li>
+<li><strong>L1</strong>는 &quot;쓸모없는 놈은 버리고, 에이스만 데려가자!&quot; (명확함)</li>
 </ul>
 <br>
 <br>
 <br>
 <h2 id="6-scaling">6. Scaling</h2>
 <ul>
-<li>어떤 데이터는 나이(0-100)이고, 어떤 데이터는 연봉(0-1억)이라면&hellip;</li>
+<li>어떤 데이터는 나이(0-100)이고, 어떤 데이터는 연봉(0-1억)이라면...</li>
 <li>숫자의 절대적인 크기 차이가 너무 큼!</li>
 <li>스케일링을 하지 않으면 모델은 숫자가 큰 연봉이 나이보다 훨씬 중요한 정보라고 오해 가능</li>
 <li>이를 방지하기 위해
@@ -757,98 +617,99 @@
 <br>
 <h4 id="알고리즘별-스케일링-필요-여부-요약">알고리즘별 스케일링 필요 여부 요약</h4>
 <table>
-	<thead>
-			<tr>
-					<th style="text-align: left">계열</th>
-					<th style="text-align: left">ML Algorithm</th>
-					<th style="text-align: left">표준화 필요 여부</th>
-					<th style="text-align: left">주요 이유</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td style="text-align: left"><strong>Tree-Based</strong></td>
-					<td style="text-align: left">DecisionTree</td>
-					<td style="text-align: left"><strong>필요 없음</strong></td>
-					<td style="text-align: left">조건에 따른 <strong>분기 방식</strong>으로 값의 크기나 단위와 무관</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"></td>
-					<td style="text-align: left">randomForest</td>
-					<td style="text-align: left"><strong>필요 없음</strong></td>
-					<td style="text-align: left">개별 트리 자체가 스케일 영향 받지 않음, 다양한 트리 조합이 더 중요</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"></td>
-					<td style="text-align: left">XGBoost</td>
-					<td style="text-align: left"><strong>필요 없음</strong></td>
-					<td style="text-align: left">트리 기반 부스팅 방식으로 크기와 단위 영향이 적음</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"></td>
-					<td style="text-align: left">LGBM</td>
-					<td style="text-align: left"><strong>필요 없음</strong></td>
-					<td style="text-align: left">Leaf 중심 분할 방식으로 값의 절대적인 크기 영향이 적음</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"></td>
-					<td style="text-align: left">CatBoost</td>
-					<td style="text-align: left"><strong>필요 없음</strong></td>
-					<td style="text-align: left">역시 값의 크기 단위 영향 적음<br>범주형 처리도 안정적</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>Kernel (거리)</strong></td>
-					<td style="text-align: left"><strong>SVM</strong></td>
-					<td style="text-align: left"><strong>필요</strong></td>
-					<td style="text-align: left">그룹 간 경계 결정에 계산이 핵심<br>변수 크기 차이가 크면 특정 변수가 과하게 영향을 미침</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>Penalty (회귀)</strong></td>
-					<td style="text-align: left"><strong>LASSO</strong></td>
-					<td style="text-align: left"><strong>필요</strong></td>
-					<td style="text-align: left">가중치 절대값의 합(L1)에 패널티 적용<br>변수 특성 크기가 다르면 <strong>큰 값을 가진 특성에 패널티가 쏠림</strong></td>
-			</tr>
-			<tr>
-					<td style="text-align: left"></td>
-					<td style="text-align: left"><strong>Ridge</strong></td>
-					<td style="text-align: left"><strong>필요</strong></td>
-					<td style="text-align: left">가중치 제곱합(L2)에 패널티 적용<br>변수 크기 차이가 크면 <strong>작은 값의 특성은 무시</strong>될 수 있음</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th style="text-align:left">계열</th>
+<th style="text-align:left">ML Algorithm</th>
+<th style="text-align:left">표준화 필요 여부</th>
+<th style="text-align:left">주요 이유</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Tree-Based</strong></td>
+<td style="text-align:left">DecisionTree</td>
+<td style="text-align:left"><strong>필요 없음</strong></td>
+<td style="text-align:left">조건에 따른 <strong>분기 방식</strong>으로 값의 크기나 단위와 무관</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">randomForest</td>
+<td style="text-align:left"><strong>필요 없음</strong></td>
+<td style="text-align:left">개별 트리 자체가 스케일 영향 받지 않음, 다양한 트리 조합이 더 중요</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">XGBoost</td>
+<td style="text-align:left"><strong>필요 없음</strong></td>
+<td style="text-align:left">트리 기반 부스팅 방식으로 크기와 단위 영향이 적음</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">LGBM</td>
+<td style="text-align:left"><strong>필요 없음</strong></td>
+<td style="text-align:left">Leaf 중심 분할 방식으로 값의 절대적인 크기 영향이 적음</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">CatBoost</td>
+<td style="text-align:left"><strong>필요 없음</strong></td>
+<td style="text-align:left">역시 값의 크기 단위 영향 적음<br>범주형 처리도 안정적</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Kernel (거리)</strong></td>
+<td style="text-align:left"><strong>SVM</strong></td>
+<td style="text-align:left"><strong>필요</strong></td>
+<td style="text-align:left">그룹 간 경계 결정에 계산이 핵심<br>변수 크기 차이가 크면 특정 변수가 과하게 영향을 미침</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Penalty (회귀)</strong></td>
+<td style="text-align:left"><strong>LASSO</strong></td>
+<td style="text-align:left"><strong>필요</strong></td>
+<td style="text-align:left">가중치 절대값의 합(L1)에 패널티 적용<br>변수 특성 크기가 다르면 <strong>큰 값을 가진 특성에 패널티가 쏠림</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>Ridge</strong></td>
+<td style="text-align:left"><strong>필요</strong></td>
+<td style="text-align:left">가중치 제곱합(L2)에 패널티 적용<br>변수 크기 차이가 크면 <strong>작은 값의 특성은 무시</strong>될 수 있음</td>
+</tr>
+</tbody>
 </table>
 <br>
 <br>
 <br>
-<div class="series">
-  <details>
-    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/00_data/">0. 데이터 기초</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/01_prompt_engineering/">1. 프롬프트 엔지니어링</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/02_vectordb/">2. 벡터 DB</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<div class="series"><details open><summary>🦋 SKALA: SK AX AI Leader Academy</summary><ol><li><a href="/posts/ai/data/">데이터 분석 개요 및 기초통계</a><time>2026-01-07</time></li><li><a href="/posts/ai/prompt_engineering/">Prompt Engineering</a><time>2026-01-12</time></li><li class="current">ML/DL 이해: Machine Learning<time>2026-01-21</time></li><li><a href="/posts/db/vectordb/">VectorDB</a><time>2026-01-22</time></li><li><a href="/posts/ai/00_basic_dl/">ML/DL 이해: Deep Learning</a><time>2026-01-23</time></li><li><a href="/posts/ai/01_basic_dl/">DL 최적화 개념 및 방법</a><time>2026-01-24</time></li><li><a href="/posts/ai/dl-cnn/">DL-CNN</a><time>2026-01-25</time></li><li><a href="/posts/ai/dl-rnn/">DL-RNN</a><time>2026-01-27</time></li><li><a href="/posts/ai/dl-lstm/">DL-LSTM</a><time>2026-01-28</time></li><li><a href="/posts/ai/dl-cv/">DL-AlexNet &amp; ResNet</a><time>2026-02-01</time></li><li><a href="/posts/cloud/docker/">Docker Container</a><time>2026-03-18</time></li><li><a href="/posts/cloud/00_k8s/">k8s (1)</a><time>2026-03-20</time></li><li><a href="/posts/cloud/01_k8s/">k8s (2)</a><time>2026-03-21</time></li><li><a href="/posts/ai/rag-eval/">RAG Evaluation</a><time>2026-06-12</time></li></ol></details></div>
 <br>
 <br>
 <br>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%A7%A7%EA%B2%8C-%EB%B3%B4%EB%8A%94-ai-%EB%B0%9C%EC%A0%84%EC%82%AC" data-id="1-짧게-보는-ai-발전사">1. 짧게 보는 AI 발전사</a><a class="lv0" href="#2-machine-learning" data-id="2-machine-learning">2. Machine Learning</a><a class="lv1" href="#21-ml-%EC%9D%B4%EB%9E%80" data-id="21-ml-이란">2.1 ML 이란?</a><a class="lv1" href="#22-ml-type" data-id="22-ml-type">2.2. ML Type</a><a class="lv0" href="#3-ml-algorithm-roadmap" data-id="3-ml-algorithm-roadmap">3. ML Algorithm RoadMap</a><a class="lv1" href="#31-cart" data-id="31-cart">3.1. CART</a><a class="lv1" href="#32-boosting" data-id="32-boosting">3.2. Boosting</a><a class="lv1" href="#33-kernal" data-id="33-kernal">3.3 Kernal</a><a class="lv0" href="#4-ml-algorithms" data-id="4-ml-algorithms">4. ML Algorithms</a><a class="lv1" href="#41-decision-tree" data-id="41-decision-tree">4.1. Decision Tree</a><a class="lv1" href="#42-randomforest" data-id="42-randomforest">4.2. RandomForest</a><a class="lv1" href="#43-xgboost" data-id="43-xgboost">4.3. XGBoost</a><a class="lv1" href="#44-lightgbm" data-id="44-lightgbm">4.4. LightGBM</a><a class="lv1" href="#45-catboost" data-id="45-catboost">4.5. CatBoost</a><a class="lv1" href="#46-svm" data-id="46-svm">4.6. SVM</a><a class="lv0" href="#5-regularization" data-id="5-regularization">5. Regularization</a><a class="lv1" href="#51-l1l2-regularization" data-id="51-l1l2-regularization">5.1 L1/L2 Regularization</a><a class="lv1" href="#52-lasso-regression" data-id="52-lasso-regression">5.2. Lasso Regression</a><a class="lv1" href="#53-ridge-regression" data-id="53-ridge-regression">5.3. Ridge Regression</a><a class="lv0" href="#6-scaling" data-id="6-scaling">6. Scaling</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

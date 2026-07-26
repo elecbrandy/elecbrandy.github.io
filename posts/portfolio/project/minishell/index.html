@@ -1,131 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>MINISHELL | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MINISHELL · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#-overview">📌 Overview</a></li>
-    <li><a href="#-core-features">🧩 Core features</a></li>
-    <li><a href="#-system-architecture">🏗️ System Architecture</a></li>
-    <li><a href="#-key-decisions--troubleshooting">🚨 Key Decisions &amp; Troubleshooting</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#-link">🔗 Link</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="http://t1.daumcdn.net/cfile/15110210A862C131F7" alt="Featured Image for MINISHELL">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2024.06.01</small>
-      <div class="singleTitle">MINISHELL</div>
-    </div>
-  </div>
-  <br>
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">MINISHELL</h1>
+<div class="post-meta"><time>2024-06-01</time><a class="chip" href="/tags/portfolio/">portfolio</a></div>
+<br>
 <h2 id="-overview">📌 Overview</h2>
 <blockquote>
 <p>42Seoul C 기반 간단한 shell 구현</p>
@@ -135,30 +38,30 @@
 <li>사용자의 명령어를 읽고, 파싱한 뒤, 필요한 프로세스를 생성해 실행합니다.</li>
 </ul>
 <table>
-	<thead>
-			<tr>
-					<th>항목</th>
-					<th>내용</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>기간</td>
-					<td><code>2024.05 ~ 2024.06</code></td>
-			</tr>
-			<tr>
-					<td>스택</td>
-					<td><code>C</code> <code>Makefile</code> <code>readline</code> <code>fork()</code> <code>execve()</code> <code>pipe()</code> <code>dup2()</code></td>
-			</tr>
-			<tr>
-					<td>팀</td>
-					<td>2인</td>
-			</tr>
-			<tr>
-					<td>담당</td>
-					<td>Cmd / Pipe Redirection</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>기간</td>
+<td><code>2024.05 ~ 2024.06</code></td>
+</tr>
+<tr>
+<td>스택</td>
+<td><code>C</code> <code>Makefile</code> <code>readline</code> <code>fork()</code> <code>execve()</code> <code>pipe()</code> <code>dup2()</code></td>
+</tr>
+<tr>
+<td>팀</td>
+<td>2인</td>
+</tr>
+<tr>
+<td>담당</td>
+<td>Cmd / Pipe Redirection</td>
+</tr>
+</tbody>
 </table>
 <ul>
 <li><strong>주요 업무</strong>
@@ -203,42 +106,42 @@
 <li>외부 명령은 환경 변수 list를 배열로 변환한 뒤 <code>execve()</code>에 전달</li>
 </ul>
 <table>
-	<thead>
-			<tr>
-					<th>Layer</th>
-					<th>Responsibility</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Input</td>
-					<td>readline prompt, history 관리</td>
-			</tr>
-			<tr>
-					<td>Parser</td>
-					<td>quote, dollar expansion, pipe, redirection, heredoc 처리</td>
-			</tr>
-			<tr>
-					<td>Node</td>
-					<td>command, path, input fd, output fd, previous error number 저장</td>
-			</tr>
-			<tr>
-					<td>Exec</td>
-					<td>builtin dispatch, fork, pipe, dup2, wait, execve 처리</td>
-			</tr>
-			<tr>
-					<td>Env</td>
-					<td>environment linked list 생성, 추가, 삭제, 배열 변환</td>
-			</tr>
-			<tr>
-					<td>Signal</td>
-					<td>prompt, child, heredoc signal handler 관리</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>readline prompt, history 관리</td>
+</tr>
+<tr>
+<td>Parser</td>
+<td>quote, dollar expansion, pipe, redirection, heredoc 처리</td>
+</tr>
+<tr>
+<td>Node</td>
+<td>command, path, input fd, output fd, previous error number 저장</td>
+</tr>
+<tr>
+<td>Exec</td>
+<td>builtin dispatch, fork, pipe, dup2, wait, execve 처리</td>
+</tr>
+<tr>
+<td>Env</td>
+<td>environment linked list 생성, 추가, 삭제, 배열 변환</td>
+</tr>
+<tr>
+<td>Signal</td>
+<td>prompt, child, heredoc signal handler 관리</td>
+</tr>
+</tbody>
 </table>
 <br>
 <br>
-<h2 id="-key-decisions--troubleshooting">🚨 Key Decisions &amp; Troubleshooting</h2>
+<h2 id="-key-decisions-troubleshooting">🚨 Key Decisions &amp; Troubleshooting</h2>
 <h4 id="command-node-기반-실행-구조">command node 기반 실행 구조</h4>
 <ul>
 <li><strong>상황</strong>
@@ -313,20 +216,37 @@
 <br>
 <h2 id="-link">🔗 Link</h2>
 <ul>
-<li><a href="https://github.com/elecbrandy/minishell">GitHub Repo &raquo;</a></li>
+<li><a href="https://github.com/elecbrandy/minishell">GitHub Repo &gt;&gt;</a></li>
 </ul>
 <br>
 <br>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#-overview" data-id="-overview">📌 Overview</a><a class="lv0" href="#-core-features" data-id="-core-features">🧩 Core features</a><a class="lv0" href="#-system-architecture" data-id="-system-architecture">🏗️ System Architecture</a><a class="lv0" href="#-key-decisions-troubleshooting" data-id="-key-decisions-troubleshooting">🚨 Key Decisions &amp; Troubleshooting</a><a class="lv0" href="#-link" data-id="-link">🔗 Link</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

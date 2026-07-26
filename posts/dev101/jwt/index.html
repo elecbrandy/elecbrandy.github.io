@@ -1,157 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>JWT | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JWT · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-jwt의-정의와-특징">1. JWT의 정의와 특징</a></li>
-    <li><a href="#2-jwt의-구조">2. JWT의 구조</a>
-      <ul>
-        <li><a href="#2-1-header">2-1. Header</a></li>
-        <li><a href="#2-2-payload-페이로드">2-2. Payload (페이로드)</a></li>
-        <li><a href="#2-3-signature">2-3. Signature</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-인증-방식의-변화-세션-기반-vs-토큰-기반">3. 인증 방식의 변화: 세션 기반 vs 토큰 기반</a>
-      <ul>
-        <li><a href="#3-1-stateful--세션">3-1. Stateful → <code>세션</code></a></li>
-        <li><a href="#3-2-stateless--jwt">3-2. Stateless → <code>JWT</code></a></li>
-      </ul>
-    </li>
-    <li><a href="#4-보안-강화를-위한-access--refresh-token">4. 보안 강화를 위한 Access &amp; Refresh Token</a></li>
-    <li><a href="#5-jwt와-쿠키">5. JWT와 쿠키</a></li>
-    <li><a href="#6-jwt-토큰-보관-장소">6. JWT 토큰 보관 장소?</a>
-      <ul>
-        <li><a href="#6-1-local-storage">6-1. Local Storage</a></li>
-        <li><a href="#6-2-cookie">6-2. Cookie</a></li>
-        <li><a href="#6-3-보관-방법-선택">6-3. 보관 방법 선택</a></li>
-      </ul>
-    </li>
-    <li><a href="#7-spring의-몫-vs-개발자의-몫">7. Spring의 몫 vs 개발자의 몫</a>
-      <ul>
-        <li><a href="#7-1-spring-security에서-제공하는-것">7-1. Spring Security에서 제공하는 것</a></li>
-        <li><a href="#7-2-개발자가-만들어야-하는-것">7-2. 개발자가 만들어야 하는 것</a></li>
-      </ul>
-    </li>
-    <li><a href="#8-결론">8. 결론</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#9-reference">9. Reference</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://tecoble.techcourse.co.kr/static/408d754c1376bb22579b82422d439f83/00419/jwt.avif" alt="Featured Image for JWT">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2026.02.08</small>
-      <div class="singleTitle">JWT</div>
-    </div>
-  </div>
-  <br>
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">JWT</h1>
+<div class="post-meta"><time>2026-02-08</time><a class="chip" href="/tags/dev101/">dev101</a><a class="chip" href="/tags/springboot/">springboot</a></div>
+<br>
 <h2 id="1-jwt의-정의와-특징">1. JWT의 정의와 특징</h2>
 <ul>
 <li><strong><code>JSON Web Token</code></strong></li>
@@ -170,23 +47,23 @@
 <br>
 <h3 id="2-1-header">2-1. Header</h3>
 <p>헤더는 토큰에 대한 메타데이터를 담고 있다. 일반적으로 두 가지 정보를 포함한다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><ul>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-json"><span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">    "alg"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"HS256"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">    "typ"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"JWT"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<ul>
 <li><code>alg</code>: 서명 시 사용된 해싱 알고리즘 (예: HS256, RS256)</li>
 <li><code>typ</code>: 토큰의 유형 (JWT)</li>
 </ul>
 <br>
 <h3 id="2-2-payload-페이로드">2-2. Payload (페이로드)</h3>
 <p>페이로드에는 전달하고자 하는 실제 정보인 <code>Claim</code> 이 포함된다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Hong&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;Hong@example.com&#34;</span>,
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><em><code>Claim</code> 은 크게 세 가지 종류로 구분</em></p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-json"><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">    "name"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"Hong"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">    "email"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"Hong@example.com"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<p><em><code>Claim</code> 은 크게 세 가지 종류로 구분</em></p>
 <ul>
 <li><strong>등록된 <code>Claims</code></strong>
 <ul>
@@ -220,7 +97,7 @@
 <h2 id="3-인증-방식의-변화-세션-기반-vs-토큰-기반">3. 인증 방식의 변화: 세션 기반 vs 토큰 기반</h2>
 <p>로그인 상태를 유지하는 방식은 서버의 상태 저장 여부에 따라 크게 두 가지로 나뉜다.</p>
 <br>
-<h3 id="3-1-stateful--세션">3-1. Stateful → <code>세션</code></h3>
+<h3 id="3-1-stateful-세션">3-1. Stateful → <code>세션</code></h3>
 <p>전통적인 세션 방식은 서버가 사용자의 상태를 메모리나 데이터베이스에 유지한다.</p>
 <ul>
 <li><strong>장점</strong>
@@ -236,7 +113,7 @@
 </li>
 </ul>
 <br>
-<h3 id="3-2-stateless--jwt">3-2. Stateless → <code>JWT</code></h3>
+<h3 id="3-2-stateless-jwt">3-2. Stateless → <code>JWT</code></h3>
 <p>JWT는 서버가 상태를 저장하지 않는 Stateless 아키텍처를 지향한다.</p>
 <ul>
 <li><strong>장점</strong>
@@ -253,34 +130,34 @@
 </li>
 </ul>
 <table>
-	<thead>
-			<tr>
-					<th>구분</th>
-					<th>세션/쿠키 방식</th>
-					<th>JWT 방식</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>저장 위치</strong></td>
-					<td>서버(Memory/DB) 및 클라이언트 쿠키</td>
-					<td>클라이언트 (Local Storage/Cookie)</td>
-			</tr>
-			<tr>
-					<td><strong>확장성</strong></td>
-					<td>낮음 (세션 동기화 필요)</td>
-					<td>높음 (어느 서버에서나 검증 가능)</td>
-			</tr>
-			<tr>
-					<td><strong>보안성</strong></td>
-					<td>세션 ID 탈취 시 위험하지만 서버 제어 가능</td>
-					<td>토큰 탈취 시 만료 전까지 무방비 상태</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th>구분</th>
+<th>세션/쿠키 방식</th>
+<th>JWT 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>저장 위치</strong></td>
+<td>서버(Memory/DB) 및 클라이언트 쿠키</td>
+<td>클라이언트 (Local Storage/Cookie)</td>
+</tr>
+<tr>
+<td><strong>확장성</strong></td>
+<td>낮음 (세션 동기화 필요)</td>
+<td>높음 (어느 서버에서나 검증 가능)</td>
+</tr>
+<tr>
+<td><strong>보안성</strong></td>
+<td>세션 ID 탈취 시 위험하지만 서버 제어 가능</td>
+<td>토큰 탈취 시 만료 전까지 무방비 상태</td>
+</tr>
+</tbody>
 </table>
 <br>
 <br>
-<h2 id="4-보안-강화를-위한-access--refresh-token">4. 보안 강화를 위한 Access &amp; Refresh Token</h2>
+<h2 id="4-보안-강화를-위한-access-refresh-token">4. 보안 강화를 위한 Access &amp; Refresh Token</h2>
 <ul>
 <li>JWT의 치명적인 단점인 <code>탈취 시 제어 불가능</code> 문제를 해결할 수 있을까?</li>
 </ul>
@@ -327,38 +204,39 @@
 브라우저의 로컬 스토리지에 담을 수도 있고, 쿠키에 담아 보관할 수도 있다.</p>
 <br>
 <h3 id="6-1-local-storage">6-1. Local Storage</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// HTTP 응답
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">HTTP/</span><span style="color:#ae81ff">1.1</span> <span style="color:#ae81ff">200</span> <span style="color:#960050;background-color:#1e0010">OK</span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">Content-Type:</span> <span style="color:#960050;background-color:#1e0010">application/json</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;token&#34;</span>: <span style="color:#e6db74">&#34;eyJhbGci...&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;username&#34;</span>: <span style="color:#e6db74">&#34;hong&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>JWT 토큰을 로컬 스토리지에 보관하기 위해서는, 백엔드가 Response Body에 토큰을 담아보내면 된다.
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-json"><span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// HTTP 응답</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">HTTP/</span><span style="color:#005CC5;--shiki-dark:#79B8FF">1.1</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 200</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> OK</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">Content-Type: application/json</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  "token"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"eyJhbGci..."</span><span style="color:#24292E;--shiki-dark:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">  "username"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"hong"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>JWT 토큰을 로컬 스토리지에 보관하기 위해서는, 백엔드가 Response Body에 토큰을 담아보내면 된다.
 그러면 프론트에서 토큰을 받아 로컬스토리지에 저장하면 된다.</p>
 <br>
 <br>
 <h3 id="6-2-cookie">6-2. Cookie</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 백엔드 (Cookie 방식)</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@PostMapping</span>(<span style="color:#e6db74">&#34;/login&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> ResponseEntity<span style="color:#f92672">&lt;?&gt;</span> <span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">@RequestBody</span> LoginRequest request, 
-</span></span><span style="display:flex;"><span>                                HttpServletResponse response) {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 인증 처리</span>
-</span></span><span style="display:flex;"><span>    String token <span style="color:#f92672">=</span> jwtTokenProvider.<span style="color:#a6e22e">createToken</span>(username);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 쿠키로 토큰 전달</span>
-</span></span><span style="display:flex;"><span>    Cookie cookie <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Cookie(<span style="color:#e6db74">&#34;jwt&#34;</span>, token);  <span style="color:#75715e">// 쿠키에 담아서 줌</span>
-</span></span><span style="display:flex;"><span>    cookie.<span style="color:#a6e22e">setHttpOnly</span>(<span style="color:#66d9ef">true</span>);   <span style="color:#75715e">// JS 접근 차단</span>
-</span></span><span style="display:flex;"><span>    cookie.<span style="color:#a6e22e">setSecure</span>(<span style="color:#66d9ef">true</span>);     <span style="color:#75715e">// HTTPS만</span>
-</span></span><span style="display:flex;"><span>    cookie.<span style="color:#a6e22e">setMaxAge</span>(3600);     <span style="color:#75715e">// 1시간</span>
-</span></span><span style="display:flex;"><span>    cookie.<span style="color:#a6e22e">setPath</span>(<span style="color:#e6db74">&#34;/&#34;</span>);
-</span></span><span style="display:flex;"><span>    response.<span style="color:#a6e22e">addCookie</span>(cookie);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ResponseEntity.<span style="color:#a6e22e">ok</span>(<span style="color:#66d9ef">new</span> LoginResponse(<span style="color:#e6db74">&#34;로그인 성공&#34;</span>));
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>JWT 토큰을 쿠키에 저장하기 위해서는 백엔드에서 보낼 때 <code>Cookie</code> 객체에 담아서 보내면 된다.
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-java"><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">// 백엔드 (Cookie 방식)</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">@</span><span style="color:#D73A49;--shiki-dark:#F97583">PostMapping</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"/login"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">public</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ResponseEntity</span><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;?></span><span style="color:#6F42C1;--shiki-dark:#B392F0"> login</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(@</span><span style="color:#D73A49;--shiki-dark:#F97583">RequestBody</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> LoginRequest request, </span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">                                HttpServletResponse response) {</span></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">    // 인증 처리</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    String token </span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> jwtTokenProvider.</span><span style="color:#6F42C1;--shiki-dark:#B392F0">createToken</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(username);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D">    // 쿠키로 토큰 전달</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    Cookie cookie </span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#D73A49;--shiki-dark:#F97583"> new</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> Cookie</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"jwt"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, token);  </span><span style="color:#6A737D;--shiki-dark:#6A737D">// 쿠키에 담아서 줌</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    cookie.</span><span style="color:#6F42C1;--shiki-dark:#B392F0">setHttpOnly</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span><span style="color:#24292E;--shiki-dark:#E1E4E8">);   </span><span style="color:#6A737D;--shiki-dark:#6A737D">// JS 접근 차단</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    cookie.</span><span style="color:#6F42C1;--shiki-dark:#B392F0">setSecure</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#005CC5;--shiki-dark:#79B8FF">true</span><span style="color:#24292E;--shiki-dark:#E1E4E8">);     </span><span style="color:#6A737D;--shiki-dark:#6A737D">// HTTPS만</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    cookie.</span><span style="color:#6F42C1;--shiki-dark:#B392F0">setMaxAge</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#005CC5;--shiki-dark:#79B8FF">3600</span><span style="color:#24292E;--shiki-dark:#E1E4E8">);     </span><span style="color:#6A737D;--shiki-dark:#6A737D">// 1시간</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    cookie.</span><span style="color:#6F42C1;--shiki-dark:#B392F0">setPath</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"/"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">    response.</span><span style="color:#6F42C1;--shiki-dark:#B392F0">addCookie</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(cookie);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">    return</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> ResponseEntity.</span><span style="color:#6F42C1;--shiki-dark:#B392F0">ok</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#D73A49;--shiki-dark:#F97583">new</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> LoginResponse</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"로그인 성공"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">}</span></span></code></pre>
+<p>JWT 토큰을 쿠키에 저장하기 위해서는 백엔드에서 보낼 때 <code>Cookie</code> 객체에 담아서 보내면 된다.
 보안을 위한 몇가지 설정을 하고 쿠키 객체에 담아서 보내면 프론트에서 추가작업 없이 자동적으로 브라우저의 쿠키영역에 토큰이 저장된다.</p>
 <br>
 <br>
@@ -366,30 +244,30 @@
 <p>그래서 어디에 저장하는게 좋을까?</p>
 <h4 id="차이점-정리">차이점 정리</h4>
 <table>
-	<thead>
-			<tr>
-					<th>구분</th>
-					<th>Local Storage</th>
-					<th>HttpOnly Cookie</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>XSS 공격</td>
-					<td>취약 (JS 접근 가능)</td>
-					<td>안전 (HttpOnly시 JS 접근 불가)</td>
-			</tr>
-			<tr>
-					<td>CSRF 공격</td>
-					<td>안전</td>
-					<td>취약 (자동 요청)</td>
-			</tr>
-			<tr>
-					<td>용량 제한</td>
-					<td>약 5MB</td>
-					<td>약 4KB</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th>구분</th>
+<th>Local Storage</th>
+<th>HttpOnly Cookie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XSS 공격</td>
+<td>취약 (JS 접근 가능)</td>
+<td>안전 (HttpOnly시 JS 접근 불가)</td>
+</tr>
+<tr>
+<td>CSRF 공격</td>
+<td>안전</td>
+<td>취약 (자동 요청)</td>
+</tr>
+<tr>
+<td>용량 제한</td>
+<td>약 5MB</td>
+<td>약 4KB</td>
+</tr>
+</tbody>
 </table>
 <br>
 <h4 id="local-storage를-선택하는-경우">Local Storage를 선택하는 경우</h4>
@@ -407,7 +285,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="cookie-httponly--secure를-선택하는-경우">Cookie (HttpOnly &amp; Secure)를 선택하는 경우</h4>
+<h4 id="cookie-httponly-secure를-선택하는-경우">Cookie (HttpOnly &amp; Secure)를 선택하는 경우</h4>
 <ul>
 <li>장점
 <ul>
@@ -460,7 +338,7 @@
 <li><code>Authorization</code>
 <ul>
 <li>접근 제어</li>
-<li><em>이 URL은 로그인한 사람만&quot;, &ldquo;저 URL은 관리자만</em> 같은 규칙을 설정(SecurityConfig)</li>
+<li><em>이 URL은 로그인한 사람만&quot;, &quot;저 URL은 관리자만</em> 같은 규칙을 설정(SecurityConfig)</li>
 <li>설정하면 알아서 막아줌</li>
 </ul>
 </li>
@@ -538,12 +416,12 @@
 </ul>
 <br>
 <h4 id="spring에서-jwt-사용-전개">Spring에서 JWT 사용 전개</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>// 로그인
-</span></span><span style="display:flex;"><span>POST /login → 토큰 생성 → <span style="color:#e6db74">&#34;eyJhbG...&#34;</span> 반환
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>// 이후 요청  
-</span></span><span style="display:flex;"><span>GET /api/posts + Header<span style="color:#f92672">(</span>토큰<span style="color:#f92672">)</span> → Filter에서 검증 → Controller
-</span></span></code></pre></div><br>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">//</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 로그인</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">POST</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /login</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> →</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 토큰</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 생성</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> →</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "eyJhbG..."</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 반환</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">//</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 이후</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 요청</span><span style="color:#24292E;--shiki-dark:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">GET</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /api/posts</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> +</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Header</span><span style="color:#24292E;--shiki-dark:#E1E4E8">(</span><span style="color:#6F42C1;--shiki-dark:#B392F0">토큰</span><span style="color:#24292E;--shiki-dark:#E1E4E8">) </span><span style="color:#032F62;--shiki-dark:#9ECBFF">→</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Filter에서</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 검증</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> →</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> Controller</span></span></code></pre>
+<br>
 <br>
 <br>
 <h2 id="9-reference">9. Reference</h2>
@@ -555,15 +433,32 @@
 <br>
 <br>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-jwt%EC%9D%98-%EC%A0%95%EC%9D%98%EC%99%80-%ED%8A%B9%EC%A7%95" data-id="1-jwt의-정의와-특징">1. JWT의 정의와 특징</a><a class="lv0" href="#2-jwt%EC%9D%98-%EA%B5%AC%EC%A1%B0" data-id="2-jwt의-구조">2. JWT의 구조</a><a class="lv1" href="#2-1-header" data-id="2-1-header">2-1. Header</a><a class="lv1" href="#2-2-payload-%ED%8E%98%EC%9D%B4%EB%A1%9C%EB%93%9C" data-id="2-2-payload-페이로드">2-2. Payload (페이로드)</a><a class="lv1" href="#2-3-signature" data-id="2-3-signature">2-3. Signature</a><a class="lv0" href="#3-%EC%9D%B8%EC%A6%9D-%EB%B0%A9%EC%8B%9D%EC%9D%98-%EB%B3%80%ED%99%94-%EC%84%B8%EC%85%98-%EA%B8%B0%EB%B0%98-vs-%ED%86%A0%ED%81%B0-%EA%B8%B0%EB%B0%98" data-id="3-인증-방식의-변화-세션-기반-vs-토큰-기반">3. 인증 방식의 변화: 세션 기반 vs 토큰 기반</a><a class="lv1" href="#3-1-stateful-%EC%84%B8%EC%85%98" data-id="3-1-stateful-세션">3-1. Stateful → 세션</a><a class="lv1" href="#3-2-stateless-jwt" data-id="3-2-stateless-jwt">3-2. Stateless → JWT</a><a class="lv0" href="#4-%EB%B3%B4%EC%95%88-%EA%B0%95%ED%99%94%EB%A5%BC-%EC%9C%84%ED%95%9C-access-refresh-token" data-id="4-보안-강화를-위한-access-refresh-token">4. 보안 강화를 위한 Access &amp; Refresh Token</a><a class="lv0" href="#5-jwt%EC%99%80-%EC%BF%A0%ED%82%A4" data-id="5-jwt와-쿠키">5. JWT와 쿠키</a><a class="lv0" href="#6-jwt-%ED%86%A0%ED%81%B0-%EB%B3%B4%EA%B4%80-%EC%9E%A5%EC%86%8C" data-id="6-jwt-토큰-보관-장소">6. JWT 토큰 보관 장소?</a><a class="lv1" href="#6-1-local-storage" data-id="6-1-local-storage">6-1. Local Storage</a><a class="lv1" href="#6-2-cookie" data-id="6-2-cookie">6-2. Cookie</a><a class="lv1" href="#6-3-%EB%B3%B4%EA%B4%80-%EB%B0%A9%EB%B2%95-%EC%84%A0%ED%83%9D" data-id="6-3-보관-방법-선택">6-3. 보관 방법 선택</a><a class="lv0" href="#7-spring%EC%9D%98-%EB%AA%AB-vs-%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98-%EB%AA%AB" data-id="7-spring의-몫-vs-개발자의-몫">7. Spring의 몫 vs 개발자의 몫</a><a class="lv1" href="#7-1-spring-security%EC%97%90%EC%84%9C-%EC%A0%9C%EA%B3%B5%ED%95%98%EB%8A%94-%EA%B2%83" data-id="7-1-spring-security에서-제공하는-것">7-1. Spring Security에서 제공하는 것</a><a class="lv1" href="#7-2-%EA%B0%9C%EB%B0%9C%EC%9E%90%EA%B0%80-%EB%A7%8C%EB%93%A4%EC%96%B4%EC%95%BC-%ED%95%98%EB%8A%94-%EA%B2%83" data-id="7-2-개발자가-만들어야-하는-것">7-2. 개발자가 만들어야 하는 것</a><a class="lv0" href="#8-%EA%B2%B0%EB%A1%A0" data-id="8-결론">8. 결론</a><a class="lv0" href="#9-reference" data-id="9-reference">9. Reference</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

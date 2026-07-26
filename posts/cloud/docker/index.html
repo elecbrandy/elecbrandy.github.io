@@ -1,166 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>Docker Container | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docker Container · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-기저의-역사">2. 기저의 역사</a>
-      <ul>
-        <li><a href="#21-컨테이너의-탄생">2.1. 컨테이너의 탄생</a></li>
-        <li><a href="#22-vm과-컨테이너의-공존">2.2. VM과 컨테이너의 공존</a></li>
-        <li><a href="#23-docker의-등장">2.3. Docker의 등장</a></li>
-        <li><a href="#24-docker-그-이후">2.4 Docker 그 이후</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-vm과-컨테이너">3. VM과 컨테이너</a></li>
-    <li><a href="#4-docker">4. Docker</a>
-      <ul>
-        <li><a href="#41-docker-핵심-개념">4.1. Docker 핵심 개념</a></li>
-        <li><a href="#42-dockerfile">4.2. Dockerfile</a></li>
-        <li><a href="#43-docker-내부-아키텍처와-작동-방식">4.3. Docker 내부 아키텍처와 작동 방식</a></li>
-      </ul>
-    </li>
-    <li><a href="#5-사용-방법">5. 사용 방법</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#6-qa">6. Q&amp;A</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#7-reference">7. Reference</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://cdn.idaegu.com/news/photo/201902/361449_1.jpg" alt="Featured Image for Docker Container">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2026.03.18</small>
-      <div class="singleTitle">Docker Container</div>
-    </div>
-  </div>
-  <div class="series">
-  <details>
-    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/00_data/">0. 데이터 기초</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/01_prompt_engineering/">1. 프롬프트 엔지니어링</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/02_vectordb/">2. 벡터 DB</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">Docker Container</h1>
+<div class="post-meta"><time>2026-03-18</time><a class="chip" href="/tags/skala/">skala</a><a class="chip" href="/tags/docker/">docker</a><a class="chip" href="/tags/cloud/">cloud</a></div>
+<div class="series"><details open><summary>🦋 SKALA: SK AX AI Leader Academy</summary><ol><li><a href="/posts/ai/data/">데이터 분석 개요 및 기초통계</a><time>2026-01-07</time></li><li><a href="/posts/ai/prompt_engineering/">Prompt Engineering</a><time>2026-01-12</time></li><li><a href="/posts/ai/basic_ml/">ML/DL 이해: Machine Learning</a><time>2026-01-21</time></li><li><a href="/posts/db/vectordb/">VectorDB</a><time>2026-01-22</time></li><li><a href="/posts/ai/00_basic_dl/">ML/DL 이해: Deep Learning</a><time>2026-01-23</time></li><li><a href="/posts/ai/01_basic_dl/">DL 최적화 개념 및 방법</a><time>2026-01-24</time></li><li><a href="/posts/ai/dl-cnn/">DL-CNN</a><time>2026-01-25</time></li><li><a href="/posts/ai/dl-rnn/">DL-RNN</a><time>2026-01-27</time></li><li><a href="/posts/ai/dl-lstm/">DL-LSTM</a><time>2026-01-28</time></li><li><a href="/posts/ai/dl-cv/">DL-AlexNet &amp; ResNet</a><time>2026-02-01</time></li><li class="current">Docker Container<time>2026-03-18</time></li><li><a href="/posts/cloud/00_k8s/">k8s (1)</a><time>2026-03-20</time></li><li><a href="/posts/cloud/01_k8s/">k8s (2)</a><time>2026-03-21</time></li><li><a href="/posts/ai/rag-eval/">RAG Evaluation</a><time>2026-06-12</time></li></ol></details></div>
 <br>
 <h2 id="1-소개">1. 소개</h2>
 <p>로컬과 서버의 OS가 다르고, 설치된 언어의 버전이 꼬이거나 라이브러리 경로가 어긋나면 본격적인 개발을 시작하기도 전에 진이 다 빠지곤 한다. 도커 컨테이너는 바로 이러한 환경의 파편화 문제를 해결하기 위해 등장했다. 핵심은 실행 환경의 표준화이다. 어디서든 동일한 환경을 보장해주는 도커 컨테이너의 내부 동작 방식과 실제 활용법을 정리해보고자 한다.</p>
@@ -196,35 +64,35 @@
 <li>따라서 주로 대규모 인프라를 직접 운영하는 거대 기업 내부에서만 사용됨</li>
 </ul>
 <table>
-	<thead>
-			<tr>
-					<th style="text-align: left">구분</th>
-					<th style="text-align: left">가상 머신 (VM)</th>
-					<th style="text-align: left">초기 컨테이너 (LXC 등)</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td style="text-align: left"><strong>격리</strong></td>
-					<td style="text-align: left">하드웨어 수준 격리 (하이퍼바이저)로 안전</td>
-					<td style="text-align: left">호스트 커널을 공유하여 보안 우려</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>범용성</strong></td>
-					<td style="text-align: left">Windows 호스트에서 Linux 실행이 가능</td>
-					<td style="text-align: left">호스트 OS와 컨테이너 OS가 동일해야함</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>관리</strong></td>
-					<td style="text-align: left">VMware 등 성숙한 관리 솔루션이 존재</td>
-					<td style="text-align: left">CLI 기반으로 설정이 매우 복잡하고 파편화</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>이식성</strong></td>
-					<td style="text-align: left">가상 디스크가 너무 커서 옮기기 어려움</td>
-					<td style="text-align: left">환경이 조금만 달라져도 실행이 안 되는 경우가 많았음</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th style="text-align:left">구분</th>
+<th style="text-align:left">가상 머신 (VM)</th>
+<th style="text-align:left">초기 컨테이너 (LXC 등)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>격리</strong></td>
+<td style="text-align:left">하드웨어 수준 격리 (하이퍼바이저)로 안전</td>
+<td style="text-align:left">호스트 커널을 공유하여 보안 우려</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>범용성</strong></td>
+<td style="text-align:left">Windows 호스트에서 Linux 실행이 가능</td>
+<td style="text-align:left">호스트 OS와 컨테이너 OS가 동일해야함</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>관리</strong></td>
+<td style="text-align:left">VMware 등 성숙한 관리 솔루션이 존재</td>
+<td style="text-align:left">CLI 기반으로 설정이 매우 복잡하고 파편화</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>이식성</strong></td>
+<td style="text-align:left">가상 디스크가 너무 커서 옮기기 어려움</td>
+<td style="text-align:left">환경이 조금만 달라져도 실행이 안 되는 경우가 많았음</td>
+</tr>
+</tbody>
 </table>
 <br>
 <h3 id="23-docker의-등장">2.3. Docker의 등장</h3>
@@ -301,30 +169,30 @@
 </ul>
 <br>
 <table>
-	<thead>
-			<tr>
-					<th>구분</th>
-					<th>VM</th>
-					<th>Docker Container</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>구조</strong></td>
-					<td>HW 레벨 가상화 (Guest OS 필수)</td>
-					<td>OS 레벨 가상화 (Host OS 커널 공유)</td>
-			</tr>
-			<tr>
-					<td><strong>속도</strong></td>
-					<td>부팅 및 실행이 느림 (분 단위)</td>
-					<td>프로세스 실행 수준으로 매우 빠름 (초 단위)</td>
-			</tr>
-			<tr>
-					<td><strong>무게</strong></td>
-					<td>GB 단위, 무겁고 자원소모⬆️</td>
-					<td>MB 단위, 가볍고 효율적임</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th>구분</th>
+<th>VM</th>
+<th>Docker Container</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>구조</strong></td>
+<td>HW 레벨 가상화 (Guest OS 필수)</td>
+<td>OS 레벨 가상화 (Host OS 커널 공유)</td>
+</tr>
+<tr>
+<td><strong>속도</strong></td>
+<td>부팅 및 실행이 느림 (분 단위)</td>
+<td>프로세스 실행 수준으로 매우 빠름 (초 단위)</td>
+</tr>
+<tr>
+<td><strong>무게</strong></td>
+<td>GB 단위, 무겁고 자원소모⬆️</td>
+<td>MB 단위, 가볍고 효율적임</td>
+</tr>
+</tbody>
 </table>
 <br>
 <br>
@@ -360,50 +228,50 @@
 <br>
 <h3 id="42-dockerfile">4.2. Dockerfile</h3>
 <table>
-	<thead>
-			<tr>
-					<th style="text-align: left">명령어</th>
-					<th style="text-align: left">의미 및 역할</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td style="text-align: left"><strong><code>FROM</code></strong></td>
-					<td style="text-align: left">이미지를 생성할 때 기반이 되는 Base Image 지정</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong><code>RUN</code></strong></td>
-					<td style="text-align: left">이미지 빌드 과정에서 명령어를 실행하여 새로운 레이어를 생성</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong><code>COPY</code></strong></td>
-					<td style="text-align: left">호스트에 있는 파일이나 디렉토리를 이미지 내부의 경로로 복사</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong><code>ADD</code></strong></td>
-					<td style="text-align: left"><code>COPY</code>와 유사 -&gt; 압축 파일 해제, 파일을 다운로드하는 기능 등</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong><code>WORKDIR</code></strong></td>
-					<td style="text-align: left">이후 실행될 명령어가 실행될 작업 디렉토리를 설정</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong><code>ENV</code></strong></td>
-					<td style="text-align: left">이미지 내부에서 사용할 환경 변수를 설</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong><code>EXPOSE</code></strong></td>
-					<td style="text-align: left">컨테이너가 실행될 때 외부로 노출할 포트 번호 지정</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong><code>CMD</code></strong></td>
-					<td style="text-align: left">컨테이너가 실행될 때 기본으로 실행될 명령어</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong><code>ENTRYPOINT</code></strong></td>
-					<td style="text-align: left">컨테이너 실행 시 반드시 실행되어야 하는 명령어 지정</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th style="text-align:left">명령어</th>
+<th style="text-align:left">의미 및 역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><code>FROM</code></strong></td>
+<td style="text-align:left">이미지를 생성할 때 기반이 되는 Base Image 지정</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>RUN</code></strong></td>
+<td style="text-align:left">이미지 빌드 과정에서 명령어를 실행하여 새로운 레이어를 생성</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>COPY</code></strong></td>
+<td style="text-align:left">호스트에 있는 파일이나 디렉토리를 이미지 내부의 경로로 복사</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>ADD</code></strong></td>
+<td style="text-align:left"><code>COPY</code>와 유사 -&gt; 압축 파일 해제, 파일을 다운로드하는 기능 등</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>WORKDIR</code></strong></td>
+<td style="text-align:left">이후 실행될 명령어가 실행될 작업 디렉토리를 설정</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>ENV</code></strong></td>
+<td style="text-align:left">이미지 내부에서 사용할 환경 변수를 설</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>EXPOSE</code></strong></td>
+<td style="text-align:left">컨테이너가 실행될 때 외부로 노출할 포트 번호 지정</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>CMD</code></strong></td>
+<td style="text-align:left">컨테이너가 실행될 때 기본으로 실행될 명령어</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>ENTRYPOINT</code></strong></td>
+<td style="text-align:left">컨테이너 실행 시 반드시 실행되어야 하는 명령어 지정</td>
+</tr>
+</tbody>
 </table>
 <br>
 <h3 id="43-docker-내부-아키텍처와-작동-방식">4.3. Docker 내부 아키텍처와 작동 방식</h3>
@@ -479,7 +347,7 @@
 <li>4️⃣ <strong>containerd-shim (축제 경비원)</strong>
 <ul>
 <li><code>runc</code> 가 떠난 뒤, 부스에 남은 사람(프로세스)을 24시간 감시하고 보고</li>
-<li><code>containerd</code>가 &ldquo;그 부스 잘 돌아가나?&ldquo;라고 물어보면 상황을 보고</li>
+<li><code>containerd</code>가 &quot;그 부스 잘 돌아가나?&quot;라고 물어보면 상황을 보고</li>
 <li>부스가 무너지거나(프로세스 종료) 안에 사람이 나가면 그 소식을 전함</li>
 <li>특히, 시청(<code>dockerd</code>)이 공사 중이어도 경비원은 자리를 지키므로 부스 안의 사람(서비스)은 안전</li>
 </ul>
@@ -490,24 +358,24 @@
 <h2 id="5-사용-방법">5. 사용 방법</h2>
 <p><em>간단한 파이썬 애플리케이션을 도커 환경에서 실행하는 과정을 통해 사용 방법을 알아보자</em></p>
 <h4 id="dockerfile-작성"><code>Dockerfile</code> 작성</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># 1. 베이스 이미지 지정</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">python:3.9-slim</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 호스트의 파일을 컨테이너 내부로 복사</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . /app<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 의존성 설치 및 앱 실행</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> pip install -r requirements.txt<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;python&#34;</span>, <span style="color:#e6db74">&#34;app.py&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><h4 id="docker-image-빌드와-run">Docker image 빌드와 run</h4>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-dockerfile"><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># 1. 베이스 이미지 지정</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">FROM</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> python:3.9-slim</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># 2. 호스트의 파일을 컨테이너 내부로 복사</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">COPY</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> . /app</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">WORKDIR</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> /app</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># 3. 의존성 설치 및 앱 실행</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">RUN</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> pip install -r requirements.txt</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">CMD</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> [</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"python"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"app.py"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">]</span></span></code></pre>
+<h4 id="docker-image-빌드와-run">Docker image 빌드와 run</h4>
 <p>작성이 완료되면 터미널에서 이미지를 빌드하고 컨테이너를 띄운다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile을 읽어 &#39;my-python-app&#39;이라는 이름의 이미지를 빌드한다.</span>
-</span></span><span style="display:flex;"><span>$ docker build -t my-python-app .
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 빌드된 이미지를 백그라운드(-d)에서 포트 8080으로 연결하여 실행한다.</span>
-</span></span><span style="display:flex;"><span>$ docker run -d -p 8080:8080 my-python-app
-</span></span></code></pre></div><br>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># Dockerfile을 읽어 'my-python-app'이라는 이름의 이미지를 빌드한다.</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">$</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> build</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -t</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> my-python-app</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> .</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># 빌드된 이미지를 백그라운드(-d)에서 포트 8080으로 연결하여 실행한다.</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">$</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> run</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -d</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -p</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 8080:8080</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> my-python-app</span></span></code></pre>
+<br>
 <br>
 <h2 id="6-qa">6. Q&amp;A</h2>
 <h4 id="docker가-os를-따로-설치하지-않는데-from-을-통해-ubuntu-apline-등을-가져오는-이유">Docker가 OS를 따로 설치하지 않는데, <code>FROM</code> 을 통해 ubuntu, apline 등을 가져오는 이유</h4>
@@ -538,7 +406,7 @@
 <ul>
 <li>컨테이너는 하나의 공간이고, 인스턴스가 X</li>
 <li>컨테이너는 하나의 공간이고, 그 안에 있는 프로세스가 인스턴스인 셈</li>
-<li>그럼에도 그냥 인스턴스라고 부르기도 함&hellip;</li>
+<li>그럼에도 그냥 인스턴스라고 부르기도 함...</li>
 </ul>
 </li>
 </ul>
@@ -692,15 +560,32 @@
 </ul>
 <br>
 <br>
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%86%8C%EA%B0%9C" data-id="1-소개">1. 소개</a><a class="lv0" href="#2-%EA%B8%B0%EC%A0%80%EC%9D%98-%EC%97%AD%EC%82%AC" data-id="2-기저의-역사">2. 기저의 역사</a><a class="lv1" href="#21-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-%ED%83%84%EC%83%9D" data-id="21-컨테이너의-탄생">2.1. 컨테이너의 탄생</a><a class="lv1" href="#22-vm%EA%B3%BC-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%9D%98-%EA%B3%B5%EC%A1%B4" data-id="22-vm과-컨테이너의-공존">2.2. VM과 컨테이너의 공존</a><a class="lv1" href="#23-docker%EC%9D%98-%EB%93%B1%EC%9E%A5" data-id="23-docker의-등장">2.3. Docker의 등장</a><a class="lv1" href="#24-docker-%EA%B7%B8-%EC%9D%B4%ED%9B%84" data-id="24-docker-그-이후">2.4 Docker 그 이후</a><a class="lv0" href="#3-vm%EA%B3%BC-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88" data-id="3-vm과-컨테이너">3. VM과 컨테이너</a><a class="lv0" href="#4-docker" data-id="4-docker">4. Docker</a><a class="lv1" href="#41-docker-%ED%95%B5%EC%8B%AC-%EA%B0%9C%EB%85%90" data-id="41-docker-핵심-개념">4.1. Docker 핵심 개념</a><a class="lv1" href="#42-dockerfile" data-id="42-dockerfile">4.2. Dockerfile</a><a class="lv1" href="#43-docker-%EB%82%B4%EB%B6%80-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%EC%99%80-%EC%9E%91%EB%8F%99-%EB%B0%A9%EC%8B%9D" data-id="43-docker-내부-아키텍처와-작동-방식">4.3. Docker 내부 아키텍처와 작동 방식</a><a class="lv0" href="#5-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95" data-id="5-사용-방법">5. 사용 방법</a><a class="lv0" href="#6-qa" data-id="6-qa">6. Q&amp;A</a><a class="lv0" href="#7-reference" data-id="7-reference">7. Reference</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

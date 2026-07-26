@@ -1,178 +1,40 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>[42seoul] cub3d | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[42seoul] cub3d · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-cub3d-명세서">2. cub3D 명세서</a></li>
-    <li><a href="#3-개념-정리">3. 개념 정리</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#4-mandatory">4. Mandatory</a></li>
-    <li><a href="#5-evaluation">5. Evaluation</a></li>
-    <li><a href="#6-reference">6. Reference</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://upload.wikimedia.org/wikipedia/en/d/de/Doom_ingame_1.png" alt="Featured Image for [42seoul] cub3d">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2024.08.20</small>
-      <div class="singleTitle">[42seoul] cub3d</div>
-    </div>
-  </div>
-  <div class="series">
-  <details>
-    <summary>📚 /42seoul 시리즈</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_0/42/">0. 42서울이란?</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_0/libft/">1. libft</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/ft_printf/">2. ft_printf</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/get_next_line/">3. get_next_line</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/born2beroot/">4. born2beroot</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/pipex/">5. pipex</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/fdf/">6. fdf</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/push_swap/">7. push_swap</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_3/minishell/">8. minishell</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_3/philosophers/">9. philosophers</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_4/cub3d/">10. cub3d</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_4/netpractice/">11. netpractice</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_5/ft_irc/">13. ft_irc</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_5/inception/">15. inception</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_6/ft_transcendence/">16. ft_transcendence</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">[42seoul] cub3d</h1>
+<div class="post-meta"><time>2024-08-20</time><a class="chip" href="/tags/c/">C</a><a class="chip" href="/tags/42seoul/">42seoul</a></div>
+<div class="series"><details open><summary>📚 /42seoul 시리즈</summary><ol><li><a href="/posts/42seoul/circle_0/42/">[42seoul] 42seoul이란?</a><time>2023-10-03</time></li><li><a href="/posts/42seoul/circle_0/libft/">[42seoul] libft</a><time>2023-11-03</time></li><li><a href="/posts/42seoul/circle_1/ft_printf/">[42seoul] ft_printf</a><time>2023-11-15</time></li><li><a href="/posts/42seoul/circle_1/get_next_line/">[42seoul] get_next_line</a><time>2023-12-18</time></li><li><a href="/posts/42seoul/circle_1/born2beroot/">[42seoul] born2beroot</a><time>2024-01-18</time></li><li><a href="/posts/42seoul/circle_2/push_swap/">[42seoul] push_swap</a><time>2024-02-12</time></li><li><a href="/posts/42seoul/circle_2/pipex/">[42seoul] pipex</a><time>2024-02-28</time></li><li><a href="/posts/42seoul/circle_2/fdf/">[42seoul] fdf</a><time>2024-04-09</time></li><li><a href="/posts/42seoul/circle_3/minishell/">[42seoul] minishell</a><time>2024-06-04</time></li><li><a href="/posts/42seoul/circle_3/philosophers/">[42seoul] philosopers</a><time>2024-08-05</time></li><li class="current">[42seoul] cub3d<time>2024-08-20</time></li><li><a href="/posts/42seoul/circle_4/netpractice/">[42seoul] netpractice</a><time>2024-08-25</time></li><li><a href="/posts/42seoul/circle_5/ft_irc/">[42seoul] ft_irc</a><time>2024-11-20</time></li><li><a href="/posts/42seoul/circle_5/inception/">[42seoul] inception</a><time>2025-01-27</time></li><li><a href="/posts/42seoul/circle_6/ft_transcendence/">[42seoul] ft_transcendence</a><time>2025-03-22</time></li></ol></details></div>
 <br>
 <h2 id="1-소개">1. 소개</h2>
 <blockquote>
 <p>My first RayCaster with miniLibX</p>
 </blockquote>
-<p>42서울 본과정 입과 후 열번째로 수행한 과제로, 레이케스팅을 통해 간단한 3d 게임&hellip;? 을 만드는 것이 목표이다.
+<p>42서울 본과정 입과 후 열번째로 수행한 과제로, 레이케스팅을 통해 간단한 3d 게임...? 을 만드는 것이 목표이다.
 이전 fdf 과제와 비슷하게 2차원 맵을 파싱 받아와서 3차원처럼 보이게 구현해보자. 해당 과제 또한 팀원과 함께하는 팀 과제이다.</p>
 <br>
 <br>
@@ -208,17 +70,17 @@
 <br>
 <br>
 <h2 id="3-개념-정리">3. 개념 정리</h2>
-<p>사실 그래픽에 크게 관심이 없던 카뎃이라면 매번 그래픽 과제를 만났을 때 처음 c언어를 접했을 때로 돌아가는 기분을 느꼈을 것이다. 그것은 나 또한 마찬가지로, 기존에 3d 공간에 단 하나의 관심도 없었다. 도대체 레이케스팅이 무엇이길래&hellip;?</p>
+<p>사실 그래픽에 크게 관심이 없던 카뎃이라면 매번 그래픽 과제를 만났을 때 처음 c언어를 접했을 때로 돌아가는 기분을 느꼈을 것이다. 그것은 나 또한 마찬가지로, 기존에 3d 공간에 단 하나의 관심도 없었다. 도대체 레이케스팅이 무엇이길래...?</p>
 <p>다행히도 방랑자들을 위한 튜토리얼이 준비 되어있다. 영어 원문과 능력자 356kim님의 번역본까지 함께 링크를 남겨보겠다.</p>
 <ul>
 <li>영어 원문: <a href="https://lodev.org/cgtutor/raycasting.html">https://lodev.org/cgtutor/raycasting.html</a></li>
 <li>번역본: <a href="https://github.com/365kim/raycasting_tutorial?tab=readme-ov-file">https://github.com/365kim/raycasting_tutorial?tab=readme-ov-file</a></li>
 </ul>
-<p>튜토리얼을 자세히 읽고, 일단 예제를 따라해보자. 그리고 3층 화이트 보드 벽면에 팀원과 함께 좌표평면을 직접 그려보며 이해하면 좋다. 레이케스팅 구현은 내가, 맵 파싱은 팀원분이 해주셨다. 담당한 부분은 달랐지만, 어처피 평가도 받아야하고 설명도 해야하기 때문에 우리는 과제하는 동안 3층 한켠에서 좌표를 그리며 레이케스팅을 이해하고자 노력했다&hellip;</p>
+<p>튜토리얼을 자세히 읽고, 일단 예제를 따라해보자. 그리고 3층 화이트 보드 벽면에 팀원과 함께 좌표평면을 직접 그려보며 이해하면 좋다. 레이케스팅 구현은 내가, 맵 파싱은 팀원분이 해주셨다. 담당한 부분은 달랐지만, 어처피 평가도 받아야하고 설명도 해야하기 때문에 우리는 과제하는 동안 3층 한켠에서 좌표를 그리며 레이케스팅을 이해하고자 노력했다...</p>
 <h4 id="레이케스팅">레이케스팅?</h4>
 <p>레이캐스팅은 2차원 맵을 기반으로 플레이어가 바라보는 시야를 3차원처럼 렌더링하는 기술이다. 원리를 간단히 설명하면 다음과 같다. 플레이어의 위치와 바라보는 방향을 기준으로 일정한 시야각(Field of View, FOV)을 설정한 뒤, 그 시야각 내에서 여러 개의 광선(ray)을 펼쳐 발사한다. 각각의 광선은 플레이어의 위치에서 출발하여 장애물(벽 등)에 부딪힐 때까지 직선으로 진행한다.</p>
 <p>각 광선이 벽에 부딪힌 지점을 통해 플레이어가 보는 시야가 결정되며, 이 정보는 매 프레임마다 모니터에 렌더링된다. 즉, 멀리 있는 벽은 화면에 작게 나타나고, 가까이 있는 벽은 화면에 크게 나타난다. 이는 화면에 세로선을 얼마나 길게 그려내야 하는지 결정하는 문제로 귀결된다.</p>
-<p>레이캐스팅을 통한 3차원 시각 효과 구현에 필요한 정확한 수식과 친절한 튜토리얼은 위에 이미 존재한다. 따라서 이 글에서는 기본 개념을 다시 반복하지는 않으려 한다&hellip;</p>
+<p>레이캐스팅을 통한 3차원 시각 효과 구현에 필요한 정확한 수식과 친절한 튜토리얼은 위에 이미 존재한다. 따라서 이 글에서는 기본 개념을 다시 반복하지는 않으려 한다...</p>
 <br>
 <br>
 <br>
@@ -250,15 +112,32 @@
 <br>
 <br>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%86%8C%EA%B0%9C" data-id="1-소개">1. 소개</a><a class="lv0" href="#2-cub3d-%EB%AA%85%EC%84%B8%EC%84%9C" data-id="2-cub3d-명세서">2. cub3D 명세서</a><a class="lv0" href="#3-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC" data-id="3-개념-정리">3. 개념 정리</a><a class="lv0" href="#4-mandatory" data-id="4-mandatory">4. Mandatory</a><a class="lv0" href="#5-evaluation" data-id="5-evaluation">5. Evaluation</a><a class="lv0" href="#6-reference" data-id="6-reference">6. Reference</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

@@ -1,151 +1,39 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>2023 데이터 청년 캠퍼스 | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2023 데이터 청년 캠퍼스 · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-프로젝트-개요">2. 프로젝트 개요</a>
-      <ul>
-        <li><a href="#2-1-가짜뉴스">2-1. 가짜뉴스?</a></li>
-        <li><a href="#2-2-해외의-경우">2-2. 해외의 경우</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-연구방법">3. 연구방법</a></li>
-    <li><a href="#4-프레임워크">4. 프레임워크</a>
-      <ul>
-        <li><a href="#4-1-모델링_01--snu-언론정보연구소-데이터-활용">4-1. 모델링_01 : SNU 언론정보연구소 데이터 활용</a></li>
-        <li><a href="#4-2-모델링_02--naver--youtube-데이터-활용">4-2. 모델링_02 : Naver / Youtube 데이터 활용</a></li>
-      </ul>
-    </li>
-    <li><a href="#5-개선방안">5. 개선방안</a>
-      <ul>
-        <li><a href="#chrome-확장-프로그램">Chrome 확장 프로그램</a></li>
-      </ul>
-    </li>
-    <li><a href="#6-결론">6. 결론</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=2670&amp;q=80" alt="Featured Image for 2023 데이터 청년 캠퍼스">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2023.09.07</small>
-      <div class="singleTitle">2023 데이터 청년 캠퍼스</div>
-    </div>
-  </div>
-  <br>
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">2023 데이터 청년 캠퍼스</h1>
+<div class="post-meta"><time>2023-09-07</time><a class="chip" href="/tags/ai/">ai</a><a class="chip" href="/tags/python/">python</a></div>
+<br>
 <h2 id="1-소개">1. 소개</h2>
 <blockquote>
 <p>2023 데이터 청년 캠퍼스 경제/금융분야 페이크 뉴스 탐지 시스템 구축을 주제로</p>
 </blockquote>
-<p>3학년 여름방학에 데이터와 코딩 관련 경험을 해보고자 과학기술정보통신부와 한국데이터산업진흥원에서 국내 대학교와 함께 운영하는 <strong>2023 데이터 청년 캠퍼스</strong>에 신청했다. 사실 그렇게 전공이라고 보기에 애매한 상황에서 붙을 수 있을까 고민했는데, 다행히 선발되어 상명대학교 데이터융합과정 (빅데이터 분석 기반 금융분야 비즈니스 인사이트 역량제고 과정)에 참여하게 되었다. 크게 4주 동안의 집체교육, 이후 6주 동안의 프로젝트 기간으로 구성되어있으며 집체교육 동안에는 파이썬 기초부터 ~ 딥러닝(&hellip;의 형상을 하고있는 무언가)를 공부하게된다.</p>
+<p>3학년 여름방학에 데이터와 코딩 관련 경험을 해보고자 과학기술정보통신부와 한국데이터산업진흥원에서 국내 대학교와 함께 운영하는 <strong>2023 데이터 청년 캠퍼스</strong>에 신청했다. 사실 그렇게 전공이라고 보기에 애매한 상황에서 붙을 수 있을까 고민했는데, 다행히 선발되어 상명대학교 데이터융합과정 (빅데이터 분석 기반 금융분야 비즈니스 인사이트 역량제고 과정)에 참여하게 되었다. 크게 4주 동안의 집체교육, 이후 6주 동안의 프로젝트 기간으로 구성되어있으며 집체교육 동안에는 파이썬 기초부터 ~ 딥러닝(...의 형상을 하고있는 무언가)를 공부하게된다.</p>
 <p>우리 1분반 5조는 주제를 정하는 것에 가장 많은 시간을 쏟아부었다. 우리 모두 초심자였기 때문일까? 뭔가 있어보이고 멋있는걸 하고싶었다. 전기차 충전소 입지선정, 산불 위험 지역 분석 등등 다양한 주제가 제시되었지만 이미 공모전에 출품되거나 국가에서 개발해 사용하고 있었다. 특히 금융과정이다보니 금융과 동떨어진 주제를 금융과 억지로 엮는게 힘들었다. 어떤 주제를 골라야 금융과 연관성 있으면서, 그동안 배운 것을 써먹을 수 있을까 고민하던 우리는 <strong>경제/금융분야 페이크 뉴스 탐지 시스템 구축</strong>을 주제로 삼았다.</p>
 <br>
 <h2 id="2-프로젝트-개요">2. 프로젝트 개요</h2>
@@ -157,84 +45,101 @@
 <li>독일 : SNS에서의 법 집행 개선을 위한 네트워크 집행법(NetDG)</li>
 <li>포르투갈 : 정부와 민간이 힘을 합쳐 가짜뉴스 퇴치 운동 및 기구 운영</li>
 <li>미국 : 서비스 공급자의 자율 규제에 무게를 두며 민간 팩트체크 사이트 운영</li>
-<li>프랑스 : 다양한 언론사와 구글의 주도로 팩트체크 기관 &lsquo;크로스체크&rsquo; 운영 중</li>
+<li>프랑스 : 다양한 언론사와 구글의 주도로 팩트체크 기관 '크로스체크' 운영 중</li>
 <li>한국 : 프랑스와 비슷하게 다양한 언론사와 서울대학교가 함께 팩트체크 아카이브 운영 중</li>
 </ul>
 <p>위 사례에서 독일은 특이하게 실제 법안을 입법해 운용하고 있는데 운용 과정에서 표현의 자유와 가짜뉴스 검열 사이의 첨예한 의견 대립이 이어지고 있다. 한국은 17년 이후로 다양한 입법 시도가 있었으나 통과까지 이어지지 못했다.
 결국 이러한 법적인 제약을 넘어 가짜뉴스와 맞서기 위해서는 결국 (어쩔 수 없게도) 사회 구성원 개인의 노력이 필요하다. 그렇기에 최근 어디서든 시민들의 미디어 리터러시 능력 향상이 중요 이슈로 떠오르는 것 같다.</p>
-<p>그러나 일반 사용자가 뉴스를 보며 매번 논문과 추가 자료를 찾아보며 교차검증하기에는 물리적으로 시간이 부족하다. 그렇다고 해서 사용자가 뉴스를 읽을 때마다 &ldquo;이 뉴스는 과연 진짜일까?&ldquo;라고 걱정한다면 아마 그 피로는 상당할 것이다. 따라서 가짜뉴스 데이터를 학습시켜서 어느 정도 걸러낼 수 있는 인공지능 모델을 만든다면, 사용자가 정보를 접할 때 1차 거름망 역할을 해줄 수 있지 않을까.</p>
+<p>그러나 일반 사용자가 뉴스를 보며 매번 논문과 추가 자료를 찾아보며 교차검증하기에는 물리적으로 시간이 부족하다. 그렇다고 해서 사용자가 뉴스를 읽을 때마다 &quot;이 뉴스는 과연 진짜일까?&quot;라고 걱정한다면 아마 그 피로는 상당할 것이다. 따라서 가짜뉴스 데이터를 학습시켜서 어느 정도 걸러낼 수 있는 인공지능 모델을 만든다면, 사용자가 정보를 접할 때 1차 거름망 역할을 해줄 수 있지 않을까.</p>
 <br>
 <br>
 <br>
 <h2 id="3-연구방법">3. 연구방법</h2>
-<p><img src="https://elecbrandy.github.io/images/Data_on_air/01.png" alt="연구 방법">
+<p><img src="/images/Data_on_air/01.png" alt="연구 방법">
 우리 모델은 기준으로 서울대학교 언론정보연구소의 팩트체크 정보를 활용한다.
-가짜뉴스의 정의와 판별 기준은 여전히 논의 중이며, 놀랍게도 이는 각 개인 또는 그들이 속한 집단의 입장에 따라 달라질 수 있다&hellip;! 어른들의 사정이란&hellip; 따라서 우리는 서울대학교 팩트체크 사이트에서 주제별로 라벨링 된 기준을 채택하여 모델을 훈련하기로 했다. 우리의 모델은 이러한 팩트체크 기준을 활용하여 Naver 기사와 YouTube 영상 스크립트에 대한 준 지도 학습&hellip; factcheck에서는 이미 라벨이 붙어 있지만 Naver와 YouTube에는 라벨이 붙어 있지 않다는 점과 그 비율이 균일하지 않다는 점을 고려해 준 지도 학습을 진행했다. 우리의 목표는 한국언론진흥재단의 자료를 기반으로 한 온라인 뉴스 중에서 매주 가장 많이 이용되는 Naver 뉴스 YouTube를 활용하여 모델을 향상하는 것이다. 이를 통해 모델의 실제 성능과 범용성을 향상할 것이다.</p>
+가짜뉴스의 정의와 판별 기준은 여전히 논의 중이며, 놀랍게도 이는 각 개인 또는 그들이 속한 집단의 입장에 따라 달라질 수 있다...! 어른들의 사정이란... 따라서 우리는 서울대학교 팩트체크 사이트에서 주제별로 라벨링 된 기준을 채택하여 모델을 훈련하기로 했다. 우리의 모델은 이러한 팩트체크 기준을 활용하여 Naver 기사와 YouTube 영상 스크립트에 대한 준 지도 학습... factcheck에서는 이미 라벨이 붙어 있지만 Naver와 YouTube에는 라벨이 붙어 있지 않다는 점과 그 비율이 균일하지 않다는 점을 고려해 준 지도 학습을 진행했다. 우리의 목표는 한국언론진흥재단의 자료를 기반으로 한 온라인 뉴스 중에서 매주 가장 많이 이용되는 Naver 뉴스 YouTube를 활용하여 모델을 향상하는 것이다. 이를 통해 모델의 실제 성능과 범용성을 향상할 것이다.</p>
 <br>
 <h2 id="4-프레임워크">4. 프레임워크</h2>
-<p><img src="https://elecbrandy.github.io/images/Data_on_air/frame.png" alt="프레임워크"></p>
+<p><img src="/images/Data_on_air/frame.png" alt="프레임워크"></p>
 <br>
-<h3 id="4-1-모델링_01--snu-언론정보연구소-데이터-활용">4-1. 모델링_01 : SNU 언론정보연구소 데이터 활용</h3>
+<h3 id="4-1-모델링01-snu-언론정보연구소-데이터-활용">4-1. 모델링_01 : SNU 언론정보연구소 데이터 활용</h3>
 <h4 id="데이터-수집-및-확인">데이터 수집 및 확인</h4>
-<p><img src="https://elecbrandy.github.io/images/Data_on_air/02.png" alt="데이터 수집 및 확인"></p>
+<p><img src="/images/Data_on_air/02.png" alt="데이터 수집 및 확인"></p>
 <p>우리는 팩트체크에서 총 790개의 데이터를 수집했다. 이때 row_id에 인덱스를 / 내용에 기사, 영상제목을 / 상세내용에 기사내용, 영상 스크립트를 / 주장검증매체에 언론사, 채널 명을 / label에 SNU 언론정보연구소 라벨링 정보를 가져왔다. 선행연구를 참조해 판단유보를 제외하고 False와 True를 구분했다.</p>
 <br>
 <h4 id="라벨링-인덱스">라벨링 인덱스</h4>
-<p><img src="https://elecbrandy.github.io/images/Data_on_air/03.png" alt="라벨링 인덱스">
+<p><img src="/images/Data_on_air/03.png" alt="라벨링 인덱스">
 선행연구를 참조해 판단유보를 제외하고 False와 True를 구분했다.</p>
 <br>
 <h4 id="워드클라우드">워드클라우드</h4>
-<p><img src="https://elecbrandy.github.io/images/Data_on_air/04.png" alt="워드클라우드">
+<p><img src="/images/Data_on_air/04.png" alt="워드클라우드">
 위 그래픽은 수집한 로우데이터의 상세 내용을 시각화한 것으로 왼쪽 붉은색이 False, 오른쪽 푸른색이 True로 라벨링된 텍스트의 워드클라우드이다. 보면 생각보다 비슷한 단어들이 많고 의미없이 반복되는 단어들이 많은 것을 알 수 있는데, 이를 통해서 데이터 전처리 진행에 대한 틀을 잡고 더 나아가 불용어 사전 구축에도 아이디어를 얻을 수 있었다!</p>
 <br>
 <h4 id="데이터-전처리">데이터 전처리</h4>
-<p><img src="https://elecbrandy.github.io/images/Data_on_air/05.png" alt="데이터 전처리">
+<p><img src="/images/Data_on_air/05.png" alt="데이터 전처리">
 판단유보를 제외한 총 760개 데이터를 대상으로 맞춤법 검사 / 불용어 제거(사전 수동 구축) / 토픽모델링(중복 주제 그룹화) / 오버샘플링(T/F 비율 1:1) 순서로 전처리를 진행했다. 최종적으로 760개의 데이터를 전처리 후 모델 훈련용 544개, 검증용 데이터 136개로 구분 지었다.</p>
 <br>
 <h4 id="모델링">모델링</h4>
-<p><img src="https://elecbrandy.github.io/images/Data_on_air/06.png" alt="모델링">
+<p><img src="/images/Data_on_air/06.png" alt="모델링">
 Word2Vec 벡터화된 데이터를 양방향 LSTM (BiLSTM) 모델에 적용하여 실험을 진행했다. 초기에는 일반 LSTM을 사용하여 모델을 구성했으나, 검증 결과의 성능이 예상보다 낮아서 모델을 변경해야 할지에 대한 고민을 했다. 그런데, 더 다양한 연구와 논문 서칭을 통해 LSTM보다 성능이 우수한 BiLSTM 모델을 발견했다. 이 모델은 문맥을 양방향으로 고려하는 데에 있어서 우수한 성과를 보이며, 특히 문맥 기반의 연관성 분석에 유리한 모델이다. 따라서 BiLSTM 모델을 채택하고 적용한 결과, 성능에서 유의미한 개선이 이루어졌다.</p>
 <br>
-<h3 id="4-2-모델링_02--naver--youtube-데이터-활용">4-2. 모델링_02 : Naver / Youtube 데이터 활용</h3>
-<h4 id="데이터-수집-및-확인-1">데이터 수집 및 확인</h4>
-<p><img src="https://elecbrandy.github.io/images/Data_on_air/07.png" alt="데이터 수집 및 확인"></p>
+<h3 id="4-2-모델링02-naver-youtube-데이터-활용">4-2. 모델링_02 : Naver / Youtube 데이터 활용</h3>
+<h4 id="데이터-수집-및-확인-2">데이터 수집 및 확인</h4>
+<p><img src="/images/Data_on_air/07.png" alt="데이터 수집 및 확인"></p>
 <p>모델링_01 과정을 통해 훈련시킨 모델에 네이버 뉴스 기사와 유튜브 스크립트 데이터를 넣고 준지도 학습을 시행했다. SNU 펙트체크에서 스크래핑한 760개의 데이터(판단유보 제외)에서 각각 키워드를 3개씩 선정했다. 그리고 해당 키워드를 네이버와 유튜브에 입력해 각각 관련도 / 조회수 순으로 스크래핑했다.</p>
 <br>
-<h4 id="데이터-전처리-1">데이터 전처리</h4>
-<p><img src="https://elecbrandy.github.io/images/Data_on_air/08.png" alt="데이터 전처리"></p>
+<h4 id="데이터-전처리-2">데이터 전처리</h4>
+<p><img src="/images/Data_on_air/08.png" alt="데이터 전처리"></p>
 <br>
-<h4 id="모델링-1">모델링</h4>
-<p><img src="https://elecbrandy.github.io/images/Data_on_air/09.png" alt="데이터 수집 및 확인">
-기존 SNU 데이터 뿐만이 아니라  Naver, Youtube 데이터까지 함께 입력되었을 때 모델 평가지표의 변화를 염두하여 이를 최대한 방지하고자 다양한 파라미터를 조절해가며 최적의 결과를 얻기 위해 노력했다. 최소 100번이 넘는 수동&hellip; 조정 과정을 통해 F-1 스코어와 정확도가 함께 60% 이상인 경향을 보이는 파라미터를 찾을 수 있었다.</p>
+<h4 id="모델링-2">모델링</h4>
+<p><img src="/images/Data_on_air/09.png" alt="데이터 수집 및 확인">
+기존 SNU 데이터 뿐만이 아니라  Naver, Youtube 데이터까지 함께 입력되었을 때 모델 평가지표의 변화를 염두하여 이를 최대한 방지하고자 다양한 파라미터를 조절해가며 최적의 결과를 얻기 위해 노력했다. 최소 100번이 넘는 수동... 조정 과정을 통해 F-1 스코어와 정확도가 함께 60% 이상인 경향을 보이는 파라미터를 찾을 수 있었다.</p>
 <br>
 <h2 id="5-개선방안">5. 개선방안</h2>
 <h3 id="chrome-확장-프로그램">Chrome 확장 프로그램</h3>
-<p><img src="https://elecbrandy.github.io/images/Data_on_air/11.png" alt="Chrome 확장 프로그램">
+<p><img src="/images/Data_on_air/11.png" alt="Chrome 확장 프로그램">
 모 사이트에 직접 접속하지 않아도 크롬 브라우저에서 우리 모델을 사용해 현재 읽고 있는 기사를 검증하는 확장 프로그램으로 사용할 수 있지 않을까? 하는 의견에서 나온 아이디어이다. 사용자는 기사를 읽다가 상위 툴 팁이 뜨면 지금 읽고 있는 기사의 대략적인 검증이 가능하며, 더 알아보고 싶은 경우 아래 버튼을 눌러 체코노미 사이트로 이동해 상세 내용을 볼 수 있다.</p>
 <br>
 <h2 id="6-결론">6. 결론</h2>
 <p>방학 동안 4주 동안의 교육과 6주 동안의 프로젝트를 통해 시간을 알차게 보냈지만, 생각해 보면 그동안의 노력에 비해 얻은 것이 적은 것 같기도 하다.</p>
-<p>먼저, 이 프로젝트를 진행하면서 많은 부분을 &lsquo;0&rsquo;부터 시작해야 했고, 중간마다 생긴 문제나 질문을 해결할 방법이 부족했다. 물론 현업자 멘토링과 교수님의 멘토링이 있었지만, 더 자세한 조언과 첨삭이 필요한 순간에는 부족한 부분이 있었다. 또한 초심자의 욕심으로 인해 더 좋아 보이는, 더 멋있어 보이는 주제를 선정하는 것에 시간이 오래 걸렸고 덕분에 주제의 난이도가 급상승한 감도 없지 않아 있다.</p>
+<p>먼저, 이 프로젝트를 진행하면서 많은 부분을 '0'부터 시작해야 했고, 중간마다 생긴 문제나 질문을 해결할 방법이 부족했다. 물론 현업자 멘토링과 교수님의 멘토링이 있었지만, 더 자세한 조언과 첨삭이 필요한 순간에는 부족한 부분이 있었다. 또한 초심자의 욕심으로 인해 더 좋아 보이는, 더 멋있어 보이는 주제를 선정하는 것에 시간이 오래 걸렸고 덕분에 주제의 난이도가 급상승한 감도 없지 않아 있다.</p>
 <p>게다가, 프로젝트를 진행하면서 딥러닝을 전공한 조원이 개인 사정으로 중도 포기했고, 나머지 팀원 중에는 코딩 경험이 없는 사람이 대다수인 상황에서 조장이 되었다. 이런 상황에서 모두가 프로젝트를 어떻게 진행해야 할지 막막해하고 있었으나 정말 다행히도 유사 프로젝트를 진행한 경험이 있는 컴퓨터공학 조원이 있어 조금씩 밀림을 헤쳐 나갈 수 있었다.</p>
 <p>모델을 다루는 과정에서도 어려움을 겪었다. 한국어 처리에 강력한 모델인 KoBERT를 사용하려 했으나 패키지 버전 충돌 문제로 설치에 어려움을 겪었으며 결국 KoBERT가 아닌 BiLSTM 모델을 사용해 과제를 수행했다. KoBERT를 설치 문제로 사용하지 못한 것이 너무 아쉬워 과제와 별개로 계속 설치를 시도했는데 결국 프로젝트 마감 하루 전에 버전 충돌 이슈를 해결했다. 물론 우리 과제가 KoBERT를 사용하더라도 큰 변화가 있을지는 확신하지 못하겠지만 시도조차 하지 못했던 것은 아주 아쉬웠다.</p>
 <p>또한, 모델에 대한 이해도가 낮았던 점도 어려움 중 하나였다. 다른 조원의 코드를 이해하는 것만으로도 어려움을 겪었으며, 파라미터를 조정하면서 모델을 훈련하기는 했지만, 해당 파라미터가 의미하는 바를 정말 구체적으로 파고들어 이해한 상태에서 사용하지 못했다.</p>
 <p>그러나 이 경험을 통해 자연어 처리 과정에 대한 기본적인 이해를 얻었으며, 데이터 수집, 전처리, 임베딩, 모델 훈련 등의 다양한 단계를 공부할 수 있었다. 또한, 다양한 딥러닝 모델에 대한 지식도 쌓을 수 있었다. 이러한 경험들은 미래에 비슷한 프로젝트나 업무를 수행할 때 분명 도움이 되지 않을까.</p>
 <br>
 <h4 id="그-이후">그 이후</h4>
-<p>프로젝트를 수행하는 과정에서 분명 여러 가지를 배웠지만, 이를 끝으로 아무것도 하지 않는다면 말짱 도루묵이 될 것이다. 따라서 이번 방학에 공부하고 배운 것을 잊지 않고 정말 머릿속에 집어넣으려면 추가로 개인 프로젝트를 진행해야만 할 것 같다&hellip;! 이제 KoBERT 설치 이슈가 어느 정도 해결되었으므로, 더 많은 실험과 결과를 확인할 수 있게 되었다. 개인 프로젝트에서는 단일 모델의 파라미터를 변화시키는 것뿐만 아니라 다양한 모델의 종합적인 결과를 비교함으로써 모델 간의 우위를 평가할 예정이다.</p>
-<p>비록 이번 프로젝트에서 모든 것을 완벽히 마스터하지는 못했지만, 2달 동안 많은 것을 배우고 경험한 것을 느끼며, 특히 팀원들과의 협력 과정에서 많은 것을 얻었다. 모르는 분야에서 팀원들과 함께 여러가지를 도전한 경험이 뜻깊었고, 이를 통해 많은 것을 배울 수 있었다! 이러한 경험을 헛되게 두지 않기 위해 추가적인 개인 프로젝트를 진행해보고 싶다. 물론 일단 바쁜게 끝난 다음에&hellip;</p>
+<p>프로젝트를 수행하는 과정에서 분명 여러 가지를 배웠지만, 이를 끝으로 아무것도 하지 않는다면 말짱 도루묵이 될 것이다. 따라서 이번 방학에 공부하고 배운 것을 잊지 않고 정말 머릿속에 집어넣으려면 추가로 개인 프로젝트를 진행해야만 할 것 같다...! 이제 KoBERT 설치 이슈가 어느 정도 해결되었으므로, 더 많은 실험과 결과를 확인할 수 있게 되었다. 개인 프로젝트에서는 단일 모델의 파라미터를 변화시키는 것뿐만 아니라 다양한 모델의 종합적인 결과를 비교함으로써 모델 간의 우위를 평가할 예정이다.</p>
+<p>비록 이번 프로젝트에서 모든 것을 완벽히 마스터하지는 못했지만, 2달 동안 많은 것을 배우고 경험한 것을 느끼며, 특히 팀원들과의 협력 과정에서 많은 것을 얻었다. 모르는 분야에서 팀원들과 함께 여러가지를 도전한 경험이 뜻깊었고, 이를 통해 많은 것을 배울 수 있었다! 이러한 경험을 헛되게 두지 않기 위해 추가적인 개인 프로젝트를 진행해보고 싶다. 물론 일단 바쁜게 끝난 다음에...</p>
 <br>
 <br>
 <br>
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv1"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%86%8C%EA%B0%9C" data-id="1-소개">1. 소개</a><a class="lv0" href="#2-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94" data-id="2-프로젝트-개요">2. 프로젝트 개요</a><a class="lv1" href="#2-1-%EA%B0%80%EC%A7%9C%EB%89%B4%EC%8A%A4" data-id="2-1-가짜뉴스">2-1. 가짜뉴스?</a><a class="lv1" href="#2-2-%ED%95%B4%EC%99%B8%EC%9D%98-%EA%B2%BD%EC%9A%B0" data-id="2-2-해외의-경우">2-2. 해외의 경우</a><a class="lv0" href="#3-%EC%97%B0%EA%B5%AC%EB%B0%A9%EB%B2%95" data-id="3-연구방법">3. 연구방법</a><a class="lv0" href="#4-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC" data-id="4-프레임워크">4. 프레임워크</a><a class="lv1" href="#4-1-%EB%AA%A8%EB%8D%B8%EB%A7%8101-snu-%EC%96%B8%EB%A1%A0%EC%A0%95%EB%B3%B4%EC%97%B0%EA%B5%AC%EC%86%8C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%99%9C%EC%9A%A9" data-id="4-1-모델링01-snu-언론정보연구소-데이터-활용">4-1. 모델링_01 : SNU 언론정보연구소 데이터 활용</a><a class="lv1" href="#4-2-%EB%AA%A8%EB%8D%B8%EB%A7%8102-naver-youtube-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%99%9C%EC%9A%A9" data-id="4-2-모델링02-naver-youtube-데이터-활용">4-2. 모델링_02 : Naver / Youtube 데이터 활용</a><a class="lv0" href="#5-%EA%B0%9C%EC%84%A0%EB%B0%A9%EC%95%88" data-id="5-개선방안">5. 개선방안</a><a class="lv1" href="#chrome-%ED%99%95%EC%9E%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8" data-id="chrome-확장-프로그램">Chrome 확장 프로그램</a><a class="lv0" href="#6-%EA%B2%B0%EB%A1%A0" data-id="6-결론">6. 결론</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

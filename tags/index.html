@@ -1,173 +1,56 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>Tags | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tags · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-
-
-
-
-
-
-
-
-
-        
-
-
-<div class="breadcrumb">
-  🏷
-  
-    /tags
-  
-</div>
-
-
-<div class="list">
-  
-  <div class="page-links">
-    
-      <a href="https://elecbrandy.github.io/tags/ai/" class="page-link"> # ai</a>
-    
-      <a href="https://elecbrandy.github.io/tags/skala/" class="page-link"> # skala</a>
-    
-      <a href="https://elecbrandy.github.io/tags/cloud/" class="page-link"> # Cloud</a>
-    
-      <a href="https://elecbrandy.github.io/tags/docker/" class="page-link"> # docker</a>
-    
-      <a href="https://elecbrandy.github.io/tags/k8s/" class="page-link"> # K8s</a>
-    
-      <a href="https://elecbrandy.github.io/tags/springboot/" class="page-link"> # spring boot</a>
-    
-      <a href="https://elecbrandy.github.io/tags/dev101/" class="page-link"> # dev101</a>
-    
-      <a href="https://elecbrandy.github.io/tags/java/" class="page-link"> # java</a>
-    
-      <a href="https://elecbrandy.github.io/tags/algorithm/" class="page-link"> # algorithm</a>
-    
-      <a href="https://elecbrandy.github.io/tags/python/" class="page-link"> # python</a>
-    
-      <a href="https://elecbrandy.github.io/tags/cs101/" class="page-link"> # cs101</a>
-    
-      <a href="https://elecbrandy.github.io/tags/hugo/" class="page-link"> # hugo</a>
-    
-      <a href="https://elecbrandy.github.io/tags/42seoul/" class="page-link"> # 42Seoul</a>
-    
-      <a href="https://elecbrandy.github.io/tags/javascript/" class="page-link"> # javascript</a>
-    
-      <a href="https://elecbrandy.github.io/tags/c/" class="page-link"> # c</a>
-    
-      <a href="https://elecbrandy.github.io/tags/ui.ux/" class="page-link"> # ui/ux</a>
-    
-      <a href="https://elecbrandy.github.io/tags/boilerplate/" class="page-link"> # boilerplate</a>
-    
-      <a href="https://elecbrandy.github.io/tags/vue.js/" class="page-link"> # vue.js</a>
-    
-  </div>
-</div>
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<h3 class="page-title">tags</h3><div class="tag-cloud"><a class="tag-cloud-item" href="/tags/skala/">#skala<span>17</span></a><a class="tag-cloud-item" href="/tags/42seoul/">#42seoul<span>15</span></a><a class="tag-cloud-item" href="/tags/c/">#c<span>12</span></a><a class="tag-cloud-item" href="/tags/ai/">#ai<span>11</span></a><a class="tag-cloud-item" href="/tags/algorithm/">#algorithm<span>7</span></a><a class="tag-cloud-item" href="/tags/portfolio/">#portfolio<span>6</span></a><a class="tag-cloud-item" href="/tags/docker/">#docker<span>6</span></a><a class="tag-cloud-item" href="/tags/springboot/">#springboot<span>5</span></a><a class="tag-cloud-item" href="/tags/dev101/">#dev101<span>4</span></a><a class="tag-cloud-item" href="/tags/cs101/">#cs101<span>4</span></a><a class="tag-cloud-item" href="/tags/java/">#java<span>3</span></a><a class="tag-cloud-item" href="/tags/cloud/">#cloud<span>3</span></a><a class="tag-cloud-item" href="/tags/python/">#python<span>3</span></a><a class="tag-cloud-item" href="/tags/hugo/">#hugo<span>3</span></a><a class="tag-cloud-item" href="/tags/k8s/">#k8s<span>2</span></a><a class="tag-cloud-item" href="/tags/ui.ux/">#ui.ux<span>2</span></a><a class="tag-cloud-item" href="/tags/db/">#db<span>1</span></a><a class="tag-cloud-item" href="/tags/spring/">#spring<span>1</span></a><a class="tag-cloud-item" href="/tags/javascript/">#javascript<span>1</span></a></div>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

@@ -1,183 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>[42seoul] inception | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[42seoul] inception · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-inception-명세서">2. inception 명세서</a></li>
-    <li><a href="#3-개념-정리">3. 개념 정리</a>
-      <ul>
-        <li><a href="#3-1-docker-compose">3-1. Docker compose</a></li>
-        <li><a href="#3-2-nginx">3-2. Nginx</a></li>
-        <li><a href="#3-2-무한-루프-금지">3-2. 무한 루프 금지</a></li>
-        <li><a href="#3-3-pid-1">3-3. PID 1</a></li>
-        <li><a href="#3-4-env">3-4. .env</a></li>
-        <li><a href="#35tls1213">3‑5. TLS 1.2 / 1.3</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-mandatory">4. Mandatory</a>
-      <ul>
-        <li><a href="#4-1-makefile">4-1. Makefile</a></li>
-        <li><a href="#4-2-docker-composeyml">4-2. Docker-compose.yml</a></li>
-        <li><a href="#4-3-dockerfile">4-3. Dockerfile</a></li>
-      </ul>
-    </li>
-    <li><a href="#5-evaluation">5. Evaluation</a></li>
-    <li><a href="#6-reference">6. Reference</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/07/cobb-s-totem-in-inception.jpg?q=49&amp;fit=crop&amp;w=750&amp;h=422&amp;dpr=2" alt="Featured Image for [42seoul] inception">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2025.01.27</small>
-      <div class="singleTitle">[42seoul] inception</div>
-    </div>
-  </div>
-  <div class="series">
-  <details>
-    <summary>📚 /42seoul 시리즈</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_0/42/">0. 42서울이란?</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_0/libft/">1. libft</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/ft_printf/">2. ft_printf</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/get_next_line/">3. get_next_line</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/born2beroot/">4. born2beroot</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/pipex/">5. pipex</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/fdf/">6. fdf</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/push_swap/">7. push_swap</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_3/minishell/">8. minishell</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_3/philosophers/">9. philosophers</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_4/cub3d/">10. cub3d</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_4/netpractice/">11. netpractice</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_5/ft_irc/">13. ft_irc</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_5/inception/">15. inception</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_6/ft_transcendence/">16. ft_transcendence</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">[42seoul] inception</h1>
+<div class="post-meta"><time>2025-01-27</time><a class="chip" href="/tags/docker/">docker</a><a class="chip" href="/tags/42seoul/">42seoul</a></div>
+<div class="series"><details open><summary>📚 /42seoul 시리즈</summary><ol><li><a href="/posts/42seoul/circle_0/42/">[42seoul] 42seoul이란?</a><time>2023-10-03</time></li><li><a href="/posts/42seoul/circle_0/libft/">[42seoul] libft</a><time>2023-11-03</time></li><li><a href="/posts/42seoul/circle_1/ft_printf/">[42seoul] ft_printf</a><time>2023-11-15</time></li><li><a href="/posts/42seoul/circle_1/get_next_line/">[42seoul] get_next_line</a><time>2023-12-18</time></li><li><a href="/posts/42seoul/circle_1/born2beroot/">[42seoul] born2beroot</a><time>2024-01-18</time></li><li><a href="/posts/42seoul/circle_2/push_swap/">[42seoul] push_swap</a><time>2024-02-12</time></li><li><a href="/posts/42seoul/circle_2/pipex/">[42seoul] pipex</a><time>2024-02-28</time></li><li><a href="/posts/42seoul/circle_2/fdf/">[42seoul] fdf</a><time>2024-04-09</time></li><li><a href="/posts/42seoul/circle_3/minishell/">[42seoul] minishell</a><time>2024-06-04</time></li><li><a href="/posts/42seoul/circle_3/philosophers/">[42seoul] philosopers</a><time>2024-08-05</time></li><li><a href="/posts/42seoul/circle_4/cub3d/">[42seoul] cub3d</a><time>2024-08-20</time></li><li><a href="/posts/42seoul/circle_4/netpractice/">[42seoul] netpractice</a><time>2024-08-25</time></li><li><a href="/posts/42seoul/circle_5/ft_irc/">[42seoul] ft_irc</a><time>2024-11-20</time></li><li class="current">[42seoul] inception<time>2025-01-27</time></li><li><a href="/posts/42seoul/circle_6/ft_transcendence/">[42seoul] ft_transcendence</a><time>2025-03-22</time></li></ol></details></div>
 <br>
 <h2 id="1-소개">1. 소개</h2>
 <blockquote>
@@ -220,7 +71,7 @@
 <li><strong>Warnning</strong>
 <ul>
 <li>Docker 컨테이너는 VM이 아니므로, tail -f, bash, sleep infinity, while true 같은 무한 루프 후킹(hacky patch) 사용 금지</li>
-<li>network: host 또는 &ndash;link/links 옵션 사용 금지</li>
+<li>network: host 또는 --link/links 옵션 사용 금지</li>
 <li>entrypoint에서 무한 루프를 돌리는 방식도 전면 금지</li>
 <li>PID 1 역할 및 Dockerfile 작성 베스트 프랙티스 학습 권장</li>
 </ul>
@@ -297,21 +148,21 @@
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-make" data-lang="make"><span style="display:flex;"><span>COMPOSE<span style="color:#f92672">=</span>docker compose
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">.PHONY</span><span style="color:#f92672">:</span> up down logs restart
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">up</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>COMPOSE<span style="color:#66d9ef">)</span> up -d --build
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">down</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>COMPOSE<span style="color:#66d9ef">)</span> down -v
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">logs</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>COMPOSE<span style="color:#66d9ef">)</span> logs -f --tail<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">restart</span><span style="color:#f92672">:</span> down up
-</span></span></code></pre></div><br>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-make"><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">COMPOSE=docker compose</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">.PHONY</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: up down logs restart</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">up</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">	$(</span><span style="color:#24292E;--shiki-dark:#E1E4E8">COMPOSE</span><span style="color:#032F62;--shiki-dark:#9ECBFF">)</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> up -d --build</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">down</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">	$(</span><span style="color:#24292E;--shiki-dark:#E1E4E8">COMPOSE</span><span style="color:#032F62;--shiki-dark:#9ECBFF">)</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> down -v</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">logs</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">	$(</span><span style="color:#24292E;--shiki-dark:#E1E4E8">COMPOSE</span><span style="color:#032F62;--shiki-dark:#9ECBFF">)</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> logs -f --tail=100</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">restart</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: down up</span></span></code></pre>
+<br>
 <h3 id="3-2-nginx">3-2. Nginx</h3>
 <p>Nginx는 이벤트 기반 아키텍처를 사용해 정적 파일‑서빙, 리버스 프록시, 로드 밸런싱을 처리하는 오픈소스 웹 서버이다.</p>
 <ul>
@@ -359,7 +210,7 @@
 <li>
 <p><strong>올바른 설정 방법</strong></p>
 <ul>
-<li><strong>Docker &ndash;init 옵션</strong>을 사용한다. <code>docker run --init …</code> 또는 <code>docker compose.yml</code>에서 <code>init: true</code>를 지정하면, 경량 init 프로세스인 <code>tini</code>가 자동으로 PID 1 자리를 맡는다.</li>
+<li><strong>Docker --init 옵션</strong>을 사용한다. <code>docker run --init …</code> 또는 <code>docker compose.yml</code>에서 <code>init: true</code>를 지정하면, 경량 init 프로세스인 <code>tini</code>가 자동으로 PID 1 자리를 맡는다.</li>
 <li><code>dumb‑init</code> 을 직접 적용한다. <code>dumb‑init</code>은 시그널 포워딩과 좀비 수거 기능만 제공하는 40 KB짜리 경량 바이너리이다.</li>
 <li><strong>tini</strong>를 명시적으로 사용한다. Alpine 이미지에 기본 포함되어 있으므로 <code>ENTRYPOINT [&quot;tini&quot;, &quot;--&quot;]</code>처럼 지정하면 된다.</li>
 </ul>
@@ -391,7 +242,7 @@
 </li>
 </ul>
 <br>
-<h3 id="35tls1213">3‑5. TLS 1.2 / 1.3</h3>
+<h3 id="35-tls-12-13">3‑5. TLS 1.2 / 1.3</h3>
 <p>TLS(Transport Layer Security)는 애플리케이션 계층과 전송 계층 사이에서 <strong>암호화·무결성·인증</strong>을 제공해, HTTP·SMTP·FTP 등 모든 TCP 프로토콜을 “https” 형태의 <strong>보안 터널</strong>로 감싸는 표준이다.</p>
 <ul>
 <li><strong>TLS 효과</strong>
@@ -417,257 +268,260 @@
 <p>서버스에 접근하는 모든 요청은 먼저 <strong>nginx</strong>로 전달되며, nginx는 정적 파일을 직접 제공하고, 동적 요소는 wordpress(PHP) 컨테이너로 프록시하여 처리한다.
 그리고 워드프레스에서 사용하는 게시글, 사용자 정보 등 서비스의 모든 데이터는 mariadb 컨테이너에서 관리하게 된다.</p>
 <h3 id="4-1-makefile">4-1. Makefile</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Makefile" data-lang="Makefile"><span style="display:flex;"><span><span style="color:#a6e22e">all</span><span style="color:#f92672">:</span> build up
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">build</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>DOCKER_COMPOSE<span style="color:#66d9ef">)</span> -f <span style="color:#66d9ef">$(</span>COMPOSE_FILE<span style="color:#66d9ef">)</span> build --no-cache
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">up</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>DOCKER_COMPOSE<span style="color:#66d9ef">)</span> -f <span style="color:#66d9ef">$(</span>COMPOSE_FILE<span style="color:#66d9ef">)</span> up -d
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">stop</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>DOCKER_COMPOSE<span style="color:#66d9ef">)</span> -f <span style="color:#66d9ef">$(</span>COMPOSE_FILE<span style="color:#66d9ef">)</span> stop
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">down</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>DOCKER_COMPOSE<span style="color:#66d9ef">)</span> -f <span style="color:#66d9ef">$(</span>COMPOSE_FILE<span style="color:#66d9ef">)</span> down
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>DOCKER_COMPOSE<span style="color:#66d9ef">)</span> -f <span style="color:#66d9ef">$(</span>COMPOSE_FILE<span style="color:#66d9ef">)</span> down --volumes --rmi all
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 정리: 사용하지 않는 이미지, 캐시 및 네트워크 제거
-</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">fclean</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>DOCKER_COMPOSE<span style="color:#66d9ef">)</span> -f <span style="color:#66d9ef">$(</span>COMPOSE_FILE<span style="color:#66d9ef">)</span> down --volumes --rmi all
-</span></span><span style="display:flex;"><span>	docker system prune -a --volumes -f
-</span></span><span style="display:flex;"><span>	rm -rf <span style="color:#66d9ef">$(</span>MARIADB_LOCAL_VOLUME<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>WORDPRESS_LOCAL_VOLUME<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>	sleep <span style="color:#ae81ff">5</span>
-</span></span><span style="display:flex;"><span>	mkdir -p <span style="color:#66d9ef">$(</span>MARIADB_LOCAL_VOLUME<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>WORDPRESS_LOCAL_VOLUME<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>	chmod <span style="color:#ae81ff">777</span> * <span style="color:#66d9ef">$(</span>MARIADB_LOCAL_VOLUME<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>WORDPRESS_LOCAL_VOLUME<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 볼륨 디렉토리 초기화
-</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">reset-volumes</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	rm -rf <span style="color:#66d9ef">$(</span>MARIADB_LOCAL_VOLUME<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>WORDPRESS_LOCAL_VOLUME<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>	mkdir -p <span style="color:#66d9ef">$(</span>MARIADB_LOCAL_VOLUME<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>WORDPRESS_LOCAL_VOLUME<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>	chmod <span style="color:#ae81ff">777</span> * <span style="color:#66d9ef">$(</span>MARIADB_LOCAL_VOLUME<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>WORDPRESS_LOCAL_VOLUME<span style="color:#66d9ef">)</span>
-</span></span></code></pre></div><br>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>all: build up</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>build:</span></span>
+<span class="line"><span>	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) build --no-cache</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>up:</span></span>
+<span class="line"><span>	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) up -d</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>stop:</span></span>
+<span class="line"><span>	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) stop</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>down:</span></span>
+<span class="line"><span>	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) down</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>clean:</span></span>
+<span class="line"><span>	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) down --volumes --rmi all</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 정리: 사용하지 않는 이미지, 캐시 및 네트워크 제거</span></span>
+<span class="line"><span>fclean:</span></span>
+<span class="line"><span>	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) down --volumes --rmi all</span></span>
+<span class="line"><span>	docker system prune -a --volumes -f</span></span>
+<span class="line"><span>	rm -rf $(MARIADB_LOCAL_VOLUME) $(WORDPRESS_LOCAL_VOLUME)</span></span>
+<span class="line"><span>	sleep 5</span></span>
+<span class="line"><span>	mkdir -p $(MARIADB_LOCAL_VOLUME) $(WORDPRESS_LOCAL_VOLUME)</span></span>
+<span class="line"><span>	chmod 777 * $(MARIADB_LOCAL_VOLUME) $(WORDPRESS_LOCAL_VOLUME)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 볼륨 디렉토리 초기화</span></span>
+<span class="line"><span>reset-volumes:</span></span>
+<span class="line"><span>	rm -rf $(MARIADB_LOCAL_VOLUME) $(WORDPRESS_LOCAL_VOLUME)</span></span>
+<span class="line"><span>	mkdir -p $(MARIADB_LOCAL_VOLUME) $(WORDPRESS_LOCAL_VOLUME)</span></span>
+<span class="line"><span>	chmod 777 * $(MARIADB_LOCAL_VOLUME) $(WORDPRESS_LOCAL_VOLUME)</span></span>
+<span class="line"><span></span></span></code></pre>
+<br>
 <h3 id="4-2-docker-composeyml">4-2. Docker-compose.yml</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># version: &#39;3.7&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mariadb</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">context</span>: <span style="color:#ae81ff">./requirements/mariadb</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">dockerfile</span>: <span style="color:#ae81ff">Dockerfile</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mariadb</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expose</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;3306&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">env_file</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">.env</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">mariadb_data:/var/lib/mysql</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">mariadb</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">42_network</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">healthcheck</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">test</span>: [<span style="color:#e6db74">&#34;CMD&#34;</span>, <span style="color:#e6db74">&#34;mysqladmin&#34;</span>, <span style="color:#e6db74">&#34;ping&#34;</span>, <span style="color:#e6db74">&#34;-h&#34;</span>, <span style="color:#e6db74">&#34;127.0.0.1&#34;</span>, <span style="color:#e6db74">&#34;-u&#34;</span>, <span style="color:#e6db74">&#34;root&#34;</span>, <span style="color:#e6db74">&#34;-p${MYSQL_ROOT_PASSWORD}&#34;</span>]
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">10s</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">5s</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">5</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">start_period</span>: <span style="color:#ae81ff">30s</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">wordpress</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">context</span>: <span style="color:#ae81ff">./requirements/wordpress</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">dockerfile</span>: <span style="color:#ae81ff">Dockerfile</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">wordpress</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">mariadb</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">service_healthy</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expose</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;9000&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">env_file</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">.env</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">wordpress_data:/var/www/html/wordpress</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">wordpress</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">42_network</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">healthcheck</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">test</span>: [<span style="color:#e6db74">&#34;CMD-SHELL&#34;</span>, <span style="color:#e6db74">&#34;pgrep php-fpm7.4 || exit 1&#34;</span>]
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">10s</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">5s</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">3</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">start_period</span>: <span style="color:#ae81ff">10s</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">nginx</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">build</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">context</span>: <span style="color:#ae81ff">./requirements/nginx</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">dockerfile</span>: <span style="color:#ae81ff">Dockerfile</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">args</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">MY_SSL_PATH</span>: <span style="color:#ae81ff">${MY_SSL_PATH}</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">WORDPRESS_URL</span>: <span style="color:#ae81ff">${WORDPRESS_URL}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;443:443&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">nginx</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">wordpress</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">service_healthy</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">env_file</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">.env</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">wordpress_data:/var/www/html/wordpress</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">42_network</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mariadb_data</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">local</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">driver_opts</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">type</span>: <span style="color:#e6db74">&#39;none&#39;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">device</span>: <span style="color:#ae81ff">${MARIADB_LOCAL_VOLUME}</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">o</span>: <span style="color:#e6db74">&#39;bind&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">wordpress_data</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">local</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">driver_opts</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">type</span>: <span style="color:#e6db74">&#39;none&#39;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">device</span>: <span style="color:#ae81ff">${WORDPRESS_LOCAL_VOLUME}</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">o</span>: <span style="color:#e6db74">&#39;bind&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">42_network</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">42_network</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">bridge</span>
-</span></span></code></pre></div><br>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-yml"><span class="line"><span style="color:#6A737D;--shiki-dark:#6A737D"># version: '3.7'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">services</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  mariadb</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    build</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      context</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">./requirements/mariadb</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      dockerfile</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Dockerfile</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    image</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">mariadb</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    expose</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"3306"</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    env_file</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">.env</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    volumes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">mariadb_data:/var/lib/mysql</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    container_name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">mariadb</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    restart</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">always</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    networks</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">42_network</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    healthcheck</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      test</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"CMD"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"mysqladmin"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"ping"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"-h"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"127.0.0.1"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"-u"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"root"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"-p${MYSQL_ROOT_PASSWORD}"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      interval</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">10s</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      timeout</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">5s</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      retries</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">5</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      start_period</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">30s</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  wordpress</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    build</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      context</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">./requirements/wordpress</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      dockerfile</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Dockerfile</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    image</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">wordpress</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    depends_on</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      mariadb</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        condition</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">service_healthy</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    expose</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"9000"</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    env_file</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">.env</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    volumes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">wordpress_data:/var/www/html/wordpress</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    container_name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">wordpress</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    restart</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">always</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    networks</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">42_network</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    healthcheck</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      test</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"CMD-SHELL"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"pgrep php-fpm7.4 || exit 1"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      interval</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">10s</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      timeout</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">5s</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      retries</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">3</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      start_period</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">10s</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  nginx</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    build</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      context</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">./requirements/nginx</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      dockerfile</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">Dockerfile</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      args</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        MY_SSL_PATH</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">${MY_SSL_PATH}</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        WORDPRESS_URL</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">${WORDPRESS_URL}</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    image</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">nginx</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    ports</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"443:443"</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    container_name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">nginx</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    depends_on</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      wordpress</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">        condition</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">service_healthy</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    env_file</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">.env</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    volumes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">wordpress_data:/var/www/html/wordpress</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    restart</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">always</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    networks</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">42_network</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">volumes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  mariadb_data</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    driver</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">local</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    driver_opts</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      type</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'none'</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      device</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">${MARIADB_LOCAL_VOLUME}</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      o</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'bind'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  wordpress_data</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    driver</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">local</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    driver_opts</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      type</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'none'</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      device</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">${WORDPRESS_LOCAL_VOLUME}</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      o</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">'bind'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">networks</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  42_network</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    name</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">42_network</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    driver</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">bridge</span></span>
+<span class="line"></span></code></pre>
+<br>
 <h3 id="4-3-dockerfile">4-3. Dockerfile</h3>
 <br>
 <h4 id="4-3-1-nginx">4-3-1. nginx</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Debian Linux</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">debian:11</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ARG</span> MY_SSL_PATH<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ARG</span> WORDPRESS_URL<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 필수 패키지 설치</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y --no-install-recommends <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    nginx <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    openssl <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    curl <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    dumb-init <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    apt-get clean <span style="color:#f92672">&amp;&amp;</span> rm -rf /var/lib/apt/lists/*<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 인증서와 키 파일을 포함시킬 디렉토리 생성</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> mkdir -p <span style="color:#e6db74">${</span>MY_SSL_PATH<span style="color:#e6db74">}</span> <span style="color:#f92672">&amp;&amp;</span> chmod -R <span style="color:#ae81ff">755</span> <span style="color:#e6db74">${</span>MY_SSL_PATH<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># SSL 인증서와 키 생성</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> openssl req -x509 -nodes -days <span style="color:#ae81ff">365</span> -newkey rsa:2048 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    -keyout <span style="color:#e6db74">${</span>MY_SSL_PATH<span style="color:#e6db74">}</span>/server.key <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    -out <span style="color:#e6db74">${</span>MY_SSL_PATH<span style="color:#e6db74">}</span>/server.crt <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    -subj <span style="color:#e6db74">&#34;/C=/ST=/L=/O=/OU=/CN=&#34;</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 컨테이너 내부에서 필요한 파일 복사</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> conf/nginx.conf /etc/nginx/nginx.conf<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 설정 파일 내의 변수 설정</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> sed -i <span style="color:#e6db74">&#34;s|__WORDPRESS_URL__|</span><span style="color:#e6db74">${</span>WORDPRESS_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">|g&#34;</span> /etc/nginx/nginx.conf <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    sed -i <span style="color:#e6db74">&#34;s|__MY_SSL_PATH__|</span><span style="color:#e6db74">${</span>MY_SSL_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">|g&#34;</span> /etc/nginx/nginx.conf<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 443 포트 개방</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">443</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># dumb-init을 엔트리포인트로 설정하고 Nginx를 실행</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;/usr/bin/dumb-init&#34;</span>, <span style="color:#e6db74">&#34;--&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Nginx를 포그라운드 모드로 실행</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;nginx&#34;</span>, <span style="color:#e6db74">&#34;-g&#34;</span>, <span style="color:#e6db74">&#34;daemon off;&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><br>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span># Debian Linux</span></span>
+<span class="line"><span>FROM debian:11</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>ARG MY_SSL_PATH</span></span>
+<span class="line"><span>ARG WORDPRESS_URL</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 필수 패키지 설치</span></span>
+<span class="line"><span>RUN apt-get update &#x26;&#x26; apt-get install -y --no-install-recommends \</span></span>
+<span class="line"><span>    nginx \</span></span>
+<span class="line"><span>    openssl \</span></span>
+<span class="line"><span>    curl \</span></span>
+<span class="line"><span>    dumb-init &#x26;&#x26; \</span></span>
+<span class="line"><span>    apt-get clean &#x26;&#x26; rm -rf /var/lib/apt/lists/*</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 인증서와 키 파일을 포함시킬 디렉토리 생성</span></span>
+<span class="line"><span>RUN mkdir -p ${MY_SSL_PATH} &#x26;&#x26; chmod -R 755 ${MY_SSL_PATH}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># SSL 인증서와 키 생성</span></span>
+<span class="line"><span>RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \</span></span>
+<span class="line"><span>    -keyout ${MY_SSL_PATH}/server.key \</span></span>
+<span class="line"><span>    -out ${MY_SSL_PATH}/server.crt \</span></span>
+<span class="line"><span>    -subj "/C=/ST=/L=/O=/OU=/CN="</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 컨테이너 내부에서 필요한 파일 복사</span></span>
+<span class="line"><span>COPY conf/nginx.conf /etc/nginx/nginx.conf</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 설정 파일 내의 변수 설정</span></span>
+<span class="line"><span>RUN sed -i "s|__WORDPRESS_URL__|${WORDPRESS_URL}|g" /etc/nginx/nginx.conf &#x26;&#x26; \</span></span>
+<span class="line"><span>    sed -i "s|__MY_SSL_PATH__|${MY_SSL_PATH}|g" /etc/nginx/nginx.conf</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 443 포트 개방</span></span>
+<span class="line"><span>EXPOSE 443</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># dumb-init을 엔트리포인트로 설정하고 Nginx를 실행</span></span>
+<span class="line"><span>ENTRYPOINT ["/usr/bin/dumb-init", "--"]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Nginx를 포그라운드 모드로 실행</span></span>
+<span class="line"><span>CMD ["nginx", "-g", "daemon off;"]</span></span></code></pre>
+<br>
 <h4 id="4-3-2-wordpress">4-3-2. wordpress</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile (wordpress)</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">debian:11</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y --no-install-recommends <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    wget <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    unzip <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    curl <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    php <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    php7.4-fpm <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    php7.4-json <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    php7.4-mbstring <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    php7.4-mysql <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    php7.4-phar <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    less <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    bash <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    netcat-openbsd <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    dumb-init <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    ca-certificates <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    apt-get clean <span style="color:#f92672">&amp;&amp;</span> rm -rf /var/lib/apt/lists/*<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> id -u www-data <span style="color:#f92672">||</span> useradd -r -s /usr/sbin/nologin -d /var/www/html -U www-data<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> conf/php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> mkdir -p /var/log/php7.4-fpm <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    chown -R www-data:www-data /var/log/php7.4-fpm <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    chmod -R <span style="color:#ae81ff">755</span> /var/log/php7.4-fpm<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># WordPress 파일 다운로드 (임시 경로)</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> mkdir -p /usr/src/wordpress <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    wget https://wordpress.org/latest.zip -O /tmp/wordpress.zip <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    unzip /tmp/wordpress.zip -d /usr/src/ <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    rm /tmp/wordpress.zip<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> tools/wp_setup.sh /usr/local/bin/wp_setup.sh<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> chmod +x /usr/local/bin/wp_setup.sh<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">9000</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;/usr/bin/dumb-init&#34;</span>, <span style="color:#e6db74">&#34;--&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;/bin/bash&#34;</span>, <span style="color:#e6db74">&#34;-c&#34;</span>, <span style="color:#e6db74">&#34;/usr/local/bin/wp_setup.sh &amp;&amp; exec php-fpm7.4 -F&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><br>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span># Dockerfile (wordpress)</span></span>
+<span class="line"><span>FROM debian:11</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>RUN apt-get update &#x26;&#x26; apt-get install -y --no-install-recommends \</span></span>
+<span class="line"><span>    wget \</span></span>
+<span class="line"><span>    unzip \</span></span>
+<span class="line"><span>    curl \</span></span>
+<span class="line"><span>    php \</span></span>
+<span class="line"><span>    php7.4-fpm \</span></span>
+<span class="line"><span>    php7.4-json \</span></span>
+<span class="line"><span>    php7.4-mbstring \</span></span>
+<span class="line"><span>    php7.4-mysql \</span></span>
+<span class="line"><span>    php7.4-phar \</span></span>
+<span class="line"><span>    less \</span></span>
+<span class="line"><span>    bash \</span></span>
+<span class="line"><span>    netcat-openbsd \</span></span>
+<span class="line"><span>    dumb-init \</span></span>
+<span class="line"><span>    ca-certificates &#x26;&#x26; \</span></span>
+<span class="line"><span>    apt-get clean &#x26;&#x26; rm -rf /var/lib/apt/lists/*</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>RUN id -u www-data || useradd -r -s /usr/sbin/nologin -d /var/www/html -U www-data</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>COPY conf/php-fpm.conf /etc/php/7.4/fpm/php-fpm.conf</span></span>
+<span class="line"><span>COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>RUN mkdir -p /var/log/php7.4-fpm &#x26;&#x26; \</span></span>
+<span class="line"><span>    chown -R www-data:www-data /var/log/php7.4-fpm &#x26;&#x26; \</span></span>
+<span class="line"><span>    chmod -R 755 /var/log/php7.4-fpm</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># WordPress 파일 다운로드 (임시 경로)</span></span>
+<span class="line"><span>RUN mkdir -p /usr/src/wordpress &#x26;&#x26; \</span></span>
+<span class="line"><span>    wget https://wordpress.org/latest.zip -O /tmp/wordpress.zip &#x26;&#x26; \</span></span>
+<span class="line"><span>    unzip /tmp/wordpress.zip -d /usr/src/ &#x26;&#x26; \</span></span>
+<span class="line"><span>    rm /tmp/wordpress.zip</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>COPY tools/wp_setup.sh /usr/local/bin/wp_setup.sh</span></span>
+<span class="line"><span>RUN chmod +x /usr/local/bin/wp_setup.sh</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>EXPOSE 9000</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>ENTRYPOINT ["/usr/bin/dumb-init", "--"]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>CMD ["/bin/bash", "-c", "/usr/local/bin/wp_setup.sh &#x26;&#x26; exec php-fpm7.4 -F"]</span></span>
+<span class="line"><span></span></span></code></pre>
+<br>
 <h4 id="4-3-3-mariadb">4-3-3. mariadb</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">debian:11</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 필수 패키지 설치</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y --no-install-recommends <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    mariadb-server <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    mariadb-client <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    dumb-init <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    bash <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    curl <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>    apt-get clean <span style="color:#f92672">&amp;&amp;</span> rm -rf /var/lib/apt/lists/*<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># bind-address 설정: 외부 접속 가능하도록</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> sed -i <span style="color:#e6db74">&#39;s/^bind-address\s*=.*/bind-address = 0.0.0.0/&#39;</span> /etc/mysql/mariadb.conf.d/50-server.cnf<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 데이터 디렉토리 및 mysqld 소켓 디렉토리 권한 설정</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># VOLUME [&#34;/var/lib/mysql&#34;]</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> mkdir -p /run/mysqld <span style="color:#f92672">&amp;&amp;</span> chown -R mysql:mysql /run/mysqld /var/lib/mysql<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 초기화 스크립트 복사</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> tools/db_setup.sh /docker-entrypoint-initdb.d/<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> chmod +x /docker-entrypoint-initdb.d/db_setup.sh<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 엔트리포인트 스크립트 복사</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> tools/entrypoint.sh /usr/local/bin/<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> chmod +x /usr/local/bin/entrypoint.sh<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 환경 변수 설정 (필요에 따라 빌드 시나 docker run/docker compose 시 오버라이드 가능)</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ENV</span> MYSQL_ROOT_PASSWORD<span style="color:#f92672">=</span>secret
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ENV</span> MYSQL_DATABASE<span style="color:#f92672">=</span>mydb
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ENV</span> MYSQL_USER<span style="color:#f92672">=</span>myuser
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ENV</span> MYSQL_PASSWORD<span style="color:#f92672">=</span>mypassword
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># MariaDB 포트 개방</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">3306</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># dumb-init을 EntryPoint로 설정 + 커스텀 엔트리포인트 스크립트 실행</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;/usr/bin/dumb-init&#34;</span>, <span style="color:#e6db74">&#34;--&#34;</span>, <span style="color:#e6db74">&#34;/usr/local/bin/entrypoint.sh&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><br>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>FROM debian:11</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 필수 패키지 설치</span></span>
+<span class="line"><span>RUN apt-get update &#x26;&#x26; apt-get install -y --no-install-recommends \</span></span>
+<span class="line"><span>    mariadb-server \</span></span>
+<span class="line"><span>    mariadb-client \</span></span>
+<span class="line"><span>    dumb-init \</span></span>
+<span class="line"><span>    bash \</span></span>
+<span class="line"><span>    curl &#x26;&#x26; \</span></span>
+<span class="line"><span>    apt-get clean &#x26;&#x26; rm -rf /var/lib/apt/lists/*</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># bind-address 설정: 외부 접속 가능하도록</span></span>
+<span class="line"><span>RUN sed -i 's/^bind-address\s*=.*/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 데이터 디렉토리 및 mysqld 소켓 디렉토리 권한 설정</span></span>
+<span class="line"><span># VOLUME ["/var/lib/mysql"]</span></span>
+<span class="line"><span>RUN mkdir -p /run/mysqld &#x26;&#x26; chown -R mysql:mysql /run/mysqld /var/lib/mysql</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 초기화 스크립트 복사</span></span>
+<span class="line"><span>COPY tools/db_setup.sh /docker-entrypoint-initdb.d/</span></span>
+<span class="line"><span>RUN chmod +x /docker-entrypoint-initdb.d/db_setup.sh</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 엔트리포인트 스크립트 복사</span></span>
+<span class="line"><span>COPY tools/entrypoint.sh /usr/local/bin/</span></span>
+<span class="line"><span>RUN chmod +x /usr/local/bin/entrypoint.sh</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 환경 변수 설정 (필요에 따라 빌드 시나 docker run/docker compose 시 오버라이드 가능)</span></span>
+<span class="line"><span>ENV MYSQL_ROOT_PASSWORD=secret</span></span>
+<span class="line"><span>ENV MYSQL_DATABASE=mydb</span></span>
+<span class="line"><span>ENV MYSQL_USER=myuser</span></span>
+<span class="line"><span>ENV MYSQL_PASSWORD=mypassword</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># MariaDB 포트 개방</span></span>
+<span class="line"><span>EXPOSE 3306</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># dumb-init을 EntryPoint로 설정 + 커스텀 엔트리포인트 스크립트 실행</span></span>
+<span class="line"><span>ENTRYPOINT ["/usr/bin/dumb-init", "--", "/usr/local/bin/entrypoint.sh"]</span></span></code></pre>
+<br>
 <br>
 <br>
 <h2 id="5-evaluation">5. Evaluation</h2>
@@ -692,15 +546,32 @@
 <br>
 <br>
 <br>
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%86%8C%EA%B0%9C" data-id="1-소개">1. 소개</a><a class="lv0" href="#2-inception-%EB%AA%85%EC%84%B8%EC%84%9C" data-id="2-inception-명세서">2. inception 명세서</a><a class="lv0" href="#3-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC" data-id="3-개념-정리">3. 개념 정리</a><a class="lv1" href="#3-1-docker-compose" data-id="3-1-docker-compose">3-1. Docker compose</a><a class="lv1" href="#3-2-nginx" data-id="3-2-nginx">3-2. Nginx</a><a class="lv1" href="#3-2-%EB%AC%B4%ED%95%9C-%EB%A3%A8%ED%94%84-%EA%B8%88%EC%A7%80" data-id="3-2-무한-루프-금지">3-2. 무한 루프 금지</a><a class="lv1" href="#3-3-pid-1" data-id="3-3-pid-1">3-3. PID 1</a><a class="lv1" href="#3-4-env" data-id="3-4-env">3-4. .env</a><a class="lv1" href="#35-tls-12-13" data-id="35-tls-12-13">3‑5. TLS 1.2 / 1.3</a><a class="lv0" href="#4-mandatory" data-id="4-mandatory">4. Mandatory</a><a class="lv1" href="#4-1-makefile" data-id="4-1-makefile">4-1. Makefile</a><a class="lv1" href="#4-2-docker-composeyml" data-id="4-2-docker-composeyml">4-2. Docker-compose.yml</a><a class="lv1" href="#4-3-dockerfile" data-id="4-3-dockerfile">4-3. Dockerfile</a><a class="lv0" href="#5-evaluation" data-id="5-evaluation">5. Evaluation</a><a class="lv0" href="#6-reference" data-id="6-reference">6. Reference</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

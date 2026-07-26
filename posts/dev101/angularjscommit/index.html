@@ -1,152 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>AngularJS 커밋 컨벤션 | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AngularJS 커밋 컨벤션 · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-요약">2. 요약</a>
-      <ul>
-        <li><a href="#2-1-작성-예시">2-1. 작성 예시</a></li>
-        <li><a href="#2-2-subject">2-2. Subject</a></li>
-        <li><a href="#2-3-body">2-3. Body</a></li>
-        <li><a href="#2-4-footer">2-4. Footer</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-angularjs-커밋-컨벤션-번역">3. AngularJS 커밋 컨벤션 (번역)</a>
-      <ul>
-        <li><a href="#3-1-commit-message-conventions">3-1. Commit Message Conventions</a></li>
-      </ul>
-    </li>
-    <li><a href="#goals">Goals</a></li>
-    <li><a href="#generating-changelogmd">Generating CHANGELOG.md</a>
-      <ul>
-        <li><a href="#recognizing-unimportant-commits">Recognizing unimportant commits</a></li>
-        <li><a href="#provide-more-information-when-browsing-the-history">Provide more information when browsing the history</a></li>
-      </ul>
-    </li>
-    <li><a href="#format-of-the-commit-message">Format of the commit message</a>
-      <ul>
-        <li><a href="#subject-line">Subject line</a></li>
-        <li><a href="#message-body">Message body</a></li>
-        <li><a href="#message-footer">Message footer</a></li>
-      </ul>
-    </li>
-    <li><a href="#examples">Examples</a></li>
-    <li><a href="#4-reference">4. Reference</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*R1mfXLP9edcArZXwmGbGag.jpeg" alt="Featured Image for AngularJS 커밋 컨벤션">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2025.10.18</small>
-      <div class="singleTitle">AngularJS 커밋 컨벤션</div>
-    </div>
-  </div>
-  <h2 id="1-소개">1. 소개</h2>
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">AngularJS 커밋 컨벤션</h1>
+<div class="post-meta"><time>2025-10-18</time><a class="chip" href="/tags/dev101/">dev101</a></div>
+<h2 id="1-소개">1. 소개</h2>
 <blockquote>
 <p>AngularJS 커밋 컨벤션 한국어 번역본 입니다.</p>
 </blockquote>
@@ -155,15 +37,15 @@
 <br>
 <h2 id="2-요약">2. 요약</h2>
 <h3 id="2-1-작성-예시">2-1. 작성 예시</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>feat<span style="color:#f92672">(</span>$browser<span style="color:#f92672">)</span>: onUrlChange event <span style="color:#f92672">(</span>popstate/hashchange/polling<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Added new event to $browser:
-</span></span><span style="display:flex;"><span>- forward popstate event <span style="color:#66d9ef">if</span> available
-</span></span><span style="display:flex;"><span>- forward hashchange event <span style="color:#66d9ef">if</span> popstate not available
-</span></span><span style="display:flex;"><span>- <span style="color:#66d9ef">do</span> polling when neither popstate nor hashchange available
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Breaks $browser.onHashChange, which was removed <span style="color:#f92672">(</span>use onUrlChange instead<span style="color:#f92672">)</span>
-</span></span></code></pre></div><br>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">feat($browser</span><span style="color:#24292E;--shiki-dark:#E1E4E8">): onUrlChange event (</span><span style="color:#6F42C1;--shiki-dark:#B392F0">popstate/hashchange/polling</span><span style="color:#24292E;--shiki-dark:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">Added</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> new</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> event</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> to</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> $browser</span><span style="color:#032F62;--shiki-dark:#9ECBFF">:</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">-</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> forward</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> popstate</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> event</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> if</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> available</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">-</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> forward</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> hashchange</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> event</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> if</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> popstate</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> not</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> available</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">-</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> do</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> polling</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> when</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> neither</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> popstate</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> nor</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> hashchange</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> available</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">Breaks</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> $browser</span><span style="color:#032F62;--shiki-dark:#9ECBFF">.onHashChange,</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> which</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> was</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> removed</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> (use </span><span style="color:#032F62;--shiki-dark:#9ECBFF">onUrlChange</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> instead</span><span style="color:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
+<br>
 <h3 id="2-2-subject">2-2. Subject</h3>
 <ul>
 <li><strong>type, scope(선택), subject</strong> 으로 구성됨.</li>
@@ -251,20 +133,20 @@
 <li>포맷팅 등의 중요하지 않은 커밋을 <code>git bisect</code>에서 무시할 수 있도록 함</li>
 <li>히스토리를 탐색할 때 더 나은 정보를 제공함</li>
 </ul>
-<h2 id="generating-changelogmd">Generating CHANGELOG.md</h2>
+<h2 id="generating-changelogmd">Generating <a href="http://CHANGELOG.md">CHANGELOG.md</a></h2>
 <p>우리는 changelog를 생성할 때 세 가지 섹션 — 새로운 기능(new features), 버그 수정(bug fixes), 주요 변경사항(breaking changes) — 을 사용합니다.
 이 목록은 릴리즈 시 스크립트를 통해 자동으로 생성할 수 있습니다. 또한 관련 커밋에 대한 링크도 포함할 수 있습니다.
 물론 실제 릴리즈 전에 이 changelog를 직접 편집할 수 있지만, 기본 골격은 자동으로 만들어집니다.</p>
 <p>최근 릴리즈 이후의 모든 커밋 제목(첫 줄)을 보려면 다음 명령을 실행합니다:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git log &lt;last tag&gt; HEAD --pretty<span style="color:#f92672">=</span>format:%s
-</span></span></code></pre></div><p>이번 릴리즈에서 새 기능만 추출하려면:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git log &lt;last release&gt; HEAD --grep feature
-</span></span></code></pre></div><h3 id="recognizing-unimportant-commits">Recognizing unimportant commits</h3>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> log</span><span style="color:#D73A49;--shiki-dark:#F97583"> &#x3C;</span><span style="color:#032F62;--shiki-dark:#9ECBFF">last</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ta</span><span style="color:#24292E;--shiki-dark:#E1E4E8">g</span><span style="color:#D73A49;--shiki-dark:#F97583">></span><span style="color:#032F62;--shiki-dark:#9ECBFF"> HEAD</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --pretty=format:%s</span></span></code></pre>
+<p>이번 릴리즈에서 새 기능만 추출하려면:</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> log</span><span style="color:#D73A49;--shiki-dark:#F97583"> &#x3C;</span><span style="color:#032F62;--shiki-dark:#9ECBFF">last</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> releas</span><span style="color:#24292E;--shiki-dark:#E1E4E8">e</span><span style="color:#D73A49;--shiki-dark:#F97583">></span><span style="color:#032F62;--shiki-dark:#9ECBFF"> HEAD</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --grep</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> feature</span></span></code></pre>
+<h3 id="recognizing-unimportant-commits">Recognizing unimportant commits</h3>
 <p>중요하지 않은 커밋은 코드 포맷 변경(공백 추가/삭제, 들여쓰기 수정), 세미콜론 누락, 주석 추가 등과 같은 것입니다.
 이런 커밋은 논리적인 코드 변경이 없으므로, 변경사항을 추적할 때 무시해도 됩니다.</p>
 <p><code>git bisect</code> 실행 시 이런 커밋을 건너뛰려면 다음 명령을 사용할 수 있습니다:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git bisect skip <span style="color:#66d9ef">$(</span>git rev-list --grep irrelevant &lt;good place&gt; HEAD<span style="color:#66d9ef">)</span>
-</span></span></code></pre></div><h3 id="provide-more-information-when-browsing-the-history">Provide more information when browsing the history</h3>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> bisect</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> skip</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> $(</span><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> rev-list</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --grep</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> irrelevant</span><span style="color:#D73A49;--shiki-dark:#F97583"> &#x3C;</span><span style="color:#032F62;--shiki-dark:#9ECBFF">good</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> plac</span><span style="color:#24292E;--shiki-dark:#E1E4E8">e</span><span style="color:#D73A49;--shiki-dark:#F97583">></span><span style="color:#032F62;--shiki-dark:#9ECBFF"> HEAD</span><span style="color:#24292E;--shiki-dark:#E1E4E8">)</span></span></code></pre>
+<h3 id="provide-more-information-when-browsing-the-history">Provide more information when browsing the history</h3>
 <p>이 규칙을 따르면 커밋 메시지에 “맥락(context)” 정보를 추가할 수 있습니다.</p>
 <p>예를 들어 다음과 같은 메시지를 봅시다:</p>
 <ul>
@@ -289,12 +171,12 @@
 이 규칙은 바로 그 문제를 해결합니다.</p>
 <hr>
 <h2 id="format-of-the-commit-message">Format of the commit message</h2>
-<pre tabindex="0"><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
-&lt;BLANK LINE&gt;
-&lt;body&gt;
-&lt;BLANK LINE&gt;
-&lt;footer&gt;
-</code></pre><p>각 줄은 <strong>100자 이하</strong>로 작성해야 합니다.
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>&#x3C;type>(&#x3C;scope>): &#x3C;subject></span></span>
+<span class="line"><span>&#x3C;BLANK LINE></span></span>
+<span class="line"><span>&#x3C;body></span></span>
+<span class="line"><span>&#x3C;BLANK LINE></span></span>
+<span class="line"><span>&#x3C;footer></span></span></code></pre>
+<p>각 줄은 <strong>100자 이하</strong>로 작성해야 합니다.
 이렇게 하면 GitHub이나 다른 Git 도구에서 메시지를 더 쉽게 읽을 수 있습니다.</p>
 <hr>
 <h3 id="subject-line">Subject line</h3>
@@ -333,108 +215,108 @@
 <p>모든 <strong>주요 변경사항(BREAKING CHANGE)</strong> 은 푸터에 명시해야 하며,
 변경 내용, 이유, 마이그레이션 방법 등을 함께 설명해야 합니다.</p>
 <p>예시:</p>
-<pre tabindex="0"><code>BREAKING CHANGE: isolate scope bindings definition has changed and
-    the inject option for the directive controller injection was removed.
-    
-    To migrate the code follow the example below:
-    
-    Before:
-    
-    scope: {
-      myAttr: &#39;attribute&#39;,
-      myBind: &#39;bind&#39;,
-      myExpression: &#39;expression&#39;,
-      myEval: &#39;evaluate&#39;,
-      myAccessor: &#39;accessor&#39;
-    }
-    
-    After:
-    
-    scope: {
-      myAttr: &#39;@&#39;,
-      myBind: &#39;@&#39;,
-      myExpression: &#39;&amp;&#39;,
-      // myEval - usually not useful, but in cases where the expression is assignable, you can use &#39;=&#39;
-      myAccessor: &#39;=&#39; // in directive&#39;s template change myAccessor() to myAccessor
-    }
-    
-    The removed `inject` wasn&#39;t generaly useful for directives so there should be no code using it.
-</code></pre><hr>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>BREAKING CHANGE: isolate scope bindings definition has changed and</span></span>
+<span class="line"><span>    the inject option for the directive controller injection was removed.</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    To migrate the code follow the example below:</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    Before:</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    scope: {</span></span>
+<span class="line"><span>      myAttr: 'attribute',</span></span>
+<span class="line"><span>      myBind: 'bind',</span></span>
+<span class="line"><span>      myExpression: 'expression',</span></span>
+<span class="line"><span>      myEval: 'evaluate',</span></span>
+<span class="line"><span>      myAccessor: 'accessor'</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    After:</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    scope: {</span></span>
+<span class="line"><span>      myAttr: '@',</span></span>
+<span class="line"><span>      myBind: '@',</span></span>
+<span class="line"><span>      myExpression: '&#x26;',</span></span>
+<span class="line"><span>      // myEval - usually not useful, but in cases where the expression is assignable, you can use '='</span></span>
+<span class="line"><span>      myAccessor: '=' // in directive's template change myAccessor() to myAccessor</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    The removed `inject` wasn't generaly useful for directives so there should be no code using it.</span></span></code></pre>
+<hr>
 <h4 id="referencing-issues">Referencing issues</h4>
 <p>해결된 이슈는 푸터의 별도 줄에 <code>&quot;Closes&quot;</code> 키워드를 사용하여 참조합니다.</p>
-<pre tabindex="0"><code>Closes #234
-</code></pre><p>여러 개의 이슈를 닫을 경우:</p>
-<pre tabindex="0"><code>Closes #123, #245, #992
-</code></pre><hr>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>Closes #234</span></span></code></pre>
+<p>여러 개의 이슈를 닫을 경우:</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>Closes #123, #245, #992</span></span></code></pre>
+<hr>
 <h2 id="examples">Examples</h2>
-<pre tabindex="0"><code>feat($browser): onUrlChange event (popstate/hashchange/polling)
-
-Added new event to $browser:
-- forward popstate event if available
-- forward hashchange event if popstate not available
-- do polling when neither popstate nor hashchange available
-
-Breaks $browser.onHashChange, which was removed (use onUrlChange instead)
-</code></pre><pre tabindex="0"><code>fix($compile): couple of unit tests for IE9
-
-Older IEs serialize html uppercased, but IE9 does not...
-Would be better to expect case insensitive, unfortunately jasmine does
-not allow to user regexps for throw expectations.
-
-Closes #392
-Breaks foo.bar api, foo.baz should be used instead
-</code></pre><pre tabindex="0"><code>feat(directive): ng:disabled, ng:checked, ng:multiple, ng:readonly, ng:selected
-
-New directives for proper binding these attributes in older browsers (IE).
-Added coresponding description, live examples and e2e tests.
-
-Closes #351
-</code></pre><pre tabindex="0"><code>style($location): add couple of missing semi colons
-</code></pre><pre tabindex="0"><code>docs(guide): updated fixed docs from Google Docs
-
-Couple of typos fixed:
-- indentation
-- batchLogbatchLog -&gt; batchLog
-- start periodic checking
-- missing brace
-</code></pre><pre tabindex="0"><code>feat($compile): simplify isolate scope bindings
-
-Changed the isolate scope binding options to:
-  - @attr - attribute binding (including interpolation)
-  - =model - by-directional model binding
-  - &amp;expr - expression execution binding
-
-This change simplifies the terminology as well as
-number of choices available to the developer. It
-also supports local name aliasing from the parent.
-
-BREAKING CHANGE: isolate scope bindings definition has changed and
-the inject option for the directive controller injection was removed.
-
-To migrate the code follow the example below:
-
-Before:
-
-scope: {
-  myAttr: &#39;attribute&#39;,
-  myBind: &#39;bind&#39;,
-  myExpression: &#39;expression&#39;,
-  myEval: &#39;evaluate&#39;,
-  myAccessor: &#39;accessor&#39;
-}
-
-After:
-
-scope: {
-  myAttr: &#39;@&#39;,
-  myBind: &#39;@&#39;,
-  myExpression: &#39;&amp;&#39;,
-  // myEval - usually not useful, but in cases where the expression is assignable, you can use &#39;=&#39;
-  myAccessor: &#39;=&#39; // in directive&#39;s template change myAccessor() to myAccessor
-}
-
-The removed `inject` wasn&#39;t generaly useful for directives so there should be no code using it.
-</code></pre></div>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>feat($browser): onUrlChange event (popstate/hashchange/polling)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Added new event to $browser:</span></span>
+<span class="line"><span>- forward popstate event if available</span></span>
+<span class="line"><span>- forward hashchange event if popstate not available</span></span>
+<span class="line"><span>- do polling when neither popstate nor hashchange available</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Breaks $browser.onHashChange, which was removed (use onUrlChange instead)</span></span></code></pre>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>fix($compile): couple of unit tests for IE9</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Older IEs serialize html uppercased, but IE9 does not...</span></span>
+<span class="line"><span>Would be better to expect case insensitive, unfortunately jasmine does</span></span>
+<span class="line"><span>not allow to user regexps for throw expectations.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Closes #392</span></span>
+<span class="line"><span>Breaks foo.bar api, foo.baz should be used instead</span></span></code></pre>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>feat(directive): ng:disabled, ng:checked, ng:multiple, ng:readonly, ng:selected</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>New directives for proper binding these attributes in older browsers (IE).</span></span>
+<span class="line"><span>Added coresponding description, live examples and e2e tests.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Closes #351</span></span></code></pre>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>style($location): add couple of missing semi colons</span></span></code></pre>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>docs(guide): updated fixed docs from Google Docs</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Couple of typos fixed:</span></span>
+<span class="line"><span>- indentation</span></span>
+<span class="line"><span>- batchLogbatchLog -> batchLog</span></span>
+<span class="line"><span>- start periodic checking</span></span>
+<span class="line"><span>- missing brace</span></span></code></pre>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>feat($compile): simplify isolate scope bindings</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Changed the isolate scope binding options to:</span></span>
+<span class="line"><span>  - @attr - attribute binding (including interpolation)</span></span>
+<span class="line"><span>  - =model - by-directional model binding</span></span>
+<span class="line"><span>  - &#x26;expr - expression execution binding</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>This change simplifies the terminology as well as</span></span>
+<span class="line"><span>number of choices available to the developer. It</span></span>
+<span class="line"><span>also supports local name aliasing from the parent.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>BREAKING CHANGE: isolate scope bindings definition has changed and</span></span>
+<span class="line"><span>the inject option for the directive controller injection was removed.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>To migrate the code follow the example below:</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Before:</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>scope: {</span></span>
+<span class="line"><span>  myAttr: 'attribute',</span></span>
+<span class="line"><span>  myBind: 'bind',</span></span>
+<span class="line"><span>  myExpression: 'expression',</span></span>
+<span class="line"><span>  myEval: 'evaluate',</span></span>
+<span class="line"><span>  myAccessor: 'accessor'</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>After:</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>scope: {</span></span>
+<span class="line"><span>  myAttr: '@',</span></span>
+<span class="line"><span>  myBind: '@',</span></span>
+<span class="line"><span>  myExpression: '&#x26;',</span></span>
+<span class="line"><span>  // myEval - usually not useful, but in cases where the expression is assignable, you can use '='</span></span>
+<span class="line"><span>  myAccessor: '=' // in directive's template change myAccessor() to myAccessor</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>The removed `inject` wasn't generaly useful for directives so there should be no code using it.</span></span></code></pre>
+</div>
 </details>
 <br>
 <br>
@@ -446,15 +328,32 @@ The removed `inject` wasn&#39;t generaly useful for directives so there should b
 </ul>
 <br>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%86%8C%EA%B0%9C" data-id="1-소개">1. 소개</a><a class="lv0" href="#2-%EC%9A%94%EC%95%BD" data-id="2-요약">2. 요약</a><a class="lv1" href="#2-1-%EC%9E%91%EC%84%B1-%EC%98%88%EC%8B%9C" data-id="2-1-작성-예시">2-1. 작성 예시</a><a class="lv1" href="#2-2-subject" data-id="2-2-subject">2-2. Subject</a><a class="lv1" href="#2-3-body" data-id="2-3-body">2-3. Body</a><a class="lv1" href="#2-4-footer" data-id="2-4-footer">2-4. Footer</a><a class="lv0" href="#3-angularjs-%EC%BB%A4%EB%B0%8B-%EC%BB%A8%EB%B2%A4%EC%85%98-%EB%B2%88%EC%97%AD" data-id="3-angularjs-커밋-컨벤션-번역">3. AngularJS 커밋 컨벤션 (번역)</a><a class="lv0" href="#4-reference" data-id="4-reference">4. Reference</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

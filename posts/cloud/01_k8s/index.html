@@ -1,147 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>k8s (2) | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>k8s (2) · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-application-실행-in-k8s">2. Application 실행 in k8s</a>
-      <ul>
-        <li><a href="#21-거시적인-구조-흐름">2.1 거시적인 구조 흐름</a></li>
-        <li><a href="#22-미시적인-구조-흐름">2.2 미시적인 구조 흐름</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-rbac를-통한-전급-관리">3. RBAC를 통한 전급 관리</a></li>
-    <li><a href="#4-replicaset">4. ReplicaSet</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://www.yachtworld.com/research/files/2024/05/pexels-enver-gulmez-507867534-16155671-scaled.jpg" alt="Featured Image for k8s (2)">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2026.03.21</small>
-      <div class="singleTitle">k8s (2)</div>
-    </div>
-  </div>
-  <div class="series">
-  <details>
-    <summary>🦋 SKALA: SK AX AI Leader Academy</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/00_data/">0. 데이터 기초</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/01_prompt_engineering/">1. 프롬프트 엔지니어링</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/skala/02_vectordb/">2. 벡터 DB</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">k8s (2)</h1>
+<div class="post-meta"><time>2026-03-21</time><a class="chip" href="/tags/skala/">skala</a><a class="chip" href="/tags/docker/">docker</a><a class="chip" href="/tags/cloud/">cloud</a><a class="chip" href="/tags/k8s/">k8s</a></div>
+<div class="series"><details open><summary>🦋 SKALA: SK AX AI Leader Academy</summary><ol><li><a href="/posts/ai/data/">데이터 분석 개요 및 기초통계</a><time>2026-01-07</time></li><li><a href="/posts/ai/prompt_engineering/">Prompt Engineering</a><time>2026-01-12</time></li><li><a href="/posts/ai/basic_ml/">ML/DL 이해: Machine Learning</a><time>2026-01-21</time></li><li><a href="/posts/db/vectordb/">VectorDB</a><time>2026-01-22</time></li><li><a href="/posts/ai/00_basic_dl/">ML/DL 이해: Deep Learning</a><time>2026-01-23</time></li><li><a href="/posts/ai/01_basic_dl/">DL 최적화 개념 및 방법</a><time>2026-01-24</time></li><li><a href="/posts/ai/dl-cnn/">DL-CNN</a><time>2026-01-25</time></li><li><a href="/posts/ai/dl-rnn/">DL-RNN</a><time>2026-01-27</time></li><li><a href="/posts/ai/dl-lstm/">DL-LSTM</a><time>2026-01-28</time></li><li><a href="/posts/ai/dl-cv/">DL-AlexNet &amp; ResNet</a><time>2026-02-01</time></li><li><a href="/posts/cloud/docker/">Docker Container</a><time>2026-03-18</time></li><li><a href="/posts/cloud/00_k8s/">k8s (1)</a><time>2026-03-20</time></li><li class="current">k8s (2)<time>2026-03-21</time></li><li><a href="/posts/ai/rag-eval/">RAG Evaluation</a><time>2026-06-12</time></li></ol></details></div>
 <br>
 <h2 id="1-소개">1. 소개</h2>
 <p>k8s의 내부 동작을 공부해보자.</p>
@@ -166,7 +53,7 @@
 </li>
 <li><strong>3단계: 컨트롤 플레인(Control Plane)</strong>
 <ul>
-<li>사용자가 보낸 YAML 파일을 받아 &ldquo;누가, 어디서 실행될지&rdquo; 전체적인 지휘를 내림</li>
+<li>사용자가 보낸 YAML 파일을 받아 &quot;누가, 어디서 실행될지&quot; 전체적인 지휘를 내림</li>
 </ul>
 </li>
 <li><strong>4단계: 워커 노드(Worker Nodes) 배포</strong>
@@ -216,7 +103,7 @@
 </li>
 <li><strong>8단계: 노드로 통지(kubelet)</strong>
 <ul>
-<li>배정된 노드의 kubelet이 API 서버를 지켜보다가&hellip;</li>
+<li>배정된 노드의 kubelet이 API 서버를 지켜보다가...</li>
 <li><code>내 노드에 Pod A를 띄우라는 명령이 왔네?</code> 라고 확인</li>
 </ul>
 </li>
@@ -296,15 +183,32 @@
 <p><a href="https://kubernetes.io/ko/docs/concepts/services-networking/ingress/">https://kubernetes.io/ko/docs/concepts/services-networking/ingress/</a>
 <a href="https://kubernetes.io/ko/docs/concepts/workloads/controllers/replicaset/">https://kubernetes.io/ko/docs/concepts/workloads/controllers/replicaset/</a></p>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%86%8C%EA%B0%9C" data-id="1-소개">1. 소개</a><a class="lv0" href="#2-application-%EC%8B%A4%ED%96%89-in-k8s" data-id="2-application-실행-in-k8s">2. Application 실행 in k8s</a><a class="lv1" href="#21-%EA%B1%B0%EC%8B%9C%EC%A0%81%EC%9D%B8-%EA%B5%AC%EC%A1%B0-%ED%9D%90%EB%A6%84" data-id="21-거시적인-구조-흐름">2.1 거시적인 구조 흐름</a><a class="lv1" href="#22-%EB%AF%B8%EC%8B%9C%EC%A0%81%EC%9D%B8-%EA%B5%AC%EC%A1%B0-%ED%9D%90%EB%A6%84" data-id="22-미시적인-구조-흐름">2.2 미시적인 구조 흐름</a><a class="lv0" href="#3-rbac%EB%A5%BC-%ED%86%B5%ED%95%9C-%EC%A0%84%EA%B8%89-%EA%B4%80%EB%A6%AC" data-id="3-rbac를-통한-전급-관리">3. RBAC를 통한 전급 관리</a><a class="lv0" href="#4-replicaset" data-id="4-replicaset">4. ReplicaSet</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

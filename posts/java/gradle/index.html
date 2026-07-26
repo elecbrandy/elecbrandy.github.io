@@ -1,135 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>Gradle | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gradle · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-gradle이란-무엇인가">2. Gradle이란 무엇인가</a></li>
-    <li><a href="#3-gradle의-빌드-라이프사이클">3. Gradle의 빌드 라이프사이클</a></li>
-    <li><a href="#4-gradle-task">4. Gradle Task</a>
-      <ul>
-        <li><a href="#4-1-객체-지향적-설계와-증분-빌드">4-1. 객체 지향적 설계와 증분 빌드</a></li>
-        <li><a href="#4-2-dag와-지능적인-의존성-관리">4-2. DAG와 지능적인 의존성 관리</a></li>
-        <li><a href="#4-3-일괄-처리와-효율적인-부분-컴파일">4-3. 일괄 처리와 효율적인 부분 컴파일</a></li>
-        <li><a href="#4-4-비유로-보는-차이점">4-4. 비유로 보는 차이점</a></li>
-      </ul>
-    </li>
-    <li><a href="#5-결론">5. 결론</a></li>
-    <li><a href="#6-reference">6. Reference</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/10D74/production/_126208986_wed5.jpg.webp" alt="Featured Image for Gradle">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2026.01.12</small>
-      <div class="singleTitle">Gradle</div>
-    </div>
-  </div>
-  <h2 id="1-소개">1. 소개</h2>
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">Gradle</h1>
+<div class="post-meta"><time>2026-01-12</time><a class="chip" href="/tags/java/">java</a><a class="chip" href="/tags/dev101/">dev101</a></div>
+<h2 id="1-소개">1. 소개</h2>
 <blockquote>
 <p>Gradle의 개념과 동작 원리: Makefile 사용자의 관점에서 공부해보기</p>
 </blockquote>
@@ -173,30 +72,30 @@
 <h3 id="4-4-비유로-보는-차이점">4-4. 비유로 보는 차이점</h3>
 <p>gemini에게 <code>Makefile</code> 과 <code>Gradle</code> 의 비교를 위한 간단한 예시를 부탁했다.</p>
 <table>
-	<thead>
-			<tr>
-					<th>구분</th>
-					<th>Makefile 방식 (개별 주문)</th>
-					<th>Gradle 방식 (지능형 주방)</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>작업 방식</strong></td>
-					<td>&ldquo;계란 프라이 1개&rdquo;, &ldquo;토스트 1개&rdquo; 식으로 메뉴마다 개별 주문서를 작성함.</td>
-					<td>&ldquo;조식 준비&quot;라는 전체 시스템을 가동함.</td>
-			</tr>
-			<tr>
-					<td><strong>효율성</strong></td>
-					<td>요리사가 주문서를 하나씩 보며 그때마다 불을 켬.</td>
-					<td>주방장이 냉장고를 확인하여, 재료가 그대로면 기존 요리를 내놓고 바뀐 재료만 새로 요리함.</td>
-			</tr>
-			<tr>
-					<td><strong>관리</strong></td>
-					<td>파일이 늘어날수록 관리할 타겟도 많아짐.</td>
-					<td>파일이 아무리 늘어나도 &ldquo;조식 준비&quot;라는 큰 틀 안에서 자동 처리됨.</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th>구분</th>
+<th>Makefile 방식 (개별 주문)</th>
+<th>Gradle 방식 (지능형 주방)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>작업 방식</strong></td>
+<td>&quot;계란 프라이 1개&quot;, &quot;토스트 1개&quot; 식으로 메뉴마다 개별 주문서를 작성함.</td>
+<td>&quot;조식 준비&quot;라는 전체 시스템을 가동함.</td>
+</tr>
+<tr>
+<td><strong>효율성</strong></td>
+<td>요리사가 주문서를 하나씩 보며 그때마다 불을 켬.</td>
+<td>주방장이 냉장고를 확인하여, 재료가 그대로면 기존 요리를 내놓고 바뀐 재료만 새로 요리함.</td>
+</tr>
+<tr>
+<td><strong>관리</strong></td>
+<td>파일이 늘어날수록 관리할 타겟도 많아짐.</td>
+<td>파일이 아무리 늘어나도 &quot;조식 준비&quot;라는 큰 틀 안에서 자동 처리됨.</td>
+</tr>
+</tbody>
 </table>
 <br>
 <br>
@@ -204,7 +103,7 @@
 <h2 id="5-결론">5. 결론</h2>
 <p>C++은 소스 파일 간의 복잡한 포함 관계(<code>#include</code>)로 인해 파일 단위 제어가 중요하지만, 자바는 패키지 구조와 클래스 경로 기반으로 동작한다. 따라서 대규모 프로젝트에서는 특정 폴더의 소스를 몽땅 읽어 처리하는 추상화된 태스크 방식이 훨씬 효율적이다. 글 작성을 위해 검색하는 과정에서 빌드 도구의 진화 과정에 따른 Makefile, Maven, Gradle과 관련된 다양한 글도 볼 수 있었다.</p>
 <p>42서울 본과정 내내 Makefile 사용이 필수였기에, 이것이 빌드의 기본이자 가장 효율적인 방법이라 믿어 의심치 않았다. 굳이 다른 대안을 찾아볼 필요성조차 느끼지 못했던 것이 사실이다.
-물론 Makefile을 선호하는 사람도 있었지만 난 가장 나은 방법 중 하나라고 생각하고 있었는데 더 편리하고 발전된 대안들이 많았다&hellip; 우물에서 기어나온 기분이다.
+물론 Makefile을 선호하는 사람도 있었지만 난 가장 나은 방법 중 하나라고 생각하고 있었는데 더 편리하고 발전된 대안들이 많았다... 우물에서 기어나온 기분이다.
 여튼 결론은 <code>Gradle</code> 이 <strong>객체 지향적 설계</strong> 와 <strong>고도화된 상태 비교</strong> 를 통해 빠르고 유연한 빌드 환경을 제공한다는 것!</p>
 <br>
 <br>
@@ -212,22 +111,39 @@
 <h2 id="6-reference">6. Reference</h2>
 <ul>
 <li><a href="https://docs.gradle.org/current/userguide/build_lifecycle.html">https://docs.gradle.org/current/userguide/build_lifecycle.html</a></li>
-<li><a href="https://velog.io/@leesomyoung/Maven%EA%B3%BC-Gradle%EC%9D%98-%EC%B0%A8%EC%9D%B4-%EB%B0%8F-%EB%B9%84%EA%B5%90">https://velog.io/@leesomyoung/Maven%EA%B3%BC-Gradle%EC%9D%98-%EC%B0%A8%EC%9D%B4-%EB%B0%8F-%EB%B9%84%EA%B5%90</a></li>
+<li><a href="https://velog.io/@leesomyoung/Maven%EA%B3%BC-Gradle%EC%9D%98-%EC%B0%A8%EC%9D%B4-%EB%B0%8F-%EB%B9%84%EA%B5%90">https://velog.io/@leesomyoung/Maven과-Gradle의-차이-및-비교</a></li>
 <li><a href="https://www.reddit.com/r/cpp_questions/comments/1en2eeh/why_is_cmake_so_hated_and_why_not_use_make_files/?tl=ko">https://www.reddit.com/r/cpp_questions/comments/1en2eeh/why_is_cmake_so_hated_and_why_not_use_make_files/?tl=ko</a></li>
 </ul>
 <br>
 <br>
 <br>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%86%8C%EA%B0%9C" data-id="1-소개">1. 소개</a><a class="lv0" href="#2-gradle%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80" data-id="2-gradle이란-무엇인가">2. Gradle이란 무엇인가</a><a class="lv0" href="#3-gradle%EC%9D%98-%EB%B9%8C%EB%93%9C-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4" data-id="3-gradle의-빌드-라이프사이클">3. Gradle의 빌드 라이프사이클</a><a class="lv0" href="#4-gradle-task" data-id="4-gradle-task">4. Gradle Task</a><a class="lv1" href="#4-1-%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5%EC%A0%81-%EC%84%A4%EA%B3%84%EC%99%80-%EC%A6%9D%EB%B6%84-%EB%B9%8C%EB%93%9C" data-id="4-1-객체-지향적-설계와-증분-빌드">4-1. 객체 지향적 설계와 증분 빌드</a><a class="lv1" href="#4-2-dag%EC%99%80-%EC%A7%80%EB%8A%A5%EC%A0%81%EC%9D%B8-%EC%9D%98%EC%A1%B4%EC%84%B1-%EA%B4%80%EB%A6%AC" data-id="4-2-dag와-지능적인-의존성-관리">4-2. DAG와 지능적인 의존성 관리</a><a class="lv1" href="#4-3-%EC%9D%BC%EA%B4%84-%EC%B2%98%EB%A6%AC%EC%99%80-%ED%9A%A8%EC%9C%A8%EC%A0%81%EC%9D%B8-%EB%B6%80%EB%B6%84-%EC%BB%B4%ED%8C%8C%EC%9D%BC" data-id="4-3-일괄-처리와-효율적인-부분-컴파일">4-3. 일괄 처리와 효율적인 부분 컴파일</a><a class="lv1" href="#4-4-%EB%B9%84%EC%9C%A0%EB%A1%9C-%EB%B3%B4%EB%8A%94-%EC%B0%A8%EC%9D%B4%EC%A0%90" data-id="4-4-비유로-보는-차이점">4-4. 비유로 보는 차이점</a><a class="lv0" href="#5-%EA%B2%B0%EB%A1%A0" data-id="5-결론">5. 결론</a><a class="lv0" href="#6-reference" data-id="6-reference">6. Reference</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

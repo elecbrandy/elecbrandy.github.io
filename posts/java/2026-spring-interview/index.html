@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spring Boot 면접 준비 · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
+
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
+</head>
+<body>
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">Spring Boot 면접 준비</h1>
+<div class="post-meta"><time>2026-07-15</time><a class="chip" href="/tags/java/">java</a><a class="chip" href="/tags/dev101/">dev101</a></div>
+<h2 id="1-소개">1. 소개</h2>
+<blockquote>
+<p>2026 Spring Boot 백엔드 면접 준비</p>
+</blockquote>
+<br>
+<br>
+<h2 id="2-cs">2. CS</h2>
+<h3 id="21-os">2.1. OS</h3>
+<details>
+<summary>cron code</summary>
+<div markdown="1">
+<div>
+<details>
+<details>
+<summary>cron code</summary>
+<div markdown="1">
+<h4 id="프로세스와-스레드의-차이는-무엇인가요">프로세스와 스레드의 차이는 무엇인가요?</h4>
+<ul>
+<li>프로세스는 실행 중인 프로그램의 독립적인 실행 단위입니다.</li>
+<li>각 프로세스는 자신만의 가상 메모리 공간과 운영체제 자원을 가집니다.</li>
+<li>스레드는 프로세스 내부의 실행 흐름 단위입니다.</li>
+<li>같은 프로세스의 스레드는 각자 Stack과 레지스터 상태를 가집니다. (나머지 공유)</li>
+</ul>
+<div>
+<details>
+<p>따라서 프로세스 간에는 격리성이 높지만 통신 비용이 크고, 스레드는 자원을 공유해 효율적이지만 동기화 문제가 발생할 수 있습니다.</p>
+<h3 id="2-멀티프로세스와-멀티스레드의-장단점은-무엇인가요">2. 멀티프로세스와 멀티스레드의 장단점은 무엇인가요?</h3>
+<p>멀티프로세스는 작업을 여러 프로세스로 나누어 수행합니다. 한 프로세스가 실패해도 다른 프로세스에 미치는 영향이 적고, 메모리 격리로 안정성이 높습니다. 반면 프로세스 생성과 컨텍스트 스위칭 비용이 크고, 프로세스 간 통신(IPC)이 복잡합니다.</p>
+<p>멀티스레드는 하나의 프로세스 안에서 여러 스레드가 자원을 공유합니다. 생성 및 전환 비용이 비교적 작고, 데이터 공유가 쉽습니다. 반면 하나의 스레드 오류가 전체 프로세스 장애로 이어질 수 있으며, Race Condition과 Deadlock 같은 동시성 문제를 관리해야 합니다.</p>
+<h3 id="3-프로세스의-메모리-구조code-data-heap-stack를-설명해-주세요">3. 프로세스의 메모리 구조(Code, Data, Heap, Stack)를 설명해 주세요.</h3>
+<ul>
+<li>Code 영역: 실행할 프로그램의 기계어 코드가 저장됩니다. 일반적으로 읽기 전용입니다.</li>
+<li>Data 영역: 전역 변수와 정적 변수 등이 저장됩니다. 초기화된 데이터와 초기화되지 않은 데이터를 구분하기도 합니다.</li>
+<li>Heap 영역: 런타임에 동적으로 할당되는 객체와 데이터가 저장됩니다. Java 객체는 주로 Heap에 생성됩니다.</li>
+<li>Stack 영역: 함수 호출 정보, 지역 변수, 매개변수, 반환 주소 등이 저장됩니다. 함수 호출이 끝나면 자동으로 정리됩니다.</li>
+</ul>
+<p>일반적으로 Stack은 위에서 아래로, Heap은 아래에서 위로 확장되는 구조로 설명합니다. 두 영역이 과도하게 커져 충돌하면 메모리 부족 문제가 발생할 수 있습니다.</p>
+<h3 id="4-컨텍스트-스위칭이란-무엇이며-비용이-발생하는-이유는-무엇인가요">4. 컨텍스트 스위칭이란 무엇이며, 비용이 발생하는 이유는 무엇인가요?</h3>
+<p>컨텍스트 스위칭은 CPU가 실행 중인 프로세스 또는 스레드를 바꾸는 과정입니다. 이때 기존 작업의 레지스터, 프로그램 카운터, 스택 포인터 등의 상태를 저장하고 다음 작업의 상태를 복원합니다.</p>
+<p>비용이 발생하는 이유는 상태 저장·복원뿐 아니라 CPU 캐시, TLB 같은 하드웨어 캐시의 효율이 떨어질 수 있기 때문입니다. 특히 프로세스 전환은 주소 공간도 바뀔 수 있어 스레드 전환보다 일반적으로 더 무겁습니다.</p>
+<h3 id="5-cpu-스케줄링의-목적과-대표-알고리즘을-설명해-주세요">5. CPU 스케줄링의 목적과 대표 알고리즘을 설명해 주세요.</h3>
+<p>CPU 스케줄링은 여러 프로세스 중 다음에 CPU를 사용할 대상을 선택하는 작업입니다. CPU 이용률, 처리량, 응답 시간, 대기 시간, 공정성을 개선하는 것이 목적입니다.</p>
+<p>대표 알고리즘은 다음과 같습니다.</p>
+<ul>
+<li>FCFS: 먼저 도착한 작업을 먼저 수행합니다. 단순하지만 긴 작업이 뒤 작업을 오래 막을 수 있습니다.</li>
+<li>SJF: 실행 시간이 짧은 작업을 먼저 수행합니다. 평균 대기 시간은 줄일 수 있지만 실행 시간을 미리 알기 어렵고 긴 작업이 굶을 수 있습니다.</li>
+<li>Round Robin: 정해진 시간 할당량만큼 번갈아 실행합니다. 시분할 환경에 적합하지만, 할당량이 너무 짧으면 전환 비용이 커집니다.</li>
+<li>Priority Scheduling: 우선순위가 높은 작업을 먼저 수행합니다. 낮은 우선순위 작업의 기아 상태를 막기 위해 Aging을 사용할 수 있습니다.</li>
+</ul>
+<h3 id="6-선점형-스케줄링과-비선점형-스케줄링의-차이는-무엇인가요">6. 선점형 스케줄링과 비선점형 스케줄링의 차이는 무엇인가요?</h3>
+<p>선점형 스케줄링은 운영체제가 실행 중인 프로세스의 CPU를 회수하여 다른 프로세스에 할당할 수 있는 방식입니다. 응답성이 좋고 우선순위 처리에 유리하지만, 컨텍스트 스위칭 비용과 동기화 복잡성이 증가합니다. Round Robin이 대표적입니다.</p>
+<p>비선점형 스케줄링은 프로세스가 종료되거나 입출력 대기 상태가 될 때까지 CPU를 계속 사용합니다. 구현은 단순하지만 긴 작업이 CPU를 점유하면 다른 작업의 응답성이 나빠집니다. FCFS가 대표적입니다.</p>
+<h3 id="7-동시성과-병렬성의-차이는-무엇인가요">7. 동시성과 병렬성의 차이는 무엇인가요?</h3>
+<p>동시성은 여러 작업이 한 기간에 함께 진행되는 것처럼 보이도록 작업을 번갈아 처리하는 능력입니다. 단일 CPU 코어에서도 가능합니다.</p>
+<p>병렬성은 여러 작업을 물리적으로 동시에 실행하는 것입니다. 일반적으로 여러 CPU 코어가 필요합니다.</p>
+<p>예를 들어 하나의 코어에서 여러 요청을 빠르게 번갈아 처리하면 동시성이고, 여러 코어에서 각 요청을 실제로 동시에 처리하면 병렬성입니다.</p>
+<h3 id="8-동기비동기-블로킹논블로킹의-차이는-무엇인가요">8. 동기·비동기, 블로킹·논블로킹의 차이는 무엇인가요?</h3>
+<p>동기·비동기는 <strong>결과를 언제 처리하는지</strong>에 대한 제어 흐름의 문제입니다.</p>
+<ul>
+<li>동기: 호출한 쪽이 작업 완료와 결과를 직접 확인하며 다음 작업을 진행합니다.</li>
+<li>비동기: 호출한 쪽은 작업을 요청한 후 다른 일을 하고, 완료 결과는 콜백·이벤트·Future 등으로 나중에 받습니다.</li>
+</ul>
+<p>블로킹·논블로킹은 <strong>호출한 스레드가 기다리는지</strong>의 문제입니다.</p>
+<ul>
+<li>블로킹: 작업이 완료될 때까지 호출 스레드가 대기합니다.</li>
+<li>논블로킹: 호출이 즉시 반환되고, 호출 스레드는 다른 작업을 할 수 있습니다.</li>
+</ul>
+<p>동기/비동기와 블로킹/논블로킹은 서로 다른 축입니다. 예를 들어 비동기 요청을 보낸 뒤 결과를 <code>get()</code>으로 기다리면 비동기 작업이지만 호출 측은 블로킹될 수 있습니다.</p>
+<h3 id="9-임계-구역critical-section이란-무엇인가요">9. 임계 구역(Critical Section)이란 무엇인가요?</h3>
+<p>임계 구역은 여러 스레드 또는 프로세스가 공유 자원에 접근하는 코드 영역입니다. 예를 들어 공유 변수의 값을 읽고 증가시켜 다시 저장하는 코드가 있습니다.</p>
+<p>동시에 둘 이상이 진입하면 데이터가 깨질 수 있으므로, 한 번에 하나만 진입하도록 상호 배제(Mutual Exclusion)를 보장해야 합니다.</p>
+<h3 id="10-race-condition은-무엇이며-어떻게-예방하나요">10. Race Condition은 무엇이며 어떻게 예방하나요?</h3>
+<p>Race Condition은 여러 실행 흐름이 공유 자원에 동시에 접근할 때, 실행 순서에 따라 결과가 달라지는 문제입니다.</p>
+<p>예를 들어 두 스레드가 동시에 <code>count++</code>를 수행하면 둘 다 같은 기존 값을 읽어 증가 결과가 한 번만 반영될 수 있습니다.</p>
+<p>예방 방법은 뮤텍스·세마포어·모니터 같은 동기화 도구로 임계 구역을 보호하거나, 원자적 연산을 사용하거나, 불변 객체 및 메시지 전달 방식으로 공유 상태 자체를 줄이는 것입니다.</p>
+<h3 id="11-뮤텍스와-세마포어의-차이는-무엇인가요">11. 뮤텍스와 세마포어의 차이는 무엇인가요?</h3>
+<p>뮤텍스는 하나의 공유 자원에 대해 한 실행 흐름만 접근하게 하는 잠금 장치입니다. 보통 잠근 스레드가 직접 해제해야 하며, 소유권 개념이 있습니다.</p>
+<p>세마포어는 허용 가능한 동시 접근 수를 카운터로 관리합니다. 값이 1인 이진 세마포어는 상호 배제에 사용할 수 있고, 값이 여러 개인 카운팅 세마포어는 DB 커넥션 풀처럼 제한된 자원 개수를 관리할 때 적합합니다.</p>
+<h3 id="12-교착-상태deadlock의-발생-조건-4가지는-무엇인가요">12. 교착 상태(Deadlock)의 발생 조건 4가지는 무엇인가요?</h3>
+<p>Deadlock은 다음 네 조건이 모두 만족할 때 발생할 수 있습니다.</p>
+<ul>
+<li>상호 배제: 자원을 한 번에 하나의 실행 흐름만 사용할 수 있습니다.</li>
+<li>점유 대기: 자원을 가진 상태에서 다른 자원을 기다립니다.</li>
+<li>비선점: 이미 할당된 자원을 강제로 빼앗을 수 없습니다.</li>
+<li>순환 대기: 실행 흐름들이 원형으로 서로가 가진 자원을 기다립니다.</li>
+</ul>
+<h3 id="13-deadlock을-예방회피탐지하는-방법은-무엇인가요">13. Deadlock을 예방·회피·탐지하는 방법은 무엇인가요?</h3>
+<p>예방은 발생 조건 중 하나를 깨는 방식입니다. 예를 들어 모든 자원에 순서를 부여하고 항상 같은 순서로 획득하게 하면 순환 대기를 막을 수 있습니다.</p>
+<p>회피는 자원 할당 전 안전 상태인지 판단하는 방식입니다. 대표적으로 Banker's Algorithm이 있습니다.</p>
+<p>탐지는 Deadlock을 허용하되 주기적으로 대기 그래프 등을 검사하는 방식입니다. 발견 후에는 프로세스를 종료하거나 자원을 회수해 복구합니다. 실무에서는 보통 예방을 위해 락 획득 순서를 통일하고, 타임아웃을 함께 사용합니다.</p>
+<h3 id="14-스핀락은-무엇이며-뮤텍스보다-적합한-상황은-언제인가요">14. 스핀락은 무엇이며, 뮤텍스보다 적합한 상황은 언제인가요?</h3>
+<p>스핀락은 락을 얻을 때까지 잠들지 않고 반복해서 락 상태를 확인하는 방식입니다. 대기 중에도 CPU를 사용합니다.</p>
+<p>따라서 락 보유 시간이 매우 짧고, 멀티코어 환경에서 락을 가진 실행 흐름이 곧 실행될 수 있을 때 적합합니다. 반대로 대기 시간이 길거나 단일 코어 환경에서는 CPU를 낭비하므로 뮤텍스처럼 대기 상태로 전환하는 방식이 더 적합합니다.</p>
+<h3 id="15-가상-메모리가-필요한-이유는-무엇인가요">15. 가상 메모리가 필요한 이유는 무엇인가요?</h3>
+<p>가상 메모리는 각 프로세스에 독립적이고 연속적인 메모리 공간이 있는 것처럼 보이게 하는 기술입니다.</p>
+<p>이를 통해 실제 물리 메모리보다 큰 프로그램을 실행할 수 있고, 프로세스 간 메모리 격리를 통해 안정성과 보안도 높일 수 있습니다. 실제로 필요한 페이지를 필요할 때만 물리 메모리에 올리는 Demand Paging 방식이 대표적입니다.</p>
+<h3 id="16-페이징과-세그멘테이션의-차이는-무엇인가요">16. 페이징과 세그멘테이션의 차이는 무엇인가요?</h3>
+<p>페이징은 메모리를 고정 크기의 페이지와 프레임으로 나누어 관리합니다. 외부 단편화를 줄일 수 있지만, 마지막 페이지에서 내부 단편화가 발생할 수 있습니다.</p>
+<p>세그멘테이션은 코드, 데이터, 스택처럼 논리적 의미를 가진 가변 크기 단위로 메모리를 나눕니다. 프로그램 구조를 반영하기 쉽지만, 크기가 가변적이므로 외부 단편화가 발생할 수 있습니다.</p>
+<h3 id="17-페이지-폴트는-무엇이며-발생하면-어떤-일이-일어나나요">17. 페이지 폴트는 무엇이며 발생하면 어떤 일이 일어나나요?</h3>
+<p>페이지 폴트는 프로세스가 접근하려는 가상 메모리 페이지가 현재 물리 메모리에 없을 때 발생하는 예외입니다.</p>
+<p>운영체제는 해당 페이지가 디스크의 스왑 영역 또는 실행 파일 어디에 있는지 확인하고, 빈 프레임이 없으면 교체할 페이지를 고릅니다. 이후 필요한 페이지를 메모리에 적재하고 페이지 테이블을 갱신한 뒤, 중단됐던 명령어를 다시 실행합니다.</p>
+<p>페이지 폴트가 지나치게 많으면 디스크 입출력에 대부분의 시간이 쓰이는 스래싱(Thrashing)이 발생할 수 있습니다.</p>
+<h3 id="18-내부-단편화와-외부-단편화의-차이는-무엇인가요">18. 내부 단편화와 외부 단편화의 차이는 무엇인가요?</h3>
+<p>내부 단편화는 할당받은 메모리 블록 내부에서 사용하지 못하는 공간이 생기는 현상입니다. 고정 크기 페이지를 할당했는데 마지막 페이지 일부가 남는 경우가 예입니다.</p>
+<p>외부 단편화는 사용 가능한 메모리 총량은 충분하지만, 빈 공간이 여러 곳에 흩어져 연속된 큰 공간을 할당하지 못하는 현상입니다. 가변 크기 메모리 할당에서 주로 발생합니다.</p>
+<h3 id="19-캐시-메모리와-지역성locality의-관계를-설명해-주세요">19. 캐시 메모리와 지역성(Locality)의 관계를 설명해 주세요.</h3>
+<p>캐시는 CPU와 주기억장치 간 속도 차이를 줄이기 위해 자주 사용할 데이터를 더 빠른 메모리에 저장하는 구조입니다.</p>
+<p>캐시가 효과적인 이유는 프로그램이 특정 데이터와 명령어를 반복하거나, 서로 가까운 주소를 순차적으로 접근하는 지역성 특성을 보이기 때문입니다. 지역성이 높을수록 캐시 적중률이 높아지고 성능이 좋아집니다.</p>
+<h3 id="20-캐시의-시간-지역성과-공간-지역성은-무엇인가요">20. 캐시의 시간 지역성과 공간 지역성은 무엇인가요?</h3>
+<p>시간 지역성은 최근에 접근한 데이터나 명령어를 가까운 미래에 다시 접근할 가능성이 높은 특성입니다. 반복문에서 같은 변수에 반복적으로 접근하는 경우가 예입니다.</p>
+<p>공간 지역성은 한 메모리 주소에 접근하면 그 주변 주소도 곧 접근할 가능성이 높은 특성입니다. 배열을 순차적으로 탐색하는 경우가 대표적입니다.</p>
+<h3 id="21-메모리-누수는-어떤-상황에서-발생하나요">21. 메모리 누수는 어떤 상황에서 발생하나요?</h3>
+<p>메모리 누수는 더 이상 필요하지 않은 메모리가 해제되지 않아 점점 누적되는 현상입니다.</p>
+<p>C/C++에서는 할당한 메모리를 직접 해제하지 않을 때 발생합니다. Java처럼 GC가 있는 환경에서도 더 이상 쓰지 않는 객체를 컬렉션, 캐시, 리스너, <code>ThreadLocal</code>, static 필드 등이 계속 참조하면 GC 대상이 되지 않아 발생할 수 있습니다.</p>
+<h3 id="22-java에서-stack-heap-metaspace는-각각-무엇을-저장하나요">22. Java에서 Stack, Heap, Metaspace는 각각 무엇을 저장하나요?</h3>
+<ul>
+<li>Stack: 스레드마다 독립적으로 존재합니다. 메서드 호출 단위인 스택 프레임, 지역 변수, 매개변수, 반환 정보 등이 저장됩니다.</li>
+<li>Heap: 모든 스레드가 공유합니다. <code>new</code>로 생성한 객체와 배열이 저장되고, GC의 관리 대상입니다.</li>
+<li>Metaspace: 클래스의 메타데이터(클래스 구조, 메서드 정보 등)를 저장합니다. Java 8부터 기존 PermGen을 대체했으며, JVM 힙이 아닌 네이티브 메모리를 사용합니다.</li>
+</ul>
+<p>참고로 static 필드는 “메서드 영역”에 있다고 단순화해 설명되기도 하지만, 현대 HotSpot JVM에서는 클래스 메타데이터와 실제 static 필드 저장 위치를 구분해 구현합니다. 면접에서는 static 필드가 클래스 단위로 공유되는 데이터라는 점을 우선 정확히 설명하면 됩니다.</p>
+<h3 id="23-java-gc가-필요한-이유와-stop-the-world를-설명해-주세요">23. Java GC가 필요한 이유와 Stop-the-World를 설명해 주세요.</h3>
+<p>GC는 프로그램에서 더 이상 도달할 수 없는 객체를 자동으로 찾아 메모리를 회수합니다. 개발자가 직접 메모리를 해제하지 않아도 되므로 메모리 관리 실수를 줄일 수 있습니다.</p>
+<p>Stop-the-World는 GC의 특정 단계에서 객체 참조 관계를 안전하게 확인하거나 메모리를 정리하기 위해 애플리케이션 스레드를 일시 정지시키는 현상입니다. 모든 GC 과정이 항상 멈춘 상태로 실행되는 것은 아니지만, 일부 단계에서는 정지가 필요할 수 있습니다.</p>
+<p>따라서 서버 환경에서는 힙 사용량, 객체 생성량, GC 빈도와 정지 시간을 관찰해 긴 GC pause가 서비스 응답 시간에 영향을 주지 않도록 관리해야 합니다.</p>
+</div>
+</details>
+<h3 id="22-network">2.2. NETWORK</h3>
+<details>
+<summary>cron code</summary>
+<div markdown="1">
+</div>
+</details>
+<ul>
+<li>OSI 7계층과 TCP/IP 4계층을 설명해 주세요.</li>
+<li>각 계층을 나누는 이유는 무엇인가요?</li>
+<li>TCP와 UDP의 차이 및 각각 적합한 사용 사례는 무엇인가요?</li>
+<li>TCP의 3-way handshake 과정을 설명해 주세요.</li>
+<li>TCP의 4-way handshake 과정을 설명해 주세요.</li>
+<li>연결 종료 후 TIME_WAIT 상태가 필요한 이유는 무엇인가요?</li>
+<li>TCP의 흐름 제어와 혼잡 제어의 차이는 무엇인가요?</li>
+<li>HTTP는 어떤 특징을 가진 프로토콜인가요?</li>
+<li>HTTP의 Stateless 특성은 무엇이며, 상태는 어떻게 유지하나요?</li>
+<li>HTTP/1.1, HTTP/2, HTTP/3의 차이는 무엇인가요?</li>
+<li>HTTPS는 어떻게 보안을 제공하나요?</li>
+<li>대칭키 암호화와 비대칭키 암호화의 차이는 무엇인가요?</li>
+<li>TLS 핸드셰이크는 어떤 과정을 거치나요?</li>
+<li>인증서와 CA(Certificate Authority)의 역할은 무엇인가요?</li>
+<li>DNS는 도메인 이름을 IP 주소로 어떻게 변환하나요?</li>
+<li>DNS 캐싱은 어떤 장점과 문제를 가지나요?</li>
+<li>URL을 입력한 후 페이지가 표시될 때까지의 과정을 설명해 주세요.</li>
+<li>IP 주소와 MAC 주소의 차이는 무엇인가요?</li>
+<li>ARP는 무엇이며 왜 필요한가요?</li>
+<li>서브넷 마스크와 CIDR은 무엇인가요?</li>
+<li>NAT는 왜 사용하나요?</li>
+<li>쿠키와 세션의 차이는 무엇인가요?</li>
+<li>프록시와 리버스 프록시의 차이는 무엇인가요?</li>
+<li>CORS는 왜 발생하나요?</li>
+<li>REST의 특징과 제약 조건은 무엇인가요?</li>
+<li>HTTP 메서드의 안전성(Safe)과 멱등성(Idempotent)을 설명해 주세요.</li>
+<li>HTTP 상태 코드 401과 403의 차이는 무엇인가요?</li>
+</ul>
+<h3 id="23-algorithm">2.3. Algorithm</h3>
+<details>
+<summary>cron code</summary>
+<div markdown="1">
+</div>
+</details>
+<ul>
+<li>시간 복잡도와 공간 복잡도는 무엇인가요?</li>
+<li>Big-O 표기법은 무엇이며 왜 사용하나요?</li>
+<li>O(1), O(log N), O(N), O(N log N), O(N²)의 예를 들어 주세요.</li>
+<li>재귀와 반복문의 장단점은 무엇인가요?</li>
+<li>분할 정복(Divide and Conquer)이란 무엇인가요?</li>
+<li>이진 탐색이 가능한 조건은 무엇인가요?</li>
+<li>이진 탐색 구현 시 자주 발생하는 오류는 무엇인가요?</li>
+<li>정렬 알고리즘의 안정성(Stable Sort)이란 무엇인가요?</li>
+<li>버블·선택·삽입 정렬의 동작 방식과 시간 복잡도를 설명해 주세요.</li>
+<li>병합 정렬과 퀵 정렬의 차이는 무엇인가요?</li>
+<li>퀵 정렬의 최악 시간 복잡도가 O(N²)가 되는 경우는 언제인가요?</li>
+<li>힙 정렬의 특징은 무엇인가요?</li>
+<li>BFS와 DFS의 차이와 적절한 활용 사례는 무엇인가요?</li>
+<li>최단 경로 문제에서 BFS와 다익스트라를 각각 언제 사용하나요?</li>
+<li>그리디 알고리즘이 성립하기 위한 조건은 무엇인가요?</li>
+<li>동적 계획법(DP)은 어떤 문제에 적합한가요?</li>
+<li>메모이제이션과 타뷸레이션의 차이는 무엇인가요?</li>
+<li>백트래킹은 무엇이며 DFS와 어떻게 구분하나요?</li>
+<li>완전 탐색은 언제 사용할 수 있나요?</li>
+<li>투 포인터와 슬라이딩 윈도우는 어떤 문제에 사용하나요?</li>
+<li>Union-Find는 어떤 문제를 해결하나요?</li>
+<li>위상 정렬은 무엇이며 어떤 그래프에서 사용할 수 있나요?</li>
+</ul>
+<h3 id="24-data-structure">2.4. Data Structure</h3>
+<details>
+<summary>cron code</summary>
+<div markdown="1">
+</div>
+</details>
+<ul>
+<li>배열과 연결 리스트의 차이 및 사용 기준은 무엇인가요?</li>
+<li>배열의 삽입·삭제가 느린 이유는 무엇인가요?</li>
+<li>연결 리스트의 탐색이 느린 이유는 무엇인가요?</li>
+<li>스택과 큐의 차이 및 활용 사례는 무엇인가요?</li>
+<li>덱(Deque)은 무엇인가요?</li>
+<li>우선순위 큐는 무엇이며 내부적으로 어떻게 구현하나요?</li>
+<li>힙(Heap)의 종류와 특징을 설명해 주세요.</li>
+<li>최대 힙과 최소 힙은 어떤 경우에 사용하나요?</li>
+<li>해시 테이블의 동작 원리는 무엇인가요?</li>
+<li>해시 충돌은 무엇이며 어떻게 해결하나요?</li>
+<li>체이닝과 개방 주소법의 차이는 무엇인가요?</li>
+<li>해시 테이블의 로드 팩터(Load Factor)는 무엇인가요?</li>
+<li><code>HashMap</code>의 시간 복잡도는 항상 O(1)인가요?</li>
+<li>트리와 그래프의 차이는 무엇인가요?</li>
+<li>이진 탐색 트리(BST)의 특징과 시간 복잡도는 무엇인가요?</li>
+<li>BST가 편향되면 어떤 문제가 생기나요?</li>
+<li>균형 이진 탐색 트리(AVL Tree, Red-Black Tree)가 필요한 이유는 무엇인가요?</li>
+<li>B-Tree와 B+Tree의 차이는 무엇인가요?</li>
+<li>그래프의 인접 행렬과 인접 리스트의 차이는 무엇인가요?</li>
+<li>방향 그래프와 무방향 그래프의 차이는 무엇인가요?</li>
+<li>순환 연결 리스트는 어떤 경우에 활용할 수 있나요?</li>
+<li>Trie 자료구조는 무엇이며 언제 사용하나요?</li>
+</ul>
+<h3 id="25-oopjava">2.5. OOP(Java)</h3>
+<details>
+<summary>cron code</summary>
+<div markdown="1">
+</div>
+</details>
+<ul>
+<li>객체지향 프로그래밍의 4가지 특징을 설명해 주세요.</li>
+<li>캡슐화가 필요한 이유는 무엇인가요?</li>
+<li>상속의 장점과 단점은 무엇인가요?</li>
+<li>상속보다 조합(Composition)을 선호하는 이유는 무엇인가요?</li>
+<li>다형성이란 무엇인가요? 오버로딩과 오버라이딩을 포함해 설명해 주세요.</li>
+<li>추상 클래스와 인터페이스의 차이는 무엇인가요?</li>
+<li>Java 인터페이스의 default 메서드는 왜 도입되었나요?</li>
+<li>SOLID 원칙을 설명해 주세요.</li>
+<li>단일 책임 원칙(SRP)을 위반한 사례는 무엇인가요?</li>
+<li>개방-폐쇄 원칙(OCP)을 코드에서 어떻게 적용할 수 있나요?</li>
+<li>의존성 역전 원칙(DIP)이란 무엇인가요?</li>
+<li>응집도와 결합도는 무엇인가요?</li>
+<li>불변 객체란 무엇이며 장점은 무엇인가요?</li>
+<li><code>String</code>은 왜 불변 객체인가요?</li>
+<li><code>final</code>, <code>finally</code>, <code>finalize</code>의 차이는 무엇인가요?</li>
+<li><code>==</code>와 <code>equals()</code>의 차이는 무엇인가요?</li>
+<li><code>equals()</code>를 재정의할 때 <code>hashCode()</code>도 재정의해야 하는 이유는 무엇인가요?</li>
+<li><code>Object</code> 클래스의 주요 메서드를 설명해 주세요.</li>
+<li>얕은 복사와 깊은 복사의 차이는 무엇인가요?</li>
+<li><code>String</code>, <code>StringBuilder</code>, <code>StringBuffer</code>의 차이는 무엇인가요?</li>
+<li>Java의 예외 계층 구조를 설명해 주세요.</li>
+<li>Checked Exception과 Unchecked Exception의 차이는 무엇인가요?</li>
+<li><code>try-with-resources</code>는 왜 사용하나요?</li>
+<li>클래스 로더는 무엇이며, 클래스 로딩 과정은 어떻게 되나요?</li>
+<li>접근 제어자(<code>public</code>, <code>protected</code>, default, <code>private</code>)의 범위를 설명해 주세요.</li>
+<li>제네릭은 왜 사용하며, 타입 소거(Type Erasure)는 무엇인가요?</li>
+<li>Java 컬렉션 프레임워크의 주요 인터페이스와 구현체를 설명해 주세요.</li>
+</ul>
+<br>
+<br>
+<h2 id="3-spring-boot">3. Spring Boot</h2>
+<br>
+<br>
+<h2 id="4-db">4. DB</h2>
+<br>
+<br>
+<h2 id="5-reference">5. Reference</h2>
+<ul>
+<li><a href="https://docs.gradle.org/current/userguide/build_lifecycle.html">https://docs.gradle.org/current/userguide/build_lifecycle.html</a></li>
+<li><a href="https://velog.io/@leesomyoung/Maven%EA%B3%BC-Gradle%EC%9D%98-%EC%B0%A8%EC%9D%B4-%EB%B0%8F-%EB%B9%84%EA%B5%90">https://velog.io/@leesomyoung/Maven과-Gradle의-차이-및-비교</a></li>
+<li><a href="https://www.reddit.com/r/cpp_questions/comments/1en2eeh/why_is_cmake_so_hated_and_why_not_use_make_files/?tl=ko">https://www.reddit.com/r/cpp_questions/comments/1en2eeh/why_is_cmake_so_hated_and_why_not_use_make_files/?tl=ko</a></li>
+</ul>
+<br>
+<br>
+<br>
+
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%86%8C%EA%B0%9C" data-id="1-소개">1. 소개</a><a class="lv0" href="#2-cs" data-id="2-cs">2. CS</a><a class="lv1" href="#21-os" data-id="21-os">2.1. OS</a><a class="lv1" href="#22-network" data-id="22-network">2.2. NETWORK</a><a class="lv1" href="#23-algorithm" data-id="23-algorithm">2.3. Algorithm</a><a class="lv1" href="#24-data-structure" data-id="24-data-structure">2.4. Data Structure</a><a class="lv1" href="#25-oopjava" data-id="25-oopjava">2.5. OOP(Java)</a><a class="lv0" href="#3-spring-boot" data-id="3-spring-boot">3. Spring Boot</a><a class="lv0" href="#4-db" data-id="4-db">4. DB</a><a class="lv0" href="#5-reference" data-id="5-reference">5. Reference</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>

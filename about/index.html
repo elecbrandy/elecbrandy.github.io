@@ -1,164 +1,122 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>about | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>about · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-
-
-
-
-
-
-
-
-
-        
-
-
-<div class="breadcrumb">
-  👤
-  
-    /about
-  
-</div>
-
-
-<div class="list">
-  <ul>
-<li><strong>🎓 학력</strong>
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post"><h3 class="page-title">about</h3><h2 id="-about-me">💡 About me</h2>
 <ul>
-<li>숭실대학교 정보사회/AI융합학부 복수전공<small>(졸업) <code>2026.07</code></small></li>
+<li><strong>AI융합전공</strong>으로, AI와 CS 기반을 공부했습니다.</li>
+<li><strong>42서울</strong>에서 <code>C/C++</code> 기반 시스템 프로그래밍을 공부했습니다.</li>
+<li><strong>SK AI Leader Academy</strong>에서 <code>AI Agentic 솔루션</code> 개발을 경험했습니다.</li>
+<li>원인과 구조에 대한 이해를 선행하여, 최적의 솔루션을 개발하는 것이 목표입니다.</li>
+</ul>
+<br>
+<h2 id="-tech-stack">🛠 Tech Stack</h2>
+<p>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/FastAPI-009485?style=for-the-badge&logo=fastapi&logoColor=white"/>
+  <img src="https://img.shields.io/badge/LangChain-1F425F?style=for-the-badge&logo=langchain&logoColor=white" />
+  <img src="https://img.shields.io/badge/LangGraph-232F3E?style=for-the-badge&logo=langgraph&logoColor=white" />
+  <br>
+  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
+  <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/>
+  <br>
+  <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white"/>
+  <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
+</p>
+<br>
+<h2 id="-projects">📂 Projects</h2>
+<ul>
+<li><strong><code>AI</code></strong>
+<ul>
+<li><strong><a href="https://github.com/SKALA-TEAM5">i-very</a></strong>: AI 산업 현장 Compliance 솔루션</li>
+<li><strong><a href="https://github.com/elecbrandy/house-rental-chat">house-rental-chat</a></strong>: 주택임대차보호법 기반 LLM 챗봇</li>
+<li>RAP-MLLM Retrieval 개선 연구</li>
 </ul>
 </li>
-<li><strong>📚 교육/대외활동</strong>
+<li><strong><code>42Seoul</code></strong>
 <ul>
-<li>SKALA<small>:SK AI Leader Academy <code>2026.01</code>-<code>2026.06</code></small></li>
-<li>42서울<small><code>2023.10</code>-<code>2025.05</code></small></li>
-<li>데이터청년캠퍼스<small><code>2023.06</code>-<code>2023.08</code></small></li>
+<li><strong><a href="https://github.com/elecbrandy/ft_transcendence">ft_transcendence</a></strong>: JavaScript 기반 SPA 웹 서비스</li>
+<li><strong><a href="https://github.com/elecbrandy/ft_irc_refactor">ft_irc</a></strong>: IRC 프로토콜 기반 C++ 채팅 서버</li>
+<li><strong><a href="https://github.com/elecbrandy/philosopher">philosopher</a></strong>: 뮤텍스 기반 프로세스 관리 시뮬레이션</li>
+<li><strong><a href="https://github.com/elecbrandy/minishell">minishell</a></strong>: Bash shell 구현</li>
 </ul>
 </li>
-<li><strong>🪪 어학/자격증</strong>
+<li><strong><code>ETC</code></strong>
 <ul>
-<li>OPic IH <small><code>2025.05</code></small></li>
+<li><strong><a href="https://github.com/elecbrandy/freshpink">freshpink</a></strong>: 정적 웹 빌더 <code>hugo</code> 테마</li>
+</ul>
+</li>
+</ul>
+<br>
+<h2 id="-education">🎓 Education</h2>
+<ul>
+<li>숭실대학교 정보사회/AI융합학부 복수전공 <small>(졸업) <code>2026.07</code></small></li>
+<li>SKALA<small>: SK AI Leader Academy <code>2026.01</code>-<code>2026.06</code></small></li>
+<li>42서울 <small><code>2023.10</code>-<code>2025.05</code></small></li>
+<li>데이터청년캠퍼스 <small><code>2023.06</code>-<code>2023.08</code></small></li>
+</ul>
+<br>
+<h2 id="-certifications">🪪 Certifications</h2>
+<ul>
+<li>OPIc IH <small><code>2025.05</code></small></li>
 <li>SQLD <small><code>2026.03</code></small></li>
 </ul>
-</li>
-<li><strong>🏆 수상 경력</strong>
+<br>
+<h2 id="-awards">🏆 Awards</h2>
 <ul>
-<li>데이터청년캠퍼스 가짜뉴스 분석 우수상 <small><code>2023.08</code></small></li>
-<li>한국정책학회 빅데이터 프로젝트 우수상 <small><code>2023.09</code></small>
-<br></li>
+<li>과학기술정보통신부 데이터청년캠퍼스 우수상 <small>(경제/금융 분야) <code>2023.08</code></small></li>
+<li>한국정책학회 빅데이터 분석 우수상 <small>(경제/금융 분야) <code>2023.09</code></small></li>
 </ul>
-</li>
-</ul>
-
-  <div class="page-links">
-    
-  </div>
-</div>
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#-about-me" data-id="-about-me">💡 About me</a><a class="lv0" href="#-tech-stack" data-id="-tech-stack">🛠 Tech Stack</a><a class="lv0" href="#-projects" data-id="-projects">📂 Projects</a><a class="lv0" href="#-education" data-id="-education">🎓 Education</a><a class="lv0" href="#-certifications" data-id="-certifications">🪪 Certifications</a><a class="lv0" href="#-awards" data-id="-awards">🏆 Awards</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

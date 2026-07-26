@@ -1,174 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>[42seoul] netpractice | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[42seoul] netpractice · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-개념-정리">2. 개념 정리</a>
-      <ul>
-        <li><a href="#2-1-네트워크">2-1. 네트워크</a></li>
-        <li><a href="#2-2-osi-7계층-모델">2-2. OSI 7계층 모델</a></li>
-        <li><a href="#2-3-tcpip-모델">2-3. TCP/IP 모델</a></li>
-        <li><a href="#2-4-ip">2-4. IP</a></li>
-        <li><a href="#2-5-몇가지-질문들">2-5. 몇가지 질문들</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-mandatory">3. Mandatory</a></li>
-    <li><a href="#4-reference">4. Reference</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="http://t1.daumcdn.net/cfile/146F1B10ACE3228B52" alt="Featured Image for [42seoul] netpractice">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2024.08.25</small>
-      <div class="singleTitle">[42seoul] netpractice</div>
-    </div>
-  </div>
-  <div class="series">
-  <details>
-    <summary>📚 /42seoul 시리즈</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_0/42/">0. 42서울이란?</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_0/libft/">1. libft</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/ft_printf/">2. ft_printf</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/get_next_line/">3. get_next_line</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/born2beroot/">4. born2beroot</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/pipex/">5. pipex</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/fdf/">6. fdf</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/push_swap/">7. push_swap</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_3/minishell/">8. minishell</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_3/philosophers/">9. philosophers</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_4/cub3d/">10. cub3d</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_4/netpractice/">11. netpractice</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_5/ft_irc/">13. ft_irc</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_5/inception/">15. inception</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_6/ft_transcendence/">16. ft_transcendence</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">[42seoul] netpractice</h1>
+<div class="post-meta"><time>2024-08-25</time><a class="chip" href="/tags/c/">C</a><a class="chip" href="/tags/42seoul/">42seoul</a></div>
+<div class="series"><details open><summary>📚 /42seoul 시리즈</summary><ol><li><a href="/posts/42seoul/circle_0/42/">[42seoul] 42seoul이란?</a><time>2023-10-03</time></li><li><a href="/posts/42seoul/circle_0/libft/">[42seoul] libft</a><time>2023-11-03</time></li><li><a href="/posts/42seoul/circle_1/ft_printf/">[42seoul] ft_printf</a><time>2023-11-15</time></li><li><a href="/posts/42seoul/circle_1/get_next_line/">[42seoul] get_next_line</a><time>2023-12-18</time></li><li><a href="/posts/42seoul/circle_1/born2beroot/">[42seoul] born2beroot</a><time>2024-01-18</time></li><li><a href="/posts/42seoul/circle_2/push_swap/">[42seoul] push_swap</a><time>2024-02-12</time></li><li><a href="/posts/42seoul/circle_2/pipex/">[42seoul] pipex</a><time>2024-02-28</time></li><li><a href="/posts/42seoul/circle_2/fdf/">[42seoul] fdf</a><time>2024-04-09</time></li><li><a href="/posts/42seoul/circle_3/minishell/">[42seoul] minishell</a><time>2024-06-04</time></li><li><a href="/posts/42seoul/circle_3/philosophers/">[42seoul] philosopers</a><time>2024-08-05</time></li><li><a href="/posts/42seoul/circle_4/cub3d/">[42seoul] cub3d</a><time>2024-08-20</time></li><li class="current">[42seoul] netpractice<time>2024-08-25</time></li><li><a href="/posts/42seoul/circle_5/ft_irc/">[42seoul] ft_irc</a><time>2024-11-20</time></li><li><a href="/posts/42seoul/circle_5/inception/">[42seoul] inception</a><time>2025-01-27</time></li><li><a href="/posts/42seoul/circle_6/ft_transcendence/">[42seoul] ft_transcendence</a><time>2025-03-22</time></li></ol></details></div>
 <br>
 <h2 id="1-소개">1. 소개</h2>
 <blockquote>
@@ -209,48 +69,48 @@
 <img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/6ZH2Etm3LlFHTgmkjLmkxp/59ff240fb3ebdc7794ffaa6e1d69b7c2/osi_model_7_layers.png" max-width=100%>
 <p>OSI(Open Systems Interconnection) 모델은 네트워크 통신을 계층적으로 나누어 설명하는 표준화된 모델이다. 이는 통신 시스템의 다양한 기능을 7개의 계층으로 나누어 설명하며 네트워크 설계 및 문제 해결을 용이하게 한다. 현대 인터넷에서는 OSI 모델을 엄격하게 따르고 있지는 않지만, 이러한 유형의 구분은 네트워크 문제를 해결하는 데 유용하다. 사용자와 가장 가까운 응용 프로그램 계층부터 알아보자!</p>
 <br>
-<h4 id="계층-7--응용-프로그램-계층--application-layer">계층 [7] : 응용 프로그램 계층 : Application Layer</h4>
+<h4 id="계층-7-응용-프로그램-계층-application-layer">계층 [7] : 응용 프로그램 계층 : Application Layer</h4>
 <img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/2rcDKpr4WLqoyAZ7GDKkyJ/7cab96402de7ac5465b86e617da3da4e/osi_model_application_layer_7.png" max-width=100%>
 <p>응용 프로그램 계층은 사용자와 직접 상호작용하는 유일한 계층으로, 사용자가 네트워크에 접근하고 데이터를 주고받을 수 있는 인터페이스를 제공한다. 이는 웹 브라우저, 이메일 클라이언트, 파일 전송 애플리케이션 등 다양한 형태로 구현된다.</p>
 <p>주의해야 할 점은 클라이언트 소프트웨어 애플리케이션과 응용 프로그램(애플리케이션) 계층은 다른 개념이라는 것이다. 실제 소프트웨어 애플리케이션은 사용자가 직접 상호작용하는 도구(웹 브라우저, 이메일 클라이언트 등의 인터페이스)이고, 애플리케이션 계층은 클라이언트 애플리케이션이 통신을 수행할 수 있도록 지원하는 네트워크 계층이다.</p>
 <p>응용 프로그램 프로토콜에는 HTTP, SMTP, DNS, FTP 등이 존재한다.</p>
 <br>
-<h4 id="계층-6--프레젠테이션-계층--the-presetation-layer">계층 [6] : 프레젠테이션 계층 : The Presetation Layer</h4>
+<h4 id="계층-6-프레젠테이션-계층-the-presetation-layer">계층 [6] : 프레젠테이션 계층 : The Presetation Layer</h4>
 <img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/19L86neKKT8srUkOSe4rf7/ff4c91c94a1790651df7b48433913f59/osi_model_presentation_layer_6.png" max-width=100%>
 <p>프레젠테이션 계층은 응용 프로그램 계층과 직접 상호작용하며, 응용 프로그램이 데이터를 올바르게 해석하고 표시할 수 있도록 데이터를 준비하는 역할을 수행한다.</p>
 <p>프레젠테이션 계층은 <strong>데이터의 변환</strong>을 통해 송신자와 수신자가 서로 다른 데이터 형식을 사용하더라도 통신이 가능하게 한다. 예를 들어 텍스트 데이터를 <code>ASCII</code>에서 <code>Unicode</code>로 변환하거나 그 반대를 수행한다.</p>
 <p>장치가 암호화된 연결을 통해 통신하는 경우, 송신 측에서 데이터를 <strong>암호화</strong>하고 수신 측에서 <strong>복호화</strong>하는 과정을 통해 데이터가 안전하게 전송될 수 있게 한다.</p>
 <p>또한 응용 프로그램 계층(7)에서 수신한 데이터를 다음 세션 계층(5)으로 전송하기 전에 압축하는 일도 담당한다. 전송하는 데이터양을 줄임으로써 통신의 속도와 효율이 높아진다.</p>
 <br>
-<h4 id="계층-5--세션-계층--the-session-layer">계층 [5] : 세션 계층 : The Session Layer</h4>
+<h4 id="계층-5-세션-계층-the-session-layer">계층 [5] : 세션 계층 : The Session Layer</h4>
 <img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/29mRrgK22AqJVlg2MMlD86/34d8f4071b6cc0d3b03c93f55e4d89b7/osi_model_session_layer_5.png" max-width=100%>
 <p>세션 계층은 통신 세션의 설정, 관리 그리고 종료를 담당한다. 이때 통신이 시작될 때부터 종료될 때까지의 시간을 세션이라고 하며, 세션 계층은 교환되고 있는 모든 데이터를 전송할 수 있도록 충분히 오랫동안 세션을 개방한 다음 리소스를 낭비하지 않기 위해 세션을 즉시 닫을 수 있게 한다. 즉, 송신자와 수신자 간의 대화를 관리하고 데이터 교환이 원활하게 이루어질 수 있도록 돕는 역할을 수행한다.</p>
 <p>세션 계층은 데이터 전송 과정에서 체크포인트를 사용한다. 예를 들어 100mb의 파일이 전송되는 경우 세션 계층이 5mb 체크포인트를 설정할 수 있다. 이때 62mb가 전송된 후 연결이 끊어지거나 충돌이 발생하면 마지막 체크 포인트에서 세션을 재개할 수 있다. 즉, 40mb의 데이터만 더 전송하면 된다.</p>
 <p>세션 계층은 세션 ID를 통해 각 세션을 고유하게 식별하며 추적하고 관리한다.</p>
 <p>세션 프로토콜에는 RPC, PPTP 등이 존재한다.</p>
 <br>
-<h4 id="계층-4--전송-계층--transport-layer">계층 [4] : 전송 계층 : Transport Layer</h4>
+<h4 id="계층-4-전송-계층-transport-layer">계층 [4] : 전송 계층 : Transport Layer</h4>
 <img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3OlO75NcADGL3SmEADFDqd/723b8c7639c4e2e6b4febcbe7fd36e0e/osi_model_transport_layer_4.png" max-width=100%>
 <p>전송 계층은 두 기기 간의 종단 간 통신을 담당하며, 데이터를 가져와 <strong>세그먼트</strong>라는 조각으로 분할하는 역할을 수행한다. 이를 통해 <strong>신뢰성 있는 전송</strong>을 보장하는 것에 중점을 둔다. 또한 전송 계층은 컴퓨터 내부에서 논리적으로 구축되는 통신 당사자인 프로세스 사이의 통신 문제를 다룬다. 예를 들면 통화자 사이에 통화 연결을 설정하는 역할을 하는 것! 전송 계층 하위에 있는 물리 / 데이터 링크 / 네트워크 계층은 전송계층의 연결을 설정하고 어떻게 활용할지 다루는 것  뿐이다.</p>
 <p>전송 계층은 흐름제어 및 오류 제어 기능의 역할도 수행하지만, 네트워크 간 통신에 대해서만 작동한다.</p>
 <p>전송 계층 프로토콜에는 TCP(전송 제어 프로토콜), UDP(사용자 데이터그램 프로토콜)이 존재한다.</p>
 <br>
-<h4 id="계층-3--네트워크-계층--the-network-layer">계층 [3] : 네트워크 계층 : The Network Layer</h4>
+<h4 id="계층-3-네트워크-계층-the-network-layer">계층 [3] : 네트워크 계층 : The Network Layer</h4>
 <img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3g2Hv0frHsql5SFauJL5EG/d8cede7b6a780e63413bd86de9eee7f9/osi_model_network_layer_3.png" max-width=100%>
 <p>네트워크 계층은 서로 다른 두 네트워크 간 데이터 전송을 용이하게 하며 라우팅, IP 주소 관리, 패킷 포워딩 등의 기능을 수행한다. 이때 서로 통신하는 두 장치가 동일한 네트워크에 있는 경우에는 네트워크 계층이 필요하지 않음!</p>
 <p>네트워크 계층의 중요한 기능 중 하나는 <strong>라우팅</strong>이다. <strong>라우팅</strong>은 데이터 패킷이 출발지에서 목적지까지 가는 최적의 물리적 경로를 결정하는 과정으로, 네트워크 계층은 여러 네트워크를 통과하는 경로를 설정하며 각 패킷을 올바른 경로로 전달한다.</p>
 <p>네트워크 계층은 데이터를 패킷 단위로 처리한다. 패킷은 목적지 IP 주소를 포함하고 있으며, 이를 기반으로 데이터를 목적지까지 포워딩(전달)한다.</p>
 <p>네트워크 계층 프로토콜에는 IP, ICMP, IGMP, 그리고 장비로는 라우터 등이 존재한다.</p>
 <br>
-<h4 id="계층-2--데이터-연결-계층--the-data-link-layer">계층 [2] : 데이터 연결 계층 : The Data Link Layer</h4>
+<h4 id="계층-2-데이터-연결-계층-the-data-link-layer">계층 [2] : 데이터 연결 계층 : The Data Link Layer</h4>
 <img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/3TLHavXiotb9ayyZFKECf3/9456d1c431cd71ceea7f4b407f076f11/data_link_layer_osi_model.png" max-width=100%>
 <p>상위 계층에서 전달받은 데이터를 받아 Frame(물리 계층을 통해 전송할 수 있는 데이터 패킷)으로 나누고, 각 프레임에는 시작과 끝을 알리는 특정 비트 패턴과 제어 정보를 포함하여 데이터의 구분/무결성을 유지한다. 주로 CRC(Cyclic Redundancy Chec : 패리티 비트 또는 체크섬 방식 등)을 사용한다.</p>
 <p>프레임을 전송할 때 각 네트워크 인터페이스에 할당된 고유의 물리적 주소인 MAC 주소를 사용한다.</p>
-<p>데이터 연결 계층은 또한 인트라 네트워크 통신에서 <strong>흐름 제어</strong> 및 <strong>오류 제어</strong>를 담당한다. <strong>오류 제어</strong>에서 오류 검출 기능은 수행하지만, 오류 수정은 또 다른 문제&hellip; 발견된 오류는 상위 계층에서 수정되거나 재전송을 요구할 수 있다. <strong>흐름 제어</strong>를 통해 송신자와 수신자의 데이터 처리 속도가 다를 경우 문제를 제어하며 결과적으로 데이터가 수신자에게 너무 빠르게 전달되어 버퍼 오퍼플로우가 발생하는 것을 막는다.</p>
+<p>데이터 연결 계층은 또한 인트라 네트워크 통신에서 <strong>흐름 제어</strong> 및 <strong>오류 제어</strong>를 담당한다. <strong>오류 제어</strong>에서 오류 검출 기능은 수행하지만, 오류 수정은 또 다른 문제... 발견된 오류는 상위 계층에서 수정되거나 재전송을 요구할 수 있다. <strong>흐름 제어</strong>를 통해 송신자와 수신자의 데이터 처리 속도가 다를 경우 문제를 제어하며 결과적으로 데이터가 수신자에게 너무 빠르게 전달되어 버퍼 오퍼플로우가 발생하는 것을 막는다.</p>
 <p>2계층은 데이터를 검사는 하지만, 신뢰성을 담보하지는 않는다. 최대한 노력해볼뿐. 실제 종단간 검증은 4계층에서 이루어진다.</p>
 <p>네트워크 인터페이스 카드, 스위치, 브리지 등이 존재한다.</p>
 <br>
-<h4 id="계층-1--물리-계층--the-physical-layer">계층 [1] : 물리 계층 : The physical layer</h4>
+<h4 id="계층-1-물리-계층-the-physical-layer">계층 [1] : 물리 계층 : The physical layer</h4>
 <img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/1HQ1W5P4XAinIdM37DTu4U/900ccdceda346baf03ce8b9f977d2974/osi_model_physical_layer_1.png" max-width=100%>
 <p>상위 계층에서 전달된 데이터를 물리적 매체를 통해 전송할 수 있는 형태(Bit 형태)로 변환하여 전송한다. 즉, 데이터를 비트 스트림으로 나누어 전송하고, 수신 측에서 다시 원래 데이터로 재조립하는 것!</p>
 <p>단순히 데이터를 전달하는 역할만 수행하며, 내용은 관여하지 않는다. 에러 검출이나 신뢰성에 대해 무관심하고 알 수도 없다.</p>
@@ -262,16 +122,16 @@
 <img src = "https://i.imgur.com/1ARBFjM.png" width = "600">
 TCP/IP란 TCP 및 IP라 불리는 프로토콜을 중심으로 구성되는 일련의 프로토콜들의 총칭이다. 일반적으로 TCP/IP 프로토콜이라 하면, TCP와 IP뿐만 아니라 관련된 프로토콜 집단을 의미한다.  
 <p>TCP/IP 모델은 OSI 모델과 유사하게 네트워크 통신을 계층화하여 설명하는 모델이지만, 더 간소화된 구조를 가지고 있다. 실질적으로 인터넷의 기반이 되는 프로토콜 스택으로, 각각의 계층은 특정한 기능을 담당한다. 위 이미지는 TCP/IP 모델의 주요 프로토콜 간의 상호작용을 나타내고 있다.</p>
-<h4 id="응용-계층--application-layer">응용 계층 : Application Layer</h4>
+<h4 id="응용-계층-application-layer">응용 계층 : Application Layer</h4>
 <p>응용 계층은 TCP/IP 모델에서 사용자와 가장 가까운 계층으로, 응용 프로그램이 네트워크와 상호작용하는 인터페이스를 제공한다. 이 계층은 OSI 모델의 <strong>응용 프로그램 계층, 프레젠테이션 계층, 세션 계층</strong>의 기능을 통합하고 있다.</p>
 <p>주요 프로토콜으로 HTTP, FTP, SMTP, DNS, TELNET, SNMP 등이 있으며, 이들 프로토콜은 웹 서비스, 파일 전송, 이메일, 도메인 이름 해석 등 다양한 네트워크 서비스를 제공한다. 예를 들면, 사용자가 웹 브라우저를 통해 웹 페이지를 요청할 때 HTTP 프로토콜을 사용하여 요청을 처리하고 서버에서 페이지를 받아온다.</p>
 <br>
-<h4 id="전송-계층--transport-layer">전송 계층 : Transport Layer</h4>
+<h4 id="전송-계층-transport-layer">전송 계층 : Transport Layer</h4>
 <p>전송 계층은 데이터를 작은 조각으로 나누어 송신자와 수신자 간에 신뢰성 있는 데이터 전송을 보장한다. 이 계층은 데이터 전송의 신뢰성을 확보하고, 데이터의 순서와 무결성을 관리한다.</p>
 <p>주요 프로토콜에는 TCP와 UDP가 존재하며, TCP는 연결 지향적 프로토콜로, 데이터의 순서와 신뢰성을 보장하고 UDP는 비연결 지향적 프로토콜로, 빠른 전송이 필요할 때 사용되며, 신뢰성은 보장하지 않는다.</p>
 <p>예를 들면, TCP를 사용하는 웹 브라우징에서는 데이터가 올바르게 도착할 때까지 확인 응답(ACK)을 통해 전송이 보장된다. UDP를 사용하는 스트리밍 서비스에서는 데이터 전송 속도가 우선시된다.</p>
 <br>
-<h4 id="인터넷-계층--internet-layer">인터넷 계층 : Internet Layer</h4>
+<h4 id="인터넷-계층-internet-layer">인터넷 계층 : Internet Layer</h4>
 <p>인터넷 계층은 패킷이 출발지에서 목적지까지 이동할 수 있도록 경로를 결정하는 역할을 한다. 이 계층은 OSI 모델의 네트워크 계층과 유사한 역할을 수행하며, IP 주소를 사용하여 패킷을 라우팅한다.</p>
 <p>주요 프로토콜에는 IP(Internet Protocol), ICMP(Internet Control Message Protocol), ARP(Address Resolution Protocol), RIP(Routing Information Protocol) 등이 존재한다.</p>
 <ul>
@@ -281,7 +141,7 @@ TCP/IP란 TCP 및 IP라 불리는 프로토콜을 중심으로 구성되는 일�
 <li>RIP는 라우터 간 라우팅 정보를 교환하여, 최단 경로를 결정하고 데이터 전송을 최적화하는 데 사용된다.</li>
 </ul>
 <br>
-<h4 id="네트워크-인터페이스-계층--network-interface-layer">네트워크 인터페이스 계층 : Network Interface Layer</h4>
+<h4 id="네트워크-인터페이스-계층-network-interface-layer">네트워크 인터페이스 계층 : Network Interface Layer</h4>
 <p>네트워크 인터페이스 계층(또는 링크 계층, 네트워크 접근 계층)은 물리적 네트워크 하드웨어와 데이터를 송수신하는 데 필요한 모든 것을 처리한다. 이 계층은 OSI 모델의 물리 계층과 데이터 링크 계층의 기능을 통합한 역할을 수행한다.</p>
 <p>주요 프로토콜에는 이더넷, Wi-Fi, PPP(Point-to-Point Protocol), ARP 등이 존재한다. 예를 들면, 이더넷 케이블을 통해 컴퓨터와 라우터가 연결될 때, 이 계층에서 데이터가 전기 신호로 변환되어 전송된다. Wi-Fi를 통해 무선으로 데이터가 전송될 때도 이 계층이 작동한다.</p>
 <br>
@@ -351,45 +211,45 @@ TCP/IP란 TCP 및 IP라 불리는 프로토콜을 중심으로 구성되는 일�
 <h4 id="정적-라우팅과-동적-라우팅">정적 라우팅과 동적 라우팅?</h4>
 <p>정적 라우팅과 동적 라우팅은 네트워크에서 패킷을 전달하는 경로를 설정하는 두 가지 주요 방법이다!</p>
 <table>
-	<thead>
-			<tr>
-					<th>구분</th>
-					<th>/ 정적 라우팅</th>
-					<th>/ 동적 라우팅</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>설정방식</td>
-					<td>/ 수동으로 경로를 설정</td>
-					<td>/ 라우터가 자동으로 경로를 설정</td>
-			</tr>
-			<tr>
-					<td>변경관리</td>
-					<td>/ 네트워크 변화 시 수동으로 경로 갱신 필요</td>
-					<td>/ 네트워크 변화에 자동으로 적응</td>
-			</tr>
-			<tr>
-					<td>안정성</td>
-					<td>/ 매우 안정적, 예측 가능하지만 유연성이 부족</td>
-					<td>/ 유연하고 장애 복구가 자동으로 이루어짐</td>
-			</tr>
-			<tr>
-					<td>리소스 사용</td>
-					<td>/ 적은 리소스 사용</td>
-					<td>/ CPU, 메모리, 대역폭 등 리소스 소비 증가</td>
-			</tr>
-			<tr>
-					<td>복잡성</td>
-					<td>/ 소규모 네트워크에서 단순하고 관리가 용이</td>
-					<td>/ 대규모 네트워크에서 유리 하나 설정과 관리가 복잡</td>
-			</tr>
-			<tr>
-					<td>적용 대상</td>
-					<td>/ 소규모, 변화가 적은 네트워크</td>
-					<td>/ 대규모, 변화가 많은 네트워크</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th>구분</th>
+<th>/ 정적 라우팅</th>
+<th>/ 동적 라우팅</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>설정방식</td>
+<td>/ 수동으로 경로를 설정</td>
+<td>/ 라우터가 자동으로 경로를 설정</td>
+</tr>
+<tr>
+<td>변경관리</td>
+<td>/ 네트워크 변화 시 수동으로 경로 갱신 필요</td>
+<td>/ 네트워크 변화에 자동으로 적응</td>
+</tr>
+<tr>
+<td>안정성</td>
+<td>/ 매우 안정적, 예측 가능하지만 유연성이 부족</td>
+<td>/ 유연하고 장애 복구가 자동으로 이루어짐</td>
+</tr>
+<tr>
+<td>리소스 사용</td>
+<td>/ 적은 리소스 사용</td>
+<td>/ CPU, 메모리, 대역폭 등 리소스 소비 증가</td>
+</tr>
+<tr>
+<td>복잡성</td>
+<td>/ 소규모 네트워크에서 단순하고 관리가 용이</td>
+<td>/ 대규모 네트워크에서 유리 하나 설정과 관리가 복잡</td>
+</tr>
+<tr>
+<td>적용 대상</td>
+<td>/ 소규모, 변화가 적은 네트워크</td>
+<td>/ 대규모, 변화가 많은 네트워크</td>
+</tr>
+</tbody>
 </table>
 <br>
 <h4 id="라우터의-패킷-처리-방식">라우터의 패킷 처리 방식</h4>
@@ -401,7 +261,7 @@ TCP/IP란 TCP 및 IP라 불리는 프로토콜을 중심으로 구성되는 일�
 <p><strong>라우팅 테이블 조회:</strong> 라우터는 라우팅 테이블에 의거하여 패킷을 어디로 보낼지 결정한다. 이때 여러 경로가 가능하다면 주로 최단 경로 또는 비용 효율적인 경로를 선택한다고 한다.</p>
 </li>
 <li>
-<p><strong>패킷 전송:</strong> 라우터는 선택한 경로에 따라 패킷을 다음 <strong>홉</strong>(패킷이 네트워크를 통해 목적지로 가능 동안 거치는 중간 라우터나 네트워크 장치)으로 전송한다. 다음 홉은 뭐&hellip; 최종 목적지일 수도 있고, 다른 라우터일 수도 있다.</p>
+<p><strong>패킷 전송:</strong> 라우터는 선택한 경로에 따라 패킷을 다음 <strong>홉</strong>(패킷이 네트워크를 통해 목적지로 가능 동안 거치는 중간 라우터나 네트워크 장치)으로 전송한다. 다음 홉은 뭐... 최종 목적지일 수도 있고, 다른 라우터일 수도 있다.</p>
 </li>
 <li>
 <p><strong>TTL 관리:</strong> 패킷이 여러 라우터를 거치는 과정에서 무한히 경로를 순환하지 않도록 라우터는 TTL(Time to Live)를 관리한다. 패킷이 라우터를 통과할 때마다 TTL 값이 감소하며, TTL 값이 0이 되면 패킷은 폐기된다.</p>
@@ -409,7 +269,7 @@ TCP/IP란 TCP 및 IP라 불리는 프로토콜을 중심으로 구성되는 일�
 </ol>
 <br>
 <h4 id="default와-00000의-정체">default와 0.0.0.0/0의 정체</h4>
-<p>그렇다면 과제에 나오는 의문의 범위&hellip; <code>0.0.0.0/0</code>과 default의 정체는 무엇일까? 정적 라우팅에서 <code>0.0.0.0/0</code>이 설정된 경우, 이 경로는 기본 경로(default)로 사용된다. 보통 내부 네트워크에서 목적지가 명확하지 않은 모든 트래픽을 ISP의 게이트웨이로 보내기 위해 기본 경로를 설정한다.</p>
+<p>그렇다면 과제에 나오는 의문의 범위... <code>0.0.0.0/0</code>과 default의 정체는 무엇일까? 정적 라우팅에서 <code>0.0.0.0/0</code>이 설정된 경우, 이 경로는 기본 경로(default)로 사용된다. 보통 내부 네트워크에서 목적지가 명확하지 않은 모든 트래픽을 ISP의 게이트웨이로 보내기 위해 기본 경로를 설정한다.</p>
 <br>
 <h2 id="3-mandatory">3. Mandatory</h2>
 <details>
@@ -506,7 +366,7 @@ Goal 3 : Machine A need to communicate with Machine B</p>
 <li><a href="https://www.cloudflare.com/ko-kr/learning/ddos/glossary/">https://www.cloudflare.com/ko-kr/learning/ddos/glossary/</a></li>
 <li>open-systems-interconnection-model-osi/</li>
 <li><a href="https://www.geeksforgeeks.org/tcp-ip-model/">https://www.geeksforgeeks.org/tcp-ip-model/</a></li>
-<li><a href="http://www.ktword.co.kr/test/view/view.php?no=205">http://www.ktword.co.kr/test/view/view.php?no=205</a>\</li>
+<li><a href="http://www.ktword.co.kr/test/view/view.php?no=205%5C">http://www.ktword.co.kr/test/view/view.php?no=205\</a></li>
 <li><a href="https://nordvpn.com/ko/blog/what-is-subnet-mask/">https://nordvpn.com/ko/blog/what-is-subnet-mask/</a></li>
 <li><a href="https://80000coding.oopy.io/17d8f803-479c-4e67-ab77-0be44da1e6d4">https://80000coding.oopy.io/17d8f803-479c-4e67-ab77-0be44da1e6d4</a></li>
 </ul>
@@ -514,15 +374,32 @@ Goal 3 : Machine A need to communicate with Machine B</p>
 <br>
 <br>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%86%8C%EA%B0%9C" data-id="1-소개">1. 소개</a><a class="lv0" href="#2-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC" data-id="2-개념-정리">2. 개념 정리</a><a class="lv1" href="#2-1-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC" data-id="2-1-네트워크">2-1. 네트워크</a><a class="lv1" href="#2-2-osi-7%EA%B3%84%EC%B8%B5-%EB%AA%A8%EB%8D%B8" data-id="2-2-osi-7계층-모델">2-2. OSI 7계층 모델</a><a class="lv1" href="#2-3-tcpip-%EB%AA%A8%EB%8D%B8" data-id="2-3-tcpip-모델">2-3. TCP/IP 모델</a><a class="lv1" href="#2-4-ip" data-id="2-4-ip">2-4. IP</a><a class="lv1" href="#2-5-%EB%AA%87%EA%B0%80%EC%A7%80-%EC%A7%88%EB%AC%B8%EB%93%A4" data-id="2-5-몇가지-질문들">2-5. 몇가지 질문들</a><a class="lv0" href="#3-mandatory" data-id="3-mandatory">3. Mandatory</a><a class="lv0" href="#4-reference" data-id="4-reference">4. Reference</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

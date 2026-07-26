@@ -1,137 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>Ray 아키텍쳐 | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ray 아키텍쳐 · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-소개">1. 소개</a></li>
-    <li><a href="#2-python에서의-병렬-작업">2. Python에서의 병렬 작업</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#3-ray">3. Ray</a>
-      <ul>
-        <li><a href="#3-1-ray의-특징">3-1. Ray의 특징</a></li>
-        <li><a href="#3-2-ray의-핵심-요소">3-2. Ray의 핵심 요소</a></li>
-        <li><a href="#3-3-ray-내부-동작">3-3. Ray 내부 동작</a></li>
-        <li><a href="#3-4-공유-저장소">3-4. 공유 저장소</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-reference">4. Reference</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="https://zrr.kr/QgOehQ" alt="Featured Image for Ray 아키텍쳐">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2025.11.10</small>
-      <div class="singleTitle">Ray 아키텍쳐</div>
-    </div>
-  </div>
-  <br>
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">Ray 아키텍쳐</h1>
+<div class="post-meta"><time>2025-11-10</time><a class="chip" href="/tags/python/">python</a></div>
+<br>
 <h2 id="1-소개">1. 소개</h2>
 <blockquote>
 <p>python의 병렬 프로그래밍</p>
@@ -167,7 +64,7 @@ Ray는 기존 멀티프로세싱 방법처럼 GIL을 우회하기 위해 멀티 
 </li>
 <li>
 <p><strong>간결한 API와 유연성</strong> <br>
-Ray의 API는 매우 직관적이다. 기존 함수에 <code>@ray.remote</code> 데코레이터 하나만 붙이면 해당 함수를 비동기 병렬 작업으로 만들 수 있다. 또한, 상태를 가지는 병렬 객체인 &lsquo;액터(Actor)&rsquo; 모델도 지원하여, 스크래퍼 세션이나 DB 커넥션 풀을 관리할 수 있다.</p>
+Ray의 API는 매우 직관적이다. 기존 함수에 <code>@ray.remote</code> 데코레이터 하나만 붙이면 해당 함수를 비동기 병렬 작업으로 만들 수 있다. 또한, 상태를 가지는 병렬 객체인 '액터(Actor)' 모델도 지원하여, 스크래퍼 세션이나 DB 커넥션 풀을 관리할 수 있다.</p>
 </li>
 </ul>
 <br>
@@ -184,7 +81,7 @@ Task가 상태 없는 일회성 함수라면, Actor는 <strong>상태를 가지�
 </li>
 <li>
 <p><strong>Object와 Object Store</strong> <br>
-Object는 Task나 Actor가 실행된 후 반환하는 결과 데이터를 의미한다. 이 데이터는 Plasma라고 불리는 Ray의 <strong>In-memory 객체 저장소</strong>에 저장된다. Task가 <code>.remote()</code>로 호출되어 실행을 마치면, 그 결과는 Plasma에 저장되고, 호출자에게는 이 데이터의 실제 위치를 가리키는 객체 참조(ObjectRef)가 반환된다. Ray의 핵심 성능 비결이 바로 여기에 있다. 만약 이 <code>ObjectRef</code>를 다른 Task의 인자로 전달하면, 데이터의 &lsquo;복사&rsquo;나 &lsquo;직렬화&rsquo;가 발생하지 않는다. 대신, 새로운 Task는 <code>ObjectRef</code>를 통해 공유 메모리(Plasma)에 있는 원본 데이터에 직접 접근한다. 이를 제로-카피라 부르며, 멀티프로세싱 방식의 고비용 직렬화 문제를 근본적으로 해결한다. 메인 프로세스에서 이 결과 데이터의 실제 값이 필요할 때는 <code>ray.get(object_ref)</code>를 호출하며, 이 함수는 작업이 완료되어 데이터를 가져올 때까지 대기한다.</p>
+Object는 Task나 Actor가 실행된 후 반환하는 결과 데이터를 의미한다. 이 데이터는 Plasma라고 불리는 Ray의 <strong>In-memory 객체 저장소</strong>에 저장된다. Task가 <code>.remote()</code>로 호출되어 실행을 마치면, 그 결과는 Plasma에 저장되고, 호출자에게는 이 데이터의 실제 위치를 가리키는 객체 참조(ObjectRef)가 반환된다. Ray의 핵심 성능 비결이 바로 여기에 있다. 만약 이 <code>ObjectRef</code>를 다른 Task의 인자로 전달하면, 데이터의 '복사'나 '직렬화'가 발생하지 않는다. 대신, 새로운 Task는 <code>ObjectRef</code>를 통해 공유 메모리(Plasma)에 있는 원본 데이터에 직접 접근한다. 이를 제로-카피라 부르며, 멀티프로세싱 방식의 고비용 직렬화 문제를 근본적으로 해결한다. 메인 프로세스에서 이 결과 데이터의 실제 값이 필요할 때는 <code>ray.get(object_ref)</code>를 호출하며, 이 함수는 작업이 완료되어 데이터를 가져올 때까지 대기한다.</p>
 </li>
 </ul>
 <br>
@@ -194,14 +91,14 @@ Object는 Task나 Actor가 실행된 후 반환하는 결과 데이터를 의미
 <ul>
 <li>Ray는 어떻게 이렇게 작동할 수 있는가?</li>
 <li>Ray는 어떻게 서로 다른 프로세스를 어떻게 관리할 수 있는거지?</li>
-<li>부모관계도 아니고, 내부에서 스레드로 관리하는 것도 아님&hellip;</li>
-<li>여기에 공통 저장소를 가지고 Actor들이 공유할 수 있기도 함&hellip;</li>
+<li>부모관계도 아니고, 내부에서 스레드로 관리하는 것도 아님...</li>
+<li>여기에 공통 저장소를 가지고 Actor들이 공유할 수 있기도 함...</li>
 </ul>
 </blockquote>
 <p>궁금증을 해결하기 위해 Ray 공식문서와 논문을 살펴보자!</p>
 <ul>
-<li><a href="https://docs.ray.io/en/latest/index.html">Ray 공식문서 바로가기 &raquo;</a></li>
-<li><a href="https://arxiv.org/pdf/1712.05889">Ray 원본 논문 보러가기 &raquo;</a></li>
+<li><a href="https://docs.ray.io/en/latest/index.html">Ray 공식문서 바로가기 &gt;&gt;</a></li>
+<li><a href="https://arxiv.org/pdf/1712.05889">Ray 원본 논문 보러가기 &gt;&gt;</a></li>
 </ul>
 <p>정리하면 아래와 같다.</p>
 <p>우리가 작성한 코드와 실제 작업자(Actor)는 <strong>OS 레벨에서 남남</strong> 즉 <strong>독립된 프로세스</strong> 이다. 부모-자식 관계가 아닌데도 한 몸처럼 움직이는 비결은 Ray가 구현한 분산 시스템 덕분이다. Ray는 아래 3가지 기술을 사용해 Actor를 관리한다.</p>
@@ -210,7 +107,7 @@ Object는 Task나 Actor가 실행된 후 반환하는 결과 데이터를 의미
 <p><strong>Raylet (Daemon Process)</strong> <br>
 우리 눈에는 안 보이지만, Ray를 시작(<code>ray.init</code>)하면 각 컴퓨터 백그라운드에 <code>Raylet</code> 이라는 프로세스가 실행된다.
 우리가 코드에서 <code>Worker.remote()</code>를 호출하면, 직접 <code>Actor</code>를 만드는 게 아니다.
-우리는 단순히 로컬에 있는 <code>Raylet</code> 에게 &ldquo;Actor 하나 필요해&rdquo; 라고 요청을 보내는 것이다.
+우리는 단순히 로컬에 있는 <code>Raylet</code> 에게 &quot;Actor 하나 필요해&quot; 라고 요청을 보내는 것이다.
 즉, Actor의 실제 부모는 <code>Raylet</code>이며, 그것이 바로 OS에게 요청하여 파이썬 워커 프로세스를 생성하고 감시한다.</p>
 </li>
 <li>
@@ -223,7 +120,7 @@ Actor B는 mmap? 기술을 통해 남의 메모리를 마치 자기 메모리인
 </li>
 <li>
 <p><strong>초고속 통신: gRPC</strong> <br>
-데이터는 공유 메모리에 두더라도, &ldquo;작업 시작해&rdquo;, &ldquo;이거 처리해&rdquo; 같은 제어 신호는 어떻게 주고받을까?
+데이터는 공유 메모리에 두더라도, &quot;작업 시작해&quot;, &quot;이거 처리해&quot; 같은 제어 신호는 어떻게 주고받을까?
 Ray의 모든 컴포넌트(Driver, Raylet, Actor)는 내부적으로 <code>gRPC</code> 라는 통신 프로토콜로 연결되어 있다.
 TCP 소켓 위에서 Protocol Buffers라는 효율적인 이진 포맷으로 메시지를 주고받는다고 한다.
 이 덕분에 서로 다른 언어(Python, Java, C++)로 짜인 프로세스끼리도 대화가 가능하다..!</p>
@@ -236,7 +133,7 @@ Ray에서 공유저장소를 사용한다면 이걸 각 액터들이 접근할�
 보통 공유 메모리는 여러 명이 동시에 쓰면 데이터가 깨지기 때문에 복잡한 락(Mutex, Semaphore)을 걸어야만 하니까..
 그럼 가장 오버헤드가 많이 일어나는 부분에서 기존 방법과 별 차이 없는거 아닌가?</p>
 <h4 id="lock-그런거-안-씁니다">Lock? 그런거 안 씁니다..</h4>
-<p>놀랍게도 Ray는 &ldquo;Lock을 아예 안 쓰는 방식&quot;으로 이 문제를 해결했다. 그 비결은 바로 <strong>Immutability</strong> (불변성) 과 <strong>Sealing</strong> (봉인) 이다!
+<p>놀랍게도 Ray는 &quot;Lock을 아예 안 쓰는 방식&quot;으로 이 문제를 해결했다. 그 비결은 바로 <strong>Immutability</strong> (불변성) 과 <strong>Sealing</strong> (봉인) 이다!
 Ray의 객체 저장소(Plasma)에 데이터가 저장되는 과정을 상세히 살펴보자.</p>
 <ul>
 <li>
@@ -280,15 +177,32 @@ Writer가 데이터 쓰기를 마치면 <code>다 썼음!</code> 을 외치며 �
 <br>
 <br>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv0"></span><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv0"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%86%8C%EA%B0%9C" data-id="1-소개">1. 소개</a><a class="lv0" href="#2-python%EC%97%90%EC%84%9C%EC%9D%98-%EB%B3%91%EB%A0%AC-%EC%9E%91%EC%97%85" data-id="2-python에서의-병렬-작업">2. Python에서의 병렬 작업</a><a class="lv0" href="#3-ray" data-id="3-ray">3. Ray</a><a class="lv1" href="#3-1-ray%EC%9D%98-%ED%8A%B9%EC%A7%95" data-id="3-1-ray의-특징">3-1. Ray의 특징</a><a class="lv1" href="#3-2-ray%EC%9D%98-%ED%95%B5%EC%8B%AC-%EC%9A%94%EC%86%8C" data-id="3-2-ray의-핵심-요소">3-2. Ray의 핵심 요소</a><a class="lv1" href="#3-3-ray-%EB%82%B4%EB%B6%80-%EB%8F%99%EC%9E%91" data-id="3-3-ray-내부-동작">3-3. Ray 내부 동작</a><a class="lv1" href="#3-4-%EA%B3%B5%EC%9C%A0-%EC%A0%80%EC%9E%A5%EC%86%8C" data-id="3-4-공유-저장소">3-4. 공유 저장소</a><a class="lv0" href="#4-reference" data-id="4-reference">4. Reference</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

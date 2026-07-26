@@ -1,177 +1,34 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<!doctype html>
+<html lang="ko">
 <head>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '$', right: '$', display: false}
-            ]
-        });"></script>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>[42seoul] minishell | elecbrandy</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[42seoul] minishell · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
 
-
-
-
-
-
-
-
-  
-
-
-<link rel="stylesheet" href="https://elecbrandy.github.io/css/style.min.414eee94ab69e5ee4114859b9cab2306249093b011f295e7e87536dbf7aeb300.css" 
-      integrity="sha256-QU7ulKtp5e5BFIWbnKsjBiSQk7AR8pXn6HU22/euswA="><style>
-  :root {
-    --primary-color: #fa8b84;
-  }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
-
-
-
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-ZL1NP5K5CJ');
-</script>
-
-
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
 </head>
 <body>
-    <header class="main-header">
-	<nav>
-		
-		<li><a href="https://elecbrandy.github.io/">/home</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/tags/">/tags</a></li>
-		
-		<li><a href="https://elecbrandy.github.io/about/">/about</a></li>
-		
-	  <li id="theme-toggle" style="cursor: pointer;">/todark</li>
-	</nav>
-  </header>
-
-  <script>
-	document.addEventListener('DOMContentLoaded', function() {
-	  const themeToggle = document.getElementById('theme-toggle');
-	  
-	  
-	  let currentTheme = localStorage.getItem('theme') || 'light';
-  
-	  
-	  document.body.setAttribute('data-theme', currentTheme);
-	  themeToggle.textContent = currentTheme === 'dark' ? '/tolight' : '/todark';
-  
-	  
-	  function toggleTheme() {
-		
-		const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  
-		
-		document.body.setAttribute('data-theme', newTheme);
-  
-		
-		localStorage.setItem('theme', newTheme);
-  
-		
-		themeToggle.textContent = newTheme === 'dark' ? '/tolight' : '/todark';
-	  }
-  
-	  
-	  themeToggle.addEventListener('click', toggleTheme);
-	});
-  </script>
-
-    
-  
-  <aside class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#2-minishell-명세서">2. minishell 명세서</a></li>
-    <li><a href="#3-개념-정리">3. 개념 정리</a>
-      <ul>
-        <li><a href="#3-1-shell">3-1. Shell</a></li>
-        <li><a href="#3-2-환경-변수">3-2. 환경 변수</a></li>
-        <li><a href="#3-3-built-in-함수">3-3. built-in 함수</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-mandatory">4. Mandatory</a>
-      <ul>
-        <li><a href="#4-1-built-in-구현">4-1. built-in 구현</a></li>
-      </ul>
-    </li>
-    <li><a href="#5-evaluation">5. Evaluation</a></li>
-    <li><a href="#6-reference">6. Reference</a></li>
-  </ul>
-</nav>
-  </aside>
-  
-  <div class="featured-container">
-    
-      <div class="featured-image">
-        <img src="http://t1.daumcdn.net/cfile/126C5A10B091DEEF0B" alt="Featured Image for [42seoul] minishell">
-      </div>
-    
-    <div class="overlay-text">
-      <small>2024.06.04</small>
-      <div class="singleTitle">[42seoul] minishell</div>
-    </div>
-  </div>
-  <div class="series">
-  <details>
-    <summary>📚 /42seoul 시리즈</summary>
-    <ul>
-      
-      
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_0/42/">0. 42서울이란?</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_0/libft/">1. libft</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/ft_printf/">2. ft_printf</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/get_next_line/">3. get_next_line</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_1/born2beroot/">4. born2beroot</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/pipex/">5. pipex</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/fdf/">6. fdf</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_2/push_swap/">7. push_swap</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_3/minishell/">8. minishell</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_3/philosophers/">9. philosophers</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_4/cub3d/">10. cub3d</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_4/netpractice/">11. netpractice</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_5/ft_irc/">13. ft_irc</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_5/inception/">15. inception</a></li>
-      
-      <li>-<a href="https://elecbrandy.github.io/posts/42seoul/circle_6/ft_transcendence/">16. ft_transcendence</a></li>
-      
-    </ul>
-  </details>
-</div>
-
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">[42seoul] minishell</h1>
+<div class="post-meta"><time>2024-06-04</time><a class="chip" href="/tags/c/">C</a><a class="chip" href="/tags/42seoul/">42seoul</a></div>
+<div class="series"><details open><summary>📚 /42seoul 시리즈</summary><ol><li><a href="/posts/42seoul/circle_0/42/">[42seoul] 42seoul이란?</a><time>2023-10-03</time></li><li><a href="/posts/42seoul/circle_0/libft/">[42seoul] libft</a><time>2023-11-03</time></li><li><a href="/posts/42seoul/circle_1/ft_printf/">[42seoul] ft_printf</a><time>2023-11-15</time></li><li><a href="/posts/42seoul/circle_1/get_next_line/">[42seoul] get_next_line</a><time>2023-12-18</time></li><li><a href="/posts/42seoul/circle_1/born2beroot/">[42seoul] born2beroot</a><time>2024-01-18</time></li><li><a href="/posts/42seoul/circle_2/push_swap/">[42seoul] push_swap</a><time>2024-02-12</time></li><li><a href="/posts/42seoul/circle_2/pipex/">[42seoul] pipex</a><time>2024-02-28</time></li><li><a href="/posts/42seoul/circle_2/fdf/">[42seoul] fdf</a><time>2024-04-09</time></li><li class="current">[42seoul] minishell<time>2024-06-04</time></li><li><a href="/posts/42seoul/circle_3/philosophers/">[42seoul] philosopers</a><time>2024-08-05</time></li><li><a href="/posts/42seoul/circle_4/cub3d/">[42seoul] cub3d</a><time>2024-08-20</time></li><li><a href="/posts/42seoul/circle_4/netpractice/">[42seoul] netpractice</a><time>2024-08-25</time></li><li><a href="/posts/42seoul/circle_5/ft_irc/">[42seoul] ft_irc</a><time>2024-11-20</time></li><li><a href="/posts/42seoul/circle_5/inception/">[42seoul] inception</a><time>2025-01-27</time></li><li><a href="/posts/42seoul/circle_6/ft_transcendence/">[42seoul] ft_transcendence</a><time>2025-03-22</time></li></ol></details></div>
 <br>
 <h1 id="1-소개">1. 소개</h1>
 <blockquote>
@@ -180,8 +37,8 @@
 <p>42서울 본과정 입과 후 여덟번째로 수행한 과제로, 작은 크기의 shell을 구현하는 과제이다. 우리는 이제 간단한 빌트인 함수부터 여러 명령어를 수행할 수 있는 간단한 shell을 만들어야 한다. 동굴 벽에 흐릿하게 비치는 bash를 구현하는 것이 목표인 것이다. 너무 큰 shell을 만들기 위해서 노력하다가 블랙홀에 빠지지 않게 조심하자.</p>
 <p>shell의 내부 구현 (<code>fork</code>와 <code>execv</code>를 활용한 명령어 처리 등) 은 이미 이전 과제인 <a href="https://elecbrandy.github.io/posts/42seoul/circle_2/pipex/">pipex</a> 과제에서 진행한 바 있다. 따라서 pipex의 핵심 로직을 바탕으로 각종 명령어와 파싱부분을 구현해 조합하는 프로젝트가 되겠다. 컴파일러 개론을 들었거나, 시간적 여유가 많았다면 파싱부분도 깔끔하게 트리로 할 수 있었겠지만 현실적인 문제로 도전하지 못한 것이 아쉽다. 다행히 파싱부분은 뛰어난 팀원분께서 인고의 예외처리를 통해 구현해주셨다!</p>
 <ul>
-<li>only c언어로만 개발해야 했기에 트리를 사용하고 싶다면 자료구조를 실제로 구현해야했던 것&hellip;</li>
-<li>다음 과제까지 시간적 여유가 많이 남아있지 않았던 것&hellip;</li>
+<li>only c언어로만 개발해야 했기에 트리를 사용하고 싶다면 자료구조를 실제로 구현해야했던 것...</li>
+<li>다음 과제까지 시간적 여유가 많이 남아있지 않았던 것...</li>
 <li>아쉽지만 파이프 구현과 shell의 동작 방식을 최대한 구현해보려 노력했다.</li>
 </ul>
 <br>
@@ -300,10 +157,10 @@
 <p>이번 과제는 2인이 협동해야하는 팀 과제이다. 주로 역할분배는 <strong>명령어 파싱부</strong>와 <strong>실행부</strong>로 구분하곤 한다.</p>
 <p>명령어 파싱의 경우 bonus를 고려하지 않으면 주로 연결리스트로 관리를 하고, bonus를 고려할 경우 트리형태로 관리한다. 실행부의 경우 아까 언급한 것 처럼 이전 과제인 pipex와 유사하기 때문에 익숙한 작업이 주를 이룬다.</p>
 <p>내가 <code>실행부 + built-in 함수</code>를 맡았고, 함께한 팀원분이 <code>파싱부 + here_doc 등</code>을 맡았다.</p>
-<p>이에 따라, 이번 과제 정리는 내가 담당한 빌트인 함수만 주로 다루어보고자 한다. (실행부는 <strong>pipex</strong>와 유사). 코드를 실제로 나열하기보다는 각 함수들이 어떠한 특징을 가지고 있는지 알아보자! 함수들의 작동은 모두 bash을 기준으로 작동을 확인해보자. 직접 디렉토리 삭제 및 복구, 이상한 값들, 기괴한 상황을 bash에서 진행해보며 맞춰보는 것이 좋다. 생각보다 man page에 모든 것이 나와있지는 않음&hellip;</p>
+<p>이에 따라, 이번 과제 정리는 내가 담당한 빌트인 함수만 주로 다루어보고자 한다. (실행부는 <strong>pipex</strong>와 유사). 코드를 실제로 나열하기보다는 각 함수들이 어떠한 특징을 가지고 있는지 알아보자! 함수들의 작동은 모두 bash을 기준으로 작동을 확인해보자. 직접 디렉토리 삭제 및 복구, 이상한 값들, 기괴한 상황을 bash에서 진행해보며 맞춰보는 것이 좋다. 생각보다 man page에 모든 것이 나와있지는 않음...</p>
 <br>
 <h3 id="4-1-built-in-구현">4-1. built-in 구현</h3>
-<h4 id="ft_cd">ft_cd</h4>
+<h4 id="ftcd">ft_cd</h4>
 <ul>
 <li>
 <p><code>cd</code></p>
@@ -335,7 +192,7 @@
 </li>
 </ul>
 <br>
-<h4 id="ft_echo">ft_echo</h4>
+<h4 id="ftecho">ft_echo</h4>
 <ul>
 <li>
 <p><code>echo</code></p>
@@ -381,7 +238,7 @@
 </li>
 </ul>
 <br>
-<h4 id="ft_env">ft_env</h4>
+<h4 id="ftenv">ft_env</h4>
 <ul>
 <li>
 <p><code>env</code></p>
@@ -399,7 +256,7 @@
 </li>
 </ul>
 <br>
-<h4 id="ft_exit">ft_exit</h4>
+<h4 id="ftexit">ft_exit</h4>
 <ul>
 <li>
 <p><code>exit</code></p>
@@ -427,57 +284,20 @@
 </ul>
 </li>
 <li>
-<p>예제 케이스</p>
-<table>
-	<thead>
-			<tr>
-					<th>입력 값</th>
-					<th>반환 값</th>
-					<th>비고</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>&quot; 12342  241 &quot;</code></td>
-					<td><code>1</code></td>
-					<td>공백 포함 여러 숫자는 허용되지 않음</td>
-			</tr>
-			<tr>
-					<td><code>&quot;   3  &quot;</code></td>
-					<td><code>0</code></td>
-					<td>유효한 숫자</td>
-			</tr>
-			<tr>
-					<td><code>&quot;  3a  &quot;</code></td>
-					<td><code>1</code></td>
-					<td>숫자 뒤에 문자가 포함되면 오류</td>
-			</tr>
-			<tr>
-					<td><code>&quot;  3 4  &quot;</code></td>
-					<td><code>1</code></td>
-					<td>여러 개의 숫자가 포함되면 오류</td>
-			</tr>
-			<tr>
-					<td><code>&quot;  3 4a  &quot;</code></td>
-					<td><code>1</code></td>
-					<td>숫자 + 문자 조합은 오류</td>
-			</tr>
-			<tr>
-					<td><code>&quot;  3 4 5  &quot;</code></td>
-					<td><code>1</code></td>
-					<td>여러 개의 숫자는 허용되지 않음</td>
-			</tr>
-			<tr>
-					<td><code>&quot;lkj1234214&quot;</code></td>
-					<td><code>1</code></td>
-					<td>숫자로 시작하지 않으면 오류</td>
-			</tr>
-	</tbody>
-</table>
+<p>예제 케이스<br>
+| 입력 값 | 반환 값 | 비고 |
+|---------|--------|------|
+| <code>&quot; 12342  241 &quot;</code> | <code>1</code> | 공백 포함 여러 숫자는 허용되지 않음 |
+| <code>&quot;   3  &quot;</code> | <code>0</code> | 유효한 숫자 |
+| <code>&quot;  3a  &quot;</code> | <code>1</code> | 숫자 뒤에 문자가 포함되면 오류 |
+| <code>&quot;  3 4  &quot;</code> | <code>1</code> | 여러 개의 숫자가 포함되면 오류 |
+| <code>&quot;  3 4a  &quot;</code> | <code>1</code> | 숫자 + 문자 조합은 오류 |
+| <code>&quot;  3 4 5  &quot;</code> | <code>1</code> | 여러 개의 숫자는 허용되지 않음 |
+| <code>&quot;lkj1234214&quot;</code> | <code>1</code> | 숫자로 시작하지 않으면 오류 |</p>
 </li>
 </ul>
 <br>
-<h4 id="ft_export">ft_export</h4>
+<h4 id="ftexport">ft_export</h4>
 <ul>
 <li>
 <p><code>export</code></p>
@@ -507,13 +327,13 @@
 </li>
 </ul>
 <br>
-<h4 id="ft_pwd">ft_pwd</h4>
+<h4 id="ftpwd">ft_pwd</h4>
 <ul>
 <li>현재 작업 디렉토리를 출력 (<code>getcwd()</code> 사용)</li>
 <li><code>getcwd()</code>가 실패하면 <code>&quot;Failed to get current directory.&quot;</code> 에러 출력 후 <code>g_signal_error = 1</code> 설정</li>
 </ul>
 <br>
-<h4 id="ft_unset">ft_unset</h4>
+<h4 id="ftunset">ft_unset</h4>
 <ul>
 <li>
 <p><code>unset key</code></p>
@@ -563,21 +383,38 @@
 <li><a href="https://www.freebsd.org">https://www.freebsd.org</a></li>
 <li><a href="https://man7.org/linux/man-pages/man2/pipe.2.html">https://man7.org/linux/man-pages/man2/pipe.2.html</a></li>
 <li><a href="https://millar-library99.tistory.com/21">https://millar-library99.tistory.com/21</a></li>
-<li><a href="https://tsi.kr/entry/Minishell-">https://tsi.kr/entry/Minishell-</a>미니쉘-테스트-할만한거</li>
+<li><a href="https://tsi.kr/entry/Minishell-%EB%AF%B8%EB%8B%88%EC%89%98-%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%95%A0%EB%A7%8C%ED%95%9C%EA%B1%B0">https://tsi.kr/entry/Minishell-미니쉘-테스트-할만한거</a></li>
 </ul>
 <br>
 <br>
 <br>
 
-
-    
-
-<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-<script>addBackToTop({
-  diameter: 40,
-  backgroundColor: '#ec42ff',
-  textColor: '#fff'
-})</script>
-
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv2"></span><span class="lv2"></span><span class="lv2"></span><span class="lv1"></span><span class="lv2"></span><span class="lv1"></span><span class="lv1"></span></div><div class="toc-list"><a class="lv0" href="#1-%EC%86%8C%EA%B0%9C" data-id="1-소개">1. 소개</a><a class="lv1" href="#2-minishell-%EB%AA%85%EC%84%B8%EC%84%9C" data-id="2-minishell-명세서">2. minishell 명세서</a><a class="lv1" href="#3-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC" data-id="3-개념-정리">3. 개념 정리</a><a class="lv2" href="#3-1-shell" data-id="3-1-shell">3-1. Shell</a><a class="lv2" href="#3-2-%ED%99%98%EA%B2%BD-%EB%B3%80%EC%88%98" data-id="3-2-환경-변수">3-2. 환경 변수</a><a class="lv2" href="#3-3-built-in-%ED%95%A8%EC%88%98" data-id="3-3-built-in-함수">3-3. built-in 함수</a><a class="lv1" href="#4-mandatory" data-id="4-mandatory">4. Mandatory</a><a class="lv2" href="#4-1-built-in-%EA%B5%AC%ED%98%84" data-id="4-1-built-in-구현">4-1. built-in 구현</a><a class="lv1" href="#5-evaluation" data-id="5-evaluation">5. Evaluation</a><a class="lv1" href="#6-reference" data-id="6-reference">6. Reference</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>
