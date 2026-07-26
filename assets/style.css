@@ -36,6 +36,7 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 80px; /* 스티키 헤더에 앵커가 가려지지 않도록 */
+  interpolate-size: allow-keywords; /* details 높이 애니메이션용 */
 }
 body {
   margin: 0 auto;
@@ -196,27 +197,50 @@ pre code { font-size: 12.5px; }
   border: none;
   border-radius: 0;
   padding: 0;
-  margin: 4px 0;
+  margin: 1px 0;
 }
 .toggle > summary {
   display: flex;
   align-items: baseline;
-  gap: 7px;
+  gap: 6px;
   list-style: none;
   cursor: pointer;
-  font-weight: 500;
+  padding: 2px 6px 2px 4px;
+  margin-left: -4px;
+  border-radius: 4px;
 }
 .toggle > summary::-webkit-details-marker { display: none; }
 .toggle > summary::before {
   content: "▶";
   flex: none;
-  font-size: 9px;
+  font-size: 8px;
   color: var(--muted);
   transition: transform 0.15s ease;
 }
 .toggle[open] > summary::before { transform: rotate(90deg); }
-.toggle > *:not(summary) { margin-left: 21px; }
-.toggle > summary:hover { background: var(--chip-bg); border-radius: 4px; }
+.toggle > summary:hover { background: var(--chip-bg); }
+/* 내부 콘텐츠: 노션처럼 들여쓰고 위아래 간격은 촘촘하게 */
+.toggle > *:not(summary) { margin-left: 19px; }
+.toggle > p,
+.toggle > ul,
+.toggle > ol,
+.toggle > blockquote,
+.toggle > pre {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.toggle li { margin: 1px 0; }
+/* 부드럽게 열리기 (지원 브라우저에서만, 미지원 시 즉시 열림) */
+.toggle::details-content {
+  opacity: 0;
+  block-size: 0;
+  overflow-y: clip;
+  transition: content-visibility 0.2s allow-discrete, opacity 0.2s ease, block-size 0.2s ease;
+}
+.toggle[open]::details-content {
+  opacity: 1;
+  block-size: auto;
+}
 
 /* ---------- 시리즈/콜아웃/비디오 ---------- */
 .series {
