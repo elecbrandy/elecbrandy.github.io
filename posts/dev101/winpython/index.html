@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows Python 개발환경 설치 · elecbrandy</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/style.css">
+
+<script>(function(){var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;})();</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL1NP5K5CJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-ZL1NP5K5CJ");</script>
+</head>
+<body>
+<header class="site-header">
+  <a class="site-title" href="/">elecbrandy</a>
+  <nav>
+    <a href="/">posts</a>
+    <a href="/tags/">tags</a>
+    <a href="/about/">about</a>
+    <button id="theme-toggle" aria-label="테마 전환">
+      <svg class="sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </nav>
+</header>
+<main>
+<article class="post">
+<h1 class="post-title">Windows Python 개발환경 설치</h1>
+<div class="post-meta"><time>2026-09-01</time><a class="chip" href="/tags/dev101/">dev101</a></div>
+<h1 id="windows에서-python-langgraphlangchain과-docker-개발환경-설치-방법">Windows에서 Python LangGraph/LangChain과 Docker 개발환경 설치 방법</h1>
+<h2 id="0-최종-폴더-구조">0. 최종 폴더 구조</h2>
+<p>프로젝트는 Windows 경로인 <code>C:\\Users\\...</code> 또는 <code>/mnt/c/Users/...</code>가 아니라 WSL 파일시스템에 둔다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>/home/&#x3C;Ubuntu사용자명>/projects/langgraph-app</span></span>
+<span class="line"><span>├── .venv/</span></span>
+<span class="line"><span>├── .env</span></span>
+<span class="line"><span>├── compose.yaml</span></span>
+<span class="line"><span>├── pyproject.toml</span></span>
+<span class="line"><span>└── src/</span></span></code></pre>
+<h2 id="1-windows에서-wsl2-ubuntu-설치">1. Windows에서 WSL2 Ubuntu 설치</h2>
+<p>PowerShell을 관리자 권한으로 열고 다음 명령을 실행한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-powershell"><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">--</span><span style="color:#24292E;--shiki-dark:#E1E4E8">install </span><span style="color:#D73A49;--shiki-dark:#F97583">-</span><span style="color:#24292E;--shiki-dark:#E1E4E8">d Ubuntu</span></span></code></pre>
+<p>Windows를 재시작한 뒤 Ubuntu를 실행한다. 최초 실행 화면에서 Linux 사용자명과 비밀번호를 만든다.</p>
+<p>WSL 버전과 배포판 상태를 확인한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-powershell"><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">--</span><span style="color:#24292E;--shiki-dark:#E1E4E8">status</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">-</span><span style="color:#24292E;--shiki-dark:#E1E4E8">l </span><span style="color:#D73A49;--shiki-dark:#F97583">-</span><span style="color:#24292E;--shiki-dark:#E1E4E8">v</span></span></code></pre>
+<p><code>Ubuntu</code>의 <code>VERSION</code> 값이 <code>2</code>인지 확인한다. 값이 <code>1</code>이면 다음 명령을 실행한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-powershell"><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">--</span><span style="color:#005CC5;--shiki-dark:#79B8FF">set-version</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> Ubuntu </span><span style="color:#005CC5;--shiki-dark:#79B8FF">2</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">--</span><span style="color:#005CC5;--shiki-dark:#79B8FF">set-default</span><span style="color:#D73A49;--shiki-dark:#F97583">-</span><span style="color:#24292E;--shiki-dark:#E1E4E8">version </span><span style="color:#005CC5;--shiki-dark:#79B8FF">2</span></span></code></pre>
+<h2 id="2-windows-프로그램-설치">2. Windows 프로그램 설치</h2>
+<p>다음 프로그램을 설치한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>Windows Terminal</span></span>
+<span class="line"><span>Visual Studio Code</span></span>
+<span class="line"><span>Docker Desktop</span></span></code></pre>
+<p>Windows Terminal에서 Ubuntu를 열어 이후 Linux 명령을 실행한다.</p>
+<h2 id="3-docker-desktop을-wsl2와-연결">3. Docker Desktop을 WSL2와 연결</h2>
+<p>Docker Desktop을 실행하고 다음 항목을 설정한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-text"><span class="line"><span>Settings > General > Use the WSL 2 based engine: 켜기</span></span>
+<span class="line"><span>Settings > Resources > WSL Integration > Enable integration with my default WSL distro: 켜기</span></span>
+<span class="line"><span>Settings > Resources > WSL Integration > Ubuntu: 켜기</span></span></code></pre>
+<p>Ubuntu 터미널에서 Docker 연결을 확인한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> version</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> version</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> run</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --rm</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> hello-world</span></span></code></pre>
+<p><code>docker</code> 명령을 찾을 수 없거나 Docker daemon 연결 오류가 나오면 Docker Desktop이 실행 중인지 확인하고, WSL Integration의 Ubuntu 항목을 다시 켠다.</p>
+<h2 id="4-wsl-ubuntu-기본-패키지-설치">4. WSL Ubuntu 기본 패키지 설치</h2>
+<p>Ubuntu 터미널에서 다음 명령을 실행한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> apt</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> update</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> apt</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> upgrade</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -y</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">sudo</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> apt</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -y</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> build-essential</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ca-certificates</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> curl</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> pkg-config</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> python3</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> python3-pip</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> python3-venv</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --version</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">python3</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --version</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">curl</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --version</span></span></code></pre>
+<h2 id="5-vs-code-remote---wsl-연결">5. VS Code Remote - WSL 연결</h2>
+<p>Windows용 VS Code에서 Extensions 화면을 열고 Microsoft의 <code>WSL</code> 확장을 설치한다.</p>
+<p>Ubuntu에서 프로젝트 폴더를 만들고 VS Code를 WSL 모드로 연다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">mkdir</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -p</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/projects/langgraph-app</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/projects/langgraph-app</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">code</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> .</span></span></code></pre>
+<p>VS Code 왼쪽 아래 상태 표시줄에 <code>WSL: Ubuntu</code>가 표시되는지 확인한다. 표시되지 않으면 명령 팔레트에서 <code>WSL: Reopen Folder in WSL</code>을 실행한다. VS Code의 Python 확장도 WSL: Ubuntu 창에서 설치한다.</p>
+<h2 id="6-uv-설치와-python-프로젝트-생성">6. uv 설치와 Python 프로젝트 생성</h2>
+<p><code>uv</code>는 Python 패키지와 가상환경을 관리하는 도구이다. Ubuntu에서 설치한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">curl</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -LsSf</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://astral.sh/uv/install.sh</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> sh</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">source</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "</span><span style="color:#24292E;--shiki-dark:#E1E4E8">$HOME</span><span style="color:#032F62;--shiki-dark:#9ECBFF">/.local/bin/env"</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --version</span></span></code></pre>
+<p>새 프로젝트와 Python 3.12 가상환경을 만든다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/projects</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> init</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> langgraph-app</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> langgraph-app</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> python</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 3.12</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> venv</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --python</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 3.12</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">source</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> .venv/bin/activate</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">python</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --version</span></span></code></pre>
+<p>VS Code에서 Python 인터프리터 선택 화면을 열고 <code>.venv/bin/python</code>을 선택한다.</p>
+<h2 id="7-langgraph와-langchain-설치">7. LangGraph와 LangChain 설치</h2>
+<p>가상환경이 활성화된 상태에서 기본 패키지를 설치한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> add</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> langgraph</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> langchain</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> langchain-openai</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> python-dotenv</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> add</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --dev</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> pytest</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ruff</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> run</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> python</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -c</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "import langgraph, langchain; print('LangGraph and LangChain installed')"</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> tree</span></span></code></pre>
+<p>OpenAI API를 사용하는 경우 <code>.env</code> 파일을 만든다. 실제 API 키는 Git에 올리지 않는다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">printf</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> '%s\n'</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 'OPENAI_API_KEY=실제_API_키'</span><span style="color:#D73A49;--shiki-dark:#F97583"> ></span><span style="color:#032F62;--shiki-dark:#9ECBFF"> .env</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">printf</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> '%s\n'</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> '.env'</span><span style="color:#D73A49;--shiki-dark:#F97583"> >></span><span style="color:#032F62;--shiki-dark:#9ECBFF"> .gitignore</span></span></code></pre>
+<p><code>.env</code>에 적은 키는 외부에 공유하지 않는 비밀 값이다.</p>
+<h2 id="8-git-사용자-정보와-저장소-연결">8. Git 사용자 정보와 저장소 연결</h2>
+<p>Git 사용자 정보를 설정한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> config</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --global</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> user.name</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "사용자 이름"</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> config</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --global</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> user.email</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "사용자 이메일"</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> config</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --global</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> init.defaultBranch</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> main</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> config</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --global</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --list</span></span></code></pre>
+<h3 id="81-ssh-방식">8.1 SSH 방식</h3>
+<p>SSH 키를 만들고 공개키를 출력한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">ssh-keygen</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -t</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ed25519</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -C</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "사용자이메일@example.com"</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">eval</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "$(</span><span style="color:#6F42C1;--shiki-dark:#B392F0">ssh-agent</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -s</span><span style="color:#032F62;--shiki-dark:#9ECBFF">)"</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">ssh-add</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/.ssh/id_ed25519</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">cat</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/.ssh/id_ed25519.pub</span></span></code></pre>
+<p>출력된 공개키 전체를 GitHub 또는 GitLab 계정의 SSH Key 설정에 등록한다. GitHub 연결을 확인한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">ssh</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -T</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> git@github.com</span></span></code></pre>
+<p>GitHub의 SSH 22번 포트가 회사망에서 차단된 경우 다음 설정을 추가한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">mkdir</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -p</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/.ssh</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">chmod</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 700</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/.ssh</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">cat</span><span style="color:#D73A49;--shiki-dark:#F97583"> >></span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/.ssh/config</span><span style="color:#D73A49;--shiki-dark:#F97583"> &#x3C;&#x3C;</span><span style="color:#032F62;--shiki-dark:#9ECBFF">'EOF'</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">Host github.com</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">  Hostname ssh.github.com</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">  Port 443</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">  User git</span></span>
+<span class="line"><span style="color:#032F62;--shiki-dark:#9ECBFF">EOF</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">chmod</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 600</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/.ssh/config</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">ssh</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -T</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> git@github.com</span></span></code></pre>
+<h3 id="82-https-방식">8.2 HTTPS 방식</h3>
+<p>HTTPS 주소로 저장소를 복제한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> clone</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://github.com/</span><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="color:#032F62;--shiki-dark:#9ECBFF">조직또는사용</span><span style="color:#24292E;--shiki-dark:#E1E4E8">자</span><span style="color:#D73A49;--shiki-dark:#F97583">></span><span style="color:#032F62;--shiki-dark:#9ECBFF">/</span><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="color:#032F62;--shiki-dark:#9ECBFF">저장</span><span style="color:#24292E;--shiki-dark:#E1E4E8">소</span><span style="color:#D73A49;--shiki-dark:#F97583">></span><span style="color:#032F62;--shiki-dark:#9ECBFF">.git</span></span></code></pre>
+<p>GitHub는 비밀번호 대신 Personal Access Token을 요구할 수 있다. 토큰을 비밀번호 입력란에 붙여 넣는다.</p>
+<p>현재 프로젝트를 원격 저장소에 연결하는 명령은 다음과 같다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> init</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> add</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> .</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> commit</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -m</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "Initial project setup"</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> remote</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> add</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> origin</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://github.com/</span><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="color:#032F62;--shiki-dark:#9ECBFF">조직또는사용</span><span style="color:#24292E;--shiki-dark:#E1E4E8">자</span><span style="color:#D73A49;--shiki-dark:#F97583">></span><span style="color:#032F62;--shiki-dark:#9ECBFF">/</span><span style="color:#D73A49;--shiki-dark:#F97583">&#x3C;</span><span style="color:#032F62;--shiki-dark:#9ECBFF">저장</span><span style="color:#24292E;--shiki-dark:#E1E4E8">소</span><span style="color:#D73A49;--shiki-dark:#F97583">></span><span style="color:#032F62;--shiki-dark:#9ECBFF">.git</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> push</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -u</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> origin</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> main</span></span></code></pre>
+<h2 id="9-회사-vpn프록시dns-점검">9. 회사 VPN·프록시·DNS 점검</h2>
+<p>먼저 Windows에서 회사 VPN에 연결한다. 그 다음 Ubuntu에서 네트워크를 확인한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">curl</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -I</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://github.com</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">getent</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> hosts</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> github.com</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ls-remote</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://github.com/git/git.git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> HEAD</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> pull</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> hello-world</span></span></code></pre>
+<p>Windows에서는 되지만 WSL에서 이름 해석, 프록시, 사내 Git 연결이 실패하면 Windows 홈 폴더의 <code>.wslconfig</code>에 다음을 추가한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-ini"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">[wsl2]</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">networkingMode</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=mirrored</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">dnsTunneling</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=true</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">autoProxy</span><span style="color:#24292E;--shiki-dark:#E1E4E8">=true</span></span></code></pre>
+<p>PowerShell에서 WSL을 종료하고 다시 연다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-powershell"><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">--</span><span style="color:#24292E;--shiki-dark:#E1E4E8">shutdown</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">-</span><span style="color:#24292E;--shiki-dark:#E1E4E8">d Ubuntu</span></span></code></pre>
+<p>회사가 명시적인 프록시 주소를 제공한 경우에만 Git 프록시를 설정한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> config</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --global</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> http.proxy</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> http://proxy.company.com:8080</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> config</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --global</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https.proxy</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> http://proxy.company.com:8080</span></span></code></pre>
+<p>프록시 설정을 제거하는 명령은 다음과 같다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> config</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --global</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --unset</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> http.proxy</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> config</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --global</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --unset</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https.proxy</span></span></code></pre>
+<p>Python 패키지 설치에 프록시가 필요한 경우 현재 셸에만 적용한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">export</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> HTTP_PROXY</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#24292E;--shiki-dark:#E1E4E8">http://proxy.company.com:8080</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#F97583">export</span><span style="color:#24292E;--shiki-dark:#E1E4E8"> HTTPS_PROXY</span><span style="color:#D73A49;--shiki-dark:#F97583">=</span><span style="color:#24292E;--shiki-dark:#E1E4E8">http://proxy.company.com:8080</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> sync</span></span></code></pre>
+<p>회사 보안 프록시의 인증서 때문에 <code>CERTIFICATE_VERIFY_FAILED</code> 오류가 나면 보안팀에서 Linux/WSL용 사내 루트 인증서를 받아 설치해야 한다. 인증서 검증을 끄는 방식은 사용하지 않는다.</p>
+<h2 id="10-postgresqlredisqdrant를-docker-compose로-실행">10. PostgreSQL·Redis·Qdrant를 Docker Compose로 실행</h2>
+<p>프로젝트 루트에서 <code>compose.yaml</code> 파일을 만들고 다음 내용을 입력한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-yaml"><span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">services</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  postgres</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    image</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">postgres:16-alpine</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    environment</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      POSTGRES_USER</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">app</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      POSTGRES_PASSWORD</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">app_password</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      POSTGRES_DB</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">langgraph</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    ports</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"5432:5432"</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    volumes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">postgres_data:/var/lib/postgresql/data</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    healthcheck</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      test</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"CMD-SHELL"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"pg_isready -U app -d langgraph"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      interval</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">5s</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      timeout</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">5s</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      retries</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">10</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  redis</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    image</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">redis:7-alpine</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    ports</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"6379:6379"</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    volumes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">redis_data:/data</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    healthcheck</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      test</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: [</span><span style="color:#032F62;--shiki-dark:#9ECBFF">"CMD"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"redis-cli"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">, </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"ping"</span><span style="color:#24292E;--shiki-dark:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      interval</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">5s</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      timeout</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">5s</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">      retries</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#005CC5;--shiki-dark:#79B8FF">10</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  qdrant</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    image</span><span style="color:#24292E;--shiki-dark:#E1E4E8">: </span><span style="color:#032F62;--shiki-dark:#9ECBFF">qdrant/qdrant:v1.13.4</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    ports</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"6333:6333"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">"6334:6334"</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">    volumes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">      - </span><span style="color:#032F62;--shiki-dark:#9ECBFF">qdrant_data:/qdrant/storage</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">volumes</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  postgres_data</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  redis_data</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#85E89D">  qdrant_data</span><span style="color:#24292E;--shiki-dark:#E1E4E8">:</span></span></code></pre>
+<p>개발용 기본 비밀번호 <code>app_password</code>는 로컬 환경 전용 값이다. 운영 환경에서는 Docker secrets 또는 비밀 관리 서비스를 사용한다.</p>
+<p>컨테이너를 실행한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> up</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -d</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ps</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> logs</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --tail=100</span></span></code></pre>
+<p>각 서비스의 연결을 확인한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> exec</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> postgres</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> psql</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -U</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> app</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -d</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> langgraph</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -c</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 'SELECT version();'</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> exec</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> redis</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> redis-cli</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ping</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">curl</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> http://localhost:6333/healthz</span></span></code></pre>
+<p>정상 결과는 PostgreSQL 버전 정보, Redis의 <code>PONG</code>, Qdrant의 HTTP 200 응답이다.</p>
+<p>컨테이너를 중지한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> down</span></span></code></pre>
+<p>컨테이너와 데이터 볼륨을 함께 삭제하는 명령은 다음과 같다. 이 명령은 PostgreSQL·Redis·Qdrant의 로컬 데이터를 삭제한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> down</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -v</span></span></code></pre>
+<h2 id="11-codex를-wsl에서-사용">11. Codex를 WSL에서 사용</h2>
+<p>Codex CLI는 WSL Ubuntu 터미널에서 실행하는 구성이 가장 단순하다. 프로젝트 경로도 WSL 내부 경로를 사용한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/projects/langgraph-app</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">codex</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --version</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">codex</span></span></code></pre>
+<p>VS Code의 WSL 창에서 통합 터미널을 열고 같은 명령을 실행해도 된다. Codex가 Docker를 실행해야 하는 작업에서는 Docker Desktop을 먼저 실행하고 다음 명령이 성공하는지 확인한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ps</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ps</span></span></code></pre>
+<p>Windows에 설치된 Codex와 WSL에 설치된 Python·Docker를 섞어 사용하지 않는다. 프로젝트 명령, <code>uv</code>, <code>git</code>, <code>docker compose</code>, Codex는 모두 WSL Ubuntu 터미널에서 실행한다.</p>
+<h2 id="12-전체-설치-확인-명령">12. 전체 설치 확인 명령</h2>
+<p>프로젝트 루트에서 다음 명령을 순서대로 실행한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">pwd</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uname</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -a</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">python3</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --version</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --version</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --version</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> version</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> version</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> run</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> python</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -c</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> "import langgraph, langchain; print('LangGraph and LangChain installed')"</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> up</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -d</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ps</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> exec</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> redis</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> redis-cli</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ping</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">curl</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -fsS</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> http://localhost:6333/healthz</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> down</span></span></code></pre>
+<p><code>pwd</code> 출력이 <code>/home/&lt;Ubuntu사용자명&gt;/projects/langgraph-app</code> 형태이고, Docker 서비스와 Python import가 성공하면 설치가 완료된 상태이다.</p>
+<h2 id="13-문제-해결-명령">13. 문제 해결 명령</h2>
+<h3 id="wsl-상태-확인과-재시작">WSL 상태 확인과 재시작</h3>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-powershell"><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">--</span><span style="color:#24292E;--shiki-dark:#E1E4E8">status</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">-</span><span style="color:#24292E;--shiki-dark:#E1E4E8">l </span><span style="color:#D73A49;--shiki-dark:#F97583">-</span><span style="color:#24292E;--shiki-dark:#E1E4E8">v</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">--</span><span style="color:#24292E;--shiki-dark:#E1E4E8">update</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">--</span><span style="color:#24292E;--shiki-dark:#E1E4E8">shutdown</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">-</span><span style="color:#24292E;--shiki-dark:#E1E4E8">d Ubuntu</span></span></code></pre>
+<h3 id="docker-daemon-연결-오류">Docker daemon 연결 오류</h3>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> context</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ls</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> context</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> use</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> default</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> version</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> info</span></span></code></pre>
+<p>Docker Desktop을 완전히 종료한 뒤 다시 실행한다. 그 후 PowerShell에서 <code>wsl --shutdown</code>을 실행하고 Ubuntu를 다시 연다.</p>
+<h3 id="포트-충돌-확인">포트 충돌 확인</h3>
+<p>PostgreSQL, Redis, Qdrant의 포트가 이미 사용 중인지 확인한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">ss</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -ltnp</span><span style="color:#D73A49;--shiki-dark:#F97583"> |</span><span style="color:#6F42C1;--shiki-dark:#B392F0"> rg</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ':(5432|6379|6333|6334)'</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ps</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --format</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 'table {{.Names}}\t{{.Ports}}'</span></span></code></pre>
+<p>충돌한 서비스가 있으면 <code>compose.yaml</code>의 왼쪽 포트 번호를 변경한다. 예를 들어 <code>&quot;15432:5432&quot;</code>은 Windows와 WSL의 15432 포트를 컨테이너의 PostgreSQL 5432 포트에 연결하는 설정이다.</p>
+<h3 id="python-가상환경-재생성">Python 가상환경 재생성</h3>
+<p>가상환경이 손상되었을 때 실행한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">deactivate</span><span style="color:#D73A49;--shiki-dark:#F97583"> 2></span><span style="color:#032F62;--shiki-dark:#9ECBFF">/dev/null</span><span style="color:#D73A49;--shiki-dark:#F97583"> ||</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> true</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">rm</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -rf</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> .venv</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> venv</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --python</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> 3.12</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">uv</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> sync</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">source</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> .venv/bin/activate</span></span></code></pre>
+<h3 id="git-인증과-연결-확인">Git 인증과 연결 확인</h3>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> remote</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -v</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">ssh</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -vT</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> git@github.com</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ls-remote</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> origin</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> HEAD</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">git</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> config</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --global</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> --get-regexp</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> 'http\..*proxy|https\..*proxy'</span><span style="color:#D73A49;--shiki-dark:#F97583"> ||</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> true</span></span></code></pre>
+<h3 id="dns-확인과-갱신">DNS 확인과 갱신</h3>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">cat</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> /etc/resolv.conf</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">getent</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> hosts</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> github.com</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">resolvectl</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> status</span><span style="color:#D73A49;--shiki-dark:#F97583"> 2></span><span style="color:#032F62;--shiki-dark:#9ECBFF">/dev/null</span><span style="color:#D73A49;--shiki-dark:#F97583"> ||</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> true</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">curl</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -vI</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> https://github.com</span></span></code></pre>
+<p>VPN 연결을 변경한 직후 DNS가 실패하면 PowerShell에서 다음을 실행한 뒤 Ubuntu를 다시 연다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-powershell"><span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">--</span><span style="color:#24292E;--shiki-dark:#E1E4E8">shutdown</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">ipconfig </span><span style="color:#D73A49;--shiki-dark:#F97583">/</span><span style="color:#24292E;--shiki-dark:#E1E4E8">flushdns</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#E1E4E8">wsl </span><span style="color:#D73A49;--shiki-dark:#F97583">-</span><span style="color:#24292E;--shiki-dark:#E1E4E8">d Ubuntu</span></span></code></pre>
+<h2 id="14-일상-개발-시작-명령">14. 일상 개발 시작 명령</h2>
+<p>Windows에서 Docker Desktop과 회사 VPN을 먼저 실행한다. 이후 Ubuntu 터미널에서 다음 명령을 실행한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/projects/langgraph-app</span></span>
+<span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">source</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> .venv/bin/activate</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> up</span><span style="color:#005CC5;--shiki-dark:#79B8FF"> -d</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">code</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> .</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">codex</span></span></code></pre>
+<p>작업 종료 시 컨테이너를 중지한다.</p>
+<pre class="shiki shiki-themes github-light github-dark" style="background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#005CC5;--shiki-dark:#79B8FF">cd</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> ~/projects/langgraph-app</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#B392F0">docker</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> compose</span><span style="color:#032F62;--shiki-dark:#9ECBFF"> down</span></span></code></pre>
+
+</article><nav class="toc" aria-label="목차"><div class="toc-bars"><span class="lv0"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv2"></span><span class="lv2"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv1"></span><span class="lv2"></span><span class="lv2"></span><span class="lv2"></span><span class="lv2"></span><span class="lv2"></span><span class="lv2"></span><span class="lv1"></span></div><div class="toc-list"><a class="lv0" href="#windows%EC%97%90%EC%84%9C-python-langgraphlangchain%EA%B3%BC-docker-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%EC%84%A4%EC%B9%98-%EB%B0%A9%EB%B2%95" data-id="windows에서-python-langgraphlangchain과-docker-개발환경-설치-방법">Windows에서 Python LangGraph/LangChain과 Docker 개발환경 설치 방법</a><a class="lv1" href="#0-%EC%B5%9C%EC%A2%85-%ED%8F%B4%EB%8D%94-%EA%B5%AC%EC%A1%B0" data-id="0-최종-폴더-구조">0. 최종 폴더 구조</a><a class="lv1" href="#1-windows%EC%97%90%EC%84%9C-wsl2-ubuntu-%EC%84%A4%EC%B9%98" data-id="1-windows에서-wsl2-ubuntu-설치">1. Windows에서 WSL2 Ubuntu 설치</a><a class="lv1" href="#2-windows-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%84%A4%EC%B9%98" data-id="2-windows-프로그램-설치">2. Windows 프로그램 설치</a><a class="lv1" href="#3-docker-desktop%EC%9D%84-wsl2%EC%99%80-%EC%97%B0%EA%B2%B0" data-id="3-docker-desktop을-wsl2와-연결">3. Docker Desktop을 WSL2와 연결</a><a class="lv1" href="#4-wsl-ubuntu-%EA%B8%B0%EB%B3%B8-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%84%A4%EC%B9%98" data-id="4-wsl-ubuntu-기본-패키지-설치">4. WSL Ubuntu 기본 패키지 설치</a><a class="lv1" href="#5-vs-code-remote---wsl-%EC%97%B0%EA%B2%B0" data-id="5-vs-code-remote---wsl-연결">5. VS Code Remote - WSL 연결</a><a class="lv1" href="#6-uv-%EC%84%A4%EC%B9%98%EC%99%80-python-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%9D%EC%84%B1" data-id="6-uv-설치와-python-프로젝트-생성">6. uv 설치와 Python 프로젝트 생성</a><a class="lv1" href="#7-langgraph%EC%99%80-langchain-%EC%84%A4%EC%B9%98" data-id="7-langgraph와-langchain-설치">7. LangGraph와 LangChain 설치</a><a class="lv1" href="#8-git-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EB%B3%B4%EC%99%80-%EC%A0%80%EC%9E%A5%EC%86%8C-%EC%97%B0%EA%B2%B0" data-id="8-git-사용자-정보와-저장소-연결">8. Git 사용자 정보와 저장소 연결</a><a class="lv2" href="#81-ssh-%EB%B0%A9%EC%8B%9D" data-id="81-ssh-방식">8.1 SSH 방식</a><a class="lv2" href="#82-https-%EB%B0%A9%EC%8B%9D" data-id="82-https-방식">8.2 HTTPS 방식</a><a class="lv1" href="#9-%ED%9A%8C%EC%82%AC-vpn%ED%94%84%EB%A1%9D%EC%8B%9Cdns-%EC%A0%90%EA%B2%80" data-id="9-회사-vpn프록시dns-점검">9. 회사 VPN·프록시·DNS 점검</a><a class="lv1" href="#10-postgresqlredisqdrant%EB%A5%BC-docker-compose%EB%A1%9C-%EC%8B%A4%ED%96%89" data-id="10-postgresqlredisqdrant를-docker-compose로-실행">10. PostgreSQL·Redis·Qdrant를 Docker Compose로 실행</a><a class="lv1" href="#11-codex%EB%A5%BC-wsl%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9" data-id="11-codex를-wsl에서-사용">11. Codex를 WSL에서 사용</a><a class="lv1" href="#12-%EC%A0%84%EC%B2%B4-%EC%84%A4%EC%B9%98-%ED%99%95%EC%9D%B8-%EB%AA%85%EB%A0%B9" data-id="12-전체-설치-확인-명령">12. 전체 설치 확인 명령</a><a class="lv1" href="#13-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0-%EB%AA%85%EB%A0%B9" data-id="13-문제-해결-명령">13. 문제 해결 명령</a><a class="lv2" href="#wsl-%EC%83%81%ED%83%9C-%ED%99%95%EC%9D%B8%EA%B3%BC-%EC%9E%AC%EC%8B%9C%EC%9E%91" data-id="wsl-상태-확인과-재시작">WSL 상태 확인과 재시작</a><a class="lv2" href="#docker-daemon-%EC%97%B0%EA%B2%B0-%EC%98%A4%EB%A5%98" data-id="docker-daemon-연결-오류">Docker daemon 연결 오류</a><a class="lv2" href="#%ED%8F%AC%ED%8A%B8-%EC%B6%A9%EB%8F%8C-%ED%99%95%EC%9D%B8" data-id="포트-충돌-확인">포트 충돌 확인</a><a class="lv2" href="#python-%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-%EC%9E%AC%EC%83%9D%EC%84%B1" data-id="python-가상환경-재생성">Python 가상환경 재생성</a><a class="lv2" href="#git-%EC%9D%B8%EC%A6%9D%EA%B3%BC-%EC%97%B0%EA%B2%B0-%ED%99%95%EC%9D%B8" data-id="git-인증과-연결-확인">Git 인증과 연결 확인</a><a class="lv2" href="#dns-%ED%99%95%EC%9D%B8%EA%B3%BC-%EA%B0%B1%EC%8B%A0" data-id="dns-확인과-갱신">DNS 확인과 갱신</a><a class="lv1" href="#14-%EC%9D%BC%EC%83%81-%EA%B0%9C%EB%B0%9C-%EC%8B%9C%EC%9E%91-%EB%AA%85%EB%A0%B9" data-id="14-일상-개발-시작-명령">14. 일상 개발 시작 명령</a></div></nav>
+</main>
+<footer class="site-footer">© 2026 elecbrandy</footer>
+<button id="to-top" aria-label="맨 위로"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+document.getElementById("theme-toggle").addEventListener("click",function(){var h=document.documentElement;var t=h.dataset.theme==="dark"?"light":"dark";h.dataset.theme=t;localStorage.setItem("theme",t);});
+(function(){
+  var btn=document.getElementById("to-top");
+  btn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var toc=document.querySelector(".toc");
+  var links=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-list a")):[];
+  var bars=toc?Array.prototype.slice.call(toc.querySelectorAll(".toc-bars span")):[];
+  var heads=links.map(function(a){return document.getElementById(a.dataset.id);});
+  function onScroll(){
+    btn.classList.toggle("show",window.scrollY>400);
+    if(!toc)return;
+    var cur=-1;
+    for(var i=0;i<heads.length;i++){if(heads[i]&&heads[i].getBoundingClientRect().top<=90)cur=i;}
+    for(var j=0;j<links.length;j++){
+      links[j].classList.toggle("active",j===cur);
+      if(bars[j])bars[j].classList.toggle("active",j===cur);
+    }
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>
